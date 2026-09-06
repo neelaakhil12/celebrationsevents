@@ -2,6 +2,8 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 
+const ROOT_DIR = path.resolve(__dirname, '..');
+
 const MIME_TYPES = {
   '.html': 'text/html; charset=utf-8',
   '.css': 'text/css; charset=utf-8',
@@ -21,14 +23,14 @@ const server = http.createServer((req, res) => {
     safePath = '/index.html';
   }
 
-  const filePath = path.join(__dirname, safePath);
+  const filePath = path.join(ROOT_DIR, safePath);
   const ext = path.extname(filePath).toLowerCase();
   const contentType = MIME_TYPES[ext] || 'application/octet-stream';
 
   fs.readFile(filePath, (err, content) => {
     if (err) {
       if (err.code === 'ENOENT') {
-        fs.readFile(path.join(__dirname, 'index.html'), (fallbackErr, fallbackContent) => {
+        fs.readFile(path.join(ROOT_DIR, 'index.html'), (fallbackErr, fallbackContent) => {
           if (fallbackErr) {
             res.writeHead(404, { 'Content-Type': 'text/plain' });
             res.end('404 Not Found');
@@ -69,5 +71,3 @@ function startServer(port, maxTries = 10) {
 
 const DEFAULT_PORT = parseInt(process.env.PORT, 10) || 8080;
 startServer(DEFAULT_PORT);
-
-module.exports = server;

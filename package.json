@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "description": "Celebration Events - Party and Event Decoration Booking Website",
   "scripts": {
-    "dev": "node dev-server.js",
-    "start": "node dev-server.js"
+    "dev": "node scripts/dev-server.js"
   },
   "keywords": [
     "celebration",
