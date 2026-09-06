@@ -69,3 +69,5 @@ function startServer(port, maxTries = 10) {
 
 const DEFAULT_PORT = parseInt(process.env.PORT, 10) || 8080;
 startServer(DEFAULT_PORT);
+
+module.exports = server;
