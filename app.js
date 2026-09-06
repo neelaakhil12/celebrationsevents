@@ -939,10 +939,6 @@ window.addEventListener("resize", () => {
 // App Launch Splash Screen (Typewriter without cursor line)
 // ----------------------------------------------------
 function initSplashScreen() {
-  // Only show on homepage or initial website entry
-  const rawPath = (window.location.pathname.split("/").pop() || "index.html").toLowerCase();
-  const isHomepage = rawPath === "" || rawPath === "index.html";
-
   // In self-contained style block to guarantee full-screen rendering regardless of browser cache
   if (!document.getElementById("splashDynamicStyles")) {
     const styleTag = document.createElement("style");
@@ -1077,11 +1073,6 @@ function initSplashScreen() {
       }
     `;
     document.head.appendChild(styleTag);
-  }
-
-  // If not on homepage and user hasn't explicitly entered a splash container, don't interrupt category browsing
-  if (!isHomepage && !document.getElementById("splashScreen")) {
-    return;
   }
 
   let splash = document.getElementById("splashScreen");
