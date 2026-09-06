@@ -45,6 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
   try { updateCartBadge(); } catch(e){}
   try { initBookNowAnimations(); } catch(e){}
   try { scrollActiveNavIntoView(); } catch(e){}
+  try { initSplashScreen(); } catch(e){}
 
   setTimeout(() => {
     if (typeof AOS !== "undefined") AOS.refresh();
@@ -924,5 +925,79 @@ window.addEventListener("load", () => {
 window.addEventListener("resize", () => {
   try { scrollActiveNavIntoView(); } catch(e){}
 });
+
+// ----------------------------------------------------
+// App Launch Splash Screen (Typewriter without cursor line)
+// ----------------------------------------------------
+function initSplashScreen() {
+  let splash = document.getElementById("splashScreen");
+  
+  // Dynamically inject splash screen if not present in the HTML
+  if (!splash) {
+    splash = document.createElement("div");
+    splash.id = "splashScreen";
+    splash.className = "splash-screen";
+    splash.innerHTML = `
+      <div class="splash-content">
+        <div class="splash-balloon-box">
+          <span class="splash-balloon">🎈</span>
+          <div class="splash-glow"></div>
+        </div>
+        <div class="splash-title-wrap">
+          <h1 class="splash-brand-title">
+            <span id="splashTypewriterText"></span>
+          </h1>
+        </div>
+        <p class="splash-tagline" id="splashTagline">India's Trusted Party & Event Expert ✨</p>
+        <div class="splash-loader-bar">
+          <div class="splash-loader-fill"></div>
+        </div>
+      </div>
+    `;
+    document.body.prepend(splash);
+  }
+
+  const textEl = document.getElementById("splashTypewriterText");
+  const taglineEl = document.getElementById("splashTagline");
+  const loaderEl = splash.querySelector(".splash-loader-fill");
+  if (!textEl) return;
+
+  const originalOverflow = document.body.style.overflow;
+  document.body.style.overflow = "hidden";
+
+  const brandText = "Celebration Events®";
+  let charIdx = 0;
+  textEl.textContent = "";
+
+  if (loaderEl) {
+    setTimeout(() => {
+      loaderEl.style.width = "100%";
+    }, 80);
+  }
+
+  // Typewriter effect without any cursor line
+  const typingTimer = setInterval(() => {
+    if (charIdx < brandText.length) {
+      textEl.textContent += brandText.charAt(charIdx);
+      charIdx++;
+    } else {
+      clearInterval(typingTimer);
+
+      // Fade in tagline
+      if (taglineEl) taglineEl.classList.add("show");
+
+      // Hold briefly to admire brand name, then smoothly reveal website
+      setTimeout(() => {
+        splash.classList.add("hide-splash");
+        document.body.style.overflow = originalOverflow || "";
+
+        setTimeout(() => {
+          splash.remove();
+        }, 700);
+      }, 700);
+    }
+  }, 65);
+}
+
 
 
