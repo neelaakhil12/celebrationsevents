@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Celebration Events® | India’s Trusted Platform for Party & Event Decoration Services</title>
+  <meta name="description" content="India’s trusted platform to book party and event decoration services. Browse balloon designs, select your slot, and get complete setup at your home in 100+ cities." />
+  <meta name="theme-color" content="#d14a61" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+  <link rel="icon" href="https://cdn.balloondekor.com/images/61/7ebf2dbd-60dd-4643-8029-763dc6a3e5e3.webp" type="image/webp" />
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="announcement-bar">
+    <span class="badge">Special Offer</span>
+    <span>Use code <strong>CELEBRATE10</strong> for Flat 10% OFF | ⚡ Same Day 2-Hour Express Delivery in 100+ Cities</span>
+  </div>
+
+  <!-- Sticky Main Header -->
+  <header class="main-header">
+    <div class="header-container">
+      <div class="header-left">
+        <button id="mobileMenuBtn" class="mobile-menu-btn" aria-label="Open Navigation">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+
+        <a href="#" class="brand-logo-wrap" onclick="filterCategory('all'); return false;">
+          <div class="brand-logo">
+            <span class="logo-balloon">🎈</span>
+            <span>Celebration <span class="bold">Events</span><span class="reg">®</span></span>
+          </div>
+          <span class="brand-tagline">India ka party expert</span>
+        </a>
+
+        <!-- City Selector Trigger -->
+        <button id="citySelectorTrigger" class="city-selector-btn" aria-label="Select City">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path><circle cx="12" cy="10" r="3"></circle></svg>
+          <div class="city-info">
+            <span class="city-label">Deliver to</span>
+            <span id="headerCityName" class="city-name">Select City</span>
+          </div>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
+        </button>
+      </div>
+
+      <!-- Navigation Links on Header -->
+      <div style="display: flex; align-items: center; gap: 4px;">
+        <a href="index.html" class="header-nav-link active">Home</a>
+        <a href="about.html" class="header-nav-link">About Us</a>
+        <a href="contact.html" class="header-nav-link">Contact</a>
+      </div>
+
+      <!-- Search Trigger Input -->
+      <div class="header-center" style="max-width: 320px;">
+        <button id="searchTriggerBtn" class="search-trigger-btn" aria-label="Search decorations">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+          <span>Search decorations...</span>
+          <span class="shortcut-key">⌘K</span>
+        </button>
+      </div>
+
+      <!-- Header Right Utilities -->
+      <div class="header-right">
+        <button id="mobileSearchBtn" class="header-action-btn" style="display: none;" aria-label="Search">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+        </button>
+
+        <a href="#reviewsSection" class="header-help-link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5Zm0 0a9 9 0 1 1 18 0m0 0v5a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3Z"></path><path d="M21 16v2a4 4 0 0 1-4 4h-5"></path></svg>
+          <span>Support</span>
+        </a>
+
+        <!-- Cart Button Trigger -->
+        <button id="cartTriggerBtn" class="header-action-btn" aria-label="Open Cart">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"></circle><circle cx="19" cy="21" r="1"></circle><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path></svg>
+          <span id="cartCountBadge" class="cart-badge">0</span>
+        </button>
+
+        <button class="header-sign-in" onclick="openLoginPrompt()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+          <span>Sign In</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Secondary Mega-Menu Navigation Bar -->
+  <nav class="secondary-nav">
+    <div class="nav-container">
+      <ul class="nav-menu">
+        <li class="nav-item">
+          <a href="birthday.html" class="nav-trigger">
+            Birthday <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"></path></svg>
+          </a>
+          <div class="mega-dropdown">
+            <div class="mega-grid">
+              <div>
+                <div class="mega-col-title">Popular Cities</div>
+                <ul class="mega-list">
+                  <li><a href="birthday.html" onclick="selectCity('mumbai');">Mumbai Birthday Decor</a></li>
+                  <li><a href="birthday.html" onclick="selectCity('delhi');">Delhi NCR Birthday</a></li>
+                  <li><a href="birthday.html" onclick="selectCity('bangalore');">Bangalore Birthday</a></li>
+                  <li><a href="birthday.html" onclick="selectCity('hyderabad');">Hyderabad Birthday</a></li>
+                  <li><a href="birthday.html" onclick="selectCity('pune');">Pune Celebrations</a></li>
+                </ul>
+              </div>
+              <div>
+                <div class="mega-col-title">By Person</div>
+                <ul class="mega-list">
+                  <li><a href="birthday.html">For Husband Surprise</a></li>
+                  <li><a href="birthday.html">For Wife Celebration</a></li>
+                  <li><a href="birthday.html">For Girlfriend / Boyfriend</a></li>
+                  <li><a href="birthday.html">For Mom & Dad</a></li>
+                  <li><a href="birthday.html">Milestone 18th / 30th / 50th</a></li>
+                </ul>
+              </div>
+              <div>
+                <div class="mega-col-title">Kids Themes</div>
+                <ul class="mega-list">
+                  <li><a href="kids.html">Cocomelon Party</a></li>
+                  <li><a href="kids.html">Frozen Ice Castle</a></li>
+                  <li><a href="kids.html">Jungle Safari Adventure</a></li>
+                  <li><a href="kids.html">Baby Shark Fun</a></li>
+                  <li><a href="kids.html">The Boss Baby Decor</a></li>
+                </ul>
+              </div>
+              <div>
+                <div class="mega-col-title">By Venue</div>
+                <ul class="mega-list">
+                  <li><a href="birthday.html">Living Room Balloon Decor</a></li>
+                  <li><a href="birthday.html">Terrace & Open Lawn</a></li>
+                  <li><a href="birthday.html">Car Boot Surprise</a></li>
+                  <li><a href="birthday.html">Organic Circular Arch</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li class="nav-item">
+          <a href="anniversary.html" class="nav-trigger">
+            Anniversary <span class="tag-pill tag-popular">POPULAR</span> <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"></path></svg>
+          </a>
+          <div class="mega-dropdown">
+            <div class="mega-grid">
+              <div>
+                <div class="mega-col-title">Romantic Styles</div>
+                <ul class="mega-list">
+                  <li><a href="anniversary.html">Canopy & Cabana Decor</a></li>
+                  <li><a href="anniversary.html">Room & Bed Decoration</a></li>
+                  <li><a href="anniversary.html">Heart Balloons & Rose Petals</a></li>
+                  <li><a href="anniversary.html">First Night Setup</a></li>
+                </ul>
+              </div>
+              <div>
+                <div class="mega-col-title">For Parents</div>
+                <ul class="mega-list">
+                  <li><a href="anniversary.html">25th Silver Jubilee</a></li>
+                  <li><a href="anniversary.html">50th Golden Anniversary</a></li>
+                  <li><a href="anniversary.html">Grand Sequins Backdrop</a></li>
+                </ul>
+              </div>
+              <div>
+                <div class="mega-col-title">Proposal & Dates</div>
+                <ul class="mega-list">
+                  <li><a href="anniversary.html">Marry Me Neon Setup</a></li>
+                  <li><a href="anniversary.html">Candlelight Pathway</a></li>
+                  <li><a href="anniversary.html">Car Boot Dikki Surprise</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li class="nav-item">
+          <a href="kids.html" class="nav-trigger">
+            Kids Themes <span class="tag-pill tag-trending">TRENDING</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a href="baby-shower.html" class="nav-trigger">
+            Baby Shower & Welcome
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a href="wedding.html" class="nav-trigger">
+            Wedding & Haldi <span class="tag-pill tag-new">NEW</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a href="corporate.html" class="nav-trigger">
+            Corporate
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a href="#" class="nav-trigger" onclick="openCityModal(); return false;">
+            Cities <span class="tag-pill tag-count">50+</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Mobile Quick City Strip -->
+  <div class="mobile-city-bar">
+    <button class="mobile-city-btn" onclick="openCityModal()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path><circle cx="12" cy="10" r="3"></circle></svg>
+      <span>Delivering in: <strong id="mobileCityText">Select City</strong></span>
+    </button>
+    <span class="mobile-city-action" onclick="openCityModal()">Change City →</span>
+  </div>
+
+  <!-- Page Main Content Wrapper -->
+  <main class="page-wrapper">
+
+    <!-- Hero Carousel -->
+    <section class="hero-carousel" id="heroCarousel" data-aos="fade-up" data-aos-duration="800">
+      <div class="carousel-slides" id="carouselSlides">
+        <!-- Slide 1 -->
+        <div class="carousel-slide">
+          <img src="https://cdn.balloondekor.com/images/16/49e5480a-1fcd-42eb-ad97-cafd993c260d.webp" alt="Grand Celebration Decor" />
+          <div class="slide-overlay"></div>
+          <div class="slide-content">
+            <span class="slide-tag">✨ India's #1 Decoration Service</span>
+            <h1 class="slide-title">Balloon Decorations That Wow Your Guests</h1>
+            <p class="slide-desc">Same-day hassle-free setup at your home, terrace or party hall in 100+ cities. Clean, on-time and premium aesthetic guaranteed.</p>
+            <a href="#catalogSection" class="slide-btn" onclick="filterCategory('birthday')">
+              Explore Birthday Packages →
+            </a>
+          </div>
+        </div>
+        <!-- Slide 2 -->
+        <div class="carousel-slide">
+          <img src="https://cdn.balloondekor.com/29/1784709508118-669326.webp" alt="Romantic Anniversary Decor" />
+          <div class="slide-overlay"></div>
+          <div class="slide-content">
+            <span class="slide-tag">❤️ Romantic Surprises</span>
+            <h2 class="slide-title">Make Your Anniversary Unforgettable</h2>
+            <p class="slide-desc">Canopy tents, floating ceiling balloons, glowing fairy lights, and personalized photo setups crafted with love.</p>
+            <a href="#catalogSection" class="slide-btn" onclick="filterCategory('anniversary')">
+              Book Anniversary Surprise →
+            </a>
+          </div>
+        </div>
+        <!-- Slide 3 -->
+        <div class="carousel-slide">
+          <img src="https://cdn.balloondekor.com/images/33/dbe87a70-56bc-42bc-ad96-2847b88c00dd.webp" alt="Kids Birthday Theme Parties" />
+          <div class="slide-overlay"></div>
+          <div class="slide-content">
+            <span class="slide-tag">🦄 Kids Dream Themes</span>
+            <h2 class="slide-title">Magical Parties Kids Will Remember Forever</h2>
+            <p class="slide-desc">From Cocomelon & Baby Shark to Frozen & Jungle Safari - turn their birthday into a wonderland!</p>
+            <a href="#catalogSection" class="slide-btn" onclick="filterCategory('kids')">
+              View Kids Themes →
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="carousel-dots" id="carouselDots">
+        <span class="carousel-dot active" data-index="0"></span>
+        <span class="carousel-dot" data-index="1"></span>
+        <span class="carousel-dot" data-index="2"></span>
+      </div>
+    </section>
+
+    <!-- Quick Categories Visual Navigation -->
+    <section class="quick-categories-section" data-aos="fade-up" data-aos-duration="700">
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <h2 class="section-title">Explore Occasions & Themes</h2>
+          <div class="title-underline"></div>
+          <p class="section-subtitle">Trusted by 5 Lacs+ clients across India for memorable celebrations</p>
+        </div>
+      </div>
+
+      <div class="quick-category-grid" id="quickCategoryGrid">
+        <!-- Rendered dynamically by app.js -->
+      </div>
+    </section>
+
+    <!-- Trust Badges Strip -->
+    <section class="trust-strip" data-aos="fade-up" data-aos-duration="700">
+      <div class="trust-item">
+        <div class="trust-icon-box">🏆</div>
+        <div class="trust-text-box">
+          <h4>5,00,000+ Happy Events</h4>
+          <p>Delivered across 100+ cities in India</p>
+        </div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon-box">⚡</div>
+        <div class="trust-text-box">
+          <h4>2-Hour Express Setup</h4>
+          <p>Same-day slots available on short notice</p>
+        </div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon-box">🛡️</div>
+        <div class="trust-text-box">
+          <h4>100% Wall-Safe Tapes</h4>
+          <p>Zero peeling, zero damage to wall paint</p>
+        </div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon-box">⭐</div>
+        <div class="trust-text-box">
+          <h4>4.9 / 5 Star Rating</h4>
+          <p>Verified decorators with full equipment</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Catalog & Filter Section -->
+    <section class="catalog-section" id="catalogSection" data-aos="fade-up" data-aos-duration="700">
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <h2 class="section-title" id="catalogHeading">Featured Decoration Packages</h2>
+          <div class="title-underline"></div>
+          <p class="section-subtitle" id="catalogSubheading">Browse popular balloon decor designs and book your preferred technician slot</p>
+        </div>
+
+        <div class="sort-box">
+          <label for="sortSelect">Sort By:</label>
+          <select id="sortSelect" class="sort-select">
+            <option value="featured">Featured (Recommended)</option>
+            <option value="price-low">Price: Low to High</option>
+            <option value="price-high">Price: High to Low</option>
+            <option value="rating">Highest Rated</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Filter Pills -->
+      <div class="catalog-controls">
+        <div class="filter-pills" id="filterPills">
+          <button class="filter-pill active" data-cat="all">All Occasions</button>
+          <button class="filter-pill" data-cat="birthday">🎂 Birthday</button>
+          <button class="filter-pill" data-cat="anniversary">❤️ Romantic & Anniversary</button>
+          <button class="filter-pill" data-cat="kids">🦄 Kids Themes</button>
+          <button class="filter-pill" data-cat="baby-shower">🍼 Baby Shower & Welcome</button>
+          <button class="filter-pill" data-cat="wedding">💍 Wedding & Haldi</button>
+          <button class="filter-pill" data-cat="corporate">💼 Corporate</button>
+        </div>
+      </div>
+
+      <!-- Products Grid -->
+      <div class="products-grid" id="productsGrid">
+        <!-- Rendered dynamically by app.js -->
+      </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works-section" data-aos="fade-up" data-aos-duration="700">
+      <div class="section-title-wrap" style="text-align: center; align-items: center;">
+        <h2 class="section-title">How Celebration Events Works</h2>
+        <div class="title-underline"></div>
+        <p class="section-subtitle">Effortless party planning in 4 simple steps</p>
+      </div>
+
+      <div class="steps-grid">
+        <div class="step-card">
+          <span class="step-num">1</span>
+          <div class="step-icon">🎨</div>
+          <h4>Select Your Design</h4>
+          <p>Choose from 500+ curated setups for birthdays, anniversaries and special moments.</p>
+        </div>
+        <div class="step-card">
+          <span class="step-num">2</span>
+          <div class="step-icon">📅</div>
+          <h4>Pick Date & Time Slot</h4>
+          <p>Select your celebration date and convenient technician arrival window (morning to night).</p>
+        </div>
+        <div class="step-card">
+          <span class="step-num">3</span>
+          <div class="step-icon">🧑‍🔧</div>
+          <h4>Decorator Arrives</h4>
+          <p>Our verified specialist arrives with balloons, electric pumps, and lights to style your space.</p>
+        </div>
+        <div class="step-card">
+          <span class="step-num">4</span>
+          <div class="step-icon">🎉</div>
+          <h4>Celebrate & Enjoy!</h4>
+          <p>Make breathtaking memories and click Instagram-worthy photos with loved ones.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section class="reviews-section" id="reviewsSection" data-aos="fade-up" data-aos-duration="700">
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <h2 class="section-title">Real Photos & Happy Customer Reviews</h2>
+          <div class="title-underline"></div>
+          <p class="section-subtitle">See why families and party planners love Celebration Events</p>
+        </div>
+      </div>
+
+      <div class="reviews-grid" id="reviewsGrid">
+        <!-- Rendered dynamically -->
+      </div>
+    </section>
+
+    <!-- FAQs Section -->
+    <section class="faq-section" data-aos="fade-up" data-aos-duration="700">
+      <div class="section-title-wrap" style="text-align: center; align-items: center;">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <div class="title-underline"></div>
+        <p class="section-subtitle">Everything you need to know about booking party decor</p>
+      </div>
+
+      <div class="faq-list" id="faqList">
+        <!-- Rendered dynamically -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Main Footer -->
+  <footer class="main-footer">
+    <div class="footer-container">
+      <div class="footer-top-grid">
+        <div class="footer-col">
+          <div class="brand-logo" style="color: #fff; margin-bottom: 12px;">
+            <span class="logo-balloon">🎈</span>
+            <span>Celebration <span style="color: var(--brand-400);">Events</span><span class="reg">®</span></span>
+          </div>
+          <p>India’s most trusted online platform for party and balloon decorations. We deliver happiness and vibrant surprises across 100+ cities with guaranteed on-time setup.</p>
+          <p><strong>Hotline:</strong> +91 82820 25444<br/><strong>Email:</strong> support@celebrationevents.com<br/><strong>Hours:</strong> Mon - Sun, 09:00 AM - 10:00 PM</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Occasions</h4>
+          <ul class="footer-links">
+            <li><a href="birthday.html">Birthday Decorations</a></li>
+            <li><a href="anniversary.html">Anniversary Celebrations</a></li>
+            <li><a href="kids.html">Kids Theme Parties</a></li>
+            <li><a href="baby-shower.html">Baby Shower & Welcome</a></li>
+            <li><a href="wedding.html">Haldi & Wedding Setups</a></li>
+            <li><a href="corporate.html">Corporate Event Decor</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="#" onclick="openCityModal(); return false;">Choose City</a></li>
+            <li><a href="#" onclick="openCart(); return false;">My Cart</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Instant WhatsApp Booking</h4>
+          <p>Need urgent same-day setup or custom theme design? Chat with our event specialists right now.</p>
+          <a href="https://wa.me/918282025444?text=Hi%20Celebration%20Events,%20I%20want%20to%20book%20a%20decoration%20service." target="_blank" rel="noopener noreferrer" class="slide-btn" style="background: #25d366; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);">
+            Chat on WhatsApp →
+          </a>
+        </div>
+      </div>
+
+      <!-- City Directory -->
+      <div class="footer-cities-wrap">
+        <h5>Serving Across 50+ Cities in India:</h5>
+        <div class="footer-cities-links" id="footerCitiesLinks">
+          <!-- Rendered dynamically -->
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 Celebration Events Technologies Private Limited. All Rights Reserved.</p>
+        <p>100% Secure Payment | UPI • Cards • NetBanking • Pay After Setup</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating WhatsApp Action Widget -->
+  <a href="https://wa.me/918282025444?text=Hi%20Celebration%20Events,%20I%20want%20to%20book%20a%20decoration%20service." target="_blank" rel="noopener noreferrer" class="floating-whatsapp" aria-label="Chat on WhatsApp">
+    <svg viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.669-.699c.983.538 1.838.82 2.791.82 3.181 0 5.767-2.586 5.768-5.766 0-3.18-2.587-5.766-5.768-5.766zm9.969 5.766c0 5.514-4.486 10-10 10-1.748 0-3.385-.45-4.819-1.238l-7.181 1.88 1.914-6.993c-.886-1.488-1.394-3.224-1.394-5.069 0-5.514 4.486-10 10-10s10 4.486 10 10zm-6.262 3.738c-.244-.122-1.442-.711-1.666-.793-.223-.081-.386-.122-.549.122-.163.244-.63 1.057-.773 1.22-.143.163-.285.183-.529.061-.244-.122-1.031-.38-1.963-1.21-.726-.647-1.216-1.446-1.358-1.69-.143-.244-.015-.376.107-.497.11-.11.244-.285.366-.427.122-.143.163-.244.244-.407.082-.163.041-.305-.02-.427-.061-.122-.549-1.321-.752-1.809-.198-.475-.399-.411-.549-.419-.142-.007-.305-.009-.468-.009s-.427.061-.65.305c-.224.244-.854.834-.854 2.034s.874 2.359.996 2.522c.122.163 1.72 2.626 4.167 3.682.582.251 1.037.401 1.392.514.585.186 1.117.16 1.538.097.469-.07 1.442-.59 1.645-1.16.204-.57.204-1.058.143-1.16-.062-.102-.224-.163-.468-.285z"/></svg>
+  </a>
+
+  <!-- City Selection Modal -->
+  <div class="modal-overlay" id="cityModalOverlay">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>📍 Select Delivery City</h3>
+        <button class="modal-close-btn" onclick="closeCityModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size: 13px; color: var(--gray-500); margin-bottom: 12px;">Choose your city to view available same-day technician slots and customized packages:</p>
+        <div class="cities-grid" id="cityListModal">
+          <!-- Rendered dynamically -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Live Search Modal -->
+  <div class="modal-overlay" id="searchModalOverlay">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>🔍 Search Decorations</h3>
+        <button class="modal-close-btn" onclick="closeSearchModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="search-input-wrap">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+          <input type="text" id="liveSearchInput" class="search-input" placeholder="Search by name, character, color or occasion..." autocomplete="off" />
+        </div>
+
+        <div class="quick-tags">
+          <span style="font-size: 11.5px; color: var(--gray-400); align-self: center; margin-right: 4px;">Popular:</span>
+          <span class="search-tag-chip" onclick="quickSearch('Simple Balloon')">Simple Home Decor</span>
+          <span class="search-tag-chip" onclick="quickSearch('Rose Gold')">Rose Gold</span>
+          <span class="search-tag-chip" onclick="quickSearch('Cocomelon')">Cocomelon</span>
+          <span class="search-tag-chip" onclick="quickSearch('Canopy')">Canopy Tent</span>
+          <span class="search-tag-chip" onclick="quickSearch('Baby Shower')">Baby Shower</span>
+          <span class="search-tag-chip" onclick="quickSearch('Haldi')">Haldi</span>
+        </div>
+
+        <div class="search-results-list" id="searchResultsContainer">
+          <!-- Results injected dynamically -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Product Detail & Quick View Modal -->
+  <div class="modal-overlay" id="productModalOverlay">
+    <div class="modal-box product-modal-box">
+      <div class="modal-header">
+        <h3 id="modalProductTitle">Decoration Package Details</h3>
+        <button class="modal-close-btn" onclick="closeProductModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="product-modal-grid">
+          <!-- Left: Gallery & Inclusions -->
+          <div class="modal-gallery-col">
+            <div class="main-preview-img">
+              <img id="modalProductMainImg" src="" alt="Package Image" />
+            </div>
+
+            <div style="background: var(--gray-50); padding: 14px; border-radius: var(--radius-md); border: 1px solid var(--gray-200);">
+              <h5 style="font-size: 13px; font-weight: 800; color: var(--gray-900); display: flex; align-items: center; gap: 6px;">
+                <span>📦</span> What’s Included in this Package:
+              </h5>
+              <ul class="inclusions-list" id="modalInclusionsList">
+                <!-- Inclusions dynamically populated -->
+              </ul>
+              <div style="margin-top: 10px; font-size: 11.5px; color: var(--gray-500); display: flex; align-items: center; gap: 6px;">
+                <span>⏱️ Setup Duration:</span>
+                <strong id="modalSetupDuration" style="color: var(--gray-800);">2 Hours</strong>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Details, Date, Slot & Addons -->
+          <div class="modal-details-col">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
+              <span id="modalProductBadge" class="product-badge badge-bestseller" style="position: static;">BESTSELLER</span>
+              <div class="rating-pill">
+                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                <span id="modalRating">4.9</span>
+              </div>
+            </div>
+
+            <p id="modalProductDesc" style="font-size: 13px; color: var(--gray-600); margin-bottom: 14px; line-height: 1.5;"></p>
+
+            <div class="product-pricing-row" style="margin-bottom: 14px;">
+              <span class="current-price" id="modalCurrentPrice">₹1,499</span>
+              <span class="original-price" id="modalOriginalPrice">₹1,999</span>
+              <span class="discount-tag" id="modalDiscount">25% off</span>
+            </div>
+
+            <!-- Event Date -->
+            <div style="margin-bottom: 12px;">
+              <label style="font-size: 12.5px; font-weight: 700; color: var(--gray-800);">📅 Select Celebration Date:</label>
+              <input type="date" id="bookingDateInput" class="date-input" />
+            </div>
+
+            <!-- Technician Slot -->
+            <div style="margin-bottom: 14px;">
+              <label style="font-size: 12.5px; font-weight: 700; color: var(--gray-800);">⏰ Choose Arrival Slot:</label>
+              <div class="slot-picker-grid" id="slotPickerGrid">
+                <!-- Slots populated dynamically -->
+              </div>
+            </div>
+
+            <!-- Optional Add-ons -->
+            <div style="margin-bottom: 16px;">
+              <label style="font-size: 12.5px; font-weight: 700; color: var(--gray-800);">✨ Add Extra Magic (Optional Add-ons):</label>
+              <div class="addons-checklist" id="addonsChecklist">
+                <!-- Add-ons populated dynamically -->
+              </div>
+            </div>
+
+            <!-- Modal Action Buttons -->
+            <div style="display: flex; gap: 10px; margin-top: 14px;">
+              <button class="book-now-btn" id="modalAddToCartBtn" onclick="handleAddToCartFromModal()">
+                Add to Cart
+              </button>
+              <button class="book-now-btn" style="background: var(--gray-900);" onclick="handleInstantBookFromModal()">
+                Book Now ⚡
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cart Slide-Over Drawer -->
+  <div class="cart-drawer-overlay" id="cartDrawerOverlay">
+    <div class="cart-drawer">
+      <div class="cart-header">
+        <h3>🛒 Your Decoration Cart</h3>
+        <button class="modal-close-btn" onclick="closeCart()">&times;</button>
+      </div>
+
+      <div class="cart-body" id="cartBody">
+        <!-- Cart Items or Empty State -->
+      </div>
+
+      <div class="cart-footer" id="cartFooter" style="display: none;">
+        <div class="cart-coupon-box">
+          <input type="text" id="couponInput" class="coupon-input" placeholder="Coupon (e.g. CELEBRATE10)" />
+          <button class="coupon-apply-btn" onclick="applyCoupon()">Apply</button>
+        </div>
+
+        <div class="bill-row">
+          <span>Items Total</span>
+          <span id="billSubtotal">₹0</span>
+        </div>
+        <div class="bill-row" id="billDiscountRow" style="display: none; color: var(--accent-green);">
+          <span>Promo Discount</span>
+          <span id="billDiscount">-₹0</span>
+        </div>
+        <div class="bill-row">
+          <span>Taxes & Safe-Setup Kit</span>
+          <span style="color: var(--accent-green); font-weight: 700;">FREE</span>
+        </div>
+        <div class="bill-row total">
+          <span>Total Payable</span>
+          <span id="billGrandTotal">₹0</span>
+        </div>
+
+        <button class="checkout-btn" onclick="openCheckoutModal()">
+          Proceed to Reserve Slot →
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Multi-Step Checkout Modal -->
+  <div class="modal-overlay" id="checkoutModalOverlay">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>🎉 Complete Your Booking</h3>
+        <button class="modal-close-btn" onclick="closeCheckoutModal()">&times;</button>
+      </div>
+      <div class="modal-body" id="checkoutBody">
+        <form id="checkoutForm" onsubmit="handleOrderSubmission(event)">
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <div>
+              <label style="font-size: 12.5px; font-weight: 700; color: var(--gray-700);">Full Name *</label>
+              <input type="text" required class="search-input" id="custName" placeholder="e.g. Rahul Sharma" style="margin-top: 4px; padding-left: 14px;" />
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+              <div>
+                <label style="font-size: 12.5px; font-weight: 700; color: var(--gray-700);">Phone Number *</label>
+                <input type="tel" required class="search-input" id="custPhone" placeholder="10-digit mobile" style="margin-top: 4px; padding-left: 14px;" />
+              </div>
+              <div>
+                <label style="font-size: 12.5px; font-weight: 700; color: var(--gray-700);">Celebrant / Person Name</label>
+                <input type="text" class="search-input" id="custOccasion" placeholder="Name on balloon" style="margin-top: 4px; padding-left: 14px;" />
+              </div>
+            </div>
+
+            <div>
+              <label style="font-size: 12.5px; font-weight: 700; color: var(--gray-700);">Party Venue Complete Address *</label>
+              <textarea required class="search-input" id="custAddress" rows="3" placeholder="House/Flat No., Building Name, Street, Landmark..." style="margin-top: 4px; padding-left: 14px; resize: none;"></textarea>
+            </div>
+
+            <div>
+              <label style="font-size: 12.5px; font-weight: 700; color: var(--gray-700);">Payment Preference</label>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 6px;">
+                <label class="city-option-btn selected" style="justify-content: center; cursor: pointer;">
+                  <input type="radio" name="payMethod" value="upi" checked style="margin-right: 6px;" />
+                  UPI / Cards (100% Safe)
+                </label>
+                <label class="city-option-btn" style="justify-content: center; cursor: pointer;">
+                  <input type="radio" name="payMethod" value="cash" style="margin-right: 6px;" />
+                  Pay After Setup
+                </label>
+              </div>
+            </div>
+
+            <div style="background: var(--brand-50); padding: 12px; border-radius: var(--radius-md); border: 1px solid var(--brand-200); margin-top: 6px;">
+              <div style="display: flex; justify-content: space-between; font-size: 13px; font-weight: 700;">
+                <span>Total Amount:</span>
+                <span id="checkoutPayAmount" style="color: var(--brand-700);">₹0</span>
+              </div>
+              <p style="font-size: 11px; color: var(--gray-500); margin-top: 4px;">Verified Celebration Events decorator will call you 1 hour prior to the slot time.</p>
+            </div>
+
+            <button type="submit" class="checkout-btn" style="margin-top: 8px;">
+              Confirm Slot & Complete Booking 🚀
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Sidebar Drawer -->
+  <div class="mobile-sidebar-overlay" id="mobileSidebarOverlay">
+    <div class="mobile-sidebar">
+      <div class="mobile-sidebar-header">
+        <div class="brand-logo">
+          <span class="logo-balloon">🎈</span>
+          <span>Celebration <span class="bold">Events</span></span>
+        </div>
+        <button class="modal-close-btn" onclick="closeMobileSidebar()">&times;</button>
+      </div>
+      <ul class="mobile-nav-list">
+        <li><a href="index.html" class="mobile-nav-link">🏠 Home <span>›</span></a></li>
+        <li><a href="birthday.html" class="mobile-nav-link">🎂 Birthday Decoration <span>›</span></a></li>
+        <li><a href="#" class="mobile-nav-link" onclick="filterCategory('anniversary'); closeMobileSidebar();">❤️ Romantic & Anniversary <span>›</span></a></li>
+        <li><a href="#" class="mobile-nav-link" onclick="filterCategory('kids'); closeMobileSidebar();">🦄 Kids Theme Parties <span>›</span></a></li>
+        <li><a href="#" class="mobile-nav-link" onclick="filterCategory('baby-shower'); closeMobileSidebar();">🍼 Baby Shower & Welcome <span>›</span></a></li>
+        <li><a href="#" class="mobile-nav-link" onclick="filterCategory('wedding'); closeMobileSidebar();">💍 Wedding & Haldi <span>›</span></a></li>
+        <li><a href="#" class="mobile-nav-link" onclick="filterCategory('corporate'); closeMobileSidebar();">💼 Corporate Events <span>›</span></a></li>
+        <li><a href="about.html" class="mobile-nav-link">ℹ️ About Us <span>›</span></a></li>
+        <li><a href="contact.html" class="mobile-nav-link">📞 Contact Us <span>›</span></a></li>
+        <li><a href="#" class="mobile-nav-link" onclick="openCityModal(); closeMobileSidebar();">📍 Change City <span>›</span></a></li>
+        <li><a href="#" class="mobile-nav-link" onclick="openLoginPrompt(); closeMobileSidebar();">👤 Sign In / Account <span>›</span></a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Application Logic Scripts -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

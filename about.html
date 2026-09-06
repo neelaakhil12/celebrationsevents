@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us - Why Choose Us, Our Vision, Mission & Journey | Celebration Events®</title>
+  <meta name="description" content="Discover Celebration Events® - India's #1 trusted platform for party, balloon, and event decoration. Learn about our vision, mission, aim, metrics, and why 5,00,000+ families choose us." />
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <!-- Core CSS -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="announcement-bar">
+    <span>✨ India's Most Loved Party Styling Partner | Flat 10% OFF with Code <strong>CELEBRATE10</strong></span>
+    <span class="announcement-badge">Over 5,00,000+ Happy Celebrations</span>
+  </div>
+
+  <!-- Sticky Main Header -->
+  <header class="main-header">
+    <div class="header-container">
+      <div class="header-left">
+        <button id="mobileMenuBtn" class="mobile-menu-btn" aria-label="Open Navigation">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+
+        <a href="index.html" class="brand-logo-wrap">
+          <div class="brand-logo">
+            <span class="logo-balloon">🎈</span>
+            <span>Celebration <span class="bold">Events</span><span class="reg">®</span></span>
+          </div>
+          <span class="brand-tagline">India ka party expert</span>
+        </a>
+
+        <!-- City Selector Trigger -->
+        <button id="citySelectorTrigger" class="city-selector-btn" aria-label="Select City">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path><circle cx="12" cy="10" r="3"></circle></svg>
+          <div class="city-info">
+            <span class="city-label">Deliver to</span>
+            <span id="headerCityName" class="city-name">Select City</span>
+          </div>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
+        </button>
+      </div>
+
+      <!-- Navigation Links on Header -->
+      <div style="display: flex; align-items: center; gap: 6px;">
+        <a href="index.html" class="header-nav-link">Home</a>
+        <a href="about.html" class="header-nav-link active">About Us</a>
+        <a href="contact.html" class="header-nav-link">Contact</a>
+      </div>
+
+      <!-- Header Center Search Trigger -->
+      <div class="header-center" style="max-width: 320px;">
+        <button id="searchTriggerBtn" class="search-trigger-btn" aria-label="Search decorations">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+          <span>Search decorations...</span>
+        </button>
+      </div>
+
+      <!-- Header Right Utilities -->
+      <div class="header-right">
+        <!-- Cart Button Trigger -->
+        <button id="cartTriggerBtn" class="header-action-btn" aria-label="Open Cart">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"></circle><circle cx="19" cy="21" r="1"></circle><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path></svg>
+          <span id="cartCountBadge" class="cart-badge">0</span>
+        </button>
+
+        <button class="header-sign-in" onclick="openLoginPrompt()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+          <span>Sign In</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Secondary Navigation Bar -->
+  <nav class="secondary-nav">
+    <div class="nav-container">
+      <ul class="nav-menu">
+        <li class="nav-item"><a href="birthday.html" class="nav-trigger">Birthday</a></li>
+        <li class="nav-item"><a href="anniversary.html" class="nav-trigger">Anniversary <span class="tag-pill tag-popular">POPULAR</span></a></li>
+        <li class="nav-item"><a href="kids.html" class="nav-trigger">Kids Themes <span class="tag-pill tag-trending">TRENDING</span></a></li>
+        <li class="nav-item"><a href="baby-shower.html" class="nav-trigger">Baby Shower & Welcome</a></li>
+        <li class="nav-item"><a href="wedding.html" class="nav-trigger">Wedding & Haldi <span class="tag-pill tag-new">NEW</span></a></li>
+        <li class="nav-item"><a href="corporate.html" class="nav-trigger">Corporate</a></li>
+        <li class="nav-item"><a href="#" class="nav-trigger" onclick="openCityModal(); return false;">Cities <span class="tag-pill tag-count">50+</span></a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Page Main Content Wrapper -->
+  <main class="page-wrapper">
+
+    <!-- About Hero Section -->
+    <section style="background: linear-gradient(135deg, #fff1f3 0%, #ffffff 100%); border: 1px solid var(--brand-200); border-radius: var(--radius-xl); padding: 50px 36px; text-align: center;" data-aos="fade-up">
+      <span class="slide-tag" style="background: var(--brand-100); color: var(--brand-700); border: 1px solid var(--brand-300);">Welcome to Celebration Events®</span>
+      <h1 style="font-family: var(--font-heading); font-size: 38px; font-weight: 900; color: var(--gray-900); margin: 16px 0 12px; line-height: 1.2;">
+        Crafting Magical Celebrations Across 100+ Indian Cities
+      </h1>
+      <p style="font-size: 16px; color: var(--gray-600); max-width: 820px; margin: 0 auto 24px; line-height: 1.65;">
+        Celebration Events® is India's pioneer on-demand party and balloon decoration ecosystem. Founded to replace the frustration of unverified vendors, unpredictable pricing, and wall damage with standardized excellence, we bring professional aesthetics, transparent bookings, and sheer happiness straight to your doorstep.
+      </p>
+      <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
+        <a href="birthday.html" class="slide-btn">Explore Birthday Packages →</a>
+        <a href="anniversary.html" class="slide-btn" style="background: var(--gray-900);">View Romantic Surprises →</a>
+      </div>
+    </section>
+
+    <!-- Data About Celebration Events (Key Milestones & Impact Metrics) -->
+    <section data-aos="fade-up">
+      <div class="section-title-wrap" style="text-align: center; align-items: center; margin-bottom: 24px;">
+        <h2 class="section-title">Data & Milestones: Our Impact in Numbers</h2>
+        <div class="title-underline"></div>
+        <p class="section-subtitle">Real facts and verified figures that make Celebration Events® India's most trusted choice</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;">
+        <div style="background: #ffffff; border: 1px solid var(--gray-200); border-radius: var(--radius-lg); padding: 24px 18px; text-align: center; box-shadow: var(--shadow-sm); transition: transform 0.2s;" onmouseenter="this.style.transform='translateY(-4px)'" onmouseleave="this.style.transform='none'">
+          <div style="font-size: 32px; margin-bottom: 8px;">🎉</div>
+          <h3 style="font-family: var(--font-heading); font-size: 30px; font-weight: 900; color: var(--brand-600);">5,00,000+</h3>
+          <p style="font-size: 14px; font-weight: 700; color: var(--gray-800); margin-top: 4px;">Celebrations Styled</p>
+          <p style="font-size: 12px; color: var(--gray-500); margin-top: 4px;">Birthdays, jubilees, baby showers & weddings</p>
+        </div>
+
+        <div style="background: #ffffff; border: 1px solid var(--gray-200); border-radius: var(--radius-lg); padding: 24px 18px; text-align: center; box-shadow: var(--shadow-sm); transition: transform 0.2s;" onmouseenter="this.style.transform='translateY(-4px)'" onmouseleave="this.style.transform='none'">
+          <div style="font-size: 32px; margin-bottom: 8px;">🏙️</div>
+          <h3 style="font-family: var(--font-heading); font-size: 30px; font-weight: 900; color: var(--brand-600);">100+</h3>
+          <p style="font-size: 14px; font-weight: 700; color: var(--gray-800); margin-top: 4px;">Cities Covered</p>
+          <p style="font-size: 12px; color: var(--gray-500); margin-top: 4px;">Tier 1 metros to emerging smart cities</p>
+        </div>
+
+        <div style="background: #ffffff; border: 1px solid var(--gray-200); border-radius: var(--radius-lg); padding: 24px 18px; text-align: center; box-shadow: var(--shadow-sm); transition: transform 0.2s;" onmouseenter="this.style.transform='translateY(-4px)'" onmouseleave="this.style.transform='none'">
+          <div style="font-size: 32px; margin-bottom: 8px;">🧑‍🔧</div>
+          <h3 style="font-family: var(--font-heading); font-size: 30px; font-weight: 900; color: var(--brand-600);">1,500+</h3>
+          <p style="font-size: 14px; font-weight: 700; color: var(--gray-800); margin-top: 4px;">Certified Technicians</p>
+          <p style="font-size: 12px; color: var(--gray-500); margin-top: 4px;">Background verified & equipped with tools</p>
+        </div>
+
+        <div style="background: #ffffff; border: 1px solid var(--gray-200); border-radius: var(--radius-lg); padding: 24px 18px; text-align: center; box-shadow: var(--shadow-sm); transition: transform 0.2s;" onmouseenter="this.style.transform='translateY(-4px)'" onmouseleave="this.style.transform='none'">
+          <div style="font-size: 32px; margin-bottom: 8px;">⭐</div>
+          <h3 style="font-family: var(--font-heading); font-size: 30px; font-weight: 900; color: var(--brand-600);">4.9 / 5.0</h3>
+          <p style="font-size: 14px; font-weight: 700; color: var(--gray-800); margin-top: 4px;">Average Rating</p>
+          <p style="font-size: 12px; color: var(--gray-500); margin-top: 4px;">From 60,000+ verified customer reviews</p>
+        </div>
+
+        <div style="background: #ffffff; border: 1px solid var(--gray-200); border-radius: var(--radius-lg); padding: 24px 18px; text-align: center; box-shadow: var(--shadow-sm); transition: transform 0.2s;" onmouseenter="this.style.transform='translateY(-4px)'" onmouseleave="this.style.transform='none'">
+          <div style="font-size: 32px; margin-bottom: 8px;">⚡</div>
+          <h3 style="font-family: var(--font-heading); font-size: 30px; font-weight: 900; color: var(--brand-600);">2 Hours</h3>
+          <p style="font-size: 14px; font-weight: 700; color: var(--gray-800); margin-top: 4px;">Express Setup</p>
+          <p style="font-size: 12px; color: var(--gray-500); margin-top: 4px;">Fastest turnaround for same-day surprises</p>
+        </div>
+
+        <div style="background: #ffffff; border: 1px solid var(--gray-200); border-radius: var(--radius-lg); padding: 24px 18px; text-align: center; box-shadow: var(--shadow-sm); transition: transform 0.2s;" onmouseenter="this.style.transform='translateY(-4px)'" onmouseleave="this.style.transform='none'">
+          <div style="font-size: 32px; margin-bottom: 8px;">🛡️</div>
+          <h3 style="font-family: var(--font-heading); font-size: 30px; font-weight: 900; color: var(--brand-600);">0%</h3>
+          <p style="font-size: 14px; font-weight: 700; color: var(--gray-800); margin-top: 4px;">Wall Paint Damage</p>
+          <p style="font-size: 12px; color: var(--gray-500); margin-top: 4px;">100% paint-safe removable paper tapes</p>
+        </div>
+
+        <div style="background: #ffffff; border: 1px solid var(--gray-200); border-radius: var(--radius-lg); padding: 24px 18px; text-align: center; box-shadow: var(--shadow-sm); transition: transform 0.2s;" onmouseenter="this.style.transform='translateY(-4px)'" onmouseleave="this.style.transform='none'">
+          <div style="font-size: 32px; margin-bottom: 8px;">⏰</div>
+          <h3 style="font-family: var(--font-heading); font-size: 30px; font-weight: 900; color: var(--brand-600);">99.8%</h3>
+          <p style="font-size: 14px; font-weight: 700; color: var(--gray-800); margin-top: 4px;">On-Time Arrival</p>
+          <p style="font-size: 12px; color: var(--gray-500); margin-top: 4px;">Strict adherence to reserved time slots</p>
+        </div>
+
+        <div style="background: #ffffff; border: 1px solid var(--gray-200); border-radius: var(--radius-lg); padding: 24px 18px; text-align: center; box-shadow: var(--shadow-sm); transition: transform 0.2s;" onmouseenter="this.style.transform='translateY(-4px)'" onmouseleave="this.style.transform='none'">
+          <div style="font-size: 32px; margin-bottom: 8px;">🌱</div>
+          <h3 style="font-family: var(--font-heading); font-size: 30px; font-weight: 900; color: var(--brand-600);">100%</h3>
+          <p style="font-size: 14px; font-weight: 700; color: var(--gray-800); margin-top: 4px;">Natural Latex</p>
+          <p style="font-size: 12px; color: var(--gray-500); margin-top: 4px;">Eco-friendly & odorless biodegradable balloons</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Our Vision, Our Mission, Our Aim (The 3 Pillars) -->
+    <section data-aos="fade-up" style="margin-top: 10px;">
+      <div class="section-title-wrap" style="text-align: center; align-items: center; margin-bottom: 28px;">
+        <h2 class="section-title">Our Vision, Our Mission & Our Aim</h2>
+        <div class="title-underline"></div>
+        <p class="section-subtitle">The guiding principles that power every balloon arch and smile we create</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;">
+        <!-- Our Vision -->
+        <div style="background: linear-gradient(180deg, #ffffff 0%, #fff7f8 100%); border: 2px solid var(--brand-200); border-radius: var(--radius-xl); padding: 32px 24px; box-shadow: var(--shadow-md); position: relative; display: flex; flex-direction: column;">
+          <div style="display: inline-flex; align-items: center; justify-content: center; width: 54px; height: 54px; border-radius: var(--radius-md); background: var(--brand-50); border: 1px solid var(--brand-300); font-size: 26px; margin-bottom: 18px;">
+            🌟
+          </div>
+          <span class="slide-tag" style="align-self: flex-start; margin-bottom: 8px; font-size: 10.5px;">The Long-Term Dream</span>
+          <h3 style="font-family: var(--font-heading); font-size: 24px; font-weight: 800; color: var(--gray-900); margin-bottom: 12px;">Our Vision</h3>
+          <p style="font-size: 14.5px; color: var(--gray-700); line-height: 1.7; flex: 1;">
+            To be India's most beloved, accessible, and dependable celebration styling partner, empowering every household and organization—from metropolitan towers to small-town homes—to experience world-class, breathtaking party atmospheres without stress or exorbitant costs.
+          </p>
+          <div style="margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--brand-100); font-size: 12.5px; font-weight: 700; color: var(--brand-600);">
+            ✨ "Making luxury celebrations accessible to everyone."
+          </div>
+        </div>
+
+        <!-- Our Mission -->
+        <div style="background: linear-gradient(180deg, #ffffff 0%, #fffbf2 100%); border: 2px solid #fed7aa; border-radius: var(--radius-xl); padding: 32px 24px; box-shadow: var(--shadow-md); position: relative; display: flex; flex-direction: column;">
+          <div style="display: inline-flex; align-items: center; justify-content: center; width: 54px; height: 54px; border-radius: var(--radius-md); background: #fff7ed; border: 1px solid #fbd38d; font-size: 26px; margin-bottom: 18px;">
+            🎯
+          </div>
+          <span class="slide-tag" style="background: #ffedd5; color: #c2410c; border: 1px solid #fdba74; align-self: flex-start; margin-bottom: 8px; font-size: 10.5px;">How We Deliver Daily</span>
+          <h3 style="font-family: var(--font-heading); font-size: 24px; font-weight: 800; color: var(--gray-900); margin-bottom: 12px;">Our Mission</h3>
+          <p style="font-size: 14.5px; color: var(--gray-700); line-height: 1.7; flex: 1;">
+            To organize and elevate the fragmented event decoration industry through modern technology, fixed upfront pricing, standardized artisan training, wall-safe equipment, and guaranteed on-time execution. We replace anxiety with anticipation.
+          </p>
+          <div style="margin-top: 18px; padding-top: 16px; border-top: 1px solid #fed7aa; font-size: 12.5px; font-weight: 700; color: #ea580c;">
+            ⚡ "Punctuality, transparency, and zero wall damage."
+          </div>
+        </div>
+
+        <!-- Our Aim -->
+        <div style="background: linear-gradient(180deg, #ffffff 0%, #f0fdf4 100%); border: 2px solid #bbf7d0; border-radius: var(--radius-xl); padding: 32px 24px; box-shadow: var(--shadow-md); position: relative; display: flex; flex-direction: column;">
+          <div style="display: inline-flex; align-items: center; justify-content: center; width: 54px; height: 54px; border-radius: var(--radius-md); background: #f0fdf4; border: 1px solid #86efac; font-size: 26px; margin-bottom: 18px;">
+            🏹
+          </div>
+          <span class="slide-tag" style="background: #dcfce7; color: #15803d; border: 1px solid #86efac; align-self: flex-start; margin-bottom: 8px; font-size: 10.5px;">Our Ultimate Purpose</span>
+          <h3 style="font-family: var(--font-heading); font-size: 24px; font-weight: 800; color: var(--gray-900); margin-bottom: 12px;">Our Aim</h3>
+          <p style="font-size: 14.5px; color: var(--gray-700); line-height: 1.7; flex: 1;">
+            To ensure no milestone in life goes uncelebrated due to lack of time, planning complexity, or unreliable vendors. Simultaneously, we aim to provide thousands of skilled grassroots balloon artists and technicians across India with dignified, fair, and consistent livelihood opportunities.
+          </p>
+          <div style="margin-top: 18px; padding-top: 16px; border-top: 1px solid #bbf7d0; font-size: 12.5px; font-weight: 700; color: #16a34a;">
+            🤝 "Spreading joy for clients, empowering local artisans."
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Choose Us (6 Pillars) -->
+    <section data-aos="fade-up" style="margin-top: 10px;">
+      <div class="section-title-wrap" style="text-align: center; align-items: center; margin-bottom: 28px;">
+        <h2 class="section-title">Why Choose Celebration Events®?</h2>
+        <div class="title-underline"></div>
+        <p class="section-subtitle">Here is why over 5,00,000 customers trust us with their most precious moments</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+        <!-- Card 1 -->
+        <div style="background: #ffffff; border: 1px solid var(--gray-200); border-radius: var(--radius-xl); padding: 28px 22px; box-shadow: var(--shadow-sm); transition: all 0.2s;" onmouseenter="this.style.borderColor='var(--brand-400)'" onmouseleave="this.style.borderColor='var(--gray-200)'">
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 14px;">
+            <div style="width: 44px; height: 44px; border-radius: var(--radius-md); background: var(--brand-50); display: flex; align-items: center; justify-content: center; font-size: 22px;">🛡️</div>
+            <h4 style="font-size: 17px; font-weight: 800; color: var(--gray-900);">100% Paint-Safe Wall Tapes</h4>
+          </div>
+          <p style="font-size: 13.5px; color: var(--gray-600); line-height: 1.6;">
+            We exclusively use certified Japanese paper tape and high-grade removable glue dots. They hold balloons securely without peeling paint, ruining wallpapers, or leaving sticky adhesive residues.
+          </p>
+        </div>
+
+        <!-- Card 2 -->
+        <div style="background: #ffffff; border: 1px solid var(--gray-200); border-radius: var(--radius-xl); padding: 28px 22px; box-shadow: var(--shadow-sm); transition: all 0.2s;" onmouseenter="this.style.borderColor='var(--brand-400)'" onmouseleave="this.style.borderColor='var(--gray-200)'">
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 14px;">
+            <div style="width: 44px; height: 44px; border-radius: var(--radius-md); background: #fef3c7; display: flex; align-items: center; justify-content: center; font-size: 22px;">⚡</div>
+            <h4 style="font-size: 17px; font-weight: 800; color: var(--gray-900);">2-Hour Express Same-Day Setup</h4>
+          </div>
+          <p style="font-size: 13.5px; color: var(--gray-600); line-height: 1.6;">
+            Forgot a birthday or decided on an impromptu romantic surprise? Our quick-dispatch decorator clusters in major cities can reach your home within 120 minutes with full setup equipment.
+          </p>
+        </div>
+
+        <!-- Card 3 -->
+        <div style="background: #ffffff; border: 1px solid var(--gray-200); border-radius: var(--radius-xl); padding: 28px 22px; box-shadow: var(--shadow-sm); transition: all 0.2s;" onmouseenter="this.style.borderColor='var(--brand-400)'" onmouseleave="this.style.borderColor='var(--gray-200)'">
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 14px;">
+            <div style="width: 44px; height: 44px; border-radius: var(--radius-md); background: #e0e7ff; display: flex; align-items: center; justify-content: center; font-size: 22px;">🎨</div>
+            <h4 style="font-size: 17px; font-weight: 800; color: var(--gray-900);">Designer Aesthetic Garlands</h4>
+          </div>
+          <p style="font-size: 13.5px; color: var(--gray-600); line-height: 1.6;">
+            We do not do tacky, outdated balloon bouquets. Our styling features curated chromatic pastels, organic balloon arches, shimmer sequin backdrops, neon signages, and bohemian cabanas made for Instagram.
+          </p>
+        </div>
+
+        <!-- Card 4 -->
+        <div style="background: #ffffff; border: 1px solid var(--gray-200); border-radius: var(--radius-xl); padding: 28px 22px; box-shadow: var(--shadow-sm); transition: all 0.2s;" onmouseenter="this.style.borderColor='var(--brand-400)'" onmouseleave="this.style.borderColor='var(--gray-200)'">
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 14px;">
+            <div style="width: 44px; height: 44px; border-radius: var(--radius-md); background: #dcfce7; display: flex; align-items: center; justify-content: center; font-size: 22px;">🧑‍🔧</div>
+            <h4 style="font-size: 17px; font-weight: 800; color: var(--gray-900);">Verified & Uniformed Technicians</h4>
+          </div>
+          <p style="font-size: 13.5px; color: var(--gray-600); line-height: 1.6;">
+            Your family’s safety is paramount. Every Celebration Events® technician undergoes thorough police background checks, hygiene training, and carries professional electric inflator pumps.
+          </p>
+        </div>
+
+        <!-- Card 5 -->
+        <div style="background: #ffffff; border: 1px solid var(--gray-200); border-radius: var(--radius-xl); padding: 28px 22px; box-shadow: var(--shadow-sm); transition: all 0.2s;" onmouseenter="this.style.borderColor='var(--brand-400)'" onmouseleave="this.style.borderColor='var(--gray-200)'">
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 14px;">
+            <div style="width: 44px; height: 44px; border-radius: var(--radius-md); background: #fae8ff; display: flex; align-items: center; justify-content: center; font-size: 22px;">💰</div>
+            <h4 style="font-size: 17px; font-weight: 800; color: var(--gray-900);">Transparent Pricing, Zero Hidden Fees</h4>
+          </div>
+          <p style="font-size: 13.5px; color: var(--gray-600); line-height: 1.6;">
+            What you see on the screen is exactly what you pay. No last-minute travel surcharges, no festival gouging, and full choice between UPI, Cards, NetBanking, and Pay-After-Setup.
+          </p>
+        </div>
+
+        <!-- Card 6 -->
+        <div style="background: #ffffff; border: 1px solid var(--gray-200); border-radius: var(--radius-xl); padding: 28px 22px; box-shadow: var(--shadow-sm); transition: all 0.2s;" onmouseenter="this.style.borderColor='var(--brand-400)'" onmouseleave="this.style.borderColor='var(--gray-200)'">
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 14px;">
+            <div style="width: 44px; height: 44px; border-radius: var(--radius-md); background: #ffedd5; display: flex; align-items: center; justify-content: center; font-size: 22px;">📞</div>
+            <h4 style="font-size: 17px; font-weight: 800; color: var(--gray-900);">7-Day Dedicated Concierge Support</h4>
+          </div>
+          <p style="font-size: 13.5px; color: var(--gray-600); line-height: 1.6;">
+            From custom colour personalization to last-minute slot rescheduling, our human customer care team is available 7 days a week from 9 AM to 10 PM via direct phone and WhatsApp.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Our Journey & Story -->
+    <section style="background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: var(--radius-xl); padding: 40px 32px;" data-aos="fade-up">
+      <div style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 36px; align-items: center;">
+        <div>
+          <span class="slide-tag" style="background: var(--brand-100); color: var(--brand-700); border: 1px solid var(--brand-300); margin-bottom: 12px;">Our Story</span>
+          <h2 style="font-family: var(--font-heading); font-size: 32px; font-weight: 800; color: var(--gray-900); margin-bottom: 16px;">
+            From a Living Room in Delhi to 5 Lac+ Smiles Across India
+          </h2>
+          <p style="font-size: 14.5px; color: var(--gray-600); line-height: 1.7; margin-bottom: 14px;">
+            Celebration Events® was born when our founders attempted to book a simple anniversary decoration for their parents. What followed was three cancelled local vendors, broken promises, and peeling wall paint that took months to repaint.
+          </p>
+          <p style="font-size: 14.5px; color: var(--gray-600); line-height: 1.7; margin-bottom: 16px;">
+            We recognized that party decoration in India needed a modern revolution: guaranteed slot bookings, verified punctual technicians, clean wall-safe adhesives, and transparent digital payments. Today, Celebration Events® is honored to be present in over 100 cities with a network of 1,500+ master stylists.
+          </p>
+          <div style="display: flex; gap: 12px;">
+            <a href="contact.html" class="slide-btn">Connect With Us →</a>
+            <a href="birthday.html" class="slide-btn" style="background: var(--gray-900);">Browse Catalog</a>
+          </div>
+        </div>
+        <div style="border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-md);">
+          <img src="https://cdn.balloondekor.com/images/16/49e5480a-1fcd-42eb-ad97-cafd993c260d.webp" alt="Celebration Events Story" style="width: 100%; height: 100%; object-fit: cover;" />
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Main Footer -->
+  <footer class="main-footer">
+    <div class="footer-container">
+      <div class="footer-top-grid">
+        <div class="footer-col">
+          <div class="brand-logo" style="color: #fff; margin-bottom: 12px;">
+            <span class="logo-balloon">🎈</span>
+            <span>Celebration <span style="color: var(--brand-400);">Events</span><span class="reg">®</span></span>
+          </div>
+          <p>India’s most trusted online platform for party and balloon decorations. We deliver happiness and vibrant surprises across 100+ cities with guaranteed on-time setup.</p>
+          <p style="margin-top: 10px;"><strong>Hotline:</strong> +91 82820 25444<br/><strong>Email:</strong> support@celebrationevents.com<br/><strong>Hours:</strong> Mon - Sun, 09:00 AM - 10:00 PM</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Occasions</h4>
+          <ul class="footer-links">
+            <li><a href="birthday.html">Birthday Decorations</a></li>
+            <li><a href="anniversary.html">Anniversary Celebrations</a></li>
+            <li><a href="kids.html">Kids Theme Parties</a></li>
+            <li><a href="baby-shower.html">Baby Shower & Welcome</a></li>
+            <li><a href="wedding.html">Haldi & Wedding Setups</a></li>
+            <li><a href="corporate.html">Corporate Event Decor</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="#" onclick="openCityModal(); return false;">Choose City</a></li>
+            <li><a href="#" onclick="openCart(); return false;">My Cart</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Instant WhatsApp Booking</h4>
+          <p>Need urgent same-day setup or custom theme design? Chat with our event specialists right now.</p>
+          <a href="https://wa.me/918282025444?text=Hi%20Celebration%20Events,%20I%20want%20to%20book%20a%20decoration%20service." target="_blank" rel="noopener noreferrer" class="slide-btn" style="background: #25d366; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); display: inline-flex; margin-top: 10px;">
+            Chat on WhatsApp →
+          </a>
+        </div>
+      </div>
+
+      <!-- City Directory -->
+      <div class="footer-cities-wrap">
+        <h5>Serving Across 50+ Cities in India:</h5>
+        <div class="footer-cities-links" id="footerCitiesLinks">
+          <!-- Rendered dynamically -->
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 Celebration Events Technologies Private Limited. All Rights Reserved.</p>
+        <p>100% Secure Payment | UPI • Cards • NetBanking • Pay After Setup</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating WhatsApp Action Widget -->
+  <a href="https://wa.me/918282025444?text=Hi%20Celebration%20Events,%20I%20want%20to%20book%20a%20decoration%20service." target="_blank" rel="noopener noreferrer" class="floating-whatsapp" aria-label="Chat on WhatsApp">
+    <svg viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.669-.699c.983.538 1.838.82 2.791.82 3.181 0 5.767-2.586 5.768-5.766 0-3.18-2.587-5.766-5.768-5.766zm9.969 5.766c0 5.514-4.486 10-10 10-1.748 0-3.385-.45-4.819-1.238l-7.181 1.88 1.914-6.993c-.886-1.488-1.394-3.224-1.394-5.069 0-5.514 4.486-10 10-10s10 4.486 10 10zm-6.262 3.738c-.244-.122-1.442-.711-1.666-.793-.223-.081-.386-.122-.549.122-.163.244-.63 1.057-.773 1.22-.143.163-.285.183-.529.061-.244-.122-1.031-.38-1.963-1.21-.726-.647-1.216-1.446-1.358-1.69-.143-.244-.015-.376.107-.497.11-.11.244-.285.366-.427.122-.143.163-.244.244-.407.082-.163.041-.305-.02-.427-.061-.122-.549-1.321-.752-1.809-.198-.475-.399-.411-.549-.419-.142-.007-.305-.009-.468-.009s-.427.061-.65.305c-.224.244-.854.834-.854 2.034s.874 2.359.996 2.522c.122.163 1.72 2.626 4.167 3.682.582.251 1.037.401 1.392.514.585.186 1.117.16 1.538.097.469-.07 1.442-.59 1.645-1.16.204-.57.204-1.058.143-1.16-.062-.102-.224-.163-.468-.285z"/></svg>
+  </a>
+
+  <!-- City Selector Modal -->
+  <div class="modal-overlay" id="cityModalOverlay">
+    <div class="modal-box modal-city-box">
+      <div class="modal-header">
+        <h3>📍 Select Your Celebration City</h3>
+        <button class="modal-close-btn" onclick="closeCityModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-subtitle">Certified technicians ready for on-time same-day setup in 100+ cities:</p>
+        <div class="cities-grid" id="cityListModal"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cart Slide-Over Drawer -->
+  <div class="cart-drawer-overlay" id="cartOverlay">
+    <div class="cart-drawer">
+      <div class="cart-drawer-header">
+        <h3>🛍️ Your Celebration Cart (<span id="cartDrawerCount">0</span>)</h3>
+        <button class="modal-close-btn" onclick="closeCart()">&times;</button>
+      </div>
+      <div class="cart-drawer-body" id="cartItemsContainer"></div>
+      <div class="cart-drawer-footer" id="cartFooter">
+        <div class="cart-coupon-box">
+          <input type="text" id="couponInput" placeholder="Coupon Code (CELEBRATE10)" />
+          <button onclick="applyCouponCode()">Apply</button>
+        </div>
+        <div class="cart-summary-row">
+          <span>Subtotal:</span>
+          <span id="cartSubtotalVal">₹0</span>
+        </div>
+        <div class="cart-summary-row total-row">
+          <span>Final Payable:</span>
+          <span id="cartTotalVal">₹0</span>
+        </div>
+        <button class="checkout-btn" onclick="proceedToCheckout()">Proceed to Secure Booking →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Search Modal Overlay -->
+  <div class="modal-overlay" id="searchModalOverlay">
+    <div class="modal-box modal-search-box">
+      <div class="search-modal-header">
+        <input type="text" id="liveSearchInput" class="live-search-input" placeholder="Search decorations..." />
+        <button class="modal-close-btn" onclick="closeSearchModal()">&times;</button>
+      </div>
+      <div class="search-results-list" id="searchResultsList"></div>
+    </div>
+  </div>
+
+  <!-- Mobile Sidebar Drawer -->
+  <div class="mobile-sidebar-overlay" id="mobileSidebarOverlay">
+    <div class="mobile-sidebar">
+      <div class="mobile-sidebar-header">
+        <div class="brand-logo">
+          <span class="logo-balloon">🎈</span>
+          <span>Celebration <span class="bold">Events</span></span>
+        </div>
+        <button class="modal-close-btn" onclick="closeMobileSidebar()">&times;</button>
+      </div>
+      <ul class="mobile-nav-list">
+        <li><a href="index.html" class="mobile-nav-link">🏠 Home <span>›</span></a></li>
+        <li><a href="birthday.html" class="mobile-nav-link">🎂 Birthday Decoration <span>›</span></a></li>
+        <li><a href="anniversary.html" class="mobile-nav-link">❤️ Romantic & Anniversary <span>›</span></a></li>
+        <li><a href="kids.html" class="mobile-nav-link">🦄 Kids Theme Parties <span>›</span></a></li>
+        <li><a href="baby-shower.html" class="mobile-nav-link">🍼 Baby Shower & Welcome <span>›</span></a></li>
+        <li><a href="wedding.html" class="mobile-nav-link">💍 Wedding & Haldi <span>›</span></a></li>
+        <li><a href="corporate.html" class="mobile-nav-link">💼 Corporate Events <span>›</span></a></li>
+        <li><a href="about.html" class="mobile-nav-link" style="color: var(--brand-600); font-weight: 700;">ℹ️ About Us <span>›</span></a></li>
+        <li><a href="contact.html" class="mobile-nav-link">📞 Contact Us <span>›</span></a></li>
+        <li><a href="#" class="mobile-nav-link" onclick="openCityModal(); closeMobileSidebar();">📍 Change City <span>›</span></a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Application Logic Scripts -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

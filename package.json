@@ -1,0 +1,18 @@
+{
+  "name": "celebration-events",
+  "version": "1.0.0",
+  "description": "Celebration Events - Party and Event Decoration Booking Website",
+  "main": "server.js",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "celebration",
+    "events",
+    "balloon-decorations",
+    "party-planner"
+  ],
+  "author": "Celebration Events",
+  "license": "ISC"
+}

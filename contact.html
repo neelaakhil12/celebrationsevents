@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us - Book Custom Party Decoration & Inquiries | Celebration Events®</title>
+  <meta name="description" content="Get in touch with Celebration Events® for party inquiries, custom balloon decorations, same-day express bookings, and corporate event collaborations across 100+ cities." />
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <!-- Core CSS -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="announcement-bar">
+    <span>📞 Have questions or need a same-day setup? Speak directly with our decorators!</span>
+    <span class="announcement-badge">Instant Support 9 AM - 10 PM</span>
+  </div>
+
+  <!-- Sticky Main Header -->
+  <header class="main-header">
+    <div class="header-container">
+      <div class="header-left">
+        <button id="mobileMenuBtn" class="mobile-menu-btn" aria-label="Open Navigation">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+
+        <a href="index.html" class="brand-logo-wrap">
+          <div class="brand-logo">
+            <span class="logo-balloon">🎈</span>
+            <span>Celebration <span class="bold">Events</span><span class="reg">®</span></span>
+          </div>
+          <span class="brand-tagline">India ka party expert</span>
+        </a>
+
+        <!-- City Selector Trigger -->
+        <button id="citySelectorTrigger" class="city-selector-btn" aria-label="Select City">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path><circle cx="12" cy="10" r="3"></circle></svg>
+          <div class="city-info">
+            <span class="city-label">Deliver to</span>
+            <span id="headerCityName" class="city-name">Select City</span>
+          </div>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
+        </button>
+      </div>
+
+      <!-- Navigation Links on Header -->
+      <div style="display: flex; align-items: center; gap: 6px;">
+        <a href="index.html" class="header-nav-link">Home</a>
+        <a href="about.html" class="header-nav-link">About Us</a>
+        <a href="contact.html" class="header-nav-link active">Contact</a>
+      </div>
+
+      <!-- Header Center Search Trigger -->
+      <div class="header-center" style="max-width: 320px;">
+        <button id="searchTriggerBtn" class="search-trigger-btn" aria-label="Search decorations">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+          <span>Search decorations...</span>
+        </button>
+      </div>
+
+      <!-- Header Right Utilities -->
+      <div class="header-right">
+        <!-- Cart Button Trigger -->
+        <button id="cartTriggerBtn" class="header-action-btn" aria-label="Open Cart">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"></circle><circle cx="19" cy="21" r="1"></circle><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path></svg>
+          <span id="cartCountBadge" class="cart-badge">0</span>
+        </button>
+
+        <button class="header-sign-in" onclick="openLoginPrompt()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+          <span>Sign In</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Secondary Navigation Bar -->
+  <nav class="secondary-nav">
+    <div class="nav-container">
+      <ul class="nav-menu">
+        <li class="nav-item"><a href="birthday.html" class="nav-trigger">Birthday</a></li>
+        <li class="nav-item"><a href="anniversary.html" class="nav-trigger">Anniversary <span class="tag-pill tag-popular">POPULAR</span></a></li>
+        <li class="nav-item"><a href="kids.html" class="nav-trigger">Kids Themes <span class="tag-pill tag-trending">TRENDING</span></a></li>
+        <li class="nav-item"><a href="baby-shower.html" class="nav-trigger">Baby Shower & Welcome</a></li>
+        <li class="nav-item"><a href="wedding.html" class="nav-trigger">Wedding & Haldi <span class="tag-pill tag-new">NEW</span></a></li>
+        <li class="nav-item"><a href="corporate.html" class="nav-trigger">Corporate</a></li>
+        <li class="nav-item"><a href="#" class="nav-trigger" onclick="openCityModal(); return false;">Cities <span class="tag-pill tag-count">50+</span></a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Page Main Content Wrapper -->
+  <main class="page-wrapper">
+
+    <!-- Contact Hero Header -->
+    <section style="background: linear-gradient(135deg, #fff1f3 0%, #ffffff 100%); border: 1px solid var(--brand-200); border-radius: var(--radius-xl); padding: 44px 30px; text-align: center;">
+      <span class="slide-tag" style="background: var(--brand-100); color: var(--brand-700); border: 1px solid var(--brand-300);">Get in Touch</span>
+      <h1 style="font-family: var(--font-heading); font-size: 38px; font-weight: 900; color: var(--gray-900); margin: 14px 0 10px; line-height: 1.2;">
+        Plan Your Dream Party With Celebration Events®
+      </h1>
+      <p style="font-size: 15.5px; color: var(--gray-600); max-width: 720px; margin: 0 auto; line-height: 1.6;">
+        Have questions about custom theme personalization, urgent same-day bookings, venue suitability, or corporate tie-ups? Reach out directly or fill out our quick inquiry form below.
+      </p>
+    </section>
+
+    <!-- Main Contact Grid: Contact Channels + Live Contact Form -->
+    <section class="contact-grid">
+      
+      <!-- Left Column: Direct Contact Channels & Headquarters -->
+      <div style="display: flex; flex-direction: column; gap: 16px;">
+        
+        <!-- Phone Card -->
+        <div class="contact-info-card">
+          <div class="contact-card-icon">📞</div>
+          <div>
+            <h4 style="font-size: 16px; font-weight: 800; color: var(--gray-900);">Customer Support Helpline</h4>
+            <p style="font-size: 13px; color: var(--gray-500); margin: 4px 0 6px;">Direct line to our senior event coordination team</p>
+            <a href="tel:+918282025444" style="font-size: 16px; font-weight: 800; color: var(--brand-600);">+91 82820 25444</a>
+            <div style="font-size: 11.5px; color: var(--gray-400); margin-top: 4px;">Available Monday to Sunday, 09:00 AM – 10:00 PM</div>
+          </div>
+        </div>
+
+        <!-- WhatsApp Card -->
+        <div class="contact-info-card">
+          <div class="contact-card-icon" style="background: #dcfce7; border-color: #86efac; color: #15803d;">💬</div>
+          <div>
+            <h4 style="font-size: 16px; font-weight: 800; color: var(--gray-900);">Instant WhatsApp Chat</h4>
+            <p style="font-size: 13px; color: var(--gray-500); margin: 4px 0 8px;">Share inspiration photos or ask for instant slots</p>
+            <a href="https://wa.me/918282025444?text=Hi%20Celebration%20Events,%20I%20want%20to%20plan%20a%20decoration%20setup." target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 6px; font-size: 13.5px; font-weight: 700; color: #15803d; background: #dcfce7; padding: 6px 12px; border-radius: var(--radius-sm); border: 1px solid #86efac;">
+              Chat with Stylist on WhatsApp →
+            </a>
+          </div>
+        </div>
+
+        <!-- Email Card -->
+        <div class="contact-info-card">
+          <div class="contact-card-icon">✉️</div>
+          <div>
+            <h4 style="font-size: 16px; font-weight: 800; color: var(--gray-900);">Official Email</h4>
+            <p style="font-size: 13px; color: var(--gray-500); margin: 4px 0 6px;">For corporate bulk bookings, vendor queries & partnerships</p>
+            <a href="mailto:support@celebrationevents.com" style="font-size: 14px; font-weight: 800; color: var(--brand-600);">support@celebrationevents.com</a>
+          </div>
+        </div>
+
+        <!-- Address Card -->
+        <div class="contact-info-card">
+          <div class="contact-card-icon">📍</div>
+          <div>
+            <h4 style="font-size: 16px; font-weight: 800; color: var(--gray-900);">National Operations Hub</h4>
+            <p style="font-size: 13px; color: var(--gray-600); margin-top: 4px; line-height: 1.6;">
+              Celebration Events Technologies Pvt. Ltd.<br/>
+              Level 4, Statesman House, Barakhamba Road, Connaught Place, New Delhi 110001.<br/>
+              <em>Local decoration technicians dispatched in 100+ cities.</em>
+            </p>
+          </div>
+        </div>
+
+        <!-- Trust Strip mini -->
+        <div style="background: var(--brand-50); border: 1px solid var(--brand-200); border-radius: var(--radius-xl); padding: 18px 20px; display: flex; align-items: center; gap: 14px;">
+          <div style="font-size: 28px;">⚡</div>
+          <div>
+            <h5 style="font-size: 14px; font-weight: 800; color: var(--brand-700);">Average Response Time: 15 Minutes</h5>
+            <p style="font-size: 12px; color: var(--gray-600); margin-top: 2px;">Our team confirms same-day technician availability immediately.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right Column: Interactive Contact Form -->
+      <div class="contact-form-container" id="inquiryFormContainer">
+        <div style="margin-bottom: 22px;">
+          <h2 style="font-family: var(--font-heading); font-size: 24px; font-weight: 800; color: var(--gray-900); margin-bottom: 6px;">
+            Send an Inquiry & Get Instant Callback
+          </h2>
+          <p style="font-size: 13.5px; color: var(--gray-500);">
+            Fill out the details below and an expert event designer will contact you within 15 to 30 minutes with tailored package options and quotes.
+          </p>
+        </div>
+
+        <form id="contactForm" onsubmit="handleContactSubmission(event)" style="display: flex; flex-direction: column; gap: 16px;">
+          
+          <!-- Full Name -->
+          <div>
+            <label class="contact-label" for="contactName">Your Full Name *</label>
+            <input type="text" required class="contact-input" id="contactName" placeholder="e.g. Rahul Sharma" />
+          </div>
+
+          <!-- Phone & Email -->
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+            <div>
+              <label class="contact-label" for="contactPhone">Phone / WhatsApp Number *</label>
+              <input type="tel" required class="contact-input" id="contactPhone" pattern="[0-9]{10}" maxlength="10" placeholder="10-digit mobile (e.g. 9876543210)" />
+            </div>
+            <div>
+              <label class="contact-label" for="contactEmail">Email Address</label>
+              <input type="email" class="contact-input" id="contactEmail" placeholder="e.g. rahul@gmail.com" />
+            </div>
+          </div>
+
+          <!-- City & Occasion -->
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+            <div>
+              <label class="contact-label" for="contactCity">Your City *</label>
+              <input type="text" required class="contact-input" id="contactCity" placeholder="e.g. Mumbai, Bangalore, Delhi..." />
+            </div>
+            <div>
+              <label class="contact-label" for="contactOccasion">Occasion Category *</label>
+              <select class="contact-select" id="contactOccasion" required>
+                <option value="" disabled selected>Select Occasion</option>
+                <option value="Birthday Celebration">🎂 Birthday Celebration</option>
+                <option value="Romantic & Anniversary">❤️ Romantic & Anniversary</option>
+                <option value="Kids Theme Party">🦄 Kids Theme Party</option>
+                <option value="Baby Shower & Welcome Baby">🍼 Baby Shower & Welcome</option>
+                <option value="Wedding, Haldi & Mehendi">💍 Wedding & Haldi</option>
+                <option value="Corporate Event / Office Decor">💼 Corporate / Office Milestone</option>
+                <option value="Custom Surprise / Other">✨ Custom Surprise Setup</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Event Date & Budget Range -->
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+            <div>
+              <label class="contact-label" for="contactDate">Celebration Date *</label>
+              <input type="date" required class="contact-input" id="contactDate" />
+            </div>
+            <div>
+              <label class="contact-label" for="contactBudget">Estimated Budget</label>
+              <select class="contact-select" id="contactBudget">
+                <option value="Budget: ₹1,500 - ₹2,500">₹1,500 – ₹2,500 (Simple Home)</option>
+                <option value="Medium: ₹2,500 - ₹5,000" selected>₹2,500 – ₹5,000 (Ring / Arch / Neon)</option>
+                <option value="Grand: ₹5,000 - ₹10,000">₹5,000 – ₹10,000 (Sequins & Cabana)</option>
+                <option value="Luxury: ₹10,000+">₹10,000+ (Luxury Mega Event)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Message / Requirement -->
+          <div>
+            <label class="contact-label" for="contactMessage">Tell Us About Your Decoration Requirements *</label>
+            <textarea required class="contact-textarea" id="contactMessage" rows="3" placeholder="Specify any color preference (e.g. Rose Gold & White), celebrant name, venue (living room, terrace, lawn), or special neon sign wishes..."></textarea>
+          </div>
+
+          <!-- Submit Button -->
+          <button type="submit" class="contact-submit-btn" id="contactSubmitBtn">
+            <span>Submit Inquiry & Request Callback 🚀</span>
+          </button>
+
+          <p style="font-size: 11.5px; color: var(--gray-400); text-align: center; margin-top: 4px;">
+            🔒 100% Privacy Guaranteed. We will never share your contact details.
+          </p>
+        </form>
+      </div>
+
+    </section>
+
+    <!-- FAQ Accordion on Contact Page -->
+    <section style="margin-top: 30px; background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: var(--radius-xl); padding: 36px 30px;">
+      <div style="text-align: center; margin-bottom: 24px;">
+        <h3 style="font-family: var(--font-heading); font-size: 24px; font-weight: 800; color: var(--gray-900);">Frequently Asked Questions</h3>
+        <p style="font-size: 13.5px; color: var(--gray-500);">Quick answers to common questions about booking and setups</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+        <div style="background: #fff; padding: 18px; border-radius: var(--radius-md); border: 1px solid var(--gray-200);">
+          <h4 style="font-size: 14.5px; font-weight: 700; color: var(--gray-900); margin-bottom: 6px;">Can I book decoration for today?</h4>
+          <p style="font-size: 13px; color: var(--gray-600); line-height: 1.6;">Yes! We provide same-day 2-hour express bookings across all major cities. Submit the form above or call us directly on <strong>+91 82820 25444</strong>.</p>
+        </div>
+        <div style="background: #fff; padding: 18px; border-radius: var(--radius-md); border: 1px solid var(--gray-200);">
+          <h4 style="font-size: 14.5px; font-weight: 700; color: var(--gray-900); margin-bottom: 6px;">Will the balloons damage our wall paint?</h4>
+          <p style="font-size: 13px; color: var(--gray-600); line-height: 1.6;">Zero damage guaranteed. We use medical-grade paper tape and specialized masking dots that do not peel paint or leave stains.</p>
+        </div>
+        <div style="background: #fff; padding: 18px; border-radius: var(--radius-md); border: 1px solid var(--gray-200);">
+          <h4 style="font-size: 14.5px; font-weight: 700; color: var(--gray-900); margin-bottom: 6px;">What payment methods are accepted?</h4>
+          <p style="font-size: 13px; color: var(--gray-600); line-height: 1.6;">You can pay via UPI (GPay, PhonePe, Paytm), Credit/Debit Cards, NetBanking, or select Pay-After-Setup option.</p>
+        </div>
+        <div style="background: #fff; padding: 18px; border-radius: var(--radius-md); border: 1px solid var(--gray-200);">
+          <h4 style="font-size: 14.5px; font-weight: 700; color: var(--gray-900); margin-bottom: 6px;">Can I customize colors?</h4>
+          <p style="font-size: 13px; color: var(--gray-600); line-height: 1.6;">Absolutely! Mention your desired balloon color combination (e.g. Pastel Pink + Rose Gold, or Blue + Silver) in the requirement box at zero extra fee.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Main Footer -->
+  <footer class="main-footer">
+    <div class="footer-container">
+      <div class="footer-top-grid">
+        <div class="footer-col">
+          <div class="brand-logo" style="color: #fff; margin-bottom: 12px;">
+            <span class="logo-balloon">🎈</span>
+            <span>Celebration <span style="color: var(--brand-400);">Events</span><span class="reg">®</span></span>
+          </div>
+          <p>India’s most trusted online platform for party and balloon decorations. We deliver happiness and vibrant surprises across 100+ cities with guaranteed on-time setup.</p>
+          <p style="margin-top: 10px;"><strong>Hotline:</strong> +91 82820 25444<br/><strong>Email:</strong> support@celebrationevents.com<br/><strong>Hours:</strong> Mon - Sun, 09:00 AM - 10:00 PM</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Occasions</h4>
+          <ul class="footer-links">
+            <li><a href="birthday.html">Birthday Decorations</a></li>
+            <li><a href="anniversary.html">Anniversary Celebrations</a></li>
+            <li><a href="kids.html">Kids Theme Parties</a></li>
+            <li><a href="baby-shower.html">Baby Shower & Welcome</a></li>
+            <li><a href="wedding.html">Haldi & Wedding Setups</a></li>
+            <li><a href="corporate.html">Corporate Event Decor</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="#" onclick="openCityModal(); return false;">Choose City</a></li>
+            <li><a href="#" onclick="openCart(); return false;">My Cart</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Instant WhatsApp Booking</h4>
+          <p>Need urgent same-day setup or custom theme design? Chat with our event specialists right now.</p>
+          <a href="https://wa.me/918282025444?text=Hi%20Celebration%20Events,%20I%20want%20to%20book%20a%20decoration%20service." target="_blank" rel="noopener noreferrer" class="slide-btn" style="background: #25d366; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); display: inline-flex; margin-top: 10px;">
+            Chat on WhatsApp →
+          </a>
+        </div>
+      </div>
+
+      <!-- City Directory -->
+      <div class="footer-cities-wrap">
+        <h5>Serving Across 50+ Cities in India:</h5>
+        <div class="footer-cities-links" id="footerCitiesLinks">
+          <!-- Rendered dynamically -->
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 Celebration Events Technologies Private Limited. All Rights Reserved.</p>
+        <p>100% Secure Payment | UPI • Cards • NetBanking • Pay After Setup</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating WhatsApp Action Widget -->
+  <a href="https://wa.me/918282025444?text=Hi%20Celebration%20Events,%20I%20want%20to%20book%20a%20decoration%20service." target="_blank" rel="noopener noreferrer" class="floating-whatsapp" aria-label="Chat on WhatsApp">
+    <svg viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.669-.699c.983.538 1.838.82 2.791.82 3.181 0 5.767-2.586 5.768-5.766 0-3.18-2.587-5.766-5.768-5.766zm9.969 5.766c0 5.514-4.486 10-10 10-1.748 0-3.385-.45-4.819-1.238l-7.181 1.88 1.914-6.993c-.886-1.488-1.394-3.224-1.394-5.069 0-5.514 4.486-10 10-10s10 4.486 10 10zm-6.262 3.738c-.244-.122-1.442-.711-1.666-.793-.223-.081-.386-.122-.549.122-.163.244-.63 1.057-.773 1.22-.143.163-.285.183-.529.061-.244-.122-1.031-.38-1.963-1.21-.726-.647-1.216-1.446-1.358-1.69-.143-.244-.015-.376.107-.497.11-.11.244-.285.366-.427.122-.143.163-.244.244-.407.082-.163.041-.305-.02-.427-.061-.122-.549-1.321-.752-1.809-.198-.475-.399-.411-.549-.419-.142-.007-.305-.009-.468-.009s-.427.061-.65.305c-.224.244-.854.834-.854 2.034s.874 2.359.996 2.522c.122.163 1.72 2.626 4.167 3.682.582.251 1.037.401 1.392.514.585.186 1.117.16 1.538.097.469-.07 1.442-.59 1.645-1.16.204-.57.204-1.058.143-1.16-.062-.102-.224-.163-.468-.285z"/></svg>
+  </a>
+
+  <!-- City Selector Modal -->
+  <div class="modal-overlay" id="cityModalOverlay">
+    <div class="modal-box modal-city-box">
+      <div class="modal-header">
+        <h3>📍 Select Your Celebration City</h3>
+        <button class="modal-close-btn" onclick="closeCityModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-subtitle">Certified technicians ready for on-time same-day setup in 100+ cities:</p>
+        <div class="cities-grid" id="cityListModal"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cart Slide-Over Drawer -->
+  <div class="cart-drawer-overlay" id="cartOverlay">
+    <div class="cart-drawer">
+      <div class="cart-drawer-header">
+        <h3>🛍️ Your Celebration Cart (<span id="cartDrawerCount">0</span>)</h3>
+        <button class="modal-close-btn" onclick="closeCart()">&times;</button>
+      </div>
+      <div class="cart-drawer-body" id="cartItemsContainer"></div>
+      <div class="cart-drawer-footer" id="cartFooter">
+        <div class="cart-coupon-box">
+          <input type="text" id="couponInput" placeholder="Coupon Code (CELEBRATE10)" />
+          <button onclick="applyCouponCode()">Apply</button>
+        </div>
+        <div class="cart-summary-row">
+          <span>Subtotal:</span>
+          <span id="cartSubtotalVal">₹0</span>
+        </div>
+        <div class="cart-summary-row total-row">
+          <span>Final Payable:</span>
+          <span id="cartTotalVal">₹0</span>
+        </div>
+        <button class="checkout-btn" onclick="proceedToCheckout()">Proceed to Secure Booking →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Search Modal Overlay -->
+  <div class="modal-overlay" id="searchModalOverlay">
+    <div class="modal-box modal-search-box">
+      <div class="search-modal-header">
+        <input type="text" id="liveSearchInput" class="live-search-input" placeholder="Search decorations..." />
+        <button class="modal-close-btn" onclick="closeSearchModal()">&times;</button>
+      </div>
+      <div class="search-results-list" id="searchResultsList"></div>
+    </div>
+  </div>
+
+  <!-- Mobile Sidebar Drawer -->
+  <div class="mobile-sidebar-overlay" id="mobileSidebarOverlay">
+    <div class="mobile-sidebar">
+      <div class="mobile-sidebar-header">
+        <div class="brand-logo">
+          <span class="logo-balloon">🎈</span>
+          <span>Celebration <span class="bold">Events</span></span>
+        </div>
+        <button class="modal-close-btn" onclick="closeMobileSidebar()">&times;</button>
+      </div>
+      <ul class="mobile-nav-list">
+        <li><a href="index.html" class="mobile-nav-link">🏠 Home <span>›</span></a></li>
+        <li><a href="birthday.html" class="mobile-nav-link">🎂 Birthday Decoration <span>›</span></a></li>
+        <li><a href="anniversary.html" class="mobile-nav-link">❤️ Romantic & Anniversary <span>›</span></a></li>
+        <li><a href="kids.html" class="mobile-nav-link">🦄 Kids Theme Parties <span>›</span></a></li>
+        <li><a href="baby-shower.html" class="mobile-nav-link">🍼 Baby Shower & Welcome <span>›</span></a></li>
+        <li><a href="wedding.html" class="mobile-nav-link">💍 Wedding & Haldi <span>›</span></a></li>
+        <li><a href="corporate.html" class="mobile-nav-link">💼 Corporate Events <span>›</span></a></li>
+        <li><a href="about.html" class="mobile-nav-link">ℹ️ About Us <span>›</span></a></li>
+        <li><a href="contact.html" class="mobile-nav-link" style="color: var(--brand-600); font-weight: 700;">📞 Contact Us <span>›</span></a></li>
+        <li><a href="#" class="mobile-nav-link" onclick="openCityModal(); closeMobileSidebar();">📍 Change City <span>›</span></a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Form Logic Script -->
+  <script>
+    // Set default date to tomorrow
+    document.addEventListener("DOMContentLoaded", () => {
+      const tomorrow = new Date();
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      const dateInput = document.getElementById("contactDate");
+      if (dateInput) {
+        dateInput.value = tomorrow.toISOString().split("T")[0];
+        dateInput.min = new Date().toISOString().split("T")[0];
+      }
+    });
+
+    function handleContactSubmission(e) {
+      e.preventDefault();
+      const name = document.getElementById("contactName").value;
+      const phone = document.getElementById("contactPhone").value;
+      const city = document.getElementById("contactCity").value;
+      const occasion = document.getElementById("contactOccasion").value;
+      const date = document.getElementById("contactDate").value;
+
+      const container = document.getElementById("inquiryFormContainer");
+      container.innerHTML = `
+        <div style="text-align: center; padding: 48px 16px; animation: fadeIn 0.4s ease;">
+          <div style="font-size: 56px; margin-bottom: 16px;">🎉🚀</div>
+          <span class="slide-tag" style="background: #dcfce7; color: #15803d; border-color: #86efac; margin-bottom: 12px;">Inquiry Confirmed!</span>
+          <h2 style="font-family: var(--font-heading); font-size: 26px; font-weight: 900; color: var(--gray-900); margin: 12px 0 8px;">
+            Thank You, ${name}!
+          </h2>
+          <p style="font-size: 14.5px; color: var(--gray-600); max-width: 480px; margin: 0 auto 20px; line-height: 1.6;">
+            We have registered your inquiry for <strong>${occasion}</strong> in <strong>${city}</strong> on <strong>${date}</strong>.
+          </p>
+          <div style="background: var(--brand-50); border: 1px solid var(--brand-200); border-radius: var(--radius-md); padding: 16px; max-width: 420px; margin: 0 auto 24px;">
+            <p style="font-size: 13px; color: var(--brand-800); font-weight: 700;">
+              📞 A Senior Stylist will call you at <strong>+91 ${phone}</strong> within 15–30 minutes with available themes & special pricing.
+            </p>
+          </div>
+          <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+            <a href="index.html" class="slide-btn">Return to Home</a>
+            <a href="birthday.html" class="slide-btn" style="background: var(--gray-900);">Explore Packages</a>
+          </div>
+        </div>
+      `;
+    }
+  </script>
+
+  <!-- Application Logic Scripts -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Kids Birthday Theme Decorations | Celebration Events®</title>
+  <meta name="description" content="Book kids theme birthday decorations across 100+ cities. Cocomelon, Frozen, Baby Shark, The Boss Baby, and Jungle Safari setups with verified decorators." />
+  <meta name="theme-color" content="#d14a61" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+  <link rel="icon" href="https://cdn.balloondekor.com/images/61/7ebf2dbd-60dd-4643-8029-763dc6a3e5e3.webp" type="image/webp" />
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="announcement-bar">
+    <span class="badge">Kids Party Special</span>
+    <span>Use code <strong>CELEBRATE10</strong> for Flat 10% OFF | ⚡ Same Day 2-Hour Express Delivery in 100+ Cities</span>
+  </div>
+
+  <!-- Sticky Main Header -->
+  <header class="main-header">
+    <div class="header-container">
+      <div class="header-left">
+        <button id="mobileMenuBtn" class="mobile-menu-btn" aria-label="Open Navigation">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+
+        <a href="index.html" class="brand-logo-wrap">
+          <div class="brand-logo">
+            <span class="logo-balloon">🎈</span>
+            <span>Celebration <span class="bold">Events</span><span class="reg">®</span></span>
+          </div>
+          <span class="brand-tagline">India ka party expert</span>
+        </a>
+
+        <!-- City Selector Trigger -->
+        <button id="citySelectorTrigger" class="city-selector-btn" aria-label="Select City">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path><circle cx="12" cy="10" r="3"></circle></svg>
+          <div class="city-info">
+            <span class="city-label">Deliver to</span>
+            <span id="headerCityName" class="city-name">Select City</span>
+          </div>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
+        </button>
+      </div>
+
+      <!-- Navigation Links on Header -->
+      <div style="display: flex; align-items: center; gap: 6px;">
+        <a href="index.html" class="header-nav-link">Home</a>
+        <a href="about.html" class="header-nav-link">About Us</a>
+        <a href="contact.html" class="header-nav-link">Contact</a>
+      </div>
+
+      <!-- Header Center Search Trigger -->
+      <div class="header-center" style="max-width: 320px;">
+        <button id="searchTriggerBtn" class="search-trigger-btn" aria-label="Search decorations">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+          <span>Search kids themes...</span>
+        </button>
+      </div>
+
+      <!-- Header Right Utilities -->
+      <div class="header-right">
+        <!-- Cart Button Trigger -->
+        <button id="cartTriggerBtn" class="header-action-btn" aria-label="Open Cart">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"></circle><circle cx="19" cy="21" r="1"></circle><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path></svg>
+          <span id="cartCountBadge" class="cart-badge">0</span>
+        </button>
+
+        <button class="header-sign-in" onclick="openLoginPrompt()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+          <span>Sign In</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Secondary Navigation Bar -->
+  <nav class="secondary-nav">
+    <div class="nav-container">
+      <ul class="nav-menu">
+        <li class="nav-item"><a href="birthday.html" class="nav-trigger">Birthday</a></li>
+        <li class="nav-item"><a href="anniversary.html" class="nav-trigger">Anniversary <span class="tag-pill tag-popular">POPULAR</span></a></li>
+        <li class="nav-item active"><a href="kids.html" class="nav-trigger active">Kids Themes <span class="tag-pill tag-trending">TRENDING</span></a></li>
+        <li class="nav-item"><a href="baby-shower.html" class="nav-trigger">Baby Shower & Welcome</a></li>
+        <li class="nav-item"><a href="wedding.html" class="nav-trigger">Wedding & Haldi <span class="tag-pill tag-new">NEW</span></a></li>
+        <li class="nav-item"><a href="corporate.html" class="nav-trigger">Corporate</a></li>
+        <li class="nav-item"><a href="#" class="nav-trigger" onclick="openCityModal(); return false;">Cities <span class="tag-pill tag-count">50+</span></a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Page Main Content Wrapper -->
+  <main class="page-wrapper">
+
+    <!-- Hero Banner -->
+    <section class="hero-carousel" style="aspect-ratio: 16 / 4.8; min-height: 260px;" data-aos="fade-up">
+      <div class="carousel-slides">
+        <div class="carousel-slide">
+          <img src="https://cdn.balloondekor.com/images/33/dbe87a70-56bc-42bc-ad96-2847b88c00dd.webp" alt="Kids Birthday Themes" />
+          <div class="slide-overlay"></div>
+          <div class="slide-content">
+            <span class="slide-tag">🦄 Fun-Filled Theme Parties</span>
+            <h1 class="slide-title">Magical Kids Birthday Themes</h1>
+            <p class="slide-desc">Turn their dreams into reality with high-definition character cutouts, vibrant rainbow balloon garlands, and child-safe materials.</p>
+            <a href="#kidsCatalog" class="slide-btn">Explore Themes Below ↓</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sub-Filter Pills -->
+    <section data-aos="fade-up">
+      <div style="display: flex; gap: 8px; overflow-x: auto; padding-bottom: 6px; scrollbar-width: none;" id="kidsSubFilter">
+        <button class="filter-pill active" onclick="filterKidsType('all', this)">All Kids Themes (5)</button>
+        <button class="filter-pill" onclick="filterKidsType('cocomelon', this)">🍉 Cocomelon</button>
+        <button class="filter-pill" onclick="filterKidsType('babyshark', this)">🦈 Baby Shark</button>
+        <button class="filter-pill" onclick="filterKidsType('bossbaby', this)">💼 The Boss Baby</button>
+        <button class="filter-pill" onclick="filterKidsType('jungle', this)">🦁 Jungle Safari</button>
+        <button class="filter-pill" onclick="filterKidsType('frozen', this)">❄️ Frozen Wonderland</button>
+      </div>
+    </section>
+
+    <!-- Products Catalog -->
+    <section class="catalog-section" id="kidsCatalog" data-aos="fade-up">
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <h2 class="section-title" id="kidsCatalogTitle">Kids Theme Packages</h2>
+          <div class="title-underline"></div>
+          <p class="section-subtitle">Pick a theme, customize age foils, and book your technician slot</p>
+        </div>
+
+        <div class="sort-box">
+          <label for="kidsSortSelect">Sort By:</label>
+          <select id="kidsSortSelect" class="sort-select" onchange="sortKidsProducts(this.value)">
+            <option value="featured">Featured (Recommended)</option>
+            <option value="price-low">Price: Low to High</option>
+            <option value="price-high">Price: High to Low</option>
+            <option value="rating">Highest Rated</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="products-grid" id="kidsProductsGrid"></div>
+    </section>
+
+    <!-- Trust Badges Strip -->
+    <section class="trust-strip" data-aos="fade-up">
+      <div class="trust-item">
+        <div class="trust-icon-box">🎈</div>
+        <div class="trust-text-box">
+          <h4>100% Non-Toxic Latex</h4>
+          <p>Kids safety certified balloons</p>
+        </div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon-box">⚡</div>
+        <div class="trust-text-box">
+          <h4>Same-Day 2-Hour Setup</h4>
+          <p>Quick on-time decorators</p>
+        </div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon-box">🛡️</div>
+        <div class="trust-text-box">
+          <h4>Zero Wall Damage</h4>
+          <p>Paper masking tape only</p>
+        </div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon-box">⭐</div>
+        <div class="trust-text-box">
+          <h4>4.9 / 5 Star Rating</h4>
+          <p>Recommended by parents</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section class="reviews-section" data-aos="fade-up">
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <h2 class="section-title">Parents' Reviews & Party Moments</h2>
+          <div class="title-underline"></div>
+          <p class="section-subtitle">Real experiences from birthday celebrations across India</p>
+        </div>
+      </div>
+      <div class="reviews-grid" id="reviewsGrid"></div>
+    </section>
+
+  </main>
+
+  <!-- Main Footer -->
+  <footer class="main-footer">
+    <div class="footer-container">
+      <div class="footer-top-grid">
+        <div class="footer-col">
+          <div class="brand-logo" style="color: #fff; margin-bottom: 12px;">
+            <span class="logo-balloon">🎈</span>
+            <span>Celebration <span style="color: var(--brand-400);">Events</span><span class="reg">®</span></span>
+          </div>
+          <p>India’s most trusted online platform for party and balloon decorations. We deliver happiness and vibrant surprises across 100+ cities with guaranteed on-time setup.</p>
+          <p><strong>Hotline:</strong> +91 82820 25444<br/><strong>Email:</strong> support@celebrationevents.com<br/><strong>Hours:</strong> Mon - Sun, 09:00 AM - 10:00 PM</p>
+        </div>
+        <div class="footer-col">
+          <h4>Categories</h4>
+          <ul class="footer-links">
+            <li><a href="birthday.html">Birthday Decorations</a></li>
+            <li><a href="anniversary.html">Anniversary Setups</a></li>
+            <li><a href="kids.html">Kids Theme Parties</a></li>
+            <li><a href="baby-shower.html">Baby Shower & Welcome</a></li>
+            <li><a href="wedding.html">Wedding & Haldi</a></li>
+            <li><a href="corporate.html">Corporate Events</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="#" onclick="openCart(); return false;">My Cart</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Instant WhatsApp Booking</h4>
+          <p>Need custom character cutouts or activity planners? Chat with our event specialists right now.</p>
+          <a href="https://wa.me/918282025444?text=Hi%20Celebration%20Events,%20I%20want%20to%20book%20a%20kids%20theme%20decoration." target="_blank" rel="noopener noreferrer" class="slide-btn" style="background: #25d366; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);">
+            Chat on WhatsApp →
+          </a>
+        </div>
+      </div>
+      <!-- City Directory -->
+      <div class="footer-cities-wrap">
+        <h5>Serving Across 50+ Cities in India:</h5>
+        <div class="footer-cities-links" id="footerCitiesLinks">
+          <!-- Rendered dynamically -->
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Celebration Events Technologies Private Limited. All Rights Reserved.</p>
+        <p>100% Secure Payment | UPI • Cards • NetBanking • Pay After Setup</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modals & Drawers -->
+  <div class="modal-overlay" id="productModalOverlay">
+    <div class="modal-box product-modal-box">
+      <div class="modal-header">
+        <h3 id="modalProductTitle">Decoration Package Details</h3>
+        <button class="modal-close-btn" onclick="closeProductModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="product-modal-grid">
+          <div class="modal-gallery-col">
+            <div class="main-preview-img"><img id="modalProductMainImg" src="" alt="Package Image" /></div>
+            <div style="background: var(--gray-50); padding: 14px; border-radius: var(--radius-md); border: 1px solid var(--gray-200);">
+              <h5 style="font-size: 13px; font-weight: 800; color: var(--gray-900);"><span>📦</span> Package Inclusions:</h5>
+              <ul class="inclusions-list" id="modalInclusionsList"></ul>
+              <div style="margin-top: 10px; font-size: 11.5px; color: var(--gray-500);">⏱️ Setup Duration: <strong id="modalSetupDuration" style="color: var(--gray-800);">2 Hours</strong></div>
+            </div>
+          </div>
+          <div class="modal-details-col">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
+              <span id="modalProductBadge" class="product-badge badge-bestseller" style="position: static;">BESTSELLER</span>
+              <div class="rating-pill"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><span id="modalRating">4.9</span></div>
+            </div>
+            <p id="modalProductDesc" style="font-size: 13px; color: var(--gray-600); margin-bottom: 14px;"></p>
+            <div class="product-pricing-row" style="margin-bottom: 14px;">
+              <span class="current-price" id="modalCurrentPrice">₹2,999</span>
+              <span class="original-price" id="modalOriginalPrice">₹3,899</span>
+              <span class="discount-tag" id="modalDiscount">23% off</span>
+            </div>
+            <div style="margin-bottom: 12px;">
+              <label style="font-size: 12.5px; font-weight: 700; color: var(--gray-800);">📅 Select Celebration Date:</label>
+              <input type="date" id="bookingDateInput" class="date-input" />
+            </div>
+            <div style="margin-bottom: 14px;">
+              <label style="font-size: 12.5px; font-weight: 700; color: var(--gray-800);">⏰ Choose Arrival Slot:</label>
+              <div class="slot-picker-grid" id="slotPickerGrid"></div>
+            </div>
+            <div style="margin-bottom: 16px;">
+              <label style="font-size: 12.5px; font-weight: 700; color: var(--gray-800);">✨ Add Extra Magic (Add-ons):</label>
+              <div class="addons-checklist" id="addonsChecklist"></div>
+            </div>
+            <div style="display: flex; gap: 10px; margin-top: 14px;">
+              <button class="book-now-btn" id="modalAddToCartBtn" onclick="handleAddToCartFromModal()">Add to Cart</button>
+              <button class="book-now-btn" style="background: var(--gray-900);" onclick="handleInstantBookFromModal()">Book Now ⚡</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cart-drawer-overlay" id="cartDrawerOverlay">
+    <div class="cart-drawer">
+      <div class="cart-header">
+        <h3>🛒 Your Decoration Cart</h3>
+        <button class="modal-close-btn" onclick="closeCart()">&times;</button>
+      </div>
+      <div class="cart-body" id="cartBody"></div>
+      <div class="cart-footer" id="cartFooter" style="display: none;">
+        <div class="cart-coupon-box">
+          <input type="text" id="couponInput" class="coupon-input" placeholder="Coupon (e.g. CELEBRATE10)" />
+          <button class="coupon-apply-btn" onclick="applyCoupon()">Apply</button>
+        </div>
+        <div class="bill-row"><span>Items Total</span><span id="billSubtotal">₹0</span></div>
+        <div class="bill-row" id="billDiscountRow" style="display: none; color: var(--accent-green);"><span>Promo Discount</span><span id="billDiscount">-₹0</span></div>
+        <div class="bill-row"><span>Taxes & Safe-Setup Kit</span><span style="color: var(--accent-green); font-weight: 700;">FREE</span></div>
+        <div class="bill-row total"><span>Total Payable</span><span id="billGrandTotal">₹0</span></div>
+        <button class="checkout-btn" onclick="openCheckoutModal()">Proceed to Reserve Slot →</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="checkoutModalOverlay">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>🎉 Complete Your Booking</h3>
+        <button class="modal-close-btn" onclick="closeCheckoutModal()">&times;</button>
+      </div>
+      <div class="modal-body" id="checkoutBody">
+        <form id="checkoutForm" onsubmit="handleOrderSubmission(event)">
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <div>
+              <label style="font-size: 12.5px; font-weight: 700;">Full Name *</label>
+              <input type="text" required class="search-input" id="custName" placeholder="e.g. Rahul Sharma" style="margin-top: 4px; padding-left: 14px;" />
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+              <div>
+                <label style="font-size: 12.5px; font-weight: 700;">Phone Number *</label>
+                <input type="tel" required class="search-input" id="custPhone" placeholder="10-digit mobile" style="margin-top: 4px; padding-left: 14px;" />
+              </div>
+              <div>
+                <label style="font-size: 12.5px; font-weight: 700;">Kid's Name & Age</label>
+                <input type="text" class="search-input" id="custOccasion" placeholder="e.g. Aarav, 3rd Birthday" style="margin-top: 4px; padding-left: 14px;" />
+              </div>
+            </div>
+            <div>
+              <label style="font-size: 12.5px; font-weight: 700;">Party Venue Address *</label>
+              <textarea required class="search-input" id="custAddress" rows="3" placeholder="Address..." style="margin-top: 4px; padding-left: 14px; resize: none;"></textarea>
+            </div>
+            <div>
+              <label style="font-size: 12.5px; font-weight: 700;">Payment Preference</label>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 6px;">
+                <label class="city-option-btn selected" style="justify-content: center; cursor: pointer;">
+                  <input type="radio" name="payMethod" value="upi" checked style="margin-right: 6px;" /> UPI / Cards
+                </label>
+                <label class="city-option-btn" style="justify-content: center; cursor: pointer;">
+                  <input type="radio" name="payMethod" value="cash" style="margin-right: 6px;" /> Pay After Setup
+                </label>
+              </div>
+            </div>
+            <div style="background: var(--brand-50); padding: 12px; border-radius: var(--radius-md); border: 1px solid var(--brand-200); margin-top: 6px;">
+              <div style="display: flex; justify-content: space-between; font-size: 13px; font-weight: 700;">
+                <span>Total Amount:</span><span id="checkoutPayAmount" style="color: var(--brand-700);">₹0</span>
+              </div>
+            </div>
+            <button type="submit" class="checkout-btn" style="margin-top: 8px;">Confirm Slot & Complete Booking 🚀</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="cityModalOverlay">
+    <div class="modal-box">
+      <div class="modal-header"><h3>📍 Select Delivery City</h3><button class="modal-close-btn" onclick="closeCityModal()">&times;</button></div>
+      <div class="modal-body"><div class="cities-grid" id="cityListModal"></div></div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="searchModalOverlay">
+    <div class="modal-box">
+      <div class="modal-header"><h3>🔍 Search Decorations</h3><button class="modal-close-btn" onclick="closeSearchModal()">&times;</button></div>
+      <div class="modal-body">
+        <div class="search-input-wrap">
+          <input type="text" id="liveSearchInput" class="search-input" placeholder="Search kids themes..." style="padding-left: 14px;" />
+        </div>
+        <div class="search-results-list" id="searchResultsContainer"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Sidebar Drawer -->
+  <div class="mobile-sidebar-overlay" id="mobileSidebarOverlay">
+    <div class="mobile-sidebar">
+      <div class="mobile-sidebar-header">
+        <div class="brand-logo">
+          <span class="logo-balloon">🎈</span>
+          <span>Celebration <span class="bold">Events</span></span>
+        </div>
+        <button class="modal-close-btn" onclick="closeMobileSidebar()">&times;</button>
+      </div>
+      <ul class="mobile-nav-list">
+        <li><a href="index.html" class="mobile-nav-link">🏠 Home <span>›</span></a></li>
+        <li><a href="birthday.html" class="mobile-nav-link">🎂 Birthday Decoration <span>›</span></a></li>
+        <li><a href="anniversary.html" class="mobile-nav-link">❤️ Romantic & Anniversary <span>›</span></a></li>
+        <li><a href="kids.html" class="mobile-nav-link" style="color: var(--brand-600); font-weight: 700;">🦄 Kids Theme Parties <span>›</span></a></li>
+        <li><a href="baby-shower.html" class="mobile-nav-link">🍼 Baby Shower & Welcome <span>›</span></a></li>
+        <li><a href="wedding.html" class="mobile-nav-link">💍 Wedding & Haldi <span>›</span></a></li>
+        <li><a href="corporate.html" class="mobile-nav-link">💼 Corporate Events <span>›</span></a></li>
+        <li><a href="about.html" class="mobile-nav-link">ℹ️ About Us <span>›</span></a></li>
+        <li><a href="contact.html" class="mobile-nav-link">📞 Contact Us <span>›</span></a></li>
+        <li><a href="#" class="mobile-nav-link" onclick="openCityModal(); closeMobileSidebar();">📍 Change City <span>›</span></a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Application Logic Scripts -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+
+  <!-- Page Logic Script -->
+  <script>
+    let kidsItems = [];
+    let kidsType = 'all';
+
+    function initKidsPage() {
+      kidsItems = SITE_DATA.products.filter(p => p.category === 'kids');
+      renderKidsProducts();
+    }
+
+    function filterKidsType(type, btn) {
+      kidsType = type;
+      const pills = document.querySelectorAll("#kidsSubFilter .filter-pill");
+      pills.forEach(p => p.classList.remove("active"));
+      if (btn) btn.classList.add("active");
+
+      const titleEl = document.getElementById("kidsCatalogTitle");
+      if (type === 'cocomelon') titleEl.textContent = "Cocomelon Fun Kids Birthday Setups";
+      else if (type === 'babyshark') titleEl.textContent = "Baby Shark Underwater Theme Setups";
+      else if (type === 'bossbaby') titleEl.textContent = "The Boss Baby Theme Setups";
+      else if (type === 'jungle') titleEl.textContent = "Wild Jungle Safari Birthday Themes";
+      else if (type === 'frozen') titleEl.textContent = "Frozen Ice Wonderland Princess Themes";
+      else titleEl.textContent = "All Kids Theme Packages";
+
+      renderKidsProducts();
+    }
+
+    function sortKidsProducts(sortVal) {
+      if (sortVal === "price-low") kidsItems.sort((a, b) => a.price - b.price);
+      else if (sortVal === "price-high") kidsItems.sort((a, b) => b.price - a.price);
+      else if (sortVal === "rating") kidsItems.sort((a, b) => b.rating - a.rating);
+      renderKidsProducts();
+    }
+
+    function renderKidsProducts() {
+      const grid = document.getElementById("kidsProductsGrid");
+      if (!grid) return;
+
+      let filtered = [...kidsItems];
+      if (kidsType === 'cocomelon') {
+        filtered = filtered.filter(p => p.title.toLowerCase().includes("cocomelon"));
+      } else if (kidsType === 'babyshark') {
+        filtered = filtered.filter(p => p.title.toLowerCase().includes("shark"));
+      } else if (kidsType === 'bossbaby') {
+        filtered = filtered.filter(p => p.title.toLowerCase().includes("boss"));
+      } else if (kidsType === 'jungle') {
+        filtered = filtered.filter(p => p.title.toLowerCase().includes("jungle") || p.title.toLowerCase().includes("safari"));
+      } else if (kidsType === 'frozen') {
+        filtered = filtered.filter(p => p.title.toLowerCase().includes("frozen"));
+      }
+
+      grid.innerHTML = filtered.map((product, idx) => `
+        <div class="product-card" id="card-${product.id}" data-aos="fade-up" data-aos-delay="${((idx % 5) + 1) * 60}">
+          <div class="product-img-wrapper" onclick="openProductModal('${product.id}')">
+            <span class="product-badge badge-${product.badge.toLowerCase().replace(/\s+/g, '')}">${product.badge}</span>
+            <img src="${product.image}" alt="${product.title}" loading="lazy" />
+            <button class="quick-view-overlay-btn" onclick="event.stopPropagation(); openProductModal('${product.id}')">Quick View 🔍</button>
+          </div>
+          <div class="product-details">
+            <span class="product-category-tag">${product.categoryName}</span>
+            <h3 class="product-title" onclick="openProductModal('${product.id}')" style="cursor: pointer;">${product.title}</h3>
+            <div class="product-rating-row">
+              <span class="rating-pill"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>${product.rating.toFixed(1)}</span>
+              <span class="reviews-count">${product.reviewsCount} reviews</span>
+            </div>
+            <div class="product-pricing-row">
+              <span class="current-price">₹${product.price.toLocaleString("en-IN")}</span>
+              <span class="original-price">₹${product.originalPrice.toLocaleString("en-IN")}</span>
+              <span class="discount-tag">${product.discount}% off</span>
+            </div>
+            <div class="product-action-btns">
+              <button class="book-now-btn" onclick="openProductModal('${product.id}')">Book Now ⚡</button>
+            </div>
+          </div>
+        </div>
+      `).join("");
+
+      if (typeof AOS !== "undefined") setTimeout(() => AOS.refresh(), 80);
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      initKidsPage();
+    });
+  </script>
+</body>
+</html>
