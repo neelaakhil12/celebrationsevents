@@ -781,11 +781,19 @@ function toggleFaq(btn) {
 // Mobile Sidebar & Keyboard Shortcuts
 // ----------------------------------------------------
 function openMobileSidebar() {
-  document.getElementById("mobileSidebarOverlay").classList.add("active");
+  const overlay = document.getElementById("mobileSidebarOverlay");
+  if (overlay) {
+    overlay.classList.add("active");
+    document.body.style.overflow = "hidden";
+  }
 }
 
 function closeMobileSidebar() {
-  document.getElementById("mobileSidebarOverlay").classList.remove("active");
+  const overlay = document.getElementById("mobileSidebarOverlay");
+  if (overlay) {
+    overlay.classList.remove("active");
+    document.body.style.overflow = "";
+  }
 }
 
 function initKeyboardShortcuts() {
