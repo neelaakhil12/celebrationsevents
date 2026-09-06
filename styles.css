@@ -2268,24 +2268,41 @@ img, video, iframe {
   }
 
   .header-container {
-    padding: 0 10px;
-    gap: 8px;
+    padding: 0 8px;
+    gap: 6px;
     width: 100%;
   }
 
   .header-left {
-    gap: 8px;
+    gap: 6px;
+    min-width: 0;
+    flex-shrink: 1;
+  }
+
+  .mobile-menu-btn {
+    width: 34px !important;
+    height: 34px !important;
+    font-size: 18px !important;
+    flex-shrink: 0;
+  }
+
+  .brand-logo-wrap {
+    min-width: 0;
   }
 
   .brand-logo {
-    font-size: 18px;
-    gap: 4px;
+    font-size: 16px;
+    gap: 3px;
+    white-space: nowrap;
   }
+
   .brand-logo .logo-balloon {
-    font-size: 18px;
+    font-size: 16px;
   }
+
   .brand-tagline {
-    font-size: 8.5px;
+    font-size: 8px;
+    letter-spacing: 0.2px;
   }
 
   .header-center {
@@ -2305,18 +2322,36 @@ img, video, iframe {
   }
 
   .header-right {
-    gap: 6px;
+    gap: 5px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+  }
+
+  .header-action-btn {
+    width: 34px !important;
+    height: 34px !important;
+    flex-shrink: 0;
+  }
+
+  .header-action-btn svg {
+    width: 17px !important;
+    height: 17px !important;
   }
 
   .header-sign-in {
-    padding: 6px 10px !important;
-    font-size: 11.5px !important;
-    gap: 4px;
+    padding: 6px 9px !important;
+    font-size: 11px !important;
+    gap: 4px !important;
+    flex-shrink: 0 !important;
+    white-space: nowrap !important;
+    height: 34px !important;
   }
 
   .header-sign-in svg {
-    width: 14px;
-    height: 14px;
+    width: 13px;
+    height: 13px;
+    flex-shrink: 0;
   }
 
   .page-wrapper {
@@ -2659,11 +2694,27 @@ img, video, iframe {
   .quick-category-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+  .brand-tagline {
+    display: none;
+  }
+  .brand-logo {
+    font-size: 14.5px;
+  }
+  .header-sign-in {
+    padding: 6px 8px !important;
+    font-size: 10.5px !important;
+  }
+}
+
+@media (max-width: 330px) {
   .header-sign-in span {
     display: none;
   }
   .header-sign-in {
     padding: 6px 8px !important;
+    width: 34px !important;
+    height: 34px !important;
+    justify-content: center !important;
   }
 }
 
