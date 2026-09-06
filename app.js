@@ -927,12 +927,156 @@ window.addEventListener("resize", () => {
 });
 
 // ----------------------------------------------------
+// ----------------------------------------------------
 // App Launch Splash Screen (Typewriter without cursor line)
 // ----------------------------------------------------
 function initSplashScreen() {
+  // Only show on homepage or initial website entry
+  const rawPath = (window.location.pathname.split("/").pop() || "index.html").toLowerCase();
+  const isHomepage = rawPath === "" || rawPath === "index.html";
+
+  // In self-contained style block to guarantee full-screen rendering regardless of browser cache
+  if (!document.getElementById("splashDynamicStyles")) {
+    const styleTag = document.createElement("style");
+    styleTag.id = "splashDynamicStyles";
+    styleTag.textContent = `
+      .splash-screen {
+        position: fixed !important;
+        inset: 0 !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        height: 100dvh !important;
+        background: radial-gradient(circle at center, #240a1a 0%, #090207 100%) !important;
+        z-index: 999999999 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        overflow: hidden !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), 
+                    transform 0.65s cubic-bezier(0.16, 1, 0.3, 1), 
+                    filter 0.65s ease !important;
+      }
+      .splash-screen.hide-splash {
+        opacity: 0 !important;
+        transform: scale(1.06) !important;
+        filter: blur(10px) !important;
+        pointer-events: none !important;
+      }
+      .splash-content {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        text-align: center !important;
+        padding: 24px !important;
+        position: relative !important;
+        z-index: 2 !important;
+      }
+      .splash-balloon-box {
+        position: relative !important;
+        width: 96px !important;
+        height: 96px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        margin-bottom: 20px !important;
+      }
+      .splash-balloon {
+        font-size: 64px !important;
+        display: inline-block !important;
+        animation: splashBalloonFloat 2.2s ease-in-out infinite alternate !important;
+        filter: drop-shadow(0 12px 28px rgba(225, 29, 72, 0.65)) !important;
+      }
+      @keyframes splashBalloonFloat {
+        0% { transform: translateY(0px) rotate(-4deg) scale(1); }
+        100% { transform: translateY(-16px) rotate(4deg) scale(1.08); }
+      }
+      .splash-glow {
+        position: absolute !important;
+        width: 160px !important;
+        height: 160px !important;
+        background: radial-gradient(circle, rgba(225, 29, 72, 0.45) 0%, rgba(225, 29, 72, 0) 70%) !important;
+        border-radius: 50% !important;
+        animation: splashGlowPulse 2.2s ease-in-out infinite alternate !important;
+        z-index: -1 !important;
+      }
+      @keyframes splashGlowPulse {
+        0% { transform: scale(0.85); opacity: 0.4; }
+        100% { transform: scale(1.35); opacity: 0.9; }
+      }
+      .splash-brand-title {
+        font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif !important;
+        font-size: 36px !important;
+        font-weight: 800 !important;
+        letter-spacing: -0.5px !important;
+        color: #ffffff !important;
+        min-height: 48px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        background: linear-gradient(135deg, #ffffff 40%, #fda4af 85%, #f43f5e 100%) !important;
+        -webkit-background-clip: text !important;
+        -webkit-text-fill-color: transparent !important;
+        margin-bottom: 8px !important;
+      }
+      .splash-brand-title::after, .splash-brand-title::before,
+      #splashTypewriterText::after, #splashTypewriterText::before {
+        display: none !important;
+        content: none !important;
+        border: none !important;
+      }
+      .splash-tagline {
+        font-family: 'Plus Jakarta Sans', sans-serif !important;
+        font-size: 14px !important;
+        font-weight: 600 !important;
+        color: #f472b6 !important;
+        letter-spacing: 0.4px !important;
+        opacity: 0 !important;
+        transform: translateY(10px) !important;
+        transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        margin-bottom: 24px !important;
+      }
+      .splash-tagline.show {
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+      }
+      .splash-loader-bar {
+        width: 160px !important;
+        height: 3.5px !important;
+        background: rgba(255, 255, 255, 0.15) !important;
+        border-radius: 99px !important;
+        overflow: hidden !important;
+        position: relative !important;
+      }
+      .splash-loader-fill {
+        width: 0% !important;
+        height: 100% !important;
+        background: linear-gradient(90deg, #f43f5e, #fb7185, #ffffff) !important;
+        border-radius: 99px !important;
+        transition: width 1.4s cubic-bezier(0.22, 1, 0.36, 1) !important;
+        box-shadow: 0 0 12px rgba(244, 63, 94, 0.9) !important;
+      }
+      @media (max-width: 640px) {
+        .splash-brand-title { font-size: 26px !important; min-height: 38px !important; }
+        .splash-balloon { font-size: 52px !important; }
+        .splash-balloon-box { width: 76px !important; height: 76px !important; margin-bottom: 14px !important; }
+        .splash-tagline { font-size: 12px !important; margin-bottom: 20px !important; }
+        .splash-loader-bar { width: 130px !important; }
+      }
+    `;
+    document.head.appendChild(styleTag);
+  }
+
+  // If not on homepage and user hasn't explicitly entered a splash container, don't interrupt category browsing
+  if (!isHomepage && !document.getElementById("splashScreen")) {
+    return;
+  }
+
   let splash = document.getElementById("splashScreen");
-  
-  // Dynamically inject splash screen if not present in the HTML
   if (!splash) {
     splash = document.createElement("div");
     splash.id = "splashScreen";
@@ -996,7 +1140,7 @@ function initSplashScreen() {
         }, 700);
       }, 700);
     }
-  }, 65);
+  }, 60);
 }
 
 
