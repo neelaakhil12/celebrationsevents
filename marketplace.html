@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Gifts Marketplace | Celebration Events®</title>
+  <meta name="description" content="Explore a wide range of unique celebration gifts, cakes, flowers, chocolates, hampers, and personalized presents for every occasion." />
+  <meta name="theme-color" content="#d14a61" />
+  <link rel="stylesheet" href="styles.css?v=13.0" />
+  <link rel="icon" href="https://cdn.balloondekor.com/images/61/7ebf2dbd-60dd-4643-8029-763dc6a3e5e3.webp" type="image/webp" />
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="announcement-bar">
+    <span class="badge">Special Offer</span>
+    <span>Use code <strong>CELEBRATE10</strong> for Flat 10% OFF | 🎁 Curated Gifts & Same Day Delivery Across India</span>
+  </div>
+
+  <!-- Sticky Main Header -->
+  <header class="main-header">
+    <div class="header-container">
+      <div class="header-left">
+        <button id="mobileMenuBtn" class="mobile-menu-btn" aria-label="Open Navigation">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+
+        <a href="index.html" class="brand-logo-wrap">
+          <div class="brand-logo">
+            <span class="logo-balloon">🎈</span>
+            <span>Celebration <span class="bold">Events</span><span class="reg">®</span></span>
+          </div>
+          <span class="brand-tagline">India ka party expert</span>
+        </a>
+
+        <!-- City Selector Trigger -->
+        <button id="citySelectorTrigger" class="city-selector-btn" onclick="openCityModal()" aria-label="Select City">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path><circle cx="12" cy="10" r="3"></circle></svg>
+          <div class="city-info">
+            <span class="city-label">Deliver to</span>
+            <span id="headerCityName" class="city-name">Delhi NCR</span>
+          </div>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
+        </button>
+      </div>
+
+      <!-- Navigation Links on Header -->
+      <div class="header-nav-desktop">
+        <a href="index.html" class="header-nav-link">Home</a>
+        <a href="wedding.html" class="header-nav-link">Wedding ✨</a>
+        <a href="marketplace.html" class="header-nav-link active" style="color: var(--brand-600); font-weight: 700;">Gifts 🎁</a>
+        <a href="about.html" class="header-nav-link">About Us</a>
+        <a href="contact.html" class="header-nav-link">Contact</a>
+      </div>
+
+      <!-- Header Center Search Trigger -->
+      <div class="header-center" style="max-width: 320px;">
+        <button id="searchTriggerBtn" class="search-trigger-btn" onclick="openSearchModal()" aria-label="Search decorations">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+          <span>Search gifts, cakes & flowers...</span>
+        </button>
+      </div>
+
+      <!-- Header Right Utilities -->
+      <div class="header-right">
+        <!-- Cart Button Trigger -->
+        <button id="cartTriggerBtn" class="header-action-btn" onclick="openCart()" aria-label="Open Cart">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"></circle><circle cx="19" cy="21" r="1"></circle><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path></svg>
+          <span id="cartCountBadge" class="cart-badge">0</span>
+        </button>
+
+        <button class="header-sign-in" onclick="openLoginPrompt()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+          <span>Sign In</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Secondary Navigation Bar -->
+  <nav class="secondary-nav">
+    <div class="nav-container">
+      <ul class="nav-menu">
+        <li class="nav-item"><a href="birthday.html" class="nav-trigger">Birthday <span class="tag-pill tag-popular">POPULAR</span></a></li>
+        <li class="nav-item"><a href="anniversary.html" class="nav-trigger">Anniversary</a></li>
+        <li class="nav-item"><a href="kids.html" class="nav-trigger">Kids Themes <span class="tag-pill tag-trending">TRENDING</span></a></li>
+        <li class="nav-item"><a href="baby-shower.html" class="nav-trigger">Baby Shower & Welcome</a></li>
+        <li class="nav-item"><a href="wedding.html" class="nav-trigger">Wedding</a></li>
+        <li class="nav-item"><a href="corporate.html" class="nav-trigger">Corporate</a></li>
+        <li class="nav-item"><a href="marketplace.html" class="nav-trigger active" style="color: var(--brand-600); font-weight: 800;">Gifts Marketplace <span class="tag-pill tag-popular">HOT</span></a></li>
+        <li class="nav-item"><a href="#" class="nav-trigger" onclick="openCityModal(); return false;">Cities <span class="tag-pill tag-count">50+</span></a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Main Container -->
+  <main class="marketplace-container">
+    <!-- Breadcrumbs (Exact match) -->
+    <div class="marketplace-breadcrumbs">
+      <a href="index.html">Home</a>
+      <span>&gt;</span>
+      <span class="curr">Marketplace</span>
+    </div>
+
+    <!-- Hero Banner (Exact match) -->
+    <section class="marketplace-hero-banner">
+      <div class="mph-left">
+        <h1 class="mph-title">Gifts <span class="pink-accent">Marketplace</span></h1>
+        <p class="mph-subtitle">Explore a wide range of unique gifts for every occasion.</p>
+        
+        <div class="mph-perks-row">
+          <div class="mph-perk-badge">
+            <span class="perk-icon">🚚</span>
+            <span>Wide Variety</span>
+          </div>
+          <div class="mph-perk-badge">
+            <span class="perk-icon">🛡️</span>
+            <span>Trusted Sellers</span>
+          </div>
+          <div class="mph-perk-badge">
+            <span class="perk-icon">🏷️</span>
+            <span>Best Prices</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="mph-right">
+        <img src="assets/gifts-banner.jpg" alt="Luxury Gifts & Celebration Hampers" />
+      </div>
+    </section>
+
+    <!-- Main Two-Column Layout -->
+    <div class="marketplace-layout">
+      <!-- Left Sidebar Filters (Exact match) -->
+      <aside class="marketplace-sidebar">
+        <div class="sidebar-filters-top">
+          <h4>Filters</h4>
+          <button type="button" class="sidebar-clear-all" onclick="clearAllGiftFilters()">Clear All</button>
+        </div>
+
+        <!-- 1. Category Filter -->
+        <div class="filter-group">
+          <button class="filter-group-header" onclick="toggleFilterAccordion(this)">
+            <span>Category</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="filter-options-list">
+            <label class="filter-checkbox-item">
+              <input type="checkbox" name="cat" value="Gifts for Boys" onchange="applyGiftFilters()" />
+              <span>Gifts for Boys <span class="filter-count">(124)</span></span>
+            </label>
+            <label class="filter-checkbox-item">
+              <input type="checkbox" name="cat" value="Gifts for Girls" onchange="applyGiftFilters()" />
+              <span>Gifts for Girls <span class="filter-count">(132)</span></span>
+            </label>
+            <label class="filter-checkbox-item">
+              <input type="checkbox" name="cat" value="Gifts for Men" onchange="applyGiftFilters()" />
+              <span>Gifts for Men <span class="filter-count">(98)</span></span>
+            </label>
+            <label class="filter-checkbox-item">
+              <input type="checkbox" name="cat" value="Gifts for Women" onchange="applyGiftFilters()" />
+              <span>Gifts for Women <span class="filter-count">(156)</span></span>
+            </label>
+            <label class="filter-checkbox-item">
+              <input type="checkbox" name="cat" value="Wedding Gifts" onchange="applyGiftFilters()" />
+              <span>Wedding Gifts <span class="filter-count">(87)</span></span>
+            </label>
+            <label class="filter-checkbox-item">
+              <input type="checkbox" name="cat" value="Cakes" onchange="applyGiftFilters()" />
+              <span>Cakes <span class="filter-count">(64)</span></span>
+            </label>
+            <label class="filter-checkbox-item">
+              <input type="checkbox" name="cat" value="Flowers" onchange="applyGiftFilters()" />
+              <span>Flowers <span class="filter-count">(112)</span></span>
+            </label>
+            <label class="filter-checkbox-item">
+              <input type="checkbox" name="cat" value="Cards" onchange="applyGiftFilters()" />
+              <span>Cards <span class="filter-count">(54)</span></span>
+            </label>
+            <label class="filter-checkbox-item">
+              <input type="checkbox" name="cat" value="Digital Invitations" onchange="applyGiftFilters()" />
+              <span>Digital Invitations <span class="filter-count">(41)</span></span>
+            </label>
+            <label class="filter-checkbox-item">
+              <input type="checkbox" name="cat" value="Returns Gifts" onchange="applyGiftFilters()" />
+              <span>Returns Gifts <span class="filter-count">(77)</span></span>
+            </label>
+            <label class="filter-checkbox-item">
+              <input type="checkbox" name="cat" value="Chocolates" onchange="applyGiftFilters()" />
+              <span>Chocolates <span class="filter-count">(63)</span></span>
+            </label>
+          </div>
+        </div>
+
+        <!-- 2. Price Range Filter -->
+        <div class="filter-group">
+          <button class="filter-group-header" onclick="toggleFilterAccordion(this)">
+            <span>Price Range</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m18 15-6-6-6 6"/></svg>
+          </button>
+          <div class="price-slider-box">
+            <div class="price-slider-wrap">
+              <div class="price-slider-fill" id="priceFill"></div>
+            </div>
+            <div class="price-range-inputs">
+              <input type="range" id="priceRangeMax" min="0" max="5000" step="100" value="5000" oninput="handlePriceRange(this.value)" />
+            </div>
+            <span class="price-label-text" id="priceRangeDisplay">₹0 – ₹5,000</span>
+          </div>
+        </div>
+
+        <!-- 3. Occasion Filter -->
+        <div class="filter-group">
+          <button class="filter-group-header" onclick="toggleFilterAccordion(this)">
+            <span>Occasion</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="filter-options-list">
+            <label class="filter-checkbox-item">
+              <input type="checkbox" name="occasion" value="Birthday" onchange="applyGiftFilters()" />
+              <span>Birthday <span class="filter-count">(210)</span></span>
+            </label>
+            <label class="filter-checkbox-item">
+              <input type="checkbox" name="occasion" value="Anniversary" onchange="applyGiftFilters()" />
+              <span>Anniversary <span class="filter-count">(95)</span></span>
+            </label>
+            <label class="filter-checkbox-item">
+              <input type="checkbox" name="occasion" value="Wedding" onchange="applyGiftFilters()" />
+              <span>Wedding <span class="filter-count">(86)</span></span>
+            </label>
+            <label class="filter-checkbox-item">
+              <input type="checkbox" name="occasion" value="Baby Shower" onchange="applyGiftFilters()" />
+              <span>Baby Shower <span class="filter-count">(61)</span></span>
+            </label>
+            <label class="filter-checkbox-item">
+              <input type="checkbox" name="occasion" value="Festive" onchange="applyGiftFilters()" />
+              <span>Festive <span class="filter-count">(112)</span></span>
+            </label>
+            <label class="filter-checkbox-item">
+              <input type="checkbox" name="occasion" value="Corporate" onchange="applyGiftFilters()" />
+              <span>Corporate <span class="filter-count">(73)</span></span>
+            </label>
+            <label class="filter-checkbox-item">
+              <input type="checkbox" name="occasion" value="Return Gifts" onchange="applyGiftFilters()" />
+              <span>Return Gifts <span class="filter-count">(58)</span></span>
+            </label>
+          </div>
+        </div>
+
+        <!-- 4. Brand Filter -->
+        <div class="filter-group">
+          <button class="filter-group-header" onclick="toggleFilterAccordion(this)">
+            <span>Brand</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="filter-options-list">
+            <input type="text" id="brandSearchInput" class="brand-search-input" placeholder="Search brands..." oninput="filterBrandCheckboxes(this.value)" />
+            <div id="brandCheckboxesContainer" style="display: flex; flex-direction: column; gap: 10px;">
+              <label class="filter-checkbox-item brand-item" data-brand="Archies">
+                <input type="checkbox" name="brand" value="Archies" onchange="applyGiftFilters()" />
+                <span>Archies <span class="filter-count">(34)</span></span>
+              </label>
+              <label class="filter-checkbox-item brand-item" data-brand="Ferrero Rocher">
+                <input type="checkbox" name="brand" value="Ferrero Rocher" onchange="applyGiftFilters()" />
+                <span>Ferrero Rocher <span class="filter-count">(28)</span></span>
+              </label>
+              <label class="filter-checkbox-item brand-item" data-brand="TeddyJoy">
+                <input type="checkbox" name="brand" value="TeddyJoy" onchange="applyGiftFilters()" />
+                <span>TeddyJoy <span class="filter-count">(41)</span></span>
+              </label>
+              <label class="filter-checkbox-item brand-item" data-brand="FlowerAura">
+                <input type="checkbox" name="brand" value="FlowerAura" onchange="applyGiftFilters()" />
+                <span>FlowerAura <span class="filter-count">(37)</span></span>
+              </label>
+              <label class="filter-checkbox-item brand-item" data-brand="Cadbury">
+                <input type="checkbox" name="brand" value="Cadbury" onchange="applyGiftFilters()" />
+                <span>Cadbury <span class="filter-count">(29)</span></span>
+              </label>
+            </div>
+            <button type="button" class="brand-show-more-btn" onclick="showMoreBrands(this)">+ Show More</button>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Right Main Products Area -->
+      <section class="marketplace-main">
+        <div class="marketplace-controls-bar">
+          <div class="marketplace-results-count">
+            Showing <strong id="giftsShowingRange">1–12</strong> of <strong id="giftsTotalCount">845</strong> <span class="mp-count-label">products</span>
+          </div>
+          <div class="marketplace-sort-wrap">
+            <select class="marketplace-sort-select" id="giftSortSelect" onchange="handleGiftSort(this.value)" aria-label="Sort products">
+              <option value="popularity">Popularity</option>
+              <option value="price-asc">Price: Low to High</option>
+              <option value="price-desc">Price: High to Low</option>
+              <option value="rating">Top Rated</option>
+              <option value="newest">Newest</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- 4-Column Product Grid (Exact Match to 12 Items) -->
+        <div class="gifts-product-grid" id="giftsProductGrid">
+          <!-- Dynamically rendered via JS -->
+        </div>
+
+        <!-- Pagination -->
+        <div class="marketplace-pagination">
+          <button class="mp-page-btn" aria-label="Previous Page">&lsaquo;</button>
+          <button class="mp-page-btn active">1</button>
+          <button class="mp-page-btn">2</button>
+          <button class="mp-page-btn">3</button>
+          <button class="mp-page-btn">4</button>
+          <button class="mp-page-btn">5</button>
+          <span class="mp-page-dots">...</span>
+          <button class="mp-page-btn">71</button>
+          <button class="mp-page-btn" aria-label="Next Page">&rsaquo;</button>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Cart Slide-Over Drawer -->
+  <div class="cart-drawer-overlay" id="cartDrawerOverlay">
+    <div class="cart-drawer">
+      <div class="cart-header">
+        <h3>🛒 Your Decoration Cart</h3>
+        <button class="modal-close-btn" onclick="closeCart()">&times;</button>
+      </div>
+      <div class="cart-body" id="cartBody">
+        <!-- Rendered by renderCart() -->
+      </div>
+      <div class="cart-footer" id="cartFooter" style="display: none;">
+        <div class="cart-coupon-box">
+          <input type="text" id="couponInput" class="coupon-input" placeholder="Coupon (e.g. CELEBRATE10)" />
+          <button class="coupon-apply-btn" onclick="applyCoupon()">Apply</button>
+        </div>
+        <div class="bill-row">
+          <span>Items Total</span>
+          <span id="billSubtotal">₹0</span>
+        </div>
+        <div class="bill-row" id="billDiscountRow" style="display: none; color: var(--accent-green);">
+          <span>Promo Discount</span>
+          <span id="billDiscount">-₹0</span>
+        </div>
+        <div class="bill-row">
+          <span>Taxes & Safe-Setup Kit</span>
+          <span style="color: var(--accent-green); font-weight: 700;">FREE</span>
+        </div>
+        <div class="bill-row total">
+          <span>Total Payable</span>
+          <span id="billGrandTotal">₹0</span>
+        </div>
+        <button class="checkout-btn" onclick="openCheckoutModal()">Proceed to Reserve Slot →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- City Selector Modal -->
+  <div class="modal-overlay" id="cityModalOverlay">
+    <div class="modal-box modal-city-box">
+      <div class="modal-header">
+        <h3>📍 Select Your Celebration City</h3>
+        <button class="modal-close-btn" onclick="closeCityModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-subtitle">Certified technicians ready for on-time same-day setup in 100+ cities:</p>
+        <div class="cities-grid" id="cityListModal"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Search Modal Overlay -->
+  <div class="modal-overlay" id="searchModalOverlay">
+    <div class="modal-box modal-search-box">
+      <div class="search-modal-header">
+        <input type="text" id="liveSearchInput" class="live-search-input" placeholder="Search gifts, cakes, flowers, chocolates..." />
+        <button class="modal-close-btn" onclick="closeSearchModal()">&times;</button>
+      </div>
+      <div class="search-results-list" id="searchResultsList"></div>
+    </div>
+  </div>
+
+  <!-- Checkout Modal Overlay -->
+  <div class="modal-overlay" id="checkoutModalOverlay">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>🎉 Complete Your Booking</h3>
+        <button class="modal-close-btn" onclick="closeCheckoutModal()">&times;</button>
+      </div>
+      <div class="modal-body" id="checkoutBody">
+        <form id="checkoutForm" onsubmit="handleOrderSubmission(event)">
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <div>
+              <label style="font-size: 12.5px; font-weight: 700;">Full Name *</label>
+              <input type="text" required class="search-input" id="custName" placeholder="e.g. Rahul Sharma" style="margin-top: 4px; padding-left: 14px;" />
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+              <div>
+                <label style="font-size: 12.5px; font-weight: 700;">Phone Number *</label>
+                <input type="tel" required class="search-input" id="custPhone" placeholder="10-digit mobile" style="margin-top: 4px; padding-left: 14px;" />
+              </div>
+              <div>
+                <label style="font-size: 12.5px; font-weight: 700;">Celebration Occasion</label>
+                <input type="text" class="search-input" id="custOccasion" placeholder="e.g. Birthday Gift" style="margin-top: 4px; padding-left: 14px;" />
+              </div>
+            </div>
+            <div>
+              <label style="font-size: 12.5px; font-weight: 700;">Delivery Address *</label>
+              <textarea required class="search-input" id="custAddress" rows="3" placeholder="Full address with pincode..." style="margin-top: 4px; padding-left: 14px; resize: none;"></textarea>
+            </div>
+            <div style="background: var(--brand-50); padding: 12px; border-radius: var(--radius-md); border: 1px solid var(--brand-200); margin-top: 6px;">
+              <div style="display: flex; justify-content: space-between; font-size: 13px; font-weight: 700;">
+                <span>Total Amount:</span><span id="checkoutPayAmount" style="color: var(--brand-700);">₹0</span>
+              </div>
+            </div>
+            <button type="submit" class="checkout-btn">Confirm Delivery Slot 🚀</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Scripts -->
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+  <script>
+    // ====================================================
+    // GIFTS MARKETPLACE DATA (Exact 12 items from screenshot)
+    // ====================================================
+    const GIFTS_DATA = [
+      {
+        id: "gift-01",
+        title: "Soft Teddy Bear",
+        price: 699,
+        originalPrice: 899,
+        rating: 4.8,
+        reviews: 320,
+        category: ["Gifts for Boys", "Gifts for Girls"],
+        occasion: ["Birthday", "Festive", "Baby Shower"],
+        brand: "TeddyJoy",
+        image: "assets/soft-teddy-bear-hero.jpg"
+      },
+      {
+        id: "gift-02",
+        title: "Personalized Photo Mug",
+        price: 499,
+        originalPrice: 699,
+        rating: 4.6,
+        reviews: 210,
+        category: ["Gifts for Men", "Gifts for Women"],
+        occasion: ["Birthday", "Corporate", "Anniversary"],
+        brand: "Archies",
+        image: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=600&q=80"
+      },
+      {
+        id: "gift-03",
+        title: "Luxury Gift Hamper for Women",
+        price: 1999,
+        originalPrice: 2499,
+        rating: 4.7,
+        reviews: 185,
+        category: ["Gifts for Women", "Wedding Gifts"],
+        occasion: ["Anniversary", "Wedding", "Birthday"],
+        brand: "Archies",
+        image: "https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=600&q=80"
+      },
+      {
+        id: "gift-04",
+        title: "Men's Analog Watch",
+        price: 2499,
+        originalPrice: 3499,
+        rating: 4.5,
+        reviews: 98,
+        category: ["Gifts for Men"],
+        occasion: ["Birthday", "Anniversary", "Wedding"],
+        brand: "Archies",
+        image: "https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=600&q=80"
+      },
+      {
+        id: "gift-05",
+        title: "Fresh Red Rose Bouquet",
+        price: 1299,
+        originalPrice: 1599,
+        rating: 4.8,
+        reviews: 412,
+        category: ["Flowers", "Gifts for Women"],
+        occasion: ["Anniversary", "Birthday", "Wedding"],
+        brand: "FlowerAura",
+        image: "https://images.unsplash.com/photo-1518895949257-7621c3c786d7?auto=format&fit=crop&w=600&q=80"
+      },
+      {
+        id: "gift-06",
+        title: "Ferrero Rocher Chocolate Box",
+        price: 899,
+        originalPrice: 1099,
+        rating: 4.6,
+        reviews: 276,
+        category: ["Chocolates", "Gifts for Women", "Gifts for Men"],
+        occasion: ["Festive", "Birthday", "Anniversary", "Wedding"],
+        brand: "Ferrero Rocher",
+        image: "https://images.unsplash.com/photo-1549007994-cb92caebd54b?auto=format&fit=crop&w=600&q=80"
+      },
+      {
+        id: "gift-07",
+        title: "Remote Control Car for Kids",
+        price: 1199,
+        originalPrice: 1599,
+        rating: 4.4,
+        reviews: 190,
+        category: ["Gifts for Boys"],
+        occasion: ["Birthday", "Festive"],
+        brand: "Archies",
+        image: "https://images.unsplash.com/photo-1594787318286-3d835c1d207f?auto=format&fit=crop&w=600&q=80"
+      },
+      {
+        id: "gift-08",
+        title: "Chocolate Truffle Cake",
+        price: 799,
+        originalPrice: 999,
+        rating: 4.7,
+        reviews: 305,
+        category: ["Cakes"],
+        occasion: ["Birthday", "Anniversary", "Festive"],
+        brand: "FlowerAura",
+        image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=600&q=80"
+      },
+      {
+        id: "gift-09",
+        title: "Elegant Wedding Card",
+        price: 49,
+        originalPrice: 99,
+        rating: 4.5,
+        reviews: 134,
+        category: ["Cards", "Wedding Gifts"],
+        occasion: ["Wedding"],
+        brand: "Archies",
+        image: "https://images.unsplash.com/photo-1607344645866-009c320b5ab8?auto=format&fit=crop&w=600&q=80"
+      },
+      {
+        id: "gift-10",
+        title: "Digital Invitation (Video)",
+        price: 299,
+        originalPrice: 499,
+        rating: 4.6,
+        reviews: 97,
+        category: ["Digital Invitations"],
+        occasion: ["Wedding", "Birthday", "Baby Shower"],
+        brand: "Archies",
+        image: "https://images.unsplash.com/photo-1512499617640-c74ae3a79d37?auto=format&fit=crop&w=600&q=80"
+      },
+      {
+        id: "gift-11",
+        title: "Return Gifts (Set of 10)",
+        price: 999,
+        originalPrice: 1299,
+        rating: 4.8,
+        reviews: 221,
+        category: ["Returns Gifts"],
+        occasion: ["Return Gifts", "Baby Shower", "Birthday"],
+        brand: "Archies",
+        image: "https://images.unsplash.com/photo-1485955900006-10f4d324d411?auto=format&fit=crop&w=600&q=80"
+      },
+      {
+        id: "gift-12",
+        title: "Gift Hamper for Boys",
+        price: 1499,
+        originalPrice: 1899,
+        rating: 4.5,
+        reviews: 168,
+        category: ["Gifts for Boys"],
+        occasion: ["Birthday", "Festive"],
+        brand: "Archies",
+        image: "https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=600&q=80"
+      }
+    ];
+
+    let currentGiftList = [...GIFTS_DATA];
+    let wishlistItems = new Set();
+    let currentMaxPrice = 5000;
+    let currentSort = "popularity";
+
+    function renderGiftsGrid(items) {
+      const grid = document.getElementById("giftsProductGrid");
+      if (!grid) return;
+
+      if (items.length === 0) {
+        grid.innerHTML = `
+          <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px; background: #ffffff; border-radius: 12px; border: 1px dashed #cbd5e1;">
+            <span style="font-size: 40px; display: block; margin-bottom: 12px;">🎁</span>
+            <h4 style="font-size: 18px; color: #1e293b; margin-bottom: 6px;">No gifts match your selected filters</h4>
+            <p style="font-size: 14px; color: #64748b; margin-bottom: 16px;">Try adjusting your categories, price range or brands to view more options.</p>
+            <button onclick="clearAllGiftFilters()" style="background: #e11d48; color: #ffffff; border: none; padding: 10px 20px; border-radius: 8px; font-weight: 700; cursor: pointer;">Clear All Filters</button>
+          </div>
+        `;
+        document.getElementById("giftsShowingRange").textContent = "0";
+        document.getElementById("giftsTotalCount").textContent = "0";
+        return;
+      }
+
+      grid.innerHTML = items.map(gift => {
+        const isWish = wishlistItems.has(gift.id);
+        return `
+          <div class="gift-card" id="card-${gift.id}" onclick="window.location.href='gift-detail.html?id=${gift.id}'" style="cursor: pointer;">
+            <div class="gift-img-box">
+              <img src="${gift.image}" alt="${gift.title}" loading="lazy" />
+            </div>
+            <div class="gift-info">
+              <h3 class="gift-title" title="${gift.title}">${gift.title}</h3>
+              <div class="gift-meta-row">
+                <span class="gift-price">₹${gift.price.toLocaleString("en-IN")}</span>
+                <span class="gift-rating-badge">
+                  <span class="star">★</span>
+                  <span>${gift.rating} (${gift.reviews})</span>
+                </span>
+              </div>
+              <div class="gift-actions-row">
+                <button class="gift-add-cart-btn" id="btn-add-${gift.id}" onclick="event.stopPropagation(); handleGiftAddToCart('${gift.id}')">
+                  Add to Cart
+                </button>
+                <button class="gift-wishlist-btn ${isWish ? 'active' : ''}" onclick="event.stopPropagation(); toggleGiftWishlist('${gift.id}', this)" aria-label="Add to Wishlist">
+                  ${isWish ? '♥' : '♡'}
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join("");
+
+      document.getElementById("giftsShowingRange").textContent = `1–${items.length}`;
+      document.getElementById("giftsTotalCount").textContent = items.length === 12 ? "845" : items.length.toString();
+    }
+
+    function handleGiftAddToCart(giftId) {
+      const gift = GIFTS_DATA.find(g => g.id === giftId);
+      if (!gift) return;
+
+      // Add to global appState cart if available
+      if (typeof appState !== "undefined" && appState.cart) {
+        appState.cart.push({
+          id: gift.id,
+          title: gift.title,
+          price: gift.price,
+          originalPrice: gift.originalPrice,
+          image: gift.image,
+          date: new Date().toISOString().split("T")[0],
+          timeSlot: "Express Delivery (Same Day)",
+          city: appState.selectedCity || "Delhi NCR",
+          addons: []
+        });
+        saveCartToStorage();
+        updateCartBadge();
+      }
+
+      const btn = document.getElementById(`btn-add-${giftId}`);
+      if (btn) {
+        const originalText = btn.innerHTML;
+        btn.classList.add("added");
+        btn.innerHTML = "✓ Added";
+        setTimeout(() => {
+          btn.classList.remove("added");
+          btn.innerHTML = originalText;
+        }, 1500);
+      }
+
+      showToast(`🎉 "${gift.title}" added to your cart!`);
+    }
+
+    function toggleGiftWishlist(giftId, btn) {
+      if (wishlistItems.has(giftId)) {
+        wishlistItems.delete(giftId);
+        btn.classList.remove("active");
+        btn.textContent = "♡";
+        showToast("Removed from wishlist");
+      } else {
+        wishlistItems.add(giftId);
+        btn.classList.add("active");
+        btn.textContent = "♥";
+        showToast("❤️ Saved to your wishlist!");
+      }
+    }
+
+    function applyGiftFilters() {
+      const selectedCats = Array.from(document.querySelectorAll('input[name="cat"]:checked')).map(cb => cb.value);
+      const selectedOccasions = Array.from(document.querySelectorAll('input[name="occasion"]:checked')).map(cb => cb.value);
+      const selectedBrands = Array.from(document.querySelectorAll('input[name="brand"]:checked')).map(cb => cb.value);
+
+      let filtered = GIFTS_DATA.filter(item => {
+        // Price check
+        if (item.price > currentMaxPrice) return false;
+
+        // Category check
+        if (selectedCats.length > 0) {
+          const matchCat = item.category.some(c => selectedCats.includes(c));
+          if (!matchCat) return false;
+        }
+
+        // Occasion check
+        if (selectedOccasions.length > 0) {
+          const matchOcc = item.occasion.some(o => selectedOccasions.includes(o));
+          if (!matchOcc) return false;
+        }
+
+        // Brand check
+        if (selectedBrands.length > 0) {
+          if (!selectedBrands.includes(item.brand)) return false;
+        }
+
+        return true;
+      });
+
+      // Apply Sort
+      sortGiftsArray(filtered, currentSort);
+      currentGiftList = filtered;
+      renderGiftsGrid(currentGiftList);
+    }
+
+    function handlePriceRange(val) {
+      currentMaxPrice = parseInt(val, 10);
+      document.getElementById("priceRangeDisplay").textContent = `₹0 – ₹${currentMaxPrice.toLocaleString("en-IN")}`;
+      const fill = document.getElementById("priceFill");
+      if (fill) {
+        const pct = (currentMaxPrice / 5000) * 100;
+        fill.style.right = `${100 - pct}%`;
+      }
+      applyGiftFilters();
+    }
+
+    function handleGiftSort(sortType) {
+      currentSort = sortType;
+      sortGiftsArray(currentGiftList, currentSort);
+      renderGiftsGrid(currentGiftList);
+    }
+
+    function sortGiftsArray(arr, sortType) {
+      if (sortType === "price-asc") {
+        arr.sort((a, b) => a.price - b.price);
+      } else if (sortType === "price-desc") {
+        arr.sort((a, b) => b.price - a.price);
+      } else if (sortType === "rating") {
+        arr.sort((a, b) => b.rating - a.rating);
+      } else if (sortType === "newest") {
+        arr.reverse();
+      } else {
+        // popularity
+        arr.sort((a, b) => b.reviews - a.reviews);
+      }
+    }
+
+    function filterBrandCheckboxes(query) {
+      const q = query.toLowerCase().trim();
+      const items = document.querySelectorAll(".brand-item");
+      items.forEach(el => {
+        const brand = (el.getAttribute("data-brand") || "").toLowerCase();
+        if (brand.includes(q)) {
+          el.style.display = "flex";
+        } else {
+          el.style.display = "none";
+        }
+      });
+    }
+
+    function showMoreBrands(btn) {
+      const container = document.getElementById("brandCheckboxesContainer");
+      const extraBrands = [
+        { name: "ChocoLuv", count: 18 },
+        { name: "SparkleGifts", count: 22 },
+        { name: "KiddosFun", count: 15 }
+      ];
+      extraBrands.forEach(b => {
+        const label = document.createElement("label");
+        label.className = "filter-checkbox-item brand-item";
+        label.setAttribute("data-brand", b.name);
+        label.innerHTML = `
+          <input type="checkbox" name="brand" value="${b.name}" onchange="applyGiftFilters()" />
+          <span>${b.name} <span class="filter-count">(${b.count})</span></span>
+        `;
+        container.appendChild(label);
+      });
+      btn.style.display = "none";
+    }
+
+    function clearAllGiftFilters() {
+      document.querySelectorAll('.filter-checkbox-item input[type="checkbox"]').forEach(cb => cb.checked = false);
+      const priceSlider = document.getElementById("priceRangeMax");
+      if (priceSlider) priceSlider.value = 5000;
+      currentMaxPrice = 5000;
+      document.getElementById("priceRangeDisplay").textContent = "₹0 – ₹5,000";
+      const fill = document.getElementById("priceFill");
+      if (fill) fill.style.right = "0%";
+      const brandSearch = document.getElementById("brandSearchInput");
+      if (brandSearch) {
+        brandSearch.value = "";
+        filterBrandCheckboxes("");
+      }
+      currentGiftList = [...GIFTS_DATA];
+      handleGiftSort(currentSort);
+    }
+
+    function toggleFilterAccordion(headerBtn) {
+      headerBtn.classList.toggle("collapsed");
+      const list = headerBtn.nextElementSibling;
+      if (list) {
+        if (list.style.display === "none") {
+          list.style.display = list.classList.contains("price-slider-box") ? "flex" : "flex";
+        } else {
+          list.style.display = "none";
+        }
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      renderGiftsGrid(GIFTS_DATA);
+    });
+  </script>
+</body>
+</html>

@@ -62,7 +62,7 @@ const SITE_DATA = {
     },
     {
       id: "wedding",
-      name: "Wedding & Haldi",
+      name: "Wedding",
       icon: "💍",
       badge: "SPECIAL",
       image: "https://cdn.balloondekor.com/33/wedding-decoration-0c8b0952-fe10-44cb-ac91-8f640239beaf.webp",
@@ -75,6 +75,216 @@ const SITE_DATA = {
       badge: "BUSINESS",
       image: "https://cdn.balloondekor.com/33/office-decoration-b84c3312-f4cd-4baf-8d1f-b03d28c61242.webp",
       desc: "Office anniversary, annual day & milestone celebrations"
+    }
+  ],
+  weddingServices: [
+    {
+      id: "house-decor",
+      title: "House Decoration",
+      icon: "house",
+      badge: "TRADITIONAL",
+      desc: "Pandals, lighting, banana trees, flowers & more",
+      longDesc: "Complete traditional home decoration for weddings including front gate pandals, vibrant LED string lights, fresh banana tree pillars, marigold entrance torans, and courtyard styling.",
+      image: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=800&q=80",
+      inclusions: [
+        "Entrance Banana Trees with Fresh Floral Garlands",
+        "Front Facade & Terrace Rice Light Pandal (Up to 100m)",
+        "Marigold Toran for Main Doorway",
+        "Courtyard Rangoli & Traditional Brass Urli with Floating Petals",
+        "Complete on-site setup by our certified wedding florists"
+      ]
+    },
+    {
+      id: "nalugu-snanam",
+      title: "Nalugu & Mangala Snanam Decoration",
+      icon: "flower",
+      badge: "RITUAL SPECIAL",
+      desc: "Traditional decorations, flower jewellery, nallu items",
+      longDesc: "Auspicious yellow and orange marigold setup designed for ritual purifications, Nalugu and Mangala Snanam. Features traditional brass urlis, wooden peeta, flower jewellery for the bride/groom, and vibrant backdrop frames.",
+      image: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=800&q=80",
+      inclusions: [
+        "Traditional Brass Urli with fresh yellow marigold & rose petals",
+        "Floral Backdrop Frame with yellow drapery & tassels",
+        "Handcrafted Flower Jewellery Set for Bride",
+        "Two Wooden / Brass Peetas (Seating Stools)",
+        "Haldi Bowls, Kunkum plates & Traditional ritual props"
+      ]
+    },
+    {
+      id: "function-hall-decor",
+      title: "Function Hall Flower Decoration",
+      icon: "hall",
+      badge: "GRAND STAGE",
+      desc: "Entrance, stage, reception, flower decoration & more",
+      longDesc: "Grand banquet hall and convention center wedding styling. Includes majestic grand entrance arch, mandapam / stage backdrop with exotic flowers, couple sofa, aisle walkway runners, and chandeliers.",
+      image: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80",
+      inclusions: [
+        "Grand Hall Entrance Floral Arch with welcome board",
+        "Main Wedding Mandap / Stage with Royal Backdrop & Lighting",
+        "Exclusive Maharaja Couple Sofa / Royal Chairs",
+        "Red Carpet / Floral Aisle Walkway with pillars",
+        "Round Table centerpieces with floral vases"
+      ]
+    },
+    {
+      id: "catering",
+      title: "Catering",
+      icon: "catering",
+      badge: "MULTI-CUISINE",
+      desc: "Customizable veg menu with multiple options",
+      longDesc: "Hygienic, authentic traditional and multi-cuisine wedding catering. Includes welcome mocktails, live chaat counter, traditional banana leaf / buffet service, signature curries, biryani, artisanal breads, and decadent desserts.",
+      image: "https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=800&q=80",
+      inclusions: [
+        "Welcome Drinks & Live Mocktail Station",
+        "Live Street Food / Chaat Counters",
+        "Multi-course Traditional Vegetarian Feast (Banana leaf or buffet)",
+        "3 Signature Sweets & Hot Desserts (Jalebi, Gulab Jamun, Halwa)",
+        "Professional uniformed serving staff & premium cutlery"
+      ]
+    },
+    {
+      id: "sangyam-sweets",
+      title: "Sangyam Sweets",
+      icon: "sweets",
+      badge: "PURE GHEE",
+      desc: "Traditional sweets & snacks",
+      longDesc: "Handcrafted authentic wedding sweets and savory snacks made with pure cow ghee. Packaged in customized wedding gift boxes, perfect for guest welcome and rituals.",
+      image: "assets/sangyam-sweets.jpg",
+      inclusions: [
+        "Pure Desi Ghee Motichoor Laddoos & Kaju Katli",
+        "Authentic Regional Sweets (Mysore Pak, Badusha, Peda)",
+        "Crunchy Savories (Murukku, Mixture, Ribbon Pakoda)",
+        "Customized Embossed Wedding Gift Boxes",
+        "Fresh batch preparation with guaranteed shelf-life testing"
+      ]
+    },
+    {
+      id: "photo-video",
+      title: "Photo & Videography",
+      icon: "camera",
+      badge: "4K CINEMATIC",
+      desc: "Traditional & candid photography",
+      longDesc: "Top-tier wedding cinematographers capturing every emotional ritual and candid smile. Includes high-res digital albums, 4K cinematic wedding teaser, drone footage, and traditional full-length coverage.",
+      image: "https://images.unsplash.com/photo-1537633552985-df8429e8048b?auto=format&fit=crop&w=800&q=80",
+      inclusions: [
+        "2 Candid Photographers + 2 Traditional Cameras",
+        "4K Cinematic Wedding Teaser (3-5 minutes)",
+        "Full HD Traditional Wedding Film (60-90 minutes)",
+        "Aerial Drone Coverage for grand venue shots",
+        "Premium Leather Photobook Album (100 pages, 300+ photos)"
+      ]
+    },
+    {
+      id: "melam",
+      title: "Melam",
+      icon: "drums",
+      badge: "AUSPICIOUS",
+      desc: "Nadaswaram, Dhol, Traditional music",
+      longDesc: "Master musicians providing soul-stirring auspicious melodies for your muhurat and Baraat processions. Traditional Nadaswaram, Thavil, Punjabi Dhol, and Shehnai troupes.",
+      image: "assets/traditional-melam.jpg",
+      inclusions: [
+        "Traditional Nadaswaram & Thavil Vidwans Troupe",
+        "Punjabi Dhol Beats for energetic Baraat entry",
+        "Auspicious Shehnai music for morning muhurat rituals",
+        "Traditional ethnic attire for all performers",
+        "Full sound reinforcement system included"
+      ]
+    },
+    {
+      id: "special-events",
+      title: "Special Events",
+      icon: "sparkles",
+      badge: "THEME DECOR",
+      desc: "Sangeet, Reception, Theme events",
+      longDesc: "Full-scale themed pre-wedding parties and grand receptions. Includes concept design, special lighting, cold fire entry pyrotechnics, dry ice smoke, and personalized themes.",
+      image: "assets/special-events-pyro.jpg",
+      inclusions: [
+        "Thematic Concept & Custom Lighting Rig",
+        "Cold Pyro Sparkulars for Grand Bride & Groom Entry",
+        "Heavy Dry Ice Fog for magical first dance",
+        "Custom Monogram Floor Projection & Neon Backdrops",
+        "Dedicated On-Site Event Coordinator"
+      ]
+    },
+    {
+      id: "musical-events",
+      title: "Musical Events",
+      icon: "mic",
+      badge: "LIVE BAND",
+      desc: "Live music, orchestra, cultural programs",
+      longDesc: "Enthralling live musical bands, acoustic singers, Sufi ensembles, and classical fusion orchestras to keep your wedding guests mesmerized throughout the evening.",
+      image: "https://images.unsplash.com/photo-1465847899084-d164df4dedc6?auto=format&fit=crop&w=800&q=80",
+      inclusions: [
+        "Live Acoustic / Bollywood / Sufi Fusion Band",
+        "Professional Stage Audio & Line-Array Speakers",
+        "Stage Lighting, Moving Heads & LED Par Cans",
+        "Sound Engineer & Stage Tech Crew",
+        "Customized 3-Hour Musical Performance Setlist"
+      ]
+    },
+    {
+      id: "sangyam-bags",
+      title: "Sangyam Bags",
+      icon: "bag",
+      badge: "RETURN GIFTS",
+      desc: "Return gifts & customized bags",
+      longDesc: "Exquisitely designed wedding favor bags featuring silk brocade, jute-cotton, or golden foil prints with bride and groom names. Perfect for distributing sweets, clothes, and tamboolam.",
+      image: "assets/sangyam-bags.jpg",
+      inclusions: [
+        "Customized High-Quality Fabric / Paper Gift Bags",
+        "Personalized Gold Foil Monogram (Names & Date)",
+        "Traditional Tamboolam Coconut & Betel Leaf holders",
+        "Choice of Vibrant Colors (Red, Gold, Royal Blue, Pink)",
+        "Bulk order door delivery across your chosen venue"
+      ]
+    },
+    {
+      id: "bridal-makeup",
+      title: "Bridal Makeup",
+      icon: "makeup",
+      badge: "CELEBRITY ARTISTS",
+      desc: "Professional bridal makeup",
+      longDesc: "Certified celebrity bridal hair and makeup artists providing HD and Airbrush makeup that stays flawless for 16+ hours through tearful farewells and intense photo flashes.",
+      image: "https://images.unsplash.com/photo-1596704017254-9b121068fb31?auto=format&fit=crop&w=800&q=80",
+      inclusions: [
+        "HD / Airbrush Bridal Makeup using luxury international brands (MAC, Huda, Dior)",
+        "Traditional / Modern Bridal Hairstyling with fresh floral gajras",
+        "Saree / Lehenga Draping & Jewellery Setting",
+        "Touch-up kit for reception & muhurat",
+        "Optional Family / Bridesmaids Makeup Add-ons available"
+      ]
+    },
+    {
+      id: "mehandi",
+      title: "Mehandi",
+      icon: "henna",
+      badge: "ORGANIC HENNA",
+      desc: "Bridal & guest mehendi",
+      longDesc: "Master henna artists creating intricate Arabic, Marwari, floral, and portrait bridal mehendi with 100% organic, chemical-free henna paste for rich dark mahogany stains.",
+      image: "https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=800&q=80",
+      inclusions: [
+        "Full Arm & Leg Intricate Bridal Henna with personalized motifs (Couple portrait, wedding date)",
+        "Team of 3+ Henna Artists for wedding guests & family",
+        "100% Organic Home-Brewed Henna Cones with nilgiri/eucalyptus oils",
+        "Sealing Clove Spray & Post-Mehendi Care Balm for deep dark color",
+        "Mehendi lounge cushion seating styling"
+      ]
+    },
+    {
+      id: "sangeet",
+      title: "Sangeet",
+      icon: "dance",
+      badge: "PARTY & DJ",
+      desc: "Dance, music & entertainment",
+      longDesc: "Electrifying Sangeet night choreography and entertainment. Includes dance choreographers for family rehearsals, energetic wedding DJ with concert sound, and dazzling dance-floor LED screens.",
+      image: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=800&q=80",
+      inclusions: [
+        "Professional Bollywood & Folk Dance Choreographer for Family Rehearsals (7 sessions)",
+        "Top Club / Wedding DJ with customized track mixing",
+        "Concert Stage Sound, Truss Lighting & Illuminated LED Dance Floor",
+        "Fun Wedding Emcee / Anchor for interactive couple games",
+        "Props (LED sticks, sunglasses, dhols) for ultimate party vibe"
+      ]
     }
   ],
   addons: [
@@ -544,7 +754,7 @@ const SITE_DATA = {
       id: "haldi-ceremony-traditional-decor",
       title: "Vibrant Haldi Ceremony Floral & Balloon Decor",
       category: "wedding",
-      categoryName: "Wedding & Haldi",
+      categoryName: "Wedding",
       price: 3999,
       originalPrice: 5299,
       discount: 25,
@@ -570,7 +780,7 @@ const SITE_DATA = {
       id: "bachelorette-party-bridal-shower",
       title: "Glam Bachelorette & Bridal Shower Decor",
       category: "wedding",
-      categoryName: "Wedding & Haldi",
+      categoryName: "Wedding",
       price: 2899,
       originalPrice: 3699,
       discount: 21,
@@ -674,7 +884,7 @@ const SITE_DATA = {
       id: "wedding-cocktail-mehendi-decor",
       title: "Boho Chic Mehendi & Sangeet Lounge Decor",
       category: "wedding",
-      categoryName: "Wedding & Haldi",
+      categoryName: "Wedding",
       price: 4999,
       originalPrice: 6499,
       discount: 23,
@@ -725,40 +935,152 @@ const SITE_DATA = {
   ],
   reviews: [
     {
+      id: "rev-1",
       name: "Pooja Sharma",
       city: "Delhi NCR",
       rating: 5,
       date: "2 days ago",
-      text: "Celebration Events made my husband's 30th birthday absolutely unforgettable! The decorator arrived 15 mins prior to the slot, set up the entire balloon arch in 1.5 hours without any mess. Truly India's best party expert!",
-      verified: true,
-      service: "Rose Gold Birthday Home Decor"
+      type: "video",
+      media: "customer-review-video-1.mp4",
+      poster: "https://cdn.balloondekor.com/14/1744720943222.webp",
+      service: "Rose Gold Birthday Setup",
+      text: "The decorator arrived 15 mins early and set up the balloon arch without any mess! Look at this magical video reel!",
+      verified: true
     },
     {
-      name: "Rahul Verma",
+      id: "rev-2",
+      name: "Rahul & Sneha",
       city: "Mumbai",
       rating: 5,
-      date: "1 week ago",
-      text: "Booked the Cabana Canopy on our terrace for our 5th anniversary. My wife was genuinely in tears of joy! The fairy lights and balloon styling was just magical. Worth every rupee!",
-      verified: true,
-      service: "Romantic Anniversary Room Celebration"
+      date: "5 days ago",
+      type: "image",
+      media: "https://cdn.balloondekor.com/29/1784709508118-669326.webp",
+      service: "Cabana Terrace Anniversary",
+      text: "Booked the terrace cabana for our 5th anniversary. The fairy lights and balloon styling were unbelievable!",
+      verified: true
     },
     {
+      id: "rev-3",
       name: "Ananya Deshmukh",
       city: "Pune",
       rating: 5,
-      date: "2 weeks ago",
-      text: "We ordered the Cocomelon theme for our son's 2nd birthday. The balloon quality was top notch - no pungent rubber smell, balloons lasted for over 3 days! Outstanding service.",
-      verified: true,
-      service: "Cocomelon Fun Kids Birthday Theme"
+      date: "1 week ago",
+      type: "image",
+      media: "https://cdn.balloondekor.com/images/33/dbe87a70-56bc-42bc-ad96-2847b88c00dd.webp",
+      service: "Cocomelon 2nd Birthday",
+      text: "Our son JJ was so thrilled! The balloon quality was top notch, vibrant colors and lasted 3 whole days.",
+      verified: true
     },
     {
-      name: "Karthik Subramanian",
+      id: "rev-4",
+      name: "Kunal & Riya Mehra",
       city: "Bangalore",
       rating: 5,
+      date: "1 week ago",
+      type: "video",
+      media: "customer-review-video-1.mp4",
+      poster: "https://cdn.balloondekor.com/14/1744890426934.webp",
+      service: "Golden Birthday Arch",
+      text: "Super smooth same-day booking in Indiranagar. Watch our live celebration reveal video!",
+      verified: true
+    },
+    {
+      id: "rev-5",
+      name: "Divya Nair",
+      city: "Hyderabad",
+      rating: 5,
+      date: "2 weeks ago",
+      type: "image",
+      media: "https://cdn.balloondekor.com/images/14/bf89ee2c-957e-4264-a433-c5e17a9bcbf5.webp",
+      service: "Boho Luxury Theme",
+      text: "Natural pampas grass and earthy balloons made our daughter's 1st birthday look straight out of Pinterest.",
+      verified: true
+    },
+    {
+      id: "rev-6",
+      name: "Vikram Singhania",
+      city: "Gurugram",
+      rating: 5,
+      date: "2 weeks ago",
+      type: "image",
+      media: "https://cdn.balloondekor.com/14/1748087900974.webp",
+      service: "Blush & Champagne Surprise",
+      text: "Ordered a midnight bedroom surprise decor for my wife. The LED fairy lights and backdrop were 10/10!",
+      verified: true
+    },
+    {
+      id: "rev-7",
+      name: "Neha & Amit Kapoor",
+      city: "Noida",
+      rating: 5,
       date: "3 weeks ago",
-      text: "Needed same day express setup in Koramangala within 3 hours. The customer support team coordinated seamlessly. Decorator arrived with pump, ribbons, lights and finished quickly!",
-      verified: true,
-      service: "Simple Balloon Decor for Home"
+      type: "image",
+      media: "https://cdn.balloondekor.com/14/simple-balloon-decor-for-home-1785476680249-529705.webp",
+      service: "Express Home Celebration",
+      text: "Fastest party setup ever! Booked at 2 PM, technician was at home by 4:30 PM with electric pump.",
+      verified: true
+    },
+    {
+      id: "rev-8",
+      name: "Rohan Joshi",
+      city: "Kolkata",
+      rating: 5,
+      date: "3 weeks ago",
+      type: "video",
+      media: "customer-review-video-1.mp4",
+      poster: "https://cdn.balloondekor.com/images/61/7ebf2dbd-60dd-4643-8029-763dc6a3e5e3.webp",
+      service: "Midnight Terrace Canopy",
+      text: "Check out this night tour video of our terrace setup! Truly worth every single rupee.",
+      verified: true
+    },
+    {
+      id: "rev-9",
+      name: "Kavita Reddy",
+      city: "Chennai",
+      rating: 5,
+      date: "1 month ago",
+      type: "image",
+      media: "https://cdn.balloondekor.com/33/teddy-baby-shower.webp",
+      service: "Oh Baby Teddy Bear Setup",
+      text: "The giant plush teddy bear and caramel pastel arch were the biggest hit of our baby shower.",
+      verified: true
+    },
+    {
+      id: "rev-10",
+      name: "Aman & Priya Verma",
+      city: "Jaipur",
+      rating: 5,
+      date: "1 month ago",
+      type: "image",
+      media: "https://cdn.balloondekor.com/33/haldi-decoration-92abeb45-8776-4485-8300-d177622d3c40.webp",
+      service: "Haldi Marigold & Balloons",
+      text: "Bright vibrant yellow marigold florals with metallic balloons. The photo shoot turned out stunning!",
+      verified: true
+    },
+    {
+      id: "rev-11",
+      name: "Ritu Malhotra",
+      city: "Chandigarh",
+      rating: 5,
+      date: "1 month ago",
+      type: "video",
+      media: "customer-review-video-1.mp4",
+      poster: "https://cdn.balloondekor.com/33/baby-shower-decoration-1ba3a3a3-d2eb-40e6-98bd-aed4eb907984.webp",
+      service: "Welcome Baby Girl Decor",
+      text: "Welcomed our newborn princess home from hospital. Our entire family loved this cute setup!",
+      verified: true
+    },
+    {
+      id: "rev-12",
+      name: "Tanvi & Siddharth",
+      city: "Ahmedabad",
+      rating: 5,
+      date: "1 month ago",
+      type: "image",
+      media: "https://cdn.balloondekor.com/33/bachelorette-decoration-83f7bd3a-a52d-4755-b8a5-4b6d3126f5e0.webp",
+      service: "Bachelorette Glam Party",
+      text: "Foil fringe backdrop, giant champagne balloons and rose gold arches. Made our bride-to-be so happy!",
+      verified: true
     }
   ],
   faqs: [
@@ -785,6 +1107,80 @@ const SITE_DATA = {
     {
       q: "What is the cancellation and rescheduling policy?",
       a: "You can reschedule your decoration up to 6 hours before the booked slot completely free of charge. Full refunds are provided for cancellations made 24 hours in advance."
+    }
+  ],
+  timeSlots: [
+    { id: "slot-1", time: "09:00 AM - 11:00 AM", label: "Morning", tag: "Available" },
+    { id: "slot-2", time: "11:00 AM - 01:00 PM", label: "Afternoon", tag: "Popular" },
+    { id: "slot-3", time: "02:00 PM - 04:00 PM", label: "Afternoon", tag: "Available" },
+    { id: "slot-4", time: "04:00 PM - 06:00 PM", label: "Evening", tag: "Fast Filling" },
+    { id: "slot-5", time: "06:00 PM - 08:00 PM", label: "Evening", tag: "High Demand" },
+    { id: "slot-6", time: "08:00 PM - 10:00 PM", label: "Night", tag: "Late Slot" }
+  ],
+  addons: [
+    {
+      id: "addon-pillar",
+      name: "Age on Balloon Pillar (per foil)",
+      category: "bestseller",
+      price: 199,
+      image: "https://cdn.balloondekor.com/33/birthday-decoration-d67f374a-0151-409d-96ea-36e9527e0ffc.webp",
+      badge: ""
+    },
+    {
+      id: "addon-lanterns",
+      name: "Colorful Paper Lanterns (1pc)",
+      category: "more",
+      price: 249,
+      image: "https://cdn.balloondekor.com/33/kids-birthday-decoration-4b6bce2b-e65d-40fa-bdea-3f1367688305.webp",
+      badge: ""
+    },
+    {
+      id: "addon-gems-cake",
+      name: "Simple Gems Cake (1 kg)",
+      category: "cake",
+      price: 1999,
+      image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&auto=format&fit=crop&q=80",
+      badge: "Book 1 day in advance"
+    },
+    {
+      id: "addon-butterscotch",
+      name: "Butterscotch Cake (500 gms)",
+      category: "cake",
+      price: 799,
+      image: "https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=400&auto=format&fit=crop&q=80",
+      badge: ""
+    },
+    {
+      id: "addon-blackforest",
+      name: "Black Forest Cake (500 gms)",
+      category: "cake",
+      price: 799,
+      image: "https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?w=400&auto=format&fit=crop&q=80",
+      badge: ""
+    },
+    {
+      id: "addon-lights",
+      name: "LED Fairy Warm Lights (10m)",
+      category: "bestseller",
+      price: 199,
+      image: "https://images.unsplash.com/photo-1543257580-7269da773bf5?w=400&auto=format&fit=crop&q=80",
+      badge: "Bestseller"
+    },
+    {
+      id: "addon-poppers",
+      name: "Party Poppers (Set of 2)",
+      category: "more",
+      price: 149,
+      image: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=400&auto=format&fit=crop&q=80",
+      badge: ""
+    },
+    {
+      id: "addon-sash",
+      name: "Birthday Sash & Crown",
+      category: "more",
+      price: 299,
+      image: "https://images.unsplash.com/photo-1513151233558-d860c5398176?w=400&auto=format&fit=crop&q=80",
+      badge: ""
     }
   ]
 };

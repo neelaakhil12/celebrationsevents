@@ -30,14 +30,26 @@ const server = http.createServer((req, res) => {
   fs.readFile(filePath, (err, content) => {
     if (err) {
       if (err.code === 'ENOENT') {
-        fs.readFile(path.join(ROOT_DIR, 'index.html'), (fallbackErr, fallbackContent) => {
-          if (fallbackErr) {
-            res.writeHead(404, { 'Content-Type': 'text/plain' });
-            res.end('404 Not Found');
-          } else {
+        // Try appending .html
+        const htmlPath = filePath + '.html';
+        fs.readFile(htmlPath, (htmlErr, htmlContent) => {
+          if (!htmlErr) {
+            res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
             res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
-            res.end(fallbackContent, 'utf-8');
+            res.end(htmlContent, 'utf-8');
+            return;
           }
+
+          // 404 fallback to index.html
+          fs.readFile(path.join(ROOT_DIR, 'index.html'), (fallbackErr, fallbackContent) => {
+            if (fallbackErr) {
+              res.writeHead(404, { 'Content-Type': 'text/plain' });
+              res.end('404 Not Found');
+            } else {
+              res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+              res.end(fallbackContent, 'utf-8');
+            }
+          });
         });
       } else {
         res.writeHead(500, { 'Content-Type': 'text/plain' });
@@ -70,5 +82,5 @@ function startServer(port, maxTries = 10) {
   });
 }
 
-const DEFAULT_PORT = parseInt(process.env.PORT, 10) || 8080;
+const DEFAULT_PORT = parseInt(process.env.PORT, 10) || 3000;
 startServer(DEFAULT_PORT);

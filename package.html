@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title id="pkgPageTitle">Decoration Package Details | Celebration Events®</title>
+  <script>
+    (function() {
+      const params = new URLSearchParams(window.location.search);
+      const id = params.get("id") || localStorage.getItem("celebration_selected_package_id") || "bestseller-01";
+      window.location.replace("index.html#package-" + encodeURIComponent(id));
+    })();
+  </script>
+  <meta name="description" id="pkgMetaDesc" content="Book verified balloon decoration package with same-day express setup, verified decorator visit, and transparent pricing across 100+ cities in India." />
+  <meta name="theme-color" content="#d14a61" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+  <link rel="icon" href="https://cdn.balloondekor.com/images/61/7ebf2dbd-60dd-4643-8029-763dc6a3e5e3.webp" type="image/webp" />
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="announcement-bar">
+    <span class="badge">Special Offer</span>
+    <span>Use code <strong>CELEBRATE10</strong> for Flat 10% OFF | ⚡ 2-Hour Express Setup Available in Your City</span>
+  </div>
+
+  <!-- Sticky Main Header -->
+  <header class="main-header">
+    <div class="header-container">
+      <div class="header-left">
+        <button id="mobileMenuBtn" class="mobile-menu-btn" aria-label="Open Navigation">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+
+        <a href="index.html" class="brand-logo-wrap">
+          <div class="brand-logo">
+            <span class="logo-balloon">🎈</span>
+            <span>Celebration <span class="bold">Events</span><span class="reg">®</span></span>
+          </div>
+          <span class="brand-tagline">India ka party expert</span>
+        </a>
+
+        <!-- City Selector Trigger -->
+        <button id="citySelectorTrigger" class="city-selector-btn" aria-label="Select City">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path><circle cx="12" cy="10" r="3"></circle></svg>
+          <div class="city-info">
+            <span class="city-label">Deliver to</span>
+            <span id="headerCityName" class="city-name">Select City</span>
+          </div>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
+        </button>
+      </div>
+
+      <!-- Navigation Links on Header -->
+      <div class="header-nav-desktop">
+        <a href="index.html" class="header-nav-link">Home</a>
+        <a href="about.html" class="header-nav-link">About Us</a>
+        <a href="contact.html" class="header-nav-link">Contact</a>
+      </div>
+
+      <!-- Header Center Search Trigger -->
+      <div class="header-center" style="max-width: 320px;">
+        <button id="searchTriggerBtn" class="search-trigger-btn" aria-label="Search decorations">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+          <span>Search 500+ party designs...</span>
+        </button>
+      </div>
+
+      <!-- Header Right Utilities -->
+      <div class="header-right">
+        <!-- Cart Button Trigger -->
+        <button id="cartTriggerBtn" class="header-action-btn" aria-label="Open Cart">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"></circle><circle cx="19" cy="21" r="1"></circle><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path></svg>
+          <span id="cartCountBadge" class="cart-badge">0</span>
+        </button>
+
+        <button class="header-sign-in" onclick="openLoginPrompt()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+          <span>Sign In</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Secondary Navigation Bar -->
+  <nav class="secondary-nav">
+    <div class="nav-container">
+      <ul class="nav-menu">
+        <li class="nav-item"><a href="birthday.html" class="nav-trigger">Birthday <span class="tag-pill tag-popular">POPULAR</span></a></li>
+        <li class="nav-item"><a href="anniversary.html" class="nav-trigger">Anniversary</a></li>
+        <li class="nav-item"><a href="kids.html" class="nav-trigger">Kids Themes <span class="tag-pill tag-trending">TRENDING</span></a></li>
+        <li class="nav-item"><a href="baby-shower.html" class="nav-trigger">Baby Shower & Welcome</a></li>
+        <li class="nav-item"><a href="wedding.html" class="nav-trigger">Wedding <span class="tag-pill tag-new">NEW</span></a></li>
+        <li class="nav-item"><a href="corporate.html" class="nav-trigger">Corporate</a></li>
+        <li class="nav-item"><a href="#" class="nav-trigger" onclick="openCityModal(); return false;">Cities <span class="tag-pill tag-count">50+</span></a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Main Page Wrapper -->
+  <main class="page-wrapper" style="gap: 36px; padding-top: 20px;">
+
+    <!-- Breadcrumbs -->
+    <nav class="pkg-breadcrumbs" aria-label="Breadcrumb">
+      <a href="index.html">🏠 Home</a>
+      <span class="crumb-sep">›</span>
+      <a id="pkgCategoryCrumb" href="index.html">Category</a>
+      <span class="crumb-sep">›</span>
+      <span id="pkgTitleCrumb" class="crumb-current">Package Details</span>
+    </nav>
+
+    <!-- Dedicated Package Details Grid -->
+    <section class="pkg-detail-grid" id="pkgDetailContainer">
+      <!-- Left Column: Media & Inclusions -->
+      <div class="pkg-media-col" data-aos="fade-up">
+        <!-- Main Image Card -->
+        <div class="pkg-main-img-card">
+          <span class="pkg-badge" id="pkgBadge">BESTSELLER</span>
+          <img id="pkgMainImg" src="" alt="Package Decoration Setup" loading="eager" />
+        </div>
+
+        <!-- Thumbnail Gallery Strip -->
+        <div class="pkg-gallery-strip" id="pkgGalleryStrip"></div>
+
+        <!-- Trust Features Strip -->
+        <div class="pkg-trust-features">
+          <div class="pkg-trust-pill">
+            <span class="pkg-trust-icon">⚡</span>
+            <div>
+              <strong>Express Slot Available</strong>
+              <span>Setup completed in ~2 hours</span>
+            </div>
+          </div>
+          <div class="pkg-trust-pill">
+            <span class="pkg-trust-icon">🛡️</span>
+            <div>
+              <strong>100% Wall-Safe Tapes</strong>
+              <span>Zero paint or wall damage guaranteed</span>
+            </div>
+          </div>
+          <div class="pkg-trust-pill">
+            <span class="pkg-trust-icon">🧑‍🔧</span>
+            <div>
+              <strong>Verified Specialist</strong>
+              <span>Background checked & sanitized</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Inclusions Box -->
+        <div class="pkg-inclusions-card">
+          <h3 class="pkg-card-heading">
+            <span class="heading-icon">🎁</span> What's Included in this Package:
+          </h3>
+          <ul class="pkg-inclusions-list" id="pkgInclusionsList"></ul>
+        </div>
+
+        <!-- Setup Details & Instructions -->
+        <div class="pkg-setup-card">
+          <h3 class="pkg-card-heading">
+            <span class="heading-icon">ℹ️</span> Setup Instructions & Notes:
+          </h3>
+          <div class="pkg-notes-list">
+            <div class="pkg-note-item">
+              <span class="pkg-note-icon">⏱️</span>
+              <div>
+                <strong>Estimated Setup Duration:</strong>
+                <p id="pkgDurationText">1.5 - 2 Hours by certified decorator</p>
+              </div>
+            </div>
+            <div class="pkg-note-item">
+              <span class="pkg-note-icon">🪜</span>
+              <div>
+                <strong>Space & Stool Requirement:</strong>
+                <p>Please provide a stool/ladder and an electrical plug point for our electric balloon pump.</p>
+              </div>
+            </div>
+            <div class="pkg-note-item">
+              <span class="pkg-note-icon">📦</span>
+              <div>
+                <strong>Post-Event Pickup:</strong>
+                <p>Any rental stands, backdrops, or neon lights will be picked up safely the following day.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Booking & Customization Card -->
+      <div class="pkg-booking-col" data-aos="fade-up" data-aos-delay="100">
+        <div class="pkg-booking-card">
+          <!-- Category & Title -->
+          <div class="pkg-header-meta">
+            <span class="pkg-category-tag" id="pkgCategoryTag">Birthday Decoration</span>
+            <div class="pkg-rating-wrap">
+              <span class="pkg-stars">★★★★★</span>
+              <span class="pkg-rating-val" id="pkgRatingVal">4.9</span>
+              <span class="pkg-reviews-cnt" id="pkgReviewsCnt">(350+ reviews)</span>
+            </div>
+          </div>
+
+          <h1 class="pkg-title" id="pkgTitle">Package Title</h1>
+          <p class="pkg-desc" id="pkgDescription">Package description text</p>
+
+          <!-- Pricing Row -->
+          <div class="pkg-pricing-box">
+            <div class="pkg-price-row">
+              <span class="pkg-curr-price" id="pkgPrice">₹0</span>
+              <span class="pkg-orig-price" id="pkgOrigPrice">₹0</span>
+              <span class="pkg-discount-tag" id="pkgDiscount">0% OFF</span>
+            </div>
+            <span class="pkg-tax-note">✓ Inclusive of all taxes, materials & decorator travel</span>
+          </div>
+
+          <!-- Date Picker -->
+          <div class="pkg-form-group">
+            <label class="pkg-form-label" for="pkgBookingDate">
+              <span>📅 Select Celebration Date:</span>
+            </label>
+            <input type="date" id="pkgBookingDate" class="pkg-date-input" />
+          </div>
+
+          <!-- Slot Picker -->
+          <div class="pkg-form-group">
+            <label class="pkg-form-label">
+              <span>⏰ Choose Decorator Arrival Slot:</span>
+            </label>
+            <div class="pkg-slot-grid" id="pkgSlotGrid"></div>
+          </div>
+
+          <!-- Add-ons Selection -->
+          <div class="pkg-form-group">
+            <label class="pkg-form-label">
+              <span>✨ Add Extra Magic (Optional Add-ons):</span>
+            </label>
+            <div class="pkg-addons-list" id="pkgAddonsList"></div>
+          </div>
+
+          <!-- Live Price Summary -->
+          <div class="pkg-summary-box">
+            <div class="pkg-summary-row">
+              <span>Base Package Price:</span>
+              <span id="summaryBasePrice">₹0</span>
+            </div>
+            <div class="pkg-summary-row" id="summaryAddonsRow" style="display: none;">
+              <span>Selected Add-ons:</span>
+              <span id="summaryAddonsPrice">+₹0</span>
+            </div>
+            <div class="pkg-summary-total">
+              <span>Total Payable:</span>
+              <span id="summaryTotalPrice" class="total-highlight">₹0</span>
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="pkg-action-buttons">
+            <button class="pkg-btn-book" onclick="handleDirectBooking()">
+              ⚡ Book Now (Instant Slot)
+            </button>
+            <button class="pkg-btn-cart" onclick="handleAddToCartFromPage()">
+              🛒 Add to Cart
+            </button>
+            <a id="pkgWhatsappBtn" href="#" target="_blank" class="pkg-btn-whatsapp">
+              💬 Inquire via WhatsApp
+            </a>
+          </div>
+
+          <!-- Assurance Guarantee -->
+          <div class="pkg-guarantee-note">
+            <span>🔒 <strong>No-Hassle Guarantee:</strong> Pay online or choose <em>Pay After Setup</em> during checkout. Free rescheduling up to 6 hours before slot.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Similar Packages Section -->
+    <section class="catalog-section" style="margin-top: 20px;" data-aos="fade-up">
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <h2 class="section-title">Similar Decoration Packages</h2>
+          <div class="title-underline"></div>
+          <p class="section-subtitle">Discover more popular celebration designs in this category</p>
+        </div>
+      </div>
+      <div class="products-grid" id="pkgSimilarGrid"></div>
+    </section>
+
+    <!-- How Celebration Events Works -->
+    <section class="how-it-works-section" data-aos="fade-up">
+      <div class="section-title-wrap" style="text-align: center; align-items: center;">
+        <h2 class="section-title">How Celebration Events Works</h2>
+        <div class="title-underline"></div>
+        <p class="section-subtitle">Effortless party planning in 5 simple steps</p>
+      </div>
+
+      <div class="steps-grid">
+        <div class="step-card">
+          <span class="step-num">1</span>
+          <div class="step-icon">🎨</div>
+          <h4>Select Your Design</h4>
+          <p>Choose from 500+ curated setups for birthdays, anniversaries and special moments.</p>
+        </div>
+        <div class="step-card">
+          <span class="step-num">2</span>
+          <div class="step-icon">📅</div>
+          <h4>Pick Date & Time Slot</h4>
+          <p>Select your celebration date and convenient technician arrival window (morning to night).</p>
+        </div>
+        <div class="step-card">
+          <span class="step-num">3</span>
+          <div class="step-icon">🧑‍🔧</div>
+          <h4>Decorator Arrives</h4>
+          <p>Our verified specialist arrives with balloons, electric pumps, and lights to style your space.</p>
+        </div>
+        <div class="step-card">
+          <span class="step-num">4</span>
+          <div class="step-icon">🎉</div>
+          <h4>Celebrate & Enjoy!</h4>
+          <p>Make breathtaking memories and click Instagram-worthy photos with loved ones.</p>
+        </div>
+        <div class="step-card">
+          <span class="step-num">5</span>
+          <div class="step-icon">📦</div>
+          <h4>Post-Event Pickup</h4>
+          <p>After your event is over, our team will come back to take down and pack up all the equipments.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Standard Site Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-top-grid">
+        <div class="footer-col">
+          <div class="brand-logo" style="margin-bottom: 12px;">
+            <span class="logo-balloon">🎈</span>
+            <span style="color: #fff;">Celebration <span class="bold">Events</span></span>
+          </div>
+          <p style="font-size: 13px; color: var(--gray-400); line-height: 1.6; margin-bottom: 16px;">
+            India’s top-rated on-demand surprise balloon decoration booking platform. Professional home, terrace, and party styling delivered with love and safety.
+          </p>
+          <div style="font-size: 12.5px; color: var(--gray-300); display: flex; flex-direction: column; gap: 6px;">
+            <span>📞 Customer Support: +91 82820 25444</span>
+            <span>✉️ Email: support@celebrationevents.in</span>
+            <span>⏰ Operational Hours: 7:00 AM - 11:30 PM (All 7 Days)</span>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-heading">Celebrations</h4>
+          <ul class="footer-links">
+            <li><a href="birthday.html">Birthday Balloon Decor</a></li>
+            <li><a href="anniversary.html">Anniversary & Romantic</a></li>
+            <li><a href="kids.html">Kids Birthday Themes</a></li>
+            <li><a href="baby-shower.html">Baby Shower Setups</a></li>
+            <li><a href="wedding.html">Wedding Decor</a></li>
+            <li><a href="corporate.html">Corporate Events</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-heading">Company</h4>
+          <ul class="footer-links">
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="#" onclick="openCityModal(); return false;">Serving 100+ Cities</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms & Conditions</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-heading">100% Satisfaction</h4>
+          <p style="font-size: 12.5px; color: var(--gray-400); line-height: 1.5; margin-bottom: 12px;">
+            Verified technicians, metallic latex balloons, sanitized equipment, and wall-safe paper tape used for all setups.
+          </p>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+            <span style="background: rgba(255,255,255,0.1); padding: 4px 10px; border-radius: 4px; font-size: 11px; color: #fff;">🔒 Secure UPI / Cards</span>
+            <span style="background: rgba(255,255,255,0.1); padding: 4px 10px; border-radius: 4px; font-size: 11px; color: #fff;">💵 Pay After Setup</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 Celebration Events Pvt. Ltd. All rights reserved. Made with ❤️ for happy celebrations across India.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- City Selection Modal -->
+  <div class="modal-overlay" id="cityModalOverlay" onclick="closeCityModal(event)">
+    <div class="modal-card city-modal" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <div>
+          <h3 class="modal-title">Select Your City</h3>
+          <p class="modal-subtitle">We serve in 100+ cities with verified local decorators</p>
+        </div>
+        <button class="modal-close-btn" onclick="closeCityModal()">&times;</button>
+      </div>
+      <div class="city-modal-body">
+        <input type="text" id="citySearchInput" class="search-input" placeholder="Search your city (e.g. Mumbai, Delhi, Bangalore)..." oninput="handleCitySearch(this.value)" />
+        <div class="cities-grid" id="modalCitiesGrid"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Live Search Modal -->
+  <div class="modal-overlay" id="searchModalOverlay" onclick="closeSearchModal(event)">
+    <div class="modal-card search-modal" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <div style="flex: 1;">
+          <input type="text" id="liveSearchInput" class="search-input" placeholder="Search by occasion, theme, or color..." oninput="handleLiveSearch()" autofocus />
+        </div>
+        <button class="modal-close-btn" onclick="closeSearchModal()">&times;</button>
+      </div>
+      <div class="search-modal-body">
+        <div class="quick-tags">
+          <span style="font-size: 11px; font-weight: 700; color: var(--gray-400);">Popular:</span>
+          <button class="search-tag-btn" onclick="quickSearch('Birthday')">🎂 Birthday</button>
+          <button class="search-tag-btn" onclick="quickSearch('Anniversary')">❤️ Anniversary</button>
+          <button class="search-tag-btn" onclick="quickSearch('Kids')">🦄 Kids</button>
+          <button class="search-tag-btn" onclick="quickSearch('Cabana')">⛺ Cabana</button>
+          <button class="search-tag-btn" onclick="quickSearch('Baby')">👶 Baby</button>
+        </div>
+        <div class="search-results-list" id="searchResultsContainer"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cart Drawer -->
+  <div class="cart-drawer-overlay" id="cartDrawerOverlay" onclick="closeCart(event)">
+    <div class="cart-drawer" onclick="event.stopPropagation()">
+      <div class="cart-header">
+        <div class="cart-title-row">
+          <span style="font-size: 20px;">🛒</span>
+          <h3>Your Booking Cart</h3>
+        </div>
+        <button class="cart-close-btn" onclick="closeCart()">&times;</button>
+      </div>
+
+      <div class="cart-body" id="cartBody"></div>
+
+      <div class="cart-footer" id="cartFooter">
+        <div class="coupon-box">
+          <input type="text" id="couponInput" placeholder="Enter coupon (CELEBRATE10)" />
+          <button onclick="applyCoupon()">Apply</button>
+        </div>
+        <div class="bill-details">
+          <div class="bill-row">
+            <span>Item Subtotal</span>
+            <span id="billSubtotal">₹0</span>
+          </div>
+          <div class="bill-row" id="billDiscountRow" style="display: none; color: var(--accent-green);">
+            <span>Coupon Discount</span>
+            <span id="billDiscount">-₹0</span>
+          </div>
+          <div class="bill-row total">
+            <span>Total Payable</span>
+            <span id="billGrandTotal" class="highlight">₹0</span>
+          </div>
+        </div>
+        <button class="checkout-btn" onclick="openCheckoutModal()">
+          Proceed to Checkout 🚀
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Checkout Modal -->
+  <div class="modal-overlay" id="checkoutModalOverlay" onclick="closeCheckoutModal(event)">
+    <div class="modal-card checkout-modal" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <div>
+          <h3 class="modal-title">Complete Your Booking</h3>
+          <p class="modal-subtitle">Instant booking confirmation with 100% money-back guarantee</p>
+        </div>
+        <button class="modal-close-btn" onclick="closeCheckoutModal()">&times;</button>
+      </div>
+      <div class="checkout-modal-body" id="checkoutBody">
+        <form onsubmit="handleOrderSubmission(event)">
+          <div style="display: flex; flex-direction: column; gap: 14px;">
+            <div>
+              <label style="font-size: 12.5px; font-weight: 700; color: var(--gray-700);">Full Name *</label>
+              <input required type="text" class="search-input" id="custName" placeholder="Enter your full name" style="margin-top: 4px; padding-left: 14px;" />
+            </div>
+            <div>
+              <label style="font-size: 12.5px; font-weight: 700; color: var(--gray-700);">WhatsApp Phone Number *</label>
+              <input required type="tel" pattern="[0-9]{10}" class="search-input" id="custPhone" placeholder="10-digit mobile number" style="margin-top: 4px; padding-left: 14px;" />
+            </div>
+            <div>
+              <label style="font-size: 12.5px; font-weight: 700; color: var(--gray-700);">Exact Decoration Address *</label>
+              <textarea required class="search-input" id="custAddress" rows="3" placeholder="House/Flat No., Building Name, Street, Landmark..." style="margin-top: 4px; padding-left: 14px; resize: none;"></textarea>
+            </div>
+            <div>
+              <label style="font-size: 12.5px; font-weight: 700; color: var(--gray-700);">Payment Preference</label>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 6px;">
+                <label class="city-option-btn selected" style="justify-content: center; cursor: pointer;">
+                  <input type="radio" name="payMethod" value="upi" checked style="margin-right: 6px;" />
+                  UPI / Cards (100% Safe)
+                </label>
+                <label class="city-option-btn" style="justify-content: center; cursor: pointer;">
+                  <input type="radio" name="payMethod" value="cash" style="margin-right: 6px;" />
+                  Pay After Setup
+                </label>
+              </div>
+            </div>
+            <div style="background: var(--brand-50); padding: 12px; border-radius: var(--radius-md); border: 1px solid var(--brand-200); margin-top: 6px;">
+              <div style="display: flex; justify-content: space-between; font-size: 13px; font-weight: 700;">
+                <span>Total Amount:</span>
+                <span id="checkoutPayAmount" style="color: var(--brand-700);">₹0</span>
+              </div>
+              <p style="font-size: 11px; color: var(--gray-500); margin-top: 4px;">Verified Celebration Events decorator will call you 1 hour prior to the slot time.</p>
+            </div>
+            <button type="submit" class="checkout-btn" style="margin-top: 8px;">
+              Confirm Slot & Complete Booking 🚀
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Sidebar Drawer -->
+  <div class="mobile-sidebar-overlay" id="mobileSidebarOverlay">
+    <div class="mobile-sidebar">
+      <div class="mobile-sidebar-header">
+        <div class="brand-logo">
+          <span class="logo-balloon">🎈</span>
+          <span>Celebration <span class="bold">Events</span></span>
+        </div>
+        <button class="modal-close-btn" onclick="closeMobileSidebar()">&times;</button>
+      </div>
+      <ul class="mobile-nav-list">
+        <li><a href="index.html" class="mobile-nav-link">🏠 Home <span>›</span></a></li>
+        <li><a href="birthday.html" class="mobile-nav-link">🎂 Birthday Decoration <span>›</span></a></li>
+        <li><a href="anniversary.html" class="mobile-nav-link">❤️ Romantic & Anniversary <span>›</span></a></li>
+        <li><a href="kids.html" class="mobile-nav-link">🦄 Kids Theme Parties <span>›</span></a></li>
+        <li><a href="baby-shower.html" class="mobile-nav-link">🍼 Baby Shower & Welcome <span>›</span></a></li>
+        <li><a href="wedding.html" class="mobile-nav-link">💍 Wedding <span>›</span></a></li>
+        <li><a href="corporate.html" class="mobile-nav-link">💼 Corporate Events <span>›</span></a></li>
+        <li><a href="about.html" class="mobile-nav-link">ℹ️ About Us <span>›</span></a></li>
+        <li><a href="contact.html" class="mobile-nav-link">📞 Contact Us <span>›</span></a></li>
+        <li><a href="#" class="mobile-nav-link" onclick="openCityModal(); closeMobileSidebar();">📍 Change City <span>›</span></a></li>
+        <li><a href="#" class="mobile-nav-link" onclick="openLoginPrompt(); closeMobileSidebar();">👤 Sign In / Account <span>›</span></a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+  <script>
+    // Package Details Page Logic
+    let currentPackage = null;
+    let selectedSlotId = null;
+    let selectedAddonIds = [];
+
+    document.addEventListener("DOMContentLoaded", () => {
+      initPackagePage();
+    });
+
+    function initPackagePage() {
+      const params = new URLSearchParams(window.location.search);
+      let pkgId = params.get("id");
+
+      if (!pkgId && window.location.hash) {
+        pkgId = window.location.hash.replace(/^#(\?|id=)?/, "").trim();
+      }
+
+      if (!pkgId) {
+        try {
+          pkgId = localStorage.getItem("celebration_selected_package_id");
+        } catch(e){}
+      }
+
+      if (!pkgId && typeof SITE_DATA !== "undefined" && SITE_DATA.products && SITE_DATA.products.length > 0) {
+        pkgId = SITE_DATA.products[0].id;
+      }
+
+      currentPackage = SITE_DATA.products.find(p => p.id === pkgId);
+      if (!currentPackage && SITE_DATA.products.length > 0) {
+        currentPackage = SITE_DATA.products[0];
+      }
+      if (!currentPackage) return;
+
+      // Update Document Meta
+      document.title = `${currentPackage.title} | Celebration Events®`;
+      const metaEl = document.getElementById("pkgMetaDesc");
+      if (metaEl) metaEl.content = currentPackage.description;
+
+      // Breadcrumbs
+      const catCrumb = document.getElementById("pkgCategoryCrumb");
+      if (catCrumb) {
+        catCrumb.textContent = currentPackage.categoryName;
+        catCrumb.href = `${currentPackage.category}.html`;
+      }
+      const titleCrumb = document.getElementById("pkgTitleCrumb");
+      if (titleCrumb) titleCrumb.textContent = currentPackage.title;
+
+      // Left Column Details
+      document.getElementById("pkgBadge").textContent = currentPackage.badge;
+      document.getElementById("pkgMainImg").src = currentPackage.image;
+      document.getElementById("pkgMainImg").alt = currentPackage.title;
+
+      // Gallery Strip
+      const galleryStrip = document.getElementById("pkgGalleryStrip");
+      const galleryImgs = currentPackage.gallery && currentPackage.gallery.length > 0
+        ? currentPackage.gallery
+        : [currentPackage.image];
+
+      galleryStrip.innerHTML = galleryImgs.map((imgUrl, i) => `
+        <button class="pkg-thumb-btn ${i === 0 ? 'active' : ''}" onclick="selectGalleryImg('${imgUrl}', this)">
+          <img src="${imgUrl}" alt="Thumb ${i+1}" />
+        </button>
+      `).join("");
+
+      // Inclusions
+      const incList = document.getElementById("pkgInclusionsList");
+      incList.innerHTML = currentPackage.inclusions.map(inc => `
+        <li>
+          <span class="inc-check">✓</span>
+          <span>${inc}</span>
+        </li>
+      `).join("");
+
+      document.getElementById("pkgDurationText").textContent = `${currentPackage.setupDuration} by professional decorator`;
+
+      // Right Column Booking Details
+      document.getElementById("pkgCategoryTag").textContent = currentPackage.categoryName;
+      document.getElementById("pkgTitle").textContent = currentPackage.title;
+      document.getElementById("pkgDescription").textContent = currentPackage.description;
+      document.getElementById("pkgRatingVal").textContent = currentPackage.rating.toFixed(1);
+      document.getElementById("pkgReviewsCnt").textContent = `(${currentPackage.reviewsCount} verified reviews)`;
+
+      document.getElementById("pkgPrice").textContent = `₹${currentPackage.price.toLocaleString("en-IN")}`;
+      document.getElementById("pkgOrigPrice").textContent = `₹${currentPackage.originalPrice.toLocaleString("en-IN")}`;
+      document.getElementById("pkgDiscount").textContent = `${currentPackage.discount}% OFF`;
+
+      // WhatsApp Button
+      const waBtn = document.getElementById("pkgWhatsappBtn");
+      if (waBtn) {
+        const text = encodeURIComponent(`Hello Celebration Events! I want to book/inquire about "${currentPackage.title}" (₹${currentPackage.price}).`);
+        waBtn.href = `https://wa.me/918282025444?text=${text}`;
+      }
+
+      // Default Date: Tomorrow
+      const tomorrow = new Date();
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      const dateStr = tomorrow.toISOString().split("T")[0];
+      const dateInput = document.getElementById("pkgBookingDate");
+      if (dateInput) {
+        dateInput.value = dateStr;
+        dateInput.min = new Date().toISOString().split("T")[0];
+      }
+
+      // Default Slot
+      selectedSlotId = SITE_DATA.timeSlots[0].id;
+      renderPackageSlots();
+
+      // Render Add-ons
+      renderPackageAddons();
+
+      // Update Summary
+      updatePackageSummary();
+
+      // Render Similar Packages
+      renderSimilarPackages();
+    }
+
+    function selectGalleryImg(imgUrl, btn) {
+      document.getElementById("pkgMainImg").src = imgUrl;
+      document.querySelectorAll(".pkg-thumb-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+    }
+
+    function renderPackageSlots() {
+      const container = document.getElementById("pkgSlotGrid");
+      container.innerHTML = SITE_DATA.timeSlots.map(slot => {
+        const isSelected = slot.id === selectedSlotId;
+        return `
+          <button class="pkg-slot-btn ${isSelected ? 'active' : ''}" onclick="selectPackageSlot('${slot.id}')">
+            <span class="slot-time">${slot.time}</span>
+            <span class="slot-tag">${slot.label} • ${slot.tag}</span>
+          </button>
+        `;
+      }).join("");
+    }
+
+    function selectPackageSlot(slotId) {
+      selectedSlotId = slotId;
+      renderPackageSlots();
+    }
+
+    function renderPackageAddons() {
+      const container = document.getElementById("pkgAddonsList");
+      container.innerHTML = SITE_DATA.addons.map(addon => {
+        const isChecked = selectedAddonIds.includes(addon.id);
+        return `
+          <label class="pkg-addon-item ${isChecked ? 'checked' : ''}">
+            <input type="checkbox" ${isChecked ? 'checked' : ''} onchange="togglePackageAddon('${addon.id}', this.checked)" />
+            <div class="pkg-addon-info">
+              <span class="pkg-addon-name">${addon.icon} ${addon.name}</span>
+            </div>
+            <span class="pkg-addon-price">+₹${addon.price}</span>
+          </label>
+        `;
+      }).join("");
+    }
+
+    function togglePackageAddon(addonId, checked) {
+      if (checked) {
+        if (!selectedAddonIds.includes(addonId)) selectedAddonIds.push(addonId);
+      } else {
+        selectedAddonIds = selectedAddonIds.filter(id => id !== addonId);
+      }
+      renderPackageAddons();
+      updatePackageSummary();
+    }
+
+    function updatePackageSummary() {
+      if (!currentPackage) return;
+      const basePrice = currentPackage.price;
+      let addonsTotal = 0;
+
+      selectedAddonIds.forEach(id => {
+        const addon = SITE_DATA.addons.find(a => a.id === id);
+        if (addon) addonsTotal += addon.price;
+      });
+
+      const grandTotal = basePrice + addonsTotal;
+
+      document.getElementById("summaryBasePrice").textContent = `₹${basePrice.toLocaleString("en-IN")}`;
+      const addonsRow = document.getElementById("summaryAddonsRow");
+      if (addonsTotal > 0) {
+        addonsRow.style.display = "flex";
+        document.getElementById("summaryAddonsPrice").textContent = `+₹${addonsTotal.toLocaleString("en-IN")}`;
+      } else {
+        addonsRow.style.display = "none";
+      }
+
+      document.getElementById("summaryTotalPrice").textContent = `₹${grandTotal.toLocaleString("en-IN")}`;
+    }
+
+    function buildCurrentCartItem() {
+      const dateInput = document.getElementById("pkgBookingDate");
+      const date = dateInput ? dateInput.value : new Date().toISOString().split("T")[0];
+      const slot = SITE_DATA.timeSlots.find(s => s.id === selectedSlotId) || SITE_DATA.timeSlots[0];
+      const addons = selectedAddonIds.map(id => SITE_DATA.addons.find(a => a.id === id)).filter(Boolean);
+
+      return {
+        cartItemId: "item-" + Date.now(),
+        product: currentPackage,
+        date: date,
+        slot: slot,
+        addons: addons
+      };
+    }
+
+    function handleAddToCartFromPage() {
+      const item = buildCurrentCartItem();
+      appState.cart.push(item);
+      saveCart();
+      updateCartBadge();
+      openCart();
+      showToast("🎉 Added to cart! You can continue or checkout.");
+    }
+
+    function handleDirectBooking() {
+      const item = buildCurrentCartItem();
+      appState.cart = [item]; // Direct checkout for this item
+      saveCart();
+      updateCartBadge();
+      openCheckoutModal();
+    }
+
+    function renderSimilarPackages() {
+      const container = document.getElementById("pkgSimilarGrid");
+      if (!container || !currentPackage) return;
+
+      const similar = SITE_DATA.products
+        .filter(p => p.id !== currentPackage.id && (p.category === currentPackage.category || p.badge === currentPackage.badge))
+        .slice(0, 4);
+
+      container.innerHTML = similar.map((p, idx) => `
+        <div class="product-card" id="card-${p.id}" data-aos="fade-up" data-aos-delay="${(idx + 1) * 70}">
+          <div class="product-img-wrapper" onclick="window.location.href='package.html?id=${p.id}'">
+            <span class="product-badge badge-${p.badge.toLowerCase().replace(/\\s+/g, '')}">${p.badge}</span>
+            <img src="${p.image}" alt="${p.title}" loading="lazy" />
+            <button class="quick-view-overlay-btn" onclick="event.stopPropagation(); window.location.href='package.html?id=${p.id}'">
+              View Package Details 🔍
+            </button>
+          </div>
+          <div class="product-details">
+            <span class="product-category-tag">${p.categoryName}</span>
+            <h3 class="product-title" onclick="window.location.href='package.html?id=${p.id}'" style="cursor: pointer;">
+              ${p.title}
+            </h3>
+            <div class="product-rating-row">
+              <span class="rating-pill">
+                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                ${p.rating.toFixed(1)}
+              </span>
+              <span class="reviews-count">${p.reviewsCount} reviews</span>
+            </div>
+            <div class="product-pricing-row">
+              <span class="current-price">₹${p.price.toLocaleString("en-IN")}</span>
+              <span class="original-price">₹${p.originalPrice.toLocaleString("en-IN")}</span>
+              <span class="discount-tag">${p.discount}% off</span>
+            </div>
+            <div class="product-action-btns">
+              <button class="book-now-btn" onclick="window.location.href='package.html?id=${p.id}'">
+                View Package Details ⚡
+              </button>
+            </div>
+          </div>
+        </div>
+      `).join("");
+    }
+  </script>
+</body>
+</html>

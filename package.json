@@ -1,0 +1,13 @@
+{
+  "name": "celebration-events",
+  "version": "1.0.0",
+  "description": "Celebration Events Website",
+  "main": "scripts/dev-server.js",
+  "scripts": {
+    "dev": "node scripts/dev-server.js",
+    "start": "node scripts/dev-server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

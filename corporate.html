@@ -51,8 +51,10 @@
       </div>
 
       <!-- Navigation Links on Header -->
-      <div style="display: flex; align-items: center; gap: 6px;">
+      <div class="header-nav-desktop">
         <a href="index.html" class="header-nav-link">Home</a>
+        <a href="wedding.html" class="header-nav-link">Wedding ✨</a>
+        <a href="marketplace.html" class="header-nav-link">Gifts 🎁</a>
         <a href="about.html" class="header-nav-link">About Us</a>
         <a href="contact.html" class="header-nav-link">Contact</a>
       </div>
@@ -89,8 +91,9 @@
         <li class="nav-item"><a href="anniversary.html" class="nav-trigger">Anniversary <span class="tag-pill tag-popular">POPULAR</span></a></li>
         <li class="nav-item"><a href="kids.html" class="nav-trigger">Kids Themes <span class="tag-pill tag-trending">TRENDING</span></a></li>
         <li class="nav-item"><a href="baby-shower.html" class="nav-trigger">Baby Shower & Welcome</a></li>
-        <li class="nav-item"><a href="wedding.html" class="nav-trigger">Wedding & Haldi <span class="tag-pill tag-new">NEW</span></a></li>
+        <li class="nav-item"><a href="wedding.html" class="nav-trigger">Wedding <span class="tag-pill tag-new">NEW</span></a></li>
         <li class="nav-item active"><a href="corporate.html" class="nav-trigger active">Corporate</a></li>
+        <li class="nav-item"><a href="marketplace.html" class="nav-trigger">Gifts <span class="tag-pill tag-popular">NEW</span></a></li>
         <li class="nav-item"><a href="#" class="nav-trigger" onclick="openCityModal(); return false;">Cities <span class="tag-pill tag-count">50+</span></a></li>
       </ul>
     </div>
@@ -249,52 +252,286 @@
     <svg viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.669-.699c.983.538 1.838.82 2.791.82 3.181 0 5.767-2.586 5.768-5.766 0-3.18-2.587-5.766-5.768-5.766zm9.969 5.766c0 5.514-4.486 10-10 10-1.748 0-3.385-.45-4.819-1.238l-7.181 1.88 1.914-6.993c-.886-1.488-1.394-3.224-1.394-5.069 0-5.514 4.486-10 10-10s10 4.486 10 10zm-6.262 3.738c-.244-.122-1.442-.711-1.666-.793-.223-.081-.386-.122-.549.122-.163.244-.63 1.057-.773 1.22-.143.163-.285.183-.529.061-.244-.122-1.031-.38-1.963-1.21-.726-.647-1.216-1.446-1.358-1.69-.143-.244-.015-.376.107-.497.11-.11.244-.285.366-.427.122-.143.163-.244.244-.407.082-.163.041-.305-.02-.427-.061-.122-.549-1.321-.752-1.809-.198-.475-.399-.411-.549-.419-.142-.007-.305-.009-.468-.009s-.427.061-.65.305c-.224.244-.854.834-.854 2.034s.874 2.359.996 2.522c.122.163 1.72 2.626 4.167 3.682.582.251 1.037.401 1.392.514.585.186 1.117.16 1.538.097.469-.07 1.442-.59 1.645-1.16.204-.57.204-1.058.143-1.16-.062-.102-.224-.163-.468-.285z"/></svg>
   </a>
 
-  <!-- Product Detail & Booking Modal -->
-  <div class="modal-overlay" id="productModalOverlay">
-    <div class="modal-box modal-product-box">
-      <button class="modal-close-btn" onclick="closeProductModal()">&times;</button>
-      <div class="product-modal-grid">
-        <div class="modal-gallery-side">
-          <div class="modal-main-img-box">
-            <img id="modalMainImg" src="" alt="Decor Detail" />
+  <!-- Fullscreen Package Detail View -->
+  <div class="modal-overlay fullscreen-pkg-overlay" id="productModalOverlay">
+    <div class="fullscreen-pkg-box">
+      <!-- Fullscreen Top Bar -->
+      <div class="fullscreen-pkg-header">
+        <div class="pkg-header-left">
+          <button class="fullscreen-back-btn" onclick="closeProductModal()" aria-label="Back to Packages" id="closePackageBtn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M19 12H5M12 19l-7-7 7-7"/>
+            </svg>
+            <span>← Back to Packages</span>
+          </button>
+          <div class="pkg-breadcrumb-trail">
+            <span>Home</span>
+            <span class="bc-arrow">›</span>
+            <span id="modalPkgCategory">Corporate</span>
+            <span class="bc-arrow">›</span>
+            <strong id="modalPkgBreadcrumbTitle">Package Details</strong>
           </div>
         </div>
-        <div class="modal-info-side">
-          <div class="modal-tag-row">
-            <span id="modalCategoryTag" class="product-category-tag">Category</span>
-            <span id="modalBadgeTag" class="product-badge badge-popular">POPULAR</span>
-          </div>
-          <h2 id="modalProductTitle" class="modal-product-title">Package Name</h2>
-          <div class="modal-rating-row">
-            <span class="rating-pill">⭐ <span id="modalRatingVal">4.9</span></span>
-            <span class="reviews-count">(<span id="modalReviewsVal">280</span> reviews)</span>
-          </div>
-          <div class="modal-pricing-row">
-            <span class="modal-price" id="modalPriceVal">₹4,499</span>
-            <span class="modal-orig-price" id="modalOrigPriceVal">₹5,999</span>
-            <span class="modal-discount" id="modalDiscountVal">25% off</span>
-          </div>
-          <p id="modalDescText" class="modal-description">Package description</p>
+        <div class="pkg-header-right">
+          <a id="modalWhatsappTopBtn" href="https://wa.me/919999999999" target="_blank" class="pkg-whatsapp-top-link">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.699c.97.53 1.764.814 2.8.815h.005c3.181 0 5.767-2.586 5.768-5.766 0-3.18-2.586-5.768-5.777-5.768zm3.376 8.188c-.14.394-.814.733-1.129.779-.315.046-.723.065-2.083-.497-1.74-.718-2.853-2.483-2.94-2.598-.087-.115-.705-.939-.705-1.792 0-.853.447-1.272.607-1.446.16-.174.349-.217.465-.217.116 0 .232.001.334.006.107.006.251-.041.393.3.145.348.494 1.203.538 1.29.043.087.072.189.014.305-.058.115-.087.189-.174.29-.087.101-.184.226-.262.304-.087.087-.179.182-.077.357.102.174.453.748.972 1.211.669.596 1.233.78 1.408.868.174.087.276.073.378-.044.102-.116.436-.508.552-.682.116-.174.232-.145.393-.087.16.058 1.018.48 1.193.567.174.087.291.131.334.203.044.073.044.42-.096.814z"/></svg>
+            <span>WhatsApp Enquiry</span>
+          </a>
+          <button class="pkg-header-close-btn" onclick="closeProductModal()" aria-label="Close Fullscreen View">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+      </div>
 
-          <div class="inclusions-card">
-            <h4>📦 What's Included in this Setup:</h4>
-            <ul id="modalInclusionsList" class="inclusions-list"></ul>
-          </div>
-
-          <div class="slot-picker-box">
-            <h4>📅 Pick Celebration Date & Arrival Slot</h4>
-            <input type="date" id="bookingDateInput" class="booking-date-field" />
-            <div class="slot-grid" id="modalSlotGrid"></div>
+      <!-- Fullscreen Content Area -->
+      <div class="fullscreen-pkg-body">
+        <div class="fullscreen-pkg-inner fullscreen-stacked-flow">
+          <!-- 1. Hero Image Card -->
+          <div class="fullscreen-img-card">
+            <span id="modalProductBadge" class="product-badge badge-bestseller">BESTSELLER</span>
+            <img id="modalProductMainImg" src="" alt="Package Decoration Setup" />
           </div>
 
-          <div class="addons-section">
-            <h4>✨ Upgrade with Party Add-ons:</h4>
-            <div class="addons-list" id="modalAddonsList"></div>
+          <!-- 2. Title, Rating & Pricing Card -->
+          <div class="pkg-header-info-card">
+            <div class="fullscreen-meta-row">
+              <span class="fullscreen-cat-badge" id="modalCategoryPill">CORPORATE</span>
+              <div class="rating-pill">
+                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                <span id="modalRating">4.9</span>
+                <span style="font-size: 11.5px; color: var(--gray-500); margin-left: 4px; font-weight: 500;">(128+ verified reviews)</span>
+              </div>
+            </div>
+
+            <h1 class="fullscreen-pkg-title" id="modalProductTitle">Decoration Package</h1>
+            <p class="fullscreen-pkg-desc" id="modalProductDesc"></p>
+
+            <!-- Price Card -->
+            <div class="fullscreen-price-banner">
+              <div class="price-figures">
+                <span class="current-price" id="modalCurrentPrice">₹1,499</span>
+                <span class="original-price" id="modalOriginalPrice">₹1,999</span>
+                <span class="discount-tag" id="modalDiscount">25% off</span>
+              </div>
+              <div class="price-sub">✓ Inclusive of all taxes & professional decorator visit fee</div>
+            </div>
           </div>
 
-          <div class="modal-action-footer">
-            <button class="add-to-cart-btn" onclick="handleAddToCartFromModal()">Add to Cart 🛒</button>
-            <button class="instant-book-btn" onclick="handleInstantBookFromModal()">Book Instantly ⚡</button>
+          <!-- 3. Location & Delivery Return Guarantee Box -->
+          <div class="pkg-location-guarantee-card">
+            <div class="loc-header-row">
+              <div class="loc-indicator">
+                <span class="loc-pin">📍</span>
+                <div class="loc-text-wrap">
+                  <span class="loc-label">Selected Delivery Location:</span>
+                  <strong class="loc-name" id="modalDeliveringCity">Delhi NCR</strong>
+                </div>
+              </div>
+              <button class="loc-change-btn" onclick="openCityModal()">Change City</button>
+            </div>
+            <div class="loc-guarantees-list">
+              <div class="loc-perk-item">
+                <span class="perk-icon">⚡</span>
+                <span><strong>Same day delivery</strong> and express 2-hour setup available in your area.</span>
+              </div>
+              <div class="loc-perk-item">
+                <span class="perk-icon">🔄</span>
+                <span><strong>We return decoration equipment</strong> once the event or your timeslot completed.</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4. Date & Arrival Slot Card -->
+          <div class="pkg-datetime-card">
+            <!-- Step 1: Event Date -->
+            <div class="fullscreen-step-group">
+              <label class="fullscreen-step-label">
+                <span class="step-badge">1</span>
+                <span>📅 Select Celebration Date:</span>
+              </label>
+              <input type="date" id="bookingDateInput" class="fullscreen-date-input" />
+            </div>
+
+            <!-- Step 2: Time Slot -->
+            <div class="fullscreen-step-group">
+              <label class="fullscreen-step-label">
+                <span class="step-badge">2</span>
+                <span>⏰ Choose Arrival Slot:</span>
+              </label>
+              <div class="slot-picker-grid" id="slotPickerGrid">
+                <!-- Slots populated dynamically -->
+              </div>
+            </div>
+          </div>
+
+          <!-- 5. Tabs Card -->
+          <div class="pkg-tabs-card">
+            <div class="pkg-tabs-nav" id="pkgTabsNav">
+              <button class="pkg-tab-btn active" onclick="switchPkgTab('included', this)">
+                <span class="tab-icon">🎁</span>
+                <span>What's Included</span>
+              </button>
+              <button class="pkg-tab-btn" onclick="switchPkgTab('faqs', this)">
+                <span class="tab-icon">❔</span>
+                <span>FAQs</span>
+              </button>
+              <button class="pkg-tab-btn" onclick="switchPkgTab('delivery', this)">
+                <span class="tab-icon">🚚</span>
+                <span>Delivery</span>
+              </button>
+              <button class="pkg-tab-btn" onclick="switchPkgTab('care', this)">
+                <span class="tab-icon">✨</span>
+                <span>Care Info</span>
+              </button>
+            </div>
+
+            <div class="pkg-tabs-content">
+              <!-- Tab 1: What's Included -->
+              <div class="pkg-tab-pane active" id="tabPaneIncluded">
+                <div class="included-header-pill">
+                  <span class="included-badge">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    <span>INCLUDED</span>
+                  </span>
+                  <span class="included-count" id="modalIncludedCount">4 items</span>
+                </div>
+                <div class="included-two-cols" id="modalInclusionsGrid">
+                  <!-- 2-column checklist dynamically rendered -->
+                </div>
+              </div>
+
+              <!-- Tab 2: FAQs -->
+              <div class="pkg-tab-pane" id="tabPaneFaqs">
+                <div class="tab-faq-item">
+                  <strong>⏱️ How long does this setup take?</strong>
+                  <p>Our certified decorator finishes this setup within approximately <span id="modalTabDuration" style="color: var(--brand-600); font-weight: 700;">2 Hours</span>.</p>
+                </div>
+                <div class="tab-faq-item">
+                  <strong>🛡️ Will wall paint peel or get damaged?</strong>
+                  <p>Not at all! We strictly use wall-safe removable masking tape and gentle glue dots that leave zero wall residue.</p>
+                </div>
+                <div class="tab-faq-item">
+                  <strong>🎨 Can I customize balloon colors?</strong>
+                  <p>Yes, absolutely! Mention your preferred color theme in the booking notes or on WhatsApp at no extra charge.</p>
+                </div>
+              </div>
+
+              <!-- Tab 3: Delivery -->
+              <div class="pkg-tab-pane" id="tabPaneDelivery">
+                <div class="tab-delivery-info">
+                  <p>⚡ <strong>Same Day Delivery:</strong> Available across all operational areas with a 2-hour advance booking.</p>
+                  <p>🧑‍🔧 <strong>Specialist Arrival:</strong> Decorators arrive promptly within your chosen 2-hour time slot window.</p>
+                  <p>🔄 <strong>Equipment Return:</strong> We return and pickup decoration equipment (metal stands, neon lights, backdrops) once the event or your timeslot is completed.</p>
+                </div>
+              </div>
+
+              <!-- Tab 4: Care Info -->
+              <div class="pkg-tab-pane" id="tabPaneCare">
+                <div class="tab-care-info">
+                  <p>🎈 <strong>Indoor Longevity:</strong> Keep balloons away from sharp edges, open heat, and direct high-speed AC drafts (lasts 24–48 hours indoors).</p>
+                  <p>🧹 <strong>Post-Event Dismantling:</strong> Gently release balloons from tape base or use a safety pin to deflate safely.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 6. About This Package Box -->
+          <div class="pkg-about-card">
+            <div class="pkg-about-header">
+              <div class="about-icon-circle">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+              </div>
+              <div>
+                <h4 class="about-card-title">About This Package</h4>
+                <span class="about-card-subtitle">Everything you need to know</span>
+              </div>
+            </div>
+            <div class="pkg-about-body" id="modalAboutPackageBody">
+              <!-- Rich description paragraph -->
+            </div>
+          </div>
+
+          <!-- 7. Step 3: Interactive Add-ons -->
+          <div class="pkg-visual-addons-section">
+            <div class="addons-section-header">
+              <div class="addons-header-title-box">
+                <span class="addons-header-icon">🎁</span>
+                <h4 class="addons-header-title">Add-ons</h4>
+                <span class="addons-optional-badge">OPTIONAL</span>
+              </div>
+              <span class="addons-tap-helper">Tap to add</span>
+            </div>
+
+            <!-- Filter Pills (All, Best Seller, Cake, More) -->
+            <div class="addons-category-pills">
+              <button class="addon-cat-pill active" onclick="filterModalAddons('all', this)">All</button>
+              <button class="addon-cat-pill" onclick="filterModalAddons('bestseller', this)">Best Seller</button>
+              <button class="addon-cat-pill" onclick="filterModalAddons('cake', this)">Cake</button>
+              <button class="addon-cat-pill" onclick="filterModalAddons('more', this)">More</button>
+            </div>
+
+            <!-- Horizontal Cards Slider / Grid -->
+            <div class="addons-cards-slider" id="addonsCardsSlider">
+              <!-- Dynamically populated addon cards -->
+            </div>
+          </div>
+
+          <!-- 8. Live Calculation & Booking Card -->
+          <div class="fullscreen-checkout-box">
+            <div class="calc-line">
+              <span>Base Package:</span>
+              <strong id="modalCalcBasePrice">₹1,499</strong>
+            </div>
+            <div class="calc-line" id="modalAddonsCalcRow" style="display: none;">
+              <span>Selected Add-ons:</span>
+              <strong id="modalCalcAddonsPrice" style="color: var(--brand-600);">+₹0</strong>
+            </div>
+            <div class="calc-hr"></div>
+            <div class="calc-line calc-grand">
+              <span>Total Amount:</span>
+              <span class="calc-grand-val" id="modalGrandTotal">₹1,499</span>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="fullscreen-action-row">
+              <button class="book-now-btn fullscreen-primary-book-btn" onclick="handleInstantBookFromModal()">
+                <span>Book Now ⚡</span>
+                <small>Instant Slot Confirmation</small>
+              </button>
+              <button class="book-now-btn fullscreen-cart-btn" id="modalAddToCartBtn" onclick="handleAddToCartFromModal()">
+                🛒 Add to Cart
+              </button>
+            </div>
+
+            <a id="modalDirectWaLink" href="https://wa.me/919999999999" target="_blank" class="fullscreen-wa-pill">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.699c.97.53 1.764.814 2.8.815h.005c3.181 0 5.767-2.586 5.768-5.766 0-3.18-2.586-5.768-5.777-5.768zm3.376 8.188c-.14.394-.814.733-1.129.779-.315.046-.723.065-2.083-.497-1.74-.718-2.853-2.483-2.94-2.598-.087-.115-.705-.939-.705-1.792 0-.853.447-1.272.607-1.446.16-.174.349-.217.465-.217.116 0 .232.001.334.006.107.006.251-.041.393.3.145.348.494 1.203.538 1.29.043.087.072.189.014.305-.058.115-.087.189-.174.29-.087.101-.184.226-.262.304-.087.087-.179.182-.077.357.102.174.453.748.972 1.211.669.596 1.233.78 1.408.868.174.087.276.073.378-.044.102-.116.436-.508.552-.682.116-.174.232-.145.393-.087.16.058 1.018.48 1.193.567.174.087.291.131.334.203.044.073.044.42-.096.814z"/></svg>
+              <span>Chat with Decoration Specialist on WhatsApp</span>
+            </a>
+          </div>
+
+          <!-- 9. Related Packages from Same Category (Horizontally Scrollable) -->
+          <div class="pkg-related-section" id="pkgRelatedSection">
+            <div class="related-section-header">
+              <div class="related-title-wrap">
+                <span class="related-icon-badge">✨</span>
+                <div>
+                  <h3 class="related-title">Related <span id="relatedCategoryName">Corporate</span> Packages</h3>
+                  <p class="related-subtitle">Popular trending setups in this category you might also like</p>
+                </div>
+              </div>
+              <div class="related-nav-arrows">
+                <button class="related-nav-btn prev" onclick="scrollRelatedPackages(-1)" aria-label="Scroll left">‹</button>
+                <button class="related-nav-btn next" onclick="scrollRelatedPackages(1)" aria-label="Scroll right">›</button>
+              </div>
+            </div>
+
+            <!-- Horizontally Scrollable Cards Container -->
+            <div class="related-packages-slider" id="relatedPackagesSlider">
+              <!-- Dynamically populated related package cards -->
+            </div>
           </div>
         </div>
       </div>
@@ -302,31 +539,37 @@
   </div>
 
   <!-- Cart Slide-Over Drawer -->
-  <div class="cart-drawer-overlay" id="cartOverlay">
+  <div class="cart-drawer-overlay" id="cartDrawerOverlay">
     <div class="cart-drawer">
-      <div class="cart-drawer-header">
-        <h3>🛍️ Your Celebration Cart (<span id="cartDrawerCount">0</span>)</h3>
+      <div class="cart-header">
+        <h3>🛒 Your Decoration Cart</h3>
         <button class="modal-close-btn" onclick="closeCart()">&times;</button>
       </div>
-      <div class="cart-drawer-body" id="cartItemsContainer"></div>
-      <div class="cart-drawer-footer" id="cartFooter">
+      <div class="cart-body" id="cartBody">
+        <!-- Rendered by renderCart() -->
+      </div>
+      <div class="cart-footer" id="cartFooter" style="display: none;">
         <div class="cart-coupon-box">
-          <input type="text" id="couponInput" placeholder="Coupon Code (CELEBRATE10)" />
-          <button onclick="applyCouponCode()">Apply</button>
+          <input type="text" id="couponInput" class="coupon-input" placeholder="Coupon (e.g. CELEBRATE10)" />
+          <button class="coupon-apply-btn" onclick="applyCoupon()">Apply</button>
         </div>
-        <div class="cart-summary-row">
-          <span>Subtotal:</span>
-          <span id="cartSubtotalVal">₹0</span>
+        <div class="bill-row">
+          <span>Items Total</span>
+          <span id="billSubtotal">₹0</span>
         </div>
-        <div class="cart-summary-row" id="cartDiscountRow" style="display: none; color: var(--accent-green);">
-          <span>Discount Applied:</span>
-          <span id="cartDiscountVal">-₹0</span>
+        <div class="bill-row" id="billDiscountRow" style="display: none; color: var(--accent-green);">
+          <span>Promo Discount</span>
+          <span id="billDiscount">-₹0</span>
         </div>
-        <div class="cart-summary-row total-row">
-          <span>Final Payable:</span>
-          <span id="cartTotalVal">₹0</span>
+        <div class="bill-row">
+          <span>Taxes & Safe-Setup Kit</span>
+          <span style="color: var(--accent-green); font-weight: 700;">FREE</span>
         </div>
-        <button class="checkout-btn" onclick="proceedToCheckout()">Proceed to Secure Booking →</button>
+        <div class="bill-row total">
+          <span>Total Payable</span>
+          <span id="billGrandTotal">₹0</span>
+        </div>
+        <button class="checkout-btn" onclick="openCheckoutModal()">Proceed to Reserve Slot →</button>
       </div>
     </div>
   </div>
@@ -423,7 +666,7 @@
         <li><a href="anniversary.html" class="mobile-nav-link">❤️ Romantic & Anniversary <span>›</span></a></li>
         <li><a href="kids.html" class="mobile-nav-link">🦄 Kids Theme Parties <span>›</span></a></li>
         <li><a href="baby-shower.html" class="mobile-nav-link">🍼 Baby Shower & Welcome <span>›</span></a></li>
-        <li><a href="wedding.html" class="mobile-nav-link">💍 Wedding & Haldi <span>›</span></a></li>
+        <li><a href="wedding.html" class="mobile-nav-link">💍 Wedding <span>›</span></a></li>
         <li><a href="corporate.html" class="mobile-nav-link" style="color: var(--brand-600); font-weight: 700;">💼 Corporate Events <span>›</span></a></li>
         <li><a href="about.html" class="mobile-nav-link">ℹ️ About Us <span>›</span></a></li>
         <li><a href="contact.html" class="mobile-nav-link">📞 Contact Us <span>›</span></a></li>

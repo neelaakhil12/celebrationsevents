@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title id="gdpPageTitle">Soft Teddy Bear | Gifts Marketplace | Celebration Events</title>
+  <meta name="description" id="gdpPageDesc" content="Order cute and huggable Soft Teddy Bear online with same-day express delivery in 2 to 4 hours. Perfect gift for birthdays, anniversaries and special occasions." />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="gift-detail-page">
+
+  <!-- ====================================================
+       TOP ANNOUNCEMENT BAR
+       ==================================================== -->
+  <div class="announcement-bar">
+    <div class="announcement-track">
+      <span class="announcement-badge">SPECIAL OFFER</span>
+      <span>🎁 Gifts Marketplace: Complete Gifts & Celebration Hampers | Express Delivery in 2–4 Hours | Use Code <strong>CELEBRATE10</strong> for Flat 10% OFF</span>
+    </div>
+  </div>
+
+  <!-- ====================================================
+       SITE HEADER
+       ==================================================== -->
+  <header class="main-header">
+    <div class="header-container">
+      <div class="header-left">
+        <button id="mobileMenuBtn" class="mobile-menu-btn" aria-label="Open Navigation">
+          <span></span><span></span><span></span>
+        </button>
+
+        <a href="index.html" class="brand-logo" aria-label="Celebration Events Homepage">
+          <div class="logo-icon-wrap">
+            <span class="logo-balloon">🎈</span>
+            <span class="logo-sparkle">✨</span>
+          </div>
+          <div class="logo-text-group">
+            <span class="brand-name">Celebration <span class="brand-highlight">Events</span></span>
+            <span class="brand-tagline">India Ka Party Expert</span>
+          </div>
+        </a>
+
+        <!-- Delivery City Selector -->
+        <button id="citySelectorBtn" class="city-selector-btn" onclick="openCityModal()" aria-label="Select Delivery City">
+          <div class="city-btn-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path><circle cx="12" cy="10" r="3"></circle></svg>
+          </div>
+          <div class="city-btn-text">
+            <span class="city-label">Deliver to</span>
+            <span id="currentCityDisplay" class="city-current">Delhi NCR</span>
+          </div>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
+        </button>
+      </div>
+
+      <!-- Navigation Links on Header -->
+      <div class="header-nav-desktop">
+        <a href="index.html" class="header-nav-link">Home</a>
+        <a href="wedding.html" class="header-nav-link">Wedding ✨</a>
+        <a href="marketplace.html" class="header-nav-link active" style="color: var(--brand-600); font-weight: 700;">Gifts 🎁</a>
+        <a href="about.html" class="header-nav-link">About Us</a>
+        <a href="contact.html" class="header-nav-link">Contact</a>
+      </div>
+
+      <!-- Header Center Search Trigger -->
+      <div class="header-center" style="max-width: 300px;">
+        <button id="searchTriggerBtn" class="search-trigger-btn" onclick="openSearchModal()" aria-label="Search decorations">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+          <span>Search gifts, cakes & flowers...</span>
+        </button>
+      </div>
+
+      <!-- Header Right Utilities -->
+      <div class="header-right">
+        <!-- Cart Button Trigger -->
+        <button id="cartTriggerBtn" class="header-action-btn" onclick="openCart()" aria-label="Open Cart">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"></circle><circle cx="19" cy="21" r="1"></circle><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path></svg>
+          <span id="cartCountBadge" class="cart-badge">0</span>
+        </button>
+
+        <button class="header-sign-in" onclick="openLoginPrompt()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+          <span>Sign In</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Secondary Navigation Bar -->
+  <nav class="secondary-nav">
+    <div class="nav-container">
+      <ul class="nav-menu">
+        <li class="nav-item"><a href="birthday.html" class="nav-trigger">Birthday <span class="tag-pill tag-popular">POPULAR</span></a></li>
+        <li class="nav-item"><a href="anniversary.html" class="nav-trigger">Anniversary</a></li>
+        <li class="nav-item"><a href="kids.html" class="nav-trigger">Kids Themes <span class="tag-pill tag-trending">TRENDING</span></a></li>
+        <li class="nav-item"><a href="baby-shower.html" class="nav-trigger">Baby Shower & Welcome</a></li>
+        <li class="nav-item"><a href="wedding.html" class="nav-trigger">Wedding <span class="tag-pill tag-new">POPULAR</span></a></li>
+        <li class="nav-item"><a href="corporate.html" class="nav-trigger">Corporate</a></li>
+        <li class="nav-item active"><a href="marketplace.html" class="nav-trigger active" style="color: var(--brand-600); font-weight: 800;">Gifts Marketplace <span class="tag-pill tag-popular">HOT</span></a></li>
+        <li class="nav-item"><a href="#" class="nav-trigger" onclick="openCityModal(); return false;">Cities <span class="tag-pill tag-count">50+</span></a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ====================================================
+       PRODUCT DETAILS MAIN CONTAINER (Exact Screenshot Match)
+       ==================================================== -->
+  <main class="gdp-container">
+    <!-- Breadcrumbs -->
+    <nav class="gdp-breadcrumbs" aria-label="Breadcrumb" id="gdpBreadcrumbs">
+      <a href="index.html">Home</a>
+      <span class="separator">›</span>
+      <a href="marketplace.html">Gifts for Boys</a>
+      <span class="separator">›</span>
+      <a href="marketplace.html">Soft Toys</a>
+      <span class="separator">›</span>
+      <span class="current" id="gdpCrumbTitle">Soft Teddy Bear</span>
+    </nav>
+
+    <!-- Main Grid: Left Gallery + Right Details -->
+    <div class="gdp-main-grid">
+      
+      <!-- Left Column: Thumbnails + Hero Photo -->
+      <div class="gdp-gallery-wrap">
+        <!-- 5 Vertical Thumbnails Track -->
+        <div class="gdp-thumbs-col" id="gdpThumbsCol">
+          <div class="gdp-thumb-item active" onclick="switchGdpThumb(0, this)">
+            <img id="thumb-img-0" src="assets/soft-teddy-bear-hero.jpg" alt="Teddy Front View" />
+          </div>
+          <div class="gdp-thumb-item" onclick="switchGdpThumb(1, this)">
+            <img id="thumb-img-1" src="https://images.unsplash.com/photo-1559454403-b8fb88521f11?auto=format&fit=crop&w=600&q=80" alt="Teddy Sitting" />
+          </div>
+          <div class="gdp-thumb-item" onclick="switchGdpThumb(2, this)">
+            <img id="thumb-img-2" src="https://images.unsplash.com/photo-1585155770447-2f66e2a397b5?auto=format&fit=crop&w=600&q=80" alt="Teddy Close Up" />
+          </div>
+          <div class="gdp-thumb-item" onclick="switchGdpThumb(3, this)">
+            <img id="thumb-img-3" src="https://images.unsplash.com/photo-1563241527-3004b7be0ffd?auto=format&fit=crop&w=600&q=80" alt="Teddy White Angle" />
+          </div>
+          <div class="gdp-thumb-item" onclick="switchGdpThumb(4, this)">
+            <img id="thumb-img-4" src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?auto=format&fit=crop&w=600&q=80" alt="Teddy Gift Box" />
+          </div>
+          <button class="gdp-thumb-down-arrow" onclick="scrollThumbsDown()" aria-label="Next thumbnails">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+        </div>
+
+        <!-- Main Hero Image -->
+        <div class="gdp-hero-image-box">
+          <img id="gdpMainImg" src="assets/soft-teddy-bear-hero.jpg" alt="Soft Teddy Bear" />
+          <button class="gdp-hero-zoom-btn" onclick="openGdpZoom()" aria-label="Expand image">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Right Column: Product Information & Purchase -->
+      <div class="gdp-info-col">
+        <span class="gdp-bestseller-badge" id="gdpBadge">Bestseller</span>
+        <h1 class="gdp-product-title" id="gdpTitle">Soft Teddy Bear</h1>
+        <p class="gdp-product-tagline" id="gdpTagline">A cute and cuddly teddy bear, perfect for every special occasion.</p>
+
+        <!-- Rating Row -->
+        <div class="gdp-rating-strip">
+          <span class="gdp-stars">★★★★★</span>
+          <span id="gdpRatingText">4.8 (320 reviews)</span>
+          <span>|</span>
+          <span class="gdp-bought-badge" id="gdpBoughtText">500+ bought in last month</span>
+        </div>
+
+        <!-- Price Row -->
+        <div class="gdp-price-row">
+          <span class="gdp-price-now" id="gdpPriceNow">₹699</span>
+          <span class="gdp-price-orig" id="gdpPriceOrig">₹899</span>
+          <span class="gdp-price-discount" id="gdpPriceDiscount">22% OFF</span>
+        </div>
+
+        <!-- Delivery Location Box -->
+        <div class="gdp-delivery-card">
+          <div class="gdp-delivery-head">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#e11d48" stroke-width="2.2"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            <span>Enter Delivery Location</span>
+          </div>
+          <div class="gdp-pincode-row">
+            <input type="text" id="gdpPincodeInput" class="gdp-pincode-input" placeholder="Enter your city or pincode" value="Delhi NCR" />
+            <button class="gdp-pincode-btn" onclick="checkGdpPincode()">Check</button>
+          </div>
+          <div class="gdp-delivery-status" id="gdpDeliveryStatus">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+            <span><strong>Same Day Delivery:</strong> Get it delivered in 2 to 4 hours at your location.</span>
+          </div>
+        </div>
+
+        <!-- Primary Actions Row: [ Add to Cart ] [ Buy Now ] [ ♡ Add to Wishlist ] -->
+        <div class="gdp-cta-row">
+          <button class="gdp-btn-cart" id="gdpAddCartBtn" onclick="gdpAddToCart()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="8" cy="21" r="1"></circle><circle cx="19" cy="21" r="1"></circle><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path></svg>
+            <span>Add to Cart</span>
+          </button>
+          <button class="gdp-btn-buy" onclick="gdpBuyNow()">
+            <span>⚡ Buy Now</span>
+          </button>
+          <button class="gdp-btn-wishlist" id="gdpWishlistBtn" onclick="gdpToggleWishlist()">
+            <span id="gdpWishIcon">♡</span>
+            <span>Add to Wishlist</span>
+          </button>
+        </div>
+
+        <!-- 4 Feature Trust Badges Strip -->
+        <div class="gdp-trust-strip">
+          <div class="gdp-trust-item">
+            <div class="gdp-trust-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+            </div>
+            <div class="gdp-trust-text">
+              <strong>Same Day Delivery</strong>
+              <small>2 to 4 hours</small>
+            </div>
+          </div>
+          <div class="gdp-trust-item">
+            <div class="gdp-trust-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div class="gdp-trust-text">
+              <strong>Secure Packaging</strong>
+              <small>Safe & Damage Free</small>
+            </div>
+          </div>
+          <div class="gdp-trust-item">
+            <div class="gdp-trust-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 12 20 22 4 22 4 12"></polyline><rect x="2" y="7" width="20" height="5"></rect><line x1="12" y1="22" x2="12" y2="7"></line><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path></svg>
+            </div>
+            <div class="gdp-trust-text">
+              <strong>Perfect for Gifting</strong>
+              <small>Make it special</small>
+            </div>
+          </div>
+          <div class="gdp-trust-item">
+            <div class="gdp-trust-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
+            </div>
+            <div class="gdp-trust-text">
+              <strong>Easy Returns</strong>
+              <small>7 days return</small>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ====================================================
+         CONTENT TABS SECTION (Exact Screenshot Match)
+         ==================================================== -->
+    <section class="gdp-tabs-wrap">
+      <div class="gdp-tabs-nav">
+        <button class="gdp-tab-btn active" id="tab-btn-desc" onclick="switchGdpTab('desc')">Description</button>
+        <button class="gdp-tab-btn" id="tab-btn-specs" onclick="switchGdpTab('specs')">Product Details</button>
+        <button class="gdp-tab-btn" id="tab-btn-deliv" onclick="switchGdpTab('deliv')">Delivery & Returns</button>
+        <button class="gdp-tab-btn" id="tab-btn-reviews" onclick="switchGdpTab('reviews')">Reviews (320)</button>
+      </div>
+
+      <!-- Tab 1: Description Panel -->
+      <div class="gdp-tab-panel" id="tab-panel-desc">
+        <div class="gdp-desc-layout">
+          <div class="gdp-desc-left">
+            <p id="gdpDescPara">
+              This soft and huggable teddy bear is the perfect gift to express love, care, and happiness. Made with premium quality plush fabric, it is safe, durable, and ideal for all age groups. Whether it's a birthday, anniversary, or just a surprise, this adorable teddy will surely bring a smile to your loved one's face.
+            </p>
+            <ul id="gdpHighlightsList">
+              <li>Soft and high-quality plush material</li>
+              <li>Perfect for gifting on birthdays, anniversaries, and special occasions</li>
+              <li>Available in multiple variations</li>
+              <li>Safe for kids and adults</li>
+              <li>A timeless gift for your loved ones</li>
+            </ul>
+          </div>
+
+          <!-- Why Choose This Gift? Card -->
+          <div class="gdp-why-card">
+            <h4>Why Choose This Gift?</h4>
+            <ul id="gdpWhyList">
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Premium quality</span>
+              </li>
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Loved by all age groups</span>
+              </li>
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Ideal for every occasion</span>
+              </li>
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Same day delivery (2 to 4 hours)</span>
+              </li>
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Makes a thoughtful and memorable gift</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 2: Product Details Panel -->
+      <div class="gdp-tab-panel" id="tab-panel-specs" style="display: none;">
+        <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 20px 24px; max-width: 800px;">
+          <table style="width: 100%; border-collapse: collapse; font-size: 13.5px;" id="gdpSpecsTable">
+            <tr style="border-bottom: 1px solid #f1f5f9;"><td style="padding: 10px 0; color: #64748b; width: 35%;">Material</td><td style="padding: 10px 0; font-weight: 600; color: #1e293b;">Ultra-Soft Hypoallergenic Plush & PP Cotton</td></tr>
+            <tr style="border-bottom: 1px solid #f1f5f9;"><td style="padding: 10px 0; color: #64748b;">Dimensions</td><td style="padding: 10px 0; font-weight: 600; color: #1e293b;">35 cm (Sitting Height)</td></tr>
+            <tr style="border-bottom: 1px solid #f1f5f9;"><td style="padding: 10px 0; color: #64748b;">Color</td><td style="padding: 10px 0; font-weight: 600; color: #1e293b;">Warm Honey Brown with Silk Ribbon</td></tr>
+            <tr style="border-bottom: 1px solid #f1f5f9;"><td style="padding: 10px 0; color: #64748b;">Recommended Age</td><td style="padding: 10px 0; font-weight: 600; color: #1e293b;">Safe for all age groups (3+ to Adults)</td></tr>
+            <tr style="border-bottom: 1px solid #f1f5f9;"><td style="padding: 10px 0; color: #64748b;">Wash Care</td><td style="padding: 10px 0; font-weight: 600; color: #1e293b;">Hand wash with mild detergent or damp wipe</td></tr>
+            <tr><td style="padding: 10px 0; color: #64748b;">Packaging</td><td style="padding: 10px 0; font-weight: 600; color: #1e293b;">Gift Wrapped in Polka Box with Satin Bow</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- Tab 3: Delivery & Returns Panel -->
+      <div class="gdp-tab-panel" id="tab-panel-deliv" style="display: none;">
+        <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 22px 26px; max-width: 800px; font-size: 13.5px; color: #334155; line-height: 1.7;">
+          <h4 style="font-size: 15px; color: #111827; margin: 0 0 10px;">⚡ Express Same-Day Delivery</h4>
+          <p style="margin: 0 0 16px;">Orders placed before 6:00 PM are hand-delivered directly within 2 to 4 hours in Delhi NCR, Mumbai, Bangalore, Hyderabad, Pune and 50+ major operating cities. You can select your preferred time slot at checkout.</p>
+          <h4 style="font-size: 15px; color: #111827; margin: 0 0 10px;">🛡️ Safe Packaging & 7-Day Replacement</h4>
+          <p style="margin: 0;">Every gift item is checked for quality and securely bubble-wrapped inside a premium presentation box. If you receive any damaged or defective item, our WhatsApp desk (+91 82820 25444) provides an instant free replacement or refund.</p>
+        </div>
+      </div>
+
+      <!-- Tab 4: Reviews Panel -->
+      <div class="gdp-tab-panel" id="tab-panel-reviews" style="display: none;">
+        <div style="display: grid; grid-template-columns: 280px 1fr; gap: 32px; align-items: start;">
+          <div style="background: #fdf2f4; border: 1px solid #fecdd3; border-radius: 10px; padding: 20px; text-align: center;">
+            <div style="font-size: 42px; font-weight: 900; color: #e11d48; line-height: 1;">4.8</div>
+            <div style="color: #eab308; font-size: 18px; margin: 6px 0;">★★★★★</div>
+            <div style="font-size: 13px; color: #64748b;">Based on 320 verified customer reviews</div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 14px;">
+            <div style="border-bottom: 1px solid #f1f5f9; padding-bottom: 12px;">
+              <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                <strong style="font-size: 13.5px; color: #1e293b;">Pooja Sharma <span style="color: #10b981; font-size: 12px;">✓ Verified Buyer</span></strong>
+                <span style="font-size: 12px; color: #94a3b8;">2 days ago</span>
+              </div>
+              <div style="color: #eab308; font-size: 12px; margin-bottom: 4px;">★★★★★</div>
+              <p style="font-size: 13px; color: #475569; margin: 0;">Super soft and beautifully packaged! Delivered within 3 hours on my friend's birthday. She absolutely loved it!</p>
+            </div>
+            <div style="border-bottom: 1px solid #f1f5f9; padding-bottom: 12px;">
+              <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                <strong style="font-size: 13.5px; color: #1e293b;">Rahul Verma <span style="color: #10b981; font-size: 12px;">✓ Verified Buyer</span></strong>
+                <span style="font-size: 12px; color: #94a3b8;">1 week ago</span>
+              </div>
+              <div style="color: #eab308; font-size: 12px; margin-bottom: 4px;">★★★★★</div>
+              <p style="font-size: 13px; color: #475569; margin: 0;">Exactly as shown in pictures. The plush quality is top notch. Highly recommended for gifting!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================
+         YOU MAY ALSO LIKE RELATED PRODUCTS SLIDER
+         ==================================================== -->
+    <section class="gdp-related-wrap">
+      <div class="gdp-related-head">
+        <h3>You May Also Like</h3>
+        <div class="gdp-related-arrows">
+          <button class="gdp-arrow-btn" onclick="scrollRelatedTrack(-220)" aria-label="Previous">‹</button>
+          <button class="gdp-arrow-btn" onclick="scrollRelatedTrack(220)" aria-label="Next">›</button>
+        </div>
+      </div>
+
+      <div class="gdp-related-track" id="gdpRelatedTrack">
+        <!-- 6 Related items matching screenshot -->
+        <div class="gdp-related-card" onclick="openRelatedGift('White Teddy Bear', 599, 'https://images.unsplash.com/photo-1563241527-3004b7be0ffd?auto=format&fit=crop&w=400&q=80')">
+          <div class="gdp-rel-img-box">
+            <img src="https://images.unsplash.com/photo-1563241527-3004b7be0ffd?auto=format&fit=crop&w=400&q=80" alt="White Teddy Bear" />
+          </div>
+          <div class="gdp-rel-info">
+            <h4 class="gdp-rel-title">White Teddy Bear</h4>
+            <div class="gdp-rel-price-row">
+              <span class="gdp-rel-price">₹599</span>
+              <button class="gdp-rel-cart-btn" onclick="event.stopPropagation(); addRelatedToCart('White Teddy Bear', 599, 'https://images.unsplash.com/photo-1563241527-3004b7be0ffd?auto=format&fit=crop&w=400&q=80')">🛒</button>
+            </div>
+            <div class="gdp-rel-rating"><span class="star">★</span> 4.7 (220)</div>
+          </div>
+        </div>
+
+        <div class="gdp-related-card" onclick="openRelatedGift('Pink Teddy Bear', 699, 'https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?auto=format&fit=crop&w=400&q=80')">
+          <div class="gdp-rel-img-box">
+            <img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?auto=format&fit=crop&w=400&q=80" alt="Pink Teddy Bear" />
+          </div>
+          <div class="gdp-rel-info">
+            <h4 class="gdp-rel-title">Pink Teddy Bear</h4>
+            <div class="gdp-rel-price-row">
+              <span class="gdp-rel-price">₹699</span>
+              <button class="gdp-rel-cart-btn" onclick="event.stopPropagation(); addRelatedToCart('Pink Teddy Bear', 699, 'https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?auto=format&fit=crop&w=400&q=80')">🛒</button>
+            </div>
+            <div class="gdp-rel-rating"><span class="star">★</span> 4.8 (310)</div>
+          </div>
+        </div>
+
+        <div class="gdp-related-card" onclick="openRelatedGift('Panda Soft Toy', 749, 'https://images.unsplash.com/photo-1562157873-818bc0726f68?auto=format&fit=crop&w=400&q=80')">
+          <div class="gdp-rel-img-box">
+            <img src="https://images.unsplash.com/photo-1562157873-818bc0726f68?auto=format&fit=crop&w=400&q=80" alt="Panda Soft Toy" />
+          </div>
+          <div class="gdp-rel-info">
+            <h4 class="gdp-rel-title">Panda Soft Toy</h4>
+            <div class="gdp-rel-price-row">
+              <span class="gdp-rel-price">₹749</span>
+              <button class="gdp-rel-cart-btn" onclick="event.stopPropagation(); addRelatedToCart('Panda Soft Toy', 749, 'https://images.unsplash.com/photo-1562157873-818bc0726f68?auto=format&fit=crop&w=400&q=80')">🛒</button>
+            </div>
+            <div class="gdp-rel-rating"><span class="star">★</span> 4.6 (198)</div>
+          </div>
+        </div>
+
+        <div class="gdp-related-card" onclick="openRelatedGift('Teddy with Chocolate Combo', 1299, 'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=400&q=80')">
+          <div class="gdp-rel-img-box">
+            <img src="https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=400&q=80" alt="Teddy with Chocolate Combo" />
+          </div>
+          <div class="gdp-rel-info">
+            <h4 class="gdp-rel-title">Teddy with Chocolate Combo</h4>
+            <div class="gdp-rel-price-row">
+              <span class="gdp-rel-price">₹1,299</span>
+              <button class="gdp-rel-cart-btn" onclick="event.stopPropagation(); addRelatedToCart('Teddy with Chocolate Combo', 1299, 'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=400&q=80')">🛒</button>
+            </div>
+            <div class="gdp-rel-rating"><span class="star">★</span> 4.9 (412)</div>
+          </div>
+        </div>
+
+        <div class="gdp-related-card" onclick="openRelatedGift('Heart Cushion', 499, 'https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=400&q=80')">
+          <div class="gdp-rel-img-box">
+            <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=400&q=80" alt="Heart Cushion" />
+          </div>
+          <div class="gdp-rel-info">
+            <h4 class="gdp-rel-title">Heart Cushion</h4>
+            <div class="gdp-rel-price-row">
+              <span class="gdp-rel-price">₹499</span>
+              <button class="gdp-rel-cart-btn" onclick="event.stopPropagation(); addRelatedToCart('Heart Cushion', 499, 'https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=400&q=80')">🛒</button>
+            </div>
+            <div class="gdp-rel-rating"><span class="star">★</span> 4.7 (183)</div>
+          </div>
+        </div>
+
+        <div class="gdp-related-card" onclick="openRelatedGift('Teddy & Flower Bouquet', 1499, 'https://images.unsplash.com/photo-1526047932273-341f2a7631f9?auto=format&fit=crop&w=400&q=80')">
+          <div class="gdp-rel-img-box">
+            <img src="https://images.unsplash.com/photo-1526047932273-341f2a7631f9?auto=format&fit=crop&w=400&q=80" alt="Teddy & Flower Bouquet" />
+          </div>
+          <div class="gdp-rel-info">
+            <h4 class="gdp-rel-title">Teddy & Flower Bouquet</h4>
+            <div class="gdp-rel-price-row">
+              <span class="gdp-rel-price">₹1,499</span>
+              <button class="gdp-rel-cart-btn" onclick="event.stopPropagation(); addRelatedToCart('Teddy & Flower Bouquet', 1499, 'https://images.unsplash.com/photo-1526047932273-341f2a7631f9?auto=format&fit=crop&w=400&q=80')">🛒</button>
+            </div>
+            <div class="gdp-rel-rating"><span class="star">★</span> 4.8 (276)</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ====================================================
+       SITE FOOTER
+       ==================================================== -->
+  <footer class="main-footer">
+    <div class="footer-container">
+      <div class="footer-top-grid">
+        <div class="footer-col">
+          <div class="brand-logo" style="color: #fff; margin-bottom: 12px;">
+            <span class="logo-balloon">🎈</span>
+            <span>Celebration <span style="color: var(--brand-400);">Events</span><span class="reg">®</span></span>
+          </div>
+          <p>India’s most trusted online platform for party decorations, gifts, cakes, flowers and event celebrations across 100+ cities.</p>
+        </div>
+        <div class="footer-col">
+          <h5>Quick Links</h5>
+          <ul class="footer-links">
+            <li><a href="marketplace.html">Gifts Marketplace</a></li>
+            <li><a href="birthday.html">Birthday Decorations</a></li>
+            <li><a href="anniversary.html">Anniversary Surprises</a></li>
+            <li><a href="wedding.html">Wedding Services</a></li>
+            <li><a href="corporate.html">Corporate Events</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Help & Support</h5>
+          <ul class="footer-links">
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="about.html">About Celebration Events</a></li>
+            <li><a href="#" onclick="openCityModal(); return false;">Operating Cities</a></li>
+            <li><a href="https://wa.me/918282025444" target="_blank">WhatsApp Support Desk</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Celebration Events Pvt. Ltd. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modals -->
+  <div class="modal-overlay" id="cityModalOverlay">
+    <div class="city-modal-box">
+      <div class="modal-header">
+        <h3>📍 Choose Your Delivery City</h3>
+        <button class="modal-close-btn" onclick="closeCityModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <input type="text" id="citySearchInput" class="city-search-box" placeholder="Search your city..." oninput="filterCities(this.value)" />
+        <div class="popular-cities-title">Top Operating Cities</div>
+        <div class="cities-grid" id="popularCitiesGrid"></div>
+        <div class="popular-cities-title" style="margin-top: 16px;">All Operational Cities</div>
+        <div class="cities-grid" id="allCitiesGrid"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cart-drawer-overlay" id="cartDrawerOverlay">
+    <div class="cart-drawer">
+      <div class="cart-header">
+        <h3>🛒 Your Cart</h3>
+        <button class="modal-close-btn" onclick="closeCart()">&times;</button>
+      </div>
+      <div class="cart-body" id="cartItemsList"></div>
+      <div class="cart-footer">
+        <div class="cart-total-row">
+          <span>Subtotal:</span>
+          <strong id="cartSubtotal">₹0</strong>
+        </div>
+        <button class="btn btn-primary btn-block" onclick="proceedToCheckout()">Proceed to Checkout</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Scripts -->
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+  <script>
+    // ====================================================
+    // GIFTS CATALOG DATA (Exact 12 items)
+    // ====================================================
+    const GIFTS_CATALOG = {
+      "gift-01": {
+        id: "gift-01",
+        title: "Soft Teddy Bear",
+        subtitle: "A cute and cuddly teddy bear, perfect for every special occasion.",
+        badge: "Bestseller",
+        categoryPath: ["Home", "Gifts for Boys", "Soft Toys", "Soft Teddy Bear"],
+        price: 699,
+        originalPrice: 899,
+        discount: "22% OFF",
+        rating: 4.8,
+        reviews: 320,
+        bought: "500+ bought in last month",
+        heroImage: "assets/soft-teddy-bear-hero.jpg",
+        thumbnails: [
+          "assets/soft-teddy-bear-hero.jpg",
+          "https://images.unsplash.com/photo-1559454403-b8fb88521f11?auto=format&fit=crop&w=600&q=80",
+          "https://images.unsplash.com/photo-1585155770447-2f66e2a397b5?auto=format&fit=crop&w=600&q=80",
+          "https://images.unsplash.com/photo-1563241527-3004b7be0ffd?auto=format&fit=crop&w=600&q=80",
+          "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?auto=format&fit=crop&w=600&q=80"
+        ],
+        description: "This soft and huggable teddy bear is the perfect gift to express love, care, and happiness. Made with premium quality plush fabric, it is safe, durable, and ideal for all age groups. Whether it's a birthday, anniversary, or just a surprise, this adorable teddy will surely bring a smile to your loved one's face.",
+        highlights: [
+          "Soft and high-quality plush material",
+          "Perfect for gifting on birthdays, anniversaries, and special occasions",
+          "Available in multiple variations",
+          "Safe for kids and adults",
+          "A timeless gift for your loved ones"
+        ],
+        whyChoose: [
+          "Premium quality",
+          "Loved by all age groups",
+          "Ideal for every occasion",
+          "Same day delivery (2 to 4 hours)",
+          "Makes a thoughtful and memorable gift"
+        ]
+      },
+      "gift-02": {
+        id: "gift-02",
+        title: "Personalized Photo Mug",
+        subtitle: "High-grade ceramic glossy mug customized with your cherished photo and text.",
+        badge: "Trending",
+        categoryPath: ["Home", "Gifts for Men", "Personalized", "Personalized Photo Mug"],
+        price: 499,
+        originalPrice: 699,
+        discount: "28% OFF",
+        rating: 4.6,
+        reviews: 210,
+        bought: "350+ bought in last month",
+        heroImage: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=600&q=80",
+        thumbnails: [
+          "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=600&q=80",
+          "https://images.unsplash.com/photo-1577937927133-66ef06acdf18?auto=format&fit=crop&w=600&q=80",
+          "https://images.unsplash.com/photo-1537130508986-20f4fd870b4e?auto=format&fit=crop&w=600&q=80"
+        ],
+        description: "Start every morning with a warm reminder of your best memories. Made from high-grade ceramic with permanent vibrant sublimation printing, this photo mug is dishwasher & microwave safe.",
+        highlights: [
+          "Premium 330ml glossy white ceramic",
+          "Scratch-resistant HD photo printing",
+          "Microwave and dishwasher friendly",
+          "Comes in secure thermocol shockproof box"
+        ],
+        whyChoose: [
+          "100% Customized with your photos",
+          "Durable ceramic finish",
+          "Express same day dispatch",
+          "Perfect surprise for birthdays & desk decor"
+        ]
+      },
+      "gift-03": {
+        id: "gift-03",
+        title: "Luxury Gift Hamper for Women",
+        subtitle: "Indulgent pampering gift basket with scented candle, skincare, chocolates and silk scarf.",
+        badge: "Luxury",
+        categoryPath: ["Home", "Gifts for Women", "Hampers", "Luxury Gift Hamper for Women"],
+        price: 1999,
+        originalPrice: 2499,
+        discount: "20% OFF",
+        rating: 4.7,
+        reviews: 185,
+        bought: "200+ bought in last month",
+        heroImage: "https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=600&q=80",
+        thumbnails: [
+          "https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=600&q=80",
+          "https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=600&q=80",
+          "https://images.unsplash.com/photo-1526047932273-341f2a7631f9?auto=format&fit=crop&w=600&q=80"
+        ],
+        description: "Curated with sheer elegance, this luxury hamper includes botanical skincare treats, a soy wax lavender candle, rich artisanal truffles, and a handwritten greeting card in a reusable pine wood basket.",
+        highlights: [
+          "Artisan pine wood keepsake box with satin ribbon",
+          "Aromatherapy soy lavender scented candle",
+          "Premium imported chocolate delicacies",
+          "Custom greeting card included"
+        ],
+        whyChoose: [
+          "Opulent presentation ready for gifting",
+          "Handpicked premium products",
+          "Loved by women of all ages",
+          "Instant delivery available"
+        ]
+      },
+      "gift-04": {
+        id: "gift-04",
+        title: "Men's Analog Watch",
+        subtitle: "Classic stainless steel leather strap timepiece designed for modern style.",
+        badge: "Bestseller",
+        categoryPath: ["Home", "Gifts for Men", "Accessories", "Men's Analog Watch"],
+        price: 2499,
+        originalPrice: 3499,
+        discount: "28% OFF",
+        rating: 4.5,
+        reviews: 98,
+        bought: "180+ bought in last month",
+        heroImage: "https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=600&q=80",
+        thumbnails: [
+          "https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=600&q=80",
+          "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=600&q=80"
+        ],
+        description: "An elegant accessory designed for work, parties, and everyday wear. Features Japanese quartz precision movement, genuine breathable leather strap, and 30m water resistance.",
+        highlights: [
+          "Japanese quartz movement with scratch-proof mineral glass",
+          "Genuine hand-stitched leather strap",
+          "3 ATM water resistant",
+          "1 Year brand warranty card included"
+        ],
+        whyChoose: [
+          "Timeless versatile styling",
+          "Luxury velvet watch box",
+          "Great gift for husbands, fathers & colleagues",
+          "Same day delivery available"
+        ]
+      },
+      "gift-05": {
+        id: "gift-05",
+        title: "Fresh Red Rose Bouquet",
+        subtitle: "Handpicked 15 fresh Dutch red roses wrapped in eco-craft tissue paper with satin bow.",
+        badge: "Bestseller",
+        categoryPath: ["Home", "Flowers", "Roses", "Fresh Red Rose Bouquet"],
+        price: 1299,
+        originalPrice: 1599,
+        discount: "18% OFF",
+        rating: 4.8,
+        reviews: 412,
+        bought: "650+ bought in last month",
+        heroImage: "https://images.unsplash.com/photo-1518895949257-7621c3c786d7?auto=format&fit=crop&w=600&q=80",
+        thumbnails: [
+          "https://images.unsplash.com/photo-1518895949257-7621c3c786d7?auto=format&fit=crop&w=600&q=80",
+          "https://images.unsplash.com/photo-1526047932273-341f2a7631f9?auto=format&fit=crop&w=600&q=80"
+        ],
+        description: "Nothing speaks the language of love better than fresh, fragrant red roses. Directly sourced from top floriculture farms, each stem is hydrated and hand-tied by master florists.",
+        highlights: [
+          "15 long-stem Dutch red roses",
+          "Double-layer eco paper wrapping with crimson satin bow",
+          "Comes with flower food packet for longer vase life",
+          "Free message card included"
+        ],
+        whyChoose: [
+          "Farm-fresh guarantee with crisp petals",
+          "Hand-delivered in 2 to 3 hours",
+          "Iconic romantic expression",
+          "100% On-time surprise delivery"
+        ]
+      },
+      "gift-06": {
+        id: "gift-06",
+        title: "Ferrero Rocher Chocolate Box",
+        subtitle: "Golden hazelnut pralines packed in an iconic 16-piece celebration box.",
+        badge: "Popular",
+        categoryPath: ["Home", "Chocolates", "Imported", "Ferrero Rocher Chocolate Box"],
+        price: 899,
+        originalPrice: 1099,
+        discount: "18% OFF",
+        rating: 4.6,
+        reviews: 276,
+        bought: "450+ bought in last month",
+        heroImage: "https://images.unsplash.com/photo-1549007994-cb92caebd54b?auto=format&fit=crop&w=600&q=80",
+        thumbnails: [
+          "https://images.unsplash.com/photo-1549007994-cb92caebd54b?auto=format&fit=crop&w=600&q=80"
+        ],
+        description: "A whole hazelnut, dipped in smooth velvety chocolate cream, inside a delicate crisp wafer shell, coated with milk chocolate and chopped hazelnuts. The gold standard in festive gifting.",
+        highlights: [
+          "16 individually gold-wrapped chocolates",
+          "Signature Italian crisp hazelnut center",
+          "Delivered in temperature-controlled cooler bag"
+        ],
+        whyChoose: [
+          "Universally loved confectionery",
+          "Pairs wonderfully with flower bouquets and cakes",
+          "Express same-day dispatch"
+        ]
+      },
+      "gift-07": {
+        id: "gift-07",
+        title: "Remote Control Car for Kids",
+        subtitle: "High-speed 2.4GHz rechargeable monster stunt vehicle with LED headlights.",
+        badge: "Kids Fav",
+        categoryPath: ["Home", "Gifts for Boys", "Toys", "Remote Control Car for Kids"],
+        price: 1199,
+        originalPrice: 1599,
+        discount: "25% OFF",
+        rating: 4.4,
+        reviews: 190,
+        bought: "300+ bought in last month",
+        heroImage: "https://images.unsplash.com/photo-1594787318286-3d835c1d207f?auto=format&fit=crop&w=600&q=80",
+        thumbnails: [
+          "https://images.unsplash.com/photo-1594787318286-3d835c1d207f?auto=format&fit=crop&w=600&q=80"
+        ],
+        description: "Built for speed and adventure! 4-wheel independent shock absorbers and anti-skid rubber tires let kids race smoothly across floor, grass, and ramps with an ergonomic pistol-grip remote.",
+        highlights: [
+          "Rechargeable battery with USB charging cable",
+          "Anti-interference 2.4GHz long range controller",
+          "Shatter-proof durable ABS plastic body",
+          "Working front LED headlights"
+        ],
+        whyChoose: [
+          "Guaranteed thrills for kids age 4+",
+          "Ready to run right out of the box",
+          "Express birthday gifting delivery"
+        ]
+      },
+      "gift-08": {
+        id: "gift-08",
+        title: "Chocolate Truffle Cake",
+        subtitle: "Decadent Dutch chocolate sponge layered with rich dark chocolate ganache (500g).",
+        badge: "Bestseller",
+        categoryPath: ["Home", "Cakes", "Chocolate", "Chocolate Truffle Cake"],
+        price: 799,
+        originalPrice: 999,
+        discount: "20% OFF",
+        rating: 4.7,
+        reviews: 305,
+        bought: "520+ bought in last month",
+        heroImage: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=600&q=80",
+        thumbnails: [
+          "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=600&q=80"
+        ],
+        description: "Baked fresh daily by master pastry chefs, using 55% Belgian dark chocolate. Melt-in-your-mouth texture with velvety ganache dripping that makes every celebration extraordinary.",
+        highlights: [
+          "100% Eggless available on request",
+          "500 grams (serves 4–6 guests)",
+          "Free designer birthday candle & cake knife",
+          "Chilled delivery in insulated safety box"
+        ],
+        whyChoose: [
+          "Freshly baked on order",
+          "Express 2-hour delivery slot",
+          "Rich, authentic dark cocoa flavor"
+        ]
+      },
+      "gift-09": {
+        id: "gift-09",
+        title: "Elegant Wedding Card",
+        subtitle: "Luxury gold-foiled laser cut greeting card with silk ribbon envelope.",
+        badge: "Wedding",
+        categoryPath: ["Home", "Cards", "Wedding", "Elegant Wedding Card"],
+        price: 49,
+        originalPrice: 99,
+        discount: "50% OFF",
+        rating: 4.5,
+        reviews: 134,
+        bought: "400+ bought in last month",
+        heroImage: "https://images.unsplash.com/photo-1607344645866-009c320b5ab8?auto=format&fit=crop&w=600&q=80",
+        thumbnails: [
+          "https://images.unsplash.com/photo-1607344645866-009c320b5ab8?auto=format&fit=crop&w=600&q=80"
+        ],
+        description: "Convey your heartfelt blessings to the newlyweds with this bespoke laser-cut card featuring traditional floral filigree and embossed metallic foil accents.",
+        highlights: [
+          "300 GSM textured imported ivory cardstock",
+          "Gold foil stamping and embossed motifs",
+          "Blank interior space for handwritten messages"
+        ],
+        whyChoose: [
+          "Keepsake quality",
+          "Includes matching pearlized envelope"
+        ]
+      },
+      "gift-10": {
+        id: "gift-10",
+        title: "Digital Invitation (Video)",
+        subtitle: "Custom cinematic animated video invite formatted for instant WhatsApp sharing.",
+        badge: "Digital",
+        categoryPath: ["Home", "Digital Invitations", "Video", "Digital Invitation (Video)"],
+        price: 299,
+        originalPrice: 499,
+        discount: "40% OFF",
+        rating: 4.6,
+        reviews: 97,
+        bought: "250+ bought in last month",
+        heroImage: "https://images.unsplash.com/photo-1512499617640-c74ae3a79d37?auto=format&fit=crop&w=600&q=80",
+        thumbnails: [
+          "https://images.unsplash.com/photo-1512499617640-c74ae3a79d37?auto=format&fit=crop&w=600&q=80"
+        ],
+        description: "Share the joy effortlessly with an HD motion graphics invitation video featuring your couple / birthday photos, event timeline, Google Maps QR code, and background music of your choice.",
+        highlights: [
+          "Delivered in 1080p MP4 format within 4 hours",
+          "Unlimited revisions until you are satisfied",
+          "Interactive Google Maps location link included"
+        ],
+        whyChoose: [
+          "Eco-friendly & instant WhatsApp distribution",
+          "Modern cinematic aesthetics"
+        ]
+      },
+      "gift-11": {
+        id: "gift-11",
+        title: "Return Gifts (Set of 10)",
+        subtitle: "Eco-friendly hand-crafted jute pouch gift set containing scented potpourri and brass diyas.",
+        badge: "Value Pack",
+        categoryPath: ["Home", "Return Gifts", "Party Favors", "Return Gifts (Set of 10)"],
+        price: 999,
+        originalPrice: 1299,
+        discount: "23% OFF",
+        rating: 4.8,
+        reviews: 221,
+        bought: "320+ bought in last month",
+        heroImage: "https://images.unsplash.com/photo-1485955900006-10f4d324d411?auto=format&fit=crop&w=600&q=80",
+        thumbnails: [
+          "https://images.unsplash.com/photo-1485955900006-10f4d324d411?auto=format&fit=crop&w=600&q=80"
+        ],
+        description: "Thank your celebration guests with a thoughtful, reusable souvenir set. Beautifully packaged in golden organza and jute pouches with personalized tags.",
+        highlights: [
+          "Set of 10 complete gift packages",
+          "Eco-friendly sustainable material",
+          "Customizable 'Thank You' cards attached"
+        ],
+        whyChoose: [
+          "Bulk affordability with premium look",
+          "Ready to distribute at the event"
+        ]
+      },
+      "gift-12": {
+        id: "gift-12",
+        title: "Gift Hamper for Boys",
+        subtitle: "Cool superhero themed gift crate with smartwatch, sunglasses, stationery and sweets.",
+        badge: "Best Gift",
+        categoryPath: ["Home", "Gifts for Boys", "Hampers", "Gift Hamper for Boys"],
+        price: 1499,
+        originalPrice: 1899,
+        discount: "21% OFF",
+        rating: 4.5,
+        reviews: 168,
+        bought: "280+ bought in last month",
+        heroImage: "https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=600&q=80",
+        thumbnails: [
+          "https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=600&q=80"
+        ],
+        description: "Curated specifically for young boys, packed with fun utilities and stylish gear in a magnetic reusable keepsake box.",
+        highlights: [
+          "High-grade LED digital sports watch",
+          "UV400 cool sunglasses",
+          "Gourmet chocolate treats & greeting card"
+        ],
+        whyChoose: [
+          "Exciting multi-item gift",
+          "Instant smile guarantee"
+        ]
+      }
+    };
+
+    // Active product tracker
+    let activeProduct = GIFTS_CATALOG["gift-01"];
+    let isWishlisted = false;
+
+    // Read URL param ?id=gift-xx
+    window.addEventListener("DOMContentLoaded", () => {
+      const params = new URLSearchParams(window.location.search);
+      const giftId = params.get("id") || "gift-01";
+      if (GIFTS_CATALOG[giftId]) {
+        activeProduct = GIFTS_CATALOG[giftId];
+      }
+      populateProductDetails(activeProduct);
+    });
+
+    function populateProductDetails(prod) {
+      document.getElementById("gdpPageTitle").textContent = `${prod.title} | Gifts Marketplace | Celebration Events`;
+      document.getElementById("gdpTitle").textContent = prod.title;
+      document.getElementById("gdpTagline").textContent = prod.subtitle;
+      document.getElementById("gdpBadge").textContent = prod.badge || "Bestseller";
+      document.getElementById("gdpCrumbTitle").textContent = prod.title;
+
+      document.getElementById("gdpPriceNow").textContent = `₹${prod.price.toLocaleString("en-IN")}`;
+      document.getElementById("gdpPriceOrig").textContent = `₹${prod.originalPrice.toLocaleString("en-IN")}`;
+      document.getElementById("gdpPriceDiscount").textContent = prod.discount;
+
+      document.getElementById("gdpRatingText").textContent = `${prod.rating} (${prod.reviews} reviews)`;
+      document.getElementById("gdpBoughtText").textContent = prod.bought;
+
+      // Hero Image & Thumbnails
+      document.getElementById("gdpMainImg").src = prod.heroImage;
+      const thumbsCol = document.getElementById("gdpThumbsCol");
+      if (thumbsCol && prod.thumbnails && prod.thumbnails.length > 0) {
+        thumbsCol.innerHTML = prod.thumbnails.map((thumb, idx) => `
+          <div class="gdp-thumb-item ${idx === 0 ? 'active' : ''}" onclick="switchGdpThumb(${idx}, this)">
+            <img src="${thumb}" alt="${prod.title} angle ${idx+1}" />
+          </div>
+        `).join("") + `
+          <button class="gdp-thumb-down-arrow" onclick="scrollThumbsDown()" aria-label="Next thumbnails">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+        `;
+      }
+
+      // Breadcrumb path
+      if (prod.categoryPath) {
+        const crumbEl = document.getElementById("gdpBreadcrumbs");
+        crumbEl.innerHTML = `
+          <a href="index.html">Home</a>
+          <span class="separator">›</span>
+          <a href="marketplace.html">${prod.categoryPath[1] || 'Marketplace'}</a>
+          <span class="separator">›</span>
+          <a href="marketplace.html">${prod.categoryPath[2] || 'Gifts'}</a>
+          <span class="separator">›</span>
+          <span class="current">${prod.title}</span>
+        `;
+      }
+
+      // Description & Highlights
+      document.getElementById("gdpDescPara").textContent = prod.description;
+      const listEl = document.getElementById("gdpHighlightsList");
+      if (listEl && prod.highlights) {
+        listEl.innerHTML = prod.highlights.map(h => `<li>${h}</li>`).join("");
+      }
+
+      const whyEl = document.getElementById("gdpWhyList");
+      if (whyEl && prod.whyChoose) {
+        whyEl.innerHTML = prod.whyChoose.map(w => `
+          <li>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>${w}</span>
+          </li>
+        `).join("");
+      }
+    }
+
+    // Switch Thumbnail Click
+    function switchGdpThumb(idx, el) {
+      document.querySelectorAll(".gdp-thumb-item").forEach(item => item.classList.remove("active"));
+      if (el) el.classList.add("active");
+      if (activeProduct && activeProduct.thumbnails && activeProduct.thumbnails[idx]) {
+        document.getElementById("gdpMainImg").src = activeProduct.thumbnails[idx];
+      }
+    }
+
+    function scrollThumbsDown() {
+      const thumbs = document.querySelectorAll(".gdp-thumb-item");
+      if (thumbs.length > 1) {
+        const currentActive = document.querySelector(".gdp-thumb-item.active");
+        let next = currentActive ? currentActive.nextElementSibling : thumbs[0];
+        if (!next || !next.classList.contains("gdp-thumb-item")) next = thumbs[0];
+        next.click();
+      }
+    }
+
+    function openGdpZoom() {
+      const img = document.getElementById("gdpMainImg").src;
+      window.open(img, "_blank");
+    }
+
+    // Pincode Check
+    function checkGdpPincode() {
+      const pin = document.getElementById("gdpPincodeInput").value.trim();
+      const statusEl = document.getElementById("gdpDeliveryStatus");
+      if (!pin) {
+        showToast("Please enter a valid city or 6-digit pincode.");
+        return;
+      }
+      statusEl.innerHTML = `
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        <span style="color: #065f46;"><strong>Verified Available:</strong> Same-day express delivery in 2 to 4 hours to <em>${pin}</em>!</span>
+      `;
+      showToast(`⚡ Delivery available for ${pin} within 2–4 hours!`);
+    }
+
+    // Tab Switching
+    function switchGdpTab(tabName) {
+      const tabs = ["desc", "specs", "deliv", "reviews"];
+      tabs.forEach(t => {
+        const btn = document.getElementById(`tab-btn-${t}`);
+        const panel = document.getElementById(`tab-panel-${t}`);
+        if (btn) btn.classList.toggle("active", t === tabName);
+        if (panel) panel.style.display = t === tabName ? "block" : "none";
+      });
+    }
+
+    // Add to Cart
+    function gdpAddToCart() {
+      if (typeof appState !== "undefined" && appState.cart) {
+        appState.cart.push({
+          id: activeProduct.id,
+          title: activeProduct.title,
+          price: activeProduct.price,
+          originalPrice: activeProduct.originalPrice,
+          image: activeProduct.heroImage,
+          date: new Date().toISOString().split("T")[0],
+          timeSlot: "Express Delivery (Same Day 2–4 hrs)",
+          city: document.getElementById("gdpPincodeInput").value || "Delhi NCR",
+          addons: []
+        });
+        saveCartToStorage();
+        updateCartBadge();
+      }
+      showToast(`🛒 "${activeProduct.title}" added to your cart!`);
+      const btn = document.getElementById("gdpAddCartBtn");
+      btn.innerHTML = `<span>✓ Added to Cart</span>`;
+      btn.style.background = "#10b981";
+      setTimeout(() => {
+        btn.innerHTML = `
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="8" cy="21" r="1"></circle><circle cx="19" cy="21" r="1"></circle><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path></svg>
+          <span>Add to Cart</span>
+        `;
+        btn.style.background = "#e11d48";
+      }, 2000);
+    }
+
+    // Buy Now
+    function gdpBuyNow() {
+      gdpAddToCart();
+      if (typeof openCart === "function") {
+        openCart();
+      }
+    }
+
+    // Wishlist Toggle
+    function gdpToggleWishlist() {
+      isWishlisted = !isWishlisted;
+      const btn = document.getElementById("gdpWishlistBtn");
+      const icon = document.getElementById("gdpWishIcon");
+      if (isWishlisted) {
+        btn.classList.add("active");
+        icon.textContent = "♥";
+        showToast(`❤️ Added "${activeProduct.title}" to your Wishlist!`);
+      } else {
+        btn.classList.remove("active");
+        icon.textContent = "♡";
+        showToast(`Removed from Wishlist`);
+      }
+    }
+
+    // Related slider scroll
+    function scrollRelatedTrack(offset) {
+      const track = document.getElementById("gdpRelatedTrack");
+      if (track) track.scrollBy({ left: offset, behavior: "smooth" });
+    }
+
+    function openRelatedGift(title, price, img) {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      document.getElementById("gdpTitle").textContent = title;
+      document.getElementById("gdpPriceNow").textContent = `₹${price}`;
+      document.getElementById("gdpMainImg").src = img;
+      document.getElementById("gdpCrumbTitle").textContent = title;
+      showToast(`Loaded ${title}`);
+    }
+
+    function addRelatedToCart(title, price, img) {
+      if (typeof appState !== "undefined" && appState.cart) {
+        appState.cart.push({
+          id: "related-" + Date.now(),
+          title: title,
+          price: price,
+          originalPrice: price + 200,
+          image: img,
+          date: new Date().toISOString().split("T")[0],
+          timeSlot: "Express Delivery (2–4 hrs)",
+          city: "Delhi NCR",
+          addons: []
+        });
+        saveCartToStorage();
+        updateCartBadge();
+      }
+      showToast(`🛒 "${title}" added to cart!`);
+    }
+  </script>
+</body>
+</html>
