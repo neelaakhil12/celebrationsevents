@@ -14,8 +14,7 @@
 
   <!-- Top Announcement Bar -->
   <div class="announcement-bar">
-    <span class="badge">Birthday Special</span>
-    <span>Use code <strong>CELEBRATE10</strong> for Flat 10% OFF on All Birthday Setups | ⚡ Express 2-Hour Slot Available</span>
+    <span>⚡ Express 2-Hour Slot Available for All Birthday Setups</span>
   </div>
 
   <!-- Sticky Main Header -->
@@ -48,10 +47,9 @@
       <!-- Navigation Links on Header -->
       <div class="header-nav-desktop">
         <a href="index.html" class="header-nav-link">Home</a>
-        <a href="wedding.html" class="header-nav-link">Wedding ✨</a>
-        <a href="marketplace.html" class="header-nav-link">Gifts 🎁</a>
         <a href="about.html" class="header-nav-link">About Us</a>
         <a href="contact.html" class="header-nav-link">Contact</a>
+        <a href="blog.html" class="header-nav-link">Blog</a>
       </div>
 
       <!-- Header Center Search Trigger -->
@@ -116,11 +114,11 @@
     <!-- Sub-Occasion Pills for Birthday -->
     <section data-aos="fade-up">
       <div style="display: flex; gap: 8px; overflow-x: auto; padding-bottom: 6px; scrollbar-width: none;" id="birthdaySubFilter">
-        <button class="filter-pill active" onclick="filterBirthdayType('all', this)">All Birthdays (12)</button>
+        <button class="filter-pill active" onclick="filterBirthdayType('all', this)">All Birthdays</button>
         <button class="filter-pill" onclick="filterBirthdayType('home', this)">🏠 Simple Home Surprises</button>
-        <button class="filter-pill" onclick="filterBirthdayType('kids', this)">🦄 Kids Party Themes</button>
         <button class="filter-pill" onclick="filterBirthdayType('arch', this)">⭕ Arch & Ring Backdrops</button>
         <button class="filter-pill" onclick="filterBirthdayType('luxury', this)">✨ Luxury Boho & Grand</button>
+        <a href="kids.html" class="filter-pill">🦄 Kids Themes →</a>
       </div>
     </section>
 
@@ -182,16 +180,28 @@
       </div>
     </section>
 
-    <!-- Customer Reviews for Birthday -->
-    <section class="reviews-section" data-aos="fade-up">
+    <!-- Real Photos & Video Customer Reviews Section -->
+    <section class="reviews-section" id="reviewsSection" data-aos="fade-up" data-aos-duration="700">
       <div class="section-header">
         <div class="section-title-wrap">
-          <h2 class="section-title">Happy Birthday Reviews & Photos</h2>
+          <div class="reviews-stream-tag">
+            <span class="live-pulse-dot"></span> LIVE CELEBRATION FEED
+          </div>
+          <h2 class="section-title">Real Photos & Video Customer Reviews</h2>
           <div class="title-underline"></div>
-          <p class="section-subtitle">What families say about our birthday setups</p>
+          <p class="section-subtitle">Watch real celebration reels and customer setups across India • Hover over any card to pause</p>
         </div>
       </div>
-      <div class="reviews-grid" id="reviewsGrid"></div>
+
+      <!-- 2-Row Infinite Video & Photo Scrolling Stream -->
+      <div class="reviews-marquee-wrapper" id="reviewsMarqueeWrapper">
+        <div class="reviews-marquee-row">
+          <div class="reviews-marquee-track track-row-1" id="reviewsTrackRow1"></div>
+        </div>
+        <div class="reviews-marquee-row">
+          <div class="reviews-marquee-track track-row-2" id="reviewsTrackRow2"></div>
+        </div>
+      </div>
     </section>
 
   </main>
@@ -227,6 +237,8 @@
             <li><a href="index.html">Home</a></li>
             <li><a href="about.html">About Us</a></li>
             <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="blog.html">Blog & Guides</a></li>
+        <li><a href="blog.html" class="mobile-nav-link">📝 Blog & Guides <span>›</span></a></li>
             <li><a href="#" onclick="openCityModal(); return false;">Choose City</a></li>
             <li><a href="#" onclick="openCart(); return false;">My Cart</a></li>
           </ul>
@@ -706,8 +718,8 @@
     let bdayType = 'all';
 
     function initBirthdayPage() {
-      // Collect birthday and kids products
-      bdayItems = SITE_DATA.products.filter(p => p.category === 'birthday' || p.category === 'kids');
+      // Collect birthday packages only
+      bdayItems = SITE_DATA.products.filter(p => p.category === 'birthday');
       renderBirthdayProducts();
     }
 
@@ -719,7 +731,6 @@
 
       const titleEl = document.getElementById("bdayCatalogTitle");
       if (type === 'home') titleEl.textContent = "Simple Home Birthday Setups";
-      else if (type === 'kids') titleEl.textContent = "Kids Birthday Party Themes";
       else if (type === 'arch') titleEl.textContent = "Organic Arch & Ring Backdrop Setups";
       else if (type === 'luxury') titleEl.textContent = "Luxury Boho & Grand Jubilee Decors";
       else titleEl.textContent = "All Birthday Packages";
@@ -741,8 +752,6 @@
       let filtered = [...bdayItems];
       if (bdayType === 'home') {
         filtered = filtered.filter(p => p.price < 2500 && p.category === 'birthday');
-      } else if (bdayType === 'kids') {
-        filtered = filtered.filter(p => p.category === 'kids');
       } else if (bdayType === 'arch') {
         filtered = filtered.filter(p => p.title.toLowerCase().includes("arch") || p.title.toLowerCase().includes("backdrop"));
       } else if (bdayType === 'luxury') {
@@ -793,5 +802,12 @@
       initBirthdayPage();
     });
   </script>
+  <!-- Review Media Modal Overlay (Video Reels & Photos) -->
+  <div class="review-modal-overlay" id="reviewMediaModalOverlay" onclick="closeReviewMediaModal(event)">
+    <div class="review-modal-content">
+      <button class="review-modal-close" onclick="closeReviewMediaModal(event)" aria-label="Close modal">&times;</button>
+      <div class="review-modal-body" id="reviewModalBody"></div>
+    </div>
+  </div>
 </body>
 </html>

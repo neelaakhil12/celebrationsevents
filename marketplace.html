@@ -13,8 +13,7 @@
 
   <!-- Top Announcement Bar -->
   <div class="announcement-bar">
-    <span class="badge">Special Offer</span>
-    <span>Use code <strong>CELEBRATE10</strong> for Flat 10% OFF | 🎁 Curated Gifts & Same Day Delivery Across India</span>
+    <span>🎁 Curated Gifts & Same Day Delivery Across India</span>
   </div>
 
   <!-- Sticky Main Header -->
@@ -47,10 +46,9 @@
       <!-- Navigation Links on Header -->
       <div class="header-nav-desktop">
         <a href="index.html" class="header-nav-link">Home</a>
-        <a href="wedding.html" class="header-nav-link">Wedding ✨</a>
-        <a href="marketplace.html" class="header-nav-link active" style="color: var(--brand-600); font-weight: 700;">Gifts 🎁</a>
         <a href="about.html" class="header-nav-link">About Us</a>
         <a href="contact.html" class="header-nav-link">Contact</a>
+        <a href="blog.html" class="header-nav-link">Blog</a>
       </div>
 
       <!-- Header Center Search Trigger -->
@@ -88,6 +86,7 @@
         <li class="nav-item"><a href="wedding.html" class="nav-trigger">Wedding</a></li>
         <li class="nav-item"><a href="corporate.html" class="nav-trigger">Corporate</a></li>
         <li class="nav-item"><a href="marketplace.html" class="nav-trigger active" style="color: var(--brand-600); font-weight: 800;">Gifts Marketplace <span class="tag-pill tag-popular">HOT</span></a></li>
+        <li class="nav-item"><a href="blog.html" class="nav-trigger">Blog <span class="tag-pill tag-new">NEW</span></a></li>
         <li class="nav-item"><a href="#" class="nav-trigger" onclick="openCityModal(); return false;">Cities <span class="tag-pill tag-count">50+</span></a></li>
       </ul>
     </div>
@@ -95,39 +94,59 @@
 
   <!-- Main Container -->
   <main class="marketplace-container">
-    <!-- Breadcrumbs (Exact match) -->
-    <div class="marketplace-breadcrumbs">
-      <a href="index.html">Home</a>
-      <span>&gt;</span>
-      <span class="curr">Marketplace</span>
-    </div>
-
-    <!-- Hero Banner (Exact match) -->
-    <section class="marketplace-hero-banner">
-      <div class="mph-left">
-        <h1 class="mph-title">Gifts <span class="pink-accent">Marketplace</span></h1>
-        <p class="mph-subtitle">Explore a wide range of unique gifts for every occasion.</p>
-        
-        <div class="mph-perks-row">
-          <div class="mph-perk-badge">
-            <span class="perk-icon">🚚</span>
-            <span>Wide Variety</span>
-          </div>
-          <div class="mph-perk-badge">
-            <span class="perk-icon">🛡️</span>
-            <span>Trusted Sellers</span>
-          </div>
-          <div class="mph-perk-badge">
-            <span class="perk-icon">🏷️</span>
-            <span>Best Prices</span>
+    <!-- Gifts Hero Banner -->
+    <section class="hero-carousel" style="aspect-ratio: 16 / 4.8; min-height: 260px;" data-aos="fade-up">
+      <div class="carousel-slides">
+        <div class="carousel-slide">
+          <img src="assets/gifts-banner.jpg" alt="Curated Gifts & Celebration Hampers" style="object-position: right center;" />
+          <div class="slide-overlay"></div>
+          <div class="slide-content">
+            <span class="slide-tag">🎁 The Ultimate Gifts Collection</span>
+            <h1 class="slide-title">Curated Gifts & Celebration Hampers</h1>
+            <p class="slide-desc">Explore handpicked gifts for birthdays, anniversaries, and all special occasions. Same-day 2–4 hour express delivery across 100+ cities.</p>
+            <a href="#giftsProductGrid" class="slide-btn">Explore Gift Hampers Below ↓</a>
           </div>
         </div>
       </div>
+    </section>
 
-      <div class="mph-right">
-        <img src="assets/gifts-banner.jpg" alt="Luxury Gifts & Celebration Hampers" />
+    <!-- Horizontal Category Filter Pills (Exact Match to Screenshot) -->
+    <section data-aos="fade-up" style="margin-top: 16px; margin-bottom: 20px;">
+      <div class="filter-pills" id="giftsHorizontalFilterPills" style="display: flex; gap: 8px; overflow-x: auto; padding-bottom: 6px; scrollbar-width: none;">
+        <button type="button" class="filter-pill active" onclick="selectGiftHorizontalCategory('all', this)">All Gifts (845)</button>
+        <button type="button" class="filter-pill" onclick="selectGiftHorizontalCategory('Gifts for Boys', this)">👦 Gifts for Boys (124)</button>
+        <button type="button" class="filter-pill" onclick="selectGiftHorizontalCategory('Gifts for Girls', this)">👧 Gifts for Girls (132)</button>
+        <button type="button" class="filter-pill" onclick="selectGiftHorizontalCategory('Gifts for Men', this)">👨 Gifts for Men (98)</button>
+        <button type="button" class="filter-pill" onclick="selectGiftHorizontalCategory('Gifts for Women', this)">👩 Gifts for Women (156)</button>
+        <button type="button" class="filter-pill" onclick="selectGiftHorizontalCategory('Wedding Gifts', this)">💍 Wedding Gifts (87)</button>
+        <button type="button" class="filter-pill" onclick="selectGiftHorizontalCategory('Cakes', this)">🎂 Cakes (64)</button>
+        <button type="button" class="filter-pill" onclick="selectGiftHorizontalCategory('Flowers', this)">💐 Flowers (112)</button>
+        <button type="button" class="filter-pill" onclick="selectGiftHorizontalCategory('Cards', this)">💌 Cards (54)</button>
+        <button type="button" class="filter-pill" onclick="selectGiftHorizontalCategory('Digital Invitations', this)">📱 Digital Invitations (41)</button>
+        <button type="button" class="filter-pill" onclick="selectGiftHorizontalCategory('Returns Gifts', this)">🎁 Return Gifts (77)</button>
+        <button type="button" class="filter-pill" onclick="selectGiftHorizontalCategory('Chocolates', this)">🍫 Chocolates (63)</button>
       </div>
     </section>
+
+    <!-- Perks Row -->
+    <div class="mph-perks-row" style="margin-bottom: 24px;" data-aos="fade-up">
+      <div class="mph-perk-badge">
+        <span class="perk-icon">🚚</span>
+        <span>Wide Variety</span>
+      </div>
+      <div class="mph-perk-badge">
+        <span class="perk-icon">🛡️</span>
+        <span>Trusted Sellers</span>
+      </div>
+      <div class="mph-perk-badge">
+        <span class="perk-icon">🏷️</span>
+        <span>Best Prices</span>
+      </div>
+      <div class="mph-perk-badge">
+        <span class="perk-icon">⚡</span>
+        <span>Express Delivery</span>
+      </div>
+    </div>
 
     <!-- Main Two-Column Layout -->
     <div class="marketplace-layout">
@@ -319,6 +338,67 @@
       </section>
     </div>
   </main>
+
+  <!-- Main Footer -->
+  <footer class="main-footer">
+    <div class="footer-container">
+      <div class="footer-top-grid">
+        <div class="footer-col">
+          <div class="brand-logo" style="color: #fff; margin-bottom: 12px;">
+            <span class="logo-balloon">🎈</span>
+            <span>Celebration <span style="color: var(--brand-400);">Events</span><span class="reg">®</span></span>
+          </div>
+          <p>India’s most trusted online platform for party and balloon decorations. We deliver happiness and vibrant surprises across 100+ cities with guaranteed on-time setup.</p>
+          <p><strong>Hotline:</strong> +91 82820 25444<br/><strong>Email:</strong> support@celebrationevents.com<br/><strong>Hours:</strong> Mon - Sun, 09:00 AM - 10:00 PM</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Occasions</h4>
+          <ul class="footer-links">
+            <li><a href="birthday.html">Birthday Decorations</a></li>
+            <li><a href="anniversary.html">Anniversary Celebrations</a></li>
+            <li><a href="kids.html">Kids Theme Parties</a></li>
+            <li><a href="baby-shower.html">Baby Shower & Welcome</a></li>
+            <li><a href="wedding.html">Haldi & Wedding Setups</a></li>
+            <li><a href="corporate.html">Corporate Event Decor</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="blog.html">Blog & Guides</a></li>
+            <li><a href="#" onclick="openCityModal(); return false;">Choose City</a></li>
+            <li><a href="#" onclick="openCart(); return false;">My Cart</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Instant WhatsApp Booking</h4>
+          <p>Need urgent same-day setup or custom theme design? Chat with our event specialists right now.</p>
+          <a href="https://wa.me/918282025444?text=Hi%20Celebration%20Events,%20I%20want%20to%20book%20a%20decoration%20service." target="_blank" rel="noopener noreferrer" class="slide-btn" style="background: #25d366; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);">
+            Chat on WhatsApp →
+          </a>
+        </div>
+      </div>
+
+      <!-- City Directory -->
+      <div class="footer-cities-wrap">
+        <h5>Serving Across 50+ Cities in India:</h5>
+        <div class="footer-cities-links" id="footerCitiesLinks">
+          <!-- Rendered dynamically -->
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 Celebration Events Technologies Private Limited. All Rights Reserved.</p>
+        <p>100% Secure Payment | UPI • Cards • NetBanking • Pay After Setup</p>
+      </div>
+    </div>
+  </footer>
 
   <!-- Cart Slide-Over Drawer -->
   <div class="cart-drawer-overlay" id="cartDrawerOverlay">
@@ -683,10 +763,53 @@
       }
     }
 
-    function applyGiftFilters() {
+    function selectGiftHorizontalCategory(categoryName, btn) {
+      const allPills = document.querySelectorAll("#giftsHorizontalFilterPills .filter-pill");
+      allPills.forEach(p => p.classList.remove("active"));
+
+      if (btn) {
+        btn.classList.add("active");
+      } else {
+        if (!categoryName || categoryName.toLowerCase() === 'all') {
+          if (allPills[0]) allPills[0].classList.add("active");
+        } else {
+          const match = Array.from(allPills).find(p => p.textContent.toLowerCase().includes(categoryName.toLowerCase()));
+          if (match) match.classList.add("active");
+          else if (allPills[0]) allPills[0].classList.add("active");
+        }
+      }
+
+      // Synchronize with sidebar checkboxes
+      const catCheckboxes = document.querySelectorAll('input[name="cat"]');
+      if (!categoryName || categoryName.toLowerCase() === 'all') {
+        catCheckboxes.forEach(cb => cb.checked = false);
+      } else {
+        catCheckboxes.forEach(cb => {
+          cb.checked = (cb.value.toLowerCase() === categoryName.toLowerCase());
+        });
+      }
+
+      applyGiftFilters(false);
+    }
+
+    function applyGiftFilters(syncPills = true) {
       const selectedCats = Array.from(document.querySelectorAll('input[name="cat"]:checked')).map(cb => cb.value);
       const selectedOccasions = Array.from(document.querySelectorAll('input[name="occasion"]:checked')).map(cb => cb.value);
       const selectedBrands = Array.from(document.querySelectorAll('input[name="brand"]:checked')).map(cb => cb.value);
+
+      if (syncPills) {
+        const allPills = document.querySelectorAll("#giftsHorizontalFilterPills .filter-pill");
+        if (allPills.length > 0) {
+          allPills.forEach(p => p.classList.remove("active"));
+          if (selectedCats.length === 1) {
+            const matchPill = Array.from(allPills).find(p => p.textContent.toLowerCase().includes(selectedCats[0].toLowerCase()));
+            if (matchPill) matchPill.classList.add("active");
+            else allPills[0].classList.add("active");
+          } else if (selectedCats.length === 0) {
+            allPills[0].classList.add("active");
+          }
+        }
+      }
 
       let filtered = GIFTS_DATA.filter(item => {
         // Price check
@@ -797,6 +920,11 @@
         filterBrandCheckboxes("");
       }
       currentGiftList = [...GIFTS_DATA];
+      // Reset horizontal pills
+      const allPills = document.querySelectorAll("#giftsHorizontalFilterPills .filter-pill");
+      allPills.forEach(p => p.classList.remove("active"));
+      if (allPills.length > 0) allPills[0].classList.add("active");
+
       handleGiftSort(currentSort);
     }
 
@@ -813,8 +941,41 @@
     }
 
     document.addEventListener("DOMContentLoaded", () => {
-      renderGiftsGrid(GIFTS_DATA);
+      const params = new URLSearchParams(window.location.search);
+      const reqCat = params.get("category") || params.get("cat");
+      if (reqCat) {
+        selectGiftHorizontalCategory(reqCat);
+      } else {
+        renderGiftsGrid(GIFTS_DATA);
+      }
     });
   </script>
+  <!-- Mobile Sidebar Drawer -->
+  <div class="mobile-sidebar-overlay" id="mobileSidebarOverlay">
+    <div class="mobile-sidebar">
+      <div class="mobile-sidebar-header">
+        <div class="brand-logo">
+          <span class="logo-balloon">🎈</span>
+          <span>Celebration <span class="bold">Events</span></span>
+        </div>
+        <button class="modal-close-btn" onclick="closeMobileSidebar()">&times;</button>
+      </div>
+      <ul class="mobile-nav-list">
+        <li><a href="index.html" class="mobile-nav-link">🏠 Home <span>›</span></a></li>
+        <li><a href="birthday.html" class="mobile-nav-link">🎂 Birthday Decoration <span>›</span></a></li>
+        <li><a href="anniversary.html" class="mobile-nav-link">❤️ Romantic & Anniversary <span>›</span></a></li>
+        <li><a href="kids.html" class="mobile-nav-link">🦄 Kids Theme Parties <span>›</span></a></li>
+        <li><a href="baby-shower.html" class="mobile-nav-link">🍼 Baby Shower & Welcome <span>›</span></a></li>
+        <li><a href="wedding.html" class="mobile-nav-link">💍 Wedding <span>›</span></a></li>
+        <li><a href="corporate.html" class="mobile-nav-link">💼 Corporate Events <span>›</span></a></li>
+        <li><a href="marketplace.html" class="mobile-nav-link" style="color: var(--brand-600); font-weight: 700;">🎁 Gifts & Marketplace <span class="tag-pill tag-trending" style="margin-left: 6px; font-size: 9.5px; padding: 2px 7px;">HOT</span> <span>›</span></a></li>
+        <li><a href="blog.html" class="mobile-nav-link">📰 Party Blog & Ideas <span class="tag-pill tag-new" style="margin-left: 6px; font-size: 9.5px; padding: 2px 7px;">NEW</span> <span>›</span></a></li>
+        <li><a href="about.html" class="mobile-nav-link">ℹ️ About Us <span>›</span></a></li>
+        <li><a href="contact.html" class="mobile-nav-link">📞 Contact Us <span>›</span></a></li>
+        <li><a href="#" class="mobile-nav-link" onclick="openCityModal(); closeMobileSidebar();">📍 Change City <span>›</span></a></li>
+        <li><a href="#" class="mobile-nav-link" onclick="openLoginPrompt(); closeMobileSidebar();">👤 Sign In / Account <span>›</span></a></li>
+      </ul>
+    </div>
+  </div>
 </body>
 </html>

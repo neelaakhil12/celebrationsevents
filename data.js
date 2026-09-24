@@ -75,6 +75,14 @@ const SITE_DATA = {
       badge: "BUSINESS",
       image: "https://cdn.balloondekor.com/33/office-decoration-b84c3312-f4cd-4baf-8d1f-b03d28c61242.webp",
       desc: "Office anniversary, annual day & milestone celebrations"
+    },
+    {
+      id: "gifts",
+      name: "Gifts & Hampers",
+      icon: "🎁",
+      badge: "NEW",
+      image: "https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=600&q=80",
+      desc: "Curated gift hampers, surprise boxes, flower bouquets & cakes"
     }
   ],
   weddingServices: [
@@ -931,6 +939,250 @@ const SITE_DATA = {
         "Mattress, Cushions & Low Table Styling Setup"
       ],
       tags: ["Cabana", "Terrace Surprise", "Candlelight"]
+    },
+    // Corporate Additional Packages
+    {
+      id: "corporate-product-launch-balloon-arch",
+      title: "Corporate Product Launch Ribbon Cutting Decor",
+      category: "corporate",
+      categoryName: "Corporate & Office",
+      price: 4999,
+      originalPrice: 6499,
+      discount: 23,
+      rating: 4.9,
+      reviewsCount: 142,
+      badge: "POPULAR",
+      image: "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=600&q=80",
+      gallery: [
+        "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=600&q=80"
+      ],
+      setupDuration: "2 Hours",
+      description: "Custom brand color balloon columns, entrance arch and ribbon cutting stage design for new office and product launches.",
+      inclusions: ["Custom Brand Color Balloons Arch", "2 Entrance Balloon Pillars", "Ribbon Cutting Station Styling", "Setup by certified decorators"],
+      tags: ["Office Opening", "Product Launch", "Brand Colors"]
+    },
+    {
+      id: "corporate-cubicle-bay-festive-decor",
+      title: "Office Workstation & Cubicle Festive Surprise",
+      category: "corporate",
+      categoryName: "Corporate & Office",
+      price: 2999,
+      originalPrice: 3999,
+      discount: 25,
+      rating: 4.8,
+      reviewsCount: 96,
+      badge: "BESTSELLER",
+      image: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=600&q=80",
+      gallery: [
+        "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=600&q=80"
+      ],
+      setupDuration: "1.5 Hours",
+      description: "Festive work bay decor with ceiling bunch hanging, entrance arch and desk bunting for team celebrations.",
+      inclusions: ["50 Ceiling Hanging Balloons", "Team Bay Entrance Runner", "Metallic Foil Bunting", "Express after-hours setup"],
+      tags: ["Team Celebration", "Bay Decor", "Work Anniversary"]
+    },
+    {
+      id: "corporate-executive-townhall-stage-backdrop",
+      title: "Executive Townhall & Leadership Meet Backdrop",
+      category: "corporate",
+      categoryName: "Corporate & Office",
+      price: 7499,
+      originalPrice: 9999,
+      discount: 25,
+      rating: 5.0,
+      reviewsCount: 118,
+      badge: "PREMIUM",
+      image: "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&w=600&q=80",
+      gallery: [
+        "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&w=600&q=80"
+      ],
+      setupDuration: "3 Hours",
+      description: "Grand sequin panel backdrop with organic balloon garland, spotlighting, and company logo integration.",
+      inclusions: ["10x8 Ft Backdrop Structure", "Organic Metallic Garland", "Warm Stage Uplights", "Company Banner Framing"],
+      tags: ["Townhall", "Annual Meet", "Leadership Event"]
+    },
+    // Baby Shower Additional Packages
+    {
+      id: "baby-shower-teddy-cloud-cradle-decor",
+      title: "Teddy & Pastel Clouds Baby Shower Cradle Decor",
+      category: "baby-shower",
+      categoryName: "Baby Shower & Welcome",
+      price: 3499,
+      originalPrice: 4499,
+      discount: 22,
+      rating: 4.9,
+      reviewsCount: 164,
+      badge: "TRENDING",
+      image: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=600&q=80",
+      gallery: [
+        "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=600&q=80"
+      ],
+      setupDuration: "2 Hours",
+      description: "Enchanting pastel balloon clouds, oversized teddy bear cutout, golden cradle ring and fairy lights.",
+      inclusions: ["Pastel Ring Arch", "Cute Teddy Cutout", "Baby Shower Neon Sign", "Warm fairy lights"],
+      tags: ["Baby Shower", "Pastel Theme", "Teddy Bear"]
+    },
+    {
+      id: "baby-welcome-home-balloon-surprise",
+      title: "Baby Welcome Home Room Surprise Decor",
+      category: "baby-shower",
+      categoryName: "Baby Shower & Welcome",
+      price: 2199,
+      originalPrice: 2899,
+      discount: 24,
+      rating: 4.9,
+      reviewsCount: 210,
+      badge: "BESTSELLER",
+      image: "https://cdn.balloondekor.com/33/baby-shower-decoration-1ba3a3a3-d2eb-40e6-98bd-aed4eb907984.webp",
+      gallery: [
+        "https://cdn.balloondekor.com/33/baby-shower-decoration-1ba3a3a3-d2eb-40e6-98bd-aed4eb907984.webp"
+      ],
+      setupDuration: "1.5 Hours",
+      description: "Welcome little bundle of joy home with baby feet foil balloons, ceiling balloons, crib styling and welcome door bunting.",
+      inclusions: ["Welcome Baby Foil Set", "50 Metallic Balloons", "Door Ribbon & Bunting", "Baby Footprint Foil Balloon"],
+      tags: ["Welcome Home", "Newborn Baby", "Home Decor"]
+    },
+    // Wedding Additional Packages
+    {
+      id: "wedding-mehendi-vibrant-cabana-decor",
+      title: "Vibrant Marigold & Bohemian Mehendi Canopy",
+      category: "wedding",
+      categoryName: "Wedding",
+      price: 4999,
+      originalPrice: 6599,
+      discount: 24,
+      rating: 4.9,
+      reviewsCount: 185,
+      badge: "POPULAR",
+      image: "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=600&q=80",
+      gallery: [
+        "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=600&q=80"
+      ],
+      setupDuration: "2.5 Hours",
+      description: "Colorful yellow and orange marigold flower drapes, wooden cabana, floor seating cushions and brass urlis.",
+      inclusions: ["Marigold Flower Canopy", "Ethnic Printed Bolsters & Cushions", "Brass Urli with Floating Rose Petals", "Complete traditional setup"],
+      tags: ["Mehendi", "Haldi", "Wedding Canopy"]
+    },
+    {
+      id: "wedding-grand-car-dikki-floral-decor",
+      title: "Grand Bridal Baraat & Just Married Car Decor",
+      category: "wedding",
+      categoryName: "Wedding",
+      price: 3299,
+      originalPrice: 4299,
+      discount: 23,
+      rating: 5.0,
+      reviewsCount: 240,
+      badge: "SPECIAL",
+      image: "https://images.unsplash.com/photo-1532712938310-34cb3982ef74?auto=format&fit=crop&w=600&q=80",
+      gallery: [
+        "https://images.unsplash.com/photo-1532712938310-34cb3982ef74?auto=format&fit=crop&w=600&q=80"
+      ],
+      setupDuration: "1.5 Hours",
+      description: "Fresh orchids, red roses, net draping and 'Just Married' ribbon styling on car bonnet, handles and roof.",
+      inclusions: ["Fresh Rose & Orchid Bonnet Bouquet", "4 Door Handle Floral Corsages", "Net Draping & Just Married Ribbon", "Scratch-free professional installation"],
+      tags: ["Wedding Car", "Baraat", "Floral Car Decor"]
+    },
+    // Gifts & Hampers Packages
+    {
+      id: "gift-luxury-chocolates-rose-hamper",
+      title: "Royal Velvet Rose & Gourmet Chocolate Hamper",
+      category: "gifts",
+      categoryName: "Gifts & Hampers",
+      price: 1999,
+      originalPrice: 2699,
+      discount: 26,
+      rating: 4.9,
+      reviewsCount: 280,
+      badge: "BESTSELLER",
+      image: "https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=600&q=80",
+      gallery: [
+        "https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=600&q=80"
+      ],
+      setupDuration: "Same-Day Delivery",
+      description: "Handcrafted velvet box with imported Belgian chocolates, preserved red roses, scented candle and personalized greeting card.",
+      inclusions: ["Luxury Velvet Gift Box", "16 Pcs Imported Chocolates", "Fresh Red Rose Bunch", "Greeting Card with Custom Message"],
+      tags: ["Gifts", "Chocolates", "Anniversary Gift"]
+    },
+    {
+      id: "gift-personalized-photo-explosion-box",
+      title: "Customized Memory Photo Explosion Box",
+      category: "gifts",
+      categoryName: "Gifts & Hampers",
+      price: 1499,
+      originalPrice: 1999,
+      discount: 25,
+      rating: 4.8,
+      reviewsCount: 310,
+      badge: "TRENDING",
+      image: "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=600&q=80",
+      gallery: [
+        "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=600&q=80"
+      ],
+      setupDuration: "Same-Day Delivery",
+      description: "Multi-layered surprise explosion box revealing 20+ personalized polaroid photos, handwritten notes, and mini chocolates.",
+      inclusions: ["3-Tier Explosion Box", "24 High-Gloss Photos Printed", "Ferrero Rocher Chocolates Center", "Satin Ribbon Packaging"],
+      tags: ["Personalized", "Explosion Box", "Photo Gift"]
+    },
+    {
+      id: "gift-balloon-bouquet-surprise-bucket",
+      title: "Hot Air Balloon Flower & Teddy Surprise Bucket",
+      category: "gifts",
+      categoryName: "Gifts & Hampers",
+      price: 2299,
+      originalPrice: 2999,
+      discount: 23,
+      rating: 5.0,
+      reviewsCount: 198,
+      badge: "POPULAR",
+      image: "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?auto=format&fit=crop&w=600&q=80",
+      gallery: [
+        "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?auto=format&fit=crop&w=600&q=80"
+      ],
+      setupDuration: "Same-Day Delivery",
+      description: "Trendy clear bobo balloon bouquet filled with mini balloons and fairy lights, mounted on an aesthetic floral and teddy bucket.",
+      inclusions: ["Crystal Clear Bobo Balloon with Custom Vinyl Name", "Twinkle Fairy LED String", "Mini Teddy Bear & Fresh Blooms", "Gift Carry Bag"],
+      tags: ["Balloon Bouquet", "Bobo Balloon", "Birthday Gift"]
+    },
+    {
+      id: "gift-couple-spa-wellness-gift-basket",
+      title: "Aromatherapy Spa & Self-Care Gift Basket",
+      category: "gifts",
+      categoryName: "Gifts & Hampers",
+      price: 2799,
+      originalPrice: 3599,
+      discount: 22,
+      rating: 4.9,
+      reviewsCount: 145,
+      badge: "LUXURY",
+      image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=600&q=80",
+      gallery: [
+        "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=600&q=80"
+      ],
+      setupDuration: "Same-Day Delivery",
+      description: "Organic essential oil diffuser, bath salts, scented soy candle, body butter, and plush face towel in a woven cane basket.",
+      inclusions: ["Woven Cane Storage Basket", "Soy Wax Aromatherapy Candle", "Himalayan Pink Bath Salts", "Organic Essential Oil Diffuser"],
+      tags: ["Self Care", "Wellness", "Spa Gift"]
+    },
+    {
+      id: "gift-designer-chocolate-truffle-cake-combo",
+      title: "Midnight Dutch Truffle Cake & Floral Bouquet Combo",
+      category: "gifts",
+      categoryName: "Gifts & Hampers",
+      price: 1799,
+      originalPrice: 2299,
+      discount: 22,
+      rating: 4.9,
+      reviewsCount: 420,
+      badge: "EXPRESS",
+      image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=600&q=80",
+      gallery: [
+        "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=600&q=80"
+      ],
+      setupDuration: "2-Hour Express Delivery",
+      description: "Decadent 500g Dutch truffle chocolate cake paired with a vibrant 10-stem fresh red carnations and roses bouquet.",
+      inclusions: ["500g Eggless Dutch Truffle Cake", "10 Fresh Roses & Carnations Bouquet", "Birthday / Anniversary Candle & Knife", "Express 2-hour doorstep delivery"],
+      tags: ["Midnight Cake", "Flowers & Cake", "Celebration Combo"]
     }
   ],
   reviews: [
@@ -1119,43 +1371,43 @@ const SITE_DATA = {
   ],
   addons: [
     {
-      id: "addon-pillar",
-      name: "Age on Balloon Pillar (per foil)",
-      category: "bestseller",
-      price: 199,
-      image: "https://cdn.balloondekor.com/33/birthday-decoration-d67f374a-0151-409d-96ea-36e9527e0ffc.webp",
-      badge: ""
-    },
-    {
-      id: "addon-lanterns",
-      name: "Colorful Paper Lanterns (1pc)",
-      category: "more",
-      price: 249,
-      image: "https://cdn.balloondekor.com/33/kids-birthday-decoration-4b6bce2b-e65d-40fa-bdea-3f1367688305.webp",
-      badge: ""
-    },
-    {
-      id: "addon-gems-cake",
-      name: "Simple Gems Cake (1 kg)",
-      category: "cake",
+      id: "addon-milestone-board",
+      name: "Milestone Board",
+      category: "custom",
       price: 1999,
-      image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&auto=format&fit=crop&q=80",
-      badge: "Book 1 day in advance"
-    },
-    {
-      id: "addon-butterscotch",
-      name: "Butterscotch Cake (500 gms)",
-      category: "cake",
-      price: 799,
-      image: "https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=400&auto=format&fit=crop&q=80",
+      image: "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=400&auto=format&fit=crop&q=80",
       badge: ""
     },
     {
-      id: "addon-blackforest",
-      name: "Black Forest Cake (500 gms)",
-      category: "cake",
+      id: "addon-neon-light",
+      name: "Happy Birthday Neon Light",
+      category: "lights",
+      price: 1999,
+      image: "https://images.unsplash.com/photo-1563245372-f21724e3856d?w=400&auto=format&fit=crop&q=80",
+      badge: "On A Rental Basis"
+    },
+    {
+      id: "addon-rose-petals",
+      name: "Rose Petals Pathway (600 Pcs)",
+      category: "romantic",
       price: 799,
-      image: "https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?w=400&auto=format&fit=crop&q=80",
+      image: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=400&auto=format&fit=crop&q=80",
+      badge: ""
+    },
+    {
+      id: "addon-tea-candles",
+      name: "20 Pcs Tea Candles",
+      category: "candles",
+      price: 399,
+      image: "https://images.unsplash.com/photo-1603006905003-be475563bc59?w=400&auto=format&fit=crop&q=80",
+      badge: ""
+    },
+    {
+      id: "addon-custom-board",
+      name: "Customized Board",
+      category: "custom",
+      price: 1999,
+      image: "https://images.unsplash.com/photo-1513151233558-d860c5398176?w=400&auto=format&fit=crop&q=80",
       badge: ""
     },
     {
@@ -1167,20 +1419,269 @@ const SITE_DATA = {
       badge: "Bestseller"
     },
     {
+      id: "addon-pillar",
+      name: "Age on Balloon Pillar",
+      category: "bestseller",
+      price: 299,
+      image: "https://cdn.balloondekor.com/33/birthday-decoration-d67f374a-0151-409d-96ea-36e9527e0ffc.webp",
+      badge: ""
+    },
+    {
       id: "addon-poppers",
       name: "Party Poppers (Set of 2)",
       category: "more",
       price: 149,
       image: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=400&auto=format&fit=crop&q=80",
       badge: ""
+    }
+  ],
+  blogTopics: [
+    {
+      id: "balloon-tips",
+      name: "Balloon Decoration Tips",
+      badge: "ESSENTIAL",
+      tagline: "Float times, DIY hacks & wall safety",
+      image: "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=600&q=80",
+      count: 4
     },
     {
-      id: "addon-sash",
-      name: "Birthday Sash & Crown",
-      category: "more",
-      price: 299,
-      image: "https://images.unsplash.com/photo-1513151233558-d860c5398176?w=400&auto=format&fit=crop&q=80",
-      badge: ""
+      id: "birthday-ideas",
+      name: "Birthday Party Ideas",
+      badge: "POPULAR",
+      tagline: "Themes for kids, teens & adults",
+      image: "https://cdn.balloondekor.com/33/birthday-decoration-d67f374a-0151-409d-96ea-36e9527e0ffc.webp",
+      count: 5
+    },
+    {
+      id: "anniversary-romance",
+      name: "Anniversary & Romance",
+      badge: "SURPRISES",
+      tagline: "Cabana setups, fairy lights & proposals",
+      image: "https://cdn.balloondekor.com/29/1784709508118-669326.webp",
+      count: 3
+    },
+    {
+      id: "baby-shower",
+      name: "Baby Shower & Welcome",
+      badge: "FAMILY",
+      tagline: "Godh Bharai traditions & pastel themes",
+      image: "https://cdn.balloondekor.com/33/baby-shower-decoration-1ba3a3a3-d2eb-40e6-98bd-aed4eb907984.webp",
+      count: 3
+    },
+    {
+      id: "wedding-guides",
+      name: "Wedding & Haldi Guides",
+      badge: "TRADITIONAL",
+      tagline: "Mehendi, marigolds & bridal car styling",
+      image: "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=600&q=80",
+      count: 3
+    },
+    {
+      id: "cost-planning",
+      name: "Cost & Budget Planning",
+      badge: "PRICING",
+      tagline: "City rates, package costs & checklists",
+      image: "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=600&q=80",
+      count: 4
+    }
+  ],
+  blogs: [
+    {
+      id: "ultimate-2026-home-party-decoration-guide",
+      title: "The Ultimate 2026 Home Party Decoration Guide: Trends, Balloon Styles & Budget Secrets",
+      category: "birthday-ideas",
+      categoryName: "Birthday Ideas",
+      tag: "Editor's Choice",
+      featured: true,
+      author: "Pooja Deshmukh • Creative Director",
+      date: "September 24, 2026",
+      readTime: "6 min read",
+      image: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80",
+      excerpt: "Planning a celebration at your apartment, terrace or party hall? Discover the newest color palettes, organic arches vs helium bouquets, technician timing tips, and how to create unforgettable photo zones without breaking your budget.",
+      content: `
+        <p>Planning an intimate celebration at home has become India's favorite way to mark life's biggest milestones. Whether you're celebrating a 1st birthday, a 25th silver anniversary, or a cozy terrace proposal, the right decoration sets the mood and turns your space into an unforgettable photo sanctuary.</p>
+        
+        <h3>1. Color Trends Dominating 2026</h3>
+        <p>Gone are the days of harsh primary colors. 2026 is defined by sophisticated, harmonious palettes:</p>
+        <ul>
+          <li><strong>Retro Boho:</strong> Eucalyptus green, warm nude, caramel brown, and matte ivory accents.</li>
+          <li><strong>Blush & Rose Gold:</strong> Rose gold chrome balloons paired with soft pastel pinks and fairy lights.</li>
+          <li><strong>Midnight Luxe:</strong> Deep royal navy, metallic gold foil arches, and warm yellow uplighting.</li>
+        </ul>
+
+        <div class="blog-modal-callout">
+          <strong>Pro Decorator Tip:</strong> Always place your primary balloon arch opposite your home's main light source or window to avoid backlighting in your party photos!
+        </div>
+
+        <h3>2. Room Space & Setup Optimization</h3>
+        <p>Before booking any setup, ensure there is at least 8 to 10 feet of clear wall space. Our certified technicians bring removable silicone wall hooks and non-damaging adhesive strips so your paint remains 100% pristine after the party ends.</p>
+
+        <h3>3. Timing Your Technician Arrival</h3>
+        <p>For standard balloon arches, allow 1.5 to 2 hours of setup time. Book your slot so the team finishes at least 45 minutes before guests arrive, leaving plenty of time for cake delivery and family portraits.</p>
+      `
+    },
+    {
+      id: "helium-vs-air-filled-balloons-comparison",
+      title: "Helium Balloons vs Air-Filled Balloons: Cost, Longevity, and Safety Compared",
+      category: "balloon-tips",
+      categoryName: "Balloon Decoration Tips",
+      tag: "Decor Hacks",
+      featured: false,
+      author: "Vikram Malhotra • Master Decorator",
+      date: "September 20, 2026",
+      readTime: "4 min read",
+      image: "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=600&q=80",
+      excerpt: "Should you choose helium floating balloons or air-filled organic arches for indoor celebrations? Here is what you need to know about float times, ceiling paint safety, and budget efficiency.",
+      content: `
+        <p>One of the most frequent questions our clients ask is whether they should opt for helium floating balloons or air-filled balloon clusters for their living room celebrations.</p>
+
+        <h3>Float Times and Physics</h3>
+        <p>Standard 10-inch latex balloons filled with helium typically float for 8 to 12 hours under Indian ambient temperatures. Air-filled balloon garlands, on the other hand, easily stay inflated and look vibrant for 48 to 72 hours.</p>
+
+        <h3>Ceiling Paint Safety</h3>
+        <p>When clients attach air balloons to the ceiling to mimic helium effects, using incorrect tapes can strip delicate wall putty. Celebration Events decorators use professional-grade removable balloon glue dots that leave zero marks or sticky residue.</p>
+      `
+    },
+    {
+      id: "how-to-prepare-your-home-before-decorators-arrive",
+      title: "How to Prepare Your Home Before the Decoration Team Arrives",
+      category: "balloon-tips",
+      categoryName: "Balloon Decoration Tips",
+      tag: "Checklist",
+      featured: false,
+      author: "Sneha Reddy • Operations Lead",
+      date: "September 18, 2026",
+      readTime: "3 min read",
+      image: "https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=600&q=80",
+      excerpt: "Save time and ensure flawless installation with our 5-point home preparation checklist, including plug points, ceiling fan tips, furniture shifting, and wall tape guidelines.",
+      content: `
+        <p>Our decorators pride themselves on fast, punctual setups. Following these simple preparation steps ensures a seamless experience on your big day:</p>
+        <ul>
+          <li><strong>Clear Wall Access:</strong> Shift lightweight sofas or dining chairs 3 feet away from the backdrop wall.</li>
+          <li><strong>Power Socket for Fairy Lights:</strong> Ensure an electric extension board is within 2 meters of the setup point for fairy lights or neon signage.</li>
+          <li><strong>Keep Ceiling Fans Turned Off:</strong> During balloon inflation and garland framing, high air currents can cause balloons to drift or burst against sharp edges.</li>
+          <li><strong>Pets & Little Ones:</strong> Keep curious pets in an adjoining room until balloons are secured in place.</li>
+        </ul>
+      `
+    },
+    {
+      id: "birthday-decoration-cost-breakdown-india",
+      title: "How Much Does Birthday Decoration Cost in India? City-Wise Price Guide",
+      category: "cost-planning",
+      categoryName: "Cost & Planning",
+      tag: "Pricing Guide",
+      featured: false,
+      author: "Rohan Verma • Event Analyst",
+      date: "September 15, 2026",
+      readTime: "5 min read",
+      image: "https://cdn.balloondekor.com/33/birthday-decoration-d67f374a-0151-409d-96ea-36e9527e0ffc.webp",
+      excerpt: "From ₹1,499 simple living room packages to ₹10,000+ luxury ring backdrops with neon lights, understand transparent pricing across Delhi NCR, Mumbai, Bangalore and Tier-2 cities.",
+      content: `
+        <p>Transparent pricing is the core of Celebration Events. When you book directly through our platform, every package includes technician visit, all materials, setup labor, and clean-up guidance.</p>
+
+        <h3>Average Package Cost Tier Breakdown</h3>
+        <ul>
+          <li><strong>Standard Home Surprise (₹1,499 - ₹1,999):</strong> 60-80 balloons, metallic banner, wall frills, and door ribbon.</li>
+          <li><strong>Arch & Neon Backdrop (₹2,499 - ₹4,499):</strong> Organic circular balloon arch, warm fairy lights, custom age foil digits, and neon signs.</li>
+          <li><strong>Grand Theme & Sequins (₹6,999 - ₹12,999):</strong> Sequins shimmer backdrop, pedestal cake cylinder tables, marquee number lights, and character cutouts.</li>
+        </ul>
+      `
+    },
+    {
+      id: "trending-kids-birthday-themes-2026",
+      title: "Top 7 Kids Birthday Themes Trending in 2026: From Cocomelon to Space Explorer",
+      category: "birthday-ideas",
+      categoryName: "Birthday Ideas",
+      tag: "Kids Party",
+      featured: false,
+      author: "Ananya Sen • Kids Party Stylist",
+      date: "September 12, 2026",
+      readTime: "5 min read",
+      image: "https://cdn.balloondekor.com/images/33/dbe87a70-56bc-42bc-ad96-2847b88c00dd.webp",
+      excerpt: "Discover the most demanded party themes for boys and girls aged 1 to 10, complete with character cutouts, balloon arches, matching cake tables, and return gift ideas.",
+      content: `
+        <p>Planning a child's birthday is all about sparking wonder. This year, storybook realism and immersive themed photo zones are stealing the show across Indian cities.</p>
+
+        <h3>Top Ranked Themes for 2026</h3>
+        <ul>
+          <li><strong>Jungle Safari:</strong> Sage greens, animal foil cutouts (lion, giraffe, elephant), and rustic palm fronds.</li>
+          <li><strong>Cosmic Space Explorer:</strong> Chrome blues, silver astronaut foils, and glowing star constellation backdrops.</li>
+          <li><strong>Pastel Unicorn & Rainbow:</strong> Iridescent shimmer curtains with soft lavender and pink balloon cascades.</li>
+          <li><strong>Superhero Squad:</strong> Bold red, blue, and yellow arches with high-resolution superhero wall silhouettes.</li>
+        </ul>
+      `
+    },
+    {
+      id: "romantic-anniversary-surprises-at-home",
+      title: "10 Romantic Surprise Ideas for Anniversaries: Cabanas, Petals & Fairy Lights",
+      category: "anniversary-romance",
+      categoryName: "Romantic & Anniversary",
+      tag: "Romance",
+      featured: false,
+      author: "Karan Singhania • Surprise Specialist",
+      date: "September 08, 2026",
+      readTime: "4 min read",
+      image: "https://cdn.balloondekor.com/29/1784709508118-669326.webp",
+      excerpt: "Planning a heartfelt surprise for your spouse or partner? Learn how terrace cabana tents, floating balloon ceilings, and personalized photo polaroids create an intimate haven at home.",
+      content: `
+        <p>You don't need an expensive destination trip to create romance. An intimate, thoughtfully decorated space in your own apartment or terrace can create lifelong memories.</p>
+
+        <h3>1. The Cabana Tent Experience</h3>
+        <p>Our pop-up chiffon cabanas create an enchanting private cocoon with soft pillows, floor rugs, and 30 meters of warm fairy lights.</p>
+
+        <h3>2. Ceiling Floating Balloons & Hanging Photos</h3>
+        <p>Tie curled satin ribbons to 50 floating balloons with printed polaroid memories of your favorite travels together hanging directly above your dining or cake table.</p>
+      `
+    },
+    {
+      id: "baby-shower-vs-godh-bharai-traditions",
+      title: "Baby Shower vs Godh Bharai: Traditions, Themes & Modern Decor Differences",
+      category: "baby-shower",
+      categoryName: "Baby Shower & Welcome",
+      tag: "Ceremony Guide",
+      featured: false,
+      author: "Meera Iyer • Cultural Decor Curator",
+      date: "September 04, 2026",
+      readTime: "5 min read",
+      image: "https://cdn.balloondekor.com/33/baby-shower-decoration-1ba3a3a3-d2eb-40e6-98bd-aed4eb907984.webp",
+      excerpt: "Blending time-honored traditional rituals like marigold urlis with modern pastel teddy bear backdrops for Indian moms-to-be across modern families.",
+      content: `
+        <p>Welcoming a new life is celebrated with unmatched warmth across India. While Godh Bharai ceremonies emphasize sacred traditional blessings, baby showers focus on games, theme backdrops, and gifting.</p>
+        <p>Today's modern families often choose hybrid setups: a traditional flower urli and brass diya zone for morning rituals, followed by a pastel balloon arch with teddy bear cutouts for the afternoon cake cutting.</p>
+      `
+    },
+    {
+      id: "haldi-mehendi-decoration-ideas-at-home",
+      title: "Vibrant Haldi & Mehendi Decor Ideas: How to Style Your Courtyard or Terrace",
+      category: "wedding-guides",
+      categoryName: "Wedding Guides",
+      tag: "Wedding Prep",
+      featured: false,
+      author: "Rajesh Choudhary • Wedding Floral Head",
+      date: "August 30, 2026",
+      readTime: "6 min read",
+      image: "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=600&q=80",
+      excerpt: "Transform your balcony or living room into a cheerful celebration space using fresh marigold flower strings, brass urlis, colorful dupattas, and low seating bolsters.",
+      content: `
+        <p>Haldi and Mehendi functions are known for laughter, music, and vibrant colors. Our traditional wedding florists create lively setups right at home with banana tree entrance pillars, fresh yellow-orange marigold drops, and ethnic bolsters.</p>
+      `
+    },
+    {
+      id: "office-anniversary-and-product-launch-decor",
+      title: "Corporate Event Decor: How to Brand Your Office For Milestones & Annual Days",
+      category: "cost-planning",
+      categoryName: "Cost & Planning",
+      tag: "Corporate",
+      featured: false,
+      author: "Aarav Patel • B2B Event Strategist",
+      date: "August 24, 2026",
+      readTime: "4 min read",
+      image: "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=600&q=80",
+      excerpt: "Elevate company culture and celebrate company achievements with branded balloon arches, stage backdrops, entrance pillars, and desk-side balloon bunches.",
+      content: `
+        <p>From tech startups hitting funding milestones to annual corporate townhalls, visual celebrations boost employee morale and create high-engagement LinkedIn photo moments.</p>
+        <p>Celebration Events offers GST invoicing, brand color matching (Pantone/Hex alignment), and quiet after-hours setup so business operations remain undisturbed.</p>
+      `
     }
   ]
 };

@@ -84,13 +84,15 @@ function setupEventListeners() {
   // Mobile menu
   document.getElementById("mobileMenuBtn")?.addEventListener("click", openMobileSidebar);
 
-  // Filter pills
-  const filterPills = document.querySelectorAll(".filter-pill");
-  filterPills.forEach(pill => {
-    pill.addEventListener("click", () => {
-      filterPills.forEach(p => p.classList.remove("active"));
-      pill.classList.add("active");
+  // Filter pills (Home page main catalog)
+  const homeFilterPills = document.querySelectorAll("#filterPills .filter-pill");
+  homeFilterPills.forEach(pill => {
+    pill.addEventListener("click", (e) => {
+      e.preventDefault();
       const cat = pill.getAttribute("data-cat");
+      if (!cat) return;
+      homeFilterPills.forEach(p => p.classList.remove("active"));
+      pill.classList.add("active");
       filterCategory(cat);
     });
   });
@@ -163,7 +165,7 @@ function renderFooterCities() {
 }
 
 // ----------------------------------------------------
-// Hero Banner Carousel
+// Hero Banner Carousel (Manual Controls)
 // ----------------------------------------------------
 function initHeroCarousel() {
   const slidesContainer = document.getElementById("carouselSlides");
@@ -173,6 +175,13 @@ function initHeroCarousel() {
   const heroEl = document.getElementById("heroCarousel");
 
   const totalSlides = dots.length;
+  if (!totalSlides) return;
+
+  // Clear any existing timer so banners do NOT scroll automatically
+  if (appState.carouselTimer) {
+    clearInterval(appState.carouselTimer);
+    appState.carouselTimer = null;
+  }
 
   function goToSlide(index) {
     appState.carouselIndex = (index + totalSlides) % totalSlides;
@@ -184,34 +193,51 @@ function initHeroCarousel() {
     });
   }
 
-  if (prevBtn) prevBtn.addEventListener("click", () => goToSlide(appState.carouselIndex - 1));
-  if (nextBtn) nextBtn.addEventListener("click", () => goToSlide(appState.carouselIndex + 1));
+  if (prevBtn) {
+    prevBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      goToSlide(appState.carouselIndex - 1);
+    });
+  }
+
+  if (nextBtn) {
+    nextBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      goToSlide(appState.carouselIndex + 1);
+    });
+  }
 
   dots.forEach(dot => {
     dot.addEventListener("click", (e) => {
+      e.preventDefault();
       const idx = parseInt(e.target.getAttribute("data-index"), 10);
-      goToSlide(idx);
+      if (!isNaN(idx)) goToSlide(idx);
     });
   });
 
-  // Auto-play
-  function startTimer() {
-    stopTimer();
-    appState.carouselTimer = setInterval(() => {
-      goToSlide(appState.carouselIndex + 1);
-    }, 5000);
-  }
-
-  function stopTimer() {
-    if (appState.carouselTimer) clearInterval(appState.carouselTimer);
-  }
-
+  // Touch swipe support for mobile devices
   if (heroEl) {
-    heroEl.addEventListener("mouseenter", stopTimer);
-    heroEl.addEventListener("mouseleave", startTimer);
+    let startX = 0;
+    let endX = 0;
+    heroEl.addEventListener("touchstart", (e) => {
+      startX = e.touches[0].clientX;
+    }, { passive: true });
+
+    heroEl.addEventListener("touchend", (e) => {
+      endX = e.changedTouches[0].clientX;
+      const diff = startX - endX;
+      if (Math.abs(diff) > 50) {
+        if (diff > 0) {
+          goToSlide(appState.carouselIndex + 1); // Swipe left -> Next
+        } else {
+          goToSlide(appState.carouselIndex - 1); // Swipe right -> Prev
+        }
+      }
+    }, { passive: true });
   }
 
-  startTimer();
+  // Ensure first slide is active initially
+  goToSlide(appState.carouselIndex || 0);
 }
 
 // ----------------------------------------------------
@@ -254,15 +280,17 @@ function filterCategory(catId) {
   appState.currentCategory = catId;
   appState.showAllProducts = false;
 
-  // Sync filter pills UI
-  const pills = document.querySelectorAll(".filter-pill");
-  pills.forEach(p => {
-    if (p.getAttribute("data-cat") === catId) {
-      p.classList.add("active");
-    } else {
-      p.classList.remove("active");
-    }
-  });
+  // Sync filter pills UI on home page
+  const pills = document.querySelectorAll("#filterPills .filter-pill");
+  if (catId) {
+    pills.forEach(p => {
+      if (p.getAttribute("data-cat") === catId) {
+        p.classList.add("active");
+      } else {
+        p.classList.remove("active");
+      }
+    });
+  }
 
   // Update Section Header
   const heading = document.getElementById("catalogHeading");
@@ -334,7 +362,10 @@ function renderProducts() {
   }
 
   const rowSize = getProductsPerRow();
-  const maxItemsLimit = rowSize * 3;
+  const isCategoryFilter = appState.currentCategory && appState.currentCategory !== "all";
+
+  // For specific category, show exactly 1 row; for all, show up to 3 rows
+  const maxItemsLimit = isCategoryFilter ? rowSize : (rowSize * 3);
   const maxItems = appState.showAllProducts ? items.length : maxItemsLimit;
   const visibleItems = items.slice(0, maxItems);
 
@@ -377,27 +408,53 @@ function renderProducts() {
     </div>
   `).join("");
 
-  // Render View All / Show Less button
+  // Render Action / Redirection button below products
   if (moreContainer) {
-    if (items.length > maxItemsLimit) {
-      if (!appState.showAllProducts) {
-        const remainingCount = items.length - visibleItems.length;
-        moreContainer.innerHTML = `
-          <button class="catalog-view-all-btn" onclick="toggleShowAllProducts()" aria-label="View all packages">
-            <span>View All Packages (${remainingCount} More)</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="6 9 12 15 18 9"></polyline></svg>
-          </button>
-        `;
-      } else {
-        moreContainer.innerHTML = `
-          <button class="catalog-view-all-btn show-less" onclick="toggleShowAllProducts()" aria-label="Show less packages">
-            <span>Show Less (3 Rows)</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="18 15 12 9 6 15"></polyline></svg>
-          </button>
-        `;
-      }
+    if (isCategoryFilter) {
+      const catRedirectMap = {
+        "birthday": { url: "birthday.html", label: "View More Birthday Packages" },
+        "anniversary": { url: "anniversary.html", label: "View More Romantic & Anniversary Packages" },
+        "kids": { url: "kids.html", label: "View More Kids Themes Packages" },
+        "baby-shower": { url: "baby-shower.html", label: "View More Baby Shower Packages" },
+        "wedding": { url: "wedding.html", label: "View More Wedding Packages" },
+        "corporate": { url: "corporate.html", label: "View More Corporate Packages" },
+        "gifts": { url: "marketplace.html", label: "View More Gifts & Hampers" }
+      };
+      const target = catRedirectMap[appState.currentCategory] || {
+        url: `${appState.currentCategory}.html`,
+        label: `View More Packages`
+      };
+
+      moreContainer.innerHTML = `
+        <a href="${target.url}" class="catalog-view-all-btn" style="text-decoration: none;" aria-label="${target.label}">
+          <span>${target.label}</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="arrow-right">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+      `;
     } else {
-      moreContainer.innerHTML = "";
+      if (items.length > maxItemsLimit) {
+        if (!appState.showAllProducts) {
+          const remainingCount = items.length - visibleItems.length;
+          moreContainer.innerHTML = `
+            <button class="catalog-view-all-btn" onclick="toggleShowAllProducts()" aria-label="View all packages">
+              <span>View All Packages (${remainingCount} More)</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+          `;
+        } else {
+          moreContainer.innerHTML = `
+            <button class="catalog-view-all-btn show-less" onclick="toggleShowAllProducts()" aria-label="Show less packages">
+              <span>Show Less (3 Rows)</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="18 15 12 9 6 15"></polyline></svg>
+            </button>
+          `;
+        }
+      } else {
+        moreContainer.innerHTML = "";
+      }
     }
   }
 
@@ -412,6 +469,25 @@ function renderProducts() {
 // ----------------------------------------------------
 function openProductModal(productId) {
   if (!productId) return;
+  const currentPath = window.location.pathname.toLowerCase();
+  if (currentPath.includes("blog")) {
+    return; // Do not redirect or open package modal on blog pages
+  }
+  const isPackagePage = currentPath.includes("package");
+  if (isPackagePage) {
+    if (typeof loadPackageData === "function") {
+      history.replaceState(null, "", `package.html?id=${encodeURIComponent(productId)}`);
+      loadPackageData(productId);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else if (typeof initPackagePage === "function") {
+      history.replaceState(null, "", `package.html?id=${encodeURIComponent(productId)}`);
+      initPackagePage();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    return;
+  }
+  window.location.href = `package.html?id=${encodeURIComponent(productId)}`;
+  return;
   const product = SITE_DATA.products.find(p => p.id === productId);
   if (!product) return;
 
@@ -1391,8 +1467,21 @@ window.addEventListener("popstate", () => {
 
 document.addEventListener("DOMContentLoaded", () => {
   try {
+    const currentPath = window.location.pathname.toLowerCase();
+    // Do NOT auto-redirect or treat ?id= as package on blog, gift, marketplace, about, or contact pages
+    if (
+      currentPath.includes("package") ||
+      currentPath.includes("blog") ||
+      currentPath.includes("gift") ||
+      currentPath.includes("marketplace") ||
+      currentPath.includes("about") ||
+      currentPath.includes("contact")
+    ) {
+      return; // Dedicated pages handle their own content without package redirection
+    }
+
     const urlParams = new URLSearchParams(window.location.search);
-    const paramId = urlParams.get("id") || urlParams.get("package");
+    const paramId = urlParams.get("package") || (currentPath.includes("index") || currentPath === "/" || currentPath.endsWith("/") ? urlParams.get("id") : null);
     const hashMatch = window.location.hash.match(/#package-([a-zA-Z0-9_-]+)/);
     const targetId = paramId || (hashMatch ? hashMatch[1] : null);
 

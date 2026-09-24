@@ -4,25 +4,1610 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title id="pkgPageTitle">Decoration Package Details | Celebration Events®</title>
-  <script>
-    (function() {
-      const params = new URLSearchParams(window.location.search);
-      const id = params.get("id") || localStorage.getItem("celebration_selected_package_id") || "bestseller-01";
-      window.location.replace("index.html#package-" + encodeURIComponent(id));
-    })();
-  </script>
-  <meta name="description" id="pkgMetaDesc" content="Book verified balloon decoration package with same-day express setup, verified decorator visit, and transparent pricing across 100+ cities in India." />
-  <meta name="theme-color" content="#d14a61" />
-  <link rel="stylesheet" href="styles.css" />
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+  <link rel="stylesheet" href="styles.css?v=22.0" />
   <link rel="icon" href="https://cdn.balloondekor.com/images/61/7ebf2dbd-60dd-4643-8029-763dc6a3e5e3.webp" type="image/webp" />
+  <style>
+    /* ====================================================
+       BALLOONDEKOR PACKAGE PAGE EXACT VIDEO MATCH STYLES
+       ==================================================== */
+    .pkg-hero-container-card {
+      background: #ffffff;
+      border-radius: 20px;
+      border: 1px solid #eef2f6;
+      padding: 24px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+      margin-bottom: 24px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .pkg-hero-layout {
+      display: grid !important;
+      grid-template-columns: 1.15fr 1fr !important;
+      gap: 36px !important;
+      align-items: start !important;
+      width: 100% !important;
+      box-sizing: border-box !important;
+    }
+    .pkg-gallery-left-wrap {
+      display: flex !important;
+      flex-direction: row !important;
+      gap: 14px !important;
+      position: sticky !important;
+      top: 90px !important;
+      align-self: start !important;
+      max-width: 100% !important;
+      box-sizing: border-box !important;
+    }
+    .pkg-thumbs-vertical {
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 10px !important;
+      width: 72px !important;
+      flex-shrink: 0 !important;
+    }
+    .pkg-thumb-btn-v2 {
+      width: 68px !important;
+      height: 68px !important;
+      border-radius: 12px !important;
+      border: 2px solid #e2e8f0 !important;
+      padding: 2px !important;
+      background: #f8fafc !important;
+      cursor: pointer !important;
+      overflow: hidden !important;
+      transition: all 0.2s ease !important;
+      box-sizing: border-box !important;
+    }
+    .pkg-thumb-btn-v2.active,
+    .pkg-thumb-btn-v2:hover {
+      border-color: #be123c !important;
+      box-shadow: 0 2px 8px rgba(190, 18, 60, 0.25) !important;
+    }
+    .pkg-thumb-btn-v2 img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+      border-radius: 8px !important;
+      display: block !important;
+    }
+    .pkg-main-slider-v2 {
+      position: relative !important;
+      flex: 1 !important;
+      border-radius: 18px !important;
+      overflow: hidden !important;
+      background: #f8fafc !important;
+      aspect-ratio: 1 / 0.96 !important;
+      max-height: 540px !important;
+      box-shadow: 0 2px 14px rgba(0, 0, 0, 0.06) !important;
+    }
+    .pkg-main-slider-v2 img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+      display: block !important;
+      transition: opacity 0.25s ease !important;
+    }
+    .pkg-slider-arrow {
+      position: absolute !important;
+      top: 50% !important;
+      transform: translateY(-50%) !important;
+      width: 38px !important;
+      height: 38px !important;
+      border-radius: 50% !important;
+      background: rgba(255, 255, 255, 0.92) !important;
+      backdrop-filter: blur(4px) !important;
+      color: #1e293b !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      font-size: 20px !important;
+      font-weight: 700 !important;
+      cursor: pointer !important;
+      border: 1px solid rgba(0,0,0,0.06) !important;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.12) !important;
+      transition: all 0.2s ease !important;
+      z-index: 5 !important;
+    }
+    .pkg-slider-arrow:hover {
+      background: #ffffff !important;
+      transform: translateY(-50%) scale(1.08) !important;
+    }
+    .pkg-slider-arrow.prev { left: 14px !important; }
+    .pkg-slider-arrow.next { right: 14px !important; }
+    .pkg-slider-dots-v2 {
+      position: absolute !important;
+      bottom: 16px !important;
+      left: 50% !important;
+      transform: translateX(-50%) !important;
+      display: flex !important;
+      gap: 7px !important;
+      z-index: 5 !important;
+    }
+    .pkg-dot-v2 {
+      width: 7px !important;
+      height: 7px !important;
+      border-radius: 50% !important;
+      background: rgba(255, 255, 255, 0.65) !important;
+      transition: all 0.2s ease !important;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.3) !important;
+    }
+    .pkg-dot-v2.active {
+      background: #ffffff !important;
+      width: 20px !important;
+      border-radius: 10px !important;
+    }
+    .pkg-similar-pill-btn {
+      position: absolute !important;
+      bottom: 14px !important;
+      right: 14px !important;
+      background: #ffffff !important;
+      color: #1e293b !important;
+      border: 1px solid #e2e8f0 !important;
+      border-radius: 999px !important;
+      font-size: 12.5px !important;
+      font-weight: 700 !important;
+      padding: 6px 14px !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 6px !important;
+      cursor: pointer !important;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.12) !important;
+      transition: all 0.2s ease !important;
+      z-index: 5 !important;
+    }
+    .pkg-similar-pill-btn:hover {
+      transform: translateY(-2px) !important;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.18) !important;
+      border-color: #be123c !important;
+      color: #be123c !important;
+    }
+    .pkg-details-right-v2 {
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 16px !important;
+      min-width: 0 !important;
+    }
+    .pkg-tag-newly-added {
+      align-self: flex-start !important;
+      font-size: 11px !important;
+      font-weight: 800 !important;
+      letter-spacing: 0.5px !important;
+      color: #be123c !important;
+      background: #ffe4e6 !important;
+      padding: 4px 10px !important;
+      border-radius: 6px !important;
+    }
+    .pkg-title-v2 {
+      font-size: 26px !important;
+      font-weight: 800 !important;
+      color: #0f172a !important;
+      line-height: 1.3 !important;
+      margin: 0 !important;
+      font-family: 'Outfit', sans-serif !important;
+    }
+    .pkg-rating-row-v2 {
+      display: flex !important;
+      align-items: center !important;
+      gap: 10px !important;
+    }
+    .pkg-rating-badge-green {
+      background: #15803d !important;
+      color: #ffffff !important;
+      font-weight: 800 !important;
+      font-size: 13px !important;
+      padding: 3px 8px !important;
+      border-radius: 6px !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 4px !important;
+    }
+    .pkg-reviews-link-v2 {
+      font-size: 13.5px !important;
+      font-weight: 600 !important;
+      color: #64748b !important;
+      cursor: pointer !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 3px !important;
+    }
+    .pkg-reviews-link-v2:hover {
+      color: #be123c !important;
+      text-decoration: underline !important;
+    }
+    .pkg-pricing-row-v2 {
+      display: flex !important;
+      align-items: baseline !important;
+      gap: 12px !important;
+      margin-top: 2px !important;
+    }
+    .pkg-price-large {
+      font-size: 32px !important;
+      font-weight: 900 !important;
+      color: #be123c !important;
+      letter-spacing: -0.5px !important;
+    }
+    .pkg-orig-price-strike {
+      font-size: 18px !important;
+      color: #94a3b8 !important;
+      text-decoration: line-through !important;
+      font-weight: 500 !important;
+    }
+    .pkg-discount-pill-green {
+      background: #dcfce7 !important;
+      color: #15803d !important;
+      font-weight: 800 !important;
+      font-size: 13px !important;
+      padding: 3px 8px !important;
+      border-radius: 6px !important;
+    }
+    .pkg-savings-text-v2 {
+      font-size: 13px !important;
+      color: #475569 !important;
+      margin-top: -6px !important;
+    }
+    .pkg-savings-text-v2 strong { color: #15803d !important; }
+    .pkg-urgency-banner-yellow {
+      background: #fefce8 !important;
+      border: 1px solid #fef08a !important;
+      border-radius: 10px !important;
+      padding: 10px 14px !important;
+      display: flex !important;
+      align-items: center !important;
+      gap: 10px !important;
+      font-size: 13px !important;
+      font-weight: 700 !important;
+      color: #854d0e !important;
+    }
+    .pkg-setup-time-box {
+      display: flex !important;
+      align-items: center !important;
+      gap: 8px !important;
+      font-size: 13.5px !important;
+      color: #334155 !important;
+      background: #f8fafc !important;
+      border: 1px solid #e2e8f0 !important;
+      padding: 10px 14px !important;
+      border-radius: 10px !important;
+    }
+    .pkg-lowest-price-guarantee {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      border: 1px dashed #cbd5e1 !important;
+      border-radius: 10px !important;
+      padding: 10px 14px !important;
+      background: #ffffff !important;
+      color: #0f172a !important;
+      font-weight: 700 !important;
+      font-size: 13.5px !important;
+    }
+    .pkg-city-select-card {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      border: 1px solid #e2e8f0 !important;
+      border-radius: 12px !important;
+      padding: 12px 16px !important;
+      background: #ffffff !important;
+      cursor: pointer !important;
+      transition: all 0.15s !important;
+    }
+    .pkg-city-select-card:hover {
+      border-color: #be123c !important;
+      background: #fff1f3 !important;
+    }
+    .pkg-city-select-left {
+      display: flex !important;
+      align-items: center !important;
+      gap: 10px !important;
+      font-size: 13.5px !important;
+      color: #475569 !important;
+    }
+    .pkg-city-select-left strong { color: #0f172a !important; }
+    .pkg-city-select-action {
+      font-size: 13.5px !important;
+      font-weight: 700 !important;
+      color: #be123c !important;
+    }
+    .pkg-cta-row-v2 {
+      display: flex !important;
+      gap: 12px !important;
+      margin-top: 6px !important;
+    }
+    .pkg-chat-btn-v2 {
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 8px !important;
+      padding: 13px 22px !important;
+      border: 1.5px solid #22c55e !important;
+      background: #ffffff !important;
+      color: #16a34a !important;
+      border-radius: 12px !important;
+      font-weight: 700 !important;
+      font-size: 14.5px !important;
+      cursor: pointer !important;
+      transition: all 0.2s !important;
+      flex-shrink: 0 !important;
+      text-decoration: none !important;
+    }
+    .pkg-chat-btn-v2:hover { background: #f0fdf4 !important; }
+    .pkg-book-btn-v2 {
+      flex: 1 !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 8px !important;
+      padding: 13px 24px !important;
+      background: #be123c !important;
+      color: #ffffff !important;
+      border-radius: 12px !important;
+      font-weight: 800 !important;
+      font-size: 15px !important;
+      cursor: pointer !important;
+      border: none !important;
+      box-shadow: 0 4px 16px rgba(190, 18, 60, 0.35) !important;
+      transition: all 0.2s !important;
+    }
+    .pkg-book-btn-v2:hover {
+      background: #9f1239 !important;
+      transform: translateY(-1px) !important;
+      box-shadow: 0 6px 20px rgba(190, 18, 60, 0.5) !important;
+    }
+    .pkg-included-note-v2 {
+      font-size: 12px !important;
+      color: #64748b !important;
+      display: flex !important;
+      align-items: center !important;
+      gap: 6px !important;
+      margin-top: -4px !important;
+    }
+    .pkg-more-category-link {
+      font-size: 13.5px !important;
+      font-weight: 700 !important;
+      color: #be123c !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: flex-end !important;
+      gap: 4px !important;
+      text-decoration: none !important;
+      margin-top: 4px !important;
+    }
+    .pkg-more-category-link:hover { text-decoration: underline !important; }
+
+    /* Tabs Card */
+    .pkg-tabs-card {
+      background: #ffffff !important;
+      border: 1px solid #e2e8f0 !important;
+      border-radius: 16px !important;
+      padding: 18px !important;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.03) !important;
+    }
+    .pkg-tab-nav {
+      display: flex !important;
+      gap: 8px !important;
+      border-bottom: 1px solid #f1f5f9 !important;
+      padding-bottom: 12px !important;
+      overflow-x: auto !important;
+    }
+    .pkg-tab-btn {
+      background: #f8fafc !important;
+      border: 1px solid #e2e8f0 !important;
+      border-radius: 999px !important;
+      padding: 7px 16px !important;
+      font-size: 13px !important;
+      font-weight: 700 !important;
+      color: #475569 !important;
+      cursor: pointer !important;
+      white-space: nowrap !important;
+      transition: all 0.2s !important;
+    }
+    .pkg-tab-btn:hover { border-color: #cbd5e1 !important; color: #0f172a !important; }
+    .pkg-tab-btn.active {
+      background: #be123c !important;
+      color: #ffffff !important;
+      border-color: #be123c !important;
+      box-shadow: 0 2px 8px rgba(190, 18, 60, 0.25) !important;
+    }
+    .pkg-tab-pane { display: none !important; padding-top: 14px !important; }
+    .pkg-tab-pane.active { display: block !important; }
+    .pkg-inc-heading {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      font-size: 13px !important;
+      margin-bottom: 10px !important;
+    }
+    .pkg-inc-count-badge {
+      background: #dcfce7 !important;
+      color: #15803d !important;
+      font-size: 11.5px !important;
+      font-weight: 800 !important;
+      padding: 2px 8px !important;
+      border-radius: 6px !important;
+    }
+    .pkg-included-items-list,
+    .pkg-not-included-items-list {
+      list-style: none !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 9px !important;
+    }
+    .pkg-included-items-list li,
+    .pkg-not-included-items-list li {
+      display: flex !important;
+      align-items: flex-start !important;
+      gap: 10px !important;
+      font-size: 13.5px !important;
+      color: #334155 !important;
+      line-height: 1.4 !important;
+    }
+    .inc-check-v2 { color: #16a34a !important; font-weight: 800 !important; font-size: 14px !important; }
+    .not-inc-cross { color: #e11d48 !important; font-weight: 800 !important; font-size: 14px !important; }
+    .pkg-faq-list { display: flex !important; flex-direction: column !important; gap: 10px !important; }
+    .pkg-faq-item {
+      border: 1px solid #f1f5f9 !important;
+      border-radius: 10px !important;
+      padding: 10px 14px !important;
+      background: #fafafa !important;
+    }
+    .pkg-faq-item summary { font-weight: 700 !important; font-size: 13.5px !important; color: #0f172a !important; cursor: pointer !important; }
+    .pkg-faq-item p { margin: 8px 0 0 !important; font-size: 13px !important; color: #64748b !important; line-height: 1.5 !important; }
+    .pkg-delivery-info, .pkg-care-info {
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 10px !important;
+      font-size: 13.5px !important;
+      color: #475569 !important;
+      line-height: 1.5 !important;
+    }
+
+    /* Make It Yours Section */
+    .pkg-make-yours-card {
+      background: #ffffff !important;
+      border: 1px solid #e2e8f0 !important;
+      border-radius: 16px !important;
+      padding: 18px !important;
+    }
+    .pkg-make-yours-header { margin-bottom: 14px !important; }
+    .pkg-make-yours-title-row {
+      display: flex !important;
+      align-items: center !important;
+      gap: 10px !important;
+      margin-bottom: 4px !important;
+    }
+    .pkg-make-yours-title { font-size: 17px !important; font-weight: 800 !important; color: #0f172a !important; margin: 0 !important; }
+    .pkg-optional-badge {
+      background: #f1f5f9 !important;
+      color: #64748b !important;
+      font-size: 11px !important;
+      font-weight: 800 !important;
+      padding: 2px 7px !important;
+      border-radius: 4px !important;
+    }
+    .pkg-choose-colors-row {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      font-size: 13.5px !important;
+      color: #334155 !important;
+      font-weight: 600 !important;
+    }
+    .pkg-tap-label { color: #94a3b8 !important; font-size: 12px !important; }
+    .pkg-color-swatches-grid { display: flex !important; flex-wrap: wrap !important; gap: 8px !important; }
+    .pkg-color-pill {
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 8px !important;
+      padding: 7px 12px !important;
+      border: 1.5px solid #e2e8f0 !important;
+      border-radius: 999px !important;
+      background: #ffffff !important;
+      cursor: pointer !important;
+      font-size: 12.5px !important;
+      font-weight: 600 !important;
+      color: #334155 !important;
+      transition: all 0.15s ease !important;
+    }
+    .pkg-color-pill:hover { border-color: #cbd5e1 !important; background: #f8fafc !important; }
+    .pkg-color-pill.active {
+      border-color: #be123c !important;
+      background: #fff1f3 !important;
+      color: #be123c !important;
+      font-weight: 700 !important;
+    }
+    .pkg-color-dot {
+      width: 14px !important;
+      height: 14px !important;
+      border-radius: 50% !important;
+      border: 1px solid rgba(0,0,0,0.15) !important;
+      flex-shrink: 0 !important;
+    }
+    .pkg-color-hint { font-size: 12px !important; color: #94a3b8 !important; margin: 10px 0 0 !important; }
+
+    /* Add-ons Carousel (Exact User Screenshot Match) */
+    .pkg-addons-carousel {
+      display: flex !important;
+      gap: 12px !important;
+      overflow-x: auto !important;
+      scroll-behavior: smooth !important;
+      padding: 6px 2px 14px !important;
+      scrollbar-width: thin !important;
+    }
+    .pkg-addons-carousel::-webkit-scrollbar {
+      height: 6px !important;
+    }
+    .pkg-addons-carousel::-webkit-scrollbar-thumb {
+      background: #cbd5e1 !important;
+      border-radius: 999px !important;
+    }
+    .pkg-addon-card {
+      min-width: 140px !important;
+      max-width: 145px !important;
+      flex-shrink: 0 !important;
+      border: 1px solid #e2e8f0 !important;
+      border-radius: 14px !important;
+      overflow: hidden !important;
+      background: #ffffff !important;
+      cursor: pointer !important;
+      transition: all 0.2s ease !important;
+      display: flex !important;
+      flex-direction: column !important;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.03) !important;
+      position: relative !important;
+    }
+    .pkg-addon-card:hover {
+      transform: translateY(-2px) !important;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.08) !important;
+      border-color: #cbd5e1 !important;
+    }
+    .pkg-addon-card.selected {
+      border-color: #16a34a !important;
+      box-shadow: 0 0 0 2px #16a34a, 0 4px 12px rgba(22, 163, 74, 0.15) !important;
+      background: #f0fdf4 !important;
+    }
+    .pkg-addon-img-wrap {
+      position: relative !important;
+      width: 100% !important;
+      height: 125px !important;
+      background: #f8fafc !important;
+      overflow: hidden !important;
+    }
+    .pkg-addon-img-wrap img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+      display: block !important;
+      transition: transform 0.25s ease !important;
+    }
+    .pkg-addon-card:hover .pkg-addon-img-wrap img {
+      transform: scale(1.05) !important;
+    }
+    .pkg-addon-top-badge {
+      position: absolute !important;
+      top: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      background: rgba(15, 23, 42, 0.75) !important;
+      color: #ffffff !important;
+      font-size: 9.5px !important;
+      font-weight: 700 !important;
+      text-align: center !important;
+      padding: 3px 4px !important;
+      letter-spacing: 0.3px !important;
+      z-index: 2 !important;
+      backdrop-filter: blur(2px) !important;
+    }
+    .pkg-addon-plus-btn {
+      position: absolute !important;
+      bottom: 8px !important;
+      right: 8px !important;
+      width: 30px !important;
+      height: 30px !important;
+      border-radius: 50% !important;
+      background: #ffffff !important;
+      color: #be123c !important;
+      border: 1px solid #e2e8f0 !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      font-size: 19px !important;
+      font-weight: 700 !important;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.18) !important;
+      cursor: pointer !important;
+      transition: all 0.15s ease !important;
+      z-index: 3 !important;
+    }
+    .pkg-addon-plus-btn:hover {
+      transform: scale(1.1) !important;
+      background: #fff1f3 !important;
+    }
+    .pkg-addon-plus-btn.added {
+      background: #16a34a !important;
+      color: #ffffff !important;
+      border-color: #16a34a !important;
+      font-size: 14px !important;
+    }
+    .pkg-addon-body {
+      padding: 8px 10px 10px !important;
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: space-between !important;
+      flex: 1 !important;
+    }
+    .pkg-addon-name {
+      font-size: 12.5px !important;
+      font-weight: 700 !important;
+      color: #0f172a !important;
+      line-height: 1.3 !important;
+      display: -webkit-box !important;
+      -webkit-line-clamp: 2 !important;
+      -webkit-box-orient: vertical !important;
+      overflow: hidden !important;
+      height: 32px !important;
+    }
+    .pkg-addon-price {
+      font-size: 14.5px !important;
+      font-weight: 800 !important;
+      color: #0f172a !important;
+      margin-top: 4px !important;
+    }
+
+    /* About Package Card */
+    .pkg-about-package-card {
+      background: #ffffff !important;
+      border: 1px solid #e2e8f0 !important;
+      border-radius: 16px !important;
+      padding: 18px !important;
+    }
+    .pkg-about-title { font-size: 17px !important; font-weight: 800 !important; color: #0f172a !important; margin: 0 0 2px !important; }
+    .pkg-about-subtitle { font-size: 12.5px !important; color: #94a3b8 !important; margin: 0 0 10px !important; }
+    .pkg-about-desc { font-size: 14px !important; color: #475569 !important; line-height: 1.6 !important; margin: 0 !important; }
+
+    /* Why choose Celebration Events */
+    .pkg-why-choose-card {
+      background: #ffffff !important;
+      border: 1px solid #e2e8f0 !important;
+      border-radius: 16px !important;
+      padding: 18px !important;
+    }
+    .pkg-why-title { font-size: 17px !important; font-weight: 800 !important; color: #0f172a !important; margin: 0 0 14px !important; }
+    .pkg-why-grid { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 14px !important; }
+    .pkg-why-item { display: flex !important; gap: 10px !important; align-items: flex-start !important; }
+    .pkg-why-icon { font-size: 20px !important; flex-shrink: 0 !important; }
+    .pkg-why-item strong { display: block !important; font-size: 13px !important; color: #0f172a !important; line-height: 1.3 !important; }
+    .pkg-why-item p { font-size: 12px !important; color: #64748b !important; margin: 2px 0 0 !important; line-height: 1.3 !important; }
+    .pkg-why-stats-row {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-around !important;
+      background: #f8fafc !important;
+      border-radius: 12px !important;
+      padding: 12px 6px !important;
+      margin-top: 16px !important;
+    }
+    .pkg-stat-box { display: flex !important; flex-direction: column !important; align-items: center !important; }
+    .pkg-stat-box strong { font-size: 17px !important; font-weight: 900 !important; color: #be123c !important; }
+    .pkg-stat-box span { font-size: 11px !important; color: #64748b !important; font-weight: 600 !important; }
+    .pkg-stat-divider { width: 1px !important; height: 24px !important; background: #cbd5e1 !important; }
+
+    /* Slot Booking Widget */
+    .pkg-booking-widget-card {
+      background: #ffffff !important;
+      border: 1.5px solid #fed7aa !important;
+      border-radius: 16px !important;
+      padding: 18px !important;
+      box-shadow: 0 4px 14px rgba(251, 146, 60, 0.08) !important;
+    }
+    .pkg-booking-widget-title { font-size: 17px !important; font-weight: 800 !important; color: #0f172a !important; margin: 0 0 14px !important; }
+
+    /* Feedback Card */
+    .pkg-feedback-card {
+      background: #ffffff !important;
+      border: 1px solid #e2e8f0 !important;
+      border-radius: 16px !important;
+      padding: 20px !important;
+    }
+    .pkg-feedback-header-row {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      margin-bottom: 16px !important;
+    }
+    .pkg-feedback-eyebrow { font-size: 11px !important; font-weight: 800 !important; color: #64748b !important; letter-spacing: 0.5px !important; }
+    .pkg-feedback-title { font-size: 20px !important; font-weight: 800 !important; color: #0f172a !important; margin: 2px 0 0 !important; }
+    .pkg-write-review-btn {
+      background: #ffffff !important;
+      border: 1px solid #e2e8f0 !important;
+      border-radius: 8px !important;
+      padding: 6px 12px !important;
+      font-size: 12.5px !important;
+      font-weight: 700 !important;
+      color: #be123c !important;
+      cursor: pointer !important;
+      transition: all 0.2s !important;
+    }
+    .pkg-write-review-btn:hover { background: #fff1f3 !important; border-color: #be123c !important; }
+    .pkg-rating-breakdown-card {
+      display: flex !important;
+      gap: 20px !important;
+      background: #f8fafc !important;
+      border-radius: 12px !important;
+      padding: 16px !important;
+      margin-bottom: 14px !important;
+    }
+    .pkg-rating-score-col {
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: center !important;
+      padding-right: 18px !important;
+      border-right: 1px solid #e2e8f0 !important;
+      min-width: 100px !important;
+    }
+    .pkg-score-number { font-size: 32px !important; font-weight: 900 !important; color: #15803d !important; line-height: 1 !important; }
+    .pkg-star-icon { font-size: 22px !important; }
+    .pkg-score-stars { color: #eab308 !important; font-size: 14px !important; margin: 4px 0 2px !important; }
+    .pkg-score-total { font-size: 12px !important; color: #64748b !important; font-weight: 600 !important; }
+    .pkg-rating-bars-col {
+      flex: 1 !important;
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 6px !important;
+      justify-content: center !important;
+    }
+    .pkg-bar-row {
+      display: flex !important;
+      align-items: center !important;
+      gap: 8px !important;
+      font-size: 11.5px !important;
+      color: #475569 !important;
+      font-weight: 600 !important;
+    }
+    .pkg-bar-track {
+      flex: 1 !important;
+      height: 7px !important;
+      background: #e2e8f0 !important;
+      border-radius: 999px !important;
+      overflow: hidden !important;
+    }
+    .pkg-bar-fill { height: 100% !important; background: #eab308 !important; border-radius: 999px !important; }
+    .pkg-bar-pct { width: 28px !important; text-align: right !important; font-size: 11px !important; color: #64748b !important; }
+    .pkg-trust-badges-strip {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-around !important;
+      padding: 8px 0 !important;
+      border-top: 1px solid #f1f5f9 !important;
+      border-bottom: 1px solid #f1f5f9 !important;
+      margin-bottom: 16px !important;
+    }
+    .pkg-trust-badge-item { display: flex !important; align-items: center !important; gap: 6px !important; font-size: 12px !important; font-weight: 700 !important; color: #475569 !important; }
+    .pkg-customer-photos-wrap { margin-bottom: 16px !important; }
+    .pkg-customer-photos-title { font-size: 13px !important; font-weight: 800 !important; color: #0f172a !important; margin: 0 0 10px !important; }
+    .pkg-customer-photos-strip { display: flex !important; gap: 8px !important; overflow-x: auto !important; padding-bottom: 4px !important; }
+    .pkg-photo-thumb {
+      width: 68px !important;
+      height: 68px !important;
+      border-radius: 10px !important;
+      object-fit: cover !important;
+      flex-shrink: 0 !important;
+      cursor: pointer !important;
+      border: 1px solid #e2e8f0 !important;
+      transition: transform 0.2s !important;
+    }
+    .pkg-photo-thumb:hover { transform: scale(1.05) !important; }
+    .pkg-photo-more-badge {
+      width: 68px !important;
+      height: 68px !important;
+      border-radius: 10px !important;
+      background: #1e293b !important;
+      color: #ffffff !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      font-size: 14px !important;
+      font-weight: 800 !important;
+      flex-shrink: 0 !important;
+      cursor: pointer !important;
+    }
+    .pkg-reviews-cards-list { display: flex !important; flex-direction: column !important; gap: 12px !important; }
+    .pkg-user-review-card {
+      border: 1px solid #f1f5f9 !important;
+      border-radius: 12px !important;
+      padding: 14px !important;
+      background: #ffffff !important;
+    }
+    .pkg-user-review-top {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      margin-bottom: 6px !important;
+    }
+    .pkg-user-left-info { display: flex !important; align-items: center !important; gap: 10px !important; }
+    .pkg-avatar-circle {
+      width: 34px !important;
+      height: 34px !important;
+      border-radius: 50% !important;
+      background: #be123c !important;
+      color: #ffffff !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      font-weight: 800 !important;
+      font-size: 13px !important;
+    }
+    .pkg-user-name { font-size: 13.5px !important; font-weight: 700 !important; color: #0f172a !important; }
+    .pkg-user-city { font-size: 11.5px !important; color: #94a3b8 !important; }
+    .pkg-user-rating-pill {
+      background: #15803d !important;
+      color: #ffffff !important;
+      font-size: 12px !important;
+      font-weight: 800 !important;
+      padding: 2px 7px !important;
+      border-radius: 6px !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 3px !important;
+    }
+    .pkg-user-comment { font-size: 13px !important; color: #475569 !important; line-height: 1.5 !important; margin: 0 !important; }
+    .pkg-view-all-reviews-btn {
+      width: 100% !important;
+      margin-top: 14px !important;
+      padding: 10px !important;
+      background: #f8fafc !important;
+      border: 1px solid #e2e8f0 !important;
+      border-radius: 10px !important;
+      font-size: 13px !important;
+      font-weight: 700 !important;
+      color: #0f172a !important;
+      cursor: pointer !important;
+      transition: all 0.2s !important;
+    }
+    .pkg-view-all-reviews-btn:hover { background: #f1f5f9 !important; border-color: #cbd5e1 !important; }
+
+    /* Similar Carousel */
+    .pkg-carousel-container { position: relative !important; overflow: hidden !important; padding: 4px 0 16px !important; }
+    .pkg-carousel-track {
+      display: flex !important;
+      gap: 20px !important;
+      overflow-x: auto !important;
+      scroll-behavior: smooth !important;
+      scrollbar-width: none !important;
+      padding: 6px 2px !important;
+    }
+    .pkg-carousel-track::-webkit-scrollbar { display: none !important; }
+    .pkg-similar-product-card {
+      min-width: 250px;
+      max-width: 270px;
+      flex-shrink: 0;
+    }
+    .pkg-carousel-nav-btn {
+      position: absolute !important;
+      top: 45% !important;
+      transform: translateY(-50%) !important;
+      width: 42px !important;
+      height: 42px !important;
+      border-radius: 50% !important;
+      background: #ffffff !important;
+      border: 1px solid #e2e8f0 !important;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.12) !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      font-size: 20px !important;
+      cursor: pointer !important;
+      z-index: 10 !important;
+      transition: all 0.2s !important;
+    }
+    .pkg-carousel-nav-btn:hover { background: #be123c !important; color: #ffffff !important; border-color: #be123c !important; }
+    .pkg-carousel-nav-btn.prev { left: 0 !important; }
+    .pkg-carousel-nav-btn.next { right: 0 !important; }
+
+    /* Mobile-only elements default state */
+    .pkg-mobile-location-bar { display: none; }
+    .pkg-slider-back-mobile { display: none; }
+    .pkg-mobile-bottom-bar { display: none; }
+
+    @media (max-width: 900px) {
+      .pkg-hero-layout { grid-template-columns: 1fr !important; gap: 24px !important; }
+      .pkg-gallery-left-wrap { position: static !important; }
+      .pkg-why-grid { grid-template-columns: 1fr !important; }
+    }
+
+    /* ====================================================
+       MOBILE VIEW MATCHING REFERENCE VIDEO 20260924-0544-23.mp4
+       ==================================================== */
+    @media (max-width: 768px) {
+      html, body {
+        overflow-x: hidden !important;
+        max-width: 100vw !important;
+        width: 100% !important;
+        position: relative !important;
+        box-sizing: border-box !important;
+      }
+
+      body {
+        padding-bottom: 96px !important;
+        background: #f8fafc !important;
+      }
+
+      /* Prevent header overflow */
+      .header-nav-desktop,
+      .header-center {
+        display: none !important;
+      }
+      .header-container {
+        width: 100% !important;
+        max-width: 100vw !important;
+        box-sizing: border-box !important;
+        padding: 0 12px !important;
+      }
+
+      /* Compact mobile page wrapper */
+      .page-wrapper {
+        width: 100% !important;
+        max-width: 100vw !important;
+        box-sizing: border-box !important;
+        overflow-x: hidden !important;
+        padding-top: 8px !important;
+        padding-left: 12px !important;
+        padding-right: 12px !important;
+        gap: 16px !important;
+      }
+
+      /* Top Mobile Location Bar matching Video Frame 00:22 */
+      .pkg-mobile-location-bar {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        background: #ffffff !important;
+        padding: 10px 14px !important;
+        border-radius: 12px !important;
+        border: 1px solid #e2e8f0 !important;
+        margin-bottom: 6px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+      }
+      .pkg-mobile-loc-left {
+        display: flex !important;
+        align-items: center !important;
+        gap: 8px !important;
+      }
+      .pkg-mobile-loc-icon {
+        font-size: 16px !important;
+        color: #be123c !important;
+      }
+      .pkg-mobile-loc-texts {
+        display: flex !important;
+        flex-direction: column !important;
+        line-height: 1.2 !important;
+      }
+      .pkg-mobile-loc-sub {
+        font-size: 10.5px !important;
+        color: #64748b !important;
+      }
+      .pkg-mobile-loc-texts strong {
+        font-size: 13.5px !important;
+        color: #0f172a !important;
+      }
+      .pkg-mobile-loc-change-btn {
+        background: none !important;
+        border: none !important;
+        color: #be123c !important;
+        font-weight: 700 !important;
+        font-size: 13px !important;
+        cursor: pointer !important;
+        padding: 4px 8px !important;
+      }
+
+      /* Breadcrumbs on mobile */
+      .pkg-breadcrumbs {
+        padding: 4px 6px !important;
+        font-size: 12px !important;
+        white-space: nowrap !important;
+        overflow-x: auto !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+      }
+
+      /* Hero container becomes sleek borderless column */
+      .pkg-hero-container-card {
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+        margin-bottom: 12px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        overflow: hidden !important;
+      }
+      .pkg-hero-layout {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 14px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        box-sizing: border-box !important;
+      }
+
+      /* Gallery: Hide thumbs, make slider square matching video Frame 00:22 */
+      .pkg-gallery-left-wrap {
+        position: static !important;
+        display: block !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+      }
+      .pkg-thumbs-vertical {
+        display: none !important; /* Video doesn't show side/bottom thumbnail buttons on mobile */
+      }
+      .pkg-main-slider-v2 {
+        border-radius: 18px !important;
+        aspect-ratio: 1 / 1 !important;
+        max-height: none !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.07) !important;
+        box-sizing: border-box !important;
+      }
+
+      /* Mobile back button on image top-left (Video Frame 00:22) */
+      .pkg-slider-back-mobile {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        position: absolute !important;
+        top: 14px !important;
+        left: 14px !important;
+        width: 38px !important;
+        height: 38px !important;
+        border-radius: 50% !important;
+        background: rgba(0, 0, 0, 0.45) !important;
+        color: #ffffff !important;
+        font-size: 22px !important;
+        font-weight: 700 !important;
+        border: none !important;
+        cursor: pointer !important;
+        z-index: 6 !important;
+        backdrop-filter: blur(4px) !important;
+        transition: transform 0.15s ease !important;
+      }
+      .pkg-slider-back-mobile:active {
+        transform: scale(0.92) !important;
+      }
+
+      /* Right details column on mobile */
+      .pkg-details-right-v2 {
+        padding: 0 !important;
+        gap: 12px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        box-sizing: border-box !important;
+      }
+
+      /* White card sections on mobile */
+      .pkg-tabs-card,
+      .pkg-make-yours-card,
+      .pkg-about-package-card,
+      .pkg-why-choose-card,
+      .pkg-booking-widget-card,
+      .pkg-feedback-card,
+      .pkg-city-select-card,
+      .pkg-lowest-price-guarantee,
+      .pkg-setup-time-box,
+      .pkg-urgency-banner-yellow {
+        background: #ffffff !important;
+        border: 1px solid #e2e8f0 !important;
+        border-radius: 16px !important;
+        padding: 14px !important;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.03) !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        box-sizing: border-box !important;
+        overflow: hidden !important;
+      }
+
+      /* Details text scaling */
+      .pkg-title-v2 {
+        font-size: 21px !important;
+        line-height: 1.3 !important;
+        word-break: break-word !important;
+      }
+      .pkg-price-large {
+        font-size: 28px !important;
+      }
+
+      /* Hide inline booking buttons on mobile since sticky bottom bar handles it */
+      .pkg-cta-row-v2 {
+        display: none !important;
+      }
+
+      /* TABS BAR (Smooth Horizontal Scrollable + Zero Overflow) */
+      .pkg-tabs-card {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        box-sizing: border-box !important;
+        overflow: hidden !important;
+        padding: 14px !important;
+      }
+      .pkg-tab-nav {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        gap: 8px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+        -webkit-overflow-scrolling: touch !important;
+        touch-action: pan-x !important;
+        box-sizing: border-box !important;
+        padding: 4px 2px 10px 2px !important;
+        scrollbar-width: thin !important;
+        cursor: grab !important;
+        user-select: none !important;
+      }
+      .pkg-tab-nav:active,
+      .pkg-tab-nav.is-dragging {
+        cursor: grabbing !important;
+      }
+      .pkg-tab-btn {
+        flex-shrink: 0 !important;
+        white-space: nowrap !important;
+        touch-action: manipulation !important;
+        cursor: pointer !important;
+        padding: 7px 14px !important;
+        font-size: 12.5px !important;
+      }
+
+      /* INCLUSIONS LIST (Wrap text cleanly with no cut-off) */
+      .pkg-included-items-list,
+      .pkg-not-included-items-list {
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+      }
+      .pkg-included-items-list li,
+      .pkg-not-included-items-list li {
+        display: flex !important;
+        align-items: flex-start !important;
+        gap: 8px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+      }
+      .pkg-included-items-list li span:first-child,
+      .pkg-not-included-items-list li span:first-child {
+        flex-shrink: 0 !important;
+        margin-top: 2px !important;
+      }
+      .pkg-included-items-list li span:last-child,
+      .pkg-not-included-items-list li span:last-child {
+        flex: 1 1 0% !important;
+        min-width: 0 !important;
+        word-break: break-word !important;
+        overflow-wrap: anywhere !important;
+        white-space: normal !important;
+        font-size: 13px !important;
+        line-height: 1.4 !important;
+      }
+
+      /* MAKE IT YOURS SECTION & CAROUSEL (Smooth Horizontal Scrollable) */
+      .pkg-make-yours-card {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        box-sizing: border-box !important;
+        overflow: hidden !important;
+        padding: 14px !important;
+      }
+      .pkg-addons-carousel {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        gap: 10px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+        -webkit-overflow-scrolling: touch !important;
+        touch-action: pan-x !important;
+        box-sizing: border-box !important;
+        padding: 6px 2px 14px 2px !important;
+        scrollbar-width: thin !important;
+        cursor: grab !important;
+        user-select: none !important;
+      }
+      .pkg-addons-carousel:active,
+      .pkg-addons-carousel.is-dragging {
+        cursor: grabbing !important;
+      }
+      .pkg-addon-card {
+        min-width: 125px !important;
+        max-width: 125px !important;
+        width: 125px !important;
+        flex-shrink: 0 !important;
+        box-sizing: border-box !important;
+      }
+      .pkg-addon-img-wrap {
+        height: 105px !important;
+        width: 100% !important;
+      }
+
+      /* Balloon color pills 2-column cleanly inside screen */
+      .pkg-color-swatches-grid {
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 8px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+      }
+      .pkg-color-pill {
+        width: 100% !important;
+        min-width: 0 !important;
+        box-sizing: border-box !important;
+        padding: 7px 8px !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 6px !important;
+        font-size: 11.5px !important;
+        overflow: hidden !important;
+      }
+      .pkg-color-pill span:last-child {
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        min-width: 0 !important;
+        flex: 1 !important;
+      }
+
+      /* Why Choose grid */
+      .pkg-why-grid {
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+      }
+
+      /* Ratings breakdown */
+      .pkg-rating-breakdown-card {
+        flex-direction: column !important;
+        gap: 12px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+      }
+      .pkg-rating-score-col {
+        border-right: none !important;
+        border-bottom: 1px solid #e2e8f0 !important;
+        padding-bottom: 12px !important;
+        padding-right: 0 !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+      }
+
+      /* SIMILAR PACKAGES: Compact Mobile Sizing (User Request) */
+      #pkgSimilarSection {
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow: hidden !important;
+        box-sizing: border-box !important;
+        margin-top: 20px !important;
+      }
+      .pkg-carousel-container {
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow: hidden !important;
+        box-sizing: border-box !important;
+        padding: 2px 0 10px !important;
+      }
+      .pkg-carousel-track {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+        touch-action: pan-x !important;
+        box-sizing: border-box !important;
+        gap: 10px !important;
+        padding: 4px 2px 10px !important;
+        cursor: grab !important;
+        user-select: none !important;
+      }
+      .pkg-carousel-track:active,
+      .pkg-carousel-track.is-dragging {
+        cursor: grabbing !important;
+      }
+      /* Compact card dimensions for Similar Packages */
+      #pkgSimilarGrid .pkg-similar-product-card,
+      #pkgSimilarGrid .product-card {
+        min-width: 155px !important;
+        max-width: 165px !important;
+        width: 160px !important;
+        flex-shrink: 0 !important;
+        border-radius: 12px !important;
+        box-sizing: border-box !important;
+      }
+      #pkgSimilarGrid .product-img-wrapper {
+        height: 120px !important;
+        width: 100% !important;
+        border-radius: 12px 12px 0 0 !important;
+      }
+      #pkgSimilarGrid .product-details {
+        padding: 8px 8px 10px !important;
+        box-sizing: border-box !important;
+      }
+      #pkgSimilarGrid .product-category-tag {
+        font-size: 10px !important;
+        margin-bottom: 2px !important;
+      }
+      #pkgSimilarGrid .product-title {
+        font-size: 12px !important;
+        line-height: 1.25 !important;
+        height: 30px !important;
+        margin-bottom: 4px !important;
+        overflow: hidden !important;
+        word-break: break-word !important;
+      }
+      #pkgSimilarGrid .product-rating-row {
+        gap: 4px !important;
+        margin-bottom: 4px !important;
+      }
+      #pkgSimilarGrid .rating-pill {
+        font-size: 10px !important;
+        padding: 1px 5px !important;
+      }
+      #pkgSimilarGrid .reviews-count {
+        font-size: 10.5px !important;
+      }
+      #pkgSimilarGrid .current-price {
+        font-size: 14px !important;
+      }
+      #pkgSimilarGrid .original-price {
+        font-size: 11px !important;
+      }
+      #pkgSimilarGrid .discount-tag {
+        font-size: 9.5px !important;
+        padding: 1px 4px !important;
+      }
+      #pkgSimilarGrid .product-action-btns {
+        margin-top: 6px !important;
+      }
+      #pkgSimilarGrid .book-now-btn {
+        padding: 6px 8px !important;
+        font-size: 11px !important;
+        border-radius: 8px !important;
+      }
+      /* Compact nav buttons that don't obscure similar packages */
+      .pkg-carousel-nav-btn {
+        width: 32px !important;
+        height: 32px !important;
+        font-size: 16px !important;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.14) !important;
+        z-index: 6 !important;
+      }
+
+      /* You May Also Like 2-column mobile grid matching video Frame 00:13 */
+      .catalog-section {
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow: hidden !important;
+        box-sizing: border-box !important;
+      }
+      #pkgYouMayLikeGrid {
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 10px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+      }
+      #pkgYouMayLikeGrid .product-card {
+        border-radius: 12px !important;
+        min-width: 0 !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+      }
+      #pkgYouMayLikeGrid .product-img-wrapper {
+        height: 140px !important;
+        width: 100% !important;
+      }
+      #pkgYouMayLikeGrid .product-details {
+        padding: 10px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+      }
+      #pkgYouMayLikeGrid .product-title {
+        font-size: 13px !important;
+        line-height: 1.3 !important;
+        height: 34px !important;
+        overflow: hidden !important;
+        word-break: break-word !important;
+      }
+      #pkgYouMayLikeGrid .current-price {
+        font-size: 15px !important;
+      }
+      #pkgYouMayLikeGrid .original-price {
+        font-size: 12px !important;
+      }
+      #pkgYouMayLikeGrid .book-now-btn {
+        padding: 7px 8px !important;
+        font-size: 11.5px !important;
+        width: 100% !important;
+      }
+
+      /* How Celebration Events Works (Never 5 columns on mobile) */
+      .how-it-works-section {
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        overflow: hidden !important;
+        padding: 20px 14px !important;
+      }
+      .steps-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 14px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+      }
+      .step-card {
+        width: 100% !important;
+        box-sizing: border-box !important;
+      }
+
+      /* Reviews infinite stream wrapper */
+      .reviews-section {
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow: hidden !important;
+      }
+      .reviews-marquee-wrapper {
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow: hidden !important;
+      }
+
+      /* Footer on mobile (Single column, no overflow) */
+      .main-footer {
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        overflow: hidden !important;
+      }
+      .footer-container {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0 14px !important;
+        box-sizing: border-box !important;
+      }
+      .footer-top-grid {
+        grid-template-columns: 1fr !important;
+        gap: 24px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+      }
+      .footer-cities-wrap,
+      .footer-bottom {
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+      }
+
+      /* STICKY BOTTOM BAR (Always docked at bottom on mobile matching video) */
+      .pkg-mobile-bottom-bar {
+        position: fixed !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        width: 100% !important;
+        max-width: 100vw !important;
+        box-sizing: border-box !important;
+        background: #ffffff !important;
+        border-top: 1px solid #e2e8f0 !important;
+        box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08) !important;
+        padding: 10px 12px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        gap: 8px !important;
+        z-index: 1000 !important;
+      }
+      .pkg-mobile-bottom-wa {
+        width: 42px !important;
+        height: 42px !important;
+        border-radius: 50% !important;
+        background: #25d366 !important;
+        color: #ffffff !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        flex-shrink: 0 !important;
+        box-shadow: 0 2px 8px rgba(37, 211, 102, 0.4) !important;
+        text-decoration: none !important;
+        transition: transform 0.15s !important;
+      }
+      .pkg-mobile-bottom-wa:active {
+        transform: scale(0.95) !important;
+      }
+      .pkg-mobile-bottom-price-info {
+        display: flex !important;
+        flex-direction: column !important;
+        flex: 1 !important;
+        min-width: 0 !important;
+        line-height: 1.15 !important;
+      }
+      .pkg-mobile-bottom-caption {
+        font-size: 9.5px !important;
+        color: #64748b !important;
+        font-weight: 600 !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.3px !important;
+      }
+      .pkg-mobile-bottom-amount {
+        font-size: 18px !important;
+        font-weight: 900 !important;
+        color: #0f172a !important;
+        letter-spacing: -0.3px !important;
+        margin: 1px 0 !important;
+      }
+      .pkg-mobile-bottom-sub {
+        font-size: 9px !important;
+        color: #16a34a !important;
+        font-weight: 700 !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+      }
+      .pkg-mobile-bottom-time {
+        font-size: 8.5px !important;
+        color: #94a3b8 !important;
+      }
+      .pkg-mobile-bottom-book-btn {
+        background: #be123c !important;
+        color: #ffffff !important;
+        border: none !important;
+        border-radius: 12px !important;
+        padding: 11px 15px !important;
+        font-size: 13.5px !important;
+        font-weight: 800 !important;
+        cursor: pointer !important;
+        white-space: nowrap !important;
+        box-shadow: 0 4px 14px rgba(190, 18, 60, 0.35) !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        gap: 6px !important;
+        transition: all 0.15s !important;
+        flex-shrink: 0 !important;
+      }
+      .pkg-mobile-bottom-book-btn:active {
+        transform: scale(0.97) !important;
+        background: #9f1239 !important;
+      }
+    }
+  </style>
 </head>
 <body>
 
   <!-- Top Announcement Bar -->
   <div class="announcement-bar">
-    <span class="badge">Special Offer</span>
-    <span>Use code <strong>CELEBRATE10</strong> for Flat 10% OFF | ⚡ 2-Hour Express Setup Available in Your City</span>
+    <span>⚡ 2-Hour Express Setup Available in Your City</span>
   </div>
 
   <!-- Sticky Main Header -->
@@ -57,6 +1642,7 @@
         <a href="index.html" class="header-nav-link">Home</a>
         <a href="about.html" class="header-nav-link">About Us</a>
         <a href="contact.html" class="header-nav-link">Contact</a>
+        <a href="blog.html" class="header-nav-link">Blog</a>
       </div>
 
       <!-- Header Center Search Trigger -->
@@ -93,6 +1679,8 @@
         <li class="nav-item"><a href="baby-shower.html" class="nav-trigger">Baby Shower & Welcome</a></li>
         <li class="nav-item"><a href="wedding.html" class="nav-trigger">Wedding <span class="tag-pill tag-new">NEW</span></a></li>
         <li class="nav-item"><a href="corporate.html" class="nav-trigger">Corporate</a></li>
+        <li class="nav-item"><a href="marketplace.html" class="nav-trigger">Gifts Market <span class="tag-pill tag-popular">NEW</span></a></li>
+        <li class="nav-item"><a href="blog.html" class="nav-trigger">Blog <span class="tag-pill tag-new">NEW</span></a></li>
         <li class="nav-item"><a href="#" class="nav-trigger" onclick="openCityModal(); return false;">Cities <span class="tag-pill tag-count">50+</span></a></li>
       </ul>
     </div>
@@ -100,6 +1688,18 @@
 
   <!-- Main Page Wrapper -->
   <main class="page-wrapper" style="gap: 36px; padding-top: 20px;">
+
+    <!-- Mobile Location Strip matching Video Frame 00:22 -->
+    <div class="pkg-mobile-location-bar">
+      <div class="pkg-mobile-loc-left">
+        <span class="pkg-mobile-loc-icon">📍</span>
+        <div class="pkg-mobile-loc-texts">
+          <span class="pkg-mobile-loc-sub">Decoration location</span>
+          <strong id="pkgMobileLocCity">Mumbai</strong>
+        </div>
+      </div>
+      <button type="button" class="pkg-mobile-loc-change-btn" onclick="openCityModal()">Change ›</button>
+    </div>
 
     <!-- Breadcrumbs -->
     <nav class="pkg-breadcrumbs" aria-label="Breadcrumb">
@@ -110,180 +1710,335 @@
       <span id="pkgTitleCrumb" class="crumb-current">Package Details</span>
     </nav>
 
-    <!-- Dedicated Package Details Grid -->
-    <section class="pkg-detail-grid" id="pkgDetailContainer">
-      <!-- Left Column: Media & Inclusions -->
-      <div class="pkg-media-col" data-aos="fade-up">
-        <!-- Main Image Card -->
-        <div class="pkg-main-img-card">
-          <span class="pkg-badge" id="pkgBadge">BESTSELLER</span>
-          <img id="pkgMainImg" src="" alt="Package Decoration Setup" loading="eager" />
-        </div>
-
-        <!-- Thumbnail Gallery Strip -->
-        <div class="pkg-gallery-strip" id="pkgGalleryStrip"></div>
-
-        <!-- Trust Features Strip -->
-        <div class="pkg-trust-features">
-          <div class="pkg-trust-pill">
-            <span class="pkg-trust-icon">⚡</span>
-            <div>
-              <strong>Express Slot Available</strong>
-              <span>Setup completed in ~2 hours</span>
-            </div>
-          </div>
-          <div class="pkg-trust-pill">
-            <span class="pkg-trust-icon">🛡️</span>
-            <div>
-              <strong>100% Wall-Safe Tapes</strong>
-              <span>Zero paint or wall damage guaranteed</span>
-            </div>
-          </div>
-          <div class="pkg-trust-pill">
-            <span class="pkg-trust-icon">🧑‍🔧</span>
-            <div>
-              <strong>Verified Specialist</strong>
-              <span>Background checked & sanitized</span>
-            </div>
+    <!-- Hero Package Card (Exact Match to User Video) -->
+    <div class="pkg-hero-container-card" data-aos="fade-up">
+      <div class="pkg-hero-layout">
+        <!-- Left Side: Sticky Vertical Thumbnails + Main Image Carousel -->
+        <div class="pkg-gallery-left-wrap">
+          <div class="pkg-thumbs-vertical" id="pkgThumbsVertical"></div>
+          <div class="pkg-main-slider-v2">
+            <!-- Mobile back button on top-left of image (Video Frame 00:22) -->
+            <button class="pkg-slider-back-mobile" onclick="history.back()" aria-label="Go back">‹</button>
+            <button class="pkg-slider-arrow prev" onclick="prevPackageSlide()" aria-label="Previous image">‹</button>
+            <img id="pkgMainImg" src="" alt="Package Setup" />
+            <button class="pkg-slider-arrow next" onclick="nextPackageSlide()" aria-label="Next image">›</button>
+            <div class="pkg-slider-dots-v2" id="pkgSliderDots"></div>
+            <button class="pkg-similar-pill-btn" onclick="scrollToSimilarPackages()">
+              <span>✨</span> <span>Similar</span>
+            </button>
           </div>
         </div>
 
-        <!-- Inclusions Box -->
-        <div class="pkg-inclusions-card">
-          <h3 class="pkg-card-heading">
-            <span class="heading-icon">🎁</span> What's Included in this Package:
-          </h3>
-          <ul class="pkg-inclusions-list" id="pkgInclusionsList"></ul>
-        </div>
+        <!-- Right Side: Details, Pricing, & Action CTAs (Exact Video Match) -->
+        <div class="pkg-details-right-v2">
+          <span class="pkg-tag-newly-added" id="pkgTagBadge">🎉 NEWLY ADDED</span>
+          <h1 class="pkg-title-v2" id="pkgTitle">Package Title</h1>
+          
+          <div class="pkg-rating-row-v2">
+            <span class="pkg-rating-badge-green">★ <span id="pkgRatingVal">4.9</span></span>
+            <span class="pkg-reviews-link-v2" onclick="scrollToFeedback()"><span id="pkgReviewsCnt">554 reviews</span> ›</span>
+          </div>
 
-        <!-- Setup Details & Instructions -->
-        <div class="pkg-setup-card">
-          <h3 class="pkg-card-heading">
-            <span class="heading-icon">ℹ️</span> Setup Instructions & Notes:
-          </h3>
-          <div class="pkg-notes-list">
-            <div class="pkg-note-item">
-              <span class="pkg-note-icon">⏱️</span>
-              <div>
-                <strong>Estimated Setup Duration:</strong>
-                <p id="pkgDurationText">1.5 - 2 Hours by certified decorator</p>
+          <div class="pkg-pricing-row-v2">
+            <span class="pkg-price-large" id="pkgPrice">₹0</span>
+            <span class="pkg-orig-price-strike" id="pkgOrigPrice">₹0</span>
+            <span class="pkg-discount-pill-green" id="pkgDiscount">0% OFF</span>
+          </div>
+
+          <p class="pkg-savings-text-v2">You save <strong id="pkgSavingsAmount">₹0</strong> · All charges & setup included</p>
+
+          <div class="pkg-urgency-banner-yellow">
+            <span>🕒</span>
+            <span id="pkgSlotsText">Only 5 slots left this weekend</span>
+          </div>
+
+          <div class="pkg-setup-time-box">
+            <span style="font-size: 16px;">⏱️</span>
+            <span>Setup time: <strong id="pkgSetupTimeText">approx. 1 to 1.5 hours</strong></span>
+          </div>
+
+          <div class="pkg-lowest-price-guarantee">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span>🛡️</span>
+              <span>Lowest Price Guaranteed</span>
+            </div>
+            <span style="background: #22c55e; color: #fff; width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px;">✓</span>
+          </div>
+
+          <div class="pkg-city-select-card" onclick="openCityModal()">
+            <div class="pkg-city-select-left">
+              <span style="color: #be123c; font-size: 16px;">📍</span>
+              <span>Check availability in <strong id="pkgSelectedCityText">your city</strong></span>
+            </div>
+            <span class="pkg-city-select-action">Select ›</span>
+          </div>
+
+          <div class="pkg-cta-row-v2">
+            <a href="#" id="pkgChatBtn" class="pkg-chat-btn-v2" target="_blank">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+              <span>Chat</span>
+            </a>
+            <button class="pkg-book-btn-v2" onclick="handleBookThisSetup()">
+              <span>Book this setup →</span>
+            </button>
+          </div>
+
+          <div class="pkg-included-note-v2">
+            <span style="color: #22c55e; font-weight: 700;">✓</span>
+            <span>Setup, delivery & materials included · date & time in cart</span>
+          </div>
+
+          <a href="#" id="pkgMoreCategoryLink" class="pkg-more-category-link">More in Birthday Decorations →</a>
+
+          <!-- Tabs: What's Included / FAQs / Delivery / Care Info (Frame 00:00 - 00:01 in video) -->
+          <div class="pkg-tabs-card">
+            <div class="pkg-tab-nav">
+              <button class="pkg-tab-btn active" onclick="switchPackageTab('included', this)">🏷️ What's Included</button>
+              <button class="pkg-tab-btn" onclick="switchPackageTab('faqs', this)">❓ FAQs</button>
+              <button class="pkg-tab-btn" onclick="switchPackageTab('delivery', this)">🚚 Delivery</button>
+              <button class="pkg-tab-btn" onclick="switchPackageTab('care', this)">🛡️ Care Info</button>
+            </div>
+
+            <!-- Tab Content: Included -->
+            <div class="pkg-tab-pane active" id="tab-included">
+              <div class="pkg-inc-heading">
+                <span style="color: #16a34a; font-weight: 800;">INCLUDED</span>
+                <span class="pkg-inc-count-badge" id="pkgIncCountBadge">5 Items</span>
+              </div>
+              <ul class="pkg-included-items-list" id="pkgInclusionsList"></ul>
+
+              <div class="pkg-not-inc-heading" style="margin-top: 14px; margin-bottom: 8px;">
+                <span style="color: #e11d48; font-weight: 800; font-size: 13px;">NOT INCLUDED</span>
+              </div>
+              <ul class="pkg-not-included-items-list">
+                <li><span class="not-inc-cross">✕</span> <span>No Helium Gas (All balloons inflated with standard air)</span></li>
+              </ul>
+            </div>
+
+            <!-- Tab Content: FAQs -->
+            <div class="pkg-tab-pane" id="tab-faqs">
+              <div class="pkg-faq-list">
+                <details class="pkg-faq-item" open>
+                  <summary>Can I customize the balloon colors?</summary>
+                  <p>Yes, absolutely! You can choose from our color palette below ("Make It Yours") or discuss your custom preference directly with our decorator.</p>
+                </details>
+                <details class="pkg-faq-item">
+                  <summary>What time will the decorator arrive?</summary>
+                  <p>Your certified decorator will arrive within the selected time slot you choose at booking.</p>
+                </details>
+                <details class="pkg-faq-item">
+                  <summary>Will wall tape leave marks on walls?</summary>
+                  <p>No, we exclusively use painter-friendly removable paper tapes that peel off smoothly without peeling paint or leaving sticky residue.</p>
+                </details>
+                <details class="pkg-faq-item">
+                  <summary>Can I reschedule or cancel?</summary>
+                  <p>Yes, free rescheduling is available up to 12 hours before your selected setup slot.</p>
+                </details>
               </div>
             </div>
-            <div class="pkg-note-item">
-              <span class="pkg-note-icon">🪜</span>
-              <div>
-                <strong>Space & Stool Requirement:</strong>
-                <p>Please provide a stool/ladder and an electrical plug point for our electric balloon pump.</p>
+
+            <!-- Tab Content: Delivery -->
+            <div class="pkg-tab-pane" id="tab-delivery">
+              <div class="pkg-delivery-info">
+                <p>⚡ <strong>Same-Day 2-Hour Setup:</strong> Available in 100+ cities including Delhi NCR, Mumbai, Bangalore, Pune, Hyderabad, and Kolkata.</p>
+                <p>🧑‍🔧 <strong>Verified Decorator:</strong> Arrives equipped with electric pumps, ladder-ready equipment, and premium materials.</p>
+                <p>⏱️ <strong>Setup Duration:</strong> Typically takes 1 to 1.5 hours depending on ceiling height and space.</p>
               </div>
             </div>
-            <div class="pkg-note-item">
-              <span class="pkg-note-icon">📦</span>
-              <div>
-                <strong>Post-Event Pickup:</strong>
-                <p>Any rental stands, backdrops, or neon lights will be picked up safely the following day.</p>
+
+            <!-- Tab Content: Care Info -->
+            <div class="pkg-tab-pane" id="tab-care">
+              <div class="pkg-care-info">
+                <p>🎈 <strong>Lifespan:</strong> Air-filled latex balloons remain inflated for 24 to 48 hours indoors in room temperature.</p>
+                <p>☀️ <strong>Location:</strong> Keep away from sharp edges, hot direct halogen lights, and outdoor harsh sunlight.</p>
               </div>
             </div>
           </div>
+
+          <!-- Section: Make it yours (OPTIONAL) - Add-ons Horizontal Strip (Exact Screenshot Match) -->
+          <div class="pkg-make-yours-card">
+            <div class="pkg-make-yours-header">
+              <div class="pkg-make-yours-title-row">
+                <span style="font-size: 20px;">🎁</span>
+                <h3 class="pkg-make-yours-title">Make it yours</h3>
+                <span class="pkg-optional-badge">OPTIONAL</span>
+              </div>
+              <span class="pkg-tap-label" style="font-size: 13px; color: #64748b; font-weight: 600;">Tap to add</span>
+            </div>
+
+            <!-- Add-ons Horizontal Scrollable Carousel (Milestone Board, Neon Light, Rose Petals, Tea Candles, Custom Board) -->
+            <div class="pkg-addons-carousel" id="pkgAddonsCarousel"></div>
+
+            <!-- Balloon Colors Palette -->
+            <div style="margin-top: 18px; border-top: 1px dashed #e2e8f0; padding-top: 14px;">
+              <div class="pkg-choose-colors-row" style="margin-bottom: 10px;">
+                <span class="pkg-choose-label" style="font-weight: 700; color: #0f172a; font-size: 13.5px;">🎨 Choose Balloon Colors</span>
+                <span class="pkg-tap-label">Tap to select</span>
+              </div>
+              <div class="pkg-color-swatches-grid" id="pkgColorSwatches"></div>
+              <p class="pkg-color-hint">Pick a palette, your own, or keep the photo's colors.</p>
+            </div>
+          </div>
+
+          <!-- Section: About This Package (Frame 00:02 in video) -->
+          <div class="pkg-about-package-card">
+            <h3 class="pkg-about-title">About This Package</h3>
+            <p class="pkg-about-subtitle">Everything you need to know</p>
+            <p class="pkg-about-desc" id="pkgAboutDescription">
+              This celebration home setup keeps things simple and pocket-friendly with balloons floating on ceiling and floor to make every corner photo-ready. A happy birthday foil and ribbons finish the look with party charm.
+            </p>
+          </div>
+
+          <!-- Section: Why choose Celebration Events? (Frame 00:02 in video) -->
+          <div class="pkg-why-choose-card">
+            <h3 class="pkg-why-title">Why choose Celebration Events?</h3>
+            <div class="pkg-why-grid">
+              <div class="pkg-why-item">
+                <div class="pkg-why-icon">🏆</div>
+                <div>
+                  <strong>India's #1 decoration brand</strong>
+                  <p>10L+ celebrations made special</p>
+                </div>
+              </div>
+              <div class="pkg-why-item">
+                <div class="pkg-why-icon">👔</div>
+                <div>
+                  <strong>Dedicated event planner</strong>
+                  <p>End to end assistance for your event</p>
+                </div>
+              </div>
+              <div class="pkg-why-item">
+                <div class="pkg-why-icon">⚡</div>
+                <div>
+                  <strong>Same-day service</strong>
+                  <p>Professional decorators for every setup</p>
+                </div>
+              </div>
+              <div class="pkg-why-item">
+                <div class="pkg-why-icon">💯</div>
+                <div>
+                  <strong>100% smile assurance</strong>
+                  <p>Lowest price promised</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="pkg-why-stats-row">
+              <div class="pkg-stat-box"><strong>10L+</strong><span>Customers</span></div>
+              <div class="pkg-stat-divider"></div>
+              <div class="pkg-stat-box"><strong>50+</strong><span>Cities</span></div>
+              <div class="pkg-stat-divider"></div>
+              <div class="pkg-stat-box"><strong>4.9 ★</strong><span>Rating</span></div>
+              <div class="pkg-stat-divider"></div>
+              <div class="pkg-stat-box"><strong>5+</strong><span>Years</span></div>
+            </div>
+          </div>
+
+          <!-- Section: Choose Your Setup Slot (Booking Section) -->
+          <div class="pkg-booking-widget-card" id="pkgBookingSection">
+            <h3 class="pkg-booking-widget-title">🗓️ Choose Your Setup Slot</h3>
+
+            <!-- Date Picker -->
+            <div class="pkg-form-group">
+              <label class="pkg-form-label" for="pkgBookingDate">
+                <span>📅 Select Celebration Date:</span>
+              </label>
+              <input type="date" id="pkgBookingDate" class="pkg-date-input" />
+            </div>
+
+            <!-- Slot Picker -->
+            <div class="pkg-form-group">
+              <label class="pkg-form-label">
+                <span>⏰ Choose Decorator Arrival Slot:</span>
+              </label>
+              <div class="pkg-slot-grid" id="pkgSlotGrid"></div>
+            </div>
+
+            <!-- Live Price Summary -->
+            <div class="pkg-summary-box">
+              <div class="pkg-summary-row">
+                <span>Base Package Price:</span>
+                <span id="summaryBasePrice">₹0</span>
+              </div>
+              <div class="pkg-summary-row" id="summaryAddonsRow" style="display: none;">
+                <span>Selected Add-ons:</span>
+                <span id="summaryAddonsPrice">+₹0</span>
+              </div>
+              <div class="pkg-summary-total">
+                <span>Total Payable:</span>
+                <span id="summaryTotalPrice" class="total-highlight">₹0</span>
+              </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="pkg-action-buttons">
+              <button class="pkg-btn-book" onclick="handleDirectBooking()">
+                ⚡ Confirm & Book Now
+              </button>
+              <button class="pkg-btn-cart" onclick="handleAddToCartFromPage()">
+                🛒 Add to Cart
+              </button>
+            </div>
+          </div>
+
+        </div> <!-- /pkg-details-right-v2 -->
+      </div> <!-- /pkg-hero-layout -->
+    </div> <!-- /pkg-hero-container-card -->
+
+    <!-- Similar Packages Section (Horizontal Slider with Navigation Buttons) -->
+    <section class="catalog-section" id="pkgSimilarSection" style="margin-top: 30px;" data-aos="fade-up">
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <h2 class="section-title">Similar Packages</h2>
+          <div class="title-underline"></div>
+          <p class="section-subtitle">Customers who viewed this package also checked these options</p>
+        </div>
+      </div>
+      <div class="pkg-carousel-container">
+        <button class="pkg-carousel-nav-btn prev" onclick="scrollSimilarTrack(-1)" aria-label="Previous Similar Packages">‹</button>
+        <div class="pkg-carousel-track" id="pkgSimilarGrid"></div>
+        <button class="pkg-carousel-nav-btn next" onclick="scrollSimilarTrack(1)" aria-label="Next Similar Packages">›</button>
+      </div>
+    </section>
+
+    <!-- Real Photos & Video Customer Reviews Section (Same as Home Page) -->
+    <section class="reviews-section" id="reviewsSection" style="margin-top: 40px;" data-aos="fade-up" data-aos-duration="700">
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <div class="reviews-stream-tag">
+            <span class="live-pulse-dot"></span> LIVE CELEBRATION FEED
+          </div>
+          <h2 class="section-title">Real Photos & Video Customer Reviews</h2>
+          <div class="title-underline"></div>
+          <p class="section-subtitle">Watch real celebration reels and customer setups across India • Hover over any card to pause</p>
         </div>
       </div>
 
-      <!-- Right Column: Booking & Customization Card -->
-      <div class="pkg-booking-col" data-aos="fade-up" data-aos-delay="100">
-        <div class="pkg-booking-card">
-          <!-- Category & Title -->
-          <div class="pkg-header-meta">
-            <span class="pkg-category-tag" id="pkgCategoryTag">Birthday Decoration</span>
-            <div class="pkg-rating-wrap">
-              <span class="pkg-stars">★★★★★</span>
-              <span class="pkg-rating-val" id="pkgRatingVal">4.9</span>
-              <span class="pkg-reviews-cnt" id="pkgReviewsCnt">(350+ reviews)</span>
-            </div>
+      <!-- 2-Row Infinite Video & Photo Scrolling Stream -->
+      <div class="reviews-marquee-wrapper" id="reviewsMarqueeWrapper">
+        <div class="reviews-marquee-row">
+          <div class="reviews-marquee-track track-row-1" id="reviewsTrackRow1">
+            <!-- Rendered dynamically by app.js -->
           </div>
-
-          <h1 class="pkg-title" id="pkgTitle">Package Title</h1>
-          <p class="pkg-desc" id="pkgDescription">Package description text</p>
-
-          <!-- Pricing Row -->
-          <div class="pkg-pricing-box">
-            <div class="pkg-price-row">
-              <span class="pkg-curr-price" id="pkgPrice">₹0</span>
-              <span class="pkg-orig-price" id="pkgOrigPrice">₹0</span>
-              <span class="pkg-discount-tag" id="pkgDiscount">0% OFF</span>
-            </div>
-            <span class="pkg-tax-note">✓ Inclusive of all taxes, materials & decorator travel</span>
-          </div>
-
-          <!-- Date Picker -->
-          <div class="pkg-form-group">
-            <label class="pkg-form-label" for="pkgBookingDate">
-              <span>📅 Select Celebration Date:</span>
-            </label>
-            <input type="date" id="pkgBookingDate" class="pkg-date-input" />
-          </div>
-
-          <!-- Slot Picker -->
-          <div class="pkg-form-group">
-            <label class="pkg-form-label">
-              <span>⏰ Choose Decorator Arrival Slot:</span>
-            </label>
-            <div class="pkg-slot-grid" id="pkgSlotGrid"></div>
-          </div>
-
-          <!-- Add-ons Selection -->
-          <div class="pkg-form-group">
-            <label class="pkg-form-label">
-              <span>✨ Add Extra Magic (Optional Add-ons):</span>
-            </label>
-            <div class="pkg-addons-list" id="pkgAddonsList"></div>
-          </div>
-
-          <!-- Live Price Summary -->
-          <div class="pkg-summary-box">
-            <div class="pkg-summary-row">
-              <span>Base Package Price:</span>
-              <span id="summaryBasePrice">₹0</span>
-            </div>
-            <div class="pkg-summary-row" id="summaryAddonsRow" style="display: none;">
-              <span>Selected Add-ons:</span>
-              <span id="summaryAddonsPrice">+₹0</span>
-            </div>
-            <div class="pkg-summary-total">
-              <span>Total Payable:</span>
-              <span id="summaryTotalPrice" class="total-highlight">₹0</span>
-            </div>
-          </div>
-
-          <!-- Action Buttons -->
-          <div class="pkg-action-buttons">
-            <button class="pkg-btn-book" onclick="handleDirectBooking()">
-              ⚡ Book Now (Instant Slot)
-            </button>
-            <button class="pkg-btn-cart" onclick="handleAddToCartFromPage()">
-              🛒 Add to Cart
-            </button>
-            <a id="pkgWhatsappBtn" href="#" target="_blank" class="pkg-btn-whatsapp">
-              💬 Inquire via WhatsApp
-            </a>
-          </div>
-
-          <!-- Assurance Guarantee -->
-          <div class="pkg-guarantee-note">
-            <span>🔒 <strong>No-Hassle Guarantee:</strong> Pay online or choose <em>Pay After Setup</em> during checkout. Free rescheduling up to 6 hours before slot.</span>
+        </div>
+        <div class="reviews-marquee-row">
+          <div class="reviews-marquee-track track-row-2" id="reviewsTrackRow2">
+            <!-- Rendered dynamically by app.js -->
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Similar Packages Section -->
-    <section class="catalog-section" style="margin-top: 20px;" data-aos="fade-up">
+    <!-- You May Also Like Section (4-column Grid with Badges) -->
+    <section class="catalog-section" style="margin-top: 30px;" data-aos="fade-up">
       <div class="section-header">
         <div class="section-title-wrap">
-          <h2 class="section-title">Similar Decoration Packages</h2>
+          <h2 class="section-title">You May Also Like <span style="font-size: 16px; color: #64748b; font-weight: 500;">(319 options)</span></h2>
           <div class="title-underline"></div>
-          <p class="section-subtitle">Discover more popular celebration designs in this category</p>
+          <p class="section-subtitle">Explore more trending celebrations and balloon aesthetics</p>
         </div>
       </div>
-      <div class="products-grid" id="pkgSimilarGrid"></div>
+      <div class="products-grid" id="pkgYouMayLikeGrid"></div>
     </section>
 
     <!-- How Celebration Events Works -->
@@ -330,62 +2085,64 @@
 
   </main>
 
-  <!-- Standard Site Footer -->
-  <footer class="site-footer">
+  <!-- Main Footer -->
+  <footer class="main-footer">
     <div class="footer-container">
       <div class="footer-top-grid">
         <div class="footer-col">
-          <div class="brand-logo" style="margin-bottom: 12px;">
+          <div class="brand-logo" style="color: #fff; margin-bottom: 12px;">
             <span class="logo-balloon">🎈</span>
-            <span style="color: #fff;">Celebration <span class="bold">Events</span></span>
+            <span>Celebration <span style="color: var(--brand-400);">Events</span><span class="reg">®</span></span>
           </div>
-          <p style="font-size: 13px; color: var(--gray-400); line-height: 1.6; margin-bottom: 16px;">
-            India’s top-rated on-demand surprise balloon decoration booking platform. Professional home, terrace, and party styling delivered with love and safety.
-          </p>
-          <div style="font-size: 12.5px; color: var(--gray-300); display: flex; flex-direction: column; gap: 6px;">
-            <span>📞 Customer Support: +91 82820 25444</span>
-            <span>✉️ Email: support@celebrationevents.in</span>
-            <span>⏰ Operational Hours: 7:00 AM - 11:30 PM (All 7 Days)</span>
-          </div>
+          <p>India’s most trusted online platform for party and balloon decorations. We deliver happiness and vibrant surprises across 100+ cities with guaranteed on-time setup.</p>
+          <p><strong>Hotline:</strong> +91 82820 25444<br/><strong>Email:</strong> support@celebrationevents.com<br/><strong>Hours:</strong> Mon - Sun, 09:00 AM - 10:00 PM</p>
         </div>
 
         <div class="footer-col">
-          <h4 class="footer-heading">Celebrations</h4>
+          <h4>Occasions</h4>
           <ul class="footer-links">
-            <li><a href="birthday.html">Birthday Balloon Decor</a></li>
-            <li><a href="anniversary.html">Anniversary & Romantic</a></li>
-            <li><a href="kids.html">Kids Birthday Themes</a></li>
-            <li><a href="baby-shower.html">Baby Shower Setups</a></li>
-            <li><a href="wedding.html">Wedding Decor</a></li>
-            <li><a href="corporate.html">Corporate Events</a></li>
+            <li><a href="birthday.html">Birthday Decorations</a></li>
+            <li><a href="anniversary.html">Anniversary Celebrations</a></li>
+            <li><a href="kids.html">Kids Theme Parties</a></li>
+            <li><a href="baby-shower.html">Baby Shower & Welcome</a></li>
+            <li><a href="wedding.html">Haldi & Wedding Setups</a></li>
+            <li><a href="corporate.html">Corporate Event Decor</a></li>
           </ul>
         </div>
 
         <div class="footer-col">
-          <h4 class="footer-heading">Company</h4>
+          <h4>Quick Links</h4>
           <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
             <li><a href="about.html">About Us</a></li>
             <li><a href="contact.html">Contact Us</a></li>
-            <li><a href="#" onclick="openCityModal(); return false;">Serving 100+ Cities</a></li>
-            <li><a href="#">Privacy Policy</a></li>
-            <li><a href="#">Terms & Conditions</a></li>
+            <li><a href="blog.html">Blog & Guides</a></li>
+        <li><a href="blog.html" class="mobile-nav-link">📝 Blog & Guides <span>›</span></a></li>
+            <li><a href="#" onclick="openCityModal(); return false;">Choose City</a></li>
+            <li><a href="#" onclick="openCart(); return false;">My Cart</a></li>
           </ul>
         </div>
 
         <div class="footer-col">
-          <h4 class="footer-heading">100% Satisfaction</h4>
-          <p style="font-size: 12.5px; color: var(--gray-400); line-height: 1.5; margin-bottom: 12px;">
-            Verified technicians, metallic latex balloons, sanitized equipment, and wall-safe paper tape used for all setups.
-          </p>
-          <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-            <span style="background: rgba(255,255,255,0.1); padding: 4px 10px; border-radius: 4px; font-size: 11px; color: #fff;">🔒 Secure UPI / Cards</span>
-            <span style="background: rgba(255,255,255,0.1); padding: 4px 10px; border-radius: 4px; font-size: 11px; color: #fff;">💵 Pay After Setup</span>
-          </div>
+          <h4>Instant WhatsApp Booking</h4>
+          <p>Need urgent same-day setup or custom theme design? Chat with our event specialists right now.</p>
+          <a href="https://wa.me/918282025444?text=Hi%20Celebration%20Events,%20I%20want%20to%20book%20a%20decoration%20service." target="_blank" rel="noopener noreferrer" class="slide-btn" style="background: #25d366; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);">
+            Chat on WhatsApp →
+          </a>
+        </div>
+      </div>
+
+      <!-- City Directory -->
+      <div class="footer-cities-wrap">
+        <h5>Serving Across 50+ Cities in India:</h5>
+        <div class="footer-cities-links" id="footerCitiesLinks">
+          <!-- Rendered dynamically -->
         </div>
       </div>
 
       <div class="footer-bottom">
-        <p>© 2026 Celebration Events Pvt. Ltd. All rights reserved. Made with ❤️ for happy celebrations across India.</p>
+        <p>© 2026 Celebration Events Technologies Private Limited. All Rights Reserved.</p>
+        <p>100% Secure Payment | UPI • Cards • NetBanking • Pay After Setup</p>
       </div>
     </div>
   </footer>
@@ -541,11 +2298,23 @@
         <li><a href="baby-shower.html" class="mobile-nav-link">🍼 Baby Shower & Welcome <span>›</span></a></li>
         <li><a href="wedding.html" class="mobile-nav-link">💍 Wedding <span>›</span></a></li>
         <li><a href="corporate.html" class="mobile-nav-link">💼 Corporate Events <span>›</span></a></li>
+        <li><a href="marketplace.html" class="mobile-nav-link">🎁 Gifts Market <span class="tag-pill tag-trending" style="margin-left: 6px; font-size: 9.5px; padding: 2px 7px;">HOT</span> <span>›</span></a></li>
+        <li><a href="blog.html" class="mobile-nav-link">📰 Party Blog & Ideas <span class="tag-pill tag-new" style="margin-left: 6px; font-size: 9.5px; padding: 2px 7px;">NEW</span> <span>›</span></a></li>
         <li><a href="about.html" class="mobile-nav-link">ℹ️ About Us <span>›</span></a></li>
         <li><a href="contact.html" class="mobile-nav-link">📞 Contact Us <span>›</span></a></li>
         <li><a href="#" class="mobile-nav-link" onclick="openCityModal(); closeMobileSidebar();">📍 Change City <span>›</span></a></li>
         <li><a href="#" class="mobile-nav-link" onclick="openLoginPrompt(); closeMobileSidebar();">👤 Sign In / Account <span>›</span></a></li>
       </ul>
+    </div>
+  </div>
+
+  <!-- Review Video / Photo Media Modal -->
+  <div class="review-modal-overlay" id="reviewMediaModalOverlay" onclick="closeReviewMediaModal(event)">
+    <div class="review-modal-content" onclick="event.stopPropagation()">
+      <button class="review-modal-close-btn" onclick="closeReviewMediaModal()">&times;</button>
+      <div class="review-modal-body" id="reviewModalBody">
+        <!-- Rendered dynamically -->
+      </div>
     </div>
   </div>
 
@@ -604,50 +2373,79 @@
       const titleCrumb = document.getElementById("pkgTitleCrumb");
       if (titleCrumb) titleCrumb.textContent = currentPackage.title;
 
-      // Left Column Details
-      document.getElementById("pkgBadge").textContent = currentPackage.badge;
-      document.getElementById("pkgMainImg").src = currentPackage.image;
-      document.getElementById("pkgMainImg").alt = currentPackage.title;
-
-      // Gallery Strip
-      const galleryStrip = document.getElementById("pkgGalleryStrip");
-      const galleryImgs = currentPackage.gallery && currentPackage.gallery.length > 0
+      // Left Column Gallery Slider
+      currentGalleryList = currentPackage.gallery && currentPackage.gallery.length > 0
         ? currentPackage.gallery
-        : [currentPackage.image];
+        : [currentPackage.image, currentPackage.image, currentPackage.image];
+      currentGalleryIndex = 0;
 
-      galleryStrip.innerHTML = galleryImgs.map((imgUrl, i) => `
-        <button class="pkg-thumb-btn ${i === 0 ? 'active' : ''}" onclick="selectGalleryImg('${imgUrl}', this)">
-          <img src="${imgUrl}" alt="Thumb ${i+1}" />
-        </button>
-      `).join("");
+      const thumbsEl = document.getElementById("pkgThumbsVertical");
+      if (thumbsEl) {
+        thumbsEl.innerHTML = currentGalleryList.slice(0, 4).map((imgUrl, i) => `
+          <button type="button" class="pkg-thumb-btn-v2 ${i === 0 ? 'active' : ''}" onclick="selectGalleryImg('${imgUrl}', this, ${i})">
+            <img src="${imgUrl}" alt="Thumbnail ${i+1}" />
+          </button>
+        `).join("");
+      }
+
+      document.getElementById("pkgMainImg").src = currentGalleryList[0];
+      document.getElementById("pkgMainImg").alt = currentPackage.title;
+      updateGalleryDots();
 
       // Inclusions
       const incList = document.getElementById("pkgInclusionsList");
-      incList.innerHTML = currentPackage.inclusions.map(inc => `
-        <li>
-          <span class="inc-check">✓</span>
-          <span>${inc}</span>
-        </li>
-      `).join("");
+      if (incList) {
+        incList.innerHTML = currentPackage.inclusions.map(inc => `
+          <li>
+            <span class="inc-check">✓</span>
+            <span>${inc}</span>
+          </li>
+        `).join("");
+      }
 
-      document.getElementById("pkgDurationText").textContent = `${currentPackage.setupDuration} by professional decorator`;
+      const durText = document.getElementById("pkgDurationText");
+      if (durText) durText.textContent = `${currentPackage.setupDuration} by professional decorator`;
+      const setupTimeEl = document.getElementById("pkgSetupTimeText");
+      if (setupTimeEl) setupTimeEl.textContent = currentPackage.setupDuration || "approx. 1 to 1.5 hours";
 
       // Right Column Booking Details
-      document.getElementById("pkgCategoryTag").textContent = currentPackage.categoryName;
+      const tagBadge = document.getElementById("pkgTagBadge");
+      if (tagBadge) tagBadge.textContent = currentPackage.badge ? `🎉 ${currentPackage.badge.toUpperCase()}` : "🎉 NEWLY ADDED";
+
       document.getElementById("pkgTitle").textContent = currentPackage.title;
-      document.getElementById("pkgDescription").textContent = currentPackage.description;
       document.getElementById("pkgRatingVal").textContent = currentPackage.rating.toFixed(1);
-      document.getElementById("pkgReviewsCnt").textContent = `(${currentPackage.reviewsCount} verified reviews)`;
+      document.getElementById("pkgReviewsCnt").textContent = `${currentPackage.reviewsCount || 554} reviews`;
 
       document.getElementById("pkgPrice").textContent = `₹${currentPackage.price.toLocaleString("en-IN")}`;
       document.getElementById("pkgOrigPrice").textContent = `₹${currentPackage.originalPrice.toLocaleString("en-IN")}`;
       document.getElementById("pkgDiscount").textContent = `${currentPackage.discount}% OFF`;
 
-      // WhatsApp Button
-      const waBtn = document.getElementById("pkgWhatsappBtn");
-      if (waBtn) {
-        const text = encodeURIComponent(`Hello Celebration Events! I want to book/inquire about "${currentPackage.title}" (₹${currentPackage.price}).`);
-        waBtn.href = `https://wa.me/918282025444?text=${text}`;
+      const savings = currentPackage.originalPrice - currentPackage.price;
+      const savingsEl = document.getElementById("pkgSavingsAmount");
+      if (savingsEl) savingsEl.textContent = `₹${savings.toLocaleString("en-IN")}`;
+
+      const currentCityName = (typeof appState !== "undefined" && appState.selectedCity) ? appState.selectedCity : "Mumbai";
+      const cityText = document.getElementById("pkgSelectedCityText");
+      if (cityText) cityText.textContent = currentCityName;
+      const mobileLocCity = document.getElementById("pkgMobileLocCity");
+      if (mobileLocCity) mobileLocCity.textContent = currentCityName;
+
+      // Update mobile sticky price
+      const mobileStickyPrice = document.getElementById("mobileStickyPrice");
+      if (mobileStickyPrice) mobileStickyPrice.textContent = `₹${currentPackage.price.toLocaleString("en-IN")}`;
+
+      // WhatsApp Chat Button & Mobile Bottom WhatsApp
+      const waText = encodeURIComponent(`Hello Celebration Events! I am looking at "${currentPackage.title}" (₹${currentPackage.price}) in ${currentCityName}. Please share details and slot availability!`);
+      const chatBtn = document.getElementById("pkgChatBtn");
+      if (chatBtn) chatBtn.href = `https://wa.me/918282025444?text=${waText}`;
+      const mobileWaBtn = document.getElementById("pkgMobileBottomWaBtn");
+      if (mobileWaBtn) mobileWaBtn.href = `https://wa.me/918282025444?text=${waText}`;
+
+      // More in category link
+      const moreLink = document.getElementById("pkgMoreCategoryLink");
+      if (moreLink) {
+        moreLink.textContent = `More in ${currentPackage.categoryName || 'Birthday'} Decorations →`;
+        moreLink.href = `${currentPackage.category || 'birthday'}.html`;
       }
 
       // Default Date: Tomorrow
@@ -667,17 +2465,190 @@
       // Render Add-ons
       renderPackageAddons();
 
+      // Render Balloon Color Swatches (Frame 00:01 in video)
+      renderColorSwatches();
+
+      // Render Home-Page Format Live Customer Video Reels & Reviews
+      try { if (typeof renderReviews === 'function') renderReviews(); } catch(e){}
+
       // Update Summary
       updatePackageSummary();
 
-      // Render Similar Packages
+      // Render Similar Packages (Horizontal Slider)
       renderSimilarPackages();
+
+      // Render You May Also Like (Full Width Grid)
+      renderYouMayAlsoLike();
+
+      // Enable Smooth Drag-to-Scroll on all horizontal strips (touch & mouse)
+      setTimeout(() => {
+        initHorizontalDragScroll(document.querySelector('.pkg-tab-nav'));
+        initHorizontalDragScroll(document.getElementById('pkgAddonsCarousel'));
+        initHorizontalDragScroll(document.getElementById('pkgSimilarGrid'));
+        initHorizontalDragScroll(document.querySelector('.pkg-customer-photos-strip'));
+      }, 100);
     }
 
-    function selectGalleryImg(imgUrl, btn) {
+    // Drag-to-scroll utility for horizontal carousels (Mouse + Touch)
+    function initHorizontalDragScroll(el) {
+      if (!el || el.dataset.dragScrollInit) return;
+      el.dataset.dragScrollInit = "true";
+
+      let isDown = false;
+      let startX = 0;
+      let scrollLeft = 0;
+      let hasDragged = false;
+
+      el.addEventListener('pointerdown', (e) => {
+        if (e.pointerType === 'mouse' && e.button !== 0) return;
+        isDown = true;
+        hasDragged = false;
+        el.classList.add('is-dragging');
+        startX = e.pageX - el.offsetLeft;
+        scrollLeft = el.scrollLeft;
+      });
+
+      const onPointerMove = (e) => {
+        if (!isDown) return;
+        const x = e.pageX - el.offsetLeft;
+        const walk = (x - startX);
+        if (Math.abs(walk) > 4) {
+          hasDragged = true;
+        }
+        el.scrollLeft = scrollLeft - walk;
+      };
+
+      const onPointerUp = () => {
+        if (isDown) {
+          isDown = false;
+          el.classList.remove('is-dragging');
+        }
+      };
+
+      el.addEventListener('pointermove', onPointerMove);
+      window.addEventListener('pointerup', onPointerUp);
+      window.addEventListener('pointercancel', onPointerUp);
+
+      // Prevent accidental clicks if the user was dragging
+      el.addEventListener('click', (e) => {
+        if (hasDragged) {
+          e.preventDefault();
+          e.stopPropagation();
+          hasDragged = false;
+        }
+      }, true);
+    }
+
+    // Tabs Switcher
+    function switchPackageTab(tabId, btn) {
+      document.querySelectorAll(".pkg-tab-btn").forEach(b => b.classList.remove("active"));
+      document.querySelectorAll(".pkg-tab-pane").forEach(p => p.classList.remove("active"));
+      if (btn) btn.classList.add("active");
+      const target = document.getElementById("tab-" + tabId);
+      if (target) target.classList.add("active");
+    }
+
+    // Color Swatches (Make It Yours - Frame 00:01 in video)
+    const COLOR_PALETTES = [
+      { name: "Same as Image", gradient: "linear-gradient(135deg, #be123c 50%, #f59e0b 50%)", selected: true },
+      { name: "Blue - Pink", gradient: "linear-gradient(135deg, #3b82f6 50%, #ec4899 50%)" },
+      { name: "Multicolors", gradient: "linear-gradient(135deg, #ef4444 25%, #eab308 25%, #eab308 50%, #22c55e 50%, #22c55e 75%, #3b82f6 75%)" },
+      { name: "Gold - Black", gradient: "linear-gradient(135deg, #f59e0b 50%, #0f172a 50%)" },
+      { name: "Silver - Blue", gradient: "linear-gradient(135deg, #94a3b8 50%, #2563eb 50%)" },
+      { name: "Red - White", gradient: "linear-gradient(135deg, #ef4444 50%, #ffffff 50%)" },
+      { name: "White - Golden", gradient: "linear-gradient(135deg, #ffffff 50%, #f59e0b 50%)" },
+      { name: "Pink - Blue", gradient: "linear-gradient(135deg, #f43f5e 50%, #0284c7 50%)" },
+      { name: "Pink - White", gradient: "linear-gradient(135deg, #ec4899 50%, #ffffff 50%)" },
+      { name: "Custom", gradient: "conic-gradient(red, yellow, lime, aqua, blue, magenta, red)" }
+    ];
+
+    let selectedColorPalette = "Same as Image";
+
+    function renderColorSwatches() {
+      const container = document.getElementById("pkgColorSwatches");
+      if (!container) return;
+
+      container.innerHTML = COLOR_PALETTES.map(p => `
+        <button type="button" class="pkg-color-pill ${p.name === selectedColorPalette ? 'active' : ''}" onclick="selectColorPalette('${p.name}', this)">
+          <span class="pkg-color-dot" style="background: ${p.gradient};"></span>
+          <span>${p.name}</span>
+        </button>
+      `).join("");
+    }
+
+    function selectColorPalette(name, btn) {
+      selectedColorPalette = name;
+      document.querySelectorAll(".pkg-color-pill").forEach(p => p.classList.remove("active"));
+      if (btn) btn.classList.add("active");
+      showToast(`🎨 Selected palette: ${name}`);
+    }
+
+    function scrollToFeedback() {
+      const el = document.getElementById("reviewsSection");
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    let currentGalleryIndex = 0;
+    let currentGalleryList = [];
+
+    function selectGalleryImg(imgUrl, btn, idx) {
       document.getElementById("pkgMainImg").src = imgUrl;
-      document.querySelectorAll(".pkg-thumb-btn").forEach(b => b.classList.remove("active"));
-      btn.classList.add("active");
+      document.querySelectorAll(".pkg-thumb-btn-v2").forEach(b => b.classList.remove("active"));
+      if (btn) btn.classList.add("active");
+      currentGalleryIndex = idx !== undefined ? idx : currentGalleryList.indexOf(imgUrl);
+      updateGalleryDots();
+    }
+
+    function prevPackageSlide() {
+      if (!currentGalleryList || currentGalleryList.length <= 1) return;
+      currentGalleryIndex = (currentGalleryIndex - 1 + currentGalleryList.length) % currentGalleryList.length;
+      updateActiveSlide();
+    }
+
+    function nextPackageSlide() {
+      if (!currentGalleryList || currentGalleryList.length <= 1) return;
+      currentGalleryIndex = (currentGalleryIndex + 1) % currentGalleryList.length;
+      updateActiveSlide();
+    }
+
+    function updateActiveSlide() {
+      const url = currentGalleryList[currentGalleryIndex];
+      const img = document.getElementById("pkgMainImg");
+      if (img) img.src = url;
+      document.querySelectorAll(".pkg-thumb-btn-v2").forEach((b, i) => {
+        if (i === currentGalleryIndex) b.classList.add("active");
+        else b.classList.remove("active");
+      });
+      updateGalleryDots();
+    }
+
+    function updateGalleryDots() {
+      const dots = document.getElementById("pkgSliderDots");
+      if (!dots) return;
+      dots.innerHTML = currentGalleryList.map((_, i) => `
+        <div class="pkg-dot-v2 ${i === currentGalleryIndex ? 'active' : ''}"></div>
+      `).join("");
+    }
+
+    function scrollToSimilarPackages() {
+      const el = document.getElementById("pkgSimilarSection") || document.getElementById("pkgSimilarGrid");
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function scrollSimilarTrack(direction) {
+      const track = document.getElementById("pkgSimilarGrid");
+      if (track) {
+        track.scrollBy({ left: direction * 320, behavior: 'smooth' });
+      }
+    }
+
+    function handleBookThisSetup() {
+      const sec = document.getElementById("pkgBookingSection");
+      if (sec) {
+        sec.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        handleAddToCartFromPage();
+      }
     }
 
     function renderPackageSlots() {
@@ -699,26 +2670,41 @@
     }
 
     function renderPackageAddons() {
-      const container = document.getElementById("pkgAddonsList");
-      container.innerHTML = SITE_DATA.addons.map(addon => {
-        const isChecked = selectedAddonIds.includes(addon.id);
-        return `
-          <label class="pkg-addon-item ${isChecked ? 'checked' : ''}">
-            <input type="checkbox" ${isChecked ? 'checked' : ''} onchange="togglePackageAddon('${addon.id}', this.checked)" />
-            <div class="pkg-addon-info">
-              <span class="pkg-addon-name">${addon.icon} ${addon.name}</span>
+      const carousel = document.getElementById("pkgAddonsCarousel");
+      const addons = SITE_DATA.addons || [];
+
+      if (carousel) {
+        carousel.innerHTML = addons.map(addon => {
+          const isSelected = selectedAddonIds.includes(addon.id);
+          return `
+            <div class="pkg-addon-card ${isSelected ? 'selected' : ''}" onclick="togglePackageAddonCard('${addon.id}')">
+              <div class="pkg-addon-img-wrap">
+                ${addon.badge ? `<span class="pkg-addon-top-badge">${addon.badge}</span>` : ''}
+                <img src="${addon.image}" alt="${addon.name}" loading="lazy" />
+                <button type="button" class="pkg-addon-plus-btn ${isSelected ? 'added' : ''}" aria-label="Add ${addon.name}" onclick="event.stopPropagation(); togglePackageAddonCard('${addon.id}')">
+                  ${isSelected ? '✓' : '+'}
+                </button>
+              </div>
+              <div class="pkg-addon-body">
+                <div class="pkg-addon-name" title="${addon.name}">${addon.name}</div>
+                <div class="pkg-addon-price">₹${addon.price}</div>
+              </div>
             </div>
-            <span class="pkg-addon-price">+₹${addon.price}</span>
-          </label>
-        `;
-      }).join("");
+          `;
+        }).join("");
+      }
     }
 
-    function togglePackageAddon(addonId, checked) {
-      if (checked) {
-        if (!selectedAddonIds.includes(addonId)) selectedAddonIds.push(addonId);
-      } else {
+    function togglePackageAddonCard(addonId) {
+      const addon = SITE_DATA.addons.find(a => a.id === addonId);
+      if (!addon) return;
+
+      if (selectedAddonIds.includes(addonId)) {
         selectedAddonIds = selectedAddonIds.filter(id => id !== addonId);
+        showToast(`Removed ${addon.name}`);
+      } else {
+        selectedAddonIds.push(addonId);
+        showToast(`🎉 Added ${addon.name} (+₹${addon.price})!`);
       }
       renderPackageAddons();
       updatePackageSummary();
@@ -746,6 +2732,8 @@
       }
 
       document.getElementById("summaryTotalPrice").textContent = `₹${grandTotal.toLocaleString("en-IN")}`;
+      const mobileStickyPrice = document.getElementById("mobileStickyPrice");
+      if (mobileStickyPrice) mobileStickyPrice.textContent = `₹${grandTotal.toLocaleString("en-IN")}`;
     }
 
     function buildCurrentCartItem() {
@@ -759,7 +2747,8 @@
         product: currentPackage,
         date: date,
         slot: slot,
-        addons: addons
+        addons: addons,
+        customColor: selectedColorPalette
       };
     }
 
@@ -774,7 +2763,7 @@
 
     function handleDirectBooking() {
       const item = buildCurrentCartItem();
-      appState.cart = [item]; // Direct checkout for this item
+      appState.cart = [item];
       saveCart();
       updateCartBadge();
       openCheckoutModal();
@@ -786,10 +2775,54 @@
 
       const similar = SITE_DATA.products
         .filter(p => p.id !== currentPackage.id && (p.category === currentPackage.category || p.badge === currentPackage.badge))
-        .slice(0, 4);
+        .slice(0, 6);
 
-      container.innerHTML = similar.map((p, idx) => `
-        <div class="product-card" id="card-${p.id}" data-aos="fade-up" data-aos-delay="${(idx + 1) * 70}">
+      container.innerHTML = similar.map((p) => `
+        <div class="product-card pkg-similar-product-card" id="card-${p.id}">
+          <div class="product-img-wrapper" onclick="window.location.href='package.html?id=${p.id}'">
+            <span class="product-badge badge-${p.badge.toLowerCase().replace(/\\s+/g, '')}">${p.badge}</span>
+            <img src="${p.image}" alt="${p.title}" loading="lazy" />
+            <button class="quick-view-overlay-btn" onclick="event.stopPropagation(); window.location.href='package.html?id=${p.id}'">
+              View Package Details 🔍
+            </button>
+          </div>
+          <div class="product-details">
+            <span class="product-category-tag">${p.categoryName}</span>
+            <h3 class="product-title" onclick="window.location.href='package.html?id=${p.id}'" style="cursor: pointer;">
+              ${p.title}
+            </h3>
+            <div class="product-rating-row">
+              <span class="rating-pill">
+                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                ${p.rating.toFixed(1)}
+              </span>
+              <span class="reviews-count">${p.reviewsCount} reviews</span>
+            </div>
+            <div class="product-pricing-row">
+              <span class="current-price">₹${p.price.toLocaleString("en-IN")}</span>
+              <span class="original-price">₹${p.originalPrice.toLocaleString("en-IN")}</span>
+              <span class="discount-tag">${p.discount}% off</span>
+            </div>
+            <div class="product-action-btns">
+              <button class="book-now-btn" onclick="window.location.href='package.html?id=${p.id}'">
+                View Package Details ⚡
+              </button>
+            </div>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    function renderYouMayAlsoLike() {
+      const container = document.getElementById("pkgYouMayLikeGrid");
+      if (!container || !currentPackage) return;
+
+      const items = SITE_DATA.products
+        .filter(p => p.id !== currentPackage.id)
+        .slice(0, 8);
+
+      container.innerHTML = items.map((p, idx) => `
+        <div class="product-card" id="card-like-${p.id}" data-aos="fade-up" data-aos-delay="${(idx % 4) * 80}">
           <div class="product-img-wrapper" onclick="window.location.href='package.html?id=${p.id}'">
             <span class="product-badge badge-${p.badge.toLowerCase().replace(/\\s+/g, '')}">${p.badge}</span>
             <img src="${p.image}" alt="${p.title}" loading="lazy" />
@@ -824,5 +2857,20 @@
       `).join("");
     }
   </script>
+  <!-- Fixed Mobile Booking Sticky Bar matching Video Frames 00:00 - 00:23 -->
+  <div class="pkg-mobile-bottom-bar" id="pkgMobileBottomBar">
+    <a href="https://wa.me/918282025444" id="pkgMobileBottomWaBtn" target="_blank" rel="noopener noreferrer" class="pkg-mobile-bottom-wa" title="Chat on WhatsApp">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+    </a>
+    <div class="pkg-mobile-bottom-price-info">
+      <span class="pkg-mobile-bottom-caption">All-inclusive price</span>
+      <span class="pkg-mobile-bottom-amount" id="mobileStickyPrice">₹1,599</span>
+      <span class="pkg-mobile-bottom-sub">✓ Setup, delivery & materials included</span>
+      <span class="pkg-mobile-bottom-time">date & time in cart</span>
+    </div>
+    <button class="pkg-mobile-bottom-book-btn" onclick="handleBookThisSetup()">
+      <span>Book this setup →</span>
+    </button>
+  </div>
 </body>
 </html>
