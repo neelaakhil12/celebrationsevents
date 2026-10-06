@@ -28,7 +28,9 @@
     REVIEWS: 'celebration_custom_reviews',
     WEDDING_CONFIGS: 'celebration_custom_wedding_configs',
     WEDDING_SERVICES: 'celebration_custom_wedding_services',
-    CITIES: 'celebration_custom_cities'
+    CITIES: 'celebration_custom_cities',
+    ANNOUNCEMENT: 'celebration_custom_announcement',
+    BANNERS: 'celebration_custom_banners'
   };
 
   // Exact 7 categories and sequence matching website header navigation
@@ -49,6 +51,17 @@
     blogs: [],
     reviews: [],
     cities: [],
+    banners: [],
+    bannerFilterLocation: 'all',
+    announcement: {
+      enabled: true,
+      text: "⚡ Same Day 2-Hour Express Delivery in 100+ Cities",
+      badge: "⚡ EXPRESS",
+      linkText: "Book Now",
+      linkUrl: "#",
+      theme: "rose-gradient",
+      bg: "linear-gradient(135deg, #be123c 0%, #fb7185 100%)"
+    },
     activeTab: 'packages',
     searchTerm: '',
     selectedCategory: 'all',
@@ -752,6 +765,58 @@
     }
     appState.cities = cities;
     localStorage.setItem(STORAGE_KEYS.CITIES, JSON.stringify(appState.cities));
+
+    // 6. Top Announcement Bar
+    let announcement = {
+      enabled: true,
+      text: "⚡ Same Day 2-Hour Express Delivery in 100+ Cities",
+      badge: "⚡ EXPRESS",
+      linkText: "Book Now",
+      linkUrl: "#",
+      theme: "rose-gradient",
+      bg: "linear-gradient(135deg, #be123c 0%, #fb7185 100%)"
+    };
+    const storedAnn = localStorage.getItem(STORAGE_KEYS.ANNOUNCEMENT);
+    if (storedAnn) {
+      try {
+        const parsed = JSON.parse(storedAnn);
+        if (parsed && typeof parsed === 'object') {
+          announcement = { ...announcement, ...parsed };
+        }
+      } catch (e) {
+        console.warn('Could not parse stored announcement:', e);
+      }
+    } else if (typeof window.SITE_DATA !== 'undefined' && window.SITE_DATA.announcementBar) {
+      announcement = { ...announcement, ...window.SITE_DATA.announcementBar };
+    }
+    appState.announcement = announcement;
+    localStorage.setItem(STORAGE_KEYS.ANNOUNCEMENT, JSON.stringify(appState.announcement));
+
+    // 7. Promotional Banners
+    let banners = [];
+    const storedBanners = localStorage.getItem(STORAGE_KEYS.BANNERS);
+    if (storedBanners) {
+      try {
+        const parsed = JSON.parse(storedBanners);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          banners = parsed;
+        }
+      } catch (e) {
+        console.warn('Could not parse stored banners:', e);
+      }
+    }
+    const siteBanners = (typeof window.SITE_DATA !== 'undefined' && Array.isArray(window.SITE_DATA.banners)) ? window.SITE_DATA.banners : [];
+    if (banners.length === 0) {
+      banners = JSON.parse(JSON.stringify(siteBanners));
+    } else {
+      siteBanners.forEach(sb => {
+        if (!banners.some(b => b.id === sb.id)) {
+          banners.push(JSON.parse(JSON.stringify(sb)));
+        }
+      });
+    }
+    appState.banners = banners;
+    localStorage.setItem(STORAGE_KEYS.BANNERS, JSON.stringify(appState.banners));
   }
 
   // Load from Supabase Cloud Database on startup
@@ -858,11 +923,23 @@
     localStorage.setItem(STORAGE_KEYS.CATEGORIES, JSON.stringify(appState.categories));
     localStorage.setItem(STORAGE_KEYS.PRODUCTS, JSON.stringify(appState.products));
     localStorage.setItem(STORAGE_KEYS.CITIES, JSON.stringify(appState.cities));
+    if (appState.announcement) {
+      localStorage.setItem(STORAGE_KEYS.ANNOUNCEMENT, JSON.stringify(appState.announcement));
+    }
+    if (appState.banners) {
+      localStorage.setItem(STORAGE_KEYS.BANNERS, JSON.stringify(appState.banners));
+    }
 
     if (typeof window.SITE_DATA !== 'undefined') {
       window.SITE_DATA.categories = appState.categories;
       window.SITE_DATA.products = appState.products;
       window.SITE_DATA.cities = appState.cities;
+      if (appState.announcement) {
+        window.SITE_DATA.announcementBar = appState.announcement;
+      }
+      if (appState.banners) {
+        window.SITE_DATA.banners = appState.banners;
+      }
     }
 
     // 2. Dev server disk persistence
@@ -875,6 +952,8 @@
         blogs: appState.blogs,
         reviews: appState.reviews,
         cities: appState.cities,
+        announcement: appState.announcement,
+        banners: appState.banners,
         updatedAt: new Date().toISOString()
       })
     }).catch(() => {});
@@ -925,6 +1004,20 @@
       if (window.innerWidth <= 960) sidebar?.classList.remove('mobile-open');
     });
 
+    // Promotional Banners tab button
+    const bannersBtn = document.getElementById('sidebarBannersBtn');
+    bannersBtn?.addEventListener('click', () => {
+      switchTab('banners');
+      if (window.innerWidth <= 960) sidebar?.classList.remove('mobile-open');
+    });
+
+    // Top Announcement Bar tab button
+    const announcementBtn = document.getElementById('sidebarAnnouncementBtn');
+    announcementBtn?.addEventListener('click', () => {
+      switchTab('announcement');
+      if (window.innerWidth <= 960) sidebar?.classList.remove('mobile-open');
+    });
+
     // Settings / Backup tab button
     const settingsBtn = document.getElementById('sidebarSettingsBtn');
     settingsBtn?.addEventListener('click', () => {
@@ -934,6 +1027,16 @@
 
     mobileToggle?.addEventListener('click', () => {
       sidebar?.classList.toggle('mobile-open');
+    });
+
+    // Topbar Add Banner quick button
+    document.getElementById('topbarAddBannerBtn')?.addEventListener('click', () => {
+      openBannerModal('add');
+    });
+
+    // Topbar Announcement quick button
+    document.getElementById('topbarEditAnnouncementBtn')?.addEventListener('click', () => {
+      switchTab('announcement');
     });
 
     document.getElementById('topbarAddPackageBtn')?.addEventListener('click', () => {
@@ -1197,6 +1300,8 @@
     const blogsBtn = document.getElementById('sidebarBlogsBtn');
     const reviewsBtn = document.getElementById('sidebarReviewsBtn');
     const citiesBtn = document.getElementById('sidebarCitiesBtn');
+    const bannersBtn = document.getElementById('sidebarBannersBtn');
+    const announcementBtn = document.getElementById('sidebarAnnouncementBtn');
     const heroContainer = document.getElementById('categoryHeroContainer');
 
     if (tabId === 'settings') {
@@ -1204,16 +1309,46 @@
       if (blogsBtn) blogsBtn.classList.remove('active');
       if (reviewsBtn) reviewsBtn.classList.remove('active');
       if (citiesBtn) citiesBtn.classList.remove('active');
+      if (bannersBtn) bannersBtn.classList.remove('active');
+      if (announcementBtn) announcementBtn.classList.remove('active');
       if (settingsBtn) settingsBtn.classList.add('active');
       document.querySelectorAll('#sidebarCategoriesContainer .sidebar-item').forEach(b => b.classList.remove('active'));
       const topbarTitle = document.getElementById('topbarPageTitle');
       if (topbarTitle) topbarTitle.textContent = 'Backup & Store Settings';
       if (heroContainer) heroContainer.innerHTML = '';
+    } else if (tabId === 'banners') {
+      if (allBtn) allBtn.classList.remove('active');
+      if (settingsBtn) settingsBtn.classList.remove('active');
+      if (blogsBtn) blogsBtn.classList.remove('active');
+      if (reviewsBtn) reviewsBtn.classList.remove('active');
+      if (citiesBtn) citiesBtn.classList.remove('active');
+      if (announcementBtn) announcementBtn.classList.remove('active');
+      if (bannersBtn) bannersBtn.classList.add('active');
+      document.querySelectorAll('#sidebarCategoriesContainer .sidebar-item').forEach(b => b.classList.remove('active'));
+      const topbarTitle = document.getElementById('topbarPageTitle');
+      if (topbarTitle) topbarTitle.textContent = `🖼️ Promotional Banners & Hero Carousels (${appState.banners.length})`;
+      if (heroContainer) heroContainer.innerHTML = '';
+      renderBannersAdmin();
+    } else if (tabId === 'announcement') {
+      if (allBtn) allBtn.classList.remove('active');
+      if (settingsBtn) settingsBtn.classList.remove('active');
+      if (blogsBtn) blogsBtn.classList.remove('active');
+      if (reviewsBtn) reviewsBtn.classList.remove('active');
+      if (citiesBtn) citiesBtn.classList.remove('active');
+      if (bannersBtn) bannersBtn.classList.remove('active');
+      if (announcementBtn) announcementBtn.classList.add('active');
+      document.querySelectorAll('#sidebarCategoriesContainer .sidebar-item').forEach(b => b.classList.remove('active'));
+      const topbarTitle = document.getElementById('topbarPageTitle');
+      if (topbarTitle) topbarTitle.textContent = '📢 Top Announcement Bar & Website Ticker';
+      if (heroContainer) heroContainer.innerHTML = '';
+      renderAnnouncementAdmin();
     } else if (tabId === 'blogs') {
       if (allBtn) allBtn.classList.remove('active');
       if (settingsBtn) settingsBtn.classList.remove('active');
       if (reviewsBtn) reviewsBtn.classList.remove('active');
       if (citiesBtn) citiesBtn.classList.remove('active');
+      if (bannersBtn) bannersBtn.classList.remove('active');
+      if (announcementBtn) announcementBtn.classList.remove('active');
       if (blogsBtn) blogsBtn.classList.add('active');
       document.querySelectorAll('#sidebarCategoriesContainer .sidebar-item').forEach(b => b.classList.remove('active'));
       const topbarTitle = document.getElementById('topbarPageTitle');
@@ -1225,6 +1360,8 @@
       if (settingsBtn) settingsBtn.classList.remove('active');
       if (blogsBtn) blogsBtn.classList.remove('active');
       if (citiesBtn) citiesBtn.classList.remove('active');
+      if (bannersBtn) bannersBtn.classList.remove('active');
+      if (announcementBtn) announcementBtn.classList.remove('active');
       if (reviewsBtn) reviewsBtn.classList.add('active');
       document.querySelectorAll('#sidebarCategoriesContainer .sidebar-item').forEach(b => b.classList.remove('active'));
       const topbarTitle = document.getElementById('topbarPageTitle');
@@ -1236,6 +1373,8 @@
       if (settingsBtn) settingsBtn.classList.remove('active');
       if (blogsBtn) blogsBtn.classList.remove('active');
       if (reviewsBtn) reviewsBtn.classList.remove('active');
+      if (bannersBtn) bannersBtn.classList.remove('active');
+      if (announcementBtn) announcementBtn.classList.remove('active');
       if (citiesBtn) citiesBtn.classList.add('active');
       document.querySelectorAll('#sidebarCategoriesContainer .sidebar-item').forEach(b => b.classList.remove('active'));
       const topbarTitle = document.getElementById('topbarPageTitle');
@@ -1247,6 +1386,8 @@
       if (blogsBtn) blogsBtn.classList.remove('active');
       if (reviewsBtn) reviewsBtn.classList.remove('active');
       if (citiesBtn) citiesBtn.classList.remove('active');
+      if (bannersBtn) bannersBtn.classList.remove('active');
+      if (announcementBtn) announcementBtn.classList.remove('active');
       selectCategoryTab(appState.selectedCategoryTab || 'all');
     }
   }
@@ -1283,6 +1424,8 @@
     const sidebarBlogsBadge = document.getElementById('sidebarBlogsBadge');
     const sidebarReviewsBadge = document.getElementById('sidebarReviewsBadge');
     const sidebarCitiesBadge = document.getElementById('sidebarCitiesBadge');
+    const sidebarBannersBadge = document.getElementById('sidebarBannersBadge');
+    const sidebarAnnouncementBadge = document.getElementById('sidebarAnnouncementBadge');
     const reviewsTabCountText = document.getElementById('reviewsTabCountText');
 
     const pkgsCount = appState.products.length;
@@ -1294,7 +1437,15 @@
     if (sidebarBlogsBadge) sidebarBlogsBadge.textContent = appState.blogs.length;
     if (sidebarReviewsBadge) sidebarReviewsBadge.textContent = appState.reviews.length;
     if (sidebarCitiesBadge) sidebarCitiesBadge.textContent = appState.cities.length;
+    if (sidebarBannersBadge) sidebarBannersBadge.textContent = appState.banners.length;
     if (reviewsTabCountText) reviewsTabCountText.textContent = `• ${appState.reviews.length} Reviews Live`;
+
+    if (sidebarAnnouncementBadge) {
+      const isLive = appState.announcement?.enabled !== false;
+      sidebarAnnouncementBadge.textContent = isLive ? 'LIVE' : 'OFF';
+      sidebarAnnouncementBadge.style.background = isLive ? '#fee2e2' : '#f1f5f9';
+      sidebarAnnouncementBadge.style.color = isLive ? '#be123c' : '#64748b';
+    }
 
     if (pkgsCount > 0) {
       const sum = appState.products.reduce((acc, p) => acc + (Number(p.price) || 0), 0);
@@ -1464,6 +1615,34 @@
       } finally {
         if (blogUploadProgress) blogUploadProgress.style.display = 'none';
         if (blogUploadLabel) blogUploadLabel.textContent = '☁️ Upload to Cloudinary';
+        e.target.value = '';
+      }
+    });
+
+    // 7. Promotional Banner Image Upload
+    const bannerImgFile = document.getElementById('bannerImageFileInput');
+    const bannerUploadProgress = document.getElementById('bannerUploadProgress');
+    const bannerUploadLabel = document.getElementById('bannerUploadLabel');
+
+    bannerImgFile?.addEventListener('change', async (e) => {
+      const file = e.target.files?.[0];
+      if (!file) return;
+
+      if (bannerUploadProgress) bannerUploadProgress.style.display = 'block';
+      if (bannerUploadLabel) bannerUploadLabel.textContent = 'Uploading...';
+
+      try {
+        const url = await uploadToCloudinary(file, 'celebration-banners');
+        const imgInput = document.getElementById('bannerImageUrlInput');
+        if (imgInput) imgInput.value = url;
+        const prev = document.getElementById('bannerModalPreviewImg');
+        if (prev) prev.src = url;
+        showToast('Banner image uploaded to Cloudinary!', 'success');
+      } catch (err) {
+        showToast('Cloudinary upload error: ' + err.message, 'error');
+      } finally {
+        if (bannerUploadProgress) bannerUploadProgress.style.display = 'none';
+        if (bannerUploadLabel) bannerUploadLabel.textContent = '☁️ Upload';
         e.target.value = '';
       }
     });
@@ -4324,6 +4503,618 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
     if (message) showToast(message, 'success');
   }
 
+  /* ==========================================================================
+     TOP ANNOUNCEMENT BAR & TICKER MANAGEMENT
+     ========================================================================== */
+  const ANNOUNCEMENT_PRESETS = {
+    express: {
+      text: '⚡ Same Day 2-Hour Express Delivery in 100+ Cities',
+      badge: '⚡ EXPRESS',
+      linkText: 'Book Now',
+      linkUrl: '#',
+      theme: 'rose-gradient',
+      bg: 'linear-gradient(135deg, #be123c 0%, #fb7185 100%)'
+    },
+    discount: {
+      text: '🎉 Flat ₹500 OFF on Orders Above ₹2999 | Use Code: CELEBRATE500',
+      badge: '🔥 OFFER',
+      linkText: 'Claim Offer',
+      linkUrl: '#',
+      theme: 'emerald-gradient',
+      bg: 'linear-gradient(135deg, #059669 0%, #10b981 100%)'
+    },
+    midnight: {
+      text: '🌙 Midnight 12 AM Delivery Available in Delhi NCR, Mumbai & Bangalore',
+      badge: 'MIDNIGHT',
+      linkText: 'Reserve Slot',
+      linkUrl: '#',
+      theme: 'midnight-gradient',
+      bg: 'linear-gradient(135deg, #0f172a 0%, #334155 100%)'
+    },
+    festive: {
+      text: '✨ Grand Wedding & Festive Balloon Setups Booking Open For Next Month',
+      badge: '✨ SEASON',
+      linkText: 'Explore Themes',
+      linkUrl: '#',
+      theme: 'sunset-gradient',
+      bg: 'linear-gradient(135deg, #c2410c 0%, #f59e0b 100%)'
+    }
+  };
+
+  function renderAnnouncementAdmin() {
+    const ann = appState.announcement || ANNOUNCEMENT_PRESETS.express;
+    const enabledInput = document.getElementById('announcementEnabled');
+    const textInput = document.getElementById('announcementText');
+    const badgeInput = document.getElementById('announcementBadge');
+    const linkTextInput = document.getElementById('announcementLinkText');
+    const linkUrlInput = document.getElementById('announcementLinkUrl');
+    const themeInput = document.getElementById('announcementTheme');
+    const customBgInput = document.getElementById('announcementCustomBg');
+
+    if (enabledInput) enabledInput.checked = (ann.enabled !== false);
+    if (textInput) textInput.value = ann.text || '';
+    if (badgeInput) badgeInput.value = ann.badge || '';
+    if (linkTextInput) linkTextInput.value = ann.linkText || '';
+    if (linkUrlInput) linkUrlInput.value = ann.linkUrl || '';
+    if (themeInput) themeInput.value = ann.theme || 'rose-gradient';
+    if (customBgInput) customBgInput.value = ann.bg || 'linear-gradient(135deg, #be123c 0%, #fb7185 100%)';
+
+    // Highlight selected theme button
+    document.querySelectorAll('.ann-theme-btn').forEach(btn => {
+      const isSelected = btn.getAttribute('data-theme') === (ann.theme || 'rose-gradient');
+      btn.style.borderColor = isSelected ? '#be123c' : 'transparent';
+      btn.style.boxShadow = isSelected ? '0 0 0 2px rgba(190, 18, 60, 0.25)' : 'none';
+    });
+
+    updateAnnouncementPreview();
+  }
+
+  function updateAnnouncementPreview() {
+    const enabledInput = document.getElementById('announcementEnabled');
+    const textInput = document.getElementById('announcementText');
+    const badgeInput = document.getElementById('announcementBadge');
+    const linkTextInput = document.getElementById('announcementLinkText');
+    const linkUrlInput = document.getElementById('announcementLinkUrl');
+    const customBgInput = document.getElementById('announcementCustomBg');
+
+    const isEnabled = enabledInput ? enabledInput.checked : true;
+    const text = (textInput ? textInput.value : '').trim() || '⚡ Same Day 2-Hour Express Delivery in 100+ Cities';
+    const badge = (badgeInput ? badgeInput.value : '').trim();
+    const linkText = (linkTextInput ? linkTextInput.value : '').trim();
+    const linkUrl = (linkUrlInput ? linkUrlInput.value : '').trim() || '#';
+    const bg = (customBgInput ? customBgInput.value : '') || 'linear-gradient(135deg, #be123c 0%, #fb7185 100%)';
+
+    // Desktop Preview elements
+    const desktopPrev = document.getElementById('announcementDesktopPreview');
+    const prevBadgeEl = document.getElementById('prevBadgeEl');
+    const prevTextEl = document.getElementById('prevTextEl');
+    const prevLinkEl = document.getElementById('prevLinkEl');
+
+    // Mobile Preview elements
+    const mobileWrap = document.getElementById('announcementMobilePreviewWrap');
+    const prevMobileBadgeEl = document.getElementById('prevMobileBadgeEl');
+    const prevMobileTickerEl = document.getElementById('prevMobileTickerEl');
+    const visBadge = document.getElementById('previewVisibilityBadge');
+    const statusText = document.getElementById('announcementStatusText');
+
+    if (desktopPrev) {
+      desktopPrev.style.background = bg;
+      desktopPrev.style.opacity = isEnabled ? '1' : '0.45';
+    }
+    if (mobileWrap) {
+      mobileWrap.style.background = bg;
+      mobileWrap.style.opacity = isEnabled ? '1' : '0.45';
+    }
+
+    if (prevBadgeEl) {
+      if (badge) {
+        prevBadgeEl.style.display = 'inline-block';
+        prevBadgeEl.textContent = badge;
+      } else {
+        prevBadgeEl.style.display = 'none';
+      }
+    }
+
+    if (prevTextEl) {
+      prevTextEl.textContent = text;
+    }
+
+    if (prevLinkEl) {
+      if (linkText) {
+        prevLinkEl.style.display = 'inline-block';
+        prevLinkEl.textContent = linkText;
+        prevLinkEl.href = linkUrl;
+      } else {
+        prevLinkEl.style.display = 'none';
+      }
+    }
+
+    if (prevMobileBadgeEl) {
+      if (badge) {
+        prevMobileBadgeEl.style.display = 'inline-block';
+        prevMobileBadgeEl.textContent = badge;
+      } else {
+        prevMobileBadgeEl.style.display = 'none';
+      }
+    }
+
+    if (prevMobileTickerEl) {
+      prevMobileTickerEl.textContent = `${text} ${linkText ? '• ' + linkText : ''}`;
+    }
+
+    if (visBadge) {
+      if (isEnabled) {
+        visBadge.textContent = 'ACTIVE & VISIBLE';
+        visBadge.style.background = '#ecfdf5';
+        visBadge.style.color = '#059669';
+        visBadge.style.borderColor = '#a7f3d0';
+      } else {
+        visBadge.textContent = 'HIDDEN / OFF';
+        visBadge.style.background = '#fef2f2';
+        visBadge.style.color = '#dc2626';
+        visBadge.style.borderColor = '#fecaca';
+      }
+    }
+
+    if (statusText) {
+      statusText.textContent = isEnabled ? '• Live Across All Pages' : '• Currently Hidden';
+      statusText.style.color = isEnabled ? '#e11d48' : '#94a3b8';
+    }
+  }
+
+  function selectAnnouncementTheme(btn) {
+    if (!btn) return;
+    const theme = btn.getAttribute('data-theme');
+    const bg = btn.getAttribute('data-bg');
+
+    const themeInput = document.getElementById('announcementTheme');
+    const customBgInput = document.getElementById('announcementCustomBg');
+    if (themeInput) themeInput.value = theme;
+    if (customBgInput) customBgInput.value = bg;
+
+    document.querySelectorAll('.ann-theme-btn').forEach(b => {
+      const match = (b === btn);
+      b.style.borderColor = match ? '#be123c' : 'transparent';
+      b.style.boxShadow = match ? '0 0 0 2px rgba(190, 18, 60, 0.25)' : 'none';
+    });
+
+    updateAnnouncementPreview();
+  }
+
+  function fillAnnouncementTemplate(type) {
+    const template = ANNOUNCEMENT_PRESETS[type] || ANNOUNCEMENT_PRESETS.express;
+    const textInput = document.getElementById('announcementText');
+    const badgeInput = document.getElementById('announcementBadge');
+    const linkTextInput = document.getElementById('announcementLinkText');
+    const linkUrlInput = document.getElementById('announcementLinkUrl');
+    const themeInput = document.getElementById('announcementTheme');
+    const customBgInput = document.getElementById('announcementCustomBg');
+
+    if (textInput) textInput.value = template.text;
+    if (badgeInput) badgeInput.value = template.badge;
+    if (linkTextInput) linkTextInput.value = template.linkText;
+    if (linkUrlInput) linkUrlInput.value = template.linkUrl;
+    if (themeInput) themeInput.value = template.theme;
+    if (customBgInput) customBgInput.value = template.bg;
+
+    document.querySelectorAll('.ann-theme-btn').forEach(b => {
+      const match = b.getAttribute('data-theme') === template.theme;
+      b.style.borderColor = match ? '#be123c' : 'transparent';
+      b.style.boxShadow = match ? '0 0 0 2px rgba(190, 18, 60, 0.25)' : 'none';
+    });
+
+    updateAnnouncementPreview();
+    showToast(`Template applied: ${template.badge || 'Banner'}! Click "Save & Publish Live" to apply.`, 'info');
+  }
+
+  function resetAnnouncementDefaults() {
+    fillAnnouncementTemplate('express');
+    const enabledInput = document.getElementById('announcementEnabled');
+    if (enabledInput) enabledInput.checked = true;
+    updateAnnouncementPreview();
+    showToast('Reset to default Express delivery settings.', 'info');
+  }
+
+  async function saveAnnouncementFromTab(event) {
+    if (event && event.preventDefault) event.preventDefault();
+
+    const enabledInput = document.getElementById('announcementEnabled');
+    const textInput = document.getElementById('announcementText');
+    const badgeInput = document.getElementById('announcementBadge');
+    const linkTextInput = document.getElementById('announcementLinkText');
+    const linkUrlInput = document.getElementById('announcementLinkUrl');
+    const themeInput = document.getElementById('announcementTheme');
+    const customBgInput = document.getElementById('announcementCustomBg');
+
+    const text = (textInput ? textInput.value : '').trim();
+    if (!text) {
+      showToast('Announcement text cannot be empty.', 'error');
+      textInput?.focus();
+      return;
+    }
+
+    appState.announcement = {
+      enabled: enabledInput ? enabledInput.checked : true,
+      text: text,
+      badge: (badgeInput ? badgeInput.value : '').trim(),
+      linkText: (linkTextInput ? linkTextInput.value : '').trim(),
+      linkUrl: (linkUrlInput ? linkUrlInput.value : '').trim() || '#',
+      theme: (themeInput ? themeInput.value : 'rose-gradient') || 'rose-gradient',
+      bg: (customBgInput ? customBgInput.value : '') || 'linear-gradient(135deg, #be123c 0%, #fb7185 100%)',
+      updatedAt: new Date().toISOString()
+    };
+
+    localStorage.setItem(STORAGE_KEYS.ANNOUNCEMENT, JSON.stringify(appState.announcement));
+    if (typeof window.SITE_DATA !== 'undefined') {
+      window.SITE_DATA.announcementBar = appState.announcement;
+    }
+
+    const saveBtn = document.getElementById('saveAnnouncementBtn');
+    const originalText = saveBtn ? saveBtn.innerHTML : '';
+    if (saveBtn) {
+      saveBtn.disabled = true;
+      saveBtn.innerHTML = '<span>Saving & Syncing...</span>';
+    }
+
+    try {
+      await fetch('/api/save-data', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          categories: appState.categories,
+          products: appState.products,
+          blogs: appState.blogs,
+          reviews: appState.reviews,
+          cities: appState.cities,
+          announcement: appState.announcement,
+          updatedAt: new Date().toISOString()
+        })
+      });
+    } catch(e) {
+      console.warn('Dev server sync error:', e);
+    } finally {
+      if (saveBtn) {
+        saveBtn.disabled = false;
+        saveBtn.innerHTML = originalText;
+      }
+    }
+
+    updateMetrics();
+    updateAnnouncementPreview();
+    showToast('📢 Top Announcement Bar saved & published live across website!', 'success');
+  }
+
+  /* ==========================================================================
+     PROMOTIONAL BANNERS & HERO CAROUSEL MANAGEMENT (HOMEPAGE & CATEGORY PAGES)
+     ========================================================================== */
+  const BANNER_LOCATION_LABELS = {
+    'home': '🏠 Homepage Carousel',
+    'birthday': '🎂 Birthday Category Page',
+    'anniversary': '❤️ Anniversary Category Page',
+    'kids': '🦄 Kids Themes Category Page',
+    'baby-shower': '👶 Baby Shower Category Page',
+    'wedding': '💍 Wedding Category Page',
+    'corporate': '🏢 Corporate Category Page',
+    'gifts': '🎁 Gifts Category Page'
+  };
+
+  function renderBannersAdmin() {
+    const grid = document.getElementById('bannersGridAdmin');
+    if (!grid) return;
+
+    const searchTerm = (document.getElementById('bannerSearchInput')?.value || '').trim().toLowerCase();
+    const filterLoc = appState.bannerFilterLocation || 'all';
+
+    let list = Array.isArray(appState.banners) ? appState.banners : [];
+
+    // Filter by location
+    if (filterLoc === 'home') {
+      list = list.filter(b => b.location === 'home');
+    } else if (filterLoc === 'category') {
+      list = list.filter(b => b.location !== 'home');
+    }
+
+    // Filter by search query
+    if (searchTerm) {
+      list = list.filter(b => {
+        const titleMatch = (b.title || '').toLowerCase().includes(searchTerm);
+        const subMatch = (b.subtitle || '').toLowerCase().includes(searchTerm);
+        const tagMatch = (b.tag || '').toLowerCase().includes(searchTerm);
+        const locMatch = (BANNER_LOCATION_LABELS[b.location] || b.location || '').toLowerCase().includes(searchTerm);
+        return titleMatch || subMatch || tagMatch || locMatch;
+      });
+    }
+
+    // Sort: homepage banners first by order, then category banners
+    list.sort((a, b) => {
+      if (a.location === 'home' && b.location !== 'home') return -1;
+      if (a.location !== 'home' && b.location === 'home') return 1;
+      return (a.order || 99) - (b.order || 99);
+    });
+
+    // Update counts
+    const totalCount = appState.banners.length;
+    const homeCount = appState.banners.filter(b => b.location === 'home').length;
+    const catCount = appState.banners.filter(b => b.location !== 'home').length;
+
+    const countAllEl = document.getElementById('countBannerAll');
+    const countHomeEl = document.getElementById('countBannerHome');
+    const countCatEl = document.getElementById('countBannerCategory');
+    const totalTextEl = document.getElementById('bannersTotalCountText');
+
+    if (countAllEl) countAllEl.textContent = totalCount;
+    if (countHomeEl) countHomeEl.textContent = homeCount;
+    if (countCatEl) countCatEl.textContent = catCount;
+    if (totalTextEl) totalTextEl.textContent = `• ${totalCount} Banners Active`;
+
+    if (list.length === 0) {
+      grid.innerHTML = `
+        <div style="grid-column:1 / -1; text-align:center; padding:50px 20px; background:#f8fafc; border:1.5px dashed #cbd5e1; border-radius:16px;">
+          <div style="font-size:36px; margin-bottom:10px;">🖼️</div>
+          <h3 style="margin:0 0 6px 0; color:#334155;">No Banners Found</h3>
+          <p style="color:#64748b; font-size:13px; margin:0 0 16px 0;">No banners matched your current filter or search criteria.</p>
+          <button type="button" class="btn-primary" onclick="window.adminStudio.openBannerModal('add')" style="padding:8px 18px; font-size:13px;">
+            + Add Promotional Banner
+          </button>
+        </div>
+      `;
+      return;
+    }
+
+    grid.innerHTML = list.map(b => {
+      const locLabel = BANNER_LOCATION_LABELS[b.location] || `🏷️ ${b.location}`;
+      const isActive = (b.active !== false);
+
+      return `
+        <div class="banner-admin-card" data-banner-id="${b.id}">
+          <div class="banner-card-media">
+            <img src="${escapeHtml(b.image || '')}" alt="${escapeHtml(b.title || 'Banner')}" onerror="this.src='https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=1200&q=80'" />
+            <div class="banner-card-overlay"></div>
+            <span class="banner-badge-loc">${locLabel}</span>
+            <span class="banner-badge-status ${isActive ? 'banner-status-active' : 'banner-status-hidden'}">
+              ${isActive ? '✓ ACTIVE' : '✕ HIDDEN'}
+            </span>
+          </div>
+
+          <div class="banner-card-body">
+            ${b.tag ? `<span class="banner-card-tag">${escapeHtml(b.tag)}</span>` : ''}
+            <h3 class="banner-card-title">${escapeHtml(b.title || 'Untitled Banner')}</h3>
+            <p class="banner-card-sub">${escapeHtml(b.subtitle || 'No description provided.')}</p>
+
+            <div class="banner-card-meta">
+              <span><strong>CTA:</strong> ${escapeHtml(b.linkText || 'None')}</span>
+              <span><strong>Target:</strong> ${escapeHtml(b.linkUrl || '#')}</span>
+              <span><strong>Order:</strong> #${b.order || 1}</span>
+            </div>
+
+            <div class="banner-card-actions">
+              <button type="button" class="btn-banner-action" onclick="window.adminStudio.toggleBannerActive('${b.id}')" title="Toggle visibility">
+                ${isActive ? '👁️ Hide' : '✓ Activate'}
+              </button>
+              <button type="button" class="btn-banner-action btn-banner-edit" onclick="window.adminStudio.openBannerModal('edit', '${b.id}')">
+                ✏️ Edit
+              </button>
+              <button type="button" class="btn-banner-action btn-banner-del" onclick="window.adminStudio.deleteBanner('${b.id}')" title="Delete banner">
+                🗑️
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  function filterBannersByLocation(loc, btn) {
+    appState.bannerFilterLocation = loc;
+    document.querySelectorAll('.banner-loc-filter-btn').forEach(b => {
+      const isCurrent = (b === btn);
+      b.style.background = isCurrent ? '#0284c7' : '#ffffff';
+      b.style.color = isCurrent ? '#ffffff' : '#334155';
+      b.style.borderColor = isCurrent ? '#0284c7' : '#cbd5e1';
+      b.style.fontWeight = isCurrent ? '700' : '600';
+    });
+    renderBannersAdmin();
+  }
+
+  function openBannerModal(mode = 'add', bannerId = null) {
+    const modal = document.getElementById('bannerModal');
+    if (!modal) return;
+
+    const modeInput = document.getElementById('bannerModalMode');
+    const origIdInput = document.getElementById('bannerOriginalId');
+    const titleModal = document.getElementById('bannerModalTitle');
+
+    const locSelect = document.getElementById('bannerLocationSelect');
+    const orderInput = document.getElementById('bannerOrderInput');
+    const tagInput = document.getElementById('bannerTagInput');
+    const titleInput = document.getElementById('bannerTitleInput');
+    const subInput = document.getElementById('bannerSubtitleInput');
+    const imgUrlInput = document.getElementById('bannerImageUrlInput');
+    const previewImg = document.getElementById('bannerModalPreviewImg');
+    const linkTextInput = document.getElementById('bannerLinkTextInput');
+    const linkUrlInput = document.getElementById('bannerLinkUrlInput');
+    const activeCheckbox = document.getElementById('bannerActiveCheckbox');
+
+    if (mode === 'add') {
+      if (modeInput) modeInput.value = 'add';
+      if (origIdInput) origIdInput.value = '';
+      if (titleModal) titleModal.textContent = 'Add New Promotional Banner';
+
+      if (locSelect) locSelect.value = (appState.bannerFilterLocation === 'home') ? 'home' : (appState.bannerFilterLocation === 'category' ? 'birthday' : 'home');
+      if (orderInput) orderInput.value = (appState.banners.length + 1);
+      if (tagInput) tagInput.value = '✨ Special Offer';
+      if (titleInput) titleInput.value = '';
+      if (subInput) subInput.value = '';
+      const defaultImg = 'https://cdn.balloondekor.com/images/16/49e5480a-1fcd-42eb-ad97-cafd993c260d.webp';
+      if (imgUrlInput) imgUrlInput.value = defaultImg;
+      if (previewImg) previewImg.src = defaultImg;
+      if (linkTextInput) linkTextInput.value = 'Explore Packages →';
+      if (linkUrlInput) linkUrlInput.value = 'birthday.html';
+      if (activeCheckbox) activeCheckbox.checked = true;
+    } else {
+      // Editing
+      const banner = appState.banners.find(b => b.id === bannerId);
+      if (!banner) {
+        showToast('Banner not found.', 'error');
+        return;
+      }
+
+      if (modeInput) modeInput.value = 'edit';
+      if (origIdInput) origIdInput.value = banner.id;
+      if (titleModal) titleModal.textContent = `Edit Banner: ${banner.title || ''}`;
+
+      if (locSelect) locSelect.value = banner.location || 'home';
+      if (orderInput) orderInput.value = banner.order || 1;
+      if (tagInput) tagInput.value = banner.tag || '';
+      if (titleInput) titleInput.value = banner.title || '';
+      if (subInput) subInput.value = banner.subtitle || '';
+      if (imgUrlInput) imgUrlInput.value = banner.image || '';
+      if (previewImg) previewImg.src = banner.image || '';
+      if (linkTextInput) linkTextInput.value = banner.linkText || '';
+      if (linkUrlInput) linkUrlInput.value = banner.linkUrl || '';
+      if (activeCheckbox) activeCheckbox.checked = (banner.active !== false);
+    }
+
+    modal.classList.add('active');
+  }
+
+  function closeBannerModalAdmin() {
+    const modal = document.getElementById('bannerModal');
+    if (modal) modal.classList.remove('active');
+  }
+
+  function previewBannerModalImage(url) {
+    const previewImg = document.getElementById('bannerModalPreviewImg');
+    if (previewImg && url) {
+      previewImg.src = url;
+    }
+  }
+
+  function handleBannerLocationChange(loc) {
+    const linkUrlInput = document.getElementById('bannerLinkUrlInput');
+    const linkTextInput = document.getElementById('bannerLinkTextInput');
+    const modeInput = document.getElementById('bannerModalMode');
+    if (modeInput && modeInput.value === 'add') {
+      if (loc === 'home') {
+        if (linkUrlInput && (!linkUrlInput.value || linkUrlInput.value.startsWith('#'))) linkUrlInput.value = 'birthday.html';
+        if (linkTextInput && !linkTextInput.value) linkTextInput.value = 'Explore Packages →';
+      } else {
+        if (linkUrlInput) linkUrlInput.value = `#${loc}Catalog`;
+        if (linkTextInput) linkTextInput.value = `Explore Setups Below ↓`;
+      }
+    }
+  }
+
+  async function saveBanner(event) {
+    if (event && event.preventDefault) event.preventDefault();
+
+    const mode = document.getElementById('bannerModalMode')?.value || 'add';
+    const origId = document.getElementById('bannerOriginalId')?.value;
+
+    const locSelect = document.getElementById('bannerLocationSelect');
+    const orderInput = document.getElementById('bannerOrderInput');
+    const tagInput = document.getElementById('bannerTagInput');
+    const titleInput = document.getElementById('bannerTitleInput');
+    const subInput = document.getElementById('bannerSubtitleInput');
+    const imgUrlInput = document.getElementById('bannerImageUrlInput');
+    const linkTextInput = document.getElementById('bannerLinkTextInput');
+    const linkUrlInput = document.getElementById('bannerLinkUrlInput');
+    const activeCheckbox = document.getElementById('bannerActiveCheckbox');
+
+    const title = (titleInput?.value || '').trim();
+    const image = (imgUrlInput?.value || '').trim();
+    const location = locSelect?.value || 'home';
+
+    if (!title) {
+      showToast('Please enter a banner headline / title.', 'error');
+      titleInput?.focus();
+      return;
+    }
+
+    if (!image) {
+      showToast('Please enter or upload a banner image URL.', 'error');
+      imgUrlInput?.focus();
+      return;
+    }
+
+    const bannerObj = {
+      location: location,
+      locationName: BANNER_LOCATION_LABELS[location] || location,
+      tag: (tagInput?.value || '').trim(),
+      title: title,
+      subtitle: (subInput?.value || '').trim(),
+      image: image,
+      linkText: (linkTextInput?.value || '').trim(),
+      linkUrl: (linkUrlInput?.value || '').trim() || '#',
+      order: parseInt(orderInput?.value || '1', 10) || 1,
+      active: activeCheckbox ? activeCheckbox.checked : true,
+      updatedAt: new Date().toISOString()
+    };
+
+    if (mode === 'add') {
+      bannerObj.id = `banner-${location}-${Date.now()}`;
+      appState.banners.push(bannerObj);
+      await commitBanners(`Promotional Banner "${title}" added successfully!`);
+    } else {
+      const idx = appState.banners.findIndex(b => b.id === origId);
+      if (idx === -1) {
+        showToast('Banner to update could not be found.', 'error');
+        return;
+      }
+      bannerObj.id = origId;
+      appState.banners[idx] = bannerObj;
+      await commitBanners(`Promotional Banner "${title}" updated successfully!`);
+    }
+
+    closeBannerModalAdmin();
+  }
+
+  async function deleteBanner(bannerId) {
+    const banner = appState.banners.find(b => b.id === bannerId);
+    if (!banner) return;
+
+    if (!confirm(`Are you sure you want to delete banner "${banner.title}"?\n\nThis will remove it from the live website slider.`)) {
+      return;
+    }
+
+    appState.banners = appState.banners.filter(b => b.id !== bannerId);
+    await commitBanners(`Banner "${banner.title}" deleted.`);
+  }
+
+  async function toggleBannerActive(bannerId) {
+    const banner = appState.banners.find(b => b.id === bannerId);
+    if (!banner) return;
+
+    banner.active = (banner.active === false) ? true : false;
+    await commitBanners(`Banner "${banner.title}" is now ${banner.active ? 'Visible on website' : 'Hidden from website'}.`);
+  }
+
+  async function commitBanners(message = 'Promotional banners updated!') {
+    localStorage.setItem(STORAGE_KEYS.BANNERS, JSON.stringify(appState.banners));
+    if (typeof window.SITE_DATA !== 'undefined') {
+      window.SITE_DATA.banners = appState.banners;
+    }
+
+    fetch('/api/save-data', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        categories: appState.categories,
+        products: appState.products,
+        blogs: appState.blogs,
+        reviews: appState.reviews,
+        cities: appState.cities,
+        announcement: appState.announcement,
+        banners: appState.banners,
+        updatedAt: new Date().toISOString()
+      })
+    }).catch(() => {});
+
+    renderBannersAdmin();
+    updateMetrics();
+    if (message) showToast(message, 'success');
+  }
+
   function showToast(message, type = 'success') {
     const container = document.getElementById('toastContainer');
     if (!container) return;
@@ -4400,7 +5191,24 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
     handleCityNameInput,
     saveCity,
     deleteCity,
-    toggleCityPopular
+    toggleCityPopular,
+    // Top Announcement Bar CRUD & Preview methods
+    renderAnnouncementAdmin,
+    updateAnnouncementPreview,
+    selectAnnouncementTheme,
+    fillAnnouncementTemplate,
+    resetAnnouncementDefaults,
+    saveAnnouncementFromTab,
+    // Promotional Banners CRUD methods
+    renderBannersAdmin,
+    filterBannersByLocation,
+    openBannerModal,
+    closeBannerModalAdmin,
+    previewBannerModalImage,
+    handleBannerLocationChange,
+    saveBanner,
+    deleteBanner,
+    toggleBannerActive
   };
 
   if (document.readyState === 'loading') {

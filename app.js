@@ -59,6 +59,24 @@ document.addEventListener("DOMContentLoaded", () => {
         SITE_DATA.cities = parsed;
       }
     }
+    const customAnn = localStorage.getItem("celebration_custom_announcement");
+    if (customAnn && typeof SITE_DATA !== "undefined") {
+      try {
+        const parsed = JSON.parse(customAnn);
+        if (parsed && typeof parsed === "object") {
+          SITE_DATA.announcementBar = parsed;
+        }
+      } catch(e){}
+    }
+    const customBanners = localStorage.getItem("celebration_custom_banners");
+    if (customBanners && typeof SITE_DATA !== "undefined") {
+      try {
+        const parsed = JSON.parse(customBanners);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          SITE_DATA.banners = parsed;
+        }
+      } catch(e){}
+    }
 
     // Live sync with server disk backup if available
     fetch('/api/data')
@@ -79,6 +97,14 @@ document.addEventListener("DOMContentLoaded", () => {
           if (Array.isArray(remoteData.cities) && remoteData.cities.length > 0) {
             SITE_DATA.cities = remoteData.cities;
             try { renderCitiesList(); renderFooterCities(); } catch(e){}
+          }
+          if (remoteData.announcement && typeof remoteData.announcement === "object") {
+            SITE_DATA.announcementBar = remoteData.announcement;
+            try { renderAnnouncementBar(remoteData.announcement); } catch(e){}
+          }
+          if (Array.isArray(remoteData.banners) && remoteData.banners.length > 0) {
+            SITE_DATA.banners = remoteData.banners;
+            try { renderPageBanners(); } catch(e){}
           }
           if (updated) {
             try { renderReviews(); } catch(e){}
@@ -106,6 +132,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   try { initCity(); } catch(e){}
+  try { renderAnnouncementBar(); } catch(e){}
+  try { renderPageBanners(); } catch(e){}
   try { renderQuickCategories(); } catch(e){}
   try { renderProducts(); } catch(e){}
   try { renderReviews(); } catch(e){}
@@ -244,6 +272,130 @@ function renderFooterCities() {
       Balloon Decoration in ${city.name}
     </a>
   `).join("");
+}
+
+// ----------------------------------------------------
+// Top Announcement Bar Dynamic Renderer
+// ----------------------------------------------------
+function renderAnnouncementBar(customData) {
+  let data = customData;
+  if (!data) {
+    try {
+      const stored = localStorage.getItem("celebration_custom_announcement");
+      if (stored) {
+        data = JSON.parse(stored);
+      } else if (typeof SITE_DATA !== "undefined" && SITE_DATA.announcementBar) {
+        data = SITE_DATA.announcementBar;
+      }
+    } catch(e){}
+  }
+  if (!data) return;
+
+  const bars = document.querySelectorAll('.announcement-bar, .top-announcement-bar');
+  if (!bars.length) return;
+
+  const isEnabled = (data.enabled !== false);
+  bars.forEach(bar => {
+    if (!isEnabled) {
+      bar.style.display = 'none';
+      return;
+    }
+    bar.style.display = '';
+    if (data.bg) {
+      bar.style.background = data.bg;
+    }
+
+    let badgeHtml = '';
+    if (data.badge && data.badge.trim()) {
+      badgeHtml = `<span class="badge" style="background:#ffffff; color:#be123c; font-weight:800; padding:2px 8px; border-radius:99px; text-transform:uppercase; margin-right:6px; font-size:10px;">${data.badge.trim()}</span>`;
+    }
+
+    let linkHtml = '';
+    if (data.linkText && data.linkText.trim()) {
+      linkHtml = ` <a href="${data.linkUrl || '#'}" style="color:#ffffff; text-decoration:underline; font-weight:700; margin-left:6px;">${data.linkText.trim()}</a>`;
+    }
+
+    const text = data.text || '⚡ Same Day 2-Hour Express Delivery in 100+ Cities';
+    bar.innerHTML = `${badgeHtml}<span>${text}${linkHtml}</span>`;
+  });
+}
+
+// ----------------------------------------------------
+// Promotional Banners & Hero Carousel Dynamic Renderer
+// ----------------------------------------------------
+function renderPageBanners() {
+  let banners = [];
+  try {
+    const customBanners = localStorage.getItem("celebration_custom_banners");
+    if (customBanners) {
+      banners = JSON.parse(customBanners);
+    } else if (typeof SITE_DATA !== "undefined" && Array.isArray(SITE_DATA.banners)) {
+      banners = SITE_DATA.banners;
+    }
+  } catch(e){}
+
+  if (!Array.isArray(banners) || banners.length === 0) return;
+
+  // 1. Homepage Carousel Rendering
+  const homeHeroSlides = document.getElementById("carouselSlides");
+  const homeDotsContainer = document.getElementById("carouselDots");
+  if (homeHeroSlides && homeDotsContainer) {
+    const homeBanners = banners.filter(b => b.location === 'home' && b.active !== false)
+      .sort((a, b) => (a.order || 99) - (b.order || 99));
+
+    if (homeBanners.length > 0) {
+      homeHeroSlides.innerHTML = homeBanners.map(b => `
+        <div class="carousel-slide">
+          <img src="${b.image}" alt="${b.title || 'Celebration Decor'}" onerror="this.src='https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=1200&q=80'" />
+          <div class="slide-overlay"></div>
+          <div class="slide-content">
+            ${b.tag ? `<span class="slide-tag">${b.tag}</span>` : ''}
+            <h1 class="slide-title">${b.title}</h1>
+            ${b.subtitle ? `<p class="slide-desc">${b.subtitle}</p>` : ''}
+            ${b.linkText ? `<a href="${b.linkUrl || '#'}" class="slide-btn">${b.linkText}</a>` : ''}
+          </div>
+        </div>
+      `).join('');
+
+      homeDotsContainer.innerHTML = homeBanners.map((_, idx) => `
+        <span class="carousel-dot ${idx === 0 ? 'active' : ''}" data-index="${idx}"></span>
+      `).join('');
+
+      try { initHeroCarousel(); } catch(e){}
+    }
+  }
+
+  // 2. Category Pages Hero Banner Rendering
+  const pathname = window.location.pathname.toLowerCase();
+  let pageCat = null;
+  if (pathname.includes('birthday')) pageCat = 'birthday';
+  else if (pathname.includes('anniversary')) pageCat = 'anniversary';
+  else if (pathname.includes('kids')) pageCat = 'kids';
+  else if (pathname.includes('baby-shower')) pageCat = 'baby-shower';
+  else if (pathname.includes('wedding')) pageCat = 'wedding';
+  else if (pathname.includes('corporate')) pageCat = 'corporate';
+  else if (pathname.includes('marketplace') || pathname.includes('gift')) pageCat = 'gifts';
+
+  if (pageCat) {
+    const catBanner = banners.find(b => b.location === pageCat && b.active !== false);
+    if (catBanner) {
+      const catCarouselSlides = document.querySelector('.page-wrapper > .hero-carousel .carousel-slides');
+      if (catCarouselSlides) {
+        catCarouselSlides.innerHTML = `
+          <div class="carousel-slide">
+            <img src="${catBanner.image}" alt="${catBanner.title || 'Category Decoration'}" onerror="this.src='https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=1200&q=80'" />
+            <div class="slide-overlay"></div>
+            <div class="slide-content">
+              ${catBanner.tag ? `<span class="slide-tag">${catBanner.tag}</span>` : ''}
+              <h1 class="slide-title">${catBanner.title}</h1>
+              ${catBanner.subtitle ? `<p class="slide-desc">${catBanner.subtitle}</p>` : ''}
+              ${catBanner.linkText ? `<a href="${catBanner.linkUrl || '#'}" class="slide-btn">${catBanner.linkText}</a>` : ''}
+            </div>
+          </div>
+        `;
+      }
+    }
+  }
 }
 
 // ----------------------------------------------------

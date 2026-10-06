@@ -1219,6 +1219,246 @@
       color: #9f1239 !important;
       transform: translateY(-1px) !important;
     }
+
+    /* ==========================================================================
+       ANNOUNCEMENT BAR & TICKER ADMIN STYLES
+       ========================================================================== */
+    .ann-toggle-slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: #cbd5e1;
+      transition: .3s;
+      border-radius: 34px;
+    }
+    .ann-toggle-slider:before {
+      position: absolute;
+      content: "";
+      height: 20px;
+      width: 20px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      transition: .3s;
+      border-radius: 50%;
+    }
+    input:checked + .ann-toggle-slider {
+      background-color: #059669 !important;
+    }
+    input:checked + .ann-toggle-slider:before {
+      transform: translateX(24px);
+    }
+    .btn-template-chip {
+      background: #ffffff !important;
+      border: 1px solid #cbd5e1 !important;
+      color: #334155 !important;
+      padding: 6px 12px !important;
+      border-radius: 8px !important;
+      font-size: 12px !important;
+      font-weight: 600 !important;
+      cursor: pointer !important;
+      transition: all 0.15s ease !important;
+    }
+    .btn-template-chip:hover {
+      background: #f1f5f9 !important;
+      border-color: #94a3b8 !important;
+      color: #0f172a !important;
+      transform: translateY(-1px);
+    }
+    .ann-theme-btn {
+      transition: all 0.2s ease !important;
+    }
+    .ann-theme-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+    @keyframes announcementTickerPreview {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+
+    /* ==========================================================================
+       PROMOTIONAL BANNERS & HERO CAROUSEL ADMIN STYLES
+       ========================================================================== */
+    .banners-admin-grid {
+      display: grid !important;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)) !important;
+      gap: 22px !important;
+    }
+    .banner-admin-card {
+      background: #ffffff !important;
+      border: 1.5px solid #e2e8f0 !important;
+      border-radius: 16px !important;
+      overflow: hidden !important;
+      display: flex !important;
+      flex-direction: column !important;
+      box-shadow: 0 4px 16px -2px rgba(15, 23, 42, 0.05) !important;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+      position: relative !important;
+    }
+    .banner-admin-card:hover {
+      border-color: #cbd5e1 !important;
+      box-shadow: 0 16px 32px -6px rgba(15, 23, 42, 0.1) !important;
+      transform: translateY(-3px) !important;
+    }
+    .banner-card-media {
+      position: relative !important;
+      width: 100% !important;
+      height: 175px !important;
+      background: #0f172a !important;
+      overflow: hidden !important;
+    }
+    .banner-card-media img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+      display: block !important;
+      transition: transform 0.4s ease !important;
+    }
+    .banner-admin-card:hover .banner-card-media img {
+      transform: scale(1.04) !important;
+    }
+    .banner-card-overlay {
+      position: absolute !important;
+      inset: 0 !important;
+      background: linear-gradient(180deg, rgba(15, 23, 42, 0.2) 0%, rgba(15, 23, 42, 0.8) 100%) !important;
+      pointer-events: none !important;
+    }
+    .banner-badge-loc {
+      position: absolute !important;
+      top: 12px !important;
+      left: 12px !important;
+      background: rgba(15, 23, 42, 0.85) !important;
+      backdrop-filter: blur(6px) !important;
+      -webkit-backdrop-filter: blur(6px) !important;
+      color: #ffffff !important;
+      font-size: 11px !important;
+      font-weight: 800 !important;
+      padding: 4px 10px !important;
+      border-radius: 99px !important;
+      z-index: 2 !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 5px !important;
+      border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    }
+    .banner-badge-status {
+      position: absolute !important;
+      top: 12px !important;
+      right: 12px !important;
+      font-size: 10.5px !important;
+      font-weight: 800 !important;
+      padding: 3px 9px !important;
+      border-radius: 99px !important;
+      z-index: 2 !important;
+      text-transform: uppercase !important;
+    }
+    .banner-status-active {
+      background: #ecfdf5 !important;
+      color: #047857 !important;
+      border: 1px solid #a7f3d0 !important;
+    }
+    .banner-status-hidden {
+      background: #fef2f2 !important;
+      color: #b91c1c !important;
+      border: 1px solid #fecaca !important;
+    }
+    .banner-card-body {
+      padding: 18px 20px !important;
+      display: flex !important;
+      flex-direction: column !important;
+      flex: 1 1 auto !important;
+    }
+    .banner-card-tag {
+      font-size: 11.5px !important;
+      font-weight: 800 !important;
+      color: #e11d48 !important;
+      text-transform: uppercase !important;
+      letter-spacing: 0.5px !important;
+      margin-bottom: 4px !important;
+      display: block !important;
+    }
+    .banner-card-title {
+      font-size: 16px !important;
+      font-weight: 800 !important;
+      color: #0f172a !important;
+      margin: 0 0 6px 0 !important;
+      line-height: 1.35 !important;
+    }
+    .banner-card-sub {
+      font-size: 12.5px !important;
+      color: #64748b !important;
+      margin: 0 0 14px 0 !important;
+      line-height: 1.45 !important;
+      display: -webkit-box !important;
+      -webkit-line-clamp: 2 !important;
+      -webkit-box-orient: vertical !important;
+      overflow: hidden !important;
+    }
+    .banner-card-meta {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      background: #f8fafc !important;
+      border: 1px solid #f1f5f9 !important;
+      border-radius: 8px !important;
+      padding: 7px 12px !important;
+      font-size: 11.5px !important;
+      color: #475569 !important;
+      margin-bottom: 14px !important;
+      margin-top: auto !important;
+    }
+    .banner-card-actions {
+      display: flex !important;
+      align-items: center !important;
+      gap: 8px !important;
+      padding-top: 14px !important;
+      border-top: 1px solid #f1f5f9 !important;
+    }
+    .btn-banner-action {
+      flex: 1 1 auto !important;
+      padding: 8px 12px !important;
+      font-size: 12px !important;
+      font-weight: 700 !important;
+      border-radius: 8px !important;
+      cursor: pointer !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 5px !important;
+      transition: all 0.18s ease !important;
+      white-space: nowrap !important;
+      border: 1.5px solid #e2e8f0 !important;
+      background: #f8fafc !important;
+      color: #334155 !important;
+    }
+    .btn-banner-action:hover {
+      background: #f1f5f9 !important;
+      color: #0f172a !important;
+      border-color: #cbd5e1 !important;
+    }
+    .btn-banner-edit {
+      background: #fff1f2 !important;
+      color: #be123c !important;
+      border-color: #fecdd3 !important;
+    }
+    .btn-banner-edit:hover {
+      background: #ffe4e6 !important;
+      border-color: #fda4af !important;
+      color: #9f1239 !important;
+    }
+    .btn-banner-del {
+      flex: 0 0 auto !important;
+      padding: 8px 12px !important;
+      color: #dc2626 !important;
+      border-color: #fee2e2 !important;
+      background: #fef2f2 !important;
+    }
+    .btn-banner-del:hover {
+      background: #fee2e2 !important;
+      border-color: #fca5a5 !important;
+      color: #b91c1c !important;
+    }
   </style>
   <!-- Supabase Official JS SDK -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -1356,6 +1596,22 @@
           <span id="sidebarCitiesBadge" class="sidebar-item-badge">16</span>
         </button>
 
+        <button type="button" class="sidebar-item" id="sidebarBannersBtn" data-tab="banners">
+          <div class="sidebar-item-left">
+            <span class="sidebar-item-icon">🖼️</span>
+            <span>Promotional Banners</span>
+          </div>
+          <span id="sidebarBannersBadge" class="sidebar-item-badge" style="background:#e0f2fe; color:#0284c7; border:1px solid #bae6fd;">10</span>
+        </button>
+
+        <button type="button" class="sidebar-item" id="sidebarAnnouncementBtn" data-tab="announcement">
+          <div class="sidebar-item-left">
+            <span class="sidebar-item-icon">📢</span>
+            <span>Announcement Bar</span>
+          </div>
+          <span id="sidebarAnnouncementBadge" class="sidebar-item-badge" style="background:#ecfdf5; color:#059669; border:1px solid #a7f3d0; font-size:10px; font-weight:800; padding:2px 7px;">LIVE</span>
+        </button>
+
         <div style="display:none; margin-top:auto; padding-top:14px; border-top:1px solid var(--admin-border-light);">
           <button type="button" class="sidebar-item" id="sidebarSettingsBtn" data-tab="settings" style="font-size:13px; color:var(--text-muted);">
             <div class="sidebar-item-left">
@@ -1403,6 +1659,14 @@
         </div>
 
         <div class="topbar-right">
+          <button type="button" id="topbarAddBannerBtn" class="btn-secondary" style="color:#0284c7; border-color:#bae6fd;" title="Add Promotional Banner">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            <span>Add Banner</span>
+          </button>
+          <button type="button" id="topbarEditAnnouncementBtn" class="btn-secondary" style="color:#be123c; border-color:#fecdd3;" title="Edit Top Announcement Bar & Ticker">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+            <span>Edit Ticker</span>
+          </button>
           <button type="button" id="topbarAddPackageBtn" class="btn-add-primary">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
             <span>Add Package</span>
@@ -1733,6 +1997,238 @@
 
           <!-- Cities Grid Container -->
           <div id="citiesGridAdmin" class="cities-admin-grid">
+            <!-- Dynamically rendered by admin.js -->
+          </div>
+        </section>
+
+        <!-- ==================================================================
+             TOP ANNOUNCEMENT BAR & TICKER MANAGEMENT TAB
+             ================================================================== -->
+        <section id="announcementTab" class="tab-content">
+          <div class="category-hero" style="background: linear-gradient(135deg, #fff1f2 0%, #fff5f5 40%, #ffffff 100%) !important; border: 1.5px solid #fecdd3 !important;">
+            <div class="category-hero-info">
+              <div class="category-hero-top">
+                <h2 class="category-hero-title" style="color:#9f1239 !important;">📢 Top Announcement Bar & Website Ticker</h2>
+                <span class="category-hero-badge" style="background:#fee2e2 !important; color:#be123c !important; border-color:#fca5a5 !important;">HEADER TICKER</span>
+                <span class="category-hero-count" id="announcementStatusText" style="color:#e11d48 !important;">• Live Across All Pages</span>
+              </div>
+              <p class="category-hero-desc">
+                Customize the highlighted announcement ticker bar shown at the very top of all pages (desktop header & mobile scrolling ticker). Edit the delivery promise, promotional text, highlight tag, link, background gradient, or toggle visibility. Changes update instantly across the entire website.
+              </p>
+              <div class="category-hero-actions">
+                <button type="button" class="btn-hero-add-pkg" onclick="window.adminStudio.saveAnnouncementFromTab(event)" style="background:linear-gradient(135deg, #be123c, #fb7185) !important;">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
+                  <span>Save & Publish Live</span>
+                </button>
+                <a href="../birthday.html" target="_blank" class="btn-hero-action" style="text-decoration:none;">
+                  🌐 View Live On Website
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Interactive Live Preview Card -->
+          <div class="announcement-preview-card" style="background:#ffffff; border:1.5px solid #e2e8f0; border-radius:16px; padding:22px 24px; margin-bottom:24px; box-shadow:0 2px 10px rgba(0,0,0,0.03);">
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; flex-wrap:wrap; gap:10px;">
+              <div style="display:flex; align-items:center; gap:8px;">
+                <span style="font-size:16px;">👀</span>
+                <strong style="font-size:14px; color:#0f172a;">Live Interactive Preview</strong>
+                <span style="font-size:11.5px; color:#64748b;">(Exact look on customer header)</span>
+              </div>
+              <span id="previewVisibilityBadge" style="font-size:11px; font-weight:700; padding:3px 10px; border-radius:99px; background:#ecfdf5; color:#059669; border:1px solid #a7f3d0;">ACTIVE & VISIBLE</span>
+            </div>
+
+            <!-- Desktop Preview Bar -->
+            <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; overflow:hidden; margin-bottom:12px;">
+              <div style="padding:6px 14px; background:#f1f5f9; font-size:11px; font-weight:700; color:#64748b; border-bottom:1px solid #e2e8f0; display:flex; align-items:center; gap:6px;">
+                <span>🖥️ Desktop View</span>
+              </div>
+              <div id="announcementDesktopPreview" class="announcement-bar-preview" style="background:linear-gradient(135deg, #be123c, #fb7185); color:#ffffff; padding:9px 18px; display:flex; align-items:center; justify-content:center; gap:10px; font-size:12.5px; font-weight:600; text-align:center; transition:all 0.25s;">
+                <span id="prevBadgeEl" class="ann-badge" style="background:#ffffff; color:#be123c; font-size:11px; font-weight:800; padding:2px 8px; border-radius:99px; text-transform:uppercase;">⚡ EXPRESS</span>
+                <span id="prevTextEl">⚡ Same Day 2-Hour Express Delivery in 100+ Cities</span>
+                <a id="prevLinkEl" href="#" style="color:#ffffff; text-decoration:underline; font-weight:700; margin-left:4px;">Book Now</a>
+              </div>
+            </div>
+
+            <!-- Mobile Animated Ticker Preview -->
+            <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; overflow:hidden;">
+              <div style="padding:6px 14px; background:#f1f5f9; font-size:11px; font-weight:700; color:#64748b; border-bottom:1px solid #e2e8f0; display:flex; align-items:center; gap:6px;">
+                <span>📱 Mobile View (Smooth Infinite Ticker)</span>
+              </div>
+              <div id="announcementMobilePreviewWrap" style="background:linear-gradient(135deg, #be123c, #fb7185); color:#ffffff; height:34px; overflow:hidden; position:relative; display:flex; align-items:center; transition:all 0.25s;">
+                <span id="prevMobileBadgeEl" style="background:#ffffff; color:#be123c; font-size:9.5px; font-weight:800; padding:2px 7px; border-radius:99px; text-transform:uppercase; margin-left:8px; z-index:2; flex-shrink:0;">⚡ EXPRESS</span>
+                <div id="prevMobileTickerEl" style="white-space:nowrap; font-size:11.5px; font-weight:600; animation:announcementTickerPreview 12s linear infinite; display:inline-block; padding-left:20px;">
+                  ⚡ Same Day 2-Hour Express Delivery in 100+ Cities
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Configuration Form & Options Card -->
+          <form id="announcementFormAdmin" onsubmit="window.adminStudio.saveAnnouncementFromTab(event)" style="background:#ffffff; border:1.5px solid #e2e8f0; border-radius:16px; padding:24px 28px; box-shadow:0 2px 10px rgba(0,0,0,0.03);">
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:20px; margin-bottom:20px;">
+
+              <!-- Visibility Toggle -->
+              <div style="grid-column:1 / -1; background:#f8fafc; border:1px solid #e2e8f0; border-radius:12px; padding:14px 18px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px;">
+                <div>
+                  <strong style="font-size:14px; color:#0f172a; display:block; margin-bottom:3px;">Display Announcement Bar</strong>
+                  <span style="font-size:12px; color:#64748b;">Toggle banner visibility across desktop and mobile headers website-wide.</span>
+                </div>
+                <label style="position:relative; display:inline-block; width:52px; height:28px; cursor:pointer; margin:0;">
+                  <input type="checkbox" id="announcementEnabled" style="opacity:0; width:0; height:0;" onchange="window.adminStudio.updateAnnouncementPreview()" checked />
+                  <span class="ann-toggle-slider" style="position:absolute; cursor:pointer; top:0; left:0; right:0; bottom:0; background-color:#cbd5e1; transition:.3s; border-radius:34px;"></span>
+                </label>
+              </div>
+
+              <!-- Main Announcement Text (Field shown in user's image) -->
+              <div style="grid-column:1 / -1;" class="form-field">
+                <label for="announcementText" style="font-size:13px; font-weight:700; color:#0f172a; margin-bottom:6px; display:flex; justify-content:space-between;">
+                  <span>Announcement Text * (Displayed in Ticker)</span>
+                  <span style="font-size:11.5px; color:#64748b; font-weight:normal;">Shown at the very top of all pages</span>
+                </label>
+                <input type="text" id="announcementText" class="form-control" style="font-size:14px; font-weight:600; padding:11px 16px; border:1.5px solid #cbd5e1; border-radius:10px;" placeholder="⚡ Same Day 2-Hour Express Delivery in 100+ Cities" required oninput="window.adminStudio.updateAnnouncementPreview()" />
+              </div>
+
+              <!-- Highlight Badge Text -->
+              <div class="form-field">
+                <label for="announcementBadge" style="font-size:13px; font-weight:700; color:#0f172a; margin-bottom:6px;">
+                  Highlight Pill Tag / Badge <span style="font-weight:normal; color:#64748b;">(Optional)</span>
+                </label>
+                <input type="text" id="announcementBadge" class="form-control" placeholder="e.g. ⚡ EXPRESS, 🔥 OFFER, NEW" oninput="window.adminStudio.updateAnnouncementPreview()" />
+                <small style="color:#64748b; font-size:11.5px; margin-top:4px; display:block;">White pill shown in front of the text. Leave blank to hide.</small>
+              </div>
+
+              <!-- CTA Link Text -->
+              <div class="form-field">
+                <label for="announcementLinkText" style="font-size:13px; font-weight:700; color:#0f172a; margin-bottom:6px;">
+                  Clickable Link Text <span style="font-weight:normal; color:#64748b;">(Optional)</span>
+                </label>
+                <input type="text" id="announcementLinkText" class="form-control" placeholder="e.g. Book Now, Check Availability" oninput="window.adminStudio.updateAnnouncementPreview()" />
+                <small style="color:#64748b; font-size:11.5px; margin-top:4px; display:block;">Underlined action text at the end of banner.</small>
+              </div>
+
+              <!-- CTA Link Target URL -->
+              <div class="form-field">
+                <label for="announcementLinkUrl" style="font-size:13px; font-weight:700; color:#0f172a; margin-bottom:6px;">
+                  Link Destination / Page URL <span style="font-weight:normal; color:#64748b;">(Optional)</span>
+                </label>
+                <input type="text" id="announcementLinkUrl" class="form-control" placeholder="e.g. /birthday.html, /marketplace.html, #" oninput="window.adminStudio.updateAnnouncementPreview()" />
+                <small style="color:#64748b; font-size:11.5px; margin-top:4px; display:block;">Destination page when clicked.</small>
+              </div>
+
+              <!-- Color Themes & Palettes -->
+              <div style="grid-column:1 / -1;" class="form-field">
+                <label style="font-size:13px; font-weight:700; color:#0f172a; margin-bottom:8px; display:block;">
+                  Banner Gradient & Color Theme
+                </label>
+                <div style="display:flex; flex-wrap:wrap; gap:10px; margin-bottom:12px;">
+                  <button type="button" class="ann-theme-btn" data-theme="rose-gradient" data-bg="linear-gradient(135deg, #be123c 0%, #fb7185 100%)" onclick="window.adminStudio.selectAnnouncementTheme(this)" style="background:linear-gradient(135deg, #be123c, #fb7185); color:#fff; border:2px solid #be123c; border-radius:9px; padding:8px 14px; font-size:12px; font-weight:700; cursor:pointer;">
+                    🌺 Brand Rose
+                  </button>
+                  <button type="button" class="ann-theme-btn" data-theme="emerald-gradient" data-bg="linear-gradient(135deg, #059669 0%, #10b981 100%)" onclick="window.adminStudio.selectAnnouncementTheme(this)" style="background:linear-gradient(135deg, #059669, #10b981); color:#fff; border:2px solid transparent; border-radius:9px; padding:8px 14px; font-size:12px; font-weight:700; cursor:pointer;">
+                    🌿 Emerald Green
+                  </button>
+                  <button type="button" class="ann-theme-btn" data-theme="sunset-gradient" data-bg="linear-gradient(135deg, #c2410c 0%, #f59e0b 100%)" onclick="window.adminStudio.selectAnnouncementTheme(this)" style="background:linear-gradient(135deg, #c2410c, #f59e0b); color:#fff; border:2px solid transparent; border-radius:9px; padding:8px 14px; font-size:12px; font-weight:700; cursor:pointer;">
+                    ☀️ Sunset Amber
+                  </button>
+                  <button type="button" class="ann-theme-btn" data-theme="purple-gradient" data-bg="linear-gradient(135deg, #6b21a8 0%, #a855f7 100%)" onclick="window.adminStudio.selectAnnouncementTheme(this)" style="background:linear-gradient(135deg, #6b21a8, #a855f7); color:#fff; border:2px solid transparent; border-radius:9px; padding:8px 14px; font-size:12px; font-weight:700; cursor:pointer;">
+                    👑 Royal Purple
+                  </button>
+                  <button type="button" class="ann-theme-btn" data-theme="midnight-gradient" data-bg="linear-gradient(135deg, #0f172a 0%, #334155 100%)" onclick="window.adminStudio.selectAnnouncementTheme(this)" style="background:linear-gradient(135deg, #0f172a, #334155); color:#fff; border:2px solid transparent; border-radius:9px; padding:8px 14px; font-size:12px; font-weight:700; cursor:pointer;">
+                    🌌 Midnight Dark
+                  </button>
+                  <button type="button" class="ann-theme-btn" data-theme="ocean-gradient" data-bg="linear-gradient(135deg, #0284c7 0%, #38bdf8 100%)" onclick="window.adminStudio.selectAnnouncementTheme(this)" style="background:linear-gradient(135deg, #0284c7, #38bdf8); color:#fff; border:2px solid transparent; border-radius:9px; padding:8px 14px; font-size:12px; font-weight:700; cursor:pointer;">
+                    💎 Ocean Blue
+                  </button>
+                </div>
+                <input type="hidden" id="announcementTheme" value="rose-gradient" />
+                <input type="hidden" id="announcementCustomBg" value="linear-gradient(135deg, #be123c 0%, #fb7185 100%)" />
+              </div>
+
+              <!-- Quick 1-Click Templates -->
+              <div style="grid-column:1 / -1; background:#f8fafc; border:1px solid #e2e8f0; border-radius:12px; padding:16px 18px;">
+                <label style="font-size:12.5px; font-weight:700; color:#334155; margin-bottom:8px; display:block;">
+                  ⚡ 1-Click Quick Templates:
+                </label>
+                <div style="display:flex; flex-wrap:wrap; gap:8px;">
+                  <button type="button" class="btn-template-chip" onclick="window.adminStudio.fillAnnouncementTemplate('express')">
+                    ⚡ Express Delivery (Default)
+                  </button>
+                  <button type="button" class="btn-template-chip" onclick="window.adminStudio.fillAnnouncementTemplate('discount')">
+                    🎉 Flat ₹500 OFF Discount
+                  </button>
+                  <button type="button" class="btn-template-chip" onclick="window.adminStudio.fillAnnouncementTemplate('midnight')">
+                    🌙 Midnight Setup Slots Available
+                  </button>
+                  <button type="button" class="btn-template-chip" onclick="window.adminStudio.fillAnnouncementTemplate('festive')">
+                    ✨ Festive & Wedding Season Booking
+                  </button>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Submit Bar -->
+            <div style="display:flex; align-items:center; justify-content:space-between; gap:14px; padding-top:16px; border-top:1px solid #f1f5f9; flex-wrap:wrap;">
+              <button type="button" class="btn-secondary" onclick="window.adminStudio.resetAnnouncementDefaults()" style="padding:11px 20px;">
+                ↺ Reset to Defaults
+              </button>
+              <button type="submit" id="saveAnnouncementBtn" class="btn-primary" style="padding:11px 28px; font-size:14px; font-weight:700; background:linear-gradient(135deg, #059669, #047857); box-shadow:0 4px 14px rgba(5,150,105,0.3);">
+                💾 Save & Publish Announcement Live
+              </button>
+            </div>
+          </form>
+        </section>
+
+        <!-- ==================================================================
+             PROMOTIONAL BANNERS & HERO CAROUSEL MANAGEMENT TAB
+             ================================================================== -->
+        <section id="bannersTab" class="tab-content">
+          <div class="category-hero" style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 40%, #ffffff 100%) !important; border: 1.5px solid #bae6fd !important;">
+            <div class="category-hero-info">
+              <div class="category-hero-top">
+                <h2 class="category-hero-title" style="color:#0369a1 !important;">🖼️ Promotional Banners & Hero Carousels</h2>
+                <span class="category-hero-badge" style="background:#e0f2fe !important; color:#0284c7 !important; border-color:#bae6fd !important;">WEBSITE BANNERS</span>
+                <span class="category-hero-count" id="bannersTotalCountText" style="color:#0284c7 !important;">• 10 Banners Active</span>
+              </div>
+              <p class="category-hero-desc">
+                Full studio management for the homepage hero carousel and top banners on all category pages (Birthday, Anniversary, Kids Themes, Baby Shower, Wedding, Corporate, Gifts). Add new promotional slides, change image banners with Cloudinary upload, update promotional headlines, target buttons and links, or toggle visibility.
+              </p>
+              <div class="category-hero-actions">
+                <button type="button" class="btn-hero-add-pkg" onclick="window.adminStudio.openBannerModal('add')" style="background:linear-gradient(135deg, #0284c7, #38bdf8) !important;">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                  <span>+ Add New Banner</span>
+                </button>
+                <a href="../index.html" target="_blank" class="btn-hero-action" style="text-decoration:none;">
+                  🌐 View Live Homepage
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Banners Filters & Search Bar -->
+          <div style="background:#ffffff; border:1.5px solid #e2e8f0; border-radius:14px; padding:16px 20px; margin-bottom:24px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:14px;">
+            <!-- Location Filter Tabs -->
+            <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;" id="bannerLocationFilterGroup">
+              <button type="button" class="btn-template-chip banner-loc-filter-btn" style="background:#0284c7; color:#fff; border-color:#0284c7; font-weight:700;" data-loc="all" onclick="window.adminStudio.filterBannersByLocation('all', this)">
+                All Banners (<span id="countBannerAll">10</span>)
+              </button>
+              <button type="button" class="btn-template-chip banner-loc-filter-btn" data-loc="home" onclick="window.adminStudio.filterBannersByLocation('home', this)">
+                🏠 Homepage Carousel (<span id="countBannerHome">3</span>)
+              </button>
+              <button type="button" class="btn-template-chip banner-loc-filter-btn" data-loc="category" onclick="window.adminStudio.filterBannersByLocation('category', this)">
+                🏷️ Category Banners (<span id="countBannerCategory">7</span>)
+              </button>
+            </div>
+
+            <!-- Search Banner -->
+            <div style="display:flex; align-items:center; gap:10px; min-width:260px;">
+              <input type="text" id="bannerSearchInput" class="form-control" placeholder="Search banner title, tag, or page..." oninput="window.adminStudio.renderBannersAdmin()" style="font-size:13px; padding:8px 14px;" />
+            </div>
+          </div>
+
+          <!-- Banners Grid Container -->
+          <div id="bannersGridAdmin" class="banners-admin-grid">
             <!-- Dynamically rendered by admin.js -->
           </div>
         </section>
@@ -2739,6 +3235,124 @@
           <button type="button" class="btn-secondary" data-close-modal>Cancel</button>
           <button type="submit" id="saveCityBtn" class="btn-primary" style="padding:10px 24px;">
             Save City
+          </button>
+  <!-- ======================================================================
+       MODAL: ADD / EDIT PROMOTIONAL BANNER (CRUD WITH CLOUDINARY)
+       ====================================================================== -->
+  <div id="bannerModal" class="modal-backdrop">
+    <div class="modal-dialog modal-dialog-lg" style="max-width:680px;">
+      <div class="modal-header">
+        <div class="modal-header-title">
+          <span style="font-size:22px;">🖼️</span>
+          <div>
+            <h2 id="bannerModalTitle" style="margin:0;font-size:18px;">Add New Promotional Banner</h2>
+            <div style="font-size:12px;color:var(--text-muted);margin-top:2px;">Homepage carousel slides & Category page hero banners</div>
+          </div>
+        </div>
+        <button type="button" class="btn-modal-close" data-close-modal aria-label="Close modal">&times;</button>
+      </div>
+
+      <form id="bannerFormAdmin" onsubmit="window.adminStudio.saveBanner(event)">
+        <input type="hidden" id="bannerModalMode" value="add" />
+        <input type="hidden" id="bannerOriginalId" value="" />
+
+        <div class="modal-body" style="padding:22px 24px; gap:16px;">
+          
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+            <!-- Target Page / Location -->
+            <div class="form-field">
+              <label for="bannerLocationSelect">Target Page / Placement *</label>
+              <select id="bannerLocationSelect" class="form-control" required onchange="window.adminStudio.handleBannerLocationChange(this.value)">
+                <optgroup label="Homepage">
+                  <option value="home">🏠 Homepage Carousel Slide</option>
+                </optgroup>
+                <optgroup label="Category Pages">
+                  <option value="birthday">🎂 Birthday Category Page</option>
+                  <option value="anniversary">❤️ Anniversary Category Page</option>
+                  <option value="kids">🦄 Kids Themes Category Page</option>
+                  <option value="baby-shower">👶 Baby Shower Category Page</option>
+                  <option value="wedding">💍 Wedding Category Page</option>
+                  <option value="corporate">🏢 Corporate Category Page</option>
+                  <option value="gifts">🎁 Gifts Category Page</option>
+                </optgroup>
+              </select>
+            </div>
+
+            <!-- Display Order -->
+            <div class="form-field">
+              <label for="bannerOrderInput">Display Sequence Order</label>
+              <input type="number" id="bannerOrderInput" class="form-control" value="1" min="1" max="99" />
+            </div>
+          </div>
+
+          <!-- Highlight Tag / Pill Badge -->
+          <div class="form-field">
+            <label for="bannerTagInput">Highlight Tag / Badge <span style="font-weight:normal;color:#64748b;">(Optional)</span></label>
+            <input type="text" id="bannerTagInput" class="form-control" placeholder="e.g. ✨ India's #1 Decoration Service, ❤️ Romantic Surprises" />
+          </div>
+
+          <!-- Banner Main Headline Title -->
+          <div class="form-field">
+            <label for="bannerTitleInput">Headline / Title *</label>
+            <input type="text" id="bannerTitleInput" class="form-control" placeholder="e.g. Balloon Decorations That Wow Your Guests" required />
+          </div>
+
+          <!-- Banner Subtitle / Description -->
+          <div class="form-field">
+            <label for="bannerSubtitleInput">Description / Subtitle <span style="font-weight:normal;color:#64748b;">(Optional)</span></label>
+            <textarea id="bannerSubtitleInput" class="form-control" rows="2" placeholder="Brief tagline or promotional promise shown on the banner..."></textarea>
+          </div>
+
+          <!-- Banner Image with Cloudinary Upload -->
+          <div class="form-field">
+            <label for="bannerImageUrlInput" style="display:flex; justify-content:space-between; align-items:center;">
+              <span>Banner Image URL * (Recommended ratio: 16:6 or 16:9)</span>
+              <span style="font-size:11px; color:#0284c7; font-weight:700;">☁️ Cloudinary Upload Supported</span>
+            </label>
+            <div style="display:flex; gap:10px; align-items:center;">
+              <input type="url" id="bannerImageUrlInput" class="form-control" placeholder="https://cdn.balloondekor.com/... or https://res.cloudinary.com/..." required oninput="window.adminStudio.previewBannerModalImage(this.value)" />
+              <label class="btn-secondary" style="margin:0; cursor:pointer; white-space:nowrap; padding:10px 14px;" id="bannerUploadLabel">
+                ☁️ Upload
+                <input type="file" id="bannerImageFileInput" accept="image/*" style="display:none;" />
+              </label>
+            </div>
+            <div id="bannerUploadProgress" style="display:none; font-size:12px; color:#0284c7; font-weight:700; margin-top:4px;">
+              ⏳ Uploading banner image to Cloudinary...
+            </div>
+            
+            <!-- Live Modal Image Preview -->
+            <div style="margin-top:10px; height:140px; border-radius:10px; overflow:hidden; background:#0f172a; position:relative; border:1px solid #e2e8f0;">
+              <img id="bannerModalPreviewImg" src="https://cdn.balloondekor.com/images/16/49e5480a-1fcd-42eb-ad97-cafd993c260d.webp" alt="Preview" style="width:100%; height:100%; object-fit:cover;" onerror="this.src='https://cdn.balloondekor.com/images/16/49e5480a-1fcd-42eb-ad97-cafd993c260d.webp'" />
+              <div style="position:absolute; bottom:8px; left:12px; background:rgba(0,0,0,0.7); color:#fff; font-size:10.5px; padding:2px 8px; border-radius:6px;">Live Image Preview</div>
+            </div>
+          </div>
+
+          <!-- CTA Button Details -->
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+            <div class="form-field">
+              <label for="bannerLinkTextInput">Button Label Text <span style="font-weight:normal;color:#64748b;">(Optional)</span></label>
+              <input type="text" id="bannerLinkTextInput" class="form-control" placeholder="e.g. Explore Birthday Packages →" />
+            </div>
+            <div class="form-field">
+              <label for="bannerLinkUrlInput">Button Target Destination URL</label>
+              <input type="text" id="bannerLinkUrlInput" class="form-control" placeholder="e.g. birthday.html, #catalog, https://..." />
+            </div>
+          </div>
+
+          <!-- Active Toggle -->
+          <div style="background:#f8fafc; border:1px solid var(--admin-border); border-radius:10px; padding:12px 14px;">
+            <label style="display:flex; align-items:center; gap:10px; cursor:pointer; font-weight:700; font-size:13px; color:var(--text-main); margin:0;">
+              <input type="checkbox" id="bannerActiveCheckbox" checked style="width:18px; height:18px; accent-color:#0284c7;" />
+              <span>Visible on Live Website (Uncheck to temporarily hide without deleting)</span>
+            </label>
+          </div>
+
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn-secondary" data-close-modal>Cancel</button>
+          <button type="submit" id="saveBannerSubmitBtn" class="btn-primary" style="padding:10px 26px; background:linear-gradient(135deg, #0284c7, #0369a1);">
+            💾 Save Banner
           </button>
         </div>
       </form>
