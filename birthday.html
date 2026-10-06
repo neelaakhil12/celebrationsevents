@@ -717,9 +717,45 @@
     let bdayItems = [];
     let bdayType = 'all';
 
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str).replace(/[&<>"']/g, m => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+      }[m]));
+    }
+
+    function renderBirthdaySubFilter() {
+      const container = document.getElementById("birthdaySubFilter");
+      if (!container) return;
+
+      const catObj = (SITE_DATA.categories || []).find(c => c.id === 'birthday');
+      const subcats = (catObj && Array.isArray(catObj.subcategories) && catObj.subcategories.length > 0)
+        ? catObj.subcategories
+        : [
+            { id: "home", name: "Simple Home Surprises", icon: "🏠", title: "Simple Home Birthday Setups" },
+            { id: "arch", name: "Arch & Ring Backdrops", icon: "⭕", title: "Organic Arch & Ring Backdrop Setups" },
+            { id: "luxury", name: "Luxury Boho & Grand", icon: "✨", title: "Luxury Boho & Grand Jubilee Decors" },
+            { id: "kids-link", name: "Kids Themes →", icon: "🦄", isLink: true, href: "kids.html" }
+          ];
+
+      let html = `<button class="filter-pill ${bdayType === 'all' ? 'active' : ''}" onclick="filterBirthdayType('all', this)">All Birthdays</button>`;
+
+      subcats.forEach(sub => {
+        if (sub.isLink && sub.href) {
+          html += `<a href="${escapeHtml(sub.href)}" class="filter-pill">${sub.icon ? sub.icon + ' ' : ''}${escapeHtml(sub.name)}</a>`;
+        } else {
+          const isActive = bdayType === sub.id ? 'active' : '';
+          html += `<button class="filter-pill ${isActive}" onclick="filterBirthdayType('${escapeHtml(sub.id)}', this)">${sub.icon ? sub.icon + ' ' : ''}${escapeHtml(sub.name)}</button>`;
+        }
+      });
+
+      container.innerHTML = html;
+    }
+
     function initBirthdayPage() {
       // Collect birthday packages only
       bdayItems = SITE_DATA.products.filter(p => p.category === 'birthday');
+      renderBirthdaySubFilter();
       renderBirthdayProducts();
     }
 
@@ -730,10 +766,25 @@
       if (btn) btn.classList.add("active");
 
       const titleEl = document.getElementById("bdayCatalogTitle");
-      if (type === 'home') titleEl.textContent = "Simple Home Birthday Setups";
-      else if (type === 'arch') titleEl.textContent = "Organic Arch & Ring Backdrop Setups";
-      else if (type === 'luxury') titleEl.textContent = "Luxury Boho & Grand Jubilee Decors";
-      else titleEl.textContent = "All Birthday Packages";
+      if (type === 'all') {
+        titleEl.textContent = "All Birthday Packages";
+      } else {
+        const catObj = (SITE_DATA.categories || []).find(c => c.id === 'birthday');
+        const sub = (catObj && Array.isArray(catObj.subcategories)) ? catObj.subcategories.find(s => s.id === type) : null;
+        if (sub && sub.title) {
+          titleEl.textContent = sub.title;
+        } else if (sub) {
+          titleEl.textContent = `${sub.name} Birthday Setups`;
+        } else if (type === 'home') {
+          titleEl.textContent = "Simple Home Birthday Setups";
+        } else if (type === 'arch') {
+          titleEl.textContent = "Organic Arch & Ring Backdrop Setups";
+        } else if (type === 'luxury') {
+          titleEl.textContent = "Luxury Boho & Grand Jubilee Decors";
+        } else {
+          titleEl.textContent = "Birthday Packages";
+        }
+      }
 
       renderBirthdayProducts();
     }
@@ -750,12 +801,18 @@
       if (!grid) return;
 
       let filtered = [...bdayItems];
-      if (bdayType === 'home') {
-        filtered = filtered.filter(p => p.price < 2500 && p.category === 'birthday');
-      } else if (bdayType === 'arch') {
-        filtered = filtered.filter(p => p.title.toLowerCase().includes("arch") || p.title.toLowerCase().includes("backdrop"));
-      } else if (bdayType === 'luxury') {
-        filtered = filtered.filter(p => p.price >= 3000);
+      if (bdayType !== 'all') {
+        filtered = filtered.filter(p => {
+          // Explicit subcategory match first
+          if (p.subcategory) {
+            return String(p.subcategory).toLowerCase() === String(bdayType).toLowerCase();
+          }
+          // Legacy heuristics fallback
+          if (bdayType === 'home') return p.price < 2500;
+          if (bdayType === 'arch') return p.title && (p.title.toLowerCase().includes("arch") || p.title.toLowerCase().includes("backdrop"));
+          if (bdayType === 'luxury') return p.price >= 3000;
+          return false;
+        });
       }
 
       grid.innerHTML = filtered.map((product, idx) => `

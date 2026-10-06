@@ -2336,6 +2336,20 @@
     });
 
     function initPackagePage() {
+      // Sync customized products from admin studio if available
+      try {
+        const customProds = localStorage.getItem("celebration_custom_products");
+        if (customProds && typeof SITE_DATA !== "undefined" && Array.isArray(SITE_DATA.products)) {
+          const parsed = JSON.parse(customProds);
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            const pMap = new Map();
+            SITE_DATA.products.forEach(p => pMap.set(p.id, p));
+            parsed.forEach(p => pMap.set(p.id, p));
+            SITE_DATA.products = Array.from(pMap.values());
+          }
+        }
+      } catch(e){}
+
       const params = new URLSearchParams(window.location.search);
       let pkgId = params.get("id");
 
@@ -2392,19 +2406,83 @@
       document.getElementById("pkgMainImg").alt = currentPackage.title;
       updateGalleryDots();
 
-      // Inclusions
+      // Inclusions & Inclusions Count Badge
       const incList = document.getElementById("pkgInclusionsList");
       if (incList) {
-        incList.innerHTML = currentPackage.inclusions.map(inc => `
+        incList.innerHTML = (currentPackage.inclusions || []).map(inc => `
           <li>
             <span class="inc-check">✓</span>
             <span>${inc}</span>
           </li>
         `).join("");
       }
+      const incCountBadge = document.getElementById("pkgIncCountBadge");
+      if (incCountBadge) {
+        incCountBadge.textContent = `${(currentPackage.inclusions || []).length} Items`;
+      }
+
+      // Not Included (Exclusions)
+      const notIncList = document.querySelector(".pkg-not-included-items-list");
+      if (notIncList) {
+        const notIncs = (currentPackage.notIncluded && currentPackage.notIncluded.length > 0)
+          ? currentPackage.notIncluded
+          : ["No Helium Gas (All balloons inflated with standard air)", "Ladder is not carried by decorator (Customer to provide chair/stool)"];
+        notIncList.innerHTML = notIncs.map(item => `
+          <li><span class="not-inc-cross">✕</span> <span>${item}</span></li>
+        `).join("");
+      }
+
+      // FAQs
+      const faqList = document.querySelector(".pkg-faq-list");
+      if (faqList) {
+        const faqs = (currentPackage.faqs && currentPackage.faqs.length > 0)
+          ? currentPackage.faqs
+          : [
+              { q: "Can I customize the balloon colors?", a: "Yes, absolutely! You can choose from our color palette below (\"Make It Yours\") or discuss your custom preference directly with our decorator." },
+              { q: "What time will the decorator arrive?", a: "Your certified decorator will arrive within the selected time slot you choose at booking." },
+              { q: "Will wall tape leave marks on walls?", a: "No, we exclusively use painter-friendly removable paper tapes that peel off smoothly without peeling paint or leaving sticky residue." },
+              { q: "Can I reschedule or cancel?", a: "Yes, free rescheduling is available up to 12 hours before your selected setup slot." }
+            ];
+        faqList.innerHTML = faqs.map((f, i) => `
+          <details class="pkg-faq-item" ${i === 0 ? 'open' : ''}>
+            <summary>${f.q}</summary>
+            <p>${f.a}</p>
+          </details>
+        `).join("");
+      }
+
+      // Delivery Specifications
+      const deliveryEl = document.querySelector(".pkg-delivery-info");
+      if (deliveryEl) {
+        const speed = currentPackage.deliveryNote || "Available in 100+ cities including Delhi NCR, Mumbai, Bangalore, Pune, Hyderabad, and Kolkata.";
+        const dec = currentPackage.decoratorNote || "Arrives equipped with electric pumps, ladder-ready equipment, and premium materials.";
+        const dur = currentPackage.setupDuration || "1 to 1.5 hours";
+        deliveryEl.innerHTML = `
+          <p>⚡ <strong>Same-Day 2-Hour Setup:</strong> ${speed}</p>
+          <p>🧑‍🔧 <strong>Verified Decorator:</strong> ${dec}</p>
+          <p>⏱️ <strong>Setup Duration:</strong> Typically takes ${dur} depending on ceiling height and space.</p>
+        `;
+      }
+
+      // Care Info
+      const careEl = document.querySelector(".pkg-care-info");
+      if (careEl) {
+        const lifespan = currentPackage.lifespanNote || "Air-filled latex balloons remain inflated for 24 to 48 hours indoors in room temperature.";
+        const location = currentPackage.locationNote || "Keep away from sharp edges, hot direct halogen lights, and outdoor harsh sunlight.";
+        careEl.innerHTML = `
+          <p>🎈 <strong>Lifespan:</strong> ${lifespan}</p>
+          <p>☀️ <strong>Location:</strong> ${location}</p>
+        `;
+      }
+
+      // About This Package
+      const aboutEl = document.getElementById("pkgAboutDescription");
+      if (aboutEl) {
+        aboutEl.textContent = currentPackage.aboutDescription || currentPackage.description || "This celebration home setup keeps things simple and pocket-friendly with balloons floating on ceiling and floor to make every corner photo-ready. A happy birthday foil and ribbons finish the look with party charm.";
+      }
 
       const durText = document.getElementById("pkgDurationText");
-      if (durText) durText.textContent = `${currentPackage.setupDuration} by professional decorator`;
+      if (durText) durText.textContent = `${currentPackage.setupDuration || '1.5 - 2 Hours'} by professional decorator`;
       const setupTimeEl = document.getElementById("pkgSetupTimeText");
       if (setupTimeEl) setupTimeEl.textContent = currentPackage.setupDuration || "approx. 1 to 1.5 hours";
 
@@ -2423,6 +2501,12 @@
       const savings = currentPackage.originalPrice - currentPackage.price;
       const savingsEl = document.getElementById("pkgSavingsAmount");
       if (savingsEl) savingsEl.textContent = `₹${savings.toLocaleString("en-IN")}`;
+
+      // Urgency slots alert banner
+      const slotsEl = document.getElementById("pkgSlotsText");
+      if (slotsEl) {
+        slotsEl.textContent = currentPackage.slotsAlert || "Only 5 slots left this weekend";
+      }
 
       const currentCityName = (typeof appState !== "undefined" && appState.selectedCity) ? appState.selectedCity : "Mumbai";
       const cityText = document.getElementById("pkgSelectedCityText");
@@ -2564,16 +2648,49 @@
 
     let selectedColorPalette = "Same as Image";
 
+    function getColorGradient(name) {
+      if (!name) return 'linear-gradient(135deg, #be123c, #fb7185)';
+      const lower = String(name).toLowerCase();
+      if (lower.includes('same as image')) return 'linear-gradient(135deg, #be123c 50%, #f59e0b 50%)';
+      if (lower.includes('blue') && lower.includes('pink')) return 'linear-gradient(135deg, #3b82f6 50%, #ec4899 50%)';
+      if (lower.includes('gold') && lower.includes('black')) return 'linear-gradient(135deg, #f59e0b 50%, #0f172a 50%)';
+      if (lower.includes('silver') && lower.includes('blue')) return 'linear-gradient(135deg, #94a3b8 50%, #2563eb 50%)';
+      if (lower.includes('red') && lower.includes('white')) return 'linear-gradient(135deg, #ef4444 50%, #ffffff 50%)';
+      if (lower.includes('white') && (lower.includes('gold') || lower.includes('golden'))) return 'linear-gradient(135deg, #ffffff 50%, #f59e0b 50%)';
+      if (lower.includes('multi') || lower.includes('rainbow')) return 'linear-gradient(135deg, #ef4444 25%, #eab308 25%, #eab308 50%, #22c55e 50%, #22c55e 75%, #3b82f6 75%)';
+      if (lower.includes('pink') && lower.includes('white')) return 'linear-gradient(135deg, #ec4899 50%, #ffffff 50%)';
+      if (lower.includes('purple') || lower.includes('lavender')) return 'linear-gradient(135deg, #a855f7 50%, #e9d5ff 50%)';
+      if (lower.includes('green') || lower.includes('pastel green') || lower.includes('mint')) return 'linear-gradient(135deg, #22c55e 50%, #bbf7d0 50%)';
+      if (lower.includes('rose gold')) return 'linear-gradient(135deg, #e0a96d 50%, #f43f5e 50%)';
+      if (lower.includes('black')) return '#0f172a';
+      if (lower.includes('gold') || lower.includes('golden')) return '#f59e0b';
+      if (lower.includes('silver')) return '#94a3b8';
+      if (lower.includes('blue')) return '#3b82f6';
+      if (lower.includes('pink')) return '#ec4899';
+      if (lower.includes('red')) return '#ef4444';
+      if (lower.includes('yellow')) return '#eab308';
+      return 'linear-gradient(135deg, #be123c, #fb7185)';
+    }
+
     function renderColorSwatches() {
       const container = document.getElementById("pkgColorSwatches");
       if (!container) return;
 
-      container.innerHTML = COLOR_PALETTES.map(p => `
-        <button type="button" class="pkg-color-pill ${p.name === selectedColorPalette ? 'active' : ''}" onclick="selectColorPalette('${p.name}', this)">
-          <span class="pkg-color-dot" style="background: ${p.gradient};"></span>
-          <span>${p.name}</span>
-        </button>
-      `).join("");
+      const palettes = (currentPackage && currentPackage.colorPalettes && currentPackage.colorPalettes.length > 0)
+        ? currentPackage.colorPalettes
+        : COLOR_PALETTES;
+
+      container.innerHTML = palettes.map(p => {
+        const name = typeof p === 'string' ? p : (p.name || 'Custom Color');
+        const gradient = (typeof p === 'object' && p.gradient) ? p.gradient : getColorGradient(name);
+        const safeName = String(name).replace(/'/g, "\\'");
+        return `
+          <button type="button" class="pkg-color-pill ${name === selectedColorPalette ? 'active' : ''}" onclick="selectColorPalette('${safeName}', this)">
+            <span class="pkg-color-dot" style="background: ${gradient};"></span>
+            <span>${name}</span>
+          </button>
+        `;
+      }).join("");
     }
 
     function selectColorPalette(name, btn) {
@@ -2671,7 +2788,9 @@
 
     function renderPackageAddons() {
       const carousel = document.getElementById("pkgAddonsCarousel");
-      const addons = SITE_DATA.addons || [];
+      const addons = (currentPackage && currentPackage.addons && currentPackage.addons.length > 0)
+        ? currentPackage.addons
+        : (SITE_DATA.addons || []);
 
       if (carousel) {
         carousel.innerHTML = addons.map(addon => {
@@ -2696,7 +2815,10 @@
     }
 
     function togglePackageAddonCard(addonId) {
-      const addon = SITE_DATA.addons.find(a => a.id === addonId);
+      const allAddons = (currentPackage && currentPackage.addons && currentPackage.addons.length > 0)
+        ? currentPackage.addons
+        : (SITE_DATA.addons || []);
+      const addon = allAddons.find(a => a.id === addonId) || (SITE_DATA.addons || []).find(a => a.id === addonId);
       if (!addon) return;
 
       if (selectedAddonIds.includes(addonId)) {
@@ -2715,8 +2837,12 @@
       const basePrice = currentPackage.price;
       let addonsTotal = 0;
 
+      const allAddons = (currentPackage && currentPackage.addons && currentPackage.addons.length > 0)
+        ? currentPackage.addons
+        : (SITE_DATA.addons || []);
+
       selectedAddonIds.forEach(id => {
-        const addon = SITE_DATA.addons.find(a => a.id === id);
+        const addon = allAddons.find(a => a.id === id) || (SITE_DATA.addons || []).find(a => a.id === id);
         if (addon) addonsTotal += addon.price;
       });
 

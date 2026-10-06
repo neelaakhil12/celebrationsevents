@@ -178,16 +178,28 @@
       </div>
     </section>
 
-    <!-- Reviews Section -->
-    <section class="reviews-section" data-aos="fade-up">
+    <!-- Real Photos & Video Customer Reviews Section -->
+    <section class="reviews-section" id="reviewsSection" data-aos="fade-up" data-aos-duration="700">
       <div class="section-header">
         <div class="section-title-wrap">
-          <h2 class="section-title">Parents' Reviews & Party Moments</h2>
+          <div class="reviews-stream-tag">
+            <span class="live-pulse-dot"></span> LIVE CELEBRATION FEED
+          </div>
+          <h2 class="section-title">Real Photos & Video Customer Reviews</h2>
           <div class="title-underline"></div>
-          <p class="section-subtitle">Real experiences from birthday celebrations across India</p>
+          <p class="section-subtitle">Watch real celebration reels and customer setups across India • Hover over any card to pause</p>
         </div>
       </div>
-      <div class="reviews-grid" id="reviewsGrid"></div>
+
+      <!-- 2-Row Infinite Video & Photo Scrolling Stream -->
+      <div class="reviews-marquee-wrapper" id="reviewsMarqueeWrapper">
+        <div class="reviews-marquee-row">
+          <div class="reviews-marquee-track track-row-1" id="reviewsTrackRow1"></div>
+        </div>
+        <div class="reviews-marquee-row">
+          <div class="reviews-marquee-track track-row-2" id="reviewsTrackRow2"></div>
+        </div>
+      </div>
     </section>
 
   </main>
@@ -662,8 +674,45 @@
     let kidsItems = [];
     let kidsType = 'all';
 
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str).replace(/[&<>"']/g, m => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+      }[m]));
+    }
+
+    function renderKidsSubFilter() {
+      const container = document.getElementById("kidsSubFilter");
+      if (!container) return;
+
+      const catObj = (SITE_DATA.categories || []).find(c => c.id === 'kids');
+      const subcats = (catObj && Array.isArray(catObj.subcategories) && catObj.subcategories.length > 0)
+        ? catObj.subcategories
+        : [
+            { id: "cocomelon", name: "Cocomelon", icon: "🍉", title: "Cocomelon Fun Kids Birthday Setups" },
+            { id: "babyshark", name: "Baby Shark", icon: "🦈", title: "Baby Shark Underwater Theme Setups" },
+            { id: "bossbaby", name: "The Boss Baby", icon: "💼", title: "The Boss Baby Theme Setups" },
+            { id: "jungle", name: "Jungle Safari", icon: "🦁", title: "Wild Jungle Safari Birthday Themes" },
+            { id: "frozen", name: "Frozen Wonderland", icon: "❄️", title: "Frozen Ice Wonderland Princess Themes" }
+          ];
+
+      let html = `<button class="filter-pill ${kidsType === 'all' ? 'active' : ''}" onclick="filterKidsType('all', this)">All Kids Themes (${kidsItems.length})</button>`;
+
+      subcats.forEach(sub => {
+        if (sub.isLink && sub.href) {
+          html += `<a href="${escapeHtml(sub.href)}" class="filter-pill">${sub.icon ? sub.icon + ' ' : ''}${escapeHtml(sub.name)}</a>`;
+        } else {
+          const isActive = kidsType === sub.id ? 'active' : '';
+          html += `<button class="filter-pill ${isActive}" onclick="filterKidsType('${escapeHtml(sub.id)}', this)">${sub.icon ? sub.icon + ' ' : ''}${escapeHtml(sub.name)}</button>`;
+        }
+      });
+
+      container.innerHTML = html;
+    }
+
     function initKidsPage() {
       kidsItems = SITE_DATA.products.filter(p => p.category === 'kids');
+      renderKidsSubFilter();
       renderKidsProducts();
     }
 
@@ -674,12 +723,29 @@
       if (btn) btn.classList.add("active");
 
       const titleEl = document.getElementById("kidsCatalogTitle");
-      if (type === 'cocomelon') titleEl.textContent = "Cocomelon Fun Kids Birthday Setups";
-      else if (type === 'babyshark') titleEl.textContent = "Baby Shark Underwater Theme Setups";
-      else if (type === 'bossbaby') titleEl.textContent = "The Boss Baby Theme Setups";
-      else if (type === 'jungle') titleEl.textContent = "Wild Jungle Safari Birthday Themes";
-      else if (type === 'frozen') titleEl.textContent = "Frozen Ice Wonderland Princess Themes";
-      else titleEl.textContent = "All Kids Theme Packages";
+      if (type === 'all') {
+        titleEl.textContent = "All Kids Theme Packages";
+      } else {
+        const catObj = (SITE_DATA.categories || []).find(c => c.id === 'kids');
+        const sub = (catObj && Array.isArray(catObj.subcategories)) ? catObj.subcategories.find(s => s.id === type) : null;
+        if (sub && sub.title) {
+          titleEl.textContent = sub.title;
+        } else if (sub) {
+          titleEl.textContent = `${sub.name} Kids Birthday Setups`;
+        } else if (type === 'cocomelon') {
+          titleEl.textContent = "Cocomelon Fun Kids Birthday Setups";
+        } else if (type === 'babyshark') {
+          titleEl.textContent = "Baby Shark Underwater Theme Setups";
+        } else if (type === 'bossbaby') {
+          titleEl.textContent = "The Boss Baby Theme Setups";
+        } else if (type === 'jungle') {
+          titleEl.textContent = "Wild Jungle Safari Birthday Themes";
+        } else if (type === 'frozen') {
+          titleEl.textContent = "Frozen Ice Wonderland Princess Themes";
+        } else {
+          titleEl.textContent = "Kids Theme Packages";
+        }
+      }
 
       renderKidsProducts();
     }
@@ -696,16 +762,24 @@
       if (!grid) return;
 
       let filtered = [...kidsItems];
-      if (kidsType === 'cocomelon') {
-        filtered = filtered.filter(p => p.title.toLowerCase().includes("cocomelon"));
-      } else if (kidsType === 'babyshark') {
-        filtered = filtered.filter(p => p.title.toLowerCase().includes("shark"));
-      } else if (kidsType === 'bossbaby') {
-        filtered = filtered.filter(p => p.title.toLowerCase().includes("boss"));
-      } else if (kidsType === 'jungle') {
-        filtered = filtered.filter(p => p.title.toLowerCase().includes("jungle") || p.title.toLowerCase().includes("safari"));
-      } else if (kidsType === 'frozen') {
-        filtered = filtered.filter(p => p.title.toLowerCase().includes("frozen"));
+      if (kidsType !== 'all') {
+        filtered = filtered.filter(p => {
+          if (p.subcategory) {
+            return String(p.subcategory).toLowerCase() === String(kidsType).toLowerCase();
+          }
+          if (kidsType === 'cocomelon') {
+            return p.title && p.title.toLowerCase().includes("cocomelon");
+          } else if (kidsType === 'babyshark') {
+            return p.title && p.title.toLowerCase().includes("shark");
+          } else if (kidsType === 'bossbaby') {
+            return p.title && p.title.toLowerCase().includes("boss");
+          } else if (kidsType === 'jungle') {
+            return p.title && (p.title.toLowerCase().includes("jungle") || p.title.toLowerCase().includes("safari"));
+          } else if (kidsType === 'frozen') {
+            return p.title && p.title.toLowerCase().includes("frozen");
+          }
+          return false;
+        });
       }
 
       grid.innerHTML = filtered.map((product, idx) => `
@@ -741,5 +815,12 @@
       initKidsPage();
     });
   </script>
+  <!-- Review Media Modal Overlay (Video Reels & Photos) -->
+  <div class="review-modal-overlay" id="reviewMediaModalOverlay" onclick="closeReviewMediaModal(event)">
+    <div class="review-modal-content">
+      <button class="review-modal-close" onclick="closeReviewMediaModal(event)" aria-label="Close modal">&times;</button>
+      <div class="review-modal-body" id="reviewModalBody"></div>
+    </div>
+  </div>
 </body>
 </html>

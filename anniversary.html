@@ -679,8 +679,44 @@
     let anniItems = [];
     let anniType = 'all';
 
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str).replace(/[&<>"']/g, m => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+      }[m]));
+    }
+
+    function renderAnniversarySubFilter() {
+      const container = document.getElementById("anniversarySubFilter");
+      if (!container) return;
+
+      const catObj = (SITE_DATA.categories || []).find(c => c.id === 'anniversary');
+      const subcats = (catObj && Array.isArray(catObj.subcategories) && catObj.subcategories.length > 0)
+        ? catObj.subcategories
+        : [
+            { id: "room", name: "Room & Bedroom Surprises", icon: "🌹", title: "Room & Bedroom Anniversary Surprises" },
+            { id: "canopy", name: "Cabana & Canopy Tents", icon: "⛺", title: "Cabana & Canopy Terrace Decors" },
+            { id: "ring", name: "Ring Backdrop & Neon", icon: "⭕", title: "Circular Ring Backdrops with Neon Signs" },
+            { id: "grand", name: "25th / 50th Jubilees", icon: "✨", title: "Grand 25th / 50th Jubilee Celebrations" }
+          ];
+
+      let html = `<button class="filter-pill ${anniType === 'all' ? 'active' : ''}" onclick="filterAnniversaryType('all', this)">All Romantic & Anniversary (${anniItems.length})</button>`;
+
+      subcats.forEach(sub => {
+        if (sub.isLink && sub.href) {
+          html += `<a href="${escapeHtml(sub.href)}" class="filter-pill">${sub.icon ? sub.icon + ' ' : ''}${escapeHtml(sub.name)}</a>`;
+        } else {
+          const isActive = anniType === sub.id ? 'active' : '';
+          html += `<button class="filter-pill ${isActive}" onclick="filterAnniversaryType('${escapeHtml(sub.id)}', this)">${sub.icon ? sub.icon + ' ' : ''}${escapeHtml(sub.name)}</button>`;
+        }
+      });
+
+      container.innerHTML = html;
+    }
+
     function initAnniversaryPage() {
       anniItems = SITE_DATA.products.filter(p => p.category === 'anniversary');
+      renderAnniversarySubFilter();
       renderAnniversaryProducts();
     }
 
@@ -691,11 +727,27 @@
       if (btn) btn.classList.add("active");
 
       const titleEl = document.getElementById("anniCatalogTitle");
-      if (type === 'room') titleEl.textContent = "Room & Bedroom Anniversary Surprises";
-      else if (type === 'canopy') titleEl.textContent = "Cabana & Canopy Terrace Decors";
-      else if (type === 'ring') titleEl.textContent = "Circular Ring Backdrops with Neon Signs";
-      else if (type === 'grand') titleEl.textContent = "Grand 25th / 50th Jubilee Celebrations";
-      else titleEl.textContent = "All Anniversary Packages";
+      if (type === 'all') {
+        titleEl.textContent = "All Anniversary Packages";
+      } else {
+        const catObj = (SITE_DATA.categories || []).find(c => c.id === 'anniversary');
+        const sub = (catObj && Array.isArray(catObj.subcategories)) ? catObj.subcategories.find(s => s.id === type) : null;
+        if (sub && sub.title) {
+          titleEl.textContent = sub.title;
+        } else if (sub) {
+          titleEl.textContent = `${sub.name} Anniversary Decors`;
+        } else if (type === 'room') {
+          titleEl.textContent = "Room & Bedroom Anniversary Surprises";
+        } else if (type === 'canopy') {
+          titleEl.textContent = "Cabana & Canopy Terrace Decors";
+        } else if (type === 'ring') {
+          titleEl.textContent = "Circular Ring Backdrops with Neon Signs";
+        } else if (type === 'grand') {
+          titleEl.textContent = "Grand 25th / 50th Jubilee Celebrations";
+        } else {
+          titleEl.textContent = "Anniversary Packages";
+        }
+      }
 
       renderAnniversaryProducts();
     }
@@ -712,14 +764,22 @@
       if (!grid) return;
 
       let filtered = [...anniItems];
-      if (anniType === 'room') {
-        filtered = filtered.filter(p => p.title.toLowerCase().includes("room") || p.title.toLowerCase().includes("home"));
-      } else if (anniType === 'canopy') {
-        filtered = filtered.filter(p => p.title.toLowerCase().includes("canopy") || p.title.toLowerCase().includes("cabana"));
-      } else if (anniType === 'ring') {
-        filtered = filtered.filter(p => p.title.toLowerCase().includes("ring") || p.title.toLowerCase().includes("bliss"));
-      } else if (anniType === 'grand') {
-        filtered = filtered.filter(p => p.price >= 4000);
+      if (anniType !== 'all') {
+        filtered = filtered.filter(p => {
+          if (p.subcategory) {
+            return String(p.subcategory).toLowerCase() === String(anniType).toLowerCase();
+          }
+          if (anniType === 'room') {
+            return p.title && (p.title.toLowerCase().includes("room") || p.title.toLowerCase().includes("home"));
+          } else if (anniType === 'canopy') {
+            return p.title && (p.title.toLowerCase().includes("canopy") || p.title.toLowerCase().includes("cabana"));
+          } else if (anniType === 'ring') {
+            return p.title && (p.title.toLowerCase().includes("ring") || p.title.toLowerCase().includes("bliss"));
+          } else if (anniType === 'grand') {
+            return p.price >= 4000;
+          }
+          return false;
+        });
       }
 
       grid.innerHTML = filtered.map((product, idx) => `
@@ -755,5 +815,12 @@
       initAnniversaryPage();
     });
   </script>
+  <!-- Review Media Modal Overlay (Video Reels & Photos) -->
+  <div class="review-modal-overlay" id="reviewMediaModalOverlay" onclick="closeReviewMediaModal(event)">
+    <div class="review-modal-content">
+      <button class="review-modal-close" onclick="closeReviewMediaModal(event)" aria-label="Close modal">&times;</button>
+      <div class="review-modal-body" id="reviewModalBody"></div>
+    </div>
+  </div>
 </body>
 </html>

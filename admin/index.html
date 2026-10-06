@@ -1,0 +1,2755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Admin Studio | Celebration Events®</title>
+  <meta name="description" content="Administration panel with Supabase database and Cloudinary image storage for Celebration Events." />
+  <link rel="icon" href="https://cdn.balloondekor.com/images/61/7ebf2dbd-60dd-4643-8029-763dc6a3e5e3.webp" type="image/webp" />
+  <link rel="stylesheet" href="/admin/admin.css?v=20261006_v18_cities_luxury_grid" />
+  <style>
+    /* Global image constraint to prevent layout blowouts */
+    img {
+      max-width: 100% !important;
+      height: auto;
+    }
+
+    /* ==========================================================================
+       REAL PHOTOS & VIDEO REVIEWS MANAGEMENT SYSTEM STYLES
+       ========================================================================== */
+    .reviews-admin-grid, #reviewsGridAdmin {
+      display: grid !important;
+      grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)) !important;
+      gap: 22px !important;
+      width: 100% !important;
+      align-items: stretch !important;
+    }
+
+    .review-admin-card {
+      background: #ffffff !important;
+      border: 1px solid #e2e8f0 !important;
+      border-radius: 16px !important;
+      overflow: hidden !important;
+      display: flex !important;
+      flex-direction: column !important;
+      box-shadow: 0 4px 16px -2px rgba(15, 23, 42, 0.05), 0 1px 3px rgba(15, 23, 42, 0.03) !important;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+      position: relative !important;
+    }
+
+    .review-admin-card:hover {
+      border-color: #fecdd3 !important;
+      box-shadow: 0 16px 32px -6px rgba(190, 18, 60, 0.1) !important;
+      transform: translateY(-3px) !important;
+    }
+
+    .review-card-media {
+      position: relative !important;
+      width: 100% !important;
+      height: 200px !important;
+      background: #0f172a !important;
+      overflow: hidden !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+    }
+
+    .review-card-media img,
+    .review-card-media video {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+      display: block !important;
+    }
+
+    .review-media-badge {
+      position: absolute !important;
+      top: 12px !important;
+      left: 12px !important;
+      background: rgba(15, 23, 42, 0.82) !important;
+      backdrop-filter: blur(6px) !important;
+      color: #ffffff !important;
+      font-size: 10.5px !important;
+      font-weight: 800 !important;
+      padding: 4px 10px !important;
+      border-radius: 99px !important;
+      letter-spacing: 0.5px !important;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25) !important;
+      z-index: 2 !important;
+      display: flex !important;
+      align-items: center !important;
+      gap: 5px !important;
+    }
+
+    .review-service-pill {
+      position: absolute !important;
+      bottom: 12px !important;
+      left: 12px !important;
+      right: 12px !important;
+      background: rgba(15, 23, 42, 0.82) !important;
+      backdrop-filter: blur(8px) !important;
+      color: #ffffff !important;
+      font-size: 11.5px !important;
+      font-weight: 700 !important;
+      padding: 5px 12px !important;
+      border-radius: 8px !important;
+      white-space: nowrap !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+      z-index: 2 !important;
+    }
+
+    .review-card-content {
+      padding: 16px 18px !important;
+      display: flex !important;
+      flex-direction: column !important;
+      flex: 1 1 auto !important;
+      background: #ffffff !important;
+      gap: 10px !important;
+    }
+
+    .review-card-quote {
+      font-size: 13px !important;
+      color: #334155 !important;
+      line-height: 1.5 !important;
+      font-style: italic !important;
+      display: -webkit-box !important;
+      -webkit-line-clamp: 3 !important;
+      -webkit-box-orient: vertical !important;
+      overflow: hidden !important;
+      flex: 1 1 auto !important;
+      background: #f8fafc !important;
+      padding: 10px 12px !important;
+      border-radius: 8px !important;
+      border-left: 3px solid #be123c !important;
+    }
+
+    .review-card-author-row {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      gap: 10px !important;
+      padding-top: 6px !important;
+      border-top: 1px solid #f1f5f9 !important;
+    }
+
+    .review-author-info {
+      display: flex !important;
+      align-items: center !important;
+      gap: 10px !important;
+    }
+
+    .review-author-avatar {
+      width: 34px !important;
+      height: 34px !important;
+      border-radius: 50% !important;
+      background: linear-gradient(135deg, #be123c, #fb7185) !important;
+      color: #ffffff !important;
+      font-weight: 800 !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      font-size: 13px !important;
+    }
+
+    .review-author-name {
+      font-size: 13px !important;
+      font-weight: 700 !important;
+      color: #0f172a !important;
+    }
+
+    .review-author-city {
+      font-size: 11px !important;
+      color: #64748b !important;
+    }
+
+    /* ==========================================================================
+       BULLETPROOF BLOG ARTICLES MANAGEMENT SYSTEM STYLES
+       ========================================================================== */
+    .blogs-admin-grid, #blogsGrid {
+      display: grid !important;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)) !important;
+      gap: 22px !important;
+      width: 100% !important;
+      align-items: stretch !important;
+    }
+
+    .blog-admin-card {
+      background: #ffffff !important;
+      border: 1px solid #e2e8f0 !important;
+      border-radius: 16px !important;
+      overflow: hidden !important;
+      display: flex !important;
+      flex-direction: column !important;
+      box-shadow: 0 4px 16px -2px rgba(15, 23, 42, 0.05), 0 1px 3px rgba(15, 23, 42, 0.03) !important;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+      position: relative !important;
+    }
+
+    .blog-admin-card:hover {
+      border-color: #cbd5e1 !important;
+      box-shadow: 0 16px 32px -6px rgba(15, 23, 42, 0.1) !important;
+      transform: translateY(-3px) !important;
+    }
+
+    .blog-card-media {
+      position: relative !important;
+      width: 100% !important;
+      height: 190px !important;
+      min-height: 190px !important;
+      max-height: 190px !important;
+      background: #f1f5f9 !important;
+      overflow: hidden !important;
+      flex-shrink: 0 !important;
+    }
+
+    .blog-card-media img {
+      width: 100% !important;
+      height: 100% !important;
+      max-width: 100% !important;
+      max-height: 100% !important;
+      object-fit: cover !important;
+      display: block !important;
+      transition: transform 0.4s ease !important;
+    }
+
+    .blog-admin-card:hover .blog-card-media img {
+      transform: scale(1.04) !important;
+    }
+
+    .blog-media-badge {
+      position: absolute !important;
+      top: 12px !important;
+      left: 12px !important;
+      background: rgba(15, 23, 42, 0.78) !important;
+      backdrop-filter: blur(6px) !important;
+      -webkit-backdrop-filter: blur(6px) !important;
+      color: #ffffff !important;
+      font-size: 10px !important;
+      font-weight: 800 !important;
+      padding: 3px 9px !important;
+      border-radius: 99px !important;
+      text-transform: uppercase !important;
+      letter-spacing: 0.5px !important;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2) !important;
+      z-index: 2 !important;
+    }
+
+    .blog-media-time {
+      position: absolute !important;
+      bottom: 12px !important;
+      right: 12px !important;
+      background: rgba(255, 255, 255, 0.92) !important;
+      backdrop-filter: blur(6px) !important;
+      -webkit-backdrop-filter: blur(6px) !important;
+      color: #0f172a !important;
+      font-size: 11px !important;
+      font-weight: 700 !important;
+      padding: 3px 8px !important;
+      border-radius: 99px !important;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12) !important;
+      z-index: 2 !important;
+    }
+
+    .blog-card-content {
+      padding: 18px 20px !important;
+      display: flex !important;
+      flex-direction: column !important;
+      flex: 1 1 auto !important;
+      background: #ffffff !important;
+    }
+
+    .blog-card-top-row {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      margin-bottom: 8px !important;
+      gap: 8px !important;
+    }
+
+    .blog-card-topic-tag {
+      font-size: 11px !important;
+      font-weight: 800 !important;
+      color: #2563eb !important;
+      background: #eff6ff !important;
+      border: 1px solid #dbeafe !important;
+      padding: 2px 8px !important;
+      border-radius: 6px !important;
+      text-transform: uppercase !important;
+      letter-spacing: 0.4px !important;
+    }
+
+    .blog-card-id-tag {
+      font-size: 11px !important;
+      color: #94a3b8 !important;
+      font-family: monospace !important;
+    }
+
+    .blog-card-heading {
+      font-family: 'Outfit', sans-serif !important;
+      font-size: 16px !important;
+      font-weight: 700 !important;
+      color: #0f172a !important;
+      line-height: 1.4 !important;
+      margin: 0 0 8px 0 !important;
+      display: -webkit-box !important;
+      -webkit-line-clamp: 2 !important;
+      -webkit-box-orient: vertical !important;
+      overflow: hidden !important;
+      min-height: 44px !important;
+    }
+
+    .blog-card-summary {
+      font-size: 13px !important;
+      color: #64748b !important;
+      line-height: 1.55 !important;
+      margin: 0 0 16px 0 !important;
+      display: -webkit-box !important;
+      -webkit-line-clamp: 2 !important;
+      -webkit-box-orient: vertical !important;
+      overflow: hidden !important;
+      flex: 1 1 auto !important;
+    }
+
+    .blog-card-meta-line {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      padding-top: 10px !important;
+      margin-bottom: 14px !important;
+      border-top: 1px solid #f1f5f9 !important;
+      font-size: 12px !important;
+      color: #64748b !important;
+    }
+
+    .btn-writer-tool {
+      background: #f1f5f9 !important;
+      border: 1px solid #cbd5e1 !important;
+      color: #334155 !important;
+      font-size: 11.5px !important;
+      font-weight: 700 !important;
+      padding: 4px 10px !important;
+      border-radius: 6px !important;
+      cursor: pointer !important;
+      transition: all 0.15s ease !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 4px !important;
+    }
+
+    .btn-writer-tool:hover {
+      background: #e2e8f0 !important;
+      color: #0f172a !important;
+      border-color: #94a3b8 !important;
+    }
+
+    .modal-dialog-xl, .modal-dialog-lg {
+      max-width: 1060px !important;
+      width: 95vw !important;
+      border-radius: 16px !important;
+      overflow: hidden !important;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
+    }
+
+    /* Form Fields Global Styling */
+    .form-field label {
+      font-size: 12.5px !important;
+      font-weight: 700 !important;
+      color: #334155 !important;
+      margin-bottom: 6px !important;
+      display: block !important;
+    }
+
+    .form-field input[type="text"],
+    .form-field input[type="number"],
+    .form-field input[type="url"],
+    .form-field select,
+    .form-field textarea,
+    .wse-opt-input {
+      width: 100% !important;
+      box-sizing: border-box !important;
+      padding: 10px 14px !important;
+      font-size: 13.5px !important;
+      font-family: inherit !important;
+      color: #0f172a !important;
+      background: #f8fafc !important;
+      border: 1.5px solid #cbd5e1 !important;
+      border-radius: 8px !important;
+      transition: all 0.2s ease !important;
+      outline: none !important;
+    }
+
+    .form-field input:focus,
+    .form-field select:focus,
+    .form-field textarea:focus,
+    .wse-opt-input:focus {
+      background: #ffffff !important;
+      border-color: #be123c !important;
+      box-shadow: 0 0 0 3px rgba(190, 18, 60, 0.1) !important;
+    }
+
+    /* Wedding Service Option Card Styling */
+    .wse-option-card {
+      background: #ffffff !important;
+      border: 1.5px solid #e2e8f0 !important;
+      border-radius: 14px !important;
+      padding: 18px 20px !important;
+      margin-bottom: 16px !important;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03) !important;
+      transition: all 0.2s ease !important;
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 14px !important;
+    }
+
+    .wse-option-card:hover {
+      border-color: #cbd5e1 !important;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06) !important;
+    }
+
+    .wse-opt-header {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      border-bottom: 1px solid #f1f5f9 !important;
+      padding-bottom: 12px !important;
+    }
+
+    .wse-opt-number {
+      font-size: 11.5px !important;
+      font-weight: 800 !important;
+      color: #be123c !important;
+      background: #fff1f2 !important;
+      border: 1px solid #fecdd3 !important;
+      padding: 4px 12px !important;
+      border-radius: 99px !important;
+      letter-spacing: 0.5px !important;
+      text-transform: uppercase !important;
+    }
+
+    .wse-delete-opt-btn {
+      background: #fff1f2 !important;
+      border: 1px solid #fecdd3 !important;
+      color: #e11d48 !important;
+      font-size: 12px !important;
+      font-weight: 700 !important;
+      padding: 6px 14px !important;
+      border-radius: 8px !important;
+      cursor: pointer !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 6px !important;
+      transition: all 0.15s ease !important;
+    }
+
+    .wse-delete-opt-btn:hover {
+      background: #ffe4e6 !important;
+      border-color: #fda4af !important;
+      color: #be123c !important;
+    }
+
+    .wse-opt-inputs-grid {
+      display: grid !important;
+      grid-template-columns: 1fr 1fr !important;
+      gap: 14px !important;
+    }
+
+    .wse-choices-box {
+      background: #f8fafc !important;
+      border: 1px solid #e2e8f0 !important;
+      border-radius: 10px !important;
+      padding: 14px 16px !important;
+    }
+
+    .wse-subitems-wrap {
+      display: flex !important;
+      flex-wrap: wrap !important;
+      gap: 8px !important;
+      margin: 10px 0 !important;
+      min-height: 32px !important;
+      align-items: center !important;
+    }
+
+    .wse-subitem-chip {
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 8px !important;
+      background: #ffffff !important;
+      border: 1.5px solid #cbd5e1 !important;
+      border-radius: 99px !important;
+      padding: 6px 14px !important;
+      font-size: 12.5px !important;
+      font-weight: 600 !important;
+      color: #1e293b !important;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03) !important;
+      transition: all 0.15s ease !important;
+    }
+
+    .wse-subitem-chip:hover {
+      border-color: #94a3b8 !important;
+      background: #f8fafc !important;
+    }
+
+    .wse-chip-del-btn {
+      background: none !important;
+      border: none !important;
+      color: #94a3b8 !important;
+      cursor: pointer !important;
+      padding: 0 !important;
+      font-size: 14px !important;
+      font-weight: 800 !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      line-height: 1 !important;
+      transition: color 0.15s ease !important;
+    }
+
+    .wse-chip-del-btn:hover {
+      color: #e11d48 !important;
+    }
+
+    .wse-add-subitem-row {
+      display: flex !important;
+      gap: 10px !important;
+      margin-top: 8px !important;
+      align-items: center !important;
+    }
+
+    .wse-new-subitem-input {
+      flex: 1 !important;
+      padding: 9px 14px !important;
+      border: 1.5px dashed #cbd5e1 !important;
+      border-radius: 8px !important;
+      font-size: 13px !important;
+      background: #ffffff !important;
+      box-sizing: border-box !important;
+      outline: none !important;
+      transition: all 0.15s ease !important;
+    }
+
+    .wse-new-subitem-input:focus {
+      border-style: solid !important;
+      border-color: #15803d !important;
+      background: #ffffff !important;
+    }
+
+    .wse-add-subitem-btn {
+      padding: 9px 18px !important;
+      font-size: 12.5px !important;
+      font-weight: 700 !important;
+      border-radius: 8px !important;
+      background: #15803d !important;
+      color: #ffffff !important;
+      border: none !important;
+      cursor: pointer !important;
+      white-space: nowrap !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 6px !important;
+      box-shadow: 0 2px 6px rgba(21, 128, 61, 0.2) !important;
+      transition: all 0.15s ease !important;
+    }
+
+    .wse-add-subitem-btn:hover {
+      background: #166534 !important;
+    }
+
+    /* Package Studio Modal Tabs System */
+    .pkg-studio-nav {
+      display: flex !important;
+      gap: 8px !important;
+      padding: 14px 24px !important;
+      background: #f8fafc !important;
+      border-bottom: 1.5px solid #e2e8f0 !important;
+      overflow-x: auto !important;
+      scrollbar-width: none !important;
+      -ms-overflow-style: none !important;
+      align-items: center !important;
+    }
+
+    .pkg-studio-nav::-webkit-scrollbar {
+      display: none !important;
+      width: 0 !important;
+      height: 0 !important;
+    }
+
+    .pkg-studio-tab-btn {
+      padding: 8px 15px !important;
+      font-size: 13px !important;
+      font-weight: 600 !important;
+      color: #64748b !important;
+      background: #f1f5f9 !important;
+      border: 1.5px solid #e2e8f0 !important;
+      border-radius: 99px !important;
+      cursor: pointer !important;
+      white-space: nowrap !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 6px !important;
+      transition: all 0.15s ease !important;
+      margin: 0 !important;
+      line-height: 1.4 !important;
+    }
+
+    .pkg-studio-tab-btn:hover {
+      background: #e2e8f0 !important;
+      color: #0f172a !important;
+    }
+
+    .pkg-studio-tab-btn.active {
+      background: #ffffff !important;
+      color: #be123c !important;
+      font-weight: 800 !important;
+      border-color: #cbd5e1 !important;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08) !important;
+    }
+
+    .pkg-studio-pane {
+      display: none !important;
+      flex-direction: column !important;
+      gap: 16px !important;
+    }
+
+    .pkg-studio-pane.active {
+      display: flex !important;
+    }
+
+    .pkg-subcard {
+      background: #ffffff !important;
+      border: 1.5px solid #e2e8f0 !important;
+      border-radius: 12px !important;
+      padding: 18px !important;
+      margin-bottom: 14px !important;
+    }
+
+    .faq-builder-item {
+      background: #ffffff !important;
+      border: 1.5px solid #e2e8f0 !important;
+      border-radius: 12px !important;
+      padding: 16px 18px !important;
+      margin-bottom: 14px !important;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02) !important;
+    }
+
+    .addon-builder-item {
+      background: #ffffff !important;
+      border: 1.5px solid #e2e8f0 !important;
+      border-radius: 12px !important;
+      padding: 14px 18px !important;
+      margin-bottom: 12px !important;
+      display: grid !important;
+      grid-template-columns: 60px 1.5fr 1fr 1fr auto !important;
+      gap: 14px !important;
+      align-items: center !important;
+    }
+
+    /* Modern Inclusions, Exclusions & Gallery Input Rows */
+    .inclusions-input-row {
+      display: flex !important;
+      gap: 10px !important;
+      align-items: stretch !important;
+      width: 100% !important;
+      box-sizing: border-box !important;
+    }
+
+    .inclusions-input-row input {
+      flex: 1 !important;
+      min-width: 0 !important;
+      padding: 11px 16px !important;
+      border: 1.5px solid #e2e8f0 !important;
+      border-radius: 10px !important;
+      font-size: 13.5px !important;
+      font-family: inherit !important;
+      color: #0f172a !important;
+      background: #ffffff !important;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04) !important;
+      outline: none !important;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    }
+
+    .inclusions-input-row input::placeholder {
+      color: #94a3b8 !important;
+      font-weight: 400 !important;
+    }
+
+    /* Included Items Row (Green Theme) */
+    #newInclusionInput {
+      border: 1.5px solid #86efac !important;
+      background: #ffffff !important;
+    }
+    #newInclusionInput:focus {
+      border-color: #16a34a !important;
+      box-shadow: 0 0 0 3.5px rgba(22, 163, 74, 0.15) !important;
+    }
+
+    #addInclusionBtn {
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 6px !important;
+      padding: 11px 22px !important;
+      font-size: 13px !important;
+      font-weight: 700 !important;
+      color: #ffffff !important;
+      background: #16a34a !important;
+      border: none !important;
+      border-radius: 10px !important;
+      cursor: pointer !important;
+      white-space: nowrap !important;
+      box-shadow: 0 2px 6px rgba(22, 163, 74, 0.25) !important;
+      transition: all 0.2s ease !important;
+    }
+    #addInclusionBtn:hover {
+      background: #15803d !important;
+      transform: translateY(-1px) !important;
+      box-shadow: 0 4px 10px rgba(22, 163, 74, 0.35) !important;
+    }
+    #addInclusionBtn:active {
+      transform: translateY(0) !important;
+    }
+
+    /* Excluded Items Row (Rose/Red Theme) */
+    #newNotIncludedInput {
+      border: 1.5px solid #fca5a5 !important;
+      background: #ffffff !important;
+    }
+    #newNotIncludedInput:focus {
+      border-color: #e11d48 !important;
+      box-shadow: 0 0 0 3.5px rgba(225, 29, 72, 0.15) !important;
+    }
+
+    #addNotIncludedBtn {
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 6px !important;
+      padding: 11px 22px !important;
+      font-size: 13px !important;
+      font-weight: 700 !important;
+      color: #ffffff !important;
+      background: #e11d48 !important;
+      border: none !important;
+      border-radius: 10px !important;
+      cursor: pointer !important;
+      white-space: nowrap !important;
+      box-shadow: 0 2px 6px rgba(225, 29, 72, 0.25) !important;
+      transition: all 0.2s ease !important;
+    }
+    #addNotIncludedBtn:hover {
+      background: #be123c !important;
+      transform: translateY(-1px) !important;
+      box-shadow: 0 4px 10px rgba(225, 29, 72, 0.35) !important;
+    }
+    #addNotIncludedBtn:active {
+      transform: translateY(0) !important;
+    }
+
+    /* Gallery Row (Sky Blue Theme) */
+    #newGalleryInput {
+      border: 1.5px solid #bae6fd !important;
+      background: #ffffff !important;
+    }
+    #newGalleryInput:focus {
+      border-color: #0284c7 !important;
+      box-shadow: 0 0 0 3.5px rgba(2, 132, 199, 0.15) !important;
+    }
+
+    #addGalleryBtn {
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 6px !important;
+      padding: 11px 22px !important;
+      font-size: 13px !important;
+      font-weight: 700 !important;
+      color: #ffffff !important;
+      background: #0284c7 !important;
+      border: none !important;
+      border-radius: 10px !important;
+      cursor: pointer !important;
+      white-space: nowrap !important;
+      box-shadow: 0 2px 6px rgba(2, 132, 199, 0.25) !important;
+      transition: all 0.2s ease !important;
+    }
+    #addGalleryBtn:hover {
+      background: #0369a1 !important;
+      transform: translateY(-1px) !important;
+      box-shadow: 0 4px 10px rgba(2, 132, 199, 0.35) !important;
+    }
+    #addGalleryBtn:active {
+      transform: translateY(0) !important;
+    }
+
+    /* Polish the list item cards */
+    .inclusion-item {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      background: #f0fdf4 !important;
+      border: 1px solid #bbf7d0 !important;
+      color: #166534 !important;
+      padding: 10px 14px !important;
+      border-radius: 10px !important;
+      font-size: 13px !important;
+      font-weight: 500 !important;
+      margin-bottom: 8px !important;
+      transition: all 0.15s ease !important;
+    }
+    .inclusion-item:hover {
+      background: #dcfce7 !important;
+      border-color: #86efac !important;
+    }
+    .btn-remove-inclusion {
+      background: #fee2e2 !important;
+      border: 1px solid #fecdd3 !important;
+      color: #e11d48 !important;
+      border-radius: 6px !important;
+      width: 26px !important;
+      height: 26px !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      cursor: pointer !important;
+      transition: all 0.15s ease !important;
+      font-size: 12px !important;
+      font-weight: 700 !important;
+      padding: 0 !important;
+    }
+    .btn-remove-inclusion:hover {
+      background: #e11d48 !important;
+      color: #ffffff !important;
+    }
+
+    .not-inc-item {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      background: #fff1f2 !important;
+      border: 1px solid #fecdd3 !important;
+      color: #9f1239 !important;
+      padding: 10px 14px !important;
+      border-radius: 10px !important;
+      font-size: 13px !important;
+      font-weight: 500 !important;
+      margin-bottom: 8px !important;
+      transition: all 0.15s ease !important;
+    }
+    .not-inc-item:hover {
+      background: #ffe4e6 !important;
+      border-color: #fda4af !important;
+    }
+    .not-inc-item .btn-remove-not-inc {
+      background: #fee2e2 !important;
+      border: 1px solid #fecdd3 !important;
+      color: #e11d48 !important;
+      border-radius: 6px !important;
+      width: 26px !important;
+      height: 26px !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      cursor: pointer !important;
+      transition: all 0.15s ease !important;
+      font-size: 12px !important;
+      font-weight: 700 !important;
+      padding: 0 !important;
+    }
+    .not-inc-item .btn-remove-not-inc:hover {
+      background: #e11d48 !important;
+      color: #ffffff !important;
+    }
+
+    /* ==========================================================================
+       OPERATING CITIES MANAGEMENT SYSTEM STYLES
+       ========================================================================== */
+    #citiesTab .category-hero {
+      background: linear-gradient(135deg, #ecfdf5 0%, #f0fdf4 40%, #ffffff 100%) !important;
+      border: 1.5px solid #a7f3d0 !important;
+      border-radius: 18px !important;
+      padding: 24px 28px !important;
+      margin-bottom: 24px !important;
+      box-shadow: 0 4px 20px -2px rgba(5, 150, 105, 0.08) !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      position: relative !important;
+      overflow: hidden !important;
+    }
+
+    #citiesTab .category-hero-info {
+      max-width: 100% !important;
+      width: 100% !important;
+    }
+
+    #citiesTab .category-hero-top {
+      display: flex !important;
+      align-items: center !important;
+      gap: 12px !important;
+      flex-wrap: wrap !important;
+      margin-bottom: 8px !important;
+    }
+
+    #citiesTab .category-hero-title {
+      font-size: 22px !important;
+      font-weight: 800 !important;
+      color: #064e3b !important;
+      margin: 0 !important;
+      letter-spacing: -0.3px !important;
+    }
+
+    #citiesTab .category-hero-badge {
+      background: #d1fae5 !important;
+      color: #047857 !important;
+      border: 1px solid #6ee7b7 !important;
+      font-size: 11px !important;
+      font-weight: 800 !important;
+      padding: 3px 10px !important;
+      border-radius: 99px !important;
+      letter-spacing: 0.5px !important;
+    }
+
+    #citiesTab .category-hero-count {
+      font-size: 13px !important;
+      font-weight: 600 !important;
+      color: #059669 !important;
+    }
+
+    #citiesTab .category-hero-desc {
+      font-size: 13.5px !important;
+      color: #334155 !important;
+      max-width: 780px !important;
+      line-height: 1.6 !important;
+      margin: 0 0 18px 0 !important;
+    }
+
+    #citiesTab .category-hero-actions {
+      display: flex !important;
+      align-items: center !important;
+      gap: 12px !important;
+      flex-wrap: wrap !important;
+    }
+
+    #citiesTab .btn-hero-add-pkg {
+      background: linear-gradient(135deg, #059669 0%, #047857 100%) !important;
+      color: #ffffff !important;
+      border: none !important;
+      padding: 10px 22px !important;
+      font-size: 13.5px !important;
+      font-weight: 700 !important;
+      border-radius: 10px !important;
+      cursor: pointer !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 8px !important;
+      box-shadow: 0 4px 14px rgba(5, 150, 105, 0.35) !important;
+      transition: all 0.2s ease !important;
+    }
+
+    #citiesTab .btn-hero-add-pkg:hover {
+      background: linear-gradient(135deg, #047857 0%, #065f46 100%) !important;
+      transform: translateY(-1px) !important;
+      box-shadow: 0 6px 18px rgba(5, 150, 105, 0.45) !important;
+    }
+
+    #citiesTab .btn-hero-action {
+      background: #ffffff !important;
+      color: #065f46 !important;
+      border: 1.5px solid #a7f3d0 !important;
+      padding: 10px 20px !important;
+      font-size: 13px !important;
+      font-weight: 700 !important;
+      border-radius: 10px !important;
+      cursor: pointer !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 6px !important;
+      transition: all 0.2s ease !important;
+      text-decoration: none !important;
+    }
+
+    #citiesTab .btn-hero-action:hover {
+      background: #f0fdf4 !important;
+      border-color: #6ee7b7 !important;
+      color: #047857 !important;
+    }
+
+    /* Grid & Cards */
+    .cities-admin-grid, #citiesGridAdmin {
+      display: grid !important;
+      grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)) !important;
+      gap: 20px !important;
+      width: 100% !important;
+      align-items: stretch !important;
+      margin-top: 20px !important;
+    }
+
+    .city-admin-card {
+      background: #ffffff !important;
+      border: 1.5px solid #e2e8f0 !important;
+      border-radius: 16px !important;
+      padding: 20px 22px !important;
+      box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04), 0 1px 3px rgba(15, 23, 42, 0.02) !important;
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: space-between !important;
+      transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1) !important;
+      position: relative !important;
+      overflow: hidden !important;
+    }
+
+    .city-admin-card:hover {
+      border-color: #cbd5e1 !important;
+      box-shadow: 0 12px 28px -4px rgba(15, 23, 42, 0.09) !important;
+      transform: translateY(-3px) !important;
+    }
+
+    .city-admin-card.is-popular {
+      border-left: 5px solid #059669 !important;
+      background: linear-gradient(180deg, #f8fdfa 0%, #ffffff 35%) !important;
+    }
+
+    .city-card-header {
+      display: flex !important;
+      align-items: flex-start !important;
+      justify-content: space-between !important;
+      gap: 12px !important;
+      margin-bottom: 14px !important;
+    }
+
+    .city-card-left {
+      display: flex !important;
+      align-items: center !important;
+      gap: 12px !important;
+      flex: 1 1 auto !important;
+      min-width: 0 !important;
+    }
+
+    .city-card-pin {
+      width: 44px !important;
+      height: 44px !important;
+      border-radius: 12px !important;
+      background: #f0fdf4 !important;
+      color: #059669 !important;
+      border: 1.5px solid #bbf7d0 !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      font-size: 20px !important;
+      flex-shrink: 0 !important;
+      box-shadow: 0 2px 6px rgba(5, 150, 105, 0.12) !important;
+    }
+
+    .city-admin-card.is-popular .city-card-pin {
+      background: linear-gradient(135deg, #ecfdf5, #d1fae5) !important;
+      border-color: #a7f3d0 !important;
+      color: #047857 !important;
+    }
+
+    .city-card-title-wrap {
+      min-width: 0 !important;
+      flex: 1 1 auto !important;
+    }
+
+    .city-card-name {
+      font-size: 16.5px !important;
+      font-weight: 800 !important;
+      color: #0f172a !important;
+      margin: 0 !important;
+      line-height: 1.3 !important;
+      white-space: nowrap !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+    }
+
+    .city-card-state {
+      font-size: 12px !important;
+      font-weight: 500 !important;
+      color: #64748b !important;
+      margin-top: 3px !important;
+      display: flex !important;
+      align-items: center !important;
+      gap: 5px !important;
+    }
+
+    .city-badge-popular {
+      background: #ecfdf5 !important;
+      color: #047857 !important;
+      border: 1px solid #a7f3d0 !important;
+      font-size: 11px !important;
+      font-weight: 700 !important;
+      padding: 3px 9px !important;
+      border-radius: 99px !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 4px !important;
+      white-space: nowrap !important;
+      flex-shrink: 0 !important;
+    }
+
+    .city-badge-standard {
+      background: #f8fafc !important;
+      color: #64748b !important;
+      border: 1px solid #e2e8f0 !important;
+      font-size: 11px !important;
+      font-weight: 600 !important;
+      padding: 3px 9px !important;
+      border-radius: 99px !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 4px !important;
+      white-space: nowrap !important;
+      flex-shrink: 0 !important;
+    }
+
+    .city-card-meta {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      gap: 8px !important;
+      background: #f8fafc !important;
+      padding: 8px 12px !important;
+      border-radius: 8px !important;
+      border: 1px solid #f1f5f9 !important;
+      margin-bottom: 16px !important;
+      font-size: 11.5px !important;
+    }
+
+    .city-slug-text {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace !important;
+      color: #475569 !important;
+      font-weight: 600 !important;
+    }
+
+    .city-status-text {
+      color: #059669 !important;
+      font-weight: 600 !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 5px !important;
+    }
+
+    .city-card-actions {
+      display: flex !important;
+      align-items: center !important;
+      gap: 8px !important;
+      padding-top: 14px !important;
+      border-top: 1px solid #f1f5f9 !important;
+      margin-top: auto !important;
+    }
+
+    .btn-city-toggle {
+      flex: 1 1 auto !important;
+      padding: 8px 12px !important;
+      font-size: 12px !important;
+      font-weight: 700 !important;
+      border-radius: 8px !important;
+      cursor: pointer !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 5px !important;
+      transition: all 0.18s ease !important;
+      white-space: nowrap !important;
+      background: #f8fafc !important;
+      color: #475569 !important;
+      border: 1.5px solid #e2e8f0 !important;
+    }
+
+    .btn-city-toggle:hover {
+      background: #f1f5f9 !important;
+      border-color: #cbd5e1 !important;
+      color: #1e293b !important;
+    }
+
+    .btn-city-toggle.is-featured {
+      background: #fefce8 !important;
+      color: #a16207 !important;
+      border-color: #fef08a !important;
+    }
+
+    .btn-city-toggle.is-featured:hover {
+      background: #fef9c3 !important;
+      border-color: #fde047 !important;
+      color: #854d0e !important;
+    }
+
+    .btn-city-edit {
+      padding: 8px 14px !important;
+      font-size: 12px !important;
+      font-weight: 700 !important;
+      border-radius: 8px !important;
+      cursor: pointer !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 5px !important;
+      transition: all 0.18s ease !important;
+      background: #eff6ff !important;
+      color: #1d4ed8 !important;
+      border: 1.5px solid #bfdbfe !important;
+    }
+
+    .btn-city-edit:hover {
+      background: #dbeafe !important;
+      border-color: #93c5fd !important;
+      color: #1e40af !important;
+      transform: translateY(-1px) !important;
+    }
+
+    .btn-city-delete {
+      padding: 8px 12px !important;
+      font-size: 12px !important;
+      font-weight: 700 !important;
+      border-radius: 8px !important;
+      cursor: pointer !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 5px !important;
+      transition: all 0.18s ease !important;
+      background: #fff1f2 !important;
+      color: #be123c !important;
+      border: 1.5px solid #fecdd3 !important;
+    }
+
+    .btn-city-delete:hover {
+      background: #ffe4e6 !important;
+      border-color: #fda4af !important;
+      color: #9f1239 !important;
+      transform: translateY(-1px) !important;
+    }
+  </style>
+  <!-- Supabase Official JS SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+  <!-- ======================================================================
+       1. LOGIN VIEW (WHITE LIGHT THEME)
+       ====================================================================== -->
+  <div id="loginView" class="login-wrapper">
+    <div class="login-card">
+      <div class="login-brand">
+        <div class="login-brand-icon">🎈</div>
+        <h1 class="login-title">Celebration <span>Studio</span></h1>
+        <p class="login-subtitle">Management Portal with Supabase & Cloudinary</p>
+      </div>
+
+      <!-- Authorized Admin Notice -->
+      <div class="demo-credentials-banner" style="background:#fff1f2; border-color:#fecdd3;">
+        <div class="demo-credentials-header" style="color:#be123c;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+          Authorized Administrator Security Portal
+        </div>
+        <div class="demo-credentials-details" style="color:#475569;">
+          <span><strong>Admin Email:</strong> kishorek80192@gmail.com</span>
+        </div>
+      </div>
+
+      <!-- Login Error Alert -->
+      <div id="loginErrorAlert" class="login-error-alert"></div>
+
+      <!-- Login Form -->
+      <form id="loginForm">
+        <div class="form-group">
+          <label class="form-label" for="loginEmail">Administrator Email</label>
+          <div class="input-icon-wrap">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            <input type="email" id="loginEmail" class="form-control" placeholder="kishorek80192@gmail.com" value="kishorek80192@gmail.com" required autocomplete="email" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="loginPassword">
+            <span>Secure Password</span>
+          </label>
+          <div class="input-icon-wrap">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+            <input type="password" id="loginPassword" class="form-control" placeholder="••••••••" required autocomplete="current-password" />
+            <button type="button" id="togglePasswordBtn" class="password-toggle-btn" aria-label="Toggle password visibility">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="login-options" style="display:flex; justify-content:space-between; align-items:center;">
+          <label class="remember-label">
+            <input type="checkbox" id="rememberMe" checked />
+            <span>Remember session</span>
+          </label>
+          <button type="button" id="adminForgotBtn" class="login-forgot-link" style="background:none; border:none; color:var(--brand-primary); font-size:12.5px; font-weight:700; cursor:pointer; padding:0; text-decoration:underline;">
+            Forgot Password?
+          </button>
+        </div>
+
+        <button type="submit" class="btn-primary">
+          <span>Sign In to Admin Studio</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ======================================================================
+       2. ADMIN MAIN VIEW (SIDEBAR + WHITE CANVAS)
+       ====================================================================== -->
+  <div id="adminAppView" class="admin-app">
+    
+    <!-- LEFT SIDEBAR -->
+    <aside id="adminSidebar" class="admin-sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-brand">
+          <div class="sidebar-brand-icon">🎈</div>
+          <div class="sidebar-brand-text">
+            <h2>Celebration <span>Studio</span></h2>
+          </div>
+        </div>
+        <span class="sidebar-badge">ADMIN</span>
+      </div>
+
+      <!-- Sidebar Navigation Menu -->
+      <nav class="sidebar-menu">
+        <button type="button" class="sidebar-item active" id="sidebarAllPackagesBtn" data-tab="all">
+          <div class="sidebar-item-left">
+            <span class="sidebar-item-icon">🌟</span>
+            <span>All Packages</span>
+          </div>
+          <span id="sidebarAllBadge" class="sidebar-item-badge">0</span>
+        </button>
+
+        <div class="sidebar-section-header">
+          <span class="menu-section-label">Categories</span>
+          <button type="button" id="sidebarAddCatBtn" class="btn-sidebar-add-cat" title="Add New Category">+ Add</button>
+        </div>
+
+        <!-- Separate tab dynamically rendered for EACH category -->
+        <div id="sidebarCategoriesContainer" style="display:flex; flex-direction:column; gap:4px;">
+          <!-- Dynamically populated by admin.js with 🎂 Birthday, 🦄 Kids, ❤️ Anniversary, etc. -->
+        </div>
+
+        <div class="sidebar-section-header" style="margin-top: 14px;">
+          <span class="menu-section-label">Editorial & Content</span>
+        </div>
+
+        <button type="button" class="sidebar-item" id="sidebarBlogsBtn" data-tab="blogs">
+          <div class="sidebar-item-left">
+            <span class="sidebar-item-icon">📝</span>
+            <span>Blog Articles</span>
+          </div>
+          <span id="sidebarBlogsBadge" class="sidebar-item-badge">9</span>
+        </button>
+
+        <button type="button" class="sidebar-item" id="sidebarReviewsBtn" data-tab="reviews">
+          <div class="sidebar-item-left">
+            <span class="sidebar-item-icon">⭐</span>
+            <span>Real Photos & Reviews</span>
+          </div>
+          <span id="sidebarReviewsBadge" class="sidebar-item-badge">12</span>
+        </button>
+
+        <button type="button" class="sidebar-item" id="sidebarCitiesBtn" data-tab="cities">
+          <div class="sidebar-item-left">
+            <span class="sidebar-item-icon">📍</span>
+            <span>Operating Cities</span>
+          </div>
+          <span id="sidebarCitiesBadge" class="sidebar-item-badge">16</span>
+        </button>
+
+        <div style="display:none; margin-top:auto; padding-top:14px; border-top:1px solid var(--admin-border-light);">
+          <button type="button" class="sidebar-item" id="sidebarSettingsBtn" data-tab="settings" style="font-size:13px; color:var(--text-muted);">
+            <div class="sidebar-item-left">
+              <span class="sidebar-item-icon">💾</span>
+              <span>Backup & Store Sync</span>
+            </div>
+          </button>
+        </div>
+      </nav>
+
+      <!-- Sidebar Footer (User Profile & Live Website) -->
+      <div class="sidebar-footer">
+        <a href="../" target="_blank" class="sidebar-live-link">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+          <span>View Live Website</span>
+        </a>
+
+        <div class="user-profile-row">
+          <div class="user-profile-info">
+            <div class="user-avatar">A</div>
+            <div class="user-details">
+              <span class="user-name">Admin User</span>
+              <span class="user-role">Super Administrator</span>
+            </div>
+          </div>
+          <button type="button" id="logoutBtn" class="btn-sidebar-logout" title="Log out">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- RIGHT MAIN CONTENT AREA -->
+    <div class="admin-main-wrapper">
+      
+      <!-- Top Sticky Bar -->
+      <header class="admin-topbar">
+        <div class="topbar-left">
+          <button type="button" id="mobileMenuToggle" class="mobile-toggle-btn" aria-label="Toggle menu">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+          </button>
+          <div class="page-title-wrap">
+            <h1 id="topbarPageTitle">Decoration Packages</h1>
+          </div>
+        </div>
+
+        <div class="topbar-right">
+          <button type="button" id="topbarAddPackageBtn" class="btn-add-primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            <span>Add Package</span>
+          </button>
+          <button type="button" id="topbarAddCatBtn" class="btn-secondary" style="color:var(--brand-primary); border-color:#fecdd3;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            <span>Add Category</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- Main Body Canvas -->
+      <div class="admin-page-content">
+
+        <!-- Metrics Overview Row -->
+        <section class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-info">
+              <h3>Total Packages</h3>
+              <div id="metricTotalPackages" class="stat-number">--</div>
+              <div class="stat-subtext">Active on catalog</div>
+            </div>
+            <div class="stat-icon" style="color: #e11d48;">📦</div>
+          </div>
+
+          <div class="stat-card" style="--brand-primary: #8b5cf6;">
+            <div class="stat-info">
+              <h3>Event Categories</h3>
+              <div id="metricTotalCategories" class="stat-number">--</div>
+              <div class="stat-subtext">Occasions & themes</div>
+            </div>
+            <div class="stat-icon" style="color: #8b5cf6;">🏷️</div>
+          </div>
+
+          <div class="stat-card" style="--brand-primary: #10b981;">
+            <div class="stat-info">
+              <h3>Average Price</h3>
+              <div id="metricAvgPrice" class="stat-number">--</div>
+              <div class="stat-subtext">Across all setups</div>
+            </div>
+            <div class="stat-icon" style="color: #10b981;">₹</div>
+          </div>
+
+          <div class="stat-card" style="--brand-primary: #f59e0b;">
+            <div class="stat-info">
+              <h3>Top Rated (4.9★+)</h3>
+              <div id="metricTopRated" class="stat-number">--</div>
+              <div class="stat-subtext">Customer favorites</div>
+            </div>
+            <div class="stat-icon" style="color: #f59e0b;">⭐</div>
+          </div>
+        </section>
+
+        <!-- ==================================================================
+             MAIN SECTION: PACKAGES / CATEGORY VIEW
+             ================================================================== -->
+        <section id="packagesTab" class="tab-content active">
+          <!-- Dynamic Category Hero Header (rendered when a category tab is active) -->
+          <div id="categoryHeroContainer"></div>
+
+          <!-- Dynamic Subcategories Filter & Management Strip -->
+          <div id="categorySubcategoriesContainer"></div>
+
+          <!-- Search & Filter Toolbar -->
+          <div class="admin-toolbar">
+            <div class="toolbar-left">
+              <div class="search-box">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                <input type="text" id="packageSearchInput" class="search-input" placeholder="Search by title, tag, inclusion, or ID..." />
+              </div>
+            </div>
+
+            <div class="toolbar-right">
+              <select id="packageCategoryFilter" class="filter-select" aria-label="Filter packages by category">
+                <option value="all">All Categories</option>
+              </select>
+
+              <select id="packageSortFilter" class="filter-select" aria-label="Sort packages">
+                <option value="default">Sort: Default</option>
+                <option value="price-low">Price: Low to High</option>
+                <option value="price-high">Price: High to Low</option>
+                <option value="rating">Top Rated (Stars)</option>
+                <option value="title">Alphabetical (A-Z)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Packages Grid (renders cards for the selected category or all) -->
+          <div id="packagesGrid" class="packages-grid">
+            <!-- Rendered by admin.js -->
+          </div>
+        </section>
+
+        <!-- ==================================================================
+             STORE SETTINGS & BACKUP TAB
+             ================================================================== -->
+        <section id="settingsTab" class="tab-content">
+          <div class="backup-section-grid">
+            
+            <!-- Supabase Cloud Card -->
+            <div class="backup-card" style="border-color: #a7f3d0; background: #ffffff;">
+              <div class="backup-card-header">
+                <div class="backup-card-icon" style="color:#059669; background:#ecfdf5;">⚡</div>
+                <div>
+                  <h3>Supabase Cloud Database</h3>
+                  <span id="supabaseStatusText" style="font-size:12px;color:#059669;font-weight:700;">🟢 Connected to wqnobkskmvilfhduvxsu</span>
+                </div>
+              </div>
+              <p class="backup-card-desc">
+                Your packages and categories sync directly to your Supabase cloud database. All 36 packages and 7 categories are stored in Supabase.
+              </p>
+              <div style="display:flex;gap:10px;flex-wrap:wrap;">
+                <button type="button" id="syncSupabaseBtn" class="btn-backup-action" style="background:#ecfdf5; border-color:#a7f3d0; color:#047857;">
+                  ⚡ Re-Sync All Data to Supabase
+                </button>
+                <button type="button" id="copySqlSchemaBtn" class="btn-backup-action" style="background:#f8fafc; color:var(--text-main);">
+                  📋 Copy SQL Schema
+                </button>
+              </div>
+            </div>
+
+            <!-- Export JSON -->
+            <div class="backup-card">
+              <div class="backup-card-header">
+                <div class="backup-card-icon" style="color: #0284c7;">📥</div>
+                <div>
+                  <h3>Export JSON Backup</h3>
+                  <span style="font-size:12px;color:var(--text-dim);">Save all categories & packages</span>
+                </div>
+              </div>
+              <p class="backup-card-desc">
+                Download an offline backup file containing all your customized packages, prices, images, and categories as standard JSON.
+              </p>
+              <button type="button" id="exportBackupBtn" class="btn-backup-action" style="background:#f0f9ff; border-color:#bae6fd; color:#0369a1;">
+                Download Backup JSON
+              </button>
+            </div>
+
+            <!-- Import JSON -->
+            <div class="backup-card">
+              <div class="backup-card-header">
+                <div class="backup-card-icon" style="color: #8b5cf6;">📤</div>
+                <div>
+                  <h3>Import / Restore Data</h3>
+                  <span style="font-size:12px;color:var(--text-dim);">Load from JSON backup</span>
+                </div>
+              </div>
+              <p class="backup-card-desc">
+                Restore your package catalog and occasion categories from a previously exported backup file.
+              </p>
+              <input type="file" id="importFileInput" accept=".json" style="display:none;" />
+              <button type="button" id="importFileBtn" class="btn-backup-action" style="background:#f5f3ff; border-color:#ddd6fe; color:#6d28d9;">
+                Upload & Restore JSON
+              </button>
+            </div>
+
+            <!-- Reset Factory Defaults -->
+            <div class="backup-card" style="border-color: #fecaca;">
+              <div class="backup-card-header">
+                <div class="backup-card-icon" style="color: #ef4444; background:#fef2f2;">🔄</div>
+                <div>
+                  <h3>Reset Factory Defaults</h3>
+                  <span style="font-size:12px;color:var(--text-dim);">Revert to original dataset</span>
+                </div>
+              </div>
+              <p class="backup-card-desc">
+                Clear all custom edits, additions, and deletions and revert the website back to the original Celebration Events catalog.
+              </p>
+              <button type="button" id="resetDefaultsBtn" class="btn-backup-action" style="background:#fef2f2; border-color:#fecaca; color:#b91c1c;">
+                Reset to Factory Defaults
+              </button>
+            </div>
+
+        </section>
+
+        <!-- ==================================================================
+             BLOG ARTICLES MANAGEMENT TAB
+             ================================================================== -->
+        <section id="blogsTab" class="tab-content">
+          <div class="category-hero" style="background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);">
+            <div class="category-hero-info">
+              <div class="category-hero-top">
+                <h2 class="category-hero-title">📝 Event Guides & Blog Articles</h2>
+                <span class="category-hero-badge" style="background:#eff6ff; color:#2563eb; border-color:#bfdbfe;">EDITORIAL</span>
+                <span class="category-hero-count" id="blogsTabCountText">• 9 Articles Published</span>
+              </div>
+              <p class="category-hero-desc">
+                Create, edit, and publish decoration trend guides, balloon hacks, cost breakdowns, and party tips displayed on <code>blog.html</code>.
+              </p>
+              <div class="category-hero-actions">
+                <button type="button" class="btn-hero-add-pkg" onclick="window.adminStudio.openBlogModal('add')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                  <span>Add New Blog Article</span>
+                </button>
+                <a href="../blog.html" target="_blank" class="btn-hero-action" style="text-decoration:none;">
+                  🌐 View Live Blog Page
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Toolbar for Blogs -->
+          <div class="admin-toolbar">
+            <div class="toolbar-left">
+              <div class="search-box">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                <input type="text" id="blogSearchInput" class="search-input" placeholder="Search articles by title, author, tag, or topic..." />
+              </div>
+            </div>
+
+            <div class="toolbar-right">
+              <select id="blogTopicFilter" class="filter-select" aria-label="Filter by Topic">
+                <option value="all">All Topics</option>
+                <option value="balloon-tips">Balloon Tips & Hacks</option>
+                <option value="birthday-ideas">Birthday Ideas</option>
+                <option value="anniversary-romance">Anniversary & Romance</option>
+                <option value="baby-shower">Baby Shower & Welcome</option>
+                <option value="wedding-guides">Wedding Guides</option>
+                <option value="cost-planning">Cost & Planning</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Blogs Grid -->
+          <div id="blogsGrid" class="blogs-admin-grid">
+            <!-- Rendered by admin.js -->
+          </div>
+        </section>
+
+        <!-- ==================================================================
+             REAL PHOTOS & VIDEO REVIEWS MANAGEMENT TAB
+             ================================================================== -->
+        <section id="reviewsTab" class="tab-content">
+          <div class="category-hero" style="background: linear-gradient(135deg, #fff1f2 0%, #ffffff 100%);">
+            <div class="category-hero-info">
+              <div class="category-hero-top">
+                <h2 class="category-hero-title">⭐ Real Photos & Video Customer Reviews</h2>
+                <span class="category-hero-badge" style="background:#fff1f2; color:#be123c; border-color:#fecdd3;">SOCIAL PROOF & REELS</span>
+                <span class="category-hero-count" id="reviewsTabCountText">• 12 Reviews Live</span>
+              </div>
+              <p class="category-hero-desc">
+                Manage verified video reels and customer setup photos scrolling across all category pages. Add new reviews, update photos/videos, edit ratings, customer names, quotes, and cities, or delete reviews.
+              </p>
+              <div class="category-hero-actions">
+                <button type="button" class="btn-hero-add-pkg" onclick="window.adminStudio.openReviewModal('add')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                  <span>Add New Review / Reel</span>
+                </button>
+                <a href="../birthday.html#reviewsSection" target="_blank" class="btn-hero-action" style="text-decoration:none;">
+                  🌐 View Live Reel Stream
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Toolbar for Reviews -->
+          <div class="admin-toolbar">
+            <div class="toolbar-left">
+              <div class="search-box">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                <input type="text" id="reviewSearchInput" class="search-input" placeholder="Search reviews by customer name, city, service, or quote..." />
+              </div>
+            </div>
+
+            <div class="toolbar-right">
+              <select id="reviewTypeFilter" class="filter-select" aria-label="Filter by Media Type">
+                <option value="all">All Media (Reels & Photos)</option>
+                <option value="video">🎥 Video Reels Only</option>
+                <option value="image">📸 Photos Only</option>
+              </select>
+              <select id="reviewRatingFilter" class="filter-select" aria-label="Filter by Rating">
+                <option value="all">All Ratings</option>
+                <option value="5">★★★★★ 5 Star Only</option>
+                <option value="4">★★★★☆ 4+ Stars</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Reviews Grid -->
+          <div id="reviewsGridAdmin" class="reviews-admin-grid">
+            <!-- Rendered by admin.js -->
+          </div>
+        </section>
+
+        <!-- ==================================================================
+             OPERATING CITIES MANAGEMENT TAB (CRUD)
+             ================================================================== -->
+        <section id="citiesTab" class="tab-content">
+          <div class="category-hero" style="background: linear-gradient(135deg, #f0fdf4 0%, #ffffff 100%);">
+            <div class="category-hero-info">
+              <div class="category-hero-top">
+                <h2 class="category-hero-title">📍 Operating Cities & Coverage</h2>
+                <span class="category-hero-badge" style="background:#ecfdf5; color:#059669; border-color:#a7f3d0;">NATIONWIDE NETWORK</span>
+                <span class="category-hero-count" id="citiesTabCountText">• 16 Operational Cities</span>
+              </div>
+              <p class="category-hero-desc">
+                Manage all operational cities where Celebration Events provides decoration services. Add new delivery cities, edit names, update states, toggle top popular display, or delete cities. Changes sync instantly across the website city selection popup and footer.
+              </p>
+              <div class="category-hero-actions">
+                <button type="button" class="btn-hero-add-pkg" onclick="window.adminStudio.openCityModal('add')" style="background:linear-gradient(135deg, #059669, #047857);">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                  <span>Add New Operating City</span>
+                </button>
+                <a href="../birthday.html" target="_blank" class="btn-hero-action" style="text-decoration:none;">
+                  🌐 View Live Website City Modal
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Toolbar for Cities -->
+          <div class="admin-toolbar">
+            <div class="toolbar-left">
+              <div class="search-box">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                <input type="text" id="citySearchInputAdmin" class="search-input" placeholder="Search cities by name or state..." />
+              </div>
+            </div>
+
+            <div class="toolbar-right">
+              <select id="cityPopularFilterAdmin" class="filter-select" aria-label="Filter by City Status">
+                <option value="all">All Operational Cities</option>
+                <option value="popular">⭐ Top Operating Cities Only</option>
+                <option value="standard">📍 Other Operating Cities</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Cities Grid Container -->
+          <div id="citiesGridAdmin" class="cities-admin-grid">
+            <!-- Dynamically rendered by admin.js -->
+          </div>
+        </section>
+
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================================
+       MODAL: ADD / EDIT PACKAGE (WITH CLOUDINARY UPLOAD)
+       ====================================================================== -->
+  <div id="packageModal" class="modal-backdrop">
+    <div class="modal-dialog modal-dialog-xl">
+      <div class="modal-header">
+        <div class="modal-header-title">
+          <span style="font-size:22px;">📦</span>
+          <div>
+            <h2 id="packageModalTitle" style="margin:0;font-size:18px;">Edit Decoration Package</h2>
+            <div style="font-size:12px;color:var(--text-muted);margin-top:2px;">Full studio access: Inclusions, Exclusions, FAQs, Delivery, Care, Add-ons & Balloon Colors</div>
+          </div>
+        </div>
+        <button type="button" class="btn-modal-close" data-close-modal aria-label="Close modal">✕</button>
+      </div>
+
+      <!-- Navigation Tabs Bar -->
+      <div class="pkg-studio-nav">
+        <button type="button" class="pkg-studio-tab-btn active" onclick="window.adminStudio.switchPackageTab('core', this)">📋 Core & Pricing</button>
+        <button type="button" class="pkg-studio-tab-btn" onclick="window.adminStudio.switchPackageTab('media', this)">📸 Media & Gallery</button>
+        <button type="button" class="pkg-studio-tab-btn" onclick="window.adminStudio.switchPackageTab('inclusions', this)">✨ Inclusions & Exclusions</button>
+        <button type="button" class="pkg-studio-tab-btn" onclick="window.adminStudio.switchPackageTab('about', this)">📝 About This Package</button>
+        <button type="button" class="pkg-studio-tab-btn" onclick="window.adminStudio.switchPackageTab('faqs', this)">❓ FAQs Builder</button>
+        <button type="button" class="pkg-studio-tab-btn" onclick="window.adminStudio.switchPackageTab('delivery', this)">🚚 Delivery & Care</button>
+        <button type="button" class="pkg-studio-tab-btn" onclick="window.adminStudio.switchPackageTab('addons', this)">🎁 Add-ons & Colors</button>
+      </div>
+
+      <form id="packageForm">
+        <div class="modal-body" style="max-height: calc(88vh - 180px); overflow-y: auto; padding: 22px 26px;">
+          
+          <!-- TAB 1: CORE & PRICING -->
+          <div class="pkg-studio-pane active" id="pkgPane-core">
+            <!-- Row 1: Title & Slug -->
+            <div class="form-row-2">
+              <div class="form-field">
+                <label for="pkgTitle">Package Title *</label>
+                <input type="text" id="pkgTitle" placeholder="e.g. Simple Balloon Decor for Home" required />
+              </div>
+              <div class="form-field">
+                <label for="pkgSlug">URL Slug / ID *</label>
+                <input type="text" id="pkgSlug" placeholder="e.g. simple-balloon-decor-for-home" required />
+                <span class="field-hint">Auto-generated identifier used for URL (unique)</span>
+              </div>
+            </div>
+
+            <!-- Row 2: Category, Subcategory & Badge -->
+            <div class="form-row-3">
+              <div class="form-field">
+                <label for="pkgCategory">Occasion Category *</label>
+                <select id="pkgCategory" required>
+                  <!-- Populated dynamically -->
+                </select>
+              </div>
+              <div class="form-field">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                  <label for="pkgSubcategory" style="margin-bottom:0;">Subcategory</label>
+                  <button type="button" class="btn-quick-create-subcat" onclick="window.adminStudio.openSubcategoryModalFromPackageModal()" title="Create a new subcategory for this category">
+                    ➕ Add New
+                  </button>
+                </div>
+                <select id="pkgSubcategory" onchange="if(this.value === '__create_new__'){ window.adminStudio.openSubcategoryModalFromPackageModal(); this.value = ''; }">
+                  <option value="">(All / General)</option>
+                  <!-- Populated dynamically based on selected category -->
+                </select>
+              </div>
+              <div class="form-field">
+                <label for="pkgBadge">Featured Badge</label>
+                <select id="pkgBadge">
+                  <option value="BESTSELLER">BESTSELLER</option>
+                  <option value="POPULAR">POPULAR</option>
+                  <option value="TRENDING">TRENDING</option>
+                  <option value="HOT">HOT</option>
+                  <option value="NEW">NEW</option>
+                  <option value="ELEGANT">ELEGANT</option>
+                  <option value="SPECIAL">SPECIAL</option>
+                  <option value="">None</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Row 3: Pricing (Price, Original, Discount %) -->
+            <div class="form-row-3">
+              <div class="form-field">
+                <label for="pkgPrice">Selling Price (₹) *</label>
+                <input type="number" id="pkgPrice" placeholder="1499" required min="100" />
+              </div>
+              <div class="form-field">
+                <label for="pkgOrigPrice">Original / Cut Price (₹)</label>
+                <input type="number" id="pkgOrigPrice" placeholder="1999" min="100" />
+              </div>
+              <div class="form-field">
+                <label for="pkgDiscount">Discount (% Off)</label>
+                <input type="number" id="pkgDiscount" placeholder="25" min="0" max="90" />
+              </div>
+            </div>
+
+            <!-- Row 4: Rating, Reviews, Duration -->
+            <div class="form-row-3">
+              <div class="form-field">
+                <label for="pkgRating">Star Rating (1 - 5)</label>
+                <input type="number" id="pkgRating" step="0.1" min="1.0" max="5.0" value="4.9" />
+              </div>
+              <div class="form-field">
+                <label for="pkgReviews">Reviews Count</label>
+                <input type="number" id="pkgReviews" min="1" value="313" />
+              </div>
+              <div class="form-field">
+                <label for="pkgDuration">Setup Duration</label>
+                <input type="text" id="pkgDuration" value="1.5 - 2 Hours" placeholder="e.g. 1.5 - 2 Hours" />
+              </div>
+            </div>
+
+            <!-- Row 5: Weekend Urgency Banner & Tags -->
+            <div class="form-row-2">
+              <div class="form-field">
+                <label for="pkgSlotsAlert">Weekend Urgency Slot Alert Text</label>
+                <input type="text" id="pkgSlotsAlert" placeholder="e.g. Only 5 slots left this weekend" value="Only 5 slots left this weekend" />
+                <span class="field-hint">Displays prominently with clock icon below price</span>
+              </div>
+              <div class="form-field">
+                <label for="pkgTags">Tags (Comma-separated)</label>
+                <input type="text" id="pkgTags" placeholder="e.g. Home Decor, Same Day Available, Romantic, Budget Friendly" />
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 2: MEDIA & GALLERY -->
+          <div class="pkg-studio-pane" id="pkgPane-media">
+            <!-- Primary Image -->
+            <div class="form-field">
+              <div style="display:flex;justify-content:space-between;align-items:center;">
+                <label for="pkgImage">Primary Cover Image URL *</label>
+                <label class="btn-secondary" style="font-size:12px;padding:5px 12px;cursor:pointer;background:#f0f9ff;border-color:#bae6fd;color:#0284c7;display:inline-flex;align-items:center;gap:6px;">
+                  <span id="pkgUploadLabel">☁️ Upload to Cloudinary</span>
+                  <input type="file" id="pkgImageFile" accept="image/*" style="display:none;" />
+                </label>
+              </div>
+              <input type="url" id="pkgImage" placeholder="https://res.cloudinary.com/..." required />
+              <div id="pkgUploadProgress" style="display:none;font-size:12px;color:#0284c7;margin-top:2px;">
+                ⏳ Uploading image to Cloudinary...
+              </div>
+              <div class="image-preview-container">
+                <img id="pkgModalImgPreview" class="img-preview-thumb" src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=100&q=80" alt="Preview" onerror="this.src='https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=100&q=80'" />
+                <div class="img-preview-info">
+                  <strong>Live Image Preview</strong><br />
+                  Stored in Cloudinary (<code>gu0q1mxy</code>) or external CDN URL.
+                </div>
+              </div>
+            </div>
+
+            <!-- Additional Gallery Photos -->
+            <div class="form-field">
+              <div style="display:flex;justify-content:space-between;align-items:center;">
+                <label>Additional Gallery Photos</label>
+                <label class="btn-secondary" style="font-size:12px;padding:5px 12px;cursor:pointer;background:#f0f9ff;border-color:#bae6fd;color:#0284c7;display:inline-flex;align-items:center;gap:6px;">
+                  <span id="galleryUploadLabel">☁️ Upload Photo to Cloudinary</span>
+                  <input type="file" id="galleryImageFile" accept="image/*" style="display:none;" />
+                </label>
+              </div>
+              <div class="gallery-builder">
+                <div id="galleryList"></div>
+                <div class="inclusions-input-row" style="margin-top:10px; display:flex; gap:10px;">
+                  <input type="url" id="newGalleryInput" placeholder="Paste image URL (https://...) or upload to Cloudinary above..." style="flex:1; padding:11px 16px; border:1.5px solid #bae6fd; border-radius:10px; font-size:13.5px; outline:none; background:#ffffff;" />
+                  <button type="button" id="addGalleryBtn" style="white-space:nowrap; padding:11px 22px; font-size:13px; font-weight:700; background:#0284c7; color:#ffffff; border:none; border-radius:10px; cursor:pointer;">➕ Add Image</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 3: INCLUSIONS & EXCLUSIONS -->
+          <div class="pkg-studio-pane" id="pkgPane-inclusions">
+            <!-- What's Included -->
+            <div class="pkg-subcard">
+              <div class="pkg-subcard-header">
+                <div class="pkg-subcard-title">
+                  <span style="color:#16a34a;font-size:16px;">✓</span>
+                  <span>What's Included in This Package</span>
+                </div>
+                <span style="font-size:11.5px;color:var(--text-muted);">Displays with green checkmarks on customer page</span>
+              </div>
+              <div class="inclusions-input-row" style="margin-bottom:14px; display:flex; gap:10px;">
+                <input type="text" id="newInclusionInput" placeholder="e.g. 100 Metallic Balloons, Happy Birthday Banner..." style="flex:1; padding:11px 16px; border:1.5px solid #86efac; border-radius:10px; font-size:13.5px; outline:none; background:#ffffff;" />
+                <button type="button" id="addInclusionBtn" style="white-space:nowrap; padding:11px 22px; font-size:13px; font-weight:700; background:#16a34a; color:#ffffff; border:none; border-radius:10px; cursor:pointer;">➕ Add Included Item</button>
+              </div>
+              <div id="inclusionsList" class="inclusions-list"></div>
+            </div>
+
+            <!-- What's NOT Included / Exclusions -->
+            <div class="pkg-subcard" style="border-color:#fecdd3;background:#fff5f6;">
+              <div class="pkg-subcard-header">
+                <div class="pkg-subcard-title" style="color:#e11d48;">
+                  <span style="font-size:16px;">✕</span>
+                  <span>What's NOT Included (Exclusions / Terms)</span>
+                </div>
+                <span style="font-size:11.5px;color:#9f1239;">Displays with red cross badges on customer page</span>
+              </div>
+              <div class="inclusions-input-row" style="margin-bottom:14px; display:flex; gap:10px;">
+                <input type="text" id="newNotIncludedInput" placeholder="e.g. No Helium Gas (All balloons inflated with standard air)..." style="flex:1; padding:11px 16px; border:1.5px solid #fca5a5; border-radius:10px; font-size:13.5px; outline:none; background:#ffffff;" />
+                <button type="button" id="addNotIncludedBtn" style="white-space:nowrap; padding:11px 22px; font-size:13px; font-weight:700; background:#e11d48; color:#ffffff; border:none; border-radius:10px; cursor:pointer;">➕ Add Exclusion</button>
+              </div>
+              <div id="notIncludedList"></div>
+            </div>
+          </div>
+
+          <!-- TAB 4: ABOUT THIS PACKAGE -->
+          <div class="pkg-studio-pane" id="pkgPane-about">
+            <div class="form-field">
+              <label for="pkgDescription">Short Summary / Tagline</label>
+              <textarea id="pkgDescription" rows="2" placeholder="Brief 1-2 sentence overview used in category cards and search..."></textarea>
+            </div>
+            <div class="form-field">
+              <label for="pkgAboutDescription">Detailed Setup Story & Aesthetic Description ("About This Package")</label>
+              <textarea id="pkgAboutDescription" rows="5" placeholder="Full descriptive paragraphs displayed under 'About This Package' on the product page. Describe the atmosphere, balloon styles, photo backdrop, and lighting in this setup..."></textarea>
+            </div>
+          </div>
+
+          <!-- TAB 5: FAQS BUILDER -->
+          <div class="pkg-studio-pane" id="pkgPane-faqs">
+            <div class="pkg-subcard">
+              <div class="pkg-subcard-header">
+                <div class="pkg-subcard-title">
+                  <span style="font-size:16px;">❓</span>
+                  <span>Package FAQs (Accordion Q&A)</span>
+                </div>
+                <button type="button" class="btn-secondary" style="font-size:12px;padding:5px 12px;" onclick="window.adminStudio.addPkgFaq()">
+                  + Add New Question
+                </button>
+              </div>
+              <div id="faqsList">
+                <!-- Dynamically populated FAQ cards -->
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 6: DELIVERY & CARE INFO -->
+          <div class="pkg-studio-pane" id="pkgPane-delivery">
+            <div class="pkg-subcard">
+              <div class="pkg-subcard-title" style="margin-bottom:14px;">
+                <span>🚚</span>
+                <span>Delivery & Setup Specifications</span>
+              </div>
+              <div class="form-field" style="margin-bottom:12px;">
+                <label for="pkgDeliveryNote">⚡ Same-Day Setup Coverage Note</label>
+                <input type="text" id="pkgDeliveryNote" value="Available in 100+ cities including Delhi NCR, Mumbai, Bangalore, Pune, Hyderabad, and Kolkata." />
+              </div>
+              <div class="form-field">
+                <label for="pkgDecoratorNote">🧑‍🔧 Verified Decorator Equipment Note</label>
+                <input type="text" id="pkgDecoratorNote" value="Arrives equipped with electric pumps, ladder-ready equipment, and premium materials." />
+              </div>
+            </div>
+
+            <div class="pkg-subcard">
+              <div class="pkg-subcard-title" style="margin-bottom:14px;">
+                <span>🛡️</span>
+                <span>Care & Balloon Safety Info</span>
+              </div>
+              <div class="form-field" style="margin-bottom:12px;">
+                <label for="pkgLifespanNote">🎈 Lifespan Note</label>
+                <input type="text" id="pkgLifespanNote" value="Air-filled latex balloons remain inflated for 24 to 48 hours indoors in room temperature." />
+              </div>
+              <div class="form-field">
+                <label for="pkgLocationNote">☀️ Location & Safety Note</label>
+                <input type="text" id="pkgLocationNote" value="Keep away from sharp edges, hot direct halogen lights, and outdoor harsh sunlight." />
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 7: ADD-ONS & BALLOON COLORS -->
+          <div class="pkg-studio-pane" id="pkgPane-addons">
+            <!-- Add-ons Builder -->
+            <div class="pkg-subcard" style="background:#ffffff; border:1.5px solid #e2e8f0; border-radius:14px; padding:20px; margin-bottom:18px;">
+              <div class="pkg-subcard-header" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; border-bottom:1px solid #f1f5f9; padding-bottom:12px;">
+                <div class="pkg-subcard-title" style="font-size:15px; font-weight:800; color:#1e293b; display:flex; align-items:center; gap:8px;">
+                  <span style="font-size:18px;">🎁</span>
+                  <span>Make It Yours: Add-on Products (Tap to Add)</span>
+                </div>
+                <button type="button" class="btn-primary" style="font-size:12.5px; padding:8px 18px; background:#be123c; border:none; border-radius:8px; font-weight:700; color:#ffffff; cursor:pointer; display:inline-flex; align-items:center; gap:6px; box-shadow:0 2px 6px rgba(190,18,60,0.25);" onclick="window.adminStudio.addPkgAddon()">
+                  ➕ Add New Add-on
+                </button>
+              </div>
+              <div id="addonsList"></div>
+            </div>
+
+            <!-- Balloon Colors Builder -->
+            <div class="pkg-subcard" style="background:#ffffff; border:1.5px solid #e2e8f0; border-radius:14px; padding:20px;">
+              <div class="pkg-subcard-header" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; border-bottom:1px solid #f1f5f9; padding-bottom:12px;">
+                <div class="pkg-subcard-title" style="font-size:15px; font-weight:800; color:#1e293b; display:flex; align-items:center; gap:8px;">
+                  <span style="font-size:18px;">🎨</span>
+                  <span>Balloon Color Choices</span>
+                </div>
+                <button type="button" class="btn-primary" style="font-size:12.5px; padding:8px 18px; background:#be123c; border:none; border-radius:8px; font-weight:700; color:#ffffff; cursor:pointer; display:inline-flex; align-items:center; gap:6px; box-shadow:0 2px 6px rgba(190,18,60,0.25);" onclick="window.adminStudio.addPkgColorPalette()">
+                  ➕ Add Color Name
+                </button>
+              </div>
+              <p style="font-size:12px; color:#64748b; margin:0 0 14px 0;">Simply enter the color combination names for customers to pick (e.g. Same as Image, Rose Gold & White, Pastel Blue & Pink). No complicated code needed!</p>
+              <div id="colorPalettesList"></div>
+            </div>
+          </div>
+
+          <!-- Live Card Preview -->
+          <div class="modal-preview-box" style="margin-top: 14px;">
+            <div class="modal-preview-header">Live Card Snapshot</div>
+            <div style="display:flex;align-items:center;gap:12px;background:#ffffff;border:1px solid #e2e8f0;padding:10px 14px;border-radius:8px;">
+              <span id="pkgModalBadgePreview" style="background:var(--brand-primary);color:#fff;font-size:10px;font-weight:800;padding:2px 8px;border-radius:99px;">BESTSELLER</span>
+              <span id="pkgModalTitlePreview" style="font-weight:700;font-size:14px;color:var(--text-main);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">Package Title</span>
+              <span id="pkgModalPricePreview" style="font-weight:800;color:var(--brand-primary);font-size:15px;">₹1,999</span>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn-secondary" data-close-modal>Cancel</button>
+          <button type="submit" id="savePackageBtn" class="btn-primary" style="width: auto; padding: 10px 28px;">
+            Save Package
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ======================================================================
+       MODAL: ADD / EDIT CATEGORY (WITH CLOUDINARY UPLOAD)
+       ====================================================================== -->
+  <div id="categoryModal" class="modal-backdrop">
+    <div class="modal-dialog modal-dialog-sm">
+      <div class="modal-header">
+        <div class="modal-header-title">
+          <span style="font-size:22px;">🏷️</span>
+          <h2 id="categoryModalTitle">Add New Category</h2>
+        </div>
+        <button type="button" class="btn-modal-close" data-close-modal aria-label="Close modal">✕</button>
+      </div>
+
+      <form id="categoryForm">
+        <div class="modal-body" style="max-height: calc(88vh - 140px); overflow-y: auto;">
+          
+          <div class="form-field">
+            <label for="catName">Category Name *</label>
+            <input type="text" id="catName" placeholder="e.g. Graduation & Farewell" required />
+          </div>
+
+          <div class="form-field">
+            <label for="catSlug">Category Slug / ID *</label>
+            <input type="text" id="catSlug" placeholder="e.g. graduation-farewell" required />
+            <span class="field-hint">Unique identifier used for category filtering</span>
+          </div>
+
+          <div class="form-field">
+            <label for="catIcon">Icon / Emoji</label>
+            <input type="text" id="catIcon" placeholder="🎂 or 🎈" value="🎉" />
+            <div class="quick-emoji-bar">
+              <button type="button" class="emoji-btn">🎂</button>
+              <button type="button" class="emoji-btn">❤️</button>
+              <button type="button" class="emoji-btn">🦄</button>
+              <button type="button" class="emoji-btn">🍼</button>
+              <button type="button" class="emoji-btn">💍</button>
+              <button type="button" class="emoji-btn">💼</button>
+              <button type="button" class="emoji-btn">🎁</button>
+              <button type="button" class="emoji-btn">🎓</button>
+              <button type="button" class="emoji-btn">🌸</button>
+              <button type="button" class="emoji-btn">🥂</button>
+              <button type="button" class="emoji-btn">✨</button>
+            </div>
+          </div>
+
+          <div class="form-field">
+            <label for="catBadge">Badge Label</label>
+            <input type="text" id="catBadge" placeholder="e.g. POPULAR, TRENDING, NEW, HOT" value="NEW" />
+          </div>
+
+          <!-- Cover Image + Cloudinary Upload -->
+          <div class="form-field">
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <label for="catImage">Cover Banner Image URL *</label>
+              <label class="btn-secondary" style="font-size:12px;padding:4px 10px;cursor:pointer;background:#f0f9ff;border-color:#bae6fd;color:#0284c7;display:inline-flex;align-items:center;gap:6px;">
+                <span id="catUploadLabel">☁️ Upload Banner</span>
+                <input type="file" id="catImageFile" accept="image/*" style="display:none;" />
+              </label>
+            </div>
+            <input type="url" id="catImage" placeholder="https://res.cloudinary.com/..." required />
+            <div id="catUploadProgress" style="display:none;font-size:12px;color:#0284c7;margin-top:2px;">
+              ⏳ Uploading banner to Cloudinary...
+            </div>
+            <div class="image-preview-container" style="margin-top:6px;">
+              <img id="catImagePreview" class="img-preview-thumb" src="https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=100&q=80" alt="Preview" />
+              <div class="img-preview-info">
+                <strong>Category Cover Preview</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-field">
+            <label for="catDesc">Short Description</label>
+            <textarea id="catDesc" placeholder="Brief description displayed on the homepage tile..." rows="3"></textarea>
+          </div>
+
+          <!-- Subcategories for this Category -->
+          <div class="form-field" id="categoryModalSubcatSection" style="margin-top:14px; padding-top:14px; border-top:1px solid #e2e8f0;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+              <label style="margin-bottom:0; font-size:13px; font-weight:700;">Occasion Subcategories (<span id="catModalSubcatCount">0</span>)</label>
+              <button type="button" id="catModalAddSubcatBtn" class="btn-secondary" style="font-size:12px; padding:3px 10px; color:var(--brand-primary); border-color:#fecdd3; cursor:pointer;">
+                + Add Subcategory
+              </button>
+            </div>
+            <div id="catModalSubcategoriesList" style="display:flex; flex-wrap:wrap; gap:6px; min-height:36px; padding:8px; background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px;">
+              <!-- Populated dynamically -->
+            </div>
+          </div>
+
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn-secondary" data-close-modal>Cancel</button>
+          <button type="submit" id="saveCategoryBtn" class="btn-primary" style="width: auto; padding: 10px 24px;">
+            Save Category
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ======================================================================
+       MODAL: ADD / EDIT SUBCATEGORY
+       ====================================================================== -->
+  <div id="subcategoryModal" class="modal-backdrop">
+    <div class="modal-dialog modal-dialog-sm">
+      <div class="modal-header">
+        <div class="modal-header-title">
+          <span style="font-size:22px;">🏷️</span>
+          <h2 id="subcategoryModalTitle">Add New Subcategory</h2>
+        </div>
+        <button type="button" class="btn-modal-close" data-close-modal aria-label="Close modal">✕</button>
+      </div>
+
+      <form id="subcategoryForm">
+        <div class="modal-body" style="max-height: calc(88vh - 140px); overflow-y: auto;">
+          <div class="form-field">
+            <label for="subcatParentCategory">Parent Occasion Category *</label>
+            <select id="subcatParentCategory" required>
+              <!-- Populated dynamically with all categories -->
+            </select>
+          </div>
+
+          <div class="form-field">
+            <label for="subcatName">Subcategory Name *</label>
+            <input type="text" id="subcatName" placeholder="e.g. Simple Home Surprises" required />
+          </div>
+
+          <div class="form-field">
+            <label for="subcatSlug">Subcategory Key / Slug *</label>
+            <input type="text" id="subcatSlug" placeholder="e.g. home" required />
+            <span class="field-hint">Unique identifier used for filtering packages on website</span>
+          </div>
+
+          <div class="form-field">
+            <label for="subcatIcon">Icon / Emoji</label>
+            <input type="text" id="subcatIcon" placeholder="🏠 or ⭕" value="🎈" />
+            <div class="quick-emoji-bar">
+              <button type="button" class="subcat-emoji-btn">🏠</button>
+              <button type="button" class="subcat-emoji-btn">⭕</button>
+              <button type="button" class="subcat-emoji-btn">✨</button>
+              <button type="button" class="subcat-emoji-btn">🌹</button>
+              <button type="button" class="subcat-emoji-btn">⛺</button>
+              <button type="button" class="subcat-emoji-btn">🦄</button>
+              <button type="button" class="subcat-emoji-btn">🍼</button>
+              <button type="button" class="subcat-emoji-btn">👶</button>
+              <button type="button" class="subcat-emoji-btn">🧸</button>
+              <button type="button" class="subcat-emoji-btn">🍉</button>
+              <button type="button" class="subcat-emoji-btn">🏢</button>
+              <button type="button" class="subcat-emoji-btn">🎉</button>
+              <button type="button" class="subcat-emoji-btn">🎂</button>
+              <button type="button" class="subcat-emoji-btn">💍</button>
+              <button type="button" class="subcat-emoji-btn">🎁</button>
+            </div>
+          </div>
+
+          <div class="form-field">
+            <label for="subcatTitle">Catalog Header Headline (Live Website)</label>
+            <input type="text" id="subcatTitle" placeholder="e.g. Simple Home Birthday Setups" />
+            <span class="field-hint">Headline shown on the category page when this subcategory pill is clicked</span>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn-secondary" data-close-modal>Cancel</button>
+          <button type="submit" id="saveSubcategoryBtn" class="btn-primary" style="width: auto; padding: 10px 24px;">
+            Save Subcategory
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ======================================================================
+       MODAL: DELETE CONFIRMATION
+       ====================================================================== -->
+  <div id="deleteConfirmModal" class="modal-backdrop">
+    <div class="modal-dialog modal-dialog-sm">
+      <div class="modal-header">
+        <div class="modal-header-title">
+          <span style="font-size:22px;">⚠️</span>
+          <h2>Confirm Deletion</h2>
+        </div>
+        <button type="button" class="btn-modal-close" data-close-modal aria-label="Close modal">✕</button>
+      </div>
+
+      <div class="modal-body">
+        <p style="font-size:15px; color:var(--text-main); font-weight:700;">
+          Are you sure you want to delete <span id="deleteModalItemName" style="color:var(--brand-primary);"></span>?
+        </p>
+        <p id="deleteModalWarning" style="font-size:13.5px; color:var(--text-muted); line-height:1.5;">
+          This action will immediately update your website catalog and Supabase database.
+        </p>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn-secondary" data-close-modal>Cancel</button>
+        <button type="button" id="confirmDeleteBtn" class="btn-card-action btn-card-delete" style="flex:none; padding:10px 20px; font-size:13.5px;">
+          Yes, Delete Permanently
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================================
+       MODAL: WEDDING SERVICE CUSTOMIZER & OPTIONS BUILDER (NO PACKAGE FIELDS)
+       ====================================================================== -->
+  <div id="weddingServiceCustomModal" class="modal-backdrop">
+    <div class="modal-dialog modal-dialog-lg" style="max-width: 1040px; width: 95vw;">
+      <div class="modal-header" style="background: linear-gradient(135deg, #fff1f2 0%, #ffffff 100%); border-bottom: 1px solid #fecdd3;">
+        <div class="modal-header-title">
+          <span style="font-size:24px;">💍</span>
+          <div>
+            <h2 id="wseModalTitle" style="font-size: 19px; color: var(--text-main); font-weight: 800;">Edit Wedding Service: House Decoration</h2>
+            <p style="font-size: 12.5px; color: var(--text-muted); margin: 0;">Configure inside options, sub-items, checklist choices, and client quotation elements</p>
+          </div>
+        </div>
+        <button type="button" class="btn-modal-close" data-close-modal aria-label="Close modal">✕</button>
+      </div>
+
+      <form id="weddingServiceForm">
+        <div class="modal-body" style="padding: 24px; max-height: calc(85vh - 140px); overflow-y: auto;">
+          
+          <!-- Top Architecture Note -->
+          <div style="background:#eff6ff; border:1px solid #bfdbfe; border-radius:10px; padding:12px 16px; margin-bottom:20px; display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;">
+            <div style="display:flex; align-items:center; gap:10px; font-size:13px; color:#1e40af;">
+              <span style="font-size:18px;">✨</span>
+              <span><strong>Pure Service Architecture:</strong> No package prices, discounts, ratings, or durations. All options below are 100% editable and map directly to <code>wedding.html</code>.</span>
+            </div>
+            <a id="wseLivePreviewLink" href="../wedding.html" target="_blank" class="btn-secondary" style="font-size:12px; padding:5px 12px; background:#ffffff; color:#1d4ed8; border-color:#93c5fd; text-decoration:none;">
+              🌐 Live Customer View →
+            </a>
+          </div>
+
+          <!-- Two Column Grid -->
+          <div style="display: grid; grid-template-columns: 360px 1fr; gap: 26px;">
+            
+            <!-- Left Column: Primary Service Metadata -->
+            <div style="display:flex; flex-direction:column; gap:16px;">
+              <div class="form-field">
+                <label for="wseTitle">Service Name *</label>
+                <input type="text" id="wseTitle" placeholder="e.g. House Decoration" required />
+              </div>
+
+              <div class="form-field">
+                <label for="wseSlug">Service Slug / ID *</label>
+                <input type="text" id="wseSlug" placeholder="e.g. house-decor" required />
+                <span class="field-hint">Unique identifier used for website deep linking</span>
+              </div>
+
+              <div class="form-field">
+                <label for="wseBadge">Featured Badge Label</label>
+                <input type="text" id="wseBadge" placeholder="e.g. TRADITIONAL, RITUAL SPECIAL, GRAND STAGE, MULTI-CUISINE" value="TRADITIONAL" />
+              </div>
+
+              <!-- Primary Cover Image + Cloudinary -->
+              <div class="form-field">
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                  <label for="wseImage">Service Cover Image *</label>
+                  <label class="btn-secondary" style="font-size:11.5px; padding:4px 10px; cursor:pointer; background:#f0f9ff; border-color:#bae6fd; color:#0284c7; display:inline-flex; align-items:center; gap:6px;">
+                    <span id="wseUploadLabel">☁️ Upload</span>
+                    <input type="file" id="wseImageFile" accept="image/*" style="display:none;" />
+                  </label>
+                </div>
+                <input type="url" id="wseImage" placeholder="https://images.unsplash.com/..." required />
+                <div id="wseUploadProgress" style="display:none; font-size:12px; color:#0284c7; margin-top:2px;">
+                  ⏳ Uploading image to Cloudinary...
+                </div>
+                <div class="image-preview-container" style="margin-top:8px;">
+                  <img id="wseImgPreview" class="img-preview-thumb" src="" alt="Preview" onerror="this.src='https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=100&q=80'" />
+                  <div class="img-preview-info">
+                    <strong>Cover Photo Preview</strong>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-field">
+                <label for="wseTagline">Service Tagline / Subtitle</label>
+                <textarea id="wseTagline" rows="3" placeholder="Make your home special with traditional and elegant decorations."></textarea>
+              </div>
+
+            </div>
+
+            <!-- Right Column: Inside Options & Sub-items Builder -->
+            <div style="display:flex; flex-direction:column; gap:16px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1.5px solid #e2e8f0; padding-bottom:12px; gap:10px; flex-wrap:wrap;">
+                <div>
+                  <h4 style="font-size:16px; font-weight:800; color:var(--text-main); margin:0;">Inside Service Options & Choices</h4>
+                  <p style="font-size:12px; color:var(--text-muted); margin:2px 0 0 0;">Add, edit, or delete any sub-service, menu item, or decor checklist element</p>
+                </div>
+                <div style="display:flex; gap:8px;">
+                  <button type="button" id="wseResetDefaultsBtn" class="btn-secondary" style="padding:8px 14px; font-size:12px; font-weight:700; background:#f8fafc; color:#334155; border:1px solid #cbd5e1; border-radius:8px; cursor:pointer;" onclick="window.adminStudio.resetWseToWebsiteDefaults()">
+                    🔄 Reset to Website Live Defaults
+                  </button>
+                  <button type="button" id="wseAddOptionBtn" class="btn-primary" style="padding:8px 18px; font-size:12.5px; font-weight:700; background:#be123c; border:none; border-radius:8px; box-shadow:0 2px 6px rgba(190,18,60,0.25);">
+                    ➕ Add New Option
+                  </button>
+                </div>
+              </div>
+
+              <!-- Options List Container -->
+              <div id="wseOptionsContainer" style="display:flex; flex-direction:column; gap:14px; max-height:560px; overflow-y:auto; padding-right:8px;">
+                <!-- Dynamically rendered option cards -->
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="modal-footer" style="background:#f8fafc; border-top:1px solid var(--admin-border); display:flex; justify-content:space-between; align-items:center;">
+          <span style="font-size:12.5px; color:var(--text-muted);">Changes instantly update both the customer quotation modal and cloud database.</span>
+          <div style="display:flex; gap:10px;">
+            <button type="button" class="btn-secondary" data-close-modal>Cancel</button>
+            <button type="submit" id="wseSaveBtn" class="btn-primary" style="padding:10px 24px; font-size:13.5px; font-weight:800;">
+              💾 Save Wedding Service & Options
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ======================================================================
+       MODAL: ADD / EDIT BLOG POST
+       ====================================================================== -->
+  <div id="blogModal" class="modal-backdrop">
+    <div class="modal-dialog modal-dialog-lg" style="max-width: 900px; width: 95vw;">
+      <div class="modal-header">
+        <div class="modal-header-title">
+          <span style="font-size:24px;">📝</span>
+          <h2 id="blogModalTitle">Add New Blog Article</h2>
+        </div>
+        <button type="button" class="btn-modal-close" data-close-modal aria-label="Close modal">✕</button>
+      </div>
+
+      <form id="blogForm">
+        <div class="modal-body" style="padding: 24px; max-height: calc(85vh - 140px); overflow-y: auto;">
+          
+          <div class="form-row-2">
+            <div class="form-field">
+              <label for="blogTitle">Article Title *</label>
+              <input type="text" id="blogTitle" placeholder="e.g. 10 Balloon Decoration Ideas for Terrace Parties" required />
+            </div>
+            <div class="form-field">
+              <label for="blogSlug">Article Slug / ID *</label>
+              <input type="text" id="blogSlug" placeholder="e.g. 10-balloon-decoration-ideas-terrace" required />
+            </div>
+          </div>
+
+          <div class="form-row-3">
+            <div class="form-field">
+              <label for="blogCategory">Topic Category *</label>
+              <select id="blogCategory" required>
+                <option value="balloon-tips">Balloon Tips & Hacks</option>
+                <option value="birthday-ideas">Birthday Ideas</option>
+                <option value="anniversary-romance">Anniversary & Romance</option>
+                <option value="baby-shower">Baby Shower & Welcome</option>
+                <option value="wedding-guides">Wedding Guides</option>
+                <option value="cost-planning">Cost & Planning</option>
+              </select>
+            </div>
+            <div class="form-field">
+              <label for="blogTag">Badge / Tag Label</label>
+              <input type="text" id="blogTag" placeholder="e.g. Editor's Choice, Decor Hacks, Checklist" value="Decor Hacks" />
+            </div>
+            <div class="form-field">
+              <label for="blogReadTime">Read Time</label>
+              <input type="text" id="blogReadTime" placeholder="e.g. 5 min read" value="5 min read" />
+            </div>
+          </div>
+
+          <div class="form-row-2">
+            <div class="form-field">
+              <label for="blogAuthor">Author Name & Role *</label>
+              <input type="text" id="blogAuthor" placeholder="e.g. Pooja Deshmukh • Creative Director" value="Celebration Events Team" required />
+            </div>
+            <div class="form-field">
+              <label for="blogDate">Publish Date</label>
+              <input type="text" id="blogDate" placeholder="e.g. October 04, 2026" />
+            </div>
+          </div>
+
+          <!-- Cover Image + Cloudinary -->
+          <div class="form-field">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <label for="blogImage">Cover Image URL *</label>
+              <label class="btn-secondary" style="font-size:11.5px; padding:4px 10px; cursor:pointer; background:#f0f9ff; border-color:#bae6fd; color:#0284c7; display:inline-flex; align-items:center; gap:6px;">
+                <span id="blogUploadLabel">☁️ Upload to Cloudinary</span>
+                <input type="file" id="blogImageFile" accept="image/*" style="display:none;" />
+              </label>
+            </div>
+            <input type="url" id="blogImage" placeholder="https://images.unsplash.com/..." required />
+            <div id="blogUploadProgress" style="display:none; font-size:12px; color:#0284c7; margin-top:2px;">
+              ⏳ Uploading image to Cloudinary...
+            </div>
+            <div class="image-preview-container" style="margin-top:8px;">
+              <img id="blogImgPreview" class="img-preview-thumb" src="" alt="Preview" onerror="this.src='https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=100&q=80'" />
+              <div class="img-preview-info">
+                <strong>Cover Preview</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-field">
+            <label for="blogExcerpt">Article Excerpt / Summary *</label>
+            <textarea id="blogExcerpt" rows="2" placeholder="Short introductory summary displayed on the card..." required></textarea>
+          </div>
+
+          <div class="form-field">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:4px;">
+              <label for="blogContent" style="margin-bottom:0; font-weight:700;">Full Article Content (Plain Text - No HTML Tags Needed) *</label>
+              <div class="blog-writer-tools" style="display:flex; gap:6px;">
+                <button type="button" class="btn-writer-tool" onclick="window.adminStudio.insertBlogTemplate('heading')">➕ Heading</button>
+                <button type="button" class="btn-writer-tool" onclick="window.adminStudio.insertBlogTemplate('bullet')">• Bullet</button>
+                <button type="button" class="btn-writer-tool" onclick="window.adminStudio.insertBlogTemplate('tip')">💡 Pro Tip</button>
+                <button type="button" class="btn-writer-tool" onclick="window.adminStudio.cleanAllBlogHtmlTags()" title="Remove any brackets or arrows">🧹 Clean All Tags</button>
+              </div>
+            </div>
+            <textarea id="blogContent" rows="10" placeholder="Type or paste your article naturally in plain paragraphs and numbered headings. No &lt;p&gt; or &lt;h&gt; tags needed!&#10;&#10;1. Room Space & Setup Optimization&#10;Before booking any setup, ensure there is at least 8 to 10 feet of clear wall space...&#10;&#10;• Step 1: Clean and clear the backdrop wall&#10;• Step 2: Keep electric points accessible" style="font-family:inherit; font-size:13.5px; line-height:1.6; padding:12px 14px;" required></textarea>
+            <span class="field-hint" style="color:#64748b; font-size:12px;">✨ Write naturally. No HTML code, arrows (&lt; &gt;), or &lt;p&gt; tags required. Paragraphs, bullets, and numbered headings format automatically for readers!</span>
+          </div>
+
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn-secondary" data-close-modal>Cancel</button>
+          <button type="submit" id="saveBlogBtn" class="btn-primary" style="padding:10px 24px;">
+            Save Article
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ======================================================================
+       MODAL: ADD / EDIT CUSTOMER REVIEW / REEL
+       ====================================================================== -->
+  <div id="reviewModal" class="modal-backdrop">
+    <div class="modal-dialog modal-dialog-lg" style="max-width: 820px; width: 95vw;">
+      <div class="modal-header">
+        <div class="modal-header-title">
+          <span style="font-size:24px;">⭐</span>
+          <div>
+            <h2 id="reviewModalTitle" style="margin:0; font-size:18px;">Add New Customer Review / Reel</h2>
+            <div style="font-size:12px; color:var(--text-muted); margin-top:2px;">Real setup photo or Instagram celebration reel shown on all category pages</div>
+          </div>
+        </div>
+        <button type="button" class="btn-modal-close" data-close-modal aria-label="Close modal">✕</button>
+      </div>
+
+      <form id="reviewForm" onsubmit="window.adminStudio.handleReviewFormSubmit(event)">
+        <div class="modal-body" style="padding: 24px; max-height: calc(85vh - 140px); overflow-y: auto;">
+          
+          <div class="form-row-2">
+            <div class="form-field">
+              <label for="reviewName">Customer Name(s) *</label>
+              <input type="text" id="reviewName" placeholder="e.g. Rahul & Sneha or Pooja Sharma" required />
+            </div>
+            <div class="form-field">
+              <label for="reviewCity">City / Location *</label>
+              <input type="text" id="reviewCity" placeholder="e.g. Mumbai, Delhi NCR, Bangalore, Pune" required />
+            </div>
+          </div>
+
+          <div class="form-row-3">
+            <div class="form-field">
+              <label for="reviewService">Service / Event Theme *</label>
+              <input type="text" id="reviewService" placeholder="e.g. Cabana Terrace Anniversary" required />
+            </div>
+            <div class="form-field">
+              <label for="reviewType">Review Media Format *</label>
+              <select id="reviewType" onchange="window.adminStudio.toggleReviewTypeFields(this.value)" required>
+                <option value="image">📸 Customer Photo</option>
+                <option value="video">🎥 Verified Video Reel</option>
+              </select>
+            </div>
+            <div class="form-field">
+              <label for="reviewRating">Star Rating *</label>
+              <select id="reviewRating" required>
+                <option value="5">★★★★★ 5.0 (Perfect)</option>
+                <option value="4.9">★★★★★ 4.9</option>
+                <option value="4.8">★★★★★ 4.8</option>
+                <option value="4.5">★★★★☆ 4.5</option>
+                <option value="4.0">★★★★☆ 4.0</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row-2">
+            <div class="form-field">
+              <label for="reviewDate">Display Date Label</label>
+              <input type="text" id="reviewDate" placeholder="e.g. 2 days ago, 1 week ago, Yesterday" value="Recent" />
+            </div>
+            <div class="form-field" style="display:flex; align-items:center; gap:10px; padding-top:24px;">
+              <input type="checkbox" id="reviewVerified" checked style="width:18px; height:18px; cursor:pointer;" />
+              <label for="reviewVerified" style="margin:0; cursor:pointer; font-size:13.5px; font-weight:700; color:#16a34a;">
+                ✓ Verified Customer Badge
+              </label>
+            </div>
+          </div>
+
+          <!-- Media URL + Cloudinary Upload -->
+          <div class="form-field">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <label for="reviewMedia" id="reviewMediaLabel">Media URL (Photo or Video URL / File) *</label>
+              <label class="btn-secondary" style="font-size:11.5px; padding:4px 10px; cursor:pointer; background:#f0f9ff; border-color:#bae6fd; color:#0284c7; display:inline-flex; align-items:center; gap:6px;">
+                <span id="reviewUploadLabel">☁️ Upload Media</span>
+                <input type="file" id="reviewMediaFile" accept="image/*,video/*" style="display:none;" onchange="window.adminStudio.handleReviewMediaUpload(this)" />
+              </label>
+            </div>
+            <input type="text" id="reviewMedia" placeholder="https://cdn.balloondekor.com/... or video.mp4" oninput="window.adminStudio.updateReviewPreview()" required />
+            <div id="reviewUploadProgress" style="display:none; font-size:12px; color:#0284c7; margin-top:2px;">
+              ⏳ Uploading media to Cloudinary...
+            </div>
+          </div>
+
+          <!-- Poster URL (for video reels) -->
+          <div class="form-field" id="reviewPosterField" style="display:none;">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <label for="reviewPoster">Video Reel Poster Thumbnail (Optional)</label>
+              <label class="btn-secondary" style="font-size:11.5px; padding:4px 10px; cursor:pointer; background:#f0f9ff; border-color:#bae6fd; color:#0284c7; display:inline-flex; align-items:center; gap:6px;">
+                <span>☁️ Upload Poster</span>
+                <input type="file" id="reviewPosterFile" accept="image/*" style="display:none;" onchange="window.adminStudio.handleReviewPosterUpload(this)" />
+              </label>
+            </div>
+            <input type="text" id="reviewPoster" placeholder="https://cdn.balloondekor.com/images/..." oninput="window.adminStudio.updateReviewPreview()" />
+          </div>
+
+          <!-- Live Preview Box -->
+          <div class="form-field">
+            <label>Live Media Preview</label>
+            <div id="reviewPreviewContainer" style="width:100%; height:180px; background:#0f172a; border-radius:12px; overflow:hidden; display:flex; align-items:center; justify-content:center; border:1px solid #cbd5e1;">
+              <span style="color:#94a3b8; font-size:13px;">No media selected</span>
+            </div>
+          </div>
+
+          <div class="form-field">
+            <label for="reviewText">Customer Review Quote / Text *</label>
+            <textarea id="reviewText" rows="3" placeholder="What the customer said about the decoration, decorator punctuality, quality, etc." required></textarea>
+          </div>
+
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn-secondary" data-close-modal>Cancel</button>
+          <button type="submit" id="saveReviewBtn" class="btn-primary" style="padding:10px 24px;">
+            Save Review
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ======================================================================
+       ADMIN PASSWORD RESET MODAL (SMTP OTP)
+       ====================================================================== -->
+  <div class="modal-backdrop" id="adminResetModal">
+    <div class="modal-dialog modal-dialog-sm" style="max-width:480px;">
+      <div class="modal-header">
+        <div class="modal-header-title">
+          <span style="font-size:22px;">🔐</span>
+          <h2>Reset Admin Password</h2>
+        </div>
+        <button type="button" class="btn-modal-close" id="closeAdminResetModalBtn" aria-label="Close modal">&times;</button>
+      </div>
+
+      <!-- Step 1: Send OTP -->
+      <div id="adminResetStep1" class="modal-body" style="padding:24px;">
+        <p style="font-size:13.5px; color:var(--text-muted); margin:0 0 16px; line-height:1.5;">
+          A 6-digit verification code will be sent to the authorized administrator Gmail via secure SMTP.
+        </p>
+
+        <div class="form-field">
+          <label for="adminResetEmailInput">Administrator Email</label>
+          <input type="email" id="adminResetEmailInput" class="form-control" value="kishorek80192@gmail.com" readonly style="background:#f8fafc; font-weight:600; cursor:not-allowed;" />
+          <small style="color:#64748b; font-size:11.5px; margin-top:4px; display:block;">🔒 Only the verified administrator email is authorized to reset credentials.</small>
+        </div>
+
+        <div id="adminResetStep1Alert" style="display:none; padding:10px 14px; border-radius:8px; font-size:13px; margin-top:12px;"></div>
+
+        <div style="margin-top:20px; display:flex; gap:10px; justify-content:flex-end;">
+          <button type="button" class="btn-secondary" id="cancelAdminResetBtn">Cancel</button>
+          <button type="button" class="btn-primary" id="sendAdminOtpBtn" style="padding:10px 22px;">
+            <span>Send Verification OTP</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Step 2: Verify OTP & Change Password -->
+      <div id="adminResetStep2" class="modal-body" style="padding:24px; display:none;">
+        <div style="background:#fff1f2; border:1px solid #fecdd3; border-radius:10px; padding:12px 16px; margin-bottom:16px;">
+          <p style="font-size:13px; color:#be123c; margin:0; line-height:1.4;">
+            ✉️ Verification code sent to <strong>kishorek80192@gmail.com</strong>. Code is valid for 10 minutes.
+          </p>
+        </div>
+
+        <div class="form-field">
+          <label for="adminResetOtpInput">Enter 6-Digit Verification Code *</label>
+          <input type="text" id="adminResetOtpInput" maxlength="6" placeholder="123456" class="form-control" style="font-size:22px; letter-spacing:6px; text-align:center; font-family:monospace; font-weight:700;" />
+        </div>
+
+        <div class="form-field" style="margin-top:14px;">
+          <label for="adminNewPassInput">New Secure Password * (min 6 chars)</label>
+          <input type="password" id="adminNewPassInput" placeholder="Enter new password" class="form-control" />
+        </div>
+
+        <div class="form-field" style="margin-top:14px;">
+          <label for="adminConfirmPassInput">Confirm New Password *</label>
+          <input type="password" id="adminConfirmPassInput" placeholder="Re-enter new password" class="form-control" />
+        </div>
+
+        <div id="adminResetStep2Alert" style="display:none; padding:10px 14px; border-radius:8px; font-size:13px; margin-top:12px;"></div>
+
+        <div style="margin-top:20px; display:flex; gap:10px; justify-content:space-between; align-items:center;">
+          <button type="button" id="adminResendOtpBtn" style="background:none; border:none; color:var(--brand-primary); font-size:12.5px; font-weight:700; cursor:pointer; text-decoration:underline;">
+            Resend Code
+          </button>
+          <div style="display:flex; gap:10px;">
+            <button type="button" class="btn-secondary" id="backAdminResetStep1Btn">Back</button>
+            <button type="button" class="btn-primary" id="confirmAdminResetBtn" style="padding:10px 22px;">
+              <span>Update & Save Password</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ======================================================================
+       MODAL: ADD / EDIT OPERATING CITY (CRUD)
+       ====================================================================== -->
+  <div id="cityModalAdmin" class="modal-backdrop">
+    <div class="modal-dialog modal-dialog-sm" style="max-width:500px;">
+      <div class="modal-header">
+        <div class="modal-header-title">
+          <span style="font-size:22px;">📍</span>
+          <h2 id="cityModalTitle" style="font-size:18px;">Add New Operating City</h2>
+        </div>
+        <button type="button" class="btn-modal-close" data-close-modal aria-label="Close modal">&times;</button>
+      </div>
+
+      <form id="cityFormAdmin" onsubmit="window.adminStudio.saveCity(event)">
+        <input type="hidden" id="cityModalMode" value="add" />
+        <input type="hidden" id="cityOriginalId" value="" />
+
+        <div class="modal-body" style="padding:22px 24px; gap:16px;">
+          <div class="form-field">
+            <label for="cityNameInput">City Name *</label>
+            <input type="text" id="cityNameInput" class="form-control" placeholder="e.g. Hyderabad, Lucknow, Goa" required oninput="window.adminStudio.handleCityNameInput(this)" />
+          </div>
+
+          <div class="form-field">
+            <label for="cityStateInput">State / Union Territory *</label>
+            <input type="text" id="cityStateInput" class="form-control" placeholder="e.g. Telangana, Uttar Pradesh, Goa" required />
+          </div>
+
+          <div class="form-field">
+            <label for="citySlugInput">City Code / Slug * (Unique URL Key)</label>
+            <input type="text" id="citySlugInput" class="form-control" placeholder="e.g. hyderabad, lucknow, goa" required />
+            <small style="color:var(--text-dim); font-size:11.5px;">Used in filters, booking details, and URLs (lowercase, no spaces).</small>
+          </div>
+
+          <div style="background:#f8fafc; border:1px solid var(--admin-border); border-radius:10px; padding:12px 14px;">
+            <label style="display:flex; align-items:center; gap:10px; cursor:pointer; font-weight:700; font-size:13px; color:var(--text-main); margin:0;">
+              <input type="checkbox" id="cityPopularCheckbox" style="width:18px; height:18px; accent-color:var(--brand-primary);" />
+              <span>⭐ Mark as Top Operating City (Featured in main modal highlights)</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn-secondary" data-close-modal>Cancel</button>
+          <button type="submit" id="saveCityBtn" class="btn-primary" style="padding:10px 24px;">
+            Save City
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div id="toastContainer" class="toast-container"></div>
+
+  <!-- Scripts -->
+  <script src="/data.js?v=20261006_cities"></script>
+  <script src="/admin/admin.js?v=20261006_cities"></script>
+</body>
+</html>

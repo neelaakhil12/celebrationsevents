@@ -221,6 +221,30 @@
       </div>
     </section>
 
+    <!-- Real Photos & Video Customer Reviews Section -->
+    <section class="reviews-section" id="reviewsSection" data-aos="fade-up" data-aos-duration="700">
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <div class="reviews-stream-tag">
+            <span class="live-pulse-dot"></span> LIVE CELEBRATION FEED
+          </div>
+          <h2 class="section-title">Real Photos & Video Customer Reviews</h2>
+          <div class="title-underline"></div>
+          <p class="section-subtitle">Watch real celebration reels and customer setups across India • Hover over any card to pause</p>
+        </div>
+      </div>
+
+      <!-- 2-Row Infinite Video & Photo Scrolling Stream -->
+      <div class="reviews-marquee-wrapper" id="reviewsMarqueeWrapper">
+        <div class="reviews-marquee-row">
+          <div class="reviews-marquee-track track-row-1" id="reviewsTrackRow1"></div>
+        </div>
+        <div class="reviews-marquee-row">
+          <div class="reviews-marquee-track track-row-2" id="reviewsTrackRow2"></div>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <!-- ====================================================
@@ -465,5 +489,12 @@
       initWeddingServicesPage();
     });
   </script>
+  <!-- Review Media Modal Overlay (Video Reels & Photos) -->
+  <div class="review-modal-overlay" id="reviewMediaModalOverlay" onclick="closeReviewMediaModal(event)">
+    <div class="review-modal-content">
+      <button class="review-modal-close" onclick="closeReviewMediaModal(event)" aria-label="Close modal">&times;</button>
+      <div class="review-modal-body" id="reviewModalBody"></div>
+    </div>
+  </div>
 </body>
 </html>

@@ -504,6 +504,16 @@
   <script src="app.js?v=3.0"></script>
   <script>
     document.addEventListener("DOMContentLoaded", () => {
+      try {
+        const customBlogs = localStorage.getItem('celebration_custom_blogs');
+        if (customBlogs) {
+          const parsed = JSON.parse(customBlogs);
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            SITE_DATA.blogs = parsed;
+          }
+        }
+      } catch (e) {}
+
       loadArticleDetails();
     });
 

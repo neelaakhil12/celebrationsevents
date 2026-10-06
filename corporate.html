@@ -184,6 +184,30 @@
       </div>
     </section>
 
+    <!-- Real Photos & Video Customer Reviews Section -->
+    <section class="reviews-section" id="reviewsSection" data-aos="fade-up" data-aos-duration="700">
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <div class="reviews-stream-tag">
+            <span class="live-pulse-dot"></span> LIVE CELEBRATION FEED
+          </div>
+          <h2 class="section-title">Real Photos & Video Customer Reviews</h2>
+          <div class="title-underline"></div>
+          <p class="section-subtitle">Watch real celebration reels and customer setups across India • Hover over any card to pause</p>
+        </div>
+      </div>
+
+      <!-- 2-Row Infinite Video & Photo Scrolling Stream -->
+      <div class="reviews-marquee-wrapper" id="reviewsMarqueeWrapper">
+        <div class="reviews-marquee-row">
+          <div class="reviews-marquee-track track-row-1" id="reviewsTrackRow1"></div>
+        </div>
+        <div class="reviews-marquee-row">
+          <div class="reviews-marquee-track track-row-2" id="reviewsTrackRow2"></div>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <!-- Main Footer -->
@@ -700,8 +724,42 @@
     let corporateItems = [];
     let corporateType = 'all';
 
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str).replace(/[&<>"']/g, m => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+      }[m]));
+    }
+
+    function renderCorporateSubFilter() {
+      const container = document.getElementById("corporateSubFilter");
+      if (!container) return;
+
+      const catObj = (SITE_DATA.categories || []).find(c => c.id === 'corporate');
+      const subcats = (catObj && Array.isArray(catObj.subcategories) && catObj.subcategories.length > 0)
+        ? catObj.subcategories
+        : [
+            { id: "office", name: "Office Inauguration & Milestones", icon: "🏢", title: "Office Inauguration & Milestone Decor" },
+            { id: "stage", name: "Grand Stage & Annual Day", icon: "🎉", title: "Grand Stage & Annual Day Conferences" }
+          ];
+
+      let html = `<button class="filter-pill ${corporateType === 'all' ? 'active' : ''}" onclick="filterCorporateType('all', this)">All Corporate Setups (${corporateItems.length})</button>`;
+
+      subcats.forEach(sub => {
+        if (sub.isLink && sub.href) {
+          html += `<a href="${escapeHtml(sub.href)}" class="filter-pill">${sub.icon ? sub.icon + ' ' : ''}${escapeHtml(sub.name)}</a>`;
+        } else {
+          const isActive = corporateType === sub.id ? 'active' : '';
+          html += `<button class="filter-pill ${isActive}" onclick="filterCorporateType('${escapeHtml(sub.id)}', this)">${sub.icon ? sub.icon + ' ' : ''}${escapeHtml(sub.name)}</button>`;
+        }
+      });
+
+      container.innerHTML = html;
+    }
+
     function initCorporatePage() {
       corporateItems = SITE_DATA.products.filter(p => p.category === 'corporate');
+      renderCorporateSubFilter();
       renderCorporateProducts();
     }
 
@@ -712,9 +770,23 @@
       if (btnEl) btnEl.classList.add("active");
 
       const titleEl = document.getElementById("corporateCatalogTitle");
-      if (type === 'office') titleEl.textContent = "Office Inauguration & Milestone Decor";
-      else if (type === 'stage') titleEl.textContent = "Grand Stage & Annual Day Conferences";
-      else titleEl.textContent = "All Corporate & Office Packages";
+      if (type === 'all') {
+        titleEl.textContent = "All Corporate & Office Packages";
+      } else {
+        const catObj = (SITE_DATA.categories || []).find(c => c.id === 'corporate');
+        const sub = (catObj && Array.isArray(catObj.subcategories)) ? catObj.subcategories.find(s => s.id === type) : null;
+        if (sub && sub.title) {
+          titleEl.textContent = sub.title;
+        } else if (sub) {
+          titleEl.textContent = `${sub.name} Packages`;
+        } else if (type === 'office') {
+          titleEl.textContent = "Office Inauguration & Milestone Decor";
+        } else if (type === 'stage') {
+          titleEl.textContent = "Grand Stage & Annual Day Conferences";
+        } else {
+          titleEl.textContent = "Corporate & Office Packages";
+        }
+      }
 
       renderCorporateProducts();
     }
@@ -731,10 +803,18 @@
       if (!grid) return;
 
       let filtered = [...corporateItems];
-      if (corporateType === 'office') {
-        filtered = filtered.filter(p => p.title.toLowerCase().includes("office") || p.title.toLowerCase().includes("milestone"));
-      } else if (corporateType === 'stage') {
-        filtered = filtered.filter(p => p.title.toLowerCase().includes("stage") || p.title.toLowerCase().includes("annual"));
+      if (corporateType !== 'all') {
+        filtered = filtered.filter(p => {
+          if (p.subcategory) {
+            return String(p.subcategory).toLowerCase() === String(corporateType).toLowerCase();
+          }
+          if (corporateType === 'office') {
+            return p.title && (p.title.toLowerCase().includes("office") || p.title.toLowerCase().includes("milestone"));
+          } else if (corporateType === 'stage') {
+            return p.title && (p.title.toLowerCase().includes("stage") || p.title.toLowerCase().includes("annual"));
+          }
+          return false;
+        });
       }
 
       grid.innerHTML = filtered.map((product, idx) => `
@@ -770,5 +850,12 @@
       initCorporatePage();
     });
   </script>
+  <!-- Review Media Modal Overlay (Video Reels & Photos) -->
+  <div class="review-modal-overlay" id="reviewMediaModalOverlay" onclick="closeReviewMediaModal(event)">
+    <div class="review-modal-content">
+      <button class="review-modal-close" onclick="closeReviewMediaModal(event)" aria-label="Close modal">&times;</button>
+      <div class="review-modal-body" id="reviewModalBody"></div>
+    </div>
+  </div>
 </body>
 </html>

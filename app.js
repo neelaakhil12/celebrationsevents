@@ -17,6 +17,77 @@ let appState = {
 
 // DOM Initialization
 document.addEventListener("DOMContentLoaded", () => {
+  // Sync custom products, categories, and reviews from admin panel if present
+  try {
+    const customProds = localStorage.getItem("celebration_custom_products");
+    if (customProds && typeof SITE_DATA !== "undefined" && Array.isArray(SITE_DATA.products)) {
+      const parsed = JSON.parse(customProds);
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        const pMap = new Map();
+        SITE_DATA.products.forEach(p => pMap.set(p.id, p));
+        parsed.forEach(p => pMap.set(p.id, p));
+        SITE_DATA.products = Array.from(pMap.values());
+      }
+    }
+    const customCats = localStorage.getItem("celebration_custom_categories");
+    if (customCats && typeof SITE_DATA !== "undefined" && Array.isArray(SITE_DATA.categories)) {
+      const parsed = JSON.parse(customCats);
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        const cMap = new Map();
+        SITE_DATA.categories.forEach(c => cMap.set(c.id, c));
+        parsed.forEach(c => {
+          const existing = cMap.get(c.id);
+          if (existing && (!c.subcategories || c.subcategories.length === 0) && existing.subcategories) {
+            c.subcategories = existing.subcategories;
+          }
+          cMap.set(c.id, c);
+        });
+        SITE_DATA.categories = Array.from(cMap.values());
+      }
+    }
+    const customRevs = localStorage.getItem("celebration_custom_reviews");
+    if (customRevs && typeof SITE_DATA !== "undefined") {
+      const parsed = JSON.parse(customRevs);
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        SITE_DATA.reviews = parsed;
+      }
+    }
+    const customCities = localStorage.getItem("celebration_custom_cities");
+    if (customCities && typeof SITE_DATA !== "undefined") {
+      const parsed = JSON.parse(customCities);
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        SITE_DATA.cities = parsed;
+      }
+    }
+
+    // Live sync with server disk backup if available
+    fetch('/api/data')
+      .then(res => res.ok ? res.json() : null)
+      .then(remoteData => {
+        if (remoteData && typeof SITE_DATA !== "undefined") {
+          let updated = false;
+          if (Array.isArray(remoteData.reviews) && remoteData.reviews.length > 0) {
+            SITE_DATA.reviews = remoteData.reviews;
+            updated = true;
+          }
+          if (Array.isArray(remoteData.products) && remoteData.products.length > 0) {
+            SITE_DATA.products = remoteData.products;
+          }
+          if (Array.isArray(remoteData.categories) && remoteData.categories.length > 0) {
+            SITE_DATA.categories = remoteData.categories;
+          }
+          if (Array.isArray(remoteData.cities) && remoteData.cities.length > 0) {
+            SITE_DATA.cities = remoteData.cities;
+            try { renderCitiesList(); renderFooterCities(); } catch(e){}
+          }
+          if (updated) {
+            try { renderReviews(); } catch(e){}
+          }
+        }
+      })
+      .catch(() => {});
+  } catch(e){}
+
   // Initialize AOS safely
   try {
     if (typeof AOS !== "undefined") {
@@ -46,6 +117,7 @@ document.addEventListener("DOMContentLoaded", () => {
   try { updateCartBadge(); } catch(e){}
   try { initBookNowAnimations(); } catch(e){}
   try { scrollActiveNavIntoView(); } catch(e){}
+  try { updateUserAuthHeader(); } catch(e){}
 
   setTimeout(() => {
     if (typeof AOS !== "undefined") AOS.refresh();
@@ -84,14 +156,23 @@ function setupEventListeners() {
   // Mobile menu
   document.getElementById("mobileMenuBtn")?.addEventListener("click", openMobileSidebar);
 
-  // Filter pills (Home page main catalog)
+  // Filter pills (Home page main catalog) - rendered dynamically from SITE_DATA.categories
+  const filterPillsContainer = document.getElementById("filterPills");
+  if (filterPillsContainer && typeof SITE_DATA !== "undefined" && Array.isArray(SITE_DATA.categories)) {
+    let pillsHTML = `<button type="button" class="filter-pill ${appState.currentCategory === 'all' ? 'active' : ''}" data-cat="all">All Occasions</button>`;
+    SITE_DATA.categories.forEach(cat => {
+      const isActive = appState.currentCategory === cat.id ? 'active' : '';
+      pillsHTML += `<button type="button" class="filter-pill ${isActive}" data-cat="${cat.id}">${cat.icon ? cat.icon + ' ' : ''}${cat.name}</button>`;
+    });
+    filterPillsContainer.innerHTML = pillsHTML;
+  }
   const homeFilterPills = document.querySelectorAll("#filterPills .filter-pill");
   homeFilterPills.forEach(pill => {
     pill.addEventListener("click", (e) => {
       e.preventDefault();
       const cat = pill.getAttribute("data-cat");
       if (!cat) return;
-      homeFilterPills.forEach(p => p.classList.remove("active"));
+      document.querySelectorAll("#filterPills .filter-pill").forEach(p => p.classList.remove("active"));
       pill.classList.add("active");
       filterCategory(cat);
     });
@@ -131,6 +212,7 @@ function selectCity(cityIdOrName) {
 }
 
 function openCityModal() {
+  renderCitiesList();
   document.getElementById("cityModalOverlay").classList.add("active");
 }
 
@@ -258,14 +340,16 @@ function renderQuickCategories() {
   };
 
   container.innerHTML = SITE_DATA.categories.map((cat, idx) => {
-    const pageUrl = categoryUrlMap[cat.id] || `birthday.html`;
+    const hasDedicatedPage = Boolean(categoryUrlMap[cat.id]);
+    const pageUrl = hasDedicatedPage ? categoryUrlMap[cat.id] : "#catalogHeading";
+    const clickHandler = hasDedicatedPage ? "" : `onclick="filterCategory('${cat.id}'); document.getElementById('catalogHeading')?.scrollIntoView({behavior:'smooth'}); return false;"`;
     return `
-      <a href="${pageUrl}" class="quick-category-card" data-aos="zoom-in" data-aos-delay="${(idx + 1) * 70}" style="text-decoration: none; color: inherit;">
+      <a href="${pageUrl}" ${clickHandler} class="quick-category-card" data-aos="zoom-in" data-aos-delay="${(idx + 1) * 70}" style="text-decoration: none; color: inherit; cursor: pointer;">
         <span class="category-card-badge">${cat.badge}</span>
         <div class="category-img-box">
           <img src="${cat.image}" alt="${cat.name}" loading="lazy" />
         </div>
-        <span class="category-name">${cat.icon} ${cat.name}</span>
+        <span class="category-name">${cat.icon || '🎈'} ${cat.name}</span>
       </a>
     `;
   }).join("");
@@ -1111,6 +1195,12 @@ function handleLiveSearch() {
 // ----------------------------------------------------
 function createStreamReviewCard(rev) {
   const isVideo = rev.type === "video";
+  const ratingVal = Number(rev.rating) || 5;
+  const fullStars = Math.min(5, Math.max(1, Math.floor(ratingVal)));
+  const starsStr = "★".repeat(fullStars) + "☆".repeat(Math.max(0, 5 - fullStars));
+  const avatarLetter = (rev.name || 'C').trim().charAt(0).toUpperCase();
+  const safeImgFallback = "https://cdn.balloondekor.com/images/61/7ebf2dbd-60dd-4643-8029-763dc6a3e5e3.webp";
+
   return `
     <div class="stream-review-card ${isVideo ? 'is-video' : 'is-photo'}" 
          onclick="openReviewMediaModal('${rev.id}')"
@@ -1126,28 +1216,28 @@ function createStreamReviewCard(rev) {
             <span class="play-icon-glow">▶</span>
           </div>
         ` : `
-          <img class="stream-card-img" src="${rev.media}" alt="${rev.name}" loading="lazy" />
+          <img class="stream-card-img" src="${rev.media}" alt="${rev.name}" loading="lazy" onerror="this.src='${safeImgFallback}'" />
           <div class="stream-photo-badge">
             <span>📸 PHOTO</span>
           </div>
         `}
         <div class="stream-media-gradient"></div>
-        <div class="stream-tag-pill">${rev.service}</div>
+        <div class="stream-tag-pill">${rev.service || 'Celebration Decor'}</div>
       </div>
 
       <div class="stream-card-content">
         <div class="stream-rating-row">
-          <div class="stream-stars">★★★★★</div>
-          <span class="stream-rating-num">5.0</span>
+          <div class="stream-stars">${starsStr}</div>
+          <span class="stream-rating-num">${ratingVal.toFixed(1)}</span>
         </div>
-        <p class="stream-quote">"${rev.text}"</p>
+        <p class="stream-quote">"${rev.text || ''}"</p>
         <div class="stream-user-row">
-          <div class="stream-user-avatar">${rev.name.charAt(0)}</div>
+          <div class="stream-user-avatar">${avatarLetter}</div>
           <div class="stream-user-info">
             <div class="stream-user-name">
-              ${rev.name} <span class="stream-verified">✓ Verified</span>
+              ${rev.name} ${rev.verified !== false ? '<span class="stream-verified">✓ Verified</span>' : ''}
             </div>
-            <div class="stream-user-city">📍 ${rev.city} • ${rev.date}</div>
+            <div class="stream-user-city">📍 ${rev.city || 'India'} • ${rev.date || 'Recent'}</div>
           </div>
         </div>
       </div>
@@ -1168,17 +1258,26 @@ function renderReviews() {
     return;
   }
 
-  const allReviews = SITE_DATA.reviews || [];
+  const allReviews = (SITE_DATA.reviews && SITE_DATA.reviews.length > 0) ? SITE_DATA.reviews : [];
+  if (allReviews.length === 0) return;
+
   const mid = Math.ceil(allReviews.length / 2);
   const row1List = allReviews.slice(0, mid);
   const row2List = allReviews.slice(mid);
 
-  // Duplicate each list once to ensure 100% seamless, infinite, continuous scrolling
-  const row1Html = [...row1List, ...row1List].map(createStreamReviewCard).join("");
-  const row2Html = [...row2List, ...row2List].map(createStreamReviewCard).join("");
+  // Pad list if fewer than 5 items to ensure infinite marquee width exceeds viewport
+  function buildSeamlessMarqueeHtml(list) {
+    if (!list || list.length === 0) return "";
+    let base = [...list];
+    while (base.length < 5) {
+      base = base.concat(list);
+    }
+    // Duplicate once so CSS translateX(-50%) seamlessly loops 
+    return [...base, ...base].map(createStreamReviewCard).join("");
+  }
 
-  track1.innerHTML = row1Html;
-  track2.innerHTML = row2Html;
+  track1.innerHTML = buildSeamlessMarqueeHtml(row1List.length > 0 ? row1List : allReviews);
+  track2.innerHTML = buildSeamlessMarqueeHtml(row2List.length > 0 ? row2List : allReviews);
 }
 
 function openReviewMediaModal(reviewId) {
@@ -1189,6 +1288,8 @@ function openReviewMediaModal(reviewId) {
   const overlay = document.getElementById("reviewMediaModalOverlay");
   if (!modalBody || !overlay) return;
 
+  const ratingVal = Number(rev.rating) || 5;
+  const starsStr = "★".repeat(Math.min(5, Math.floor(ratingVal)));
   const mediaHtml = rev.type === "video"
     ? `<video src="${rev.media}" poster="${rev.poster || ''}" controls autoplay playsinline style="width: 100%; height: 100%; object-fit: contain;"></video>`
     : `<img src="${rev.media}" alt="${rev.name}" style="width: 100%; height: 100%; object-fit: contain;" />`;
@@ -1203,7 +1304,7 @@ function openReviewMediaModal(reviewId) {
           <span style="font-size: 11px; font-weight: 800; color: var(--brand-600); background: var(--brand-50); border: 1px solid var(--brand-200); padding: 3px 9px; border-radius: 99px;">
             ${rev.type === 'video' ? '🎥 Verified Video Reel' : '📸 Customer Photo Review'}
           </span>
-          <span style="color: #f59e0b; font-size: 14px; letter-spacing: 1px;">★★★★★</span>
+          <span style="color: #f59e0b; font-size: 14px; letter-spacing: 1px;">${starsStr}</span>
         </div>
 
         <h3 style="font-size: 20px; font-weight: 800; color: var(--gray-900); margin-bottom: 4px;">
@@ -1221,7 +1322,7 @@ function openReviewMediaModal(reviewId) {
 
         <div style="display: flex; align-items: center; gap: 12px;">
           <div class="stream-user-avatar" style="width: 42px; height: 42px; font-size: 16px;">
-            ${rev.name.charAt(0)}
+            ${(rev.name || 'C').charAt(0).toUpperCase()}
           </div>
           <div>
             <div style="font-size: 14px; font-weight: 700; color: var(--gray-900);">
@@ -1233,7 +1334,7 @@ function openReviewMediaModal(reviewId) {
       </div>
 
       <div style="display: flex; gap: 10px; margin-top: 24px;">
-        <button class="slide-btn" style="flex: 1; justify-content: center;" onclick="closeReviewMediaModal(); filterCategory('all'); const cat=document.getElementById('catalogSection'); if(cat) cat.scrollIntoView({behavior: 'smooth'});">
+        <button class="slide-btn" style="flex: 1; justify-content: center;" onclick="closeReviewMediaModal(); try { if (typeof filterCategory === 'function') filterCategory('all'); } catch(e){}; const cat=document.getElementById('catalogSection') || document.querySelector('.products-grid'); if(cat) cat.scrollIntoView({behavior: 'smooth'});">
           Explore Decoration Packages 🎈
         </button>
       </div>
@@ -1245,7 +1346,7 @@ function openReviewMediaModal(reviewId) {
 }
 
 function closeReviewMediaModal(e) {
-  if (e && e.target && e.target.id !== "reviewMediaModalOverlay" && !e.target.classList.contains("review-modal-close-btn")) {
+  if (e && e.target && e.target.id !== "reviewMediaModalOverlay" && !e.target.closest(".review-modal-close") && !e.target.closest(".review-modal-close-btn")) {
     return;
   }
   const overlay = document.getElementById("reviewMediaModalOverlay");
@@ -1318,9 +1419,576 @@ function initKeyboardShortcuts() {
   });
 }
 
-function openLoginPrompt() {
-  showToast("🔐 Decorator & Client Portal: Please enter your mobile to receive an OTP.");
+// ====================================================
+// Customer User Authentication & Password Reset (SMTP)
+// ====================================================
+function escapeUserHtml(str) {
+  if (!str) return '';
+  return String(str).replace(/[&<>"']/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[m]);
 }
+
+function ensureUserAuthModal() {
+  if (document.getElementById("userAuthModalOverlay")) return;
+
+  const modalHtml = `
+  <div class="user-auth-modal-overlay" id="userAuthModalOverlay" onclick="handleUserAuthOverlayClick(event)">
+    <div class="user-auth-modal-card" onclick="event.stopPropagation()">
+      <div class="user-auth-header">
+        <button type="button" class="user-auth-close" onclick="closeLoginPrompt()" aria-label="Close modal">&times;</button>
+        <div style="font-size:32px; margin-bottom:4px;">🎈</div>
+        <h3 id="userAuthHeaderTitle">Welcome to Celebration Events</h3>
+        <p id="userAuthHeaderSubtitle">Sign in to customize & track your party celebrations</p>
+      </div>
+
+      <!-- Navigation Tabs -->
+      <div class="user-auth-tabs" id="userAuthTabs">
+        <button type="button" class="user-auth-tab active" id="userTabLogin" onclick="switchUserAuthTab('login')">Sign In</button>
+        <button type="button" class="user-auth-tab" id="userTabRegister" onclick="switchUserAuthTab('register')">Create Account</button>
+      </div>
+
+      <div class="user-auth-body">
+        <div id="userAuthAlert" class="user-auth-alert"></div>
+
+        <!-- 1. SIGN IN FORM -->
+        <form id="userLoginForm" onsubmit="handleUserLoginSubmit(event)">
+          <div class="user-form-group">
+            <label for="userLoginEmail">Email Address</label>
+            <div class="user-input-wrap">
+              <span class="user-input-icon">✉️</span>
+              <input type="email" id="userLoginEmail" class="user-form-control" placeholder="name@example.com" required autocomplete="email" />
+            </div>
+          </div>
+
+          <div class="user-form-group">
+            <label for="userLoginPassword">Password</label>
+            <div class="user-input-wrap">
+              <span class="user-input-icon">🔒</span>
+              <input type="password" id="userLoginPassword" class="user-form-control" placeholder="••••••••" required autocomplete="current-password" />
+              <button type="button" class="user-pass-toggle" onclick="togglePassVisibility('userLoginPassword')">👁️</button>
+            </div>
+          </div>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; font-size:12.5px;">
+            <label style="display:flex; align-items:center; gap:6px; cursor:pointer; color:#475569;">
+              <input type="checkbox" id="userRememberMe" checked /> Remember me
+            </label>
+            <button type="button" onclick="switchUserAuthTab('forgot')" style="background:none; border:none; color:#d81b60; font-weight:700; cursor:pointer; text-decoration:underline;">
+              Forgot Password?
+            </button>
+          </div>
+
+          <button type="submit" class="user-auth-submit" id="userLoginSubmitBtn">
+            <span>Sign In to Account</span>
+          </button>
+
+          <p style="text-align:center; margin:16px 0 0; font-size:13px; color:#64748b;">
+            Don't have an account? <a href="#" onclick="switchUserAuthTab('register'); return false;" style="color:#d81b60; font-weight:700;">Sign up free</a>
+          </p>
+        </form>
+
+        <!-- 2. REGISTER FORM -->
+        <form id="userRegisterForm" onsubmit="handleUserRegisterSubmit(event)" style="display:none;">
+          <div class="user-form-group">
+            <label for="userRegName">Full Name *</label>
+            <div class="user-input-wrap">
+              <span class="user-input-icon">👤</span>
+              <input type="text" id="userRegName" class="user-form-control" placeholder="Rohit Sharma" required />
+            </div>
+          </div>
+
+          <div class="user-form-group">
+            <label for="userRegEmail">Email Address *</label>
+            <div class="user-input-wrap">
+              <span class="user-input-icon">✉️</span>
+              <input type="email" id="userRegEmail" class="user-form-control" placeholder="name@example.com" required autocomplete="email" />
+            </div>
+          </div>
+
+          <div class="user-form-group">
+            <label for="userRegPhone">WhatsApp / Mobile *</label>
+            <div class="user-input-wrap">
+              <span class="user-input-icon">📱</span>
+              <input type="tel" id="userRegPhone" class="user-form-control" placeholder="+91 98765 43210" required />
+            </div>
+          </div>
+
+          <div class="user-form-group">
+            <label for="userRegPassword">Create Password * (min 6 characters)</label>
+            <div class="user-input-wrap">
+              <span class="user-input-icon">🔒</span>
+              <input type="password" id="userRegPassword" class="user-form-control" placeholder="••••••••" minlength="6" required />
+              <button type="button" class="user-pass-toggle" onclick="togglePassVisibility('userRegPassword')">👁️</button>
+            </div>
+          </div>
+
+          <button type="submit" class="user-auth-submit" id="userRegisterSubmitBtn">
+            <span>Create Account 🎉</span>
+          </button>
+
+          <p style="text-align:center; margin:16px 0 0; font-size:13px; color:#64748b;">
+            Already have an account? <a href="#" onclick="switchUserAuthTab('login'); return false;" style="color:#d81b60; font-weight:700;">Sign In</a>
+          </p>
+        </form>
+
+        <!-- 3. FORGOT / RESET PASSWORD VIEW (SMTP VERIFIED) -->
+        <div id="userForgotView" style="display:none;">
+          <div style="display:flex; align-items:center; gap:8px; margin-bottom:14px;">
+            <button type="button" onclick="switchUserAuthTab('login')" style="background:none; border:none; color:#d81b60; font-size:13px; font-weight:700; cursor:pointer; padding:0; display:flex; align-items:center; gap:4px;">
+              ← Back to Sign In
+            </button>
+          </div>
+
+          <!-- Step 1: Send OTP -->
+          <div id="userForgotStep1">
+            <p style="font-size:13px; color:#64748b; margin:0 0 16px; line-height:1.5;">
+              Enter your registered email address and we will send a 6-digit verification code to reset your password.
+            </p>
+
+            <div class="user-form-group">
+              <label for="userForgotEmail">Your Email Address</label>
+              <div class="user-input-wrap">
+                <span class="user-input-icon">✉️</span>
+                <input type="email" id="userForgotEmail" class="user-form-control" placeholder="name@example.com" required />
+              </div>
+            </div>
+
+            <button type="button" class="user-auth-submit" id="userSendOtpBtn" onclick="handleSendUserOtp()">
+              <span>Send Verification Code</span>
+            </button>
+          </div>
+
+          <!-- Step 2: Enter OTP & Set New Password -->
+          <div id="userForgotStep2" style="display:none;">
+            <div style="background:#fff1f2; border:1px solid #fecdd3; border-radius:10px; padding:10px 14px; margin-bottom:16px; font-size:12.5px; color:#be123c;">
+              ✉️ Verification code sent to <strong id="userForgotEmailDisplay"></strong>. Code expires in 10 minutes.
+            </div>
+
+            <div class="user-form-group">
+              <label for="userForgotOtp">Enter 6-Digit Code *</label>
+              <input type="text" id="userForgotOtp" maxlength="6" placeholder="123456" class="user-form-control" style="font-size:20px; letter-spacing:5px; text-align:center; font-family:monospace; font-weight:700; padding:10px;" />
+            </div>
+
+            <div class="user-form-group">
+              <label for="userForgotNewPass">New Password * (min 6 chars)</label>
+              <div class="user-input-wrap">
+                <span class="user-input-icon">🔒</span>
+                <input type="password" id="userForgotNewPass" class="user-form-control" placeholder="••••••••" minlength="6" />
+                <button type="button" class="user-pass-toggle" onclick="togglePassVisibility('userForgotNewPass')">👁️</button>
+              </div>
+            </div>
+
+            <div class="user-form-group">
+              <label for="userForgotConfirmPass">Confirm New Password *</label>
+              <div class="user-input-wrap">
+                <span class="user-input-icon">🔒</span>
+                <input type="password" id="userForgotConfirmPass" class="user-form-control" placeholder="••••••••" minlength="6" />
+                <button type="button" class="user-pass-toggle" onclick="togglePassVisibility('userForgotConfirmPass')">👁️</button>
+              </div>
+            </div>
+
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; font-size:12px;">
+              <button type="button" onclick="handleSendUserOtp()" style="background:none; border:none; color:#d81b60; font-weight:700; cursor:pointer; text-decoration:underline;">
+                Resend Code
+              </button>
+              <button type="button" onclick="userForgotStep2ToStep1()" style="background:none; border:none; color:#64748b; cursor:pointer;">
+                Change Email
+              </button>
+            </div>
+
+            <button type="button" class="user-auth-submit" id="userConfirmResetBtn" onclick="handleVerifyUserResetPass()">
+              <span>Update Password & Sign In</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  `;
+
+  document.body.insertAdjacentHTML('beforeend', modalHtml);
+}
+
+function openLoginPrompt(view = 'login') {
+  ensureUserAuthModal();
+  const session = getUserSession();
+  if (session && session.email && view === 'login') {
+    showToast(`👤 Signed in as ${session.name || session.email}`);
+    toggleUserProfileDropdown();
+    return;
+  }
+
+  const overlay = document.getElementById("userAuthModalOverlay");
+  if (overlay) {
+    overlay.classList.add("active");
+    document.body.style.overflow = "hidden";
+    switchUserAuthTab(view);
+  }
+}
+
+function closeLoginPrompt() {
+  const overlay = document.getElementById("userAuthModalOverlay");
+  if (overlay) {
+    overlay.classList.remove("active");
+    document.body.style.overflow = "";
+  }
+}
+
+function handleUserAuthOverlayClick(e) {
+  if (e.target.id === "userAuthModalOverlay") {
+    closeLoginPrompt();
+  }
+}
+
+function switchUserAuthTab(tab) {
+  const tabLogin = document.getElementById("userTabLogin");
+  const tabRegister = document.getElementById("userTabRegister");
+  const formLogin = document.getElementById("userLoginForm");
+  const formRegister = document.getElementById("userRegisterForm");
+  const viewForgot = document.getElementById("userForgotView");
+  const authTabs = document.getElementById("userAuthTabs");
+  const title = document.getElementById("userAuthHeaderTitle");
+  const subtitle = document.getElementById("userAuthHeaderSubtitle");
+  const alertBox = document.getElementById("userAuthAlert");
+
+  if (alertBox) {
+    alertBox.style.display = "none";
+    alertBox.className = "user-auth-alert";
+  }
+
+  if (tab === 'login') {
+    authTabs.style.display = "flex";
+    tabLogin.classList.add("active");
+    tabRegister.classList.remove("active");
+    formLogin.style.display = "block";
+    formRegister.style.display = "none";
+    viewForgot.style.display = "none";
+    title.textContent = "Welcome to Celebration Events";
+    subtitle.textContent = "Sign in to customize & track your party celebrations";
+  } else if (tab === 'register') {
+    authTabs.style.display = "flex";
+    tabLogin.classList.remove("active");
+    tabRegister.classList.add("active");
+    formLogin.style.display = "none";
+    formRegister.style.display = "block";
+    viewForgot.style.display = "none";
+    title.textContent = "Create Your Account";
+    subtitle.textContent = "Join over 25,000+ happy customers celebrating with us";
+  } else if (tab === 'forgot') {
+    authTabs.style.display = "none";
+    formLogin.style.display = "none";
+    formRegister.style.display = "none";
+    viewForgot.style.display = "block";
+    userForgotStep2ToStep1();
+    title.textContent = "Reset Your Password";
+    subtitle.textContent = "Verify with code sent via secure email";
+    const loginEmail = document.getElementById("userLoginEmail")?.value;
+    const forgotEmail = document.getElementById("userForgotEmail");
+    if (forgotEmail && loginEmail) forgotEmail.value = loginEmail;
+  }
+}
+
+function userForgotStep2ToStep1() {
+  const step1 = document.getElementById("userForgotStep1");
+  const step2 = document.getElementById("userForgotStep2");
+  if (step1) step1.style.display = "block";
+  if (step2) step2.style.display = "none";
+}
+
+function togglePassVisibility(inputId) {
+  const input = document.getElementById(inputId);
+  if (!input) return;
+  input.type = (input.type === "password") ? "text" : "password";
+}
+
+function showUserAuthAlert(msg, type = 'error') {
+  const alertBox = document.getElementById("userAuthAlert");
+  if (!alertBox) return;
+  alertBox.textContent = msg;
+  alertBox.className = `user-auth-alert ${type}`;
+  alertBox.style.display = "block";
+}
+
+function getUserSession() {
+  try {
+    const raw = localStorage.getItem("celebration_user_session");
+    return raw ? JSON.parse(raw) : null;
+  } catch (e) {
+    return null;
+  }
+}
+
+async function handleUserLoginSubmit(e) {
+  e.preventDefault();
+  const email = document.getElementById("userLoginEmail").value.trim().toLowerCase();
+  const password = document.getElementById("userLoginPassword").value;
+  const btn = document.getElementById("userLoginSubmitBtn");
+
+  if (!email || !password) {
+    showUserAuthAlert("Please enter your email and password.");
+    return;
+  }
+
+  btn.disabled = true;
+  btn.innerHTML = "<span>Signing in...</span>";
+
+  try {
+    const res = await fetch('/api/auth/user-login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password })
+    });
+    const data = await res.json();
+    if (res.ok && data.success) {
+      localStorage.setItem("celebration_user_session", JSON.stringify(data.user));
+      closeLoginPrompt();
+      updateUserAuthHeader();
+      showToast(`Welcome back, ${data.user.name || 'Friend'}! 🎉`);
+    } else {
+      showUserAuthAlert(data.error || "Invalid email or password.");
+    }
+  } catch (err) {
+    showUserAuthAlert("Could not reach authentication server. Please check your connection.");
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = "<span>Sign In to Account</span>";
+  }
+}
+
+async function handleUserRegisterSubmit(e) {
+  e.preventDefault();
+  const name = document.getElementById("userRegName").value.trim();
+  const email = document.getElementById("userRegEmail").value.trim().toLowerCase();
+  const phone = document.getElementById("userRegPhone").value.trim();
+  const password = document.getElementById("userRegPassword").value;
+  const btn = document.getElementById("userRegisterSubmitBtn");
+
+  if (!name || !email || !password) {
+    showUserAuthAlert("Please fill in all required fields.");
+    return;
+  }
+  if (password.length < 6) {
+    showUserAuthAlert("Password must be at least 6 characters.");
+    return;
+  }
+
+  btn.disabled = true;
+  btn.innerHTML = "<span>Creating account...</span>";
+
+  try {
+    const res = await fetch('/api/auth/user-register', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, email, phone, password })
+    });
+    const data = await res.json();
+    if (res.ok && data.success) {
+      localStorage.setItem("celebration_user_session", JSON.stringify(data.user));
+      closeLoginPrompt();
+      updateUserAuthHeader();
+      showToast(`Account created! Welcome, ${data.user.name}! 🎉`);
+    } else {
+      showUserAuthAlert(data.error || "Registration failed. Please try again.");
+    }
+  } catch (err) {
+    showUserAuthAlert("Server connection error during account creation.");
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = "<span>Create Account 🎉</span>";
+  }
+}
+
+async function handleSendUserOtp() {
+  const email = document.getElementById("userForgotEmail").value.trim().toLowerCase();
+  const btn = document.getElementById("userSendOtpBtn");
+
+  if (!email || !email.includes('@')) {
+    showUserAuthAlert("Please enter a valid email address.");
+    return;
+  }
+
+  if (btn) {
+    btn.disabled = true;
+    btn.innerHTML = "<span>Sending code via Gmail...</span>";
+  }
+
+  try {
+    const res = await fetch('/api/auth/send-otp', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, role: 'user' })
+    });
+    const data = await res.json();
+    if (res.ok && data.success) {
+      document.getElementById("userForgotStep1").style.display = "none";
+      document.getElementById("userForgotStep2").style.display = "block";
+      document.getElementById("userForgotEmailDisplay").textContent = email;
+      const alertBox = document.getElementById("userAuthAlert");
+      if (alertBox) alertBox.style.display = "none";
+      showToast(`Verification code sent to ${email}! ✉️`);
+      document.getElementById("userForgotOtp")?.focus();
+    } else {
+      showUserAuthAlert(data.error || "Failed to send verification code.");
+    }
+  } catch (err) {
+    showUserAuthAlert("Network error sending OTP email. Please try again.");
+  } finally {
+    if (btn) {
+      btn.disabled = false;
+      btn.innerHTML = "<span>Send Verification Code</span>";
+    }
+  }
+}
+
+async function handleVerifyUserResetPass() {
+  const email = document.getElementById("userForgotEmail").value.trim().toLowerCase();
+  const otp = document.getElementById("userForgotOtp").value.trim();
+  const newPass = document.getElementById("userForgotNewPass").value;
+  const confirmPass = document.getElementById("userForgotConfirmPass").value;
+  const btn = document.getElementById("userConfirmResetBtn");
+
+  if (!otp || otp.length < 4) {
+    showUserAuthAlert("Please enter the 6-digit verification code sent to your email.");
+    return;
+  }
+  if (!newPass || newPass.length < 6) {
+    showUserAuthAlert("New password must be at least 6 characters.");
+    return;
+  }
+  if (newPass !== confirmPass) {
+    showUserAuthAlert("New passwords do not match.");
+    return;
+  }
+
+  btn.disabled = true;
+  btn.innerHTML = "<span>Verifying code & updating...</span>";
+
+  try {
+    const res = await fetch('/api/auth/verify-reset-password', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, otp, newPassword: newPass, role: 'user' })
+    });
+    const data = await res.json();
+    if (res.ok && data.success) {
+      showToast("Password reset successfully! Please sign in.");
+      switchUserAuthTab('login');
+      document.getElementById("userLoginEmail").value = email;
+      document.getElementById("userLoginPassword").value = newPass;
+      showUserAuthAlert("Password updated! Click Sign In to continue.", "success");
+    } else {
+      showUserAuthAlert(data.error || "Failed to reset password. Please check your code.");
+    }
+  } catch (err) {
+    showUserAuthAlert("Server error while resetting password. Please try again.");
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = "<span>Update Password & Sign In</span>";
+  }
+}
+
+function handleUserLogout() {
+  localStorage.removeItem("celebration_user_session");
+  const dropdown = document.getElementById("userProfileMenuDropdown");
+  if (dropdown) dropdown.classList.remove("active");
+  updateUserAuthHeader();
+  showToast("You have been signed out successfully.");
+}
+
+function toggleUserProfileDropdown() {
+  let dropdown = document.getElementById("userProfileMenuDropdown");
+  const targetBtn = document.querySelector(".header-sign-in");
+  if (!targetBtn) return;
+
+  const session = getUserSession();
+  if (!session) return;
+
+  if (!dropdown) {
+    dropdown = document.createElement("div");
+    dropdown.id = "userProfileMenuDropdown";
+    dropdown.className = "user-profile-menu";
+    targetBtn.parentElement.style.position = "relative";
+    targetBtn.parentElement.appendChild(dropdown);
+
+    document.addEventListener("click", (e) => {
+      if (!dropdown.contains(e.target) && !targetBtn.contains(e.target)) {
+        dropdown.classList.remove("active");
+      }
+    });
+  }
+
+  dropdown.innerHTML = `
+    <div style="font-weight:800; font-size:14px; color:#0f172a; margin-bottom:2px;">
+      ${escapeUserHtml(session.name || 'Valued Customer')}
+    </div>
+    <div style="font-size:12px; color:#64748b; margin-bottom:6px; word-break:break-all;">
+      ${escapeUserHtml(session.email)}
+    </div>
+    ${session.phone ? `<div style="font-size:12px; color:#64748b; margin-bottom:10px;">📱 ${escapeUserHtml(session.phone)}</div>` : ''}
+    <hr style="border:none; border-top:1px solid #f1f5f9; margin:8px 0;" />
+    <button type="button" onclick="handleUserLogout()" style="width:100%; padding:8px 12px; background:#fff1f2; color:#be123c; border:1px solid #fecdd3; border-radius:8px; font-weight:700; font-size:12.5px; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:6px;">
+      <span>🚪 Log Out</span>
+    </button>
+  `;
+
+  dropdown.classList.toggle("active");
+}
+
+function updateUserAuthHeader() {
+  const session = getUserSession();
+  const signInBtns = document.querySelectorAll(".header-sign-in");
+
+  signInBtns.forEach(btn => {
+    if (session && session.email) {
+      const firstName = (session.name || 'User').split(' ')[0];
+      btn.innerHTML = `<span style="display:inline-flex; align-items:center; gap:6px;">👤 ${escapeUserHtml(firstName)}</span>`;
+      btn.onclick = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        toggleUserProfileDropdown();
+      };
+    } else {
+      btn.innerHTML = `<span>Sign In</span>`;
+      btn.onclick = () => openLoginPrompt('login');
+    }
+  });
+
+  // Also update mobile sidebar links
+  const mobileNavLinks = document.querySelectorAll(".mobile-nav-link");
+  mobileNavLinks.forEach(link => {
+    if (link.textContent.includes("Sign In") || link.textContent.includes("Account")) {
+      if (session && session.email) {
+        link.innerHTML = `👤 ${escapeUserHtml(session.name || session.email)} (Sign Out) <span>›</span>`;
+        link.onclick = (e) => {
+          e.preventDefault();
+          handleUserLogout();
+          try { closeMobileSidebar(); } catch(err){}
+        };
+      } else {
+        link.innerHTML = `👤 Sign In / Account <span>›</span>`;
+        link.onclick = (e) => {
+          e.preventDefault();
+          openLoginPrompt('login');
+          try { closeMobileSidebar(); } catch(err){}
+        };
+      }
+    }
+  });
+}
+
+// Make functions globally accessible
+window.openLoginPrompt = openLoginPrompt;
+window.closeLoginPrompt = closeLoginPrompt;
+window.switchUserAuthTab = switchUserAuthTab;
+window.togglePassVisibility = togglePassVisibility;
+window.handleUserLoginSubmit = handleUserLoginSubmit;
+window.handleUserRegisterSubmit = handleUserRegisterSubmit;
+window.handleSendUserOtp = handleSendUserOtp;
+window.handleVerifyUserResetPass = handleVerifyUserResetPass;
+window.handleUserLogout = handleUserLogout;
+window.handleUserAuthOverlayClick = handleUserAuthOverlayClick;
+window.userForgotStep2ToStep1 = userForgotStep2ToStep1;
+window.toggleUserProfileDropdown = toggleUserProfileDropdown;
 
 // Toast notification helper
 function showToast(message) {
@@ -1527,8 +2195,49 @@ const WEDDING_SERVICE_ICONS = {
 };
 
 function initWeddingServicesPage() {
+  // Merge custom wedding services & configs from localStorage
+  try {
+    const customWS = localStorage.getItem('celebration_custom_wedding_services');
+    if (customWS) {
+      const parsed = JSON.parse(customWS);
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        SITE_DATA.weddingServices = parsed;
+      }
+    }
+    const customWC = localStorage.getItem('celebration_custom_wedding_configs');
+    if (customWC) {
+      const parsed = JSON.parse(customWC);
+      if (parsed && typeof parsed === 'object') {
+        SITE_DATA.weddingConfigs = parsed;
+        Object.keys(parsed).forEach(k => {
+          if (!WEDDING_MODAL_CONFIGS[k]) {
+            WEDDING_MODAL_CONFIGS[k] = {
+              title: k,
+              subtitle: 'Select the services you need. Dates and time will be confirmed later.',
+              type: 'individual',
+              options: parsed[k]
+            };
+          } else {
+            WEDDING_MODAL_CONFIGS[k].options = parsed[k];
+          }
+        });
+      }
+    }
+  } catch (e) {}
+
   renderWeddingServicesGrid();
   updateWeddingQuoteBar();
+
+  // Auto-open specific service modal if deep-linked via hash (e.g. #service-house-decor or #house-decor)
+  const hash = window.location.hash;
+  if (hash) {
+    const rawId = hash.replace(/^#service-|^#/, '');
+    if (rawId && SITE_DATA.weddingServices && SITE_DATA.weddingServices.some(s => s.id === rawId)) {
+      setTimeout(() => {
+        openWeddingServiceModal(rawId);
+      }, 300);
+    }
+  }
 }
 
 function renderWeddingServicesGrid() {
@@ -1978,13 +2687,13 @@ function renderWcmIndividual(listEl, cfg) {
           ${opt.subtitle ? `<p class="wcm-option-subtitle">${opt.subtitle}</p>` : ''}
         </div>
       </div>
-      ${opt.radios ? `
+      ${(opt.radios || opt.subItems) ? `
         <div class="wcm-sub-options-row">
-          ${opt.subPrompt ? `<span class="wcm-sub-prompt">${opt.subPrompt}</span>` : ''}
+          ${(opt.subPrompt || opt.subtitle) ? `<span class="wcm-sub-prompt">${opt.subPrompt || opt.subtitle}</span>` : ''}
           <div class="wcm-radios-wrap">
-            ${opt.radios.map((r, i) => `
+            ${(opt.radios || opt.subItems).map((r, i) => `
               <label class="wcm-radio-label">
-                <input type="radio" name="${opt.radioName}" value="${r}" class="wcm-radio-input" ${r === opt.selectedRadio ? 'checked' : ''} onchange="updateWcmRadio('${opt.id}', '${r}')" />
+                <input type="radio" name="${opt.radioName || ('r_' + opt.id)}" value="${r}" class="wcm-radio-input" ${r === opt.selectedRadio || i === 0 ? 'checked' : ''} onchange="updateWcmRadio('${opt.id}', '${r}')" />
                 <span>${r}</span>
               </label>
             `).join("")}
