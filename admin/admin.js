@@ -213,8 +213,13 @@
     const rememberCheckbox = document.getElementById('rememberMe');
     const errorAlert = document.getElementById('loginErrorAlert');
 
-    if (emailInput && !emailInput.value) {
-      emailInput.value = DEMO_CREDENTIALS.email;
+    // Load saved email if 'Remember me' was previously used
+    const savedAuth = localStorage.getItem(STORAGE_KEYS.AUTH);
+    if (savedAuth && emailInput && !emailInput.value) {
+      try {
+        const parsed = JSON.parse(savedAuth);
+        if (parsed.email) emailInput.value = parsed.email;
+      } catch (e) {}
     }
 
     quickFillBtn?.addEventListener('click', () => {
@@ -249,7 +254,7 @@
       // Check strictly authorized admin email
       if (enteredEmail !== DEMO_CREDENTIALS.email) {
         errorAlert.style.display = 'block';
-        errorAlert.textContent = `Access restricted: Only authorized administrator email (${DEMO_CREDENTIALS.email}) can access Admin Studio.`;
+        errorAlert.textContent = 'Access restricted: Only authorized administrator can access Admin Studio.';
         return;
       }
 
