@@ -385,9 +385,12 @@ const server = http.createServer(async (req, res) => {
       });
 
       console.log(`✅ Reset OTP sent successfully to ${email} (Role: ${role})`);
+      const hmacSecret = process.env.HMAC_SECRET || 'celebration_events_secure_otp_salt_2026';
+      const token = `${expiresAt}.${crypto.createHmac('sha256', hmacSecret).update(`${role}:${email}:${otp}:${expiresAt}`).digest('hex')}`;
       sendJson(res, 200, {
         success: true,
-        message: `Verification code sent to ${email}. Please check your inbox.`
+        message: `Verification code sent to ${email}. Please check your inbox.`,
+        token: token
       });
     } catch (err) {
       console.error('❌ Error sending OTP mail:', err);
@@ -407,6 +410,7 @@ const server = http.createServer(async (req, res) => {
       const email = (payload.email || '').trim().toLowerCase();
       const otp = (payload.otp || '').trim();
       const newPassword = payload.newPassword || '';
+      const token = payload.token || '';
 
       if (!email || !otp || !newPassword) {
         sendJson(res, 400, { success: false, error: 'Email, verification code, and new password are required.' });
@@ -419,7 +423,16 @@ const server = http.createServer(async (req, res) => {
       }
 
       const otpKey = `${role}:${email}`;
-      const record = otpStore.get(otpKey);
+      let record = otpStore.get(otpKey);
+
+      if (!record && token && token.includes('.')) {
+        const [exp, hash] = token.split('.');
+        const hmacSecret = process.env.HMAC_SECRET || 'celebration_events_secure_otp_salt_2026';
+        const expected = crypto.createHmac('sha256', hmacSecret).update(`${role}:${email}:${otp}:${exp}`).digest('hex');
+        if (hash === expected) {
+          record = { code: otp, expiresAt: Number(exp) };
+        }
+      }
 
       if (!record) {
         sendJson(res, 400, {

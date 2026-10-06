@@ -357,6 +357,8 @@
     closeAdminResetModalBtn?.addEventListener('click', closeAdminResetModal);
     cancelAdminResetBtn?.addEventListener('click', closeAdminResetModal);
 
+    let currentAdminResetToken = null;
+
     async function requestAdminOtp() {
       if (adminResetStep1Alert) adminResetStep1Alert.style.display = 'none';
       if (adminResetStep2Alert) adminResetStep2Alert.style.display = 'none';
@@ -372,6 +374,7 @@
         });
         const data = await res.json();
         if (res.ok && data.success) {
+          currentAdminResetToken = data.token || null;
           showToast('Verification code sent to ' + DEMO_CREDENTIALS.email, 'success');
           adminResetStep1.style.display = 'none';
           adminResetStep2.style.display = 'block';
@@ -389,7 +392,7 @@
           adminResetStep1Alert.style.display = 'block';
           adminResetStep1Alert.style.background = '#fef2f2';
           adminResetStep1Alert.style.color = '#b91c1c';
-          adminResetStep1Alert.textContent = 'Network error: Could not reach auth server.';
+          adminResetStep1Alert.textContent = 'Could not reach auth server. Please check connection and try again.';
         }
       } finally {
         if (sendAdminOtpBtn) {
@@ -454,7 +457,8 @@
             email: DEMO_CREDENTIALS.email,
             otp: otp,
             newPassword: newPass,
-            role: 'admin'
+            role: 'admin',
+            token: currentAdminResetToken
           })
         });
         const data = await res.json();
