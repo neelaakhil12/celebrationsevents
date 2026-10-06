@@ -204,6 +204,24 @@
     refreshAll();
   }
 
+  async function callApi(endpoint, options) {
+    try {
+      const res = await fetch(endpoint, options);
+      if (res.status === 404 && !endpoint.endsWith('.js')) {
+        const altRes = await fetch(endpoint + '.js', options);
+        if (altRes.status !== 404) return altRes;
+      }
+      return res;
+    } catch (err) {
+      if (!endpoint.endsWith('.js')) {
+        try {
+          return await fetch(endpoint + '.js', options);
+        } catch (e2) {}
+      }
+      throw err;
+    }
+  }
+
   function setupAuthListeners() {
     const loginForm = document.getElementById('loginForm');
     const quickFillBtn = document.getElementById('quickFillBtn');
@@ -266,7 +284,7 @@
       }
 
       try {
-        const res = await fetch('/api/auth/admin-login', {
+        const res = await callApi('/api/auth/admin-login', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email: enteredEmail, password: enteredPass })
@@ -367,7 +385,7 @@
         sendAdminOtpBtn.innerHTML = '<span>Sending OTP via Gmail...</span>';
       }
       try {
-        const res = await fetch('/api/auth/send-otp', {
+        const res = await callApi('/api/auth/send-otp', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email: DEMO_CREDENTIALS.email, role: 'admin' })
@@ -450,7 +468,7 @@
       confirmAdminResetBtn.innerHTML = '<span>Updating Password...</span>';
 
       try {
-        const res = await fetch('/api/auth/verify-reset-password', {
+        const res = await callApi('/api/auth/verify-reset-password', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
