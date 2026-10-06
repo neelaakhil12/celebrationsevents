@@ -5,7 +5,7 @@ const {
   getMailTransporter,
   generateOtpToken,
   DEFAULT_ADMIN_EMAIL
-} = require('../_shared');
+} = require('../../lib/shared');
 
 module.exports = async function handler(req, res) {
   setCors(res);

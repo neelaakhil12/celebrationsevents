@@ -1,4 +1,4 @@
-const { setCors, sendJson } = require('./_shared');
+const { setCors, sendJson } = require('../lib/shared');
 const fs = require('fs');
 const path = require('path');
 

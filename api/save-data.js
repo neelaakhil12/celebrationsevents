@@ -1,4 +1,4 @@
-const { setCors, parseBody, sendJson } = require('./_shared');
+const { setCors, parseBody, sendJson } = require('../lib/shared');
 
 module.exports = async function handler(req, res) {
   setCors(res);

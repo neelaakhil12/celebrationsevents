@@ -4,7 +4,7 @@ const {
   sendJson,
   DEFAULT_ADMIN_EMAIL,
   DEFAULT_ADMIN_PASS
-} = require('../_shared');
+} = require('../../lib/shared');
 
 module.exports = async function handler(req, res) {
   setCors(res);
