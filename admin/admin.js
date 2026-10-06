@@ -2106,30 +2106,23 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
 
       // Tab 3: Inclusions & Exclusions
       appState.inclusionsList = Array.isArray(pkg.inclusions) ? [...pkg.inclusions] : [];
-      appState.notIncludedList = (Array.isArray(pkg.notIncluded) && pkg.notIncluded.length > 0)
-        ? [...pkg.notIncluded]
-        : [...DEFAULT_NOT_INCLUDED];
+      appState.notIncludedList = Array.isArray(pkg.notIncluded) ? [...pkg.notIncluded] : [];
 
       // Tab 4: About This Package
       document.getElementById('pkgDescription').value = pkg.description || '';
-      document.getElementById('pkgAboutDescription').value = pkg.aboutDescription || pkg.description || 'This celebration home setup keeps things simple and pocket-friendly with balloons floating on ceiling and floor to make every corner photo-ready. A happy birthday foil and ribbons finish the look with party charm.';
+      document.getElementById('pkgAboutDescription').value = pkg.aboutDescription || pkg.description || '';
 
       // Tab 5: FAQs
-      appState.faqsList = (Array.isArray(pkg.faqs) && pkg.faqs.length > 0)
-        ? JSON.parse(JSON.stringify(pkg.faqs))
-        : JSON.parse(JSON.stringify(DEFAULT_FAQS));
+      appState.faqsList = Array.isArray(pkg.faqs) ? JSON.parse(JSON.stringify(pkg.faqs)) : [];
 
       // Tab 6: Delivery & Care
-      document.getElementById('pkgDeliveryNote').value = pkg.deliveryNote || "Available in 100+ cities including Delhi NCR, Mumbai, Bangalore, Pune, Hyderabad, and Kolkata.";
-      document.getElementById('pkgDecoratorNote').value = pkg.decoratorNote || "Arrives equipped with electric pumps, ladder-ready equipment, and premium materials.";
-      document.getElementById('pkgLifespanNote').value = pkg.lifespanNote || "Air-filled latex balloons remain inflated for 24 to 48 hours indoors in room temperature.";
-      document.getElementById('pkgLocationNote').value = pkg.locationNote || "Keep away from sharp edges, hot direct halogen lights, and outdoor harsh sunlight.";
+      document.getElementById('pkgDeliveryNote').value = pkg.deliveryNote || '';
+      document.getElementById('pkgDecoratorNote').value = pkg.decoratorNote || '';
+      document.getElementById('pkgLifespanNote').value = pkg.lifespanNote || '';
+      document.getElementById('pkgLocationNote').value = pkg.locationNote || '';
 
       // Tab 7: Add-ons & Colors
-      const loadedAddons = (Array.isArray(pkg.addons) && pkg.addons.length > 0)
-        ? JSON.parse(JSON.stringify(pkg.addons))
-        : JSON.parse(JSON.stringify(DEFAULT_ADDONS));
-
+      const loadedAddons = Array.isArray(pkg.addons) ? JSON.parse(JSON.stringify(pkg.addons)) : [];
       appState.addonsList = loadedAddons.map(a => {
         const isBroken = !a.image || a.image.includes('cdn.balloondekor.com/33/milestone-board') || a.image.includes('cdn.balloondekor.com/33/neon-light') || a.image.includes('cdn.balloondekor.com/33/rose-petals') || a.image.includes('cdn.balloondekor.com/33/tea-candles') || a.image.includes('cdn.balloondekor.com/33/welcome-board');
         if (isBroken) {
@@ -2139,9 +2132,7 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
         return a;
       });
 
-      appState.colorPalettesList = (Array.isArray(pkg.colorPalettes) && pkg.colorPalettes.length > 0)
-        ? JSON.parse(JSON.stringify(pkg.colorPalettes))
-        : JSON.parse(JSON.stringify(DEFAULT_COLOR_PALETTES));
+      appState.colorPalettesList = Array.isArray(pkg.colorPalettes) ? JSON.parse(JSON.stringify(pkg.colorPalettes)) : [];
 
     } else {
       const defaultCategory = preselectedCat || (appState.selectedCategoryTab !== 'all' ? appState.selectedCategoryTab : (appState.categories[0]?.id || 'birthday'));
@@ -2152,34 +2143,41 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
 
       document.getElementById('packageForm').reset();
       slugInput.value = '';
+      document.getElementById('pkgTitle').value = '';
       document.getElementById('pkgCategory').value = defaultCategory;
       updatePackageSubcategoryOptions(defaultCategory, (appState.selectedSubcategory !== 'all' ? appState.selectedSubcategory : ''));
+      document.getElementById('pkgSubcategory').value = '';
 
-      document.getElementById('pkgRating').value = 4.9;
-      document.getElementById('pkgReviews').value = 120;
-      document.getElementById('pkgDuration').value = '1.5 - 2 Hours';
-      document.getElementById('pkgSlotsAlert').value = 'Only 5 slots left this weekend';
-      document.getElementById('pkgBadge').value = 'BESTSELLER';
-      document.getElementById('pkgImage').value = SAMPLE_IMAGES[0].url;
-      document.getElementById('pkgDescription').value = 'Stunning celebration decor arranged at your doorstep by expert decorators.';
-      document.getElementById('pkgAboutDescription').value = 'This celebration home setup keeps things simple and pocket-friendly with balloons floating on ceiling and floor to make every corner photo-ready.';
-      document.getElementById('pkgDeliveryNote').value = 'Available in 100+ cities including Delhi NCR, Mumbai, Bangalore, Pune, Hyderabad, and Kolkata.';
-      document.getElementById('pkgDecoratorNote').value = 'Arrives equipped with electric pumps, ladder-ready equipment, and premium materials.';
-      document.getElementById('pkgLifespanNote').value = 'Air-filled latex balloons remain inflated for 24 to 48 hours indoors in room temperature.';
-      document.getElementById('pkgLocationNote').value = 'Keep away from sharp edges, hot direct halogen lights, and outdoor harsh sunlight.';
+      document.getElementById('pkgPrice').value = '';
+      document.getElementById('pkgOrigPrice').value = '';
+      document.getElementById('pkgDiscount').value = '';
+      document.getElementById('pkgRating').value = '';
+      document.getElementById('pkgReviews').value = '';
+      document.getElementById('pkgDuration').value = '';
+      document.getElementById('pkgSlotsAlert').value = '';
+      document.getElementById('pkgBadge').value = '';
+      document.getElementById('pkgTags').value = '';
+      document.getElementById('pkgImage').value = '';
+      document.getElementById('pkgDescription').value = '';
+      document.getElementById('pkgAboutDescription').value = '';
+      document.getElementById('pkgDeliveryNote').value = '';
+      document.getElementById('pkgDecoratorNote').value = '';
+      document.getElementById('pkgLifespanNote').value = '';
+      document.getElementById('pkgLocationNote').value = '';
 
-      appState.inclusionsList = [
-        "100 Premium Metallic Balloons (Custom Theme Colors)",
-        "Happy Birthday Cursive Cardstock Banner",
-        "2 Star / Heart 18-inch Foil Accents",
-        "Warm LED Rice String Lights (10m)",
-        "Doorstep Setup by Certified Decorator"
-      ];
-      appState.notIncludedList = [...DEFAULT_NOT_INCLUDED];
-      appState.galleryList = [SAMPLE_IMAGES[0].url];
-      appState.faqsList = JSON.parse(JSON.stringify(DEFAULT_FAQS));
-      appState.addonsList = JSON.parse(JSON.stringify(DEFAULT_ADDONS));
-      appState.colorPalettesList = JSON.parse(JSON.stringify(DEFAULT_COLOR_PALETTES));
+      const newInc = document.getElementById('newInclusionInput');
+      if (newInc) newInc.value = '';
+      const newNotInc = document.getElementById('newNotIncludedInput');
+      if (newNotInc) newNotInc.value = '';
+      const newGal = document.getElementById('newGalleryInput');
+      if (newGal) newGal.value = '';
+
+      appState.inclusionsList = [];
+      appState.notIncludedList = [];
+      appState.galleryList = [];
+      appState.faqsList = [];
+      appState.addonsList = [];
+      appState.colorPalettesList = [];
     }
 
     renderInclusionsList();
@@ -2326,10 +2324,10 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
   function addPkgAddon() {
     appState.addonsList.push({
       id: 'addon-' + Date.now(),
-      name: 'Custom Add-on Item',
-      price: 999,
-      badge: 'POPULAR',
-      image: 'https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=400&auto=format&fit=crop&q=80'
+      name: '',
+      price: '',
+      badge: '',
+      image: ''
     });
     renderAddonsList();
   }
@@ -2381,8 +2379,8 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
         <!-- 54x54 Thumbnail with clean '+' Add/Change Image button (No cloud symbol) -->
         <div style="position:relative; width:54px; height:54px; min-width:54px; max-width:54px; flex-shrink:0;">
           <img id="addonImgPreview_${idx}" 
-               src="${escapeHtml(addon.image || 'https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=400&auto=format&fit=crop&q=80')}" 
-               onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=400&auto=format&fit=crop&q=80';" 
+               src="${escapeHtml(addon.image || 'data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2254%22 height=%2254%22 viewBox=%220 0 54 54%22><rect width=%22100%%22 height=%22100%%22 fill=%22%23f1f5f9%22/><text x=%2250%%22 y=%2250%%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%2394a3b8%22 font-size=%2218%22>📷</text></svg>')}" 
+               onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2254%22 height=%2254%22 viewBox=%220 0 54 54%22><rect width=%22100%%22 height=%22100%%22 fill=%22%23f1f5f9%22/><text x=%2250%%22 y=%2250%%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%2394a3b8%22 font-size=%2218%22>📷</text></svg>';" 
                alt="${escapeHtml(addon.name || 'Add-on')}" 
                style="width:54px !important; height:54px !important; border-radius:10px !important; object-fit:cover !important; border:1.5px solid #cbd5e1 !important; display:block !important; background:#f8fafc;" />
           <label title="Add / Change Photo" style="position:absolute; bottom:-5px; right:-5px; background:#be123c; color:#ffffff; width:24px; height:24px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:16px; font-weight:800; line-height:1; cursor:pointer; box-shadow:0 2px 6px rgba(190,18,60,0.35); border:2px solid #ffffff; transition:all 0.15s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
@@ -2400,13 +2398,13 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
         <!-- Price -->
         <div style="width:110px; flex-shrink:0;">
           <label style="font-size:11px; font-weight:700; color:#475569; margin-bottom:3px; display:block;">Price (₹) *</label>
-          <input type="number" value="${addon.price || 0}" placeholder="1999" min="0" oninput="window.adminStudio.updatePkgAddon(${idx}, 'price', this.value)" style="width:100%; box-sizing:border-box; padding:8px 12px; font-size:13px; border:1.5px solid #cbd5e1; border-radius:8px; background:#f8fafc; outline:none;" />
+          <input type="number" value="${addon.price !== '' && addon.price !== undefined ? addon.price : ''}" placeholder="1999" min="0" oninput="window.adminStudio.updatePkgAddon(${idx}, 'price', this.value)" style="width:100%; box-sizing:border-box; padding:8px 12px; font-size:13px; border:1.5px solid #cbd5e1; border-radius:8px; background:#f8fafc; outline:none;" />
         </div>
 
         <!-- Badge -->
         <div style="width:110px; flex-shrink:0;">
           <label style="font-size:11px; font-weight:700; color:#475569; margin-bottom:3px; display:block;">Badge</label>
-          <input type="text" value="${escapeHtml(addon.badge || '')}" placeholder="POPULAR" oninput="window.adminStudio.updatePkgAddon(${idx}, 'badge', this.value)" style="width:100%; box-sizing:border-box; padding:8px 12px; font-size:13px; border:1.5px solid #cbd5e1; border-radius:8px; background:#f8fafc; outline:none;" />
+          <input type="text" value="${escapeHtml(addon.badge || '')}" placeholder="e.g. POPULAR" oninput="window.adminStudio.updatePkgAddon(${idx}, 'badge', this.value)" style="width:100%; box-sizing:border-box; padding:8px 12px; font-size:13px; border:1.5px solid #cbd5e1; border-radius:8px; background:#f8fafc; outline:none;" />
         </div>
 
         <!-- Delete button -->
@@ -2419,9 +2417,9 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
 
   // --- Balloon Color Choices Handlers (Simple Color Names) ---
   function addPkgColorPalette(customName) {
-    const nameToAdd = typeof customName === 'string' && customName.trim()
+    const nameToAdd = (typeof customName === 'string' && customName.trim())
       ? customName.trim()
-      : 'New Color Option';
+      : '';
     appState.colorPalettesList.push({
       name: nameToAdd,
       gradient: getColorGradient(nameToAdd)
@@ -2488,21 +2486,36 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
   }
 
   function updatePackageModalPreview() {
-    const title = document.getElementById('pkgTitle')?.value || 'Package Title Preview';
-    const price = document.getElementById('pkgPrice')?.value || '1999';
-    const orig = document.getElementById('pkgOrigPrice')?.value || '';
-    const imgUrl = document.getElementById('pkgImage')?.value || SAMPLE_IMAGES[0].url;
-    const badge = document.getElementById('pkgBadge')?.value || 'BESTSELLER';
+    const title = document.getElementById('pkgTitle')?.value?.trim() || '';
+    const price = document.getElementById('pkgPrice')?.value?.trim() || '';
+    const orig = document.getElementById('pkgOrigPrice')?.value?.trim() || '';
+    const imgUrl = document.getElementById('pkgImage')?.value?.trim() || '';
+    const badge = document.getElementById('pkgBadge')?.value?.trim() || '';
 
     const prevImg = document.getElementById('pkgModalImgPreview');
     const prevTitle = document.getElementById('pkgModalTitlePreview');
     const prevPrice = document.getElementById('pkgModalPricePreview');
     const prevBadge = document.getElementById('pkgModalBadgePreview');
 
-    if (prevImg) prevImg.src = imgUrl;
-    if (prevTitle) prevTitle.textContent = title;
-    if (prevPrice) prevPrice.textContent = `₹${Number(price).toLocaleString('en-IN')}${orig ? ` (Orig ₹${Number(orig).toLocaleString('en-IN')})` : ''}`;
-    if (prevBadge) prevBadge.textContent = badge;
+    if (prevImg) {
+      if (imgUrl) {
+        prevImg.src = imgUrl;
+        prevImg.style.display = 'block';
+      } else {
+        prevImg.src = '';
+        prevImg.style.display = 'none';
+      }
+    }
+    if (prevTitle) prevTitle.textContent = title || 'Package Title Preview';
+    if (prevPrice) prevPrice.textContent = price ? `₹${Number(price).toLocaleString('en-IN')}${orig ? ` (Orig ₹${Number(orig).toLocaleString('en-IN')})` : ''}` : '₹0';
+    if (prevBadge) {
+      if (badge) {
+        prevBadge.textContent = badge;
+        prevBadge.style.display = 'inline-block';
+      } else {
+        prevBadge.style.display = 'none';
+      }
+    }
   }
 
   async function handlePackageFormSubmit(e) {
@@ -2515,23 +2528,30 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
     const origPrice = parseInt(document.getElementById('pkgOrigPrice').value, 10) || price;
     const discount = parseInt(document.getElementById('pkgDiscount').value, 10) || 0;
     const rating = parseFloat(document.getElementById('pkgRating').value) || 4.9;
-    const reviewsCount = parseInt(document.getElementById('pkgReviews').value, 10) || 100;
+    const reviewsCount = parseInt(document.getElementById('pkgReviews').value, 10) || 0;
     const badge = document.getElementById('pkgBadge').value.trim();
-    const duration = document.getElementById('pkgDuration').value.trim() || '1.5 - 2 Hours';
-    const slotsAlert = document.getElementById('pkgSlotsAlert')?.value.trim() || 'Only 5 slots left this weekend';
-    const image = document.getElementById('pkgImage').value.trim() || SAMPLE_IMAGES[0].url;
+    const duration = document.getElementById('pkgDuration').value.trim() || '';
+    const slotsAlert = document.getElementById('pkgSlotsAlert')?.value.trim() || '';
+    const image = document.getElementById('pkgImage').value.trim();
     const description = document.getElementById('pkgDescription').value.trim();
     const aboutDescription = document.getElementById('pkgAboutDescription')?.value.trim() || description;
     const tagsRaw = document.getElementById('pkgTags').value.trim();
-    const tags = tagsRaw ? tagsRaw.split(',').map(t => t.trim()).filter(Boolean) : ['Home Decor'];
+    const tags = tagsRaw ? tagsRaw.split(',').map(t => t.trim()).filter(Boolean) : [];
 
-    const deliveryNote = document.getElementById('pkgDeliveryNote')?.value.trim() || "Available in 100+ cities including Delhi NCR, Mumbai, Bangalore, Pune, Hyderabad, and Kolkata.";
-    const decoratorNote = document.getElementById('pkgDecoratorNote')?.value.trim() || "Arrives equipped with electric pumps, ladder-ready equipment, and premium materials.";
-    const lifespanNote = document.getElementById('pkgLifespanNote')?.value.trim() || "Air-filled latex balloons remain inflated for 24 to 48 hours indoors in room temperature.";
-    const locationNote = document.getElementById('pkgLocationNote')?.value.trim() || "Keep away from sharp edges, hot direct halogen lights, and outdoor harsh sunlight.";
+    const deliveryNote = document.getElementById('pkgDeliveryNote')?.value.trim() || '';
+    const decoratorNote = document.getElementById('pkgDecoratorNote')?.value.trim() || '';
+    const lifespanNote = document.getElementById('pkgLifespanNote')?.value.trim() || '';
+    const locationNote = document.getElementById('pkgLocationNote')?.value.trim() || '';
 
     if (!title || !price || isNaN(price)) {
-      showToast('Please fill out all required fields properly.', 'error');
+      showToast('Please fill out all required fields (Title & Price).', 'error');
+      switchPackageTab('core');
+      return;
+    }
+
+    if (!image) {
+      showToast('Please provide a Primary Cover Image URL or upload one.', 'error');
+      switchPackageTab('media');
       return;
     }
 
@@ -2541,7 +2561,7 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
     const categoryName = catObj ? catObj.name : category;
 
     let gallery = [...appState.galleryList];
-    if (!gallery.includes(image)) gallery.unshift(image);
+    if (image && !gallery.includes(image)) gallery.unshift(image);
 
     const packageData = {
       id: slug,
@@ -2559,17 +2579,17 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
       slotsAlert,
       image,
       gallery,
-      description: description || `Stunning ${title} party setup arranged at your doorstep by expert decorators.`,
+      description,
       aboutDescription,
-      inclusions: appState.inclusionsList.length > 0 ? [...appState.inclusionsList] : ["Complete setup by expert balloon stylist", "All helium/metallic balloons included"],
-      notIncluded: appState.notIncludedList.length > 0 ? [...appState.notIncludedList] : [...DEFAULT_NOT_INCLUDED],
-      faqs: appState.faqsList.length > 0 ? JSON.parse(JSON.stringify(appState.faqsList)) : [...DEFAULT_FAQS],
+      inclusions: [...appState.inclusionsList],
+      notIncluded: [...appState.notIncludedList],
+      faqs: JSON.parse(JSON.stringify(appState.faqsList || [])),
       deliveryNote,
       decoratorNote,
       lifespanNote,
       locationNote,
-      addons: appState.addonsList.length > 0 ? JSON.parse(JSON.stringify(appState.addonsList)) : [...DEFAULT_ADDONS],
-      colorPalettes: appState.colorPalettesList.length > 0 ? JSON.parse(JSON.stringify(appState.colorPalettesList)) : [...DEFAULT_COLOR_PALETTES],
+      addons: JSON.parse(JSON.stringify(appState.addonsList || [])),
+      colorPalettes: JSON.parse(JSON.stringify(appState.colorPalettesList || [])),
       tags
     };
 
@@ -2715,11 +2735,19 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
 
       document.getElementById('catName').value = cat.name || '';
       slugInput.value = cat.id || '';
-      document.getElementById('catIcon').value = cat.icon || '🎈';
-      document.getElementById('catBadge').value = cat.badge || 'POPULAR';
+      document.getElementById('catIcon').value = cat.icon || '';
+      document.getElementById('catBadge').value = cat.badge || '';
       document.getElementById('catImage').value = cat.image || '';
       document.getElementById('catDesc').value = cat.desc || '';
-      if (imgPreview) imgPreview.src = cat.image || SAMPLE_IMAGES[0].url;
+      if (imgPreview) {
+        if (cat.image) {
+          imgPreview.src = cat.image;
+          imgPreview.style.display = 'block';
+        } else {
+          imgPreview.src = '';
+          imgPreview.style.display = 'none';
+        }
+      }
       renderCatModalSubcategories(categoryId);
     } else {
       modalTitle.textContent = 'Add New Category';
@@ -2728,10 +2756,15 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
 
       document.getElementById('categoryForm').reset();
       slugInput.value = '';
-      document.getElementById('catIcon').value = '🎉';
-      document.getElementById('catBadge').value = 'NEW';
-      document.getElementById('catImage').value = SAMPLE_IMAGES[0].url;
-      if (imgPreview) imgPreview.src = SAMPLE_IMAGES[0].url;
+      document.getElementById('catName').value = '';
+      document.getElementById('catIcon').value = '';
+      document.getElementById('catBadge').value = '';
+      document.getElementById('catImage').value = '';
+      document.getElementById('catDesc').value = '';
+      if (imgPreview) {
+        imgPreview.src = '';
+        imgPreview.style.display = 'none';
+      }
       renderCatModalSubcategories(null);
     }
 
@@ -2742,13 +2775,18 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
     e.preventDefault();
     const name = document.getElementById('catName').value.trim();
     let slug = document.getElementById('catSlug').value.trim();
-    const icon = document.getElementById('catIcon').value.trim() || '🎈';
-    const badge = document.getElementById('catBadge').value.trim() || 'NEW';
-    const image = document.getElementById('catImage').value.trim() || SAMPLE_IMAGES[0].url;
+    const icon = document.getElementById('catIcon').value.trim();
+    const badge = document.getElementById('catBadge').value.trim();
+    const image = document.getElementById('catImage').value.trim();
     const desc = document.getElementById('catDesc').value.trim();
 
     if (!name) {
       showToast('Please specify a category name.', 'error');
+      return;
+    }
+
+    if (!image) {
+      showToast('Please provide a Category Banner Image URL or upload one.', 'error');
       return;
     }
 
@@ -2763,7 +2801,7 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
       icon,
       badge,
       image,
-      desc: desc || `Explore vibrant and luxury ${name} decor packages.`,
+      desc: desc || '',
       subcategories
     };
 
@@ -2846,7 +2884,10 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
       document.getElementById('subcategoryForm')?.reset();
       if (parentCatId && catSelect) catSelect.value = parentCatId;
       slugInput.readOnly = false;
-      iconInput.value = '🏷️';
+      slugInput.value = '';
+      nameInput.value = '';
+      headerTitleInput.value = '';
+      iconInput.value = '';
     }
 
     modal.classList.add('active');
@@ -3140,7 +3181,10 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
 
     document.getElementById('catImage')?.addEventListener('input', (e) => {
       const img = document.getElementById('catImagePreview');
-      if (img) img.src = e.target.value || SAMPLE_IMAGES[0].url;
+      if (img) {
+        img.src = e.target.value || '';
+        img.style.display = e.target.value ? 'block' : 'none';
+      }
     });
 
     document.querySelectorAll('.emoji-btn').forEach(btn => {
@@ -3381,20 +3425,16 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
         slugInput.value = '';
         slugInput.readOnly = false;
       }
-      if (badgeInput) badgeInput.value = 'TRADITIONAL';
-      if (imageInput) imageInput.value = 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=800&q=80';
-      if (previewImg) previewImg.src = imageInput.value;
+      if (badgeInput) badgeInput.value = '';
+      if (imageInput) imageInput.value = '';
+      if (previewImg) {
+        previewImg.src = '';
+        previewImg.style.display = 'none';
+      }
       if (taglineInput) taglineInput.value = '';
       if (liveLink) liveLink.href = '../wedding.html';
 
-      appState.weddingEditorOptions = [
-        {
-          id: `opt_custom_1`,
-          title: 'Primary Service Option',
-          subPrompt: 'Choose preferred style or size',
-          subItems: ['Standard Traditional Option', 'Grand Luxury Option']
-        }
-      ];
+      appState.weddingEditorOptions = [];
     }
 
     renderWeddingEditorOptions();
@@ -3475,9 +3515,9 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
     }
     appState.weddingEditorOptions.push({
       id: `opt_${Date.now().toString(36)}`,
-      title: `Service Option ${appState.weddingEditorOptions.length + 1}`,
-      subPrompt: 'Select preference',
-      subItems: ['Standard Setup', 'Premium Choice']
+      title: '',
+      subPrompt: '',
+      subItems: []
     });
     renderWeddingEditorOptions();
   }
@@ -3830,7 +3870,15 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
       if (authorInput) authorInput.value = blog.author || 'Celebration Events Team';
       if (dateInput) dateInput.value = blog.date || '';
       if (imageInput) imageInput.value = blog.image || '';
-      if (previewImg) previewImg.src = blog.image || '';
+      if (previewImg) {
+        if (blog.image) {
+          previewImg.src = blog.image;
+          previewImg.style.display = 'block';
+        } else {
+          previewImg.src = '';
+          previewImg.style.display = 'none';
+        }
+      }
       if (excerptInput) excerptInput.value = blog.excerpt || '';
       if (contentInput) contentInput.value = htmlToCleanText(blog.content || '');
     } else {
@@ -3841,16 +3889,21 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
         slugInput.value = '';
         slugInput.readOnly = false;
       }
-      if (tagInput) tagInput.value = 'Decor Hacks';
-      if (readInput) readInput.value = '5 min read';
-      if (authorInput) authorInput.value = 'Celebration Events Team';
+      if (titleInput) titleInput.value = '';
+      if (tagInput) tagInput.value = '';
+      if (readInput) readInput.value = '';
+      if (authorInput) authorInput.value = '';
       
       const now = new Date();
       const dateFormatted = now.toLocaleDateString('en-US', { month: 'long', day: '2-digit', year: 'numeric' });
       if (dateInput) dateInput.value = dateFormatted;
 
-      if (imageInput) imageInput.value = 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80';
-      if (previewImg) previewImg.src = imageInput.value;
+      if (imageInput) imageInput.value = '';
+      if (previewImg) {
+        previewImg.src = '';
+        previewImg.style.display = 'none';
+      }
+      if (excerptInput) excerptInput.value = '';
       if (contentInput) contentInput.value = '';
     }
 
@@ -4106,7 +4159,7 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
       if (serviceInput) serviceInput.value = rev.service || '';
       if (typeSelect) typeSelect.value = rev.type || 'image';
       if (ratingSelect) ratingSelect.value = String(rev.rating || 5);
-      if (dateInput) dateInput.value = rev.date || 'Recent';
+      if (dateInput) dateInput.value = rev.date || '';
       if (verifiedCheck) verifiedCheck.checked = rev.verified !== false;
       if (mediaInput) mediaInput.value = rev.media || '';
       if (posterInput) posterInput.value = rev.poster || '';
@@ -4118,11 +4171,14 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
       if (modalTitle) modalTitle.textContent = 'Add New Customer Review / Reel';
       if (submitBtn) submitBtn.textContent = 'Save Review';
       document.getElementById('reviewForm')?.reset();
+      if (nameInput) nameInput.value = '';
+      if (cityInput) cityInput.value = '';
+      if (serviceInput) serviceInput.value = '';
       if (typeSelect) typeSelect.value = 'image';
       if (ratingSelect) ratingSelect.value = '5';
-      if (dateInput) dateInput.value = 'Recent';
+      if (dateInput) dateInput.value = '';
       if (verifiedCheck) verifiedCheck.checked = true;
-      if (mediaInput) mediaInput.value = 'https://cdn.balloondekor.com/14/1744720943222.webp';
+      if (mediaInput) mediaInput.value = '';
       if (posterInput) posterInput.value = '';
       if (textInput) textInput.value = '';
 
@@ -5002,14 +5058,15 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
 
       if (locSelect) locSelect.value = (appState.bannerFilterLocation === 'home') ? 'home' : (appState.bannerFilterLocation === 'category' ? 'birthday' : 'home');
       if (orderInput) orderInput.value = (appState.banners.length + 1);
-      if (tagInput) tagInput.value = '✨ Special Offer';
+      if (tagInput) tagInput.value = '';
       if (titleInput) titleInput.value = '';
       if (subInput) subInput.value = '';
-      const defaultImg = 'https://cdn.balloondekor.com/images/16/49e5480a-1fcd-42eb-ad97-cafd993c260d.webp';
-      if (imgUrlInput) imgUrlInput.value = defaultImg;
-      if (previewImg) previewImg.src = defaultImg;
-      if (linkTextInput) linkTextInput.value = 'Explore Packages →';
-      if (linkUrlInput) linkUrlInput.value = 'birthday.html';
+      if (imgUrlInput) imgUrlInput.value = '';
+      if (previewImg) previewImg.src = '';
+      const previewWrap = document.getElementById('bannerModalPreviewWrap');
+      if (previewWrap) previewWrap.style.display = 'none';
+      if (linkTextInput) linkTextInput.value = '';
+      if (linkUrlInput) linkUrlInput.value = '';
       if (activeCheckbox) activeCheckbox.checked = true;
     } else {
       // Editing
@@ -5030,6 +5087,8 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
       if (subInput) subInput.value = banner.subtitle || '';
       if (imgUrlInput) imgUrlInput.value = banner.image || '';
       if (previewImg) previewImg.src = banner.image || '';
+      const previewWrap = document.getElementById('bannerModalPreviewWrap');
+      if (previewWrap) previewWrap.style.display = banner.image ? 'block' : 'none';
       if (linkTextInput) linkTextInput.value = banner.linkText || '';
       if (linkUrlInput) linkUrlInput.value = banner.linkUrl || '';
       if (activeCheckbox) activeCheckbox.checked = (banner.active !== false);
@@ -5045,24 +5104,17 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
 
   function previewBannerModalImage(url) {
     const previewImg = document.getElementById('bannerModalPreviewImg');
-    if (previewImg && url) {
-      previewImg.src = url;
+    const previewWrap = document.getElementById('bannerModalPreviewWrap');
+    if (previewImg) {
+      previewImg.src = url || '';
+    }
+    if (previewWrap) {
+      previewWrap.style.display = url ? 'block' : 'none';
     }
   }
 
   function handleBannerLocationChange(loc) {
-    const linkUrlInput = document.getElementById('bannerLinkUrlInput');
-    const linkTextInput = document.getElementById('bannerLinkTextInput');
-    const modeInput = document.getElementById('bannerModalMode');
-    if (modeInput && modeInput.value === 'add') {
-      if (loc === 'home') {
-        if (linkUrlInput && (!linkUrlInput.value || linkUrlInput.value.startsWith('#'))) linkUrlInput.value = 'birthday.html';
-        if (linkTextInput && !linkTextInput.value) linkTextInput.value = 'Explore Packages →';
-      } else {
-        if (linkUrlInput) linkUrlInput.value = `#${loc}Catalog`;
-        if (linkTextInput) linkTextInput.value = `Explore Setups Below ↓`;
-      }
-    }
+    // Keep inputs untouched for the admin to configure
   }
 
   async function saveBanner(event) {

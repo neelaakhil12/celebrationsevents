@@ -2296,6 +2296,7 @@
               <div class="form-field">
                 <label for="pkgBadge">Featured Badge</label>
                 <select id="pkgBadge">
+                  <option value="" selected>None</option>
                   <option value="BESTSELLER">BESTSELLER</option>
                   <option value="POPULAR">POPULAR</option>
                   <option value="TRENDING">TRENDING</option>
@@ -2303,7 +2304,6 @@
                   <option value="NEW">NEW</option>
                   <option value="ELEGANT">ELEGANT</option>
                   <option value="SPECIAL">SPECIAL</option>
-                  <option value="">None</option>
                 </select>
               </div>
             </div>
@@ -2328,15 +2328,15 @@
             <div class="form-row-3">
               <div class="form-field">
                 <label for="pkgRating">Star Rating (1 - 5)</label>
-                <input type="number" id="pkgRating" step="0.1" min="1.0" max="5.0" value="4.9" />
+                <input type="number" id="pkgRating" step="0.1" min="1.0" max="5.0" placeholder="e.g. 4.9" />
               </div>
               <div class="form-field">
                 <label for="pkgReviews">Reviews Count</label>
-                <input type="number" id="pkgReviews" min="1" value="313" />
+                <input type="number" id="pkgReviews" min="0" placeholder="e.g. 150" />
               </div>
               <div class="form-field">
                 <label for="pkgDuration">Setup Duration</label>
-                <input type="text" id="pkgDuration" value="1.5 - 2 Hours" placeholder="e.g. 1.5 - 2 Hours" />
+                <input type="text" id="pkgDuration" placeholder="e.g. 1.5 - 2 Hours" />
               </div>
             </div>
 
@@ -2344,7 +2344,7 @@
             <div class="form-row-2">
               <div class="form-field">
                 <label for="pkgSlotsAlert">Weekend Urgency Slot Alert Text</label>
-                <input type="text" id="pkgSlotsAlert" placeholder="e.g. Only 5 slots left this weekend" value="Only 5 slots left this weekend" />
+                <input type="text" id="pkgSlotsAlert" placeholder="e.g. Only 5 slots left this weekend" />
                 <span class="field-hint">Displays prominently with clock icon below price</span>
               </div>
               <div class="form-field">
@@ -2370,10 +2370,10 @@
                 ⏳ Uploading image to Cloudinary...
               </div>
               <div class="image-preview-container">
-                <img id="pkgModalImgPreview" class="img-preview-thumb" src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=100&q=80" alt="Preview" onerror="this.src='https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=100&q=80'" />
+                <img id="pkgModalImgPreview" class="img-preview-thumb" src="" alt="Preview" style="display:none;" onerror="this.style.display='none'" />
                 <div class="img-preview-info">
                   <strong>Live Image Preview</strong><br />
-                  Stored in Cloudinary (<code>gu0q1mxy</code>) or external CDN URL.
+                  Stored in Cloudinary or external CDN URL.
                 </div>
               </div>
             </div>
@@ -2471,11 +2471,11 @@
               </div>
               <div class="form-field" style="margin-bottom:12px;">
                 <label for="pkgDeliveryNote">⚡ Same-Day Setup Coverage Note</label>
-                <input type="text" id="pkgDeliveryNote" value="Available in 100+ cities including Delhi NCR, Mumbai, Bangalore, Pune, Hyderabad, and Kolkata." />
+                <input type="text" id="pkgDeliveryNote" placeholder="e.g. Available in 100+ cities including Delhi NCR, Mumbai, Bangalore, Pune, Hyderabad, and Kolkata." />
               </div>
               <div class="form-field">
                 <label for="pkgDecoratorNote">🧑‍🔧 Verified Decorator Equipment Note</label>
-                <input type="text" id="pkgDecoratorNote" value="Arrives equipped with electric pumps, ladder-ready equipment, and premium materials." />
+                <input type="text" id="pkgDecoratorNote" placeholder="e.g. Arrives equipped with electric pumps, ladder-ready equipment, and premium materials." />
               </div>
             </div>
 
@@ -2486,11 +2486,11 @@
               </div>
               <div class="form-field" style="margin-bottom:12px;">
                 <label for="pkgLifespanNote">🎈 Lifespan Note</label>
-                <input type="text" id="pkgLifespanNote" value="Air-filled latex balloons remain inflated for 24 to 48 hours indoors in room temperature." />
+                <input type="text" id="pkgLifespanNote" placeholder="e.g. Air-filled latex balloons remain inflated for 24 to 48 hours indoors in room temperature." />
               </div>
               <div class="form-field">
                 <label for="pkgLocationNote">☀️ Location & Safety Note</label>
-                <input type="text" id="pkgLocationNote" value="Keep away from sharp edges, hot direct halogen lights, and outdoor harsh sunlight." />
+                <input type="text" id="pkgLocationNote" placeholder="e.g. Keep away from sharp edges, hot direct halogen lights, and outdoor harsh sunlight." />
               </div>
             </div>
           </div>
@@ -2578,7 +2578,7 @@
 
           <div class="form-field">
             <label for="catIcon">Icon / Emoji</label>
-            <input type="text" id="catIcon" placeholder="🎂 or 🎈" value="🎉" />
+            <input type="text" id="catIcon" placeholder="e.g. 🎂 or 🎈" />
             <div class="quick-emoji-bar">
               <button type="button" class="emoji-btn">🎂</button>
               <button type="button" class="emoji-btn">❤️</button>
@@ -2596,7 +2596,7 @@
 
           <div class="form-field">
             <label for="catBadge">Badge Label</label>
-            <input type="text" id="catBadge" placeholder="e.g. POPULAR, TRENDING, NEW, HOT" value="NEW" />
+            <input type="text" id="catBadge" placeholder="e.g. POPULAR, TRENDING, NEW, HOT" />
           </div>
 
           <!-- Cover Image + Cloudinary Upload -->
@@ -2613,7 +2613,7 @@
               ⏳ Uploading banner to Cloudinary...
             </div>
             <div class="image-preview-container" style="margin-top:6px;">
-              <img id="catImagePreview" class="img-preview-thumb" src="https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=100&q=80" alt="Preview" />
+              <img id="catImagePreview" class="img-preview-thumb" src="" alt="Preview" style="display:none;" onerror="this.style.display='none'" />
               <div class="img-preview-info">
                 <strong>Category Cover Preview</strong>
               </div>
@@ -2685,7 +2685,7 @@
 
           <div class="form-field">
             <label for="subcatIcon">Icon / Emoji</label>
-            <input type="text" id="subcatIcon" placeholder="🏠 or ⭕" value="🎈" />
+            <input type="text" id="subcatIcon" placeholder="e.g. 🏠 or ⭕" />
             <div class="quick-emoji-bar">
               <button type="button" class="subcat-emoji-btn">🏠</button>
               <button type="button" class="subcat-emoji-btn">⭕</button>
@@ -2801,7 +2801,7 @@
 
               <div class="form-field">
                 <label for="wseBadge">Featured Badge Label</label>
-                <input type="text" id="wseBadge" placeholder="e.g. TRADITIONAL, RITUAL SPECIAL, GRAND STAGE, MULTI-CUISINE" value="TRADITIONAL" />
+                <input type="text" id="wseBadge" placeholder="e.g. TRADITIONAL, RITUAL SPECIAL, GRAND STAGE, MULTI-CUISINE" />
               </div>
 
               <!-- Primary Cover Image + Cloudinary -->
@@ -2813,12 +2813,12 @@
                     <input type="file" id="wseImageFile" accept="image/*" style="display:none;" />
                   </label>
                 </div>
-                <input type="url" id="wseImage" placeholder="https://images.unsplash.com/..." required />
+                <input type="url" id="wseImage" placeholder="https://res.cloudinary.com/..." required />
                 <div id="wseUploadProgress" style="display:none; font-size:12px; color:#0284c7; margin-top:2px;">
                   ⏳ Uploading image to Cloudinary...
                 </div>
                 <div class="image-preview-container" style="margin-top:8px;">
-                  <img id="wseImgPreview" class="img-preview-thumb" src="" alt="Preview" onerror="this.src='https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=100&q=80'" />
+                  <img id="wseImgPreview" class="img-preview-thumb" src="" alt="Preview" style="display:none;" onerror="this.style.display='none'" />
                   <div class="img-preview-info">
                     <strong>Cover Photo Preview</strong>
                   </div>
@@ -2913,18 +2913,18 @@
             </div>
             <div class="form-field">
               <label for="blogTag">Badge / Tag Label</label>
-              <input type="text" id="blogTag" placeholder="e.g. Editor's Choice, Decor Hacks, Checklist" value="Decor Hacks" />
+              <input type="text" id="blogTag" placeholder="e.g. Editor's Choice, Decor Hacks, Checklist" />
             </div>
             <div class="form-field">
               <label for="blogReadTime">Read Time</label>
-              <input type="text" id="blogReadTime" placeholder="e.g. 5 min read" value="5 min read" />
+              <input type="text" id="blogReadTime" placeholder="e.g. 5 min read" />
             </div>
           </div>
 
           <div class="form-row-2">
             <div class="form-field">
               <label for="blogAuthor">Author Name & Role *</label>
-              <input type="text" id="blogAuthor" placeholder="e.g. Pooja Deshmukh • Creative Director" value="Celebration Events Team" required />
+              <input type="text" id="blogAuthor" placeholder="e.g. Pooja Deshmukh • Creative Director" required />
             </div>
             <div class="form-field">
               <label for="blogDate">Publish Date</label>
@@ -2941,12 +2941,12 @@
                 <input type="file" id="blogImageFile" accept="image/*" style="display:none;" />
               </label>
             </div>
-            <input type="url" id="blogImage" placeholder="https://images.unsplash.com/..." required />
+            <input type="url" id="blogImage" placeholder="https://res.cloudinary.com/..." required />
             <div id="blogUploadProgress" style="display:none; font-size:12px; color:#0284c7; margin-top:2px;">
               ⏳ Uploading image to Cloudinary...
             </div>
             <div class="image-preview-container" style="margin-top:8px;">
-              <img id="blogImgPreview" class="img-preview-thumb" src="" alt="Preview" onerror="this.src='https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=100&q=80'" />
+              <img id="blogImgPreview" class="img-preview-thumb" src="" alt="Preview" style="display:none;" onerror="this.style.display='none'" />
               <div class="img-preview-info">
                 <strong>Cover Preview</strong>
               </div>
@@ -3041,7 +3041,7 @@
           <div class="form-row-2">
             <div class="form-field">
               <label for="reviewDate">Display Date Label</label>
-              <input type="text" id="reviewDate" placeholder="e.g. 2 days ago, 1 week ago, Yesterday" value="Recent" />
+              <input type="text" id="reviewDate" placeholder="e.g. 2 days ago, 1 week ago, Yesterday" />
             </div>
             <div class="form-field" style="display:flex; align-items:center; gap:10px; padding-top:24px;">
               <input type="checkbox" id="reviewVerified" checked style="width:18px; height:18px; cursor:pointer;" />
@@ -3311,8 +3311,8 @@
             </div>
             
             <!-- Live Modal Image Preview -->
-            <div style="margin-top:10px; height:140px; border-radius:10px; overflow:hidden; background:#0f172a; position:relative; border:1px solid #e2e8f0;">
-              <img id="bannerModalPreviewImg" src="https://cdn.balloondekor.com/images/16/49e5480a-1fcd-42eb-ad97-cafd993c260d.webp" alt="Preview" style="width:100%; height:100%; object-fit:cover;" onerror="this.src='https://cdn.balloondekor.com/images/16/49e5480a-1fcd-42eb-ad97-cafd993c260d.webp'" />
+            <div id="bannerModalPreviewWrap" style="margin-top:10px; height:140px; border-radius:10px; overflow:hidden; background:#0f172a; position:relative; border:1px solid #e2e8f0; display:none;">
+              <img id="bannerModalPreviewImg" src="" alt="Preview" style="width:100%; height:100%; object-fit:cover;" onerror="this.src=''" />
               <div style="position:absolute; bottom:8px; left:12px; background:rgba(0,0,0,0.7); color:#fff; font-size:10.5px; padding:2px 8px; border-radius:6px;">Live Image Preview</div>
             </div>
           </div>
