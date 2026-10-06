@@ -3,7 +3,8 @@ const {
   parseBody,
   sendJson,
   DEFAULT_ADMIN_EMAIL,
-  DEFAULT_ADMIN_PASS
+  DEFAULT_ADMIN_PASS,
+  getAdminFromSupabase
 } = require('../../lib/shared');
 
 module.exports = async function handler(req, res) {
@@ -29,7 +30,11 @@ module.exports = async function handler(req, res) {
       });
     }
 
-    if (password !== DEFAULT_ADMIN_PASS) {
+    // 1. Read current active admin credentials directly from Supabase
+    const adminRecord = await getAdminFromSupabase(email);
+    const expectedPassword = (adminRecord && adminRecord.password) ? adminRecord.password : DEFAULT_ADMIN_PASS;
+
+    if (password !== expectedPassword) {
       return sendJson(res, 401, {
         success: false,
         error: 'Incorrect administrator password. Please check your password or use Reset Password.'

@@ -3,6 +3,8 @@ const {
   parseBody,
   sendJson,
   verifyOtpToken,
+  updateAdminPasswordInSupabase,
+  updateUserPasswordInSupabase,
   DEFAULT_ADMIN_EMAIL
 } = require('../../lib/shared');
 
@@ -52,11 +54,18 @@ module.exports = async function handler(req, res) {
       });
     }
 
-    console.log(`[Vercel API] Password successfully reset for ${email} (${role})`);
+    // Update password in Supabase database
+    if (role === 'admin') {
+      await updateAdminPasswordInSupabase(email, newPassword);
+      console.log(`[Vercel API] Admin password successfully saved to Supabase for ${email}`);
+    } else {
+      await updateUserPasswordInSupabase(email, newPassword);
+      console.log(`[Vercel API] User password successfully saved to Supabase for ${email}`);
+    }
 
     return sendJson(res, 200, {
       success: true,
-      message: `${role === 'admin' ? 'Admin' : 'Account'} password has been updated successfully!`,
+      message: `${role === 'admin' ? 'Admin' : 'Account'} password has been updated successfully! You can now log in.`,
       email,
       role
     });
