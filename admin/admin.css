@@ -219,19 +219,23 @@ body {
 
 .input-icon-wrap {
   position: relative;
-  display: flex;
-  align-items: center;
+  width: 100%;
+  display: block;
 }
 
-.input-icon-wrap svg {
+.input-icon-wrap > svg {
   position: absolute;
   left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
   color: var(--text-dim);
   pointer-events: none;
+  z-index: 2;
 }
 
 .form-control {
   width: 100%;
+  box-sizing: border-box;
   padding: 11px 14px 11px 42px;
   background: #ffffff;
   border: 1px solid var(--admin-border);
@@ -243,6 +247,10 @@ body {
   transition: var(--transition);
 }
 
+.input-icon-wrap input[type="password"] {
+  padding-right: 44px;
+}
+
 .form-control:focus {
   border-color: var(--brand-primary);
   box-shadow: 0 0 0 3px rgba(209, 74, 97, 0.15);
@@ -250,20 +258,34 @@ body {
 
 .password-toggle-btn {
   position: absolute;
-  right: 12px;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
   background: none;
   border: none;
   color: var(--text-dim);
   cursor: pointer;
   padding: 6px;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
+  border-radius: 6px;
+  z-index: 3;
   transition: var(--transition);
+}
+
+.password-toggle-btn svg {
+  position: static !important;
+  left: auto !important;
+  top: auto !important;
+  transform: none !important;
+  color: inherit !important;
+  pointer-events: auto !important;
 }
 
 .password-toggle-btn:hover {
   color: var(--text-main);
+  background: rgba(0, 0, 0, 0.04);
 }
 
 .login-options {
