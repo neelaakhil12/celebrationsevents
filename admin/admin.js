@@ -1127,6 +1127,12 @@
     appState.activeTab = 'packages';
     appState.selectedCategoryTab = catId;
     appState.selectedCategory = catId;
+    appState.selectedSubcategory = 'all';
+
+    // Clear search on category switch to prevent cross-category search locks
+    appState.searchTerm = '';
+    const pkgSearchInput = document.getElementById('packageSearchInput');
+    if (pkgSearchInput) pkgSearchInput.value = '';
 
     // Show packages tab, hide other tabs
     document.querySelectorAll('.tab-content').forEach(c => {
@@ -1861,13 +1867,19 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
 
     // Filter by search
     if (appState.searchTerm) {
-      items = items.filter(p => {
-        const t = (p.title || '').toLowerCase();
-        const id = (p.id || '').toLowerCase();
-        const d = (p.description || '').toLowerCase();
-        const tags = Array.isArray(p.tags) ? p.tags.join(' ').toLowerCase() : '';
-        return t.includes(appState.searchTerm) || id.includes(appState.searchTerm) || d.includes(appState.searchTerm) || tags.includes(appState.searchTerm);
-      });
+      if (appState.searchTerm.includes('@')) {
+        appState.searchTerm = '';
+        const searchInputEl = document.getElementById('packageSearchInput');
+        if (searchInputEl) searchInputEl.value = '';
+      } else {
+        items = items.filter(p => {
+          const t = (p.title || '').toLowerCase();
+          const id = (p.id || '').toLowerCase();
+          const d = (p.description || '').toLowerCase();
+          const tags = Array.isArray(p.tags) ? p.tags.join(' ').toLowerCase() : '';
+          return t.includes(appState.searchTerm) || id.includes(appState.searchTerm) || d.includes(appState.searchTerm) || tags.includes(appState.searchTerm);
+        });
+      }
     }
 
     // Filter by category
@@ -1897,9 +1909,14 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
           <div class="empty-state-icon">📦</div>
           <h3>No Packages Found</h3>
           <p>No celebration packages match your current filter or search criteria.</p>
-          <button class="btn-add-primary" onclick="window.adminStudio.openPackageModal('add')">
-            + Add New Package
-          </button>
+          <div style="display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:14px;">
+            <button type="button" class="btn-secondary" onclick="window.adminStudio.clearPackageSearch()" style="background:#f1f5f9; color:#0f172a; padding:10px 18px; border-radius:8px; font-weight:600; border:1.5px solid #cbd5e1; cursor:pointer;">
+              ✕ Reset Search & Filters
+            </button>
+            <button class="btn-add-primary" onclick="window.adminStudio.openPackageModal('add')">
+              + Add New Package
+            </button>
+          </div>
         </div>
       `;
       return;
@@ -3024,10 +3041,24 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
   /* ==========================================================================
      FORM & UI EVENT LISTENERS
      ========================================================================== */
+  function clearPackageSearch() {
+    appState.searchTerm = '';
+    const pkgSearchInput = document.getElementById('packageSearchInput');
+    if (pkgSearchInput) pkgSearchInput.value = '';
+    appState.selectedSubcategory = 'all';
+    renderPackages();
+  }
+
   function setupFormListeners() {
     // Search & Filters
     document.getElementById('packageSearchInput')?.addEventListener('input', (e) => {
-      appState.searchTerm = e.target.value.toLowerCase().trim();
+      const raw = (e.target.value || '').trim();
+      if (raw.includes('@')) {
+        e.target.value = '';
+        appState.searchTerm = '';
+      } else {
+        appState.searchTerm = raw.toLowerCase();
+      }
       renderPackages();
     });
 
@@ -5168,6 +5199,7 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
   // Global methods
   window.adminStudio = {
     selectCategoryTab,
+    clearPackageSearch,
     openPackageModal,
     openCategoryModal,
     openDeleteModal,

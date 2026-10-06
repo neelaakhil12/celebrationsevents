@@ -1722,9 +1722,10 @@
           <!-- Search & Filter Toolbar -->
           <div class="admin-toolbar">
             <div class="toolbar-left">
-              <div class="search-box">
+              <div class="search-box" style="position:relative; display:flex; align-items:center;">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                <input type="search" id="packageSearchInput" name="package_search_filter_prevent_autofill" class="search-input" placeholder="Search by title, tag, inclusion, or ID..." autocomplete="off" autocapitalize="off" spellcheck="false" />
+                <input type="search" id="packageSearchInput" name="pkg_search_query_off" class="search-input" placeholder="Search by title, tag, inclusion, or ID..." autocomplete="off" autocapitalize="off" spellcheck="false" />
+                <button type="button" id="clearSearchInputBtn" onclick="window.adminStudio.clearPackageSearch()" style="background:none; border:none; cursor:pointer; color:#94a3b8; font-size:15px; padding:4px 8px; margin-left:-30px; z-index:2;" title="Clear search">✕</button>
               </div>
             </div>
 
