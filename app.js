@@ -78,6 +78,42 @@ document.addEventListener("DOMContentLoaded", () => {
       } catch(e){}
     }
 
+    // Direct Cloud Synchronization with Supabase Database (Consistency across Localhost & Vercel)
+    const SUPABASE_URL = "https://wqnobkskmvilfhduvxsu.supabase.co";
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indxbm9ia3NrbXZpbGZoZHV2eHN1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTEwMDU5MDgsImV4cCI6MjEwNjU4MTkwOH0.3REUJyAR2kqnFb0fOAibKzuRah1cd5LOoTbX2ZMWhJQ";
+
+    const supabaseHeaders = {
+      "apikey": SUPABASE_ANON_KEY,
+      "Authorization": `Bearer ${SUPABASE_ANON_KEY}`
+    };
+
+    Promise.all([
+      fetch(`${SUPABASE_URL}/rest/v1/categories?select=*`, { headers: supabaseHeaders }).then(r => r.ok ? r.json() : null).catch(() => null),
+      fetch(`${SUPABASE_URL}/rest/v1/products?select=*`, { headers: supabaseHeaders }).then(r => r.ok ? r.json() : null).catch(() => null)
+    ]).then(([cloudCats, cloudProds]) => {
+      let dataChanged = false;
+      if (Array.isArray(cloudCats) && cloudCats.length > 0 && typeof SITE_DATA !== "undefined") {
+        SITE_DATA.categories = cloudCats;
+        localStorage.setItem("celebration_custom_categories", JSON.stringify(cloudCats));
+        dataChanged = true;
+      }
+      if (Array.isArray(cloudProds) && cloudProds.length > 0 && typeof SITE_DATA !== "undefined") {
+        SITE_DATA.products = cloudProds.map(p => ({
+          ...p,
+          categoryName: p.category_name || p.categoryName || p.category,
+          originalPrice: p.original_price || p.originalPrice || p.price,
+          setupDuration: p.setup_duration || p.setupDuration || "1.5 - 2 Hours",
+          reviewsCount: p.reviews_count || p.reviewsCount || 100
+        }));
+        localStorage.setItem("celebration_custom_products", JSON.stringify(SITE_DATA.products));
+        dataChanged = true;
+      }
+      if (dataChanged) {
+        try { renderCategoryTabs(); } catch(e){}
+        try { renderProducts(); } catch(e){}
+      }
+    }).catch(() => {});
+
     // Live sync with server disk backup if available
     fetch('/api/data')
       .then(res => res.ok ? res.json() : null)
@@ -88,10 +124,10 @@ document.addEventListener("DOMContentLoaded", () => {
             SITE_DATA.reviews = remoteData.reviews;
             updated = true;
           }
-          if (Array.isArray(remoteData.products) && remoteData.products.length > 0) {
+          if (Array.isArray(remoteData.products) && remoteData.products.length > 0 && (!SITE_DATA.products || SITE_DATA.products.length === 0)) {
             SITE_DATA.products = remoteData.products;
           }
-          if (Array.isArray(remoteData.categories) && remoteData.categories.length > 0) {
+          if (Array.isArray(remoteData.categories) && remoteData.categories.length > 0 && (!SITE_DATA.categories || SITE_DATA.categories.length === 0)) {
             SITE_DATA.categories = remoteData.categories;
           }
           if (Array.isArray(remoteData.cities) && remoteData.cities.length > 0) {

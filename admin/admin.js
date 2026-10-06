@@ -201,6 +201,8 @@
   function showDashboard() {
     document.getElementById('loginView').style.display = 'none';
     document.getElementById('adminAppView').style.display = 'flex';
+    const pkgSearch = document.getElementById('packageSearchInput');
+    if (pkgSearch) { pkgSearch.value = ''; appState.searchTerm = ''; }
     refreshAll();
   }
 
