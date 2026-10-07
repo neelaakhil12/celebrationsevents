@@ -158,8 +158,6 @@
       "badge": "POPULAR",
       "image": "https://cdn.balloondekor.com/33/birthday-decoration-d67f374a-0151-409d-96ea-36e9527e0ffc.webp",
       "desc": "Stunning birthday setups for home, terrace & banquet",
-      "created_at": "2026-10-03T09:42:33.142881+00:00",
-      "updated_at": "2026-10-03T09:42:33.142881+00:00",
       "subcategories": [
         {
           "id": "home",
@@ -208,8 +206,6 @@
       "badge": "HOT",
       "image": "https://cdn.balloondekor.com/29/1784709508118-669326.webp",
       "desc": "Surprise room, canopy, candlelight & heart balloon decor",
-      "created_at": "2026-10-03T09:42:33.142881+00:00",
-      "updated_at": "2026-10-03T09:42:33.142881+00:00",
       "subcategories": [
         {
           "id": "room",
@@ -244,8 +240,6 @@
       "badge": "TRENDING",
       "image": "https://cdn.balloondekor.com/33/kids-birthday-decoration-4b6bce2b-e65d-40fa-bdea-3f1367688305.webp",
       "desc": "Cocomelon, Frozen, Superhero, Jungle & Barbie themes",
-      "created_at": "2026-10-03T09:42:33.142881+00:00",
-      "updated_at": "2026-10-03T09:42:33.142881+00:00",
       "subcategories": [
         {
           "id": "cocomelon",
@@ -286,8 +280,6 @@
       "badge": "LOVED",
       "image": "https://cdn.balloondekor.com/33/baby-shower-decoration-1ba3a3a3-d2eb-40e6-98bd-aed4eb907984.webp",
       "desc": "Celebrate motherhood with gentle pastel setups",
-      "created_at": "2026-10-03T09:42:33.142881+00:00",
-      "updated_at": "2026-10-03T09:42:33.142881+00:00",
       "subcategories": [
         {
           "id": "shower",
@@ -316,8 +308,6 @@
       "badge": "SPECIAL",
       "image": "https://cdn.balloondekor.com/33/wedding-decoration-0c8b0952-fe10-44cb-ac91-8f640239beaf.webp",
       "desc": "Haldi marigold setups, car decor & bridal showers",
-      "created_at": "2026-10-03T09:42:33.142881+00:00",
-      "updated_at": "2026-10-03T09:42:33.142881+00:00",
       "subcategories": [
         {
           "id": "house-decor",
@@ -364,8 +354,6 @@
       "badge": "BUSINESS",
       "image": "https://cdn.balloondekor.com/33/office-decoration-b84c3312-f4cd-4baf-8d1f-b03d28c61242.webp",
       "desc": "Office anniversary, annual day & milestone celebrations",
-      "created_at": "2026-10-03T09:42:33.142881+00:00",
-      "updated_at": "2026-10-03T09:42:33.142881+00:00",
       "subcategories": [
         {
           "id": "office",
@@ -388,8 +376,6 @@
       "badge": "NEW",
       "image": "https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=600&q=80",
       "desc": "Curated gift hampers, surprise boxes, flower bouquets & cakes",
-      "created_at": "2026-10-03T09:42:33.142881+00:00",
-      "updated_at": "2026-10-03T09:42:33.142881+00:00",
       "subcategories": [
         {
           "id": "boys",
@@ -428,6 +414,15 @@
           "title": "Fresh Floral Bouquets"
         }
       ]
+    },
+    {
+      "id": "dusera",
+      "name": "dusera",
+      "icon": "🎈",
+      "badge": "trending",
+      "image": "https://res.cloudinary.com/gu0q1mxy/image/upload/v1791367187/celebration-categories/ptwy7yh1wvwg6xekh3bx.jpg",
+      "desc": "asdfgnh",
+      "subcategories": []
     }
   ],
   "products": [

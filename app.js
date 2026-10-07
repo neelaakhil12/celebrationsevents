@@ -80,6 +80,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Function to trigger re-rendering across index and all category pages
     function triggerCatalogRefresh() {
+      try { if (typeof renderQuickCategories === 'function') renderQuickCategories(); } catch(e){}
+      try { if (typeof renderFilterPills === 'function') renderFilterPills(); } catch(e){}
+      try { if (typeof renderNavCustomCategories === 'function') renderNavCustomCategories(); } catch(e){}
+      try { if (typeof renderMobileCustomCategories === 'function') renderMobileCustomCategories(); } catch(e){}
       try { if (typeof renderCategoryTabs === 'function') renderCategoryTabs(); } catch(e){}
       try { if (typeof renderProducts === 'function') renderProducts(); } catch(e){}
       try { if (typeof initBirthdayPage === 'function') initBirthdayPage(); } catch(e){}
@@ -262,6 +266,9 @@ document.addEventListener("DOMContentLoaded", () => {
   try { renderAnnouncementBar(); } catch(e){}
   try { renderPageBanners(); } catch(e){}
   try { renderQuickCategories(); } catch(e){}
+  try { renderFilterPills(); } catch(e){}
+  try { renderNavCustomCategories(); } catch(e){}
+  try { renderMobileCustomCategories(); } catch(e){}
   try { renderProducts(); } catch(e){}
   try { renderReviews(); } catch(e){}
   try { renderFaqs(); } catch(e){}
@@ -272,6 +279,7 @@ document.addEventListener("DOMContentLoaded", () => {
   try { updateCartBadge(); } catch(e){}
   try { initBookNowAnimations(); } catch(e){}
   try { scrollActiveNavIntoView(); } catch(e){}
+  try { initNavHorizontalScroll(); } catch(e){}
   try { updateUserAuthHeader(); } catch(e){}
 
   setTimeout(() => {
@@ -312,26 +320,7 @@ function setupEventListeners() {
   document.getElementById("mobileMenuBtn")?.addEventListener("click", openMobileSidebar);
 
   // Filter pills (Home page main catalog) - rendered dynamically from SITE_DATA.categories
-  const filterPillsContainer = document.getElementById("filterPills");
-  if (filterPillsContainer && typeof SITE_DATA !== "undefined" && Array.isArray(SITE_DATA.categories)) {
-    let pillsHTML = `<button type="button" class="filter-pill ${appState.currentCategory === 'all' ? 'active' : ''}" data-cat="all">All Occasions</button>`;
-    SITE_DATA.categories.forEach(cat => {
-      const isActive = appState.currentCategory === cat.id ? 'active' : '';
-      pillsHTML += `<button type="button" class="filter-pill ${isActive}" data-cat="${cat.id}">${cat.icon ? cat.icon + ' ' : ''}${cat.name}</button>`;
-    });
-    filterPillsContainer.innerHTML = pillsHTML;
-  }
-  const homeFilterPills = document.querySelectorAll("#filterPills .filter-pill");
-  homeFilterPills.forEach(pill => {
-    pill.addEventListener("click", (e) => {
-      e.preventDefault();
-      const cat = pill.getAttribute("data-cat");
-      if (!cat) return;
-      document.querySelectorAll("#filterPills .filter-pill").forEach(p => p.classList.remove("active"));
-      pill.classList.add("active");
-      filterCategory(cat);
-    });
-  });
+  try { renderFilterPills(); } catch(e){}
 
   // Sort dropdown
   const sortSelect = document.getElementById("sortSelect");
@@ -607,7 +596,7 @@ function initHeroCarousel() {
 // ----------------------------------------------------
 function renderQuickCategories() {
   const container = document.getElementById("quickCategoryGrid");
-  if (!container) return;
+  if (!container || typeof SITE_DATA === "undefined" || !Array.isArray(SITE_DATA.categories)) return;
 
   const categoryUrlMap = {
     "birthday": "birthday.html",
@@ -618,22 +607,121 @@ function renderQuickCategories() {
     "corporate": "corporate.html"
   };
 
-  container.innerHTML = SITE_DATA.categories.map((cat, idx) => {
+  const validCats = SITE_DATA.categories.filter(c => c && c.id && c.id !== '__site_subcategories__');
+
+  container.innerHTML = validCats.map((cat, idx) => {
     const hasDedicatedPage = Boolean(categoryUrlMap[cat.id]);
     const pageUrl = hasDedicatedPage ? categoryUrlMap[cat.id] : "#catalogHeading";
     const clickHandler = hasDedicatedPage ? "" : `onclick="filterCategory('${cat.id}'); document.getElementById('catalogHeading')?.scrollIntoView({behavior:'smooth'}); return false;"`;
+    const badgeHtml = (cat.badge && cat.badge.trim()) ? `<span class="category-card-badge">${cat.badge.trim()}</span>` : '';
+    const iconHtml = (cat.icon && cat.icon.trim()) ? `${cat.icon.trim()} ` : '';
+
     return `
-      <a href="${pageUrl}" ${clickHandler} class="quick-category-card" data-aos="zoom-in" data-aos-delay="${(idx + 1) * 70}" style="text-decoration: none; color: inherit; cursor: pointer;">
-        <span class="category-card-badge">${cat.badge}</span>
+      <a href="${pageUrl}" ${clickHandler} class="quick-category-card" data-aos="zoom-in" data-aos-delay="${((idx % 8) + 1) * 70}" style="text-decoration: none; color: inherit; cursor: pointer;">
+        ${badgeHtml}
         <div class="category-img-box">
-          <img src="${cat.image}" alt="${cat.name}" loading="lazy" />
+          <img src="${cat.image || 'https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=600&q=80'}" alt="${cat.name || 'Category'}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=600&q=80'" />
         </div>
-        <span class="category-name">${cat.icon || '🎈'} ${cat.name}</span>
+        <span class="category-name">${iconHtml}${cat.name || ''}</span>
       </a>
     `;
   }).join("");
 
   if (typeof AOS !== "undefined") AOS.refresh();
+}
+
+// ----------------------------------------------------
+// Dynamic Filter Pills (Catalog Section)
+// ----------------------------------------------------
+function renderFilterPills() {
+  const filterPillsContainer = document.getElementById("filterPills");
+  if (!filterPillsContainer || typeof SITE_DATA === "undefined" || !Array.isArray(SITE_DATA.categories)) return;
+
+  const validCats = SITE_DATA.categories.filter(c => c && c.id && c.id !== '__site_subcategories__');
+  let pillsHTML = `<button type="button" class="filter-pill ${appState.currentCategory === 'all' ? 'active' : ''}" data-cat="all">All Occasions</button>`;
+  
+  validCats.forEach(cat => {
+    const isActive = appState.currentCategory === cat.id ? 'active' : '';
+    const iconPart = (cat.icon && cat.icon.trim()) ? `${cat.icon.trim()} ` : '';
+    pillsHTML += `<button type="button" class="filter-pill ${isActive}" data-cat="${cat.id}">${iconPart}${cat.name}</button>`;
+  });
+  
+  filterPillsContainer.innerHTML = pillsHTML;
+
+  const homeFilterPills = filterPillsContainer.querySelectorAll(".filter-pill");
+  homeFilterPills.forEach(pill => {
+    pill.addEventListener("click", (e) => {
+      e.preventDefault();
+      const cat = pill.getAttribute("data-cat");
+      if (!cat) return;
+      homeFilterPills.forEach(p => p.classList.remove("active"));
+      pill.classList.add("active");
+      filterCategory(cat);
+    });
+  });
+}
+
+// ----------------------------------------------------
+// Dynamic Custom Categories for Desktop Header Navigation
+// ----------------------------------------------------
+function renderNavCustomCategories() {
+  const navMenu = document.querySelector(".nav-menu");
+  if (!navMenu || typeof SITE_DATA === "undefined" || !Array.isArray(SITE_DATA.categories)) return;
+
+  navMenu.querySelectorAll(".nav-item-custom-cat").forEach(el => el.remove());
+
+  const CORE_NAV_IDS = new Set(['birthday', 'anniversary', 'kids', 'baby-shower', 'wedding', 'corporate', 'gifts', 'blog', '__site_subcategories__']);
+  const customCats = SITE_DATA.categories.filter(c => c && c.id && !CORE_NAV_IDS.has(c.id));
+
+  const citiesLi = navMenu.querySelector("li:last-child");
+
+  customCats.forEach(cat => {
+    const li = document.createElement("li");
+    li.className = "nav-item nav-item-custom-cat";
+    const badgeHtml = (cat.badge && cat.badge.trim()) ? `<span class="tag-pill tag-popular">${cat.badge.trim()}</span>` : '';
+    li.innerHTML = `
+      <a href="#catalogHeading" class="nav-trigger" onclick="filterCategory('${cat.id}'); document.getElementById('catalogHeading')?.scrollIntoView({behavior:'smooth'}); return false;">
+        ${cat.name} ${badgeHtml}
+      </a>
+    `;
+    if (citiesLi) {
+      navMenu.insertBefore(li, citiesLi);
+    } else {
+      navMenu.appendChild(li);
+    }
+  });
+}
+
+// ----------------------------------------------------
+// Dynamic Custom Categories for Mobile Drawer
+// ----------------------------------------------------
+function renderMobileCustomCategories() {
+  const mobileList = document.querySelector(".mobile-nav-list");
+  if (!mobileList || typeof SITE_DATA === "undefined" || !Array.isArray(SITE_DATA.categories)) return;
+
+  mobileList.querySelectorAll(".mobile-nav-custom-cat").forEach(el => el.remove());
+
+  const CORE_NAV_IDS = new Set(['birthday', 'anniversary', 'kids', 'baby-shower', 'wedding', 'corporate', 'gifts', 'blog', '__site_subcategories__']);
+  const customCats = SITE_DATA.categories.filter(c => c && c.id && !CORE_NAV_IDS.has(c.id));
+
+  const refLink = mobileList.querySelector('a[href="marketplace.html"]')?.closest("li");
+
+  customCats.forEach(cat => {
+    const li = document.createElement("li");
+    li.className = "mobile-nav-custom-cat";
+    const iconPart = (cat.icon && cat.icon.trim()) ? `${cat.icon.trim()} ` : '🎈 ';
+    const badgeHtml = (cat.badge && cat.badge.trim()) ? `<span class="tag-pill tag-trending" style="margin-left: 6px; font-size: 9.5px; padding: 2px 7px;">${cat.badge.trim()}</span>` : '';
+    li.innerHTML = `
+      <a href="#catalogHeading" class="mobile-nav-link" onclick="filterCategory('${cat.id}'); closeMobileSidebar(); document.getElementById('catalogHeading')?.scrollIntoView({behavior:'smooth'}); return false;">
+        ${iconPart}${cat.name} ${badgeHtml} <span>›</span>
+      </a>
+    `;
+    if (refLink) {
+      mobileList.insertBefore(li, refLink);
+    } else {
+      mobileList.appendChild(li);
+    }
+  });
 }
 
 // ----------------------------------------------------
@@ -666,7 +754,7 @@ function filterCategory(catId) {
     const matched = SITE_DATA.categories.find(c => c.id === catId);
     if (matched) {
       heading.textContent = `${matched.name} Packages`;
-      subHeading.textContent = matched.desc;
+      subHeading.textContent = matched.desc || `Browse popular ${matched.name} balloon decor and celebration setups`;
     }
   }
 
@@ -783,20 +871,28 @@ function renderProducts() {
         "corporate": { url: "corporate.html", label: "View More Corporate Packages" },
         "gifts": { url: "marketplace.html", label: "View More Gifts & Hampers" }
       };
-      const target = catRedirectMap[appState.currentCategory] || {
-        url: `${appState.currentCategory}.html`,
-        label: `View More Packages`
-      };
-
-      moreContainer.innerHTML = `
-        <a href="${target.url}" class="catalog-view-all-btn" style="text-decoration: none;" aria-label="${target.label}">
-          <span>${target.label}</span>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="arrow-right">
-            <line x1="5" y1="12" x2="19" y2="12"></line>
-            <polyline points="12 5 19 12 12 19"></polyline>
-          </svg>
-        </a>
-      `;
+      const target = catRedirectMap[appState.currentCategory];
+      if (target) {
+        moreContainer.innerHTML = `
+          <a href="${target.url}" class="catalog-view-all-btn" style="text-decoration: none;" aria-label="${target.label}">
+            <span>${target.label}</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="arrow-right">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+        `;
+      } else if (items.length > visibleItems.length) {
+        const remainingCount = items.length - visibleItems.length;
+        moreContainer.innerHTML = `
+          <button class="catalog-view-all-btn" onclick="toggleShowAllProducts()" aria-label="View all packages">
+            <span>Show More Packages (${remainingCount} More)</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+        `;
+      } else {
+        moreContainer.innerHTML = "";
+      }
     } else {
       if (items.length > maxItemsLimit) {
         if (!appState.showAllProducts) {
@@ -2377,8 +2473,47 @@ function scrollActiveNavIntoView() {
   }
 }
 
+// ----------------------------------------------------
+// Mouse Wheel & Horizontal Scroll Enhancer for Category Navigation
+// ----------------------------------------------------
+function initNavHorizontalScroll() {
+  const containers = document.querySelectorAll('.nav-container');
+  containers.forEach(container => {
+    // 1. Mouse wheel horizontal scrolling
+    container.addEventListener('wheel', (e) => {
+      if (Math.abs(e.deltaY) > Math.abs(e.deltaX) && container.scrollWidth > container.clientWidth) {
+        e.preventDefault();
+        container.scrollLeft += e.deltaY;
+      }
+    }, { passive: false });
+
+    // 2. Drag scrolling for mouse
+    let isDown = false;
+    let startX = 0;
+    let scrollLeft = 0;
+
+    container.addEventListener('mousedown', (e) => {
+      if (e.target.closest('a') && !e.shiftKey) return;
+      isDown = true;
+      startX = e.pageX - container.offsetLeft;
+      scrollLeft = container.scrollLeft;
+    });
+
+    container.addEventListener('mouseleave', () => { isDown = false; });
+    container.addEventListener('mouseup', () => { isDown = false; });
+    container.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - container.offsetLeft;
+      const walk = (x - startX) * 1.5;
+      container.scrollLeft = scrollLeft - walk;
+    });
+  });
+}
+
 window.addEventListener("load", () => {
   try { scrollActiveNavIntoView(); } catch(e){}
+  try { initNavHorizontalScroll(); } catch(e){}
 });
 let resizeTimer;
 window.addEventListener("resize", () => {

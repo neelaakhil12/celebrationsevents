@@ -347,6 +347,15 @@ const SITE_DATA = {
         { "id": "cakes", "name": "Cakes", "icon": "🎂", "title": "Fresh Celebration Cakes" },
         { "id": "flowers", "name": "Flowers", "icon": "💐", "title": "Fresh Floral Bouquets" }
       ]
+    },
+    {
+      "id": "dusera",
+      "name": "dusera",
+      "icon": "",
+      "badge": "TRENDING",
+      "image": "https://res.cloudinary.com/gu0q1mxy/image/upload/v1791367187/celebration-categories/ptwy7yh1wvwg6xekh3bx.jpg",
+      "desc": "asdfgnh",
+      "subcategories": []
     }
   ],
   "weddingServices": [
