@@ -2735,7 +2735,6 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
 
       document.getElementById('catName').value = cat.name || '';
       slugInput.value = cat.id || '';
-      document.getElementById('catIcon').value = cat.icon || '';
       document.getElementById('catBadge').value = cat.badge || '';
       document.getElementById('catImage').value = cat.image || '';
       document.getElementById('catDesc').value = cat.desc || '';
@@ -2757,7 +2756,6 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
       document.getElementById('categoryForm').reset();
       slugInput.value = '';
       document.getElementById('catName').value = '';
-      document.getElementById('catIcon').value = '';
       document.getElementById('catBadge').value = '';
       document.getElementById('catImage').value = '';
       document.getElementById('catDesc').value = '';
@@ -2775,7 +2773,6 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
     e.preventDefault();
     const name = document.getElementById('catName').value.trim();
     let slug = document.getElementById('catSlug').value.trim();
-    const icon = document.getElementById('catIcon').value.trim();
     const badge = document.getElementById('catBadge').value.trim();
     const image = document.getElementById('catImage').value.trim();
     const desc = document.getElementById('catDesc').value.trim();
@@ -2794,6 +2791,7 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
 
     const existingCat = appState.editingCategoryId ? appState.categories.find(c => c.id === appState.editingCategoryId) : null;
     const subcategories = existingCat && Array.isArray(existingCat.subcategories) ? existingCat.subcategories : [];
+    const icon = existingCat?.icon || '';
 
     const categoryData = {
       id: slug,
@@ -2852,13 +2850,12 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
     const catSelect = document.getElementById('subcatParentCategory');
     const nameInput = document.getElementById('subcatName');
     const slugInput = document.getElementById('subcatSlug');
-    const iconInput = document.getElementById('subcatIcon');
     const headerTitleInput = document.getElementById('subcatTitle');
 
     // Populate Parent Category options
     if (catSelect) {
       catSelect.innerHTML = appState.categories.map(c => `
-        <option value="${c.id}" ${c.id === parentCatId ? 'selected' : ''}>${c.icon || '🏷️'} ${escapeHtml(c.name)}</option>
+        <option value="${c.id}" ${c.id === parentCatId ? 'selected' : ''}>${c.icon ? c.icon + ' ' : ''}${escapeHtml(c.name)}</option>
       `).join('');
     }
 
@@ -2875,7 +2872,6 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
       nameInput.value = sub.name || '';
       slugInput.value = sub.id || '';
       slugInput.readOnly = true;
-      iconInput.value = sub.icon || '🏷️';
       headerTitleInput.value = sub.title || sub.name || '';
     } else {
       titleEl.textContent = 'Add New Subcategory';
@@ -2887,7 +2883,6 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
       slugInput.value = '';
       nameInput.value = '';
       headerTitleInput.value = '';
-      iconInput.value = '';
     }
 
     modal.classList.add('active');
@@ -2898,7 +2893,6 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
     const parentCatId = document.getElementById('subcatParentCategory').value;
     const name = document.getElementById('subcatName').value.trim();
     let slug = document.getElementById('subcatSlug').value.trim();
-    const icon = document.getElementById('subcatIcon').value.trim() || '🏷️';
     const title = document.getElementById('subcatTitle').value.trim();
 
     if (!name) {
@@ -2917,6 +2911,9 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
     if (!Array.isArray(parentCat.subcategories)) {
       parentCat.subcategories = [];
     }
+
+    const existingSub = parentCat.subcategories.find(s => s.id === (appState.editingSubcategoryId || slug));
+    const icon = existingSub?.icon || '';
 
     const subData = {
       id: slug,
@@ -3187,13 +3184,6 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
       }
     });
 
-    document.querySelectorAll('.emoji-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const iconInput = document.getElementById('catIcon');
-        if (iconInput) iconInput.value = btn.textContent;
-      });
-    });
-
     // Subcategory Listeners
     document.getElementById('subcategoryForm')?.addEventListener('submit', handleSubcategoryFormSubmit);
     document.getElementById('catModalAddSubcatBtn')?.addEventListener('click', () => {
@@ -3206,12 +3196,6 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
       if (appState.editingSubcategoryId === null) {
         document.getElementById('subcatSlug').value = slugify(e.target.value);
       }
-    });
-    document.querySelectorAll('.subcat-emoji-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const iconInput = document.getElementById('subcatIcon');
-        if (iconInput) iconInput.value = btn.textContent;
-      });
     });
 
     // Backup & Settings
