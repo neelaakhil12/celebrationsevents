@@ -256,10 +256,32 @@ const SITE_DATA = {
       "image": "https://cdn.balloondekor.com/33/birthday-decoration-d67f374a-0151-409d-96ea-36e9527e0ffc.webp",
       "desc": "Stunning birthday setups for home, terrace & banquet",
       "subcategories": [
-        { "id": "home", "name": "Simple Home Surprises", "icon": "🏠", "title": "Simple Home Birthday Setups" },
-        { "id": "arch", "name": "Arch & Ring Backdrops", "icon": "⭕", "title": "Organic Arch & Ring Backdrop Setups" },
-        { "id": "luxury", "name": "Luxury Boho & Grand", "icon": "✨", "title": "Luxury Boho & Grand Jubilee Decors" },
-        { "id": "kids-link", "name": "Kids Themes →", "icon": "🦄", "title": "Kids Themes", "isLink": true, "href": "kids.html" }
+        {
+          "id": "home",
+          "name": "Simple Home Surprises",
+          "icon": "🏠",
+          "title": "Simple Home Birthday Setups"
+        },
+        {
+          "id": "arch",
+          "name": "Arch & Ring Backdrops",
+          "icon": "⭕",
+          "title": "Organic Arch & Ring Backdrop Setups"
+        },
+        {
+          "id": "luxury",
+          "name": "Luxury Boho & Grand",
+          "icon": "✨",
+          "title": "Luxury Boho & Grand Jubilee Decors"
+        },
+        {
+          "id": "kids-link",
+          "name": "Kids Themes →",
+          "icon": "🦄",
+          "title": "Kids Themes",
+          "isLink": true,
+          "href": "kids.html"
+        }
       ]
     },
     {
@@ -270,10 +292,30 @@ const SITE_DATA = {
       "image": "https://cdn.balloondekor.com/29/1784709508118-669326.webp",
       "desc": "Surprise room, canopy, candlelight & heart balloon decor",
       "subcategories": [
-        { "id": "room", "name": "Room & Bedroom Surprises", "icon": "🌹", "title": "Room & Bedroom Anniversary Surprises" },
-        { "id": "canopy", "name": "Cabana & Canopy Tents", "icon": "⛺", "title": "Cabana & Canopy Terrace Decors" },
-        { "id": "ring", "name": "Ring Backdrop & Neon", "icon": "⭕", "title": "Circular Ring Backdrops with Neon Signs" },
-        { "id": "grand", "name": "25th / 50th Jubilees", "icon": "✨", "title": "Grand 25th / 50th Jubilee Celebrations" }
+        {
+          "id": "room",
+          "name": "Room & Bedroom Surprises",
+          "icon": "🌹",
+          "title": "Room & Bedroom Anniversary Surprises"
+        },
+        {
+          "id": "canopy",
+          "name": "Cabana & Canopy Tents",
+          "icon": "⛺",
+          "title": "Cabana & Canopy Terrace Decors"
+        },
+        {
+          "id": "ring",
+          "name": "Ring Backdrop & Neon",
+          "icon": "⭕",
+          "title": "Circular Ring Backdrops with Neon Signs"
+        },
+        {
+          "id": "grand",
+          "name": "25th / 50th Jubilees",
+          "icon": "✨",
+          "title": "Grand 25th / 50th Jubilee Celebrations"
+        }
       ]
     },
     {
@@ -284,11 +326,36 @@ const SITE_DATA = {
       "image": "https://cdn.balloondekor.com/33/kids-birthday-decoration-4b6bce2b-e65d-40fa-bdea-3f1367688305.webp",
       "desc": "Cocomelon, Frozen, Superhero, Jungle & Barbie themes",
       "subcategories": [
-        { "id": "cocomelon", "name": "Cocomelon", "icon": "🍉", "title": "Cocomelon Fun Kids Birthday Setups" },
-        { "id": "babyshark", "name": "Baby Shark", "icon": "🦈", "title": "Baby Shark Underwater Theme Setups" },
-        { "id": "bossbaby", "name": "The Boss Baby", "icon": "💼", "title": "The Boss Baby Theme Setups" },
-        { "id": "jungle", "name": "Jungle Safari", "icon": "🦁", "title": "Wild Jungle Safari Birthday Themes" },
-        { "id": "frozen", "name": "Frozen Wonderland", "icon": "❄️", "title": "Frozen Ice Wonderland Princess Themes" }
+        {
+          "id": "cocomelon",
+          "name": "Cocomelon",
+          "icon": "🍉",
+          "title": "Cocomelon Fun Kids Birthday Setups"
+        },
+        {
+          "id": "babyshark",
+          "name": "Baby Shark",
+          "icon": "🦈",
+          "title": "Baby Shark Underwater Theme Setups"
+        },
+        {
+          "id": "bossbaby",
+          "name": "The Boss Baby",
+          "icon": "💼",
+          "title": "The Boss Baby Theme Setups"
+        },
+        {
+          "id": "jungle",
+          "name": "Jungle Safari",
+          "icon": "🦁",
+          "title": "Wild Jungle Safari Birthday Themes"
+        },
+        {
+          "id": "frozen",
+          "name": "Frozen Wonderland",
+          "icon": "❄️",
+          "title": "Frozen Ice Wonderland Princess Themes"
+        }
       ]
     },
     {
@@ -299,9 +366,24 @@ const SITE_DATA = {
       "image": "https://cdn.balloondekor.com/33/baby-shower-decoration-1ba3a3a3-d2eb-40e6-98bd-aed4eb907984.webp",
       "desc": "Celebrate motherhood with gentle pastel setups",
       "subcategories": [
-        { "id": "shower", "name": "Baby Shower Celebrations", "icon": "🍼", "title": "Baby Shower Theme Packages" },
-        { "id": "welcome", "name": "Welcome Baby Home", "icon": "👶", "title": "Welcome Baby Home Decor Packages" },
-        { "id": "teddy", "name": "Teddy Bear Luxury Themes", "icon": "🧸", "title": "Luxury Teddy Bear Theme Setups" }
+        {
+          "id": "shower",
+          "name": "Baby Shower Celebrations",
+          "icon": "🍼",
+          "title": "Baby Shower Theme Packages"
+        },
+        {
+          "id": "welcome",
+          "name": "Welcome Baby Home",
+          "icon": "👶",
+          "title": "Welcome Baby Home Decor Packages"
+        },
+        {
+          "id": "teddy",
+          "name": "Teddy Bear Luxury Themes",
+          "icon": "🧸",
+          "title": "Luxury Teddy Bear Theme Setups"
+        }
       ]
     },
     {
@@ -312,12 +394,42 @@ const SITE_DATA = {
       "image": "https://cdn.balloondekor.com/33/wedding-decoration-0c8b0952-fe10-44cb-ac91-8f640239beaf.webp",
       "desc": "Haldi marigold setups, car decor & bridal showers",
       "subcategories": [
-        { "id": "house-decor", "name": "House Decoration", "icon": "🏠", "title": "Traditional House Decoration" },
-        { "id": "nalugu-snanam", "name": "Nalugu & Mangala Snanam", "icon": "🌼", "title": "Auspicious Nalugu & Snanam Rituals" },
-        { "id": "mandap-stage", "name": "Mandap & Reception Stages", "icon": "🏛️", "title": "Grand Wedding Mandaps & Reception Stages" },
-        { "id": "photo-video", "name": "Photography & Shoots", "icon": "📸", "title": "Wedding Photo, Video & Drone Coverage" },
-        { "id": "melam-music", "name": "Melam, Band & Orchestra", "icon": "🥁", "title": "Traditional Melam, Drums & DJ Entertainment" },
-        { "id": "bridal-styling", "name": "Bridal Makeup & Mehendi", "icon": "💅", "title": "Bridal Makeup, Draping & Mehendi Art" }
+        {
+          "id": "house-decor",
+          "name": "House Decoration",
+          "icon": "🏠",
+          "title": "Traditional House Decoration"
+        },
+        {
+          "id": "nalugu-snanam",
+          "name": "Nalugu & Mangala Snanam",
+          "icon": "🌼",
+          "title": "Auspicious Nalugu & Snanam Rituals"
+        },
+        {
+          "id": "mandap-stage",
+          "name": "Mandap & Reception Stages",
+          "icon": "🏛️",
+          "title": "Grand Wedding Mandaps & Reception Stages"
+        },
+        {
+          "id": "photo-video",
+          "name": "Photography & Shoots",
+          "icon": "📸",
+          "title": "Wedding Photo, Video & Drone Coverage"
+        },
+        {
+          "id": "melam-music",
+          "name": "Melam, Band & Orchestra",
+          "icon": "🥁",
+          "title": "Traditional Melam, Drums & DJ Entertainment"
+        },
+        {
+          "id": "bridal-styling",
+          "name": "Bridal Makeup & Mehendi",
+          "icon": "💅",
+          "title": "Bridal Makeup, Draping & Mehendi Art"
+        }
       ]
     },
     {
@@ -328,8 +440,18 @@ const SITE_DATA = {
       "image": "https://cdn.balloondekor.com/33/office-decoration-b84c3312-f4cd-4baf-8d1f-b03d28c61242.webp",
       "desc": "Office anniversary, annual day & milestone celebrations",
       "subcategories": [
-        { "id": "office", "name": "Office Inauguration & Milestones", "icon": "🏢", "title": "Office Inauguration & Milestone Decor" },
-        { "id": "stage", "name": "Grand Stage & Annual Day", "icon": "🎉", "title": "Grand Stage & Annual Day Conferences" }
+        {
+          "id": "office",
+          "name": "Office Inauguration & Milestones",
+          "icon": "🏢",
+          "title": "Office Inauguration & Milestone Decor"
+        },
+        {
+          "id": "stage",
+          "name": "Grand Stage & Annual Day",
+          "icon": "🎉",
+          "title": "Grand Stage & Annual Day Conferences"
+        }
       ]
     },
     {
@@ -340,12 +462,42 @@ const SITE_DATA = {
       "image": "https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=600&q=80",
       "desc": "Curated gift hampers, surprise boxes, flower bouquets & cakes",
       "subcategories": [
-        { "id": "boys", "name": "Gifts for Boys", "icon": "👦", "title": "Curated Gifts for Boys" },
-        { "id": "girls", "name": "Gifts for Girls", "icon": "👧", "title": "Curated Gifts for Girls" },
-        { "id": "men", "name": "Gifts for Men", "icon": "👨", "title": "Handcrafted Gifts for Men" },
-        { "id": "women", "name": "Gifts for Women", "icon": "👩", "title": "Luxury Gifts for Women" },
-        { "id": "cakes", "name": "Cakes", "icon": "🎂", "title": "Fresh Celebration Cakes" },
-        { "id": "flowers", "name": "Flowers", "icon": "💐", "title": "Fresh Floral Bouquets" }
+        {
+          "id": "boys",
+          "name": "Gifts for Boys",
+          "icon": "👦",
+          "title": "Curated Gifts for Boys"
+        },
+        {
+          "id": "girls",
+          "name": "Gifts for Girls",
+          "icon": "👧",
+          "title": "Curated Gifts for Girls"
+        },
+        {
+          "id": "men",
+          "name": "Gifts for Men",
+          "icon": "👨",
+          "title": "Handcrafted Gifts for Men"
+        },
+        {
+          "id": "women",
+          "name": "Gifts for Women",
+          "icon": "👩",
+          "title": "Luxury Gifts for Women"
+        },
+        {
+          "id": "cakes",
+          "name": "Cakes",
+          "icon": "🎂",
+          "title": "Fresh Celebration Cakes"
+        },
+        {
+          "id": "flowers",
+          "name": "Flowers",
+          "icon": "💐",
+          "title": "Fresh Floral Bouquets"
+        }
       ]
     },
     {
@@ -1277,7 +1429,8 @@ const SITE_DATA = {
         "Home Decor",
         "Same Day Available",
         "Budget Friendly"
-      ]
+      ],
+      "subcategory": "home"
     },
     {
       "id": "rose-gold-birthday-home-decor",
@@ -1309,7 +1462,8 @@ const SITE_DATA = {
         "Rose Gold",
         "Girls Birthday",
         "Insta-Worthy"
-      ]
+      ],
+      "subcategory": "home"
     },
     {
       "id": "adorable-birthday-arch-backdrop",
@@ -1340,7 +1494,8 @@ const SITE_DATA = {
         "Circular Arch",
         "Milestone 30th",
         "Banquet Hall"
-      ]
+      ],
+      "subcategory": "arch"
     },
     {
       "id": "blush-glow-birthday-theme",
@@ -1371,7 +1526,8 @@ const SITE_DATA = {
         "Blush Pink",
         "Bedroom Surprise",
         "Evening Glow"
-      ]
+      ],
+      "subcategory": "home"
     },
     {
       "id": "boho-theme-birthday-decoration",
@@ -1403,7 +1559,8 @@ const SITE_DATA = {
         "Boho Luxury",
         "Pampas Grass",
         "Milestone 50th / 1st"
-      ]
+      ],
+      "subcategory": "luxury"
     },
     {
       "id": "anniversary-home-decoration",
@@ -1435,7 +1592,8 @@ const SITE_DATA = {
         "Romantic Surprise",
         "Bedroom Decor",
         "Rose Petals"
-      ]
+      ],
+      "subcategory": "room"
     },
     {
       "id": "red-anniversary-home-decor",
@@ -1466,7 +1624,8 @@ const SITE_DATA = {
         "Red Passion",
         "Polaroid Photos",
         "Proposals"
-      ]
+      ],
+      "subcategory": "canopy"
     },
     {
       "id": "romantic-anniversary-room-celebration",
@@ -1497,7 +1656,8 @@ const SITE_DATA = {
         "Hotel Room",
         "Canopy",
         "Candlelight Pathway"
-      ]
+      ],
+      "subcategory": "room"
     },
     {
       "id": "anniversary-bliss-setup",
@@ -1528,7 +1688,8 @@ const SITE_DATA = {
         "Circular Arch",
         "Silver Jubilee",
         "Photo Booth"
-      ]
+      ],
+      "subcategory": "ring"
     },
     {
       "id": "happy-anniversary-backdrop-decoration",
@@ -1560,7 +1721,8 @@ const SITE_DATA = {
         "25th Silver Jubilee",
         "50th Golden Jubilee",
         "Shimmer Wall"
-      ]
+      ],
+      "subcategory": "grand"
     },
     {
       "id": "cabana-canopy-terrace-decor",
@@ -1590,7 +1752,8 @@ const SITE_DATA = {
         "Terrace Cabana",
         "Stargazing Dinner",
         "Proposal"
-      ]
+      ],
+      "subcategory": "canopy"
     },
     {
       "id": "cocomelon-kids-theme",
@@ -1622,7 +1785,8 @@ const SITE_DATA = {
         "Cocomelon",
         "1st Birthday",
         "Toddlers"
-      ]
+      ],
+      "subcategory": "cocomelon"
     },
     {
       "id": "baby-shark-underwater-theme",
@@ -1652,7 +1816,8 @@ const SITE_DATA = {
         "Baby Shark",
         "Ocean Theme",
         "Under 5 Years"
-      ]
+      ],
+      "subcategory": "babyshark"
     },
     {
       "id": "boss-baby-theme-decor",
@@ -1682,7 +1847,8 @@ const SITE_DATA = {
         "Boss Baby",
         "Boy Birthday",
         "Corporate Baby"
-      ]
+      ],
+      "subcategory": "bossbaby"
     },
     {
       "id": "jungle-safari-kids-party",
@@ -1712,7 +1878,8 @@ const SITE_DATA = {
         "Jungle Safari",
         "Wild One",
         "Animals"
-      ]
+      ],
+      "subcategory": "jungle"
     },
     {
       "id": "frozen-wonderland-theme",
@@ -1742,7 +1909,8 @@ const SITE_DATA = {
         "Frozen",
         "Elsa & Olaf",
         "Princess Theme"
-      ]
+      ],
+      "subcategory": "frozen"
     },
     {
       "id": "baby-shower-pastel-decor",
@@ -1772,7 +1940,8 @@ const SITE_DATA = {
         "Gender Neutral",
         "Pastel Colors",
         "Mom To Be"
-      ]
+      ],
+      "subcategory": "shower"
     },
     {
       "id": "newborn-welcome-baby-decor",
@@ -1802,7 +1971,8 @@ const SITE_DATA = {
         "Hospital Arrival",
         "Same Day Setup",
         "Baby Welcome"
-      ]
+      ],
+      "subcategory": "welcome"
     },
     {
       "id": "baby-shower-teddy-bear-theme",
@@ -1832,7 +2002,8 @@ const SITE_DATA = {
         "Teddy Bear",
         "Bearly Wait",
         "Godh Bharai"
-      ]
+      ],
+      "subcategory": "teddy"
     },
     {
       "id": "baby-shower-teddy-cloud-cradle-decor",
@@ -1862,7 +2033,8 @@ const SITE_DATA = {
         "Cradle Decor",
         "Naming Ceremony",
         "Tradition"
-      ]
+      ],
+      "subcategory": "teddy"
     },
     {
       "id": "baby-welcome-home-balloon-surprise",
@@ -1892,7 +2064,8 @@ const SITE_DATA = {
         "Room Surprise",
         "Welcome Baby",
         "Newborn"
-      ]
+      ],
+      "subcategory": "welcome"
     },
     {
       "id": "house-decor",
@@ -1969,7 +2142,8 @@ const SITE_DATA = {
             "No"
           ]
         }
-      ]
+      ],
+      "subcategory": "house-decor"
     },
     {
       "id": "nalugu-snanam",
@@ -2049,7 +2223,8 @@ const SITE_DATA = {
             "2 Sannai"
           ]
         }
-      ]
+      ],
+      "subcategory": "nalugu-snanam"
     },
     {
       "id": "function-hall-decor",
@@ -2133,7 +2308,8 @@ const SITE_DATA = {
             "Coolers"
           ]
         }
-      ]
+      ],
+      "subcategory": "mandap-stage"
     },
     {
       "id": "catering",
@@ -2308,7 +2484,8 @@ const SITE_DATA = {
             "Chips or Papad"
           ]
         }
-      ]
+      ],
+      "subcategory": "house-decor"
     },
     {
       "id": "sangyam-sweets",
@@ -2376,7 +2553,8 @@ const SITE_DATA = {
             "Chekkalu"
           ]
         }
-      ]
+      ],
+      "subcategory": "house-decor"
     },
     {
       "id": "photo-video",
@@ -2465,7 +2643,8 @@ const SITE_DATA = {
             "No"
           ]
         }
-      ]
+      ],
+      "subcategory": "photo-video"
     },
     {
       "id": "melam",
@@ -2544,7 +2723,8 @@ const SITE_DATA = {
             "Band Set (15 Members)"
           ]
         }
-      ]
+      ],
+      "subcategory": "melam-music"
     },
     {
       "id": "special-events",
@@ -2607,7 +2787,8 @@ const SITE_DATA = {
             "Design Butta"
           ]
         }
-      ]
+      ],
+      "subcategory": "melam-music"
     },
     {
       "id": "musical-events",
@@ -2650,7 +2831,8 @@ const SITE_DATA = {
             "Live Instrumental Music (Live instrumental performance)"
           ]
         }
-      ]
+      ],
+      "subcategory": "melam-music"
     },
     {
       "id": "sangyam-bags",
@@ -2706,7 +2888,8 @@ const SITE_DATA = {
             "500 Sets"
           ]
         }
-      ]
+      ],
+      "subcategory": "house-decor"
     },
     {
       "id": "bridal-makeup",
@@ -2758,7 +2941,8 @@ const SITE_DATA = {
             "Traditional Saree Draping & Jewellery Setting"
           ]
         }
-      ]
+      ],
+      "subcategory": "bridal-styling"
     },
     {
       "id": "mehandi",
@@ -2809,7 +2993,8 @@ const SITE_DATA = {
             "100% Organic Fresh Henna Cones"
           ]
         }
-      ]
+      ],
+      "subcategory": "bridal-styling"
     },
     {
       "id": "sangeet",
@@ -2861,7 +3046,8 @@ const SITE_DATA = {
             "Professional Sangeet DJ & Emcee"
           ]
         }
-      ]
+      ],
+      "subcategory": "melam-music"
     },
     {
       "id": "corporate-office-milestone-decor",
@@ -2891,7 +3077,8 @@ const SITE_DATA = {
         "Office Decor",
         "Foundation Day",
         "Brand Colors"
-      ]
+      ],
+      "subcategory": "office"
     },
     {
       "id": "corporate-annual-day-grand-stage",
@@ -2921,7 +3108,8 @@ const SITE_DATA = {
         "Annual Day",
         "Townhall",
         "Auditorium"
-      ]
+      ],
+      "subcategory": "stage"
     },
     {
       "id": "corporate-product-launch-balloon-arch",
@@ -2951,7 +3139,8 @@ const SITE_DATA = {
         "Product Launch",
         "Store Opening",
         "Ribbon Cutting"
-      ]
+      ],
+      "subcategory": "office"
     },
     {
       "id": "corporate-cubicle-bay-festive-decor",
@@ -2981,7 +3170,8 @@ const SITE_DATA = {
         "Cubicle Decor",
         "Diwali",
         "Office Party"
-      ]
+      ],
+      "subcategory": "office"
     },
     {
       "id": "corporate-executive-townhall-stage-backdrop",
@@ -3011,7 +3201,8 @@ const SITE_DATA = {
         "Townhall",
         "Leadership Meet",
         "Board Meeting"
-      ]
+      ],
+      "subcategory": "stage"
     },
     {
       "id": "gift-01",
@@ -3039,7 +3230,8 @@ const SITE_DATA = {
         "Gifts for Boys",
         "Gifts for Girls",
         "TeddyJoy"
-      ]
+      ],
+      "subcategory": "girls"
     },
     {
       "id": "gift-02",
@@ -3067,7 +3259,8 @@ const SITE_DATA = {
         "Gifts for Men",
         "Gifts for Women",
         "Archies"
-      ]
+      ],
+      "subcategory": "boys"
     },
     {
       "id": "gift-03",
@@ -3096,7 +3289,8 @@ const SITE_DATA = {
         "Gifts for Women",
         "Wedding Gifts",
         "Archies"
-      ]
+      ],
+      "subcategory": "women"
     },
     {
       "id": "gift-04",
@@ -3125,7 +3319,8 @@ const SITE_DATA = {
         "Gifts for Men",
         "Archies",
         "Analog Watch"
-      ]
+      ],
+      "subcategory": "men"
     },
     {
       "id": "gift-05",
@@ -3154,7 +3349,8 @@ const SITE_DATA = {
         "Flowers",
         "Gifts for Women",
         "FlowerAura"
-      ]
+      ],
+      "subcategory": "flowers"
     },
     {
       "id": "gift-06",
@@ -3183,7 +3379,8 @@ const SITE_DATA = {
         "Gifts for Women",
         "Gifts for Men",
         "Ferrero Rocher"
-      ]
+      ],
+      "subcategory": "cakes"
     },
     {
       "id": "gift-07",
@@ -3211,7 +3408,8 @@ const SITE_DATA = {
         "Gifts for Boys",
         "Archies",
         "RC Car"
-      ]
+      ],
+      "subcategory": "boys"
     },
     {
       "id": "gift-08",
@@ -3239,7 +3437,8 @@ const SITE_DATA = {
         "Cakes",
         "FlowerAura",
         "Eggless Truffle"
-      ]
+      ],
+      "subcategory": "cakes"
     },
     {
       "id": "gift-09",
@@ -3267,7 +3466,8 @@ const SITE_DATA = {
         "Cards",
         "Wedding Gifts",
         "Archies"
-      ]
+      ],
+      "subcategory": "women"
     },
     {
       "id": "gift-10",
@@ -3295,7 +3495,8 @@ const SITE_DATA = {
         "Digital Invitations",
         "Archies",
         "Video Invite"
-      ]
+      ],
+      "subcategory": "men"
     },
     {
       "id": "gift-11",
@@ -3323,7 +3524,8 @@ const SITE_DATA = {
         "Returns Gifts",
         "Archies",
         "Set of 10"
-      ]
+      ],
+      "subcategory": "boys"
     },
     {
       "id": "gift-12",
@@ -3352,7 +3554,8 @@ const SITE_DATA = {
         "Gifts for Boys",
         "Archies",
         "Hamper"
-      ]
+      ],
+      "subcategory": "boys"
     }
   ],
   "reviews": [

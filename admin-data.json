@@ -454,11 +454,12 @@
       "tags": [
         "Red Passion",
         "Polaroid Photos",
-        "Proposals"
+        "Proposals",
+        "subcat:canopy"
       ],
       "created_at": "2026-10-03T09:42:33.449+00:00",
       "updated_at": "2026-10-03T09:42:33.449+00:00",
-      "subcategory": "",
+      "subcategory": "canopy",
       "categoryName": "Anniversary",
       "originalPrice": 2699,
       "setupDuration": "2 Hours",
@@ -492,11 +493,12 @@
       "tags": [
         "Hotel Room",
         "Canopy",
-        "Candlelight Pathway"
+        "Candlelight Pathway",
+        "subcat:room"
       ],
       "created_at": "2026-10-03T09:42:33.449+00:00",
       "updated_at": "2026-10-03T09:42:33.449+00:00",
-      "subcategory": "",
+      "subcategory": "room",
       "categoryName": "Anniversary",
       "originalPrice": 3199,
       "setupDuration": "2.5 Hours",
@@ -531,11 +533,12 @@
       "tags": [
         "25th Silver Jubilee",
         "50th Golden Jubilee",
-        "Shimmer Wall"
+        "Shimmer Wall",
+        "subcat:grand"
       ],
       "created_at": "2026-10-03T09:42:33.449+00:00",
       "updated_at": "2026-10-03T09:42:33.449+00:00",
-      "subcategory": "",
+      "subcategory": "grand",
       "categoryName": "Anniversary",
       "originalPrice": 8499,
       "setupDuration": "3.5 Hours",
@@ -568,11 +571,12 @@
       "tags": [
         "Terrace Cabana",
         "Stargazing Dinner",
-        "Proposal"
+        "Proposal",
+        "subcat:canopy"
       ],
       "created_at": "2026-10-03T09:42:33.449+00:00",
       "updated_at": "2026-10-03T09:42:33.449+00:00",
-      "subcategory": "",
+      "subcategory": "canopy",
       "categoryName": "Anniversary",
       "originalPrice": 4499,
       "setupDuration": "2.5 Hours",
@@ -607,11 +611,12 @@
       "tags": [
         "Cocomelon",
         "1st Birthday",
-        "Toddlers"
+        "Toddlers",
+        "subcat:cocomelon"
       ],
       "created_at": "2026-10-03T09:42:33.449+00:00",
       "updated_at": "2026-10-03T09:42:33.449+00:00",
-      "subcategory": "",
+      "subcategory": "cocomelon",
       "categoryName": "Kids Themes",
       "originalPrice": 3999,
       "setupDuration": "2.5 Hours",
@@ -644,11 +649,12 @@
       "tags": [
         "Baby Shark",
         "Ocean Theme",
-        "Under 5 Years"
+        "Under 5 Years",
+        "subcat:babyshark"
       ],
       "created_at": "2026-10-03T09:42:33.449+00:00",
       "updated_at": "2026-10-03T09:42:33.449+00:00",
-      "subcategory": "",
+      "subcategory": "babyshark",
       "categoryName": "Kids Themes",
       "originalPrice": 4299,
       "setupDuration": "2.5 Hours",
@@ -681,11 +687,12 @@
       "tags": [
         "Boss Baby",
         "Boy Birthday",
-        "Corporate Baby"
+        "Corporate Baby",
+        "subcat:bossbaby"
       ],
       "created_at": "2026-10-03T09:42:33.449+00:00",
       "updated_at": "2026-10-03T09:42:33.449+00:00",
-      "subcategory": "",
+      "subcategory": "bossbaby",
       "categoryName": "Kids Themes",
       "originalPrice": 4599,
       "setupDuration": "2.5 Hours",
@@ -718,11 +725,12 @@
       "tags": [
         "Jungle Safari",
         "Wild One",
-        "Animals"
+        "Animals",
+        "subcat:jungle"
       ],
       "created_at": "2026-10-03T09:42:33.449+00:00",
       "updated_at": "2026-10-03T09:42:33.449+00:00",
-      "subcategory": "",
+      "subcategory": "jungle",
       "categoryName": "Kids Themes",
       "originalPrice": 4399,
       "setupDuration": "3 Hours",
@@ -755,11 +763,12 @@
       "tags": [
         "Frozen",
         "Elsa & Olaf",
-        "Princess Theme"
+        "Princess Theme",
+        "subcat:frozen"
       ],
       "created_at": "2026-10-03T09:42:33.449+00:00",
       "updated_at": "2026-10-03T09:42:33.449+00:00",
-      "subcategory": "",
+      "subcategory": "frozen",
       "categoryName": "Kids Themes",
       "originalPrice": 4799,
       "setupDuration": "3 Hours",
@@ -792,11 +801,12 @@
       "tags": [
         "Gender Neutral",
         "Pastel Colors",
-        "Mom To Be"
+        "Mom To Be",
+        "subcat:shower"
       ],
       "created_at": "2026-10-03T09:42:33.449+00:00",
       "updated_at": "2026-10-03T09:42:33.449+00:00",
-      "subcategory": "",
+      "subcategory": "shower",
       "categoryName": "Baby Shower & Welcome",
       "originalPrice": 3499,
       "setupDuration": "2 Hours",
@@ -829,11 +839,12 @@
       "tags": [
         "Hospital Arrival",
         "Same Day Setup",
-        "Baby Welcome"
+        "Baby Welcome",
+        "subcat:welcome"
       ],
       "created_at": "2026-10-03T09:42:33.449+00:00",
       "updated_at": "2026-10-03T09:42:33.449+00:00",
-      "subcategory": "",
+      "subcategory": "welcome",
       "categoryName": "Baby Shower & Welcome",
       "originalPrice": 2499,
       "setupDuration": "1.5 Hours",
@@ -866,11 +877,12 @@
       "tags": [
         "Teddy Bear",
         "Bearly Wait",
-        "Godh Bharai"
+        "Godh Bharai",
+        "subcat:teddy"
       ],
       "created_at": "2026-10-03T09:42:33.449+00:00",
       "updated_at": "2026-10-03T09:42:33.449+00:00",
-      "subcategory": "",
+      "subcategory": "teddy",
       "categoryName": "Baby Shower & Welcome",
       "originalPrice": 4699,
       "setupDuration": "2.5 Hours",
@@ -903,11 +915,12 @@
       "tags": [
         "Cradle Decor",
         "Naming Ceremony",
-        "Tradition"
+        "Tradition",
+        "subcat:teddy"
       ],
       "created_at": "2026-10-03T09:42:33.449+00:00",
       "updated_at": "2026-10-03T09:42:33.449+00:00",
-      "subcategory": "",
+      "subcategory": "teddy",
       "categoryName": "Baby Shower & Welcome",
       "originalPrice": 4499,
       "setupDuration": "2.5 Hours",
@@ -940,11 +953,12 @@
       "tags": [
         "Room Surprise",
         "Welcome Baby",
-        "Newborn"
+        "Newborn",
+        "subcat:welcome"
       ],
       "created_at": "2026-10-03T09:42:33.449+00:00",
       "updated_at": "2026-10-03T09:42:33.449+00:00",
-      "subcategory": "",
+      "subcategory": "welcome",
       "categoryName": "Baby Shower & Welcome",
       "originalPrice": 2899,
       "setupDuration": "2 Hours",
@@ -978,11 +992,12 @@
         "Pandals",
         "Lighting",
         "Banana Trees",
-        "Flowers"
+        "Flowers",
+        "subcat:house-decor"
       ],
       "created_at": "2026-10-04T12:29:15.410883+00:00",
       "updated_at": "2026-10-04T12:29:15.410883+00:00",
-      "subcategory": "",
+      "subcategory": "house-decor",
       "categoryName": "Wedding",
       "originalPrice": 12999,
       "setupDuration": "3 - 4 Hours",
@@ -1015,11 +1030,12 @@
       "tags": [
         "Traditional decorations",
         "Flower jewellery",
-        "Nallu items"
+        "Nallu items",
+        "subcat:nalugu-snanam"
       ],
       "created_at": "2026-10-04T12:29:15.410883+00:00",
       "updated_at": "2026-10-04T12:29:15.410883+00:00",
-      "subcategory": "",
+      "subcategory": "nalugu-snanam",
       "categoryName": "Wedding",
       "originalPrice": 9499,
       "setupDuration": "2 - 3 Hours",
@@ -1053,11 +1069,12 @@
         "Entrance",
         "Stage",
         "Reception",
-        "Flower decoration"
+        "Flower decoration",
+        "subcat:mandap-stage"
       ],
       "created_at": "2026-10-04T12:29:15.410883+00:00",
       "updated_at": "2026-10-04T12:29:15.410883+00:00",
-      "subcategory": "",
+      "subcategory": "mandap-stage",
       "categoryName": "Wedding",
       "originalPrice": 32999,
       "setupDuration": "4 - 6 Hours",
@@ -1090,11 +1107,12 @@
       "tags": [
         "Customizable veg menu",
         "Buffet service",
-        "Live counters"
+        "Live counters",
+        "subcat:house-decor"
       ],
       "created_at": "2026-10-04T12:29:15.410883+00:00",
       "updated_at": "2026-10-04T12:29:15.410883+00:00",
-      "subcategory": "",
+      "subcategory": "house-decor",
       "categoryName": "Wedding",
       "originalPrice": 59999,
       "setupDuration": "Full Day Service",
@@ -1128,11 +1146,12 @@
         "Traditional sweets",
         "Snacks",
         "Pure Ghee",
-        "Sangyam"
+        "Sangyam",
+        "subcat:house-decor"
       ],
       "created_at": "2026-10-04T12:29:15.410883+00:00",
       "updated_at": "2026-10-04T12:29:15.410883+00:00",
-      "subcategory": "",
+      "subcategory": "house-decor",
       "categoryName": "Wedding",
       "originalPrice": 5999,
       "setupDuration": "Delivered to Venue",
@@ -1166,11 +1185,12 @@
       "tags": [
         "Home Decor",
         "Same Day Available",
-        "Budget Friendly"
+        "Budget Friendly",
+        "subcat:home"
       ],
       "created_at": "2026-10-03T09:42:33.449+00:00",
       "updated_at": "2026-10-03T09:42:33.449+00:00",
-      "subcategory": "",
+      "subcategory": "home",
       "categoryName": "Birthday",
       "originalPrice": 1999,
       "setupDuration": "1.5 - 2 Hours",
@@ -1205,11 +1225,12 @@
       "tags": [
         "Rose Gold",
         "Girls Birthday",
-        "Insta-Worthy"
+        "Insta-Worthy",
+        "subcat:home"
       ],
       "created_at": "2026-10-03T09:42:33.449+00:00",
       "updated_at": "2026-10-03T09:42:33.449+00:00",
-      "subcategory": "",
+      "subcategory": "home",
       "categoryName": "Birthday",
       "originalPrice": 2499,
       "setupDuration": "2 Hours",
@@ -1243,11 +1264,12 @@
       "tags": [
         "Circular Arch",
         "Milestone 30th",
-        "Banquet Hall"
+        "Banquet Hall",
+        "subcat:arch"
       ],
       "created_at": "2026-10-03T09:42:33.449+00:00",
       "updated_at": "2026-10-03T09:42:33.449+00:00",
-      "subcategory": "",
+      "subcategory": "arch",
       "categoryName": "Birthday",
       "originalPrice": 3299,
       "setupDuration": "2.5 Hours",
@@ -1281,11 +1303,12 @@
       "tags": [
         "Blush Pink",
         "Bedroom Surprise",
-        "Evening Glow"
+        "Evening Glow",
+        "subcat:home"
       ],
       "created_at": "2026-10-03T09:42:33.449+00:00",
       "updated_at": "2026-10-03T09:42:33.449+00:00",
-      "subcategory": "",
+      "subcategory": "home",
       "categoryName": "Birthday",
       "originalPrice": 2899,
       "setupDuration": "2 Hours",
@@ -1318,11 +1341,12 @@
       "tags": [
         "Traditional & candid photography",
         "4K Video",
-        "Drone"
+        "Drone",
+        "subcat:photo-video"
       ],
       "created_at": "2026-10-04T12:29:15.410883+00:00",
       "updated_at": "2026-10-04T12:29:15.410883+00:00",
-      "subcategory": "",
+      "subcategory": "photo-video",
       "categoryName": "Wedding",
       "originalPrice": 39999,
       "setupDuration": "Event Duration",
@@ -1355,11 +1379,12 @@
       "tags": [
         "Nadaswaram",
         "Dhol",
-        "Traditional music"
+        "Traditional music",
+        "subcat:melam-music"
       ],
       "created_at": "2026-10-04T12:29:15.410883+00:00",
       "updated_at": "2026-10-04T12:29:15.410883+00:00",
-      "subcategory": "",
+      "subcategory": "melam-music",
       "categoryName": "Wedding",
       "originalPrice": 10999,
       "setupDuration": "Ritual Timings",
@@ -1393,11 +1418,12 @@
       "tags": [
         "Circular Arch",
         "Silver Jubilee",
-        "Photo Booth"
+        "Photo Booth",
+        "subcat:ring"
       ],
       "created_at": "2026-10-03T09:42:33.449+00:00",
       "updated_at": "2026-10-03T09:42:33.449+00:00",
-      "subcategory": "",
+      "subcategory": "ring",
       "categoryName": "Anniversary",
       "originalPrice": 3399,
       "setupDuration": "2 Hours",
@@ -1431,11 +1457,12 @@
         "Sangeet",
         "Reception",
         "Theme events",
-        "Cold Pyro"
+        "Cold Pyro",
+        "subcat:melam-music"
       ],
       "created_at": "2026-10-04T12:29:15.410883+00:00",
       "updated_at": "2026-10-04T12:29:15.410883+00:00",
-      "subcategory": "",
+      "subcategory": "melam-music",
       "categoryName": "Wedding",
       "originalPrice": 14999,
       "setupDuration": "3 Hours",
@@ -1468,11 +1495,12 @@
       "tags": [
         "Live music",
         "Orchestra",
-        "Cultural programs"
+        "Cultural programs",
+        "subcat:melam-music"
       ],
       "created_at": "2026-10-04T12:29:15.410883+00:00",
       "updated_at": "2026-10-04T12:29:15.410883+00:00",
-      "subcategory": "",
+      "subcategory": "melam-music",
       "categoryName": "Wedding",
       "originalPrice": 24999,
       "setupDuration": "3 Hours Show",
@@ -1505,11 +1533,12 @@
       "tags": [
         "Return gifts",
         "Customized bags",
-        "Favors"
+        "Favors",
+        "subcat:house-decor"
       ],
       "created_at": "2026-10-04T12:29:15.410883+00:00",
       "updated_at": "2026-10-04T12:29:15.410883+00:00",
-      "subcategory": "",
+      "subcategory": "house-decor",
       "categoryName": "Wedding",
       "originalPrice": 3999,
       "setupDuration": "Delivered in Bulk",
@@ -1542,11 +1571,12 @@
       "tags": [
         "Professional bridal makeup",
         "HD & Airbrush",
-        "Styling"
+        "Styling",
+        "subcat:bridal-styling"
       ],
       "created_at": "2026-10-04T12:29:15.410883+00:00",
       "updated_at": "2026-10-04T12:29:15.410883+00:00",
-      "subcategory": "",
+      "subcategory": "bridal-styling",
       "categoryName": "Wedding",
       "originalPrice": 18999,
       "setupDuration": "3 Hours Session",
@@ -1579,11 +1609,12 @@
       "tags": [
         "Bridal & guest mehendi",
         "Organic Henna",
-        "Dark Stain"
+        "Dark Stain",
+        "subcat:bridal-styling"
       ],
       "created_at": "2026-10-04T12:29:15.410883+00:00",
       "updated_at": "2026-10-04T12:29:15.410883+00:00",
-      "subcategory": "",
+      "subcategory": "bridal-styling",
       "categoryName": "Wedding",
       "originalPrice": 7999,
       "setupDuration": "4 Hours Session",
@@ -1616,11 +1647,12 @@
       "tags": [
         "Dance",
         "Music & entertainment",
-        "Sangeet DJ"
+        "Sangeet DJ",
+        "subcat:melam-music"
       ],
       "created_at": "2026-10-04T12:29:15.410883+00:00",
       "updated_at": "2026-10-04T12:29:15.410883+00:00",
-      "subcategory": "",
+      "subcategory": "melam-music",
       "categoryName": "Wedding",
       "originalPrice": 24999,
       "setupDuration": "Event Duration",
@@ -1653,11 +1685,12 @@
       "tags": [
         "Office Decor",
         "Foundation Day",
-        "Brand Colors"
+        "Brand Colors",
+        "subcat:office"
       ],
       "created_at": "2026-10-03T09:42:33.449+00:00",
       "updated_at": "2026-10-03T09:42:33.449+00:00",
-      "subcategory": "",
+      "subcategory": "office",
       "categoryName": "Corporate",
       "originalPrice": 5999,
       "setupDuration": "2 Hours",
@@ -1690,11 +1723,12 @@
       "tags": [
         "Annual Day",
         "Townhall",
-        "Auditorium"
+        "Auditorium",
+        "subcat:stage"
       ],
       "created_at": "2026-10-03T09:42:33.449+00:00",
       "updated_at": "2026-10-03T09:42:33.449+00:00",
-      "subcategory": "",
+      "subcategory": "stage",
       "categoryName": "Corporate",
       "originalPrice": 9499,
       "setupDuration": "3 Hours",
@@ -1727,11 +1761,12 @@
       "tags": [
         "Product Launch",
         "Store Opening",
-        "Ribbon Cutting"
+        "Ribbon Cutting",
+        "subcat:office"
       ],
       "created_at": "2026-10-03T09:42:33.449+00:00",
       "updated_at": "2026-10-03T09:42:33.449+00:00",
-      "subcategory": "",
+      "subcategory": "office",
       "categoryName": "Corporate",
       "originalPrice": 6499,
       "setupDuration": "2.5 Hours",
@@ -1764,11 +1799,12 @@
       "tags": [
         "Cubicle Decor",
         "Diwali",
-        "Office Party"
+        "Office Party",
+        "subcat:office"
       ],
       "created_at": "2026-10-03T09:42:33.449+00:00",
       "updated_at": "2026-10-03T09:42:33.449+00:00",
-      "subcategory": "",
+      "subcategory": "office",
       "categoryName": "Corporate",
       "originalPrice": 3999,
       "setupDuration": "2 Hours",
@@ -1801,11 +1837,12 @@
       "tags": [
         "Townhall",
         "Leadership Meet",
-        "Board Meeting"
+        "Board Meeting",
+        "subcat:stage"
       ],
       "created_at": "2026-10-03T09:42:33.449+00:00",
       "updated_at": "2026-10-03T09:42:33.449+00:00",
-      "subcategory": "",
+      "subcategory": "stage",
       "categoryName": "Corporate",
       "originalPrice": 9999,
       "setupDuration": "3 Hours",
@@ -1836,11 +1873,12 @@
       "tags": [
         "Gifts for Boys",
         "Gifts for Girls",
-        "TeddyJoy"
+        "TeddyJoy",
+        "subcat:girls"
       ],
       "created_at": "2026-10-04T11:19:07.968893+00:00",
       "updated_at": "2026-10-04T11:19:07.968893+00:00",
-      "subcategory": "",
+      "subcategory": "girls",
       "categoryName": "Gifts Market",
       "originalPrice": 899,
       "setupDuration": "Same Day Delivery",
@@ -1871,11 +1909,12 @@
       "tags": [
         "Gifts for Men",
         "Gifts for Women",
-        "Archies"
+        "Archies",
+        "subcat:boys"
       ],
       "created_at": "2026-10-04T11:19:07.968893+00:00",
       "updated_at": "2026-10-04T11:19:07.968893+00:00",
-      "subcategory": "",
+      "subcategory": "boys",
       "categoryName": "Gifts Market",
       "originalPrice": 699,
       "setupDuration": "Same Day Delivery",
@@ -1907,11 +1946,12 @@
       "tags": [
         "Gifts for Women",
         "Wedding Gifts",
-        "Archies"
+        "Archies",
+        "subcat:women"
       ],
       "created_at": "2026-10-04T11:19:07.968893+00:00",
       "updated_at": "2026-10-04T11:19:07.968893+00:00",
-      "subcategory": "",
+      "subcategory": "women",
       "categoryName": "Gifts Market",
       "originalPrice": 2499,
       "setupDuration": "Express Delivery",
@@ -1943,11 +1983,12 @@
       "tags": [
         "Gifts for Men",
         "Archies",
-        "Analog Watch"
+        "Analog Watch",
+        "subcat:men"
       ],
       "created_at": "2026-10-04T11:19:07.968893+00:00",
       "updated_at": "2026-10-04T11:19:07.968893+00:00",
-      "subcategory": "",
+      "subcategory": "men",
       "categoryName": "Gifts Market",
       "originalPrice": 3499,
       "setupDuration": "Same Day Delivery",
@@ -1979,11 +2020,12 @@
       "tags": [
         "Flowers",
         "Gifts for Women",
-        "FlowerAura"
+        "FlowerAura",
+        "subcat:flowers"
       ],
       "created_at": "2026-10-04T11:19:07.968893+00:00",
       "updated_at": "2026-10-04T11:19:07.968893+00:00",
-      "subcategory": "",
+      "subcategory": "flowers",
       "categoryName": "Gifts Market",
       "originalPrice": 1599,
       "setupDuration": "2-Hour Express Delivery",
@@ -2015,11 +2057,12 @@
         "Chocolates",
         "Gifts for Women",
         "Gifts for Men",
-        "Ferrero Rocher"
+        "Ferrero Rocher",
+        "subcat:cakes"
       ],
       "created_at": "2026-10-04T11:19:07.968893+00:00",
       "updated_at": "2026-10-04T11:19:07.968893+00:00",
-      "subcategory": "",
+      "subcategory": "cakes",
       "categoryName": "Gifts Market",
       "originalPrice": 1099,
       "setupDuration": "Same Day Delivery",
@@ -2054,11 +2097,12 @@
       "tags": [
         "Boho Luxury",
         "Pampas Grass",
-        "Milestone 50th / 1st"
+        "Milestone 50th / 1st",
+        "subcat:luxury"
       ],
       "created_at": "2026-10-03T09:42:33.449+00:00",
       "updated_at": "2026-10-03T09:42:33.449+00:00",
-      "subcategory": "",
+      "subcategory": "luxury",
       "categoryName": "Birthday",
       "originalPrice": 10999,
       "setupDuration": "3.5 Hours",
@@ -2093,11 +2137,12 @@
       "tags": [
         "Romantic Surprise",
         "Bedroom Decor",
-        "Rose Petals"
+        "Rose Petals",
+        "subcat:room"
       ],
       "created_at": "2026-10-03T09:42:33.449+00:00",
       "updated_at": "2026-10-03T09:42:33.449+00:00",
-      "subcategory": "",
+      "subcategory": "room",
       "categoryName": "Anniversary",
       "originalPrice": 2899,
       "setupDuration": "2 Hours",
@@ -2128,11 +2173,12 @@
       "tags": [
         "Gifts for Boys",
         "Archies",
-        "RC Car"
+        "RC Car",
+        "subcat:boys"
       ],
       "created_at": "2026-10-04T11:19:07.968893+00:00",
       "updated_at": "2026-10-04T11:19:07.968893+00:00",
-      "subcategory": "",
+      "subcategory": "boys",
       "categoryName": "Gifts Market",
       "originalPrice": 1599,
       "setupDuration": "Same Day Delivery",
@@ -2163,11 +2209,12 @@
       "tags": [
         "Cakes",
         "FlowerAura",
-        "Eggless Truffle"
+        "Eggless Truffle",
+        "subcat:cakes"
       ],
       "created_at": "2026-10-04T11:19:07.968893+00:00",
       "updated_at": "2026-10-04T11:19:07.968893+00:00",
-      "subcategory": "",
+      "subcategory": "cakes",
       "categoryName": "Gifts Market",
       "originalPrice": 999,
       "setupDuration": "2-Hour Express Delivery",
@@ -2198,11 +2245,12 @@
       "tags": [
         "Cards",
         "Wedding Gifts",
-        "Archies"
+        "Archies",
+        "subcat:women"
       ],
       "created_at": "2026-10-04T11:19:07.968893+00:00",
       "updated_at": "2026-10-04T11:19:07.968893+00:00",
-      "subcategory": "",
+      "subcategory": "women",
       "categoryName": "Gifts Market",
       "originalPrice": 99,
       "setupDuration": "Same Day Delivery",
@@ -2233,11 +2281,12 @@
       "tags": [
         "Digital Invitations",
         "Archies",
-        "Video Invite"
+        "Video Invite",
+        "subcat:men"
       ],
       "created_at": "2026-10-04T11:19:07.968893+00:00",
       "updated_at": "2026-10-04T11:19:07.968893+00:00",
-      "subcategory": "",
+      "subcategory": "men",
       "categoryName": "Gifts Market",
       "originalPrice": 499,
       "setupDuration": "Delivered in 2 Hours",
@@ -2268,11 +2317,12 @@
       "tags": [
         "Returns Gifts",
         "Archies",
-        "Set of 10"
+        "Set of 10",
+        "subcat:boys"
       ],
       "created_at": "2026-10-04T11:19:07.968893+00:00",
       "updated_at": "2026-10-04T11:19:07.968893+00:00",
-      "subcategory": "",
+      "subcategory": "boys",
       "categoryName": "Gifts Market",
       "originalPrice": 1299,
       "setupDuration": "Same Day Delivery",
@@ -2304,11 +2354,12 @@
       "tags": [
         "Gifts for Boys",
         "Archies",
-        "Hamper"
+        "Hamper",
+        "subcat:boys"
       ],
       "created_at": "2026-10-04T11:19:07.968893+00:00",
       "updated_at": "2026-10-04T11:19:07.968893+00:00",
-      "subcategory": "",
+      "subcategory": "boys",
       "categoryName": "Gifts Market",
       "originalPrice": 1899,
       "setupDuration": "Same Day Delivery",

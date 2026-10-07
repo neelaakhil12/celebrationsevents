@@ -121,7 +121,15 @@ document.addEventListener("DOMContentLoaded", () => {
         if (subcatConfig && subcatConfig.desc) {
           try { cloudSubcatMap = JSON.parse(subcatConfig.desc); } catch(e){}
         }
-        const filteredCloudCats = cloudCats.filter(c => c.id !== '__site_subcategories__');
+
+        // Extract package extended details mapping (faqs, addons, notIncluded, etc.)
+        const pkgDetailsConfig = cloudCats.find(c => c.id === '__site_package_details__');
+        let cloudPkgDetailsMap = {};
+        if (pkgDetailsConfig && pkgDetailsConfig.desc) {
+          try { cloudPkgDetailsMap = JSON.parse(pkgDetailsConfig.desc); } catch(e){}
+        }
+
+        const filteredCloudCats = cloudCats.filter(c => c.id !== '__site_subcategories__' && c.id !== '__site_package_details__');
 
         const existingCatMap = new Map();
         (SITE_DATA.categories || []).forEach(c => existingCatMap.set(c.id, c));
@@ -144,7 +152,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Retain any categories currently in SITE_DATA not yet in Supabase
         (SITE_DATA.categories || []).forEach(sc => {
-          if (!mergedCats.some(c => c.id === sc.id) && sc.id !== '__site_subcategories__') {
+          if (!mergedCats.some(c => c.id === sc.id) && sc.id !== '__site_subcategories__' && sc.id !== '__site_package_details__') {
             mergedCats.push(sc);
           }
         });
@@ -157,22 +165,44 @@ document.addEventListener("DOMContentLoaded", () => {
         const existingProdMap = new Map();
         (SITE_DATA.products || []).forEach(p => existingProdMap.set(p.id, p));
 
-        SITE_DATA.products = cloudProds.map(p => {
-          const existing = existingProdMap.get(p.id);
-          let subcat = p.subcategory || existing?.subcategory || '';
+        const mergedProdsMap = new Map();
+        cloudProds.forEach(p => {
+          const existing = existingProdMap.get(p.id) || {};
+          const extra = (typeof cloudPkgDetailsMap !== 'undefined' ? cloudPkgDetailsMap[p.id] : null) || {};
+          let subcat = p.subcategory || extra.subcategory || existing.subcategory || '';
           if (!subcat && Array.isArray(p.tags)) {
             const subTag = p.tags.find(t => typeof t === 'string' && t.startsWith('subcat:'));
             if (subTag) subcat = subTag.replace('subcat:', '');
           }
-          return {
+          mergedProdsMap.set(p.id, {
+            ...existing,
             ...p,
             subcategory: subcat,
             categoryName: p.category_name || p.categoryName || p.category,
             originalPrice: p.original_price || p.originalPrice || p.price,
             setupDuration: p.setup_duration || p.setupDuration || "1.5 - 2 Hours",
-            reviewsCount: p.reviews_count || p.reviewsCount || 100
-          };
+            reviewsCount: p.reviews_count || p.reviewsCount || 100,
+            faqs: (extra.faqs && extra.faqs.length > 0) ? extra.faqs : ((p.faqs && p.faqs.length > 0) ? p.faqs : (existing.faqs || [])),
+            addons: (extra.addons && extra.addons.length > 0) ? extra.addons : ((p.addons && p.addons.length > 0) ? p.addons : (existing.addons || [])),
+            notIncluded: (extra.notIncluded && extra.notIncluded.length > 0) ? extra.notIncluded : (p.notIncluded || existing.notIncluded || []),
+            aboutDescription: extra.aboutDescription || p.aboutDescription || existing.aboutDescription || p.description,
+            deliveryNote: extra.deliveryNote || p.deliveryNote || existing.deliveryNote || '',
+            decoratorNote: extra.decoratorNote || p.decoratorNote || existing.decoratorNote || '',
+            lifespanNote: extra.lifespanNote || p.lifespanNote || existing.lifespanNote || '',
+            locationNote: extra.locationNote || p.locationNote || existing.locationNote || '',
+            colorPalettes: (extra.colorPalettes && extra.colorPalettes.length > 0) ? extra.colorPalettes : (p.colorPalettes || existing.colorPalettes || []),
+            slotsAlert: extra.slotsAlert || p.slotsAlert || existing.slotsAlert || ''
+          });
         });
+
+        // Retain any existing products not yet in Supabase
+        existingProdMap.forEach((existingProd, id) => {
+          if (!mergedProdsMap.has(id)) {
+            mergedProdsMap.set(id, existingProd);
+          }
+        });
+
+        SITE_DATA.products = Array.from(mergedProdsMap.values());
         localStorage.setItem("celebration_custom_products", JSON.stringify(SITE_DATA.products));
         dataChanged = true;
       }

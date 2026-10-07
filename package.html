@@ -1816,24 +1816,7 @@
 
             <!-- Tab Content: FAQs -->
             <div class="pkg-tab-pane" id="tab-faqs">
-              <div class="pkg-faq-list">
-                <details class="pkg-faq-item" open>
-                  <summary>Can I customize the balloon colors?</summary>
-                  <p>Yes, absolutely! You can choose from our color palette below ("Make It Yours") or discuss your custom preference directly with our decorator.</p>
-                </details>
-                <details class="pkg-faq-item">
-                  <summary>What time will the decorator arrive?</summary>
-                  <p>Your certified decorator will arrive within the selected time slot you choose at booking.</p>
-                </details>
-                <details class="pkg-faq-item">
-                  <summary>Will wall tape leave marks on walls?</summary>
-                  <p>No, we exclusively use painter-friendly removable paper tapes that peel off smoothly without peeling paint or leaving sticky residue.</p>
-                </details>
-                <details class="pkg-faq-item">
-                  <summary>Can I reschedule or cancel?</summary>
-                  <p>Yes, free rescheduling is available up to 12 hours before your selected setup slot.</p>
-                </details>
-              </div>
+              <div class="pkg-faq-list"></div>
             </div>
 
             <!-- Tab Content: Delivery -->
@@ -2434,20 +2417,30 @@
       // FAQs
       const faqList = document.querySelector(".pkg-faq-list");
       if (faqList) {
-        const faqs = (currentPackage.faqs && currentPackage.faqs.length > 0)
-          ? currentPackage.faqs
-          : [
-              { q: "Can I customize the balloon colors?", a: "Yes, absolutely! You can choose from our color palette below (\"Make It Yours\") or discuss your custom preference directly with our decorator." },
-              { q: "What time will the decorator arrive?", a: "Your certified decorator will arrive within the selected time slot you choose at booking." },
-              { q: "Will wall tape leave marks on walls?", a: "No, we exclusively use painter-friendly removable paper tapes that peel off smoothly without peeling paint or leaving sticky residue." },
-              { q: "Can I reschedule or cancel?", a: "Yes, free rescheduling is available up to 12 hours before your selected setup slot." }
-            ];
-        faqList.innerHTML = faqs.map((f, i) => `
-          <details class="pkg-faq-item" ${i === 0 ? 'open' : ''}>
-            <summary>${f.q}</summary>
-            <p>${f.a}</p>
-          </details>
-        `).join("");
+        let faqs = (currentPackage.faqs && Array.isArray(currentPackage.faqs) && currentPackage.faqs.length > 0)
+          ? currentPackage.faqs.filter(f => f && (f.q || f.question || f.title || f.a || f.answer || f.desc))
+          : [];
+
+        if (faqs.length === 0) {
+          faqs = [
+            { q: "Can I customize the balloon colors?", a: "Yes, absolutely! You can choose from our color palette below (\"Make It Yours\") or discuss your custom preference directly with our decorator." },
+            { q: "What time will the decorator arrive?", a: "Your certified decorator will arrive within the selected time slot you choose at booking." },
+            { q: "Will wall tape leave marks on walls?", a: "No, we exclusively use painter-friendly removable paper tapes that peel off smoothly without peeling paint or leaving sticky residue." },
+            { q: "Can I reschedule or cancel?", a: "Yes, free rescheduling is available up to 12 hours before your selected setup slot." }
+          ];
+        }
+
+        faqList.innerHTML = faqs.map((f, i) => {
+          const qText = (f.q || f.question || f.title || '').trim();
+          const aText = (f.a || f.answer || f.desc || f.text || '').trim();
+          if (!qText && !aText) return '';
+          return `
+            <details class="pkg-faq-item" ${i === 0 ? 'open' : ''}>
+              <summary>${escapeHtml(qText || 'Question')}</summary>
+              <p>${escapeHtml(aText || 'Please contact our team for assistance regarding this detail.')}</p>
+            </details>
+          `;
+        }).filter(Boolean).join("");
       }
 
       // Delivery Specifications
@@ -2787,25 +2780,32 @@
 
     function renderPackageAddons() {
       const carousel = document.getElementById("pkgAddonsCarousel");
-      const addons = (currentPackage && currentPackage.addons && currentPackage.addons.length > 0)
+      const addons = (currentPackage && Array.isArray(currentPackage.addons) && currentPackage.addons.length > 0)
         ? currentPackage.addons
         : (SITE_DATA.addons || []);
 
       if (carousel) {
+        if (!addons || addons.length === 0) {
+          carousel.innerHTML = `<div style="font-size:13px; color:#64748b; padding:12px; font-style:italic;">No optional add-ons configured for this package.</div>`;
+          return;
+        }
         carousel.innerHTML = addons.map(addon => {
           const isSelected = selectedAddonIds.includes(addon.id);
+          const addonImg = addon.image || addon.img || addon.thumb || 'https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=400&auto=format&fit=crop&q=80';
+          const addonName = addon.name || addon.title || 'Add-on Item';
+          const addonPrice = Number(addon.price || 0);
           return `
             <div class="pkg-addon-card ${isSelected ? 'selected' : ''}" onclick="togglePackageAddonCard('${addon.id}')">
               <div class="pkg-addon-img-wrap">
-                ${addon.badge ? `<span class="pkg-addon-top-badge">${addon.badge}</span>` : ''}
-                <img src="${addon.image}" alt="${addon.name}" loading="lazy" />
-                <button type="button" class="pkg-addon-plus-btn ${isSelected ? 'added' : ''}" aria-label="Add ${addon.name}" onclick="event.stopPropagation(); togglePackageAddonCard('${addon.id}')">
+                ${addon.badge ? `<span class="pkg-addon-top-badge">${escapeHtml(addon.badge)}</span>` : ''}
+                <img src="${escapeHtml(addonImg)}" alt="${escapeHtml(addonName)}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=400&auto=format&fit=crop&q=80'" />
+                <button type="button" class="pkg-addon-plus-btn ${isSelected ? 'added' : ''}" aria-label="Add ${escapeHtml(addonName)}" onclick="event.stopPropagation(); togglePackageAddonCard('${addon.id}')">
                   ${isSelected ? '✓' : '+'}
                 </button>
               </div>
               <div class="pkg-addon-body">
-                <div class="pkg-addon-name" title="${addon.name}">${addon.name}</div>
-                <div class="pkg-addon-price">₹${addon.price}</div>
+                <div class="pkg-addon-name" title="${escapeHtml(addonName)}">${escapeHtml(addonName)}</div>
+                <div class="pkg-addon-price">₹${addonPrice.toLocaleString('en-IN')}</div>
               </div>
             </div>
           `;
@@ -2814,18 +2814,21 @@
     }
 
     function togglePackageAddonCard(addonId) {
-      const allAddons = (currentPackage && currentPackage.addons && currentPackage.addons.length > 0)
+      const allAddons = (currentPackage && Array.isArray(currentPackage.addons) && currentPackage.addons.length > 0)
         ? currentPackage.addons
         : (SITE_DATA.addons || []);
       const addon = allAddons.find(a => a.id === addonId) || (SITE_DATA.addons || []).find(a => a.id === addonId);
       if (!addon) return;
 
+      const addonName = addon.name || addon.title || 'Add-on';
+      const addonPrice = Number(addon.price || 0);
+
       if (selectedAddonIds.includes(addonId)) {
         selectedAddonIds = selectedAddonIds.filter(id => id !== addonId);
-        showToast(`Removed ${addon.name}`);
+        showToast(`Removed ${addonName}`);
       } else {
         selectedAddonIds.push(addonId);
-        showToast(`🎉 Added ${addon.name} (+₹${addon.price})!`);
+        showToast(`🎉 Added ${addonName} (+₹${addonPrice.toLocaleString('en-IN')})!`);
       }
       renderPackageAddons();
       updatePackageSummary();
@@ -2833,16 +2836,16 @@
 
     function updatePackageSummary() {
       if (!currentPackage) return;
-      const basePrice = currentPackage.price;
+      const basePrice = Number(currentPackage.price || 0);
       let addonsTotal = 0;
 
-      const allAddons = (currentPackage && currentPackage.addons && currentPackage.addons.length > 0)
+      const allAddons = (currentPackage && Array.isArray(currentPackage.addons) && currentPackage.addons.length > 0)
         ? currentPackage.addons
         : (SITE_DATA.addons || []);
 
       selectedAddonIds.forEach(id => {
         const addon = allAddons.find(a => a.id === id) || (SITE_DATA.addons || []).find(a => a.id === id);
-        if (addon) addonsTotal += addon.price;
+        if (addon) addonsTotal += Number(addon.price || 0);
       });
 
       const grandTotal = basePrice + addonsTotal;
@@ -2981,6 +2984,26 @@
         </div>
       `).join("");
     }
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    // Reactive refresh when cloud data or admin studio updates
+    window.addEventListener('celebration:data-updated', () => {
+      initPackagePage();
+    });
+    window.addEventListener('storage', (e) => {
+      if (e.key === 'celebration_custom_products' || e.key === 'celebration_selected_package_id') {
+        initPackagePage();
+      }
+    });
   </script>
   <!-- Fixed Mobile Booking Sticky Bar matching Video Frames 00:00 - 00:23 -->
   <div class="pkg-mobile-bottom-bar" id="pkgMobileBottomBar">

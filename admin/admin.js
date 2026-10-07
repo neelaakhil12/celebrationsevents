@@ -869,7 +869,14 @@
         if (subcatConfig && subcatConfig.desc) {
           try { cloudSubcatMap = JSON.parse(subcatConfig.desc); } catch(e){}
         }
-        const validDbCats = catsRes.data.filter(c => c.id !== '__site_subcategories__');
+
+        const pkgDetailsConfig = catsRes.data.find(c => c.id === '__site_package_details__');
+        let cloudPkgDetailsMap = {};
+        if (pkgDetailsConfig && pkgDetailsConfig.desc) {
+          try { cloudPkgDetailsMap = JSON.parse(pkgDetailsConfig.desc); } catch(e){}
+        }
+
+        const validDbCats = catsRes.data.filter(c => c.id !== '__site_subcategories__' && c.id !== '__site_package_details__');
 
         const siteCats = (typeof window.SITE_DATA !== 'undefined' && Array.isArray(window.SITE_DATA.categories)) ? window.SITE_DATA.categories : [];
         const mergedCats = validDbCats.map(dbCat => {
@@ -895,7 +902,7 @@
 
         // Also ensure any category in siteCats missing from Supabase is kept
         siteCats.forEach(sc => {
-          if (!mergedCats.some(c => c.id === sc.id) && sc.id !== '__site_subcategories__') {
+          if (!mergedCats.some(c => c.id === sc.id) && sc.id !== '__site_subcategories__' && sc.id !== '__site_package_details__') {
             mergedCats.push(JSON.parse(JSON.stringify(sc)));
           }
         });
@@ -905,22 +912,48 @@
       }
 
       if (prodsRes.data && prodsRes.data.length > 0) {
-        appState.products = prodsRes.data.map(p => {
-          const localPkg = appState.products.find(lp => lp.id === p.id);
-          let subcat = p.subcategory || localPkg?.subcategory || '';
+        const existingMap = new Map();
+        appState.products.forEach(p => existingMap.set(p.id, p));
+
+        const fetchedMap = new Map();
+        prodsRes.data.forEach(p => {
+          const localPkg = existingMap.get(p.id) || {};
+          const extra = (typeof cloudPkgDetailsMap !== 'undefined' ? cloudPkgDetailsMap[p.id] : null) || {};
+          let subcat = p.subcategory || extra.subcategory || localPkg.subcategory || '';
           if (!subcat && Array.isArray(p.tags)) {
             const subTag = p.tags.find(t => typeof t === 'string' && t.startsWith('subcat:'));
             if (subTag) subcat = subTag.replace('subcat:', '');
           }
-          return {
+          const mergedPkg = {
+            ...localPkg,
             ...p,
             subcategory: subcat,
             categoryName: p.category_name || p.categoryName || p.category,
             originalPrice: p.original_price || p.originalPrice || p.price,
             setupDuration: p.setup_duration || p.setupDuration || '1.5 - 2 Hours',
-            reviewsCount: p.reviews_count || p.reviewsCount || 100
+            reviewsCount: p.reviews_count || p.reviewsCount || 100,
+            faqs: (extra.faqs && extra.faqs.length > 0) ? extra.faqs : ((p.faqs && p.faqs.length > 0) ? p.faqs : (localPkg.faqs || [])),
+            addons: (extra.addons && extra.addons.length > 0) ? extra.addons : ((p.addons && p.addons.length > 0) ? p.addons : (localPkg.addons || [])),
+            notIncluded: (extra.notIncluded && extra.notIncluded.length > 0) ? extra.notIncluded : (p.notIncluded || localPkg.notIncluded || []),
+            aboutDescription: extra.aboutDescription || p.aboutDescription || localPkg.aboutDescription || p.description,
+            deliveryNote: extra.deliveryNote || p.deliveryNote || localPkg.deliveryNote || '',
+            decoratorNote: extra.decoratorNote || p.decoratorNote || localPkg.decoratorNote || '',
+            lifespanNote: extra.lifespanNote || p.lifespanNote || localPkg.lifespanNote || '',
+            locationNote: extra.locationNote || p.locationNote || localPkg.locationNote || '',
+            colorPalettes: (extra.colorPalettes && extra.colorPalettes.length > 0) ? extra.colorPalettes : (p.colorPalettes || localPkg.colorPalettes || []),
+            slotsAlert: extra.slotsAlert || p.slotsAlert || localPkg.slotsAlert || ''
           };
+          fetchedMap.set(p.id, mergedPkg);
         });
+
+        // Retain any locally created packages not yet in Supabase
+        existingMap.forEach((localPkg, id) => {
+          if (!fetchedMap.has(id)) {
+            fetchedMap.set(id, localPkg);
+          }
+        });
+
+        appState.products = Array.from(fetchedMap.values());
         localStorage.setItem(STORAGE_KEYS.PRODUCTS, JSON.stringify(appState.products));
       }
 
@@ -1004,9 +1037,10 @@
     // 3. Supabase Cloud Sync (Instant cross-device & Vercel sync)
     if (supabase) {
       try {
+        // Sync subcategories mapping
         const subcatMap = {};
         appState.categories.forEach(c => {
-          if (c.id !== '__site_subcategories__' && Array.isArray(c.subcategories) && c.subcategories.length > 0) {
+          if (c.id !== '__site_subcategories__' && c.id !== '__site_package_details__' && Array.isArray(c.subcategories) && c.subcategories.length > 0) {
             subcatMap[c.id] = c.subcategories;
           }
         });
@@ -1020,8 +1054,37 @@
           else console.warn('Supabase subcategories sync warning:', error);
         });
 
+        // Sync extended package details (faqs, addons, notIncluded, notes, etc.)
+        const pkgDetailsMap = {};
+        appState.products.forEach(p => {
+          if (p.id) {
+            pkgDetailsMap[p.id] = {
+              subcategory: p.subcategory || '',
+              faqs: p.faqs || [],
+              addons: p.addons || [],
+              notIncluded: p.notIncluded || [],
+              aboutDescription: p.aboutDescription || p.description || '',
+              deliveryNote: p.deliveryNote || '',
+              decoratorNote: p.decoratorNote || '',
+              lifespanNote: p.lifespanNote || '',
+              locationNote: p.locationNote || '',
+              colorPalettes: p.colorPalettes || [],
+              slotsAlert: p.slotsAlert || ''
+            };
+          }
+        });
+        supabase.from('categories').upsert({
+          id: '__site_package_details__',
+          name: 'Global Package Extended Details',
+          image: 'https://images.unsplash.com/photo-1530103862676-de8c9debad1d',
+          desc: JSON.stringify(pkgDetailsMap)
+        }).then(({ error }) => {
+          if (!error) console.log('Package extended details synced to Supabase Cloud');
+          else console.warn('Supabase details sync warning:', error);
+        });
+
         const catRows = appState.categories
-          .filter(c => c.id !== '__site_subcategories__')
+          .filter(c => c.id !== '__site_subcategories__' && c.id !== '__site_package_details__')
           .map(c => ({
             id: c.id,
             name: c.name,
@@ -1297,6 +1360,77 @@
     renderPackages();
   }
 
+  function matchesSubcategory(product, subId, categoryId) {
+    if (!product || !subId || subId === 'all') return true;
+    if (categoryId && categoryId !== 'all' && product.category !== categoryId) return false;
+
+    const targetSub = String(subId).trim().toLowerCase();
+    const pkgSub = String(product.subcategory || '').trim().toLowerCase();
+
+    // 1. Exact match on subcategory ID or clean slug
+    if (pkgSub && (pkgSub === targetSub || pkgSub === targetSub.replace(/[^a-z0-9]/g, ''))) {
+      return true;
+    }
+
+    // 2. Match in tags (e.g. 'subcat:home' or 'home')
+    if (Array.isArray(product.tags)) {
+      const hasTag = product.tags.some(t => {
+        if (typeof t !== 'string') return false;
+        const lower = t.toLowerCase().trim();
+        return lower === `subcat:${targetSub}` || lower === targetSub;
+      });
+      if (hasTag) return true;
+    }
+
+    // 3. Fallback smart heuristic matching for legacy unassigned packages
+    if (!pkgSub) {
+      const cat = product.category || categoryId || '';
+      const title = (product.title || '').toLowerCase();
+      const id = (product.id || '').toLowerCase();
+      const price = Number(product.price) || 0;
+
+      if (cat === 'birthday') {
+        if (targetSub === 'home') return (price > 0 && price < 2500) || title.includes('home') || title.includes('simple');
+        if (targetSub === 'arch') return title.includes('arch') || title.includes('backdrop') || title.includes('ring');
+        if (targetSub === 'luxury') return price >= 3000 || title.includes('boho') || title.includes('luxury');
+      } else if (cat === 'anniversary') {
+        if (targetSub === 'room') return title.includes('room') || title.includes('bedroom') || title.includes('surprise');
+        if (targetSub === 'canopy') return title.includes('canopy') || title.includes('cabana') || title.includes('terrace');
+        if (targetSub === 'ring') return title.includes('ring') || title.includes('neon') || title.includes('bliss');
+        if (targetSub === 'grand') return title.includes('grand') || title.includes('golden') || title.includes('jubilee');
+      } else if (cat === 'kids') {
+        if (targetSub === 'cocomelon') return title.includes('cocomelon') || id.includes('cocomelon');
+        if (targetSub === 'babyshark') return title.includes('shark') || id.includes('shark');
+        if (targetSub === 'bossbaby') return title.includes('boss') || id.includes('boss');
+        if (targetSub === 'jungle') return title.includes('jungle') || title.includes('safari');
+        if (targetSub === 'frozen') return title.includes('frozen');
+      } else if (cat === 'baby-shower') {
+        if (targetSub === 'shower') return title.includes('pastel') || title.includes('shower');
+        if (targetSub === 'welcome') return title.includes('welcome') || title.includes('newborn');
+        if (targetSub === 'teddy') return title.includes('teddy');
+      } else if (cat === 'corporate') {
+        if (targetSub === 'office') return title.includes('office') || title.includes('milestone') || title.includes('cubicle') || title.includes('launch');
+        if (targetSub === 'stage') return title.includes('stage') || title.includes('annual') || title.includes('townhall');
+      } else if (cat === 'gifts') {
+        if (targetSub === 'flowers') return title.includes('rose') || title.includes('flower') || title.includes('bouquet');
+        if (targetSub === 'cakes') return title.includes('cake') || title.includes('chocolate');
+        if (targetSub === 'women') return title.includes('women') || title.includes('card');
+        if (targetSub === 'men') return title.includes('men') || title.includes('watch') || title.includes('video');
+        if (targetSub === 'boys') return title.includes('boy') || title.includes('car') || title.includes('mug') || title.includes('return');
+        if (targetSub === 'girls') return title.includes('girl') || title.includes('teddy');
+      } else if (cat === 'wedding') {
+        if (targetSub === 'house-decor') return title.includes('house') || title.includes('catering') || title.includes('sweet') || title.includes('bag');
+        if (targetSub === 'nalugu-snanam') return title.includes('nalugu') || title.includes('snanam');
+        if (targetSub === 'mandap-stage') return title.includes('mandap') || title.includes('stage') || title.includes('hall');
+        if (targetSub === 'photo-video') return title.includes('photo') || title.includes('video');
+        if (targetSub === 'melam-music') return title.includes('melam') || title.includes('music') || title.includes('event') || title.includes('sangeet');
+        if (targetSub === 'bridal-styling') return title.includes('bridal') || title.includes('makeup') || title.includes('mehandi');
+      }
+    }
+
+    return false;
+  }
+
   function renderCategorySubcategoriesBar(catId) {
     const container = document.getElementById('categorySubcategoriesContainer');
     if (!container) return;
@@ -1341,7 +1475,7 @@
           </div>
 
           ${subcats.map(sub => {
-            const count = appState.products.filter(p => p.category === catId && p.subcategory === sub.id).length;
+            const count = appState.products.filter(p => p.category === catId && matchesSubcategory(p, sub.id, catId)).length;
             const isActive = (appState.selectedSubcategory === sub.id);
             return `
               <div class="admin-subcat-pill ${isActive ? 'active' : ''}">
@@ -2008,7 +2142,7 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
 
     // Filter by subcategory
     if (appState.selectedSubcategory && appState.selectedSubcategory !== 'all') {
-      items = items.filter(p => p.subcategory === appState.selectedSubcategory);
+      items = items.filter(p => matchesSubcategory(p, appState.selectedSubcategory, appState.selectedCategory !== 'all' ? appState.selectedCategory : p.category));
     }
 
     // Sort
@@ -2208,7 +2342,15 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
       document.getElementById('pkgTitle').value = pkg.title || '';
       slugInput.value = pkg.id || '';
       document.getElementById('pkgCategory').value = pkg.category || (appState.categories[0]?.id || 'birthday');
-      updatePackageSubcategoryOptions(pkg.category || (appState.categories[0]?.id || 'birthday'), pkg.subcategory || '');
+      let curSub = pkg.subcategory || '';
+      if (!curSub && pkg.category) {
+        const catObj = appState.categories.find(c => c.id === pkg.category);
+        if (catObj && Array.isArray(catObj.subcategories)) {
+          const foundSub = catObj.subcategories.find(s => matchesSubcategory(pkg, s.id, pkg.category));
+          if (foundSub) curSub = foundSub.id;
+        }
+      }
+      updatePackageSubcategoryOptions(pkg.category || (appState.categories[0]?.id || 'birthday'), curSub);
       document.getElementById('pkgBadge').value = pkg.badge || 'POPULAR';
       document.getElementById('pkgPrice').value = pkg.price || '';
       document.getElementById('pkgOrigPrice').value = pkg.originalPrice || '';
@@ -2264,8 +2406,8 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
       slugInput.value = '';
       document.getElementById('pkgTitle').value = '';
       document.getElementById('pkgCategory').value = defaultCategory;
-      updatePackageSubcategoryOptions(defaultCategory, (appState.selectedSubcategory !== 'all' ? appState.selectedSubcategory : ''));
-      document.getElementById('pkgSubcategory').value = '';
+      const preselectedSub = (appState.selectedSubcategory && appState.selectedSubcategory !== 'all') ? appState.selectedSubcategory : '';
+      updatePackageSubcategoryOptions(defaultCategory, preselectedSub);
 
       document.getElementById('pkgPrice').value = '';
       document.getElementById('pkgOrigPrice').value = '';

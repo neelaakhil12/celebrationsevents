@@ -13,7 +13,22 @@ module.exports = async function handler(req, res) {
 
   try {
     const payload = await parseBody(req);
-    // In serverless environments, file persistence is ephemeral; the client saves to localStorage & Supabase
+    try {
+      const fs = require('fs');
+      const path = require('path');
+      const filePath = path.join(process.cwd(), 'admin-data.json');
+      if (payload && typeof payload === 'object') {
+        let existing = {};
+        if (fs.existsSync(filePath)) {
+          try { existing = JSON.parse(fs.readFileSync(filePath, 'utf8')); } catch(e){}
+        }
+        const merged = { ...existing, ...payload };
+        fs.writeFileSync(filePath, JSON.stringify(merged, null, 2), 'utf8');
+      }
+    } catch(fsErr) {
+      // In read-only serverless environment (e.g. Vercel), client uses Supabase & localStorage
+    }
+
     return sendJson(res, 200, {
       success: true,
       message: 'Data saved successfully.',
