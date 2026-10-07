@@ -2009,6 +2009,7 @@
             title: p.title,
             category: p.category,
             category_name: p.categoryName || p.category,
+            subcategory: p.subcategory || '',
             price: Number(p.price) || 0,
             original_price: Number(p.originalPrice) || Number(p.price) || 0,
             discount: Number(p.discount) || 0,
@@ -2016,10 +2017,20 @@
             reviews_count: Number(p.reviewsCount) || 100,
             badge: p.badge || 'BESTSELLER',
             setup_duration: p.setupDuration || '1.5 - 2 Hours',
+            slots_alert: p.slotsAlert || '',
             image: p.image,
             gallery: p.gallery || [p.image],
             description: p.description || '',
+            about_description: p.aboutDescription || p.description || '',
             inclusions: p.inclusions || [],
+            not_included: p.notIncluded || [],
+            faqs: p.faqs || [],
+            addons: p.addons || [],
+            delivery_note: p.deliveryNote || '',
+            decorator_note: p.decoratorNote || '',
+            lifespan_note: p.lifespanNote || '',
+            location_note: p.locationNote || '',
+            color_palettes: p.colorPalettes || [],
             tags: tagsWithSubcat
           };
         });
@@ -2039,7 +2050,8 @@
     });
 
     copySchemaBtn?.addEventListener('click', () => {
-      const sqlSchema = `-- Celebration Events - Supabase Schema
+      const sqlSchema = `-- Celebration Events - Supabase Schema & Migration
+-- 1. Create Tables (if setting up fresh)
 CREATE TABLE IF NOT EXISTS public.categories (
     id TEXT PRIMARY KEY,
     name TEXT NOT NULL,
@@ -2055,6 +2067,7 @@ CREATE TABLE IF NOT EXISTS public.products (
     title TEXT NOT NULL,
     category TEXT REFERENCES public.categories(id) ON DELETE SET NULL,
     category_name TEXT,
+    subcategory TEXT,
     price NUMERIC NOT NULL,
     original_price NUMERIC,
     discount NUMERIC DEFAULT 0,
@@ -2062,14 +2075,38 @@ CREATE TABLE IF NOT EXISTS public.products (
     reviews_count INTEGER DEFAULT 100,
     badge TEXT DEFAULT 'BESTSELLER',
     setup_duration TEXT DEFAULT '1.5 - 2 Hours',
+    slots_alert TEXT,
     image TEXT NOT NULL,
     gallery JSONB DEFAULT '[]'::jsonb,
     description TEXT,
+    about_description TEXT,
     inclusions JSONB DEFAULT '[]'::jsonb,
+    not_included JSONB DEFAULT '[]'::jsonb,
+    faqs JSONB DEFAULT '[]'::jsonb,
+    addons JSONB DEFAULT '[]'::jsonb,
+    delivery_note TEXT,
+    decorator_note TEXT,
+    lifespan_note TEXT,
+    location_note TEXT,
+    color_palettes JSONB DEFAULT '[]'::jsonb,
     tags JSONB DEFAULT '[]'::jsonb,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL
 );
 
+-- 2. Add columns if table already exists (Run this to add missing columns)
+ALTER TABLE public.products ADD COLUMN IF NOT EXISTS subcategory TEXT;
+ALTER TABLE public.products ADD COLUMN IF NOT EXISTS slots_alert TEXT;
+ALTER TABLE public.products ADD COLUMN IF NOT EXISTS about_description TEXT;
+ALTER TABLE public.products ADD COLUMN IF NOT EXISTS not_included JSONB DEFAULT '[]'::jsonb;
+ALTER TABLE public.products ADD COLUMN IF NOT EXISTS faqs JSONB DEFAULT '[]'::jsonb;
+ALTER TABLE public.products ADD COLUMN IF NOT EXISTS addons JSONB DEFAULT '[]'::jsonb;
+ALTER TABLE public.products ADD COLUMN IF NOT EXISTS delivery_note TEXT;
+ALTER TABLE public.products ADD COLUMN IF NOT EXISTS decorator_note TEXT;
+ALTER TABLE public.products ADD COLUMN IF NOT EXISTS lifespan_note TEXT;
+ALTER TABLE public.products ADD COLUMN IF NOT EXISTS location_note TEXT;
+ALTER TABLE public.products ADD COLUMN IF NOT EXISTS color_palettes JSONB DEFAULT '[]'::jsonb;
+
+-- 3. Row Level Security Policies
 ALTER TABLE public.categories ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.products ENABLE ROW LEVEL SECURITY;
 
@@ -2881,6 +2918,7 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
         title,
         category,
         category_name: categoryName,
+        subcategory: packageData.subcategory || '',
         price,
         original_price: origPrice,
         discount,
@@ -2888,10 +2926,20 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
         reviews_count: reviewsCount,
         badge,
         setup_duration: duration,
+        slots_alert: packageData.slotsAlert || '',
         image,
         gallery,
         description: packageData.description,
+        about_description: packageData.aboutDescription || packageData.description || '',
         inclusions: packageData.inclusions,
+        not_included: packageData.notIncluded || [],
+        faqs: packageData.faqs || [],
+        addons: packageData.addons || [],
+        delivery_note: packageData.deliveryNote || '',
+        decorator_note: packageData.decoratorNote || '',
+        lifespan_note: packageData.lifespanNote || '',
+        location_note: packageData.locationNote || '',
+        color_palettes: packageData.colorPalettes || [],
         tags: tagsWithSubcat
       }).then(({ error }) => {
         if (!error) console.log('Package synced to Supabase:', slug);
