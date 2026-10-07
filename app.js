@@ -191,7 +191,8 @@ document.addEventListener("DOMContentLoaded", () => {
             lifespanNote: extra.lifespanNote || p.lifespanNote || existing.lifespanNote || '',
             locationNote: extra.locationNote || p.locationNote || existing.locationNote || '',
             colorPalettes: (extra.colorPalettes && extra.colorPalettes.length > 0) ? extra.colorPalettes : (p.colorPalettes || existing.colorPalettes || []),
-            slotsAlert: extra.slotsAlert || p.slotsAlert || existing.slotsAlert || ''
+            slotsAlert: extra.slotsAlert || p.slotsAlert || existing.slotsAlert || '',
+            whyChoose: p.why_choose || p.whyChoose || extra.whyChoose || existing.whyChoose || null
           });
         });
 

@@ -1872,7 +1872,7 @@
           </div>
 
           <!-- Section: Why choose Celebration Events? (Frame 00:02 in video) -->
-          <div class="pkg-why-choose-card">
+          <div class="pkg-why-choose-card" id="pkgWhyChooseCard">
             <h3 class="pkg-why-title">Why choose Celebration Events?</h3>
             <div class="pkg-why-grid">
               <div class="pkg-why-item">
@@ -2544,6 +2544,9 @@
       // Render Balloon Color Swatches (Frame 00:01 in video)
       renderColorSwatches();
 
+      // Render Why Choose Us Trust Card (Frame 00:02 in video)
+      renderWhyChooseCard();
+
       // Render Home-Page Format Live Customer Video Reels & Reviews
       try { if (typeof renderReviews === 'function') renderReviews(); } catch(e){}
 
@@ -2690,6 +2693,57 @@
       document.querySelectorAll(".pkg-color-pill").forEach(p => p.classList.remove("active"));
       if (btn) btn.classList.add("active");
       showToast(`🎨 Selected palette: ${name}`);
+    }
+
+    function renderWhyChooseCard() {
+      const container = document.getElementById("pkgWhyChooseCard");
+      if (!container) return;
+
+      const defaultWhy = {
+        title: "Why choose Celebration Events?",
+        highlights: [
+          { icon: "🏆", title: "India's #1 decoration brand", desc: "10L+ celebrations made special" },
+          { icon: "👔", title: "Dedicated event planner", desc: "End to end assistance for your event" },
+          { icon: "⚡", title: "Same-day service", desc: "Professional decorators for every setup" },
+          { icon: "💯", title: "100% smile assurance", desc: "Lowest price promised" }
+        ],
+        stats: [
+          { value: "10L+", label: "Customers" },
+          { value: "50+", label: "Cities" },
+          { value: "4.9 ★", label: "Rating" },
+          { value: "5+", label: "Years" }
+        ]
+      };
+
+      const why = (currentPackage && currentPackage.whyChoose && typeof currentPackage.whyChoose === 'object')
+        ? currentPackage.whyChoose
+        : defaultWhy;
+
+      const title = why.title || defaultWhy.title;
+      const highlights = (Array.isArray(why.highlights) && why.highlights.length >= 4) ? why.highlights : defaultWhy.highlights;
+      const stats = (Array.isArray(why.stats) && why.stats.length >= 4) ? why.stats : defaultWhy.stats;
+
+      container.innerHTML = `
+        <h3 class="pkg-why-title">${escapeHtml(title)}</h3>
+        <div class="pkg-why-grid">
+          ${highlights.map(h => `
+            <div class="pkg-why-item">
+              <div class="pkg-why-icon">${escapeHtml(h.icon || '✨')}</div>
+              <div>
+                <strong>${escapeHtml(h.title || '')}</strong>
+                <p>${escapeHtml(h.desc || '')}</p>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+
+        <div class="pkg-why-stats-row">
+          ${stats.map((s, idx) => `
+            <div class="pkg-stat-box"><strong>${escapeHtml(s.value || '')}</strong><span>${escapeHtml(s.label || '')}</span></div>
+            ${idx < stats.length - 1 ? '<div class="pkg-stat-divider"></div>' : ''}
+          `).join('')}
+        </div>
+      `;
     }
 
     function scrollToFeedback() {

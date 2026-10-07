@@ -144,6 +144,22 @@
     "Ladder is not carried by decorator (Customer to provide chair/stool)"
   ];
 
+  const DEFAULT_WHY_CHOOSE = {
+    title: "Why choose Celebration Events?",
+    highlights: [
+      { icon: "🏆", title: "India's #1 decoration brand", desc: "10L+ celebrations made special" },
+      { icon: "👔", title: "Dedicated event planner", desc: "End to end assistance for your event" },
+      { icon: "⚡", title: "Same-day service", desc: "Professional decorators for every setup" },
+      { icon: "💯", title: "100% smile assurance", desc: "Lowest price promised" }
+    ],
+    stats: [
+      { value: "10L+", label: "Customers" },
+      { value: "50+", label: "Cities" },
+      { value: "4.9 ★", label: "Rating" },
+      { value: "5+", label: "Years" }
+    ]
+  };
+
   // Sample presets for quick testing
   const SAMPLE_IMAGES = [
     { label: "Birthday Arch", url: "https://cdn.balloondekor.com/14/simple-balloon-decor-for-home-1785476680249-529705.webp" },
@@ -941,7 +957,8 @@
             lifespanNote: extra.lifespanNote || p.lifespanNote || localPkg.lifespanNote || '',
             locationNote: extra.locationNote || p.locationNote || localPkg.locationNote || '',
             colorPalettes: (extra.colorPalettes && extra.colorPalettes.length > 0) ? extra.colorPalettes : (p.colorPalettes || localPkg.colorPalettes || []),
-            slotsAlert: extra.slotsAlert || p.slotsAlert || localPkg.slotsAlert || ''
+            slotsAlert: extra.slotsAlert || p.slotsAlert || localPkg.slotsAlert || '',
+            whyChoose: p.why_choose || p.whyChoose || extra.whyChoose || localPkg.whyChoose || DEFAULT_WHY_CHOOSE
           };
           fetchedMap.set(p.id, mergedPkg);
         });
@@ -1069,7 +1086,8 @@
               lifespanNote: p.lifespanNote || '',
               locationNote: p.locationNote || '',
               colorPalettes: p.colorPalettes || [],
-              slotsAlert: p.slotsAlert || ''
+              slotsAlert: p.slotsAlert || '',
+              whyChoose: p.whyChoose || DEFAULT_WHY_CHOOSE
             };
           }
         });
@@ -2432,6 +2450,9 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
 
       appState.colorPalettesList = Array.isArray(pkg.colorPalettes) ? JSON.parse(JSON.stringify(pkg.colorPalettes)) : [];
 
+      // Tab 8: Why Choose Us
+      populateWhyChooseInputs(pkg.whyChoose || DEFAULT_WHY_CHOOSE);
+
     } else {
       const defaultCategory = preselectedCat || (appState.selectedCategoryTab !== 'all' ? appState.selectedCategoryTab : (appState.categories[0]?.id || 'birthday'));
       const isWedding = (defaultCategory === 'wedding');
@@ -2476,6 +2497,9 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
       appState.faqsList = [];
       appState.addonsList = [];
       appState.colorPalettesList = [];
+
+      // Tab 8: Why Choose Us (defaults pre-filled)
+      populateWhyChooseInputs(DEFAULT_WHY_CHOOSE);
     }
 
     renderInclusionsList();
@@ -2783,6 +2807,59 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
     `;
   }
 
+  function populateWhyChooseInputs(data) {
+    const why = (data && typeof data === 'object') ? data : DEFAULT_WHY_CHOOSE;
+    const titleEl = document.getElementById('pkgWhyTitle');
+    if (titleEl) titleEl.value = why.title || DEFAULT_WHY_CHOOSE.title;
+
+    const highlights = (Array.isArray(why.highlights) && why.highlights.length >= 4) ? why.highlights : DEFAULT_WHY_CHOOSE.highlights;
+    for (let i = 0; i < 4; i++) {
+      const h = highlights[i] || DEFAULT_WHY_CHOOSE.highlights[i];
+      const iconEl = document.getElementById(`pkgWhyItem${i + 1}Icon`);
+      const titleInput = document.getElementById(`pkgWhyItem${i + 1}Title`);
+      const descInput = document.getElementById(`pkgWhyItem${i + 1}Desc`);
+      if (iconEl) iconEl.value = h.icon || DEFAULT_WHY_CHOOSE.highlights[i].icon;
+      if (titleInput) titleInput.value = h.title || DEFAULT_WHY_CHOOSE.highlights[i].title;
+      if (descInput) descInput.value = h.desc || DEFAULT_WHY_CHOOSE.highlights[i].desc;
+    }
+
+    const stats = (Array.isArray(why.stats) && why.stats.length >= 4) ? why.stats : DEFAULT_WHY_CHOOSE.stats;
+    for (let i = 0; i < 4; i++) {
+      const s = stats[i] || DEFAULT_WHY_CHOOSE.stats[i];
+      const valEl = document.getElementById(`pkgWhyStat${i + 1}Val`);
+      const labelEl = document.getElementById(`pkgWhyStat${i + 1}Label`);
+      if (valEl) valEl.value = s.value || DEFAULT_WHY_CHOOSE.stats[i].value;
+      if (labelEl) labelEl.value = s.label || DEFAULT_WHY_CHOOSE.stats[i].label;
+    }
+  }
+
+  function readWhyChooseInputs() {
+    const title = document.getElementById('pkgWhyTitle')?.value?.trim() || DEFAULT_WHY_CHOOSE.title;
+    const highlights = [];
+    for (let i = 0; i < 4; i++) {
+      highlights.push({
+        icon: document.getElementById(`pkgWhyItem${i + 1}Icon`)?.value?.trim() || DEFAULT_WHY_CHOOSE.highlights[i].icon,
+        title: document.getElementById(`pkgWhyItem${i + 1}Title`)?.value?.trim() || DEFAULT_WHY_CHOOSE.highlights[i].title,
+        desc: document.getElementById(`pkgWhyItem${i + 1}Desc`)?.value?.trim() || DEFAULT_WHY_CHOOSE.highlights[i].desc
+      });
+    }
+
+    const stats = [];
+    for (let i = 0; i < 4; i++) {
+      stats.push({
+        value: document.getElementById(`pkgWhyStat${i + 1}Val`)?.value?.trim() || DEFAULT_WHY_CHOOSE.stats[i].value,
+        label: document.getElementById(`pkgWhyStat${i + 1}Label`)?.value?.trim() || DEFAULT_WHY_CHOOSE.stats[i].label
+      });
+    }
+
+    return { title, highlights, stats };
+  }
+
+  function resetWhyChooseDefaults() {
+    populateWhyChooseInputs(DEFAULT_WHY_CHOOSE);
+    showToast('Why Choose Us fields reset to brand defaults', 'info');
+  }
+
   function updatePackageModalPreview() {
     const title = document.getElementById('pkgTitle')?.value?.trim() || '';
     const price = document.getElementById('pkgPrice')?.value?.trim() || '';
@@ -2888,6 +2965,7 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
       locationNote,
       addons: JSON.parse(JSON.stringify(appState.addonsList || [])),
       colorPalettes: JSON.parse(JSON.stringify(appState.colorPalettesList || [])),
+      whyChoose: readWhyChooseInputs(),
       tags
     };
 
@@ -2940,6 +3018,7 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
         lifespan_note: packageData.lifespanNote || '',
         location_note: packageData.locationNote || '',
         color_palettes: packageData.colorPalettes || [],
+        why_choose: packageData.whyChoose,
         tags: tagsWithSubcat
       }).then(({ error }) => {
         if (!error) console.log('Package synced to Supabase:', slug);
@@ -5553,6 +5632,7 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
     openCategoryModal,
     openDeleteModal,
     switchPackageTab,
+    resetWhyChooseDefaults,
     removeInclusionItem,
     removeNotIncludedItem,
     removeGalleryItem,
