@@ -946,10 +946,15 @@
       transition: all 0.2s ease !important;
     }
 
-    #citiesTab .btn-hero-add-pkg:hover {
+    #citiesTab .btn-hero-add-pkg:hover,
+    #citiesTab .btn-hero-add-pkg:active,
+    #citiesTab .btn-hero-add-pkg:focus,
+    #citiesTab .btn-hero-add-pkg:focus-visible {
       background: linear-gradient(135deg, #047857 0%, #065f46 100%) !important;
+      color: #ffffff !important;
       transform: translateY(-1px) !important;
       box-shadow: 0 6px 18px rgba(5, 150, 105, 0.45) !important;
+      outline: none !important;
     }
 
     #citiesTab .btn-hero-action {

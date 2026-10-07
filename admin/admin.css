@@ -17,8 +17,12 @@
   
   --brand-primary: #d14a61;
   --brand-primary-light: #fb718b;
+  --brand-primary-hover: #b92f49;
   --brand-primary-dark: #b92f49;
+  --brand-primary-active: #9f1239;
   --brand-gradient: linear-gradient(135deg, #e11d48 0%, #d14a61 50%, #be123c 100%);
+  --brand-gradient-hover: linear-gradient(135deg, #be123c 0%, #9f1239 100%);
+  --brand-gradient-active: linear-gradient(135deg, #9f1239 0%, #881337 100%);
   --brand-gradient-glow: 0 8px 24px -4px rgba(209, 74, 97, 0.35);
   
   --accent-gold: #f59e0b;
@@ -312,21 +316,40 @@ body {
   gap: 8px;
   width: 100%;
   padding: 12px 20px;
-  background: var(--brand-gradient);
-  border: none;
+  background: var(--brand-gradient, linear-gradient(135deg, #e11d48 0%, #d14a61 50%, #be123c 100%)) !important;
+  border: none !important;
   border-radius: var(--radius-md);
-  color: #ffffff;
+  color: #ffffff !important;
   font-family: var(--font-heading);
   font-size: 15px;
   font-weight: 700;
   cursor: pointer;
-  transition: var(--transition);
+  transition: all 0.2s ease !important;
   box-shadow: var(--brand-gradient-glow);
+  outline: none !important;
+  user-select: none !important;
 }
 
 .btn-primary:hover {
+  background: linear-gradient(135deg, #be123c 0%, #9f1239 100%) !important;
+  color: #ffffff !important;
   transform: translateY(-2px);
   box-shadow: 0 12px 26px -4px rgba(209, 74, 97, 0.5);
+}
+
+.btn-primary:active,
+.btn-primary:focus,
+.btn-primary:focus-visible {
+  background: linear-gradient(135deg, #9f1239 0%, #881337 100%) !important;
+  color: #ffffff !important;
+  outline: none !important;
+  transform: translateY(0);
+}
+
+.btn-primary span,
+.btn-primary svg {
+  color: #ffffff !important;
+  stroke: #ffffff !important;
 }
 
 .login-error-alert {
@@ -727,44 +750,78 @@ body {
 }
 
 .btn-hero-add-pkg {
-  background: var(--brand-primary);
-  color: #ffffff;
-  border: none;
-  padding: 8px 16px;
-  border-radius: var(--radius-sm);
-  font-size: 13px;
-  font-weight: 700;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  transition: var(--transition);
+  background: var(--brand-gradient, linear-gradient(135deg, #e11d48 0%, #d14a61 50%, #be123c 100%)) !important;
+  color: #ffffff !important;
+  border: none !important;
+  padding: 9px 18px !important;
+  border-radius: var(--radius-sm, 8px) !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  transition: all 0.2s ease !important;
+  box-shadow: 0 4px 14px rgba(209, 74, 97, 0.35) !important;
+  text-decoration: none !important;
+  outline: none !important;
+  user-select: none !important;
 }
 
 .btn-hero-add-pkg:hover {
-  background: var(--brand-primary-hover);
-  box-shadow: 0 4px 12px rgba(225, 29, 72, 0.25);
+  background: linear-gradient(135deg, #be123c 0%, #9f1239 100%) !important;
+  color: #ffffff !important;
+  box-shadow: 0 6px 18px rgba(209, 74, 97, 0.5) !important;
+  transform: translateY(-1px) !important;
+}
+
+.btn-hero-add-pkg:active,
+.btn-hero-add-pkg:focus,
+.btn-hero-add-pkg:focus-visible {
+  background: linear-gradient(135deg, #9f1239 0%, #881337 100%) !important;
+  color: #ffffff !important;
+  box-shadow: 0 2px 8px rgba(209, 74, 97, 0.4) !important;
+  transform: translateY(0) !important;
+  outline: none !important;
+}
+
+.btn-hero-add-pkg span,
+.btn-hero-add-pkg svg {
+  color: #ffffff !important;
+  stroke: #ffffff !important;
 }
 
 .btn-hero-action {
-  background: #ffffff;
-  border: 1px solid var(--admin-border);
-  color: var(--text-body);
-  padding: 7px 13px;
-  border-radius: var(--radius-sm);
-  font-size: 12.5px;
-  font-weight: 600;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  transition: var(--transition);
+  background: #ffffff !important;
+  border: 1px solid var(--admin-border, #e2e8f0) !important;
+  color: var(--text-body, #334155) !important;
+  padding: 8px 14px !important;
+  border-radius: var(--radius-sm, 8px) !important;
+  font-size: 12.5px !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  transition: all 0.2s ease !important;
+  outline: none !important;
+  user-select: none !important;
 }
 
 .btn-hero-action:hover {
-  background: #f8fafc;
-  color: var(--text-main);
-  border-color: #cbd5e1;
+  background: #f8fafc !important;
+  color: var(--text-main, #0f172a) !important;
+  border-color: #cbd5e1 !important;
+  transform: translateY(-1px) !important;
+}
+
+.btn-hero-action:active,
+.btn-hero-action:focus,
+.btn-hero-action:focus-visible {
+  background: #f1f5f9 !important;
+  color: var(--text-main, #0f172a) !important;
+  outline: none !important;
+  transform: translateY(0) !important;
 }
 
 .btn-hero-delete {
@@ -1149,21 +1206,40 @@ body {
   align-items: center;
   gap: 8px;
   padding: 9px 18px;
-  background: var(--brand-gradient);
-  border: none;
-  border-radius: var(--radius-md);
-  color: #ffffff;
+  background: var(--brand-gradient, linear-gradient(135deg, #e11d48 0%, #d14a61 50%, #be123c 100%)) !important;
+  border: none !important;
+  border-radius: var(--radius-md, 12px) !important;
+  color: #ffffff !important;
   font-family: var(--font-heading);
   font-size: 14px;
   font-weight: 700;
   cursor: pointer;
-  transition: var(--transition);
+  transition: all 0.2s ease !important;
   box-shadow: var(--brand-gradient-glow);
+  outline: none !important;
+  user-select: none !important;
 }
 
 .btn-add-primary:hover {
+  background: linear-gradient(135deg, #be123c 0%, #9f1239 100%) !important;
+  color: #ffffff !important;
   transform: translateY(-1px);
   box-shadow: 0 10px 22px -3px rgba(209, 74, 97, 0.5);
+}
+
+.btn-add-primary:active,
+.btn-add-primary:focus,
+.btn-add-primary:focus-visible {
+  background: linear-gradient(135deg, #9f1239 0%, #881337 100%) !important;
+  color: #ffffff !important;
+  outline: none !important;
+  transform: translateY(0);
+}
+
+.btn-add-primary span,
+.btn-add-primary svg {
+  color: #ffffff !important;
+  stroke: #ffffff !important;
 }
 
 .btn-secondary {
@@ -1171,21 +1247,34 @@ body {
   align-items: center;
   gap: 7px;
   padding: 8px 16px;
-  background: #ffffff;
-  border: 1px solid var(--admin-border);
-  border-radius: var(--radius-md);
-  color: var(--text-main);
+  background: #ffffff !important;
+  border: 1px solid var(--admin-border, #e2e8f0) !important;
+  border-radius: var(--radius-md, 12px) !important;
+  color: var(--text-main, #0f172a) !important;
   font-family: inherit;
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
-  transition: var(--transition);
+  transition: all 0.2s ease !important;
   text-decoration: none;
+  outline: none !important;
+  user-select: none !important;
 }
 
 .btn-secondary:hover {
-  background: #f8fafc;
-  border-color: #cbd5e1;
+  background: #f8fafc !important;
+  border-color: #cbd5e1 !important;
+  color: var(--text-main, #0f172a) !important;
+  transform: translateY(-1px);
+}
+
+.btn-secondary:active,
+.btn-secondary:focus,
+.btn-secondary:focus-visible {
+  background: #f1f5f9 !important;
+  color: var(--text-main, #0f172a) !important;
+  outline: none !important;
+  transform: translateY(0);
 }
 
 /* ==========================================================================
@@ -3424,5 +3513,44 @@ body {
   transform: translateY(-1px);
 }
 
+/* ==========================================================================
+   GLOBAL BUTTON VISIBILITY & INTERACTION GUARDS
+   Guarantees no button ever turns white/transparent or has disappearing text
+   ========================================================================== */
+.btn-hero-add-pkg,
+.btn-primary,
+.btn-add-primary {
+  background: var(--brand-gradient, linear-gradient(135deg, #e11d48 0%, #d14a61 50%, #be123c 100%)) !important;
+  color: #ffffff !important;
+  text-shadow: none !important;
+}
 
+.btn-hero-add-pkg:hover,
+.btn-primary:hover,
+.btn-add-primary:hover {
+  background: linear-gradient(135deg, #be123c 0%, #9f1239 100%) !important;
+  color: #ffffff !important;
+  transform: translateY(-1px) !important;
+}
 
+.btn-hero-add-pkg:active,
+.btn-hero-add-pkg:focus,
+.btn-hero-add-pkg:focus-visible,
+.btn-primary:active,
+.btn-primary:focus,
+.btn-primary:focus-visible,
+.btn-add-primary:active,
+.btn-add-primary:focus,
+.btn-add-primary:focus-visible {
+  background: linear-gradient(135deg, #9f1239 0%, #881337 100%) !important;
+  color: #ffffff !important;
+  outline: none !important;
+  transform: translateY(0) !important;
+}
+
+.btn-hero-add-pkg *,
+.btn-primary *,
+.btn-add-primary * {
+  color: #ffffff !important;
+  stroke: #ffffff !important;
+}
