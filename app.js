@@ -604,20 +604,19 @@ function renderQuickCategories() {
     "kids": "kids.html",
     "baby-shower": "baby-shower.html",
     "wedding": "wedding.html",
-    "corporate": "corporate.html"
+    "corporate": "corporate.html",
+    "gifts": "marketplace.html"
   };
 
   const validCats = SITE_DATA.categories.filter(c => c && c.id && c.id !== '__site_subcategories__');
 
   container.innerHTML = validCats.map((cat, idx) => {
-    const hasDedicatedPage = Boolean(categoryUrlMap[cat.id]);
-    const pageUrl = hasDedicatedPage ? categoryUrlMap[cat.id] : "#catalogHeading";
-    const clickHandler = hasDedicatedPage ? "" : `onclick="filterCategory('${cat.id}'); document.getElementById('catalogHeading')?.scrollIntoView({behavior:'smooth'}); return false;"`;
+    const pageUrl = categoryUrlMap[cat.id] || `category.html?id=${encodeURIComponent(cat.id)}`;
     const badgeHtml = (cat.badge && cat.badge.trim()) ? `<span class="category-card-badge">${cat.badge.trim()}</span>` : '';
     const iconHtml = (cat.icon && cat.icon.trim()) ? `${cat.icon.trim()} ` : '';
 
     return `
-      <a href="${pageUrl}" ${clickHandler} class="quick-category-card" data-aos="zoom-in" data-aos-delay="${((idx % 8) + 1) * 70}" style="text-decoration: none; color: inherit; cursor: pointer;">
+      <a href="${pageUrl}" class="quick-category-card" data-aos="zoom-in" data-aos-delay="${((idx % 8) + 1) * 70}" style="text-decoration: none; color: inherit; cursor: pointer;">
         ${badgeHtml}
         <div class="category-img-box">
           <img src="${cat.image || 'https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=600&q=80'}" alt="${cat.name || 'Category'}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=600&q=80'" />
@@ -679,8 +678,9 @@ function renderNavCustomCategories() {
     const li = document.createElement("li");
     li.className = "nav-item nav-item-custom-cat";
     const badgeHtml = (cat.badge && cat.badge.trim()) ? `<span class="tag-pill tag-popular">${cat.badge.trim()}</span>` : '';
+    const catUrl = `category.html?id=${encodeURIComponent(cat.id)}`;
     li.innerHTML = `
-      <a href="#catalogHeading" class="nav-trigger" onclick="filterCategory('${cat.id}'); document.getElementById('catalogHeading')?.scrollIntoView({behavior:'smooth'}); return false;">
+      <a href="${catUrl}" class="nav-trigger">
         ${cat.name} ${badgeHtml}
       </a>
     `;
@@ -711,8 +711,9 @@ function renderMobileCustomCategories() {
     li.className = "mobile-nav-custom-cat";
     const iconPart = (cat.icon && cat.icon.trim()) ? `${cat.icon.trim()} ` : '🎈 ';
     const badgeHtml = (cat.badge && cat.badge.trim()) ? `<span class="tag-pill tag-trending" style="margin-left: 6px; font-size: 9.5px; padding: 2px 7px;">${cat.badge.trim()}</span>` : '';
+    const catUrl = `category.html?id=${encodeURIComponent(cat.id)}`;
     li.innerHTML = `
-      <a href="#catalogHeading" class="mobile-nav-link" onclick="filterCategory('${cat.id}'); closeMobileSidebar(); document.getElementById('catalogHeading')?.scrollIntoView({behavior:'smooth'}); return false;">
+      <a href="${catUrl}" class="mobile-nav-link" onclick="closeMobileSidebar();">
         ${iconPart}${cat.name} ${badgeHtml} <span>›</span>
       </a>
     `;
@@ -2421,13 +2422,20 @@ function scrollActiveNavIntoView() {
 
   let activeBtn = null;
 
+  const currentSearch = window.location.search.toLowerCase();
   triggers.forEach(t => {
     t.classList.remove("active");
     t.closest(".nav-item")?.classList.remove("active");
     if (t.style.borderBottom) t.style.borderBottom = "";
 
-    const href = (t.getAttribute("href") || "").toLowerCase().split("/").pop();
-    if (href && (href === currentPath || (currentPath === "" && href === "index.html"))) {
+    const rawHref = (t.getAttribute("href") || "").toLowerCase();
+    const hrefFile = rawHref.split("?")[0].split("/").pop();
+
+    if (currentPath === "category.html" && currentSearch && rawHref.includes("category.html")) {
+      if (rawHref.includes(currentSearch.replace("?", ""))) {
+        activeBtn = t;
+      }
+    } else if (hrefFile && (hrefFile === currentPath || (currentPath === "" && hrefFile === "index.html"))) {
       activeBtn = t;
     }
   });

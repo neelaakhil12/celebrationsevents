@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title id="categoryPageTitle">Celebration Decorations | Celebration Events®</title>
+  <meta name="description" content="Book professional balloon decoration services across 100+ cities in India. Same-day 2-hour express setup available." />
+  <meta name="theme-color" content="#d14a61" />
+  <link rel="stylesheet" href="styles.css?v=13.0" />
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+  <link rel="icon" href="https://cdn.balloondekor.com/images/61/7ebf2dbd-60dd-4643-8029-763dc6a3e5e3.webp" type="image/webp" />
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="announcement-bar">
+    <span>⚡ Express 2-Hour Slot Available for Same-Day Setups</span>
+  </div>
+
+  <!-- Sticky Main Header -->
+  <header class="main-header">
+    <div class="header-container">
+      <div class="header-left">
+        <button id="mobileMenuBtn" class="mobile-menu-btn" aria-label="Open Navigation">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+
+        <a href="index.html" class="brand-logo-wrap">
+          <div class="brand-logo">
+            <span class="logo-balloon">🎈</span>
+            <span>Celebration <span class="bold">Events</span><span class="reg">®</span></span>
+          </div>
+          <span class="brand-tagline">India ka party expert</span>
+        </a>
+
+        <!-- City Selector Trigger -->
+        <button id="citySelectorTrigger" class="city-selector-btn" aria-label="Select City">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path><circle cx="12" cy="10" r="3"></circle></svg>
+          <div class="city-info">
+            <span class="city-label">Deliver to</span>
+            <span id="headerCityName" class="city-name">Select City</span>
+          </div>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
+        </button>
+      </div>
+
+      <!-- Navigation Links on Header -->
+      <div class="header-nav-desktop">
+        <a href="index.html" class="header-nav-link">Home</a>
+        <a href="about.html" class="header-nav-link">About Us</a>
+        <a href="contact.html" class="header-nav-link">Contact</a>
+        <a href="blog.html" class="header-nav-link">Blog</a>
+      </div>
+
+      <!-- Header Center Search Trigger -->
+      <div class="header-center" style="max-width: 320px;">
+        <button id="searchTriggerBtn" class="search-trigger-btn" aria-label="Search decorations">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+          <span>Search celebration themes...</span>
+        </button>
+      </div>
+
+      <!-- Header Right: User Account & Cart -->
+      <div class="header-right">
+        <button class="cart-btn" id="cartTriggerBtn" aria-label="View Cart">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+          <span class="cart-badge" id="cartBadge">0</span>
+        </button>
+
+        <button class="header-sign-in" onclick="openLoginPrompt()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+          <span>Sign In</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Secondary Navigation Bar -->
+  <nav class="secondary-nav">
+    <div class="nav-container">
+      <ul class="nav-menu">
+        <li class="nav-item"><a href="birthday.html" class="nav-trigger">Birthday <span class="tag-pill tag-popular">POPULAR</span></a></li>
+        <li class="nav-item"><a href="anniversary.html" class="nav-trigger">Anniversary</a></li>
+        <li class="nav-item"><a href="kids.html" class="nav-trigger">Kids Themes <span class="tag-pill tag-trending">TRENDING</span></a></li>
+        <li class="nav-item"><a href="baby-shower.html" class="nav-trigger">Baby Shower & Welcome</a></li>
+        <li class="nav-item"><a href="wedding.html" class="nav-trigger">Wedding</a></li>
+        <li class="nav-item"><a href="corporate.html" class="nav-trigger">Corporate</a></li>
+        <li class="nav-item"><a href="marketplace.html" class="nav-trigger">Gifts Marketplace <span class="tag-pill tag-popular">HOT</span></a></li>
+        <li class="nav-item"><a href="#" class="nav-trigger" onclick="openCityModal(); return false;">Cities <span class="tag-pill tag-count">50+</span></a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Page Main Content Wrapper -->
+  <main class="page-wrapper">
+
+    <!-- Hero Banner -->
+    <section class="hero-carousel" style="aspect-ratio: 16 / 4.8; min-height: 260px;" data-aos="fade-up">
+      <div class="carousel-slides">
+        <div class="carousel-slide">
+          <img id="catHeroImage" src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=1600&q=80" alt="Category Decoration" style="object-position: center;" />
+          <div class="slide-overlay"></div>
+          <div class="slide-content">
+            <span class="slide-tag" id="catHeroBadge">✨ Exclusive Celebration</span>
+            <h1 class="slide-title" id="catHeroTitle">Celebration Decorations</h1>
+            <p class="slide-desc" id="catHeroDesc">Premium event setups crafted by verified specialists across 100+ cities in India.</p>
+            <a href="#catCatalog" class="slide-btn">Explore Packages Below ↓</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Subcategories Filter Strip -->
+    <section data-aos="fade-up" id="catSubFilterSection" style="display: none;">
+      <div style="display: flex; gap: 8px; overflow-x: auto; padding-bottom: 6px; scrollbar-width: none;" id="catSubFilter">
+        <!-- Rendered dynamically -->
+      </div>
+    </section>
+
+    <!-- Products Catalog -->
+    <section class="catalog-section" id="catCatalog" data-aos="fade-up">
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <h2 class="section-title" id="catCatalogTitle">Featured Packages</h2>
+          <div class="title-underline"></div>
+          <p class="section-subtitle" id="catCatalogSubtitle">Select a design, pick your timing slot, and book your technician seamlessly</p>
+        </div>
+
+        <div class="sort-box">
+          <label for="catSortSelect">Sort By:</label>
+          <select id="catSortSelect" class="sort-select" onchange="sortCategoryProducts(this.value)">
+            <option value="featured">Featured (Recommended)</option>
+            <option value="price-low">Price: Low to High</option>
+            <option value="price-high">Price: High to Low</option>
+            <option value="rating">Highest Rated</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Products Grid -->
+      <div class="products-grid" id="catProductsGrid">
+        <!-- Rendered dynamically -->
+      </div>
+    </section>
+
+    <!-- Trust Badges Strip -->
+    <section class="trust-strip" data-aos="fade-up">
+      <div class="trust-item">
+        <div class="trust-icon-box">🏆</div>
+        <div class="trust-text-box">
+          <h4>5,00,000+ Happy Events</h4>
+          <p>India's most trusted celebration expert</p>
+        </div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon-box">⚡</div>
+        <div class="trust-text-box">
+          <h4>2-Hour Express Setup</h4>
+          <p>Same-day express technician slots</p>
+        </div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon-box">🛡️</div>
+        <div class="trust-text-box">
+          <h4>100% Wall-Safe Tapes</h4>
+          <p>Zero peeling, zero paint damage</p>
+        </div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon-box">⭐</div>
+        <div class="trust-text-box">
+          <h4>4.9 / 5 Star Rating</h4>
+          <p>Over 1,00,000+ verified customer reviews</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Real Video Customer Reviews Section -->
+    <section class="reviews-section" id="reviewsSection" data-aos="fade-up" data-aos-duration="700">
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <div class="reviews-stream-tag">
+            <span class="live-pulse-dot"></span> LIVE CELEBRATION FEED
+          </div>
+          <h2 class="section-title">Real Photos & Video Customer Reviews</h2>
+          <div class="title-underline"></div>
+          <p class="section-subtitle">Watch real celebration reels and customer setups across India • Hover over any card to pause</p>
+        </div>
+      </div>
+      <div class="infinite-reviews-wrapper">
+        <div class="infinite-reviews-track track-row-1" id="reviewsTrackRow1"></div>
+        <div class="infinite-reviews-track track-row-2" id="reviewsTrackRow2"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Main Website Footer -->
+  <footer class="main-footer">
+    <div class="footer-container">
+      <div class="footer-grid">
+        <div class="footer-col brand-col">
+          <div class="brand-logo" style="margin-bottom: 12px;">
+            <span class="logo-balloon">🎈</span>
+            <span style="color: #fff;">Celebration <span class="bold">Events</span></span>
+          </div>
+          <p class="footer-text">India's leading balloon decoration and event planning service. Bringing unforgettable moments to your doorstep with guaranteed on-time setup.</p>
+          <div class="footer-social-links" style="margin-top: 16px;">
+            <a href="https://instagram.com" target="_blank" rel="noopener" class="social-link" aria-label="Instagram">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+            </a>
+            <a href="https://facebook.com" target="_blank" rel="noopener" class="social-link" aria-label="Facebook">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+            </a>
+            <a href="https://youtube.com" target="_blank" rel="noopener" class="social-link" aria-label="YouTube">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Popular Occasions</h4>
+          <ul class="footer-links">
+            <li><a href="birthday.html">Birthday Decorations</a></li>
+            <li><a href="anniversary.html">Anniversary Surprises</a></li>
+            <li><a href="kids.html">Kids Dream Themes</a></li>
+            <li><a href="baby-shower.html">Baby Shower Setups</a></li>
+            <li><a href="wedding.html">Wedding & Stage Decors</a></li>
+            <li><a href="corporate.html">Corporate Events</a></li>
+            <li><a href="marketplace.html">Gifts Marketplace</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact Support</a></li>
+            <li><a href="blog.html">Celebration Blog</a></li>
+            <li><a href="#" onclick="openCityModal(); return false;">Cities We Serve</a></li>
+            <li><a href="/admin">Admin Studio</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Need Assistance?</h4>
+          <p class="footer-text">Our celebration stylists are ready 7 days a week to design your special day.</p>
+          <div style="margin-top: 14px;">
+            <a href="tel:+919876543210" style="color: #fff; font-weight: 700; text-decoration: none; display: flex; align-items: center; gap: 8px;">
+              📞 +91 98765 43210
+            </a>
+            <a href="https://wa.me/919876543210" target="_blank" style="color: #25D366; font-weight: 700; text-decoration: none; display: flex; align-items: center; gap: 8px; margin-top: 8px;">
+              💬 Chat on WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Celebration Events®. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- City Selection Modal -->
+  <div class="modal-overlay" id="cityModalOverlay">
+    <div class="city-modal-box">
+      <div class="modal-header">
+        <h3>📍 Choose Your Delivery City</h3>
+        <button class="modal-close-btn" onclick="closeCityModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <input type="text" id="citySearchInput" class="city-search-box" placeholder="Search your city..." oninput="filterCities(this.value)" />
+        <div class="popular-cities-title">Top Operating Cities</div>
+        <div class="cities-grid" id="popularCitiesGrid"></div>
+        <div class="popular-cities-title" style="margin-top: 16px;">All Operational Cities</div>
+        <div class="cities-grid" id="allCitiesGrid"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Search Modal -->
+  <div class="modal-overlay" id="searchModalOverlay">
+    <div class="search-modal-box">
+      <div class="search-modal-header">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+        <input type="text" id="liveSearchInput" placeholder="Search birthday, anniversary, kids theme..." autocomplete="off" />
+        <button class="modal-close-btn" onclick="closeSearchModal()">&times;</button>
+      </div>
+      <div class="search-results-list" id="searchResultsList"></div>
+    </div>
+  </div>
+
+  <!-- Product Detail & Booking Modal -->
+  <div class="modal-overlay" id="productModalOverlay">
+    <div class="product-modal-box">
+      <button class="modal-close-btn" onclick="closeProductModal()">&times;</button>
+      <div class="product-modal-grid">
+        <div class="product-modal-gallery">
+          <div class="modal-main-img-wrap">
+            <img id="modalMainImg" src="" alt="Decoration Package" />
+          </div>
+        </div>
+        <div class="product-modal-info">
+          <span class="product-badge" id="modalBadge">POPULAR</span>
+          <h2 class="modal-title" id="modalTitle">Package Title</h2>
+          <div class="product-rating-row">
+            <span class="rating-pill" id="modalRating">★ 4.9</span>
+            <span class="reviews-count" id="modalReviews">120 reviews</span>
+          </div>
+          <div class="product-pricing-row">
+            <span class="current-price" id="modalPrice">₹0</span>
+            <span class="original-price" id="modalOriginalPrice">₹0</span>
+            <span class="discount-tag" id="modalDiscount">0% off</span>
+          </div>
+          <p class="modal-desc" id="modalDesc"></p>
+
+          <div class="booking-config-section">
+            <div class="config-row">
+              <label for="bookingDateInput">📅 Choose Event Date:</label>
+              <input type="date" id="bookingDateInput" class="date-input" />
+            </div>
+            <div class="config-row">
+              <label>⏰ Select Setup Time Slot:</label>
+              <div class="slots-grid" id="modalSlotsGrid"></div>
+            </div>
+          </div>
+
+          <div class="modal-action-btns">
+            <button class="add-to-cart-btn" onclick="addCurrentProductToCart()">Add to Cart 🛒</button>
+            <button class="book-now-modal-btn" onclick="proceedToCheckoutCurrentProduct()">Book Now ⚡</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cart Slide-Over Drawer -->
+  <div class="cart-drawer-overlay" id="cartDrawerOverlay">
+    <div class="cart-drawer">
+      <div class="cart-header">
+        <h3>🛒 Your Decoration Cart</h3>
+        <button class="modal-close-btn" onclick="closeCart()">&times;</button>
+      </div>
+      <div class="cart-body" id="cartBody"></div>
+      <div class="cart-footer" id="cartFooter" style="display: none;">
+        <div class="bill-row">
+          <span>Items Total</span>
+          <span id="billSubtotal">₹0</span>
+        </div>
+        <button class="checkout-btn" onclick="openCheckoutModal()">Proceed to Checkout ⚡</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Sidebar Drawer -->
+  <div class="mobile-sidebar-overlay" id="mobileSidebarOverlay">
+    <div class="mobile-sidebar">
+      <div class="mobile-sidebar-header">
+        <div class="brand-logo">
+          <span class="logo-balloon">🎈</span>
+          <span>Celebration <span class="bold">Events</span></span>
+        </div>
+        <button class="modal-close-btn" onclick="closeMobileSidebar()">&times;</button>
+      </div>
+      <ul class="mobile-nav-list">
+        <li><a href="index.html" class="mobile-nav-link">🏠 Home <span>›</span></a></li>
+        <li><a href="birthday.html" class="mobile-nav-link">🎂 Birthday Decoration <span>›</span></a></li>
+        <li><a href="anniversary.html" class="mobile-nav-link">❤️ Romantic & Anniversary <span>›</span></a></li>
+        <li><a href="kids.html" class="mobile-nav-link">🦄 Kids Theme Parties <span>›</span></a></li>
+        <li><a href="baby-shower.html" class="mobile-nav-link">🍼 Baby Shower & Welcome <span>›</span></a></li>
+        <li><a href="wedding.html" class="mobile-nav-link">💍 Wedding <span>›</span></a></li>
+        <li><a href="corporate.html" class="mobile-nav-link">💼 Corporate Events <span>›</span></a></li>
+        <li><a href="marketplace.html" class="mobile-nav-link">🎁 Gifts Market <span>›</span></a></li>
+        <li><a href="blog.html" class="mobile-nav-link">📰 Party Blog & Ideas <span>›</span></a></li>
+        <li><a href="about.html" class="mobile-nav-link">ℹ️ About Us <span>›</span></a></li>
+        <li><a href="contact.html" class="mobile-nav-link">📞 Contact Us <span>›</span></a></li>
+        <li><a href="#" class="mobile-nav-link" onclick="openCityModal(); closeMobileSidebar();">📍 Change City <span>›</span></a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Application Logic Scripts -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="data.js"></script>
+  <script src="app.js?v=3.0"></script>
+
+  <!-- Category Page Dynamic Initialization Script -->
+  <script>
+    let currentCategoryId = '';
+    let categoryItems = [];
+    let currentSubcategory = 'all';
+
+    function getSelectedCategoryId() {
+      const params = new URLSearchParams(window.location.search);
+      const id = params.get('id') || params.get('cat') || params.get('slug') || '';
+      return id.toLowerCase().trim();
+    }
+
+    function initDynamicCategoryPage() {
+      currentCategoryId = getSelectedCategoryId();
+      if (!currentCategoryId) {
+        // Fallback to first custom or available category
+        currentCategoryId = 'dusera';
+      }
+
+      const catObj = (typeof SITE_DATA !== 'undefined' && Array.isArray(SITE_DATA.categories))
+        ? SITE_DATA.categories.find(c => c.id && c.id.toLowerCase() === currentCategoryId)
+        : null;
+
+      const catName = catObj?.name || (currentCategoryId.charAt(0).toUpperCase() + currentCategoryId.slice(1));
+      const catImage = catObj?.image || 'https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=1600&q=80';
+      const catBadge = catObj?.badge || 'EXCLUSIVE OCCASION';
+      const catDesc = catObj?.desc || `Explore premium balloon decoration packages for ${catName}. Same-day 2-hour express setup in 100+ cities.`;
+
+      // Update Page Meta & Titles
+      document.title = `${catName} Decorations | Celebration Events®`;
+      const titleEl = document.getElementById('categoryPageTitle');
+      if (titleEl) titleEl.textContent = `${catName} Decorations | Celebration Events®`;
+
+      // Update Hero Elements
+      const heroImg = document.getElementById('catHeroImage');
+      if (heroImg) {
+        heroImg.src = catImage;
+        heroImg.alt = `${catName} Decoration`;
+      }
+      const heroBadge = document.getElementById('catHeroBadge');
+      if (heroBadge) heroBadge.textContent = catBadge ? `✨ ${catBadge}` : '✨ SPECIAL OCCASION';
+
+      const heroTitle = document.getElementById('catHeroTitle');
+      if (heroTitle) heroTitle.textContent = `${catName} Celebrations & Decor`;
+
+      const heroDesc = document.getElementById('catHeroDesc');
+      if (heroDesc) heroDesc.textContent = catDesc;
+
+      // Update Catalog Titles
+      const catalogTitle = document.getElementById('catCatalogTitle');
+      if (catalogTitle) catalogTitle.textContent = `${catName} Packages`;
+
+      const catalogSub = document.getElementById('catCatalogSubtitle');
+      if (catalogSub) catalogSub.textContent = `Browse popular ${catName} designs and book your preferred technician slot`;
+
+      // Subcategories
+      renderCategorySubFilter(catObj);
+
+      // Collect Products for this category
+      if (typeof SITE_DATA !== 'undefined' && Array.isArray(SITE_DATA.products)) {
+        categoryItems = SITE_DATA.products.filter(p => {
+          if (!p.category) return false;
+          return p.category.toLowerCase() === currentCategoryId;
+        });
+      } else {
+        categoryItems = [];
+      }
+
+      renderCategoryProducts(catName);
+    }
+
+    function renderCategorySubFilter(catObj) {
+      const section = document.getElementById('catSubFilterSection');
+      const container = document.getElementById('catSubFilter');
+      if (!section || !container) return;
+
+      const subcats = (catObj && Array.isArray(catObj.subcategories)) ? catObj.subcategories : [];
+      if (!subcats || subcats.length === 0) {
+        section.style.display = 'none';
+        return;
+      }
+
+      section.style.display = 'block';
+      let html = `<button class="filter-pill ${currentSubcategory === 'all' ? 'active' : ''}" onclick="filterCategorySubcat('all', this)">All Setups (${categoryItems.length})</button>`;
+
+      subcats.forEach(sub => {
+        if (sub.isLink && sub.href) {
+          html += `<a href="${sub.href}" class="filter-pill">${sub.icon ? sub.icon + ' ' : ''}${sub.name}</a>`;
+        } else {
+          const isActive = currentSubcategory === sub.id ? 'active' : '';
+          html += `<button class="filter-pill ${isActive}" onclick="filterCategorySubcat('${sub.id}', this)">${sub.icon ? sub.icon + ' ' : ''}${sub.name}</button>`;
+        }
+      });
+
+      container.innerHTML = html;
+    }
+
+    function filterCategorySubcat(subId, btnEl) {
+      currentSubcategory = subId;
+      const pills = document.querySelectorAll('#catSubFilter .filter-pill');
+      pills.forEach(p => p.classList.remove('active'));
+      if (btnEl) btnEl.classList.add('active');
+      renderCategoryProducts();
+    }
+
+    function sortCategoryProducts(sortVal) {
+      if (sortVal === "price-low") categoryItems.sort((a, b) => a.price - b.price);
+      else if (sortVal === "price-high") categoryItems.sort((a, b) => b.price - a.price);
+      else if (sortVal === "rating") categoryItems.sort((a, b) => b.rating - a.rating);
+      renderCategoryProducts();
+    }
+
+    function renderCategoryProducts(catNameFallback = 'Celebration') {
+      const grid = document.getElementById('catProductsGrid');
+      if (!grid) return;
+
+      let filtered = [...categoryItems];
+      if (currentSubcategory !== 'all') {
+        filtered = filtered.filter(p => {
+          if (p.subcategory) {
+            return String(p.subcategory).toLowerCase() === String(currentSubcategory).toLowerCase();
+          }
+          return false;
+        });
+      }
+
+      const catName = document.getElementById('catHeroTitle')?.textContent.replace(' Celebrations & Decor', '') || catNameFallback;
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `
+          <div style="grid-column: 1 / -1; text-align: center; padding: 60px 24px; background: #fff; border-radius: 16px; border: 1.5px dashed var(--gray-200); box-shadow: 0 4px 18px rgba(0,0,0,0.03);">
+            <div style="font-size: 52px; margin-bottom: 12px;">🎉</div>
+            <h3 style="font-size: 22px; font-weight: 800; color: var(--gray-900); margin-bottom: 8px;">Exclusive ${catName} Designs Coming Soon</h3>
+            <p style="font-size: 14.5px; color: var(--gray-500); max-width: 520px; margin: 0 auto 24px; line-height: 1.6;">
+              We are currently designing exclusive packages for ${catName}. In the meantime, our event stylists can create a bespoke setup tailored to your venue and budget!
+            </p>
+            <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+              <a href="https://wa.me/919876543210?text=Hi%2C%20I%20am%20looking%20for%20${encodeURIComponent(catName)}%20decorations" target="_blank" class="slide-btn" style="background: #25D366; color: #fff; box-shadow: 0 4px 14px rgba(37,211,102,0.35);">
+                💬 Inquire on WhatsApp
+              </a>
+              <a href="index.html#catalogHeading" class="slide-btn" style="background: var(--brand-600); color: #fff;">
+                Browse All Occasions →
+              </a>
+            </div>
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = filtered.map((product, idx) => `
+        <div class="product-card" id="card-${product.id}" data-aos="fade-up" data-aos-delay="${((idx % 5) + 1) * 60}">
+          <div class="product-img-wrapper" onclick="openProductModal('${product.id}')">
+            <span class="product-badge badge-${(product.badge || 'POPULAR').toLowerCase().replace(/\\s+/g, '')}">${product.badge || 'POPULAR'}</span>
+            <img src="${product.image}" alt="${product.title}" loading="lazy" />
+            <button class="quick-view-overlay-btn" onclick="event.stopPropagation(); openProductModal('${product.id}')">Quick View 🔍</button>
+          </div>
+          <div class="product-details">
+            <span class="product-category-tag">${product.categoryName || catName}</span>
+            <h3 class="product-title" onclick="openProductModal('${product.id}')" style="cursor: pointer;">${product.title}</h3>
+            <div class="product-rating-row">
+              <span class="rating-pill"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>${(product.rating || 4.9).toFixed(1)}</span>
+              <span class="reviews-count">${product.reviewsCount || 100} reviews</span>
+            </div>
+            <div class="product-pricing-row">
+              <span class="current-price">₹${Number(product.price).toLocaleString("en-IN")}</span>
+              <span class="original-price">₹${Number(product.originalPrice || product.price * 1.3).toLocaleString("en-IN")}</span>
+              <span class="discount-tag">${product.discount || 25}% off</span>
+            </div>
+            <div class="product-action-btns">
+              <button class="book-now-btn" onclick="openProductModal('${product.id}')">Book Now ⚡</button>
+            </div>
+          </div>
+        </div>
+      `).join("");
+
+      if (typeof AOS !== "undefined") setTimeout(() => AOS.refresh(), 80);
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      initDynamicCategoryPage();
+    });
+
+    window.addEventListener("celebration:data-updated", () => {
+      initDynamicCategoryPage();
+    });
+  </script>
+</body>
+</html>

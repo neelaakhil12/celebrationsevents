@@ -52,6 +52,10 @@
       "dest": "/admin/$1"
     },
     {
+      "src": "/category/(.*)",
+      "dest": "/category.html?id=$1"
+    },
+    {
       "src": "/",
       "dest": "/index.html"
     },

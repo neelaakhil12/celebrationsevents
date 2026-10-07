@@ -636,6 +636,15 @@ const server = http.createServer(async (req, res) => {
             return;
           }
 
+          // Check if requested path matches an existing category slug
+          const slugCandidate = safePath.replace(/^\//, '').replace(/\.html$/, '').toLowerCase();
+          const adminData = getAdminData();
+          if (adminData.categories && adminData.categories.some(c => c.id && c.id.toLowerCase() === slugCandidate)) {
+            res.writeHead(302, { 'Location': `/category.html?id=${encodeURIComponent(slugCandidate)}` });
+            res.end();
+            return;
+          }
+
           // 404 fallback to index.html
           fs.readFile(path.join(ROOT_DIR, 'index.html'), (fallbackErr, fallbackContent) => {
             if (fallbackErr) {
