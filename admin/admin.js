@@ -1611,9 +1611,16 @@
 
       try {
         const url = await uploadToCloudinary(file, 'celebration-categories');
-        document.getElementById('catImage').value = url;
+        const catInput = document.getElementById('catImage');
+        if (catInput) {
+          catInput.value = url;
+          catInput.dispatchEvent(new Event('input', { bubbles: true }));
+        }
         const prev = document.getElementById('catImagePreview');
-        if (prev) prev.src = url;
+        if (prev) {
+          prev.src = url;
+          prev.style.display = 'block';
+        }
         showToast('Category banner uploaded to Cloudinary!', 'success');
       } catch (err) {
         showToast('Cloudinary upload error: ' + err.message, 'error');
@@ -1742,34 +1749,75 @@
     });
   }
 
-  // Upload helper: converts to Base64 and sends to /api/upload-image
-  function uploadToCloudinary(file, folder = 'celebration-events') {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onload = async () => {
-        try {
-          const res = await fetch('/api/upload-image', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              image: reader.result,
-              folder: folder
-            })
-          });
+  // Helper: Resizes/compresses high-resolution images on canvas before uploading
+  // This prevents oversized Base64 payloads (>4.5MB) from triggering Vercel payload limits.
+  function compressImageBeforeUpload(file, maxDimension = 1600, quality = 0.85) {
+    return new Promise((resolve) => {
+      if (!file || !file.type.startsWith('image/') || file.type === 'image/svg+xml' || file.type === 'image/gif') {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = () => resolve(null);
+        reader.readAsDataURL(file);
+        return;
+      }
 
-          const data = await res.json();
-          if (data.success && data.url) {
-            resolve(data.url);
+      const img = new Image();
+      const objectUrl = URL.createObjectURL(file);
+      img.onload = () => {
+        URL.revokeObjectURL(objectUrl);
+        let { width, height } = img;
+        if (width > maxDimension || height > maxDimension) {
+          if (width > height) {
+            height = Math.round((height * maxDimension) / width);
+            width = maxDimension;
           } else {
-            reject(new Error(data.error || 'Cloudinary upload failed'));
+            width = Math.round((width * maxDimension) / height);
+            height = maxDimension;
           }
-        } catch (err) {
-          reject(err);
         }
+
+        const canvas = document.createElement('canvas');
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0, width, height);
+
+        const compressedDataUrl = canvas.toDataURL('image/jpeg', quality);
+        resolve(compressedDataUrl);
       };
-      reader.onerror = () => reject(new Error('Failed to read image file'));
-      reader.readAsDataURL(file);
+      img.onerror = () => {
+        URL.revokeObjectURL(objectUrl);
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = () => resolve(null);
+        reader.readAsDataURL(file);
+      };
+      img.src = objectUrl;
     });
+  }
+
+  // Upload helper: converts to compressed Base64 and sends to /api/upload-image
+  async function uploadToCloudinary(file, folder = 'celebration-events') {
+    const dataUrl = await compressImageBeforeUpload(file);
+    if (!dataUrl) {
+      throw new Error('Failed to process image file');
+    }
+
+    const res = await fetch('/api/upload-image', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        image: dataUrl,
+        folder: folder
+      })
+    });
+
+    const data = await res.json();
+    if (data.success && data.url) {
+      return data.url;
+    } else {
+      throw new Error(data.error || 'Cloudinary upload failed');
+    }
   }
 
   /* ==========================================================================
