@@ -814,6 +814,10 @@
     document.addEventListener("DOMContentLoaded", () => {
       initAnniversaryPage();
     });
+
+    window.addEventListener("celebration:data-updated", () => {
+      initAnniversaryPage();
+    });
   </script>
   <!-- Review Media Modal Overlay (Video Reels & Photos) -->
   <div class="review-modal-overlay" id="reviewMediaModalOverlay" onclick="closeReviewMediaModal(event)">

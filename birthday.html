@@ -858,6 +858,10 @@
     document.addEventListener("DOMContentLoaded", () => {
       initBirthdayPage();
     });
+
+    window.addEventListener("celebration:data-updated", () => {
+      initBirthdayPage();
+    });
   </script>
   <!-- Review Media Modal Overlay (Video Reels & Photos) -->
   <div class="review-modal-overlay" id="reviewMediaModalOverlay" onclick="closeReviewMediaModal(event)">

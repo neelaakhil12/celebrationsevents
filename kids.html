@@ -814,6 +814,10 @@
     document.addEventListener("DOMContentLoaded", () => {
       initKidsPage();
     });
+
+    window.addEventListener("celebration:data-updated", () => {
+      initKidsPage();
+    });
   </script>
   <!-- Review Media Modal Overlay (Video Reels & Photos) -->
   <div class="review-modal-overlay" id="reviewMediaModalOverlay" onclick="closeReviewMediaModal(event)">

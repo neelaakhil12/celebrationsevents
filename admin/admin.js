@@ -864,14 +864,23 @@
       }
 
       if (catsRes.data && catsRes.data.length > 0) {
+        const subcatConfig = catsRes.data.find(c => c.id === '__site_subcategories__');
+        let cloudSubcatMap = {};
+        if (subcatConfig && subcatConfig.desc) {
+          try { cloudSubcatMap = JSON.parse(subcatConfig.desc); } catch(e){}
+        }
+        const validDbCats = catsRes.data.filter(c => c.id !== '__site_subcategories__');
+
         const siteCats = (typeof window.SITE_DATA !== 'undefined' && Array.isArray(window.SITE_DATA.categories)) ? window.SITE_DATA.categories : [];
-        const mergedCats = catsRes.data.map(dbCat => {
+        const mergedCats = validDbCats.map(dbCat => {
           const localCat = appState.categories.find(c => c.id === dbCat.id);
           const siteCat = siteCats.find(c => c.id === dbCat.id);
           
           let subcats = [];
           if (Array.isArray(dbCat.subcategories) && dbCat.subcategories.length > 0) {
             subcats = dbCat.subcategories;
+          } else if (cloudSubcatMap[dbCat.id] && Array.isArray(cloudSubcatMap[dbCat.id]) && cloudSubcatMap[dbCat.id].length > 0) {
+            subcats = cloudSubcatMap[dbCat.id];
           } else if (localCat && Array.isArray(localCat.subcategories) && localCat.subcategories.length > 0) {
             subcats = localCat.subcategories;
           } else if (siteCat && Array.isArray(siteCat.subcategories)) {
@@ -886,7 +895,7 @@
 
         // Also ensure any category in siteCats missing from Supabase is kept
         siteCats.forEach(sc => {
-          if (!mergedCats.some(c => c.id === sc.id)) {
+          if (!mergedCats.some(c => c.id === sc.id) && sc.id !== '__site_subcategories__') {
             mergedCats.push(JSON.parse(JSON.stringify(sc)));
           }
         });
@@ -898,9 +907,14 @@
       if (prodsRes.data && prodsRes.data.length > 0) {
         appState.products = prodsRes.data.map(p => {
           const localPkg = appState.products.find(lp => lp.id === p.id);
+          let subcat = p.subcategory || localPkg?.subcategory || '';
+          if (!subcat && Array.isArray(p.tags)) {
+            const subTag = p.tags.find(t => typeof t === 'string' && t.startsWith('subcat:'));
+            if (subTag) subcat = subTag.replace('subcat:', '');
+          }
           return {
             ...p,
-            subcategory: p.subcategory || localPkg?.subcategory || '',
+            subcategory: subcat,
             categoryName: p.category_name || p.categoryName || p.category,
             originalPrice: p.original_price || p.originalPrice || p.price,
             setupDuration: p.setup_duration || p.setupDuration || '1.5 - 2 Hours',
@@ -986,6 +1000,43 @@
         updatedAt: new Date().toISOString()
       })
     }).catch(() => {});
+
+    // 3. Supabase Cloud Sync (Instant cross-device & Vercel sync)
+    if (supabase) {
+      try {
+        const subcatMap = {};
+        appState.categories.forEach(c => {
+          if (c.id !== '__site_subcategories__' && Array.isArray(c.subcategories) && c.subcategories.length > 0) {
+            subcatMap[c.id] = c.subcategories;
+          }
+        });
+        supabase.from('categories').upsert({
+          id: '__site_subcategories__',
+          name: 'Global Subcategories Mapping',
+          image: 'https://cdn.balloondekor.com/33/birthday-decoration-d67f374a-0151-409d-96ea-36e9527e0ffc.webp',
+          desc: JSON.stringify(subcatMap)
+        }).then(({ error }) => {
+          if (!error) console.log('Subcategories synced to Supabase Cloud');
+          else console.warn('Supabase subcategories sync warning:', error);
+        });
+
+        const catRows = appState.categories
+          .filter(c => c.id !== '__site_subcategories__')
+          .map(c => ({
+            id: c.id,
+            name: c.name,
+            icon: c.icon || '🎈',
+            badge: c.badge || 'POPULAR',
+            image: c.image,
+            desc: c.desc || ''
+          }));
+        supabase.from('categories').upsert(catRows).then(({ error }) => {
+          if (!error) console.log('Categories synced to Supabase Cloud');
+        });
+      } catch (err) {
+        console.warn('Supabase sync warning in commitData:', err);
+      }
+    }
 
     refreshAll();
     if (message) showToast(message, 'success');
@@ -1738,38 +1789,58 @@
       syncBtn.textContent = '⏳ Syncing to Supabase...';
 
       try {
-        // 1. Sync Categories
-        const catRows = appState.categories.map(c => ({
-          id: c.id,
-          name: c.name,
-          icon: c.icon || '🎈',
-          badge: c.badge || 'POPULAR',
-          image: c.image,
-          desc: c.desc || ''
-        }));
+        // 1. Sync Categories & Subcategories
+        const subcatMap = {};
+        appState.categories.forEach(c => {
+          if (c.id !== '__site_subcategories__' && Array.isArray(c.subcategories) && c.subcategories.length > 0) {
+            subcatMap[c.id] = c.subcategories;
+          }
+        });
+        await supabase.from('categories').upsert({
+          id: '__site_subcategories__',
+          name: 'Global Subcategories Mapping',
+          image: 'https://cdn.balloondekor.com/33/birthday-decoration-d67f374a-0151-409d-96ea-36e9527e0ffc.webp',
+          desc: JSON.stringify(subcatMap)
+        });
+
+        const catRows = appState.categories
+          .filter(c => c.id !== '__site_subcategories__')
+          .map(c => ({
+            id: c.id,
+            name: c.name,
+            icon: c.icon || '🎈',
+            badge: c.badge || 'POPULAR',
+            image: c.image,
+            desc: c.desc || ''
+          }));
 
         const { error: catErr } = await supabase.from('categories').upsert(catRows);
         if (catErr) throw catErr;
 
-        // 2. Sync Products
-        const prodRows = appState.products.map(p => ({
-          id: p.id,
-          title: p.title,
-          category: p.category,
-          category_name: p.categoryName || p.category,
-          price: Number(p.price) || 0,
-          original_price: Number(p.originalPrice) || Number(p.price) || 0,
-          discount: Number(p.discount) || 0,
-          rating: Number(p.rating) || 4.9,
-          reviews_count: Number(p.reviewsCount) || 100,
-          badge: p.badge || 'BESTSELLER',
-          setup_duration: p.setupDuration || '1.5 - 2 Hours',
-          image: p.image,
-          gallery: p.gallery || [p.image],
-          description: p.description || '',
-          inclusions: p.inclusions || [],
-          tags: p.tags || []
-        }));
+        // 2. Sync Products (with subcat tag encoding)
+        const prodRows = appState.products.map(p => {
+          const tagsWithSubcat = p.subcategory 
+            ? Array.from(new Set([...(p.tags || []), `subcat:${p.subcategory}`]))
+            : (p.tags || []);
+          return {
+            id: p.id,
+            title: p.title,
+            category: p.category,
+            category_name: p.categoryName || p.category,
+            price: Number(p.price) || 0,
+            original_price: Number(p.originalPrice) || Number(p.price) || 0,
+            discount: Number(p.discount) || 0,
+            rating: Number(p.rating) || 4.9,
+            reviews_count: Number(p.reviewsCount) || 100,
+            badge: p.badge || 'BESTSELLER',
+            setup_duration: p.setupDuration || '1.5 - 2 Hours',
+            image: p.image,
+            gallery: p.gallery || [p.image],
+            description: p.description || '',
+            inclusions: p.inclusions || [],
+            tags: tagsWithSubcat
+          };
+        });
 
         const { error: prodErr } = await supabase.from('products').upsert(prodRows);
         if (prodErr) throw prodErr;
@@ -2611,12 +2682,15 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
 
     // Sync to Supabase in background
     if (supabase) {
+      const tagsWithSubcat = subcategory 
+        ? Array.from(new Set([...tags, `subcat:${subcategory}`]))
+        : tags;
+
       supabase.from('products').upsert({
         id: slug,
         title,
         category,
         category_name: categoryName,
-        subcategory,
         price,
         original_price: origPrice,
         discount,
@@ -2628,9 +2702,10 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
         gallery,
         description: packageData.description,
         inclusions: packageData.inclusions,
-        tags
+        tags: tagsWithSubcat
       }).then(({ error }) => {
         if (!error) console.log('Package synced to Supabase:', slug);
+        else console.warn('Supabase product sync warning:', error);
       });
     }
 

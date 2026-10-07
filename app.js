@@ -78,6 +78,24 @@ document.addEventListener("DOMContentLoaded", () => {
       } catch(e){}
     }
 
+    // Function to trigger re-rendering across index and all category pages
+    function triggerCatalogRefresh() {
+      try { if (typeof renderCategoryTabs === 'function') renderCategoryTabs(); } catch(e){}
+      try { if (typeof renderProducts === 'function') renderProducts(); } catch(e){}
+      try { if (typeof initBirthdayPage === 'function') initBirthdayPage(); } catch(e){}
+      try { if (typeof renderBirthdaySubFilter === 'function') renderBirthdaySubFilter(); } catch(e){}
+      try { if (typeof initAnniversaryPage === 'function') initAnniversaryPage(); } catch(e){}
+      try { if (typeof renderAnniversarySubFilter === 'function') renderAnniversarySubFilter(); } catch(e){}
+      try { if (typeof initKidsPage === 'function') initKidsPage(); } catch(e){}
+      try { if (typeof renderKidsSubFilter === 'function') renderKidsSubFilter(); } catch(e){}
+      try { if (typeof initBabyPage === 'function') initBabyPage(); } catch(e){}
+      try { if (typeof renderBabySubFilter === 'function') renderBabySubFilter(); } catch(e){}
+      try { if (typeof initCorporatePage === 'function') initCorporatePage(); } catch(e){}
+      try { if (typeof renderCorporateSubFilter === 'function') renderCorporateSubFilter(); } catch(e){}
+      try { if (typeof initWeddingServicesPage === 'function') initWeddingServicesPage(); } catch(e){}
+      try { window.dispatchEvent(new CustomEvent('celebration:data-updated')); } catch(e){}
+    }
+
     // Direct Cloud Synchronization with Supabase Database (Consistency across Localhost & Vercel)
     const SUPABASE_URL = "https://wqnobkskmvilfhduvxsu.supabase.co";
     const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indxbm9ia3NrbXZpbGZoZHV2eHN1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTEwMDU5MDgsImV4cCI6MjEwNjU4MTkwOH0.3REUJyAR2kqnFb0fOAibKzuRah1cd5LOoTbX2ZMWhJQ";
@@ -93,24 +111,69 @@ document.addEventListener("DOMContentLoaded", () => {
     ]).then(([cloudCats, cloudProds]) => {
       let dataChanged = false;
       if (Array.isArray(cloudCats) && cloudCats.length > 0 && typeof SITE_DATA !== "undefined") {
-        SITE_DATA.categories = cloudCats;
-        localStorage.setItem("celebration_custom_categories", JSON.stringify(cloudCats));
+        // Extract subcategories config mapping if stored
+        const subcatConfig = cloudCats.find(c => c.id === '__site_subcategories__');
+        let cloudSubcatMap = {};
+        if (subcatConfig && subcatConfig.desc) {
+          try { cloudSubcatMap = JSON.parse(subcatConfig.desc); } catch(e){}
+        }
+        const filteredCloudCats = cloudCats.filter(c => c.id !== '__site_subcategories__');
+
+        const existingCatMap = new Map();
+        (SITE_DATA.categories || []).forEach(c => existingCatMap.set(c.id, c));
+
+        const mergedCats = filteredCloudCats.map(cat => {
+          const existing = existingCatMap.get(cat.id);
+          let subcats = [];
+          if (Array.isArray(cat.subcategories) && cat.subcategories.length > 0) {
+            subcats = cat.subcategories;
+          } else if (cloudSubcatMap[cat.id] && Array.isArray(cloudSubcatMap[cat.id]) && cloudSubcatMap[cat.id].length > 0) {
+            subcats = cloudSubcatMap[cat.id];
+          } else if (existing && Array.isArray(existing.subcategories) && existing.subcategories.length > 0) {
+            subcats = existing.subcategories;
+          }
+          return {
+            ...cat,
+            subcategories: subcats
+          };
+        });
+
+        // Retain any categories currently in SITE_DATA not yet in Supabase
+        (SITE_DATA.categories || []).forEach(sc => {
+          if (!mergedCats.some(c => c.id === sc.id) && sc.id !== '__site_subcategories__') {
+            mergedCats.push(sc);
+          }
+        });
+
+        SITE_DATA.categories = mergedCats;
+        localStorage.setItem("celebration_custom_categories", JSON.stringify(mergedCats));
         dataChanged = true;
       }
       if (Array.isArray(cloudProds) && cloudProds.length > 0 && typeof SITE_DATA !== "undefined") {
-        SITE_DATA.products = cloudProds.map(p => ({
-          ...p,
-          categoryName: p.category_name || p.categoryName || p.category,
-          originalPrice: p.original_price || p.originalPrice || p.price,
-          setupDuration: p.setup_duration || p.setupDuration || "1.5 - 2 Hours",
-          reviewsCount: p.reviews_count || p.reviewsCount || 100
-        }));
+        const existingProdMap = new Map();
+        (SITE_DATA.products || []).forEach(p => existingProdMap.set(p.id, p));
+
+        SITE_DATA.products = cloudProds.map(p => {
+          const existing = existingProdMap.get(p.id);
+          let subcat = p.subcategory || existing?.subcategory || '';
+          if (!subcat && Array.isArray(p.tags)) {
+            const subTag = p.tags.find(t => typeof t === 'string' && t.startsWith('subcat:'));
+            if (subTag) subcat = subTag.replace('subcat:', '');
+          }
+          return {
+            ...p,
+            subcategory: subcat,
+            categoryName: p.category_name || p.categoryName || p.category,
+            originalPrice: p.original_price || p.originalPrice || p.price,
+            setupDuration: p.setup_duration || p.setupDuration || "1.5 - 2 Hours",
+            reviewsCount: p.reviews_count || p.reviewsCount || 100
+          };
+        });
         localStorage.setItem("celebration_custom_products", JSON.stringify(SITE_DATA.products));
         dataChanged = true;
       }
       if (dataChanged) {
-        try { renderCategoryTabs(); } catch(e){}
-        try { renderProducts(); } catch(e){}
+        triggerCatalogRefresh();
       }
     }).catch(() => {});
 
@@ -122,13 +185,41 @@ document.addEventListener("DOMContentLoaded", () => {
           let updated = false;
           if (Array.isArray(remoteData.reviews) && remoteData.reviews.length > 0) {
             SITE_DATA.reviews = remoteData.reviews;
+            try { renderReviews(); } catch(e){}
+          }
+          if (Array.isArray(remoteData.categories) && remoteData.categories.length > 0) {
+            const cMap = new Map();
+            (SITE_DATA.categories || []).forEach(c => cMap.set(c.id, c));
+            remoteData.categories.forEach(rc => {
+              if (rc.id === '__site_subcategories__') return;
+              const ex = cMap.get(rc.id);
+              if (ex) {
+                if (Array.isArray(rc.subcategories) && rc.subcategories.length > 0) {
+                  ex.subcategories = rc.subcategories;
+                }
+                Object.assign(ex, rc);
+              } else {
+                cMap.set(rc.id, rc);
+              }
+            });
+            SITE_DATA.categories = Array.from(cMap.values());
+            localStorage.setItem("celebration_custom_categories", JSON.stringify(SITE_DATA.categories));
             updated = true;
           }
-          if (Array.isArray(remoteData.products) && remoteData.products.length > 0 && (!SITE_DATA.products || SITE_DATA.products.length === 0)) {
-            SITE_DATA.products = remoteData.products;
-          }
-          if (Array.isArray(remoteData.categories) && remoteData.categories.length > 0 && (!SITE_DATA.categories || SITE_DATA.categories.length === 0)) {
-            SITE_DATA.categories = remoteData.categories;
+          if (Array.isArray(remoteData.products) && remoteData.products.length > 0) {
+            const pMap = new Map();
+            (SITE_DATA.products || []).forEach(p => pMap.set(p.id, p));
+            remoteData.products.forEach(rp => {
+              const ex = pMap.get(rp.id);
+              if (ex) {
+                Object.assign(ex, rp);
+              } else {
+                pMap.set(rp.id, rp);
+              }
+            });
+            SITE_DATA.products = Array.from(pMap.values());
+            localStorage.setItem("celebration_custom_products", JSON.stringify(SITE_DATA.products));
+            updated = true;
           }
           if (Array.isArray(remoteData.cities) && remoteData.cities.length > 0) {
             SITE_DATA.cities = remoteData.cities;
@@ -143,7 +234,7 @@ document.addEventListener("DOMContentLoaded", () => {
             try { renderPageBanners(); } catch(e){}
           }
           if (updated) {
-            try { renderReviews(); } catch(e){}
+            triggerCatalogRefresh();
           }
         }
       })
