@@ -130,7 +130,46 @@ document.addEventListener("DOMContentLoaded", () => {
           try { cloudPkgDetailsMap = JSON.parse(pkgDetailsConfig.desc); } catch(e){}
         }
 
-        const filteredCloudCats = cloudCats.filter(c => c.id !== '__site_subcategories__' && c.id !== '__site_package_details__');
+        // Extract wedding services & configs from Supabase Cloud
+        const weddingServicesConfig = cloudCats.find(c => c.id === '__site_wedding_services__');
+        if (weddingServicesConfig && weddingServicesConfig.desc) {
+          try {
+            const cloudWS = JSON.parse(weddingServicesConfig.desc);
+            if (Array.isArray(cloudWS) && cloudWS.length > 0) {
+              SITE_DATA.weddingServices = cloudWS;
+              localStorage.setItem('celebration_custom_wedding_services', JSON.stringify(cloudWS));
+              dataChanged = true;
+            }
+          } catch(e){}
+        }
+
+        const weddingConfigsConfig = cloudCats.find(c => c.id === '__site_wedding_configs__');
+        if (weddingConfigsConfig && weddingConfigsConfig.desc) {
+          try {
+            const cloudWC = JSON.parse(weddingConfigsConfig.desc);
+            if (cloudWC && typeof cloudWC === 'object') {
+              SITE_DATA.weddingConfigs = cloudWC;
+              localStorage.setItem('celebration_custom_wedding_configs', JSON.stringify(cloudWC));
+              if (typeof WEDDING_MODAL_CONFIGS !== 'undefined') {
+                Object.keys(cloudWC).forEach(k => {
+                  if (!WEDDING_MODAL_CONFIGS[k]) {
+                    WEDDING_MODAL_CONFIGS[k] = {
+                      title: k,
+                      subtitle: 'Select the services you need. Dates and time will be confirmed later.',
+                      type: 'individual',
+                      options: cloudWC[k]
+                    };
+                  } else {
+                    WEDDING_MODAL_CONFIGS[k].options = cloudWC[k];
+                  }
+                });
+              }
+              dataChanged = true;
+            }
+          } catch(e){}
+        }
+
+        const filteredCloudCats = cloudCats.filter(c => !c.id.startsWith('__site_'));
 
         const existingCatMap = new Map();
         (SITE_DATA.categories || []).forEach(c => existingCatMap.set(c.id, c));
@@ -153,7 +192,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Retain any categories currently in SITE_DATA not yet in Supabase
         (SITE_DATA.categories || []).forEach(sc => {
-          if (!mergedCats.some(c => c.id === sc.id) && sc.id !== '__site_subcategories__' && sc.id !== '__site_package_details__') {
+          if (!mergedCats.some(c => c.id === sc.id) && !sc.id.startsWith('__site_')) {
             mergedCats.push(sc);
           }
         });
@@ -190,6 +229,9 @@ document.addEventListener("DOMContentLoaded", () => {
           const aboutDescVal = p.about_description || extra.aboutDescription || p.aboutDescription || existing.aboutDescription || p.description || '';
           const setupDurVal = p.setup_duration || p.setupDuration || existing.setupDuration || "1.5 - 2 Hours";
           const slotsAlertVal = p.slots_alert || extra.slotsAlert || p.slotsAlert || existing.slotsAlert || '';
+          const optionsVal = (Array.isArray(p.options) && p.options.length > 0)
+            ? p.options
+            : (extra.options || existing.options || (SITE_DATA?.weddingConfigs?.[p.id]) || []);
 
           mergedProdsMap.set(p.id, {
             ...existing,
@@ -215,10 +257,11 @@ document.addEventListener("DOMContentLoaded", () => {
             locationNote: locationNoteVal,
             location_note: locationNoteVal,
             colorPalettes: (Array.isArray(p.color_palettes) && p.color_palettes.length > 0) ? p.color_palettes : ((Array.isArray(p.colorPalettes) && p.color_palettes.length > 0) ? p.colorPalettes : ((Array.isArray(extra.colorPalettes) && extra.colorPalettes.length > 0) ? extra.colorPalettes : (existing.colorPalettes || []))),
-            color_palettes: (Array.isArray(p.color_palettes) && p.color_palettes.length > 0) ? p.color_palettes : ((Array.isArray(p.colorPalettes) && p.colorPalettes.length > 0) ? p.colorPalettes : ((Array.isArray(extra.colorPalettes) && extra.colorPalettes.length > 0) ? extra.colorPalettes : (existing.colorPalettes || []))),
+            color_palettes: (Array.isArray(p.color_palettes) && p.color_palettes.length > 0) ? p.color_palettes : ((Array.isArray(p.colorPalettes) && p.color_palettes.length > 0) ? p.colorPalettes : ((Array.isArray(extra.colorPalettes) && extra.colorPalettes.length > 0) ? extra.colorPalettes : (existing.colorPalettes || []))),
             slotsAlert: slotsAlertVal,
             slots_alert: slotsAlertVal,
-            whyChoose: p.why_choose || p.whyChoose || extra.whyChoose || existing.whyChoose || null
+            whyChoose: p.why_choose || p.whyChoose || extra.whyChoose || existing.whyChoose || null,
+            options: optionsVal
           });
         });
 
@@ -229,12 +272,60 @@ document.addEventListener("DOMContentLoaded", () => {
           }
         });
 
+        // Synchronize wedding services from products in Supabase
+        const cloudWeddingProds = cloudProds.filter(p => p.category === 'wedding');
+        if (cloudWeddingProds.length > 0) {
+          if (!Array.isArray(SITE_DATA.weddingServices)) SITE_DATA.weddingServices = [];
+          if (!SITE_DATA.weddingConfigs) SITE_DATA.weddingConfigs = {};
+          cloudWeddingProds.forEach(wp => {
+            let ws = SITE_DATA.weddingServices.find(s => s.id === wp.id);
+            const wpOptions = (Array.isArray(wp.options) && wp.options.length > 0) 
+              ? wp.options 
+              : (SITE_DATA.weddingConfigs[wp.id] || []);
+            const wsObj = {
+              id: wp.id,
+              title: wp.title,
+              badge: wp.badge || 'TRADITIONAL',
+              image: wp.image,
+              desc: wp.about_description || wp.description || '',
+              options: wpOptions
+            };
+            if (ws) {
+              Object.assign(ws, wsObj);
+            } else {
+              SITE_DATA.weddingServices.push(wsObj);
+            }
+            if (wpOptions && wpOptions.length > 0) {
+              SITE_DATA.weddingConfigs[wp.id] = wpOptions;
+              if (typeof WEDDING_MODAL_CONFIGS !== 'undefined') {
+                if (!WEDDING_MODAL_CONFIGS[wp.id]) {
+                  WEDDING_MODAL_CONFIGS[wp.id] = {
+                    title: wp.title,
+                    subtitle: 'Select the services you need. Dates and time will be confirmed later.',
+                    type: 'individual',
+                    options: wpOptions
+                  };
+                } else {
+                  WEDDING_MODAL_CONFIGS[wp.id].options = wpOptions;
+                }
+              }
+            }
+          });
+          localStorage.setItem('celebration_custom_wedding_services', JSON.stringify(SITE_DATA.weddingServices));
+          localStorage.setItem('celebration_custom_wedding_configs', JSON.stringify(SITE_DATA.weddingConfigs));
+          dataChanged = true;
+        }
+
         SITE_DATA.products = Array.from(mergedProdsMap.values());
         localStorage.setItem("celebration_custom_products", JSON.stringify(SITE_DATA.products));
         dataChanged = true;
       }
       if (dataChanged) {
         triggerCatalogRefresh();
+        if (typeof renderWeddingServicesGrid === 'function' && document.getElementById('weddingServicesGrid')) {
+          renderWeddingServicesGrid();
+          if (typeof updateWeddingQuoteBar === 'function') updateWeddingQuoteBar();
+        }
       }
     }).catch(() => {});
 

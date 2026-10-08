@@ -1293,6 +1293,31 @@ const SITE_DATA = {
           ]
         }
       ]
+    },
+    {
+      "id": "dj-kolatam",
+      "title": "dj & kolatam",
+      "icon": "dj",
+      "badge": "TRADITIONAL",
+      "desc": "swedrtvfugbnhijmkl",
+      "longDesc": "swedrtvfugbnhijmkl",
+      "image": "https://res.cloudinary.com/gu0q1mxy/image/upload/v1791452557/celebration-wedding/eai6viqtzalynpl1aive.jpg",
+      "inclusions": [
+        "dj "
+      ],
+      "options": [
+        {
+          "id": "opt_muzclqut",
+          "title": "dj ",
+          "subPrompt": "choose dj type",
+          "image": "https://res.cloudinary.com/gu0q1mxy/image/upload/v1791452638/celebration-wedding-options/uqyuzry2pqiuuivhrv0u.jpg",
+          "subItems": [
+            "3 pin",
+            "5 pin",
+            "8 pin"
+          ]
+        }
+      ]
     }
   ],
   "addons": [

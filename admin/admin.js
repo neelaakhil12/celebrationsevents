@@ -33,6 +33,8 @@
     BANNERS: 'celebration_custom_banners'
   };
 
+  const BLANK_PIXEL = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E";
+
   // Exact 7 categories and sequence matching website header navigation
   const HEADER_CATEGORY_SEQUENCE = [
     'birthday',
@@ -887,7 +889,29 @@
           try { cloudPkgDetailsMap = JSON.parse(pkgDetailsConfig.desc); } catch(e){}
         }
 
-        const validDbCats = catsRes.data.filter(c => c.id !== '__site_subcategories__' && c.id !== '__site_package_details__');
+        const weddingServicesConfig = catsRes.data.find(c => c.id === '__site_wedding_services__');
+        if (weddingServicesConfig && weddingServicesConfig.desc) {
+          try {
+            const cloudWS = JSON.parse(weddingServicesConfig.desc);
+            if (Array.isArray(cloudWS) && cloudWS.length > 0) {
+              if (typeof window.SITE_DATA !== 'undefined') window.SITE_DATA.weddingServices = cloudWS;
+              localStorage.setItem(STORAGE_KEYS.WEDDING_SERVICES, JSON.stringify(cloudWS));
+            }
+          } catch(e){}
+        }
+
+        const weddingConfigsConfig = catsRes.data.find(c => c.id === '__site_wedding_configs__');
+        if (weddingConfigsConfig && weddingConfigsConfig.desc) {
+          try {
+            const cloudWC = JSON.parse(weddingConfigsConfig.desc);
+            if (cloudWC && typeof cloudWC === 'object') {
+              if (typeof window.SITE_DATA !== 'undefined') window.SITE_DATA.weddingConfigs = cloudWC;
+              localStorage.setItem(STORAGE_KEYS.WEDDING_CONFIGS, JSON.stringify(cloudWC));
+            }
+          } catch(e){}
+        }
+
+        const validDbCats = catsRes.data.filter(c => !c.id.startsWith('__site_'));
 
         const siteCats = (typeof window.SITE_DATA !== 'undefined' && Array.isArray(window.SITE_DATA.categories)) ? window.SITE_DATA.categories : [];
         const mergedCats = validDbCats.map(dbCat => {
@@ -913,7 +937,7 @@
 
         // Also ensure any category in siteCats missing from Supabase is kept
         siteCats.forEach(sc => {
-          if (!mergedCats.some(c => c.id === sc.id) && sc.id !== '__site_subcategories__' && sc.id !== '__site_package_details__') {
+          if (!mergedCats.some(c => c.id === sc.id) && !sc.id.startsWith('__site_')) {
             mergedCats.push(JSON.parse(JSON.stringify(sc)));
           }
         });
@@ -950,6 +974,9 @@
           const aboutDescVal = p.about_description || extra.aboutDescription || p.aboutDescription || localPkg.aboutDescription || p.description || '';
           const setupDurVal = p.setup_duration || p.setupDuration || localPkg.setupDuration || '1.5 - 2 Hours';
           const slotsAlertVal = p.slots_alert || extra.slotsAlert || p.slotsAlert || localPkg.slotsAlert || '';
+          const optionsVal = (Array.isArray(p.options) && p.options.length > 0)
+            ? p.options
+            : (extra.options || localPkg.options || (window.SITE_DATA?.weddingConfigs?.[p.id]) || []);
 
           const mergedPkg = {
             ...localPkg,
@@ -974,11 +1001,12 @@
             lifespan_note: lifespanNoteVal,
             locationNote: locationNoteVal,
             location_note: locationNoteVal,
-            colorPalettes: (Array.isArray(p.color_palettes) && p.color_palettes.length > 0) ? p.color_palettes : ((Array.isArray(p.colorPalettes) && p.colorPalettes.length > 0) ? p.colorPalettes : ((Array.isArray(extra.colorPalettes) && extra.colorPalettes.length > 0) ? extra.colorPalettes : (localPkg.colorPalettes || []))),
-            color_palettes: (Array.isArray(p.color_palettes) && p.color_palettes.length > 0) ? p.color_palettes : ((Array.isArray(p.colorPalettes) && p.colorPalettes.length > 0) ? p.colorPalettes : ((Array.isArray(extra.colorPalettes) && extra.colorPalettes.length > 0) ? extra.colorPalettes : (localPkg.colorPalettes || []))),
+            colorPalettes: (Array.isArray(p.color_palettes) && p.color_palettes.length > 0) ? p.color_palettes : ((Array.isArray(p.colorPalettes) && p.color_palettes.length > 0) ? p.colorPalettes : ((Array.isArray(extra.colorPalettes) && extra.colorPalettes.length > 0) ? extra.colorPalettes : (localPkg.colorPalettes || []))),
+            color_palettes: (Array.isArray(p.color_palettes) && p.color_palettes.length > 0) ? p.color_palettes : ((Array.isArray(p.colorPalettes) && p.color_palettes.length > 0) ? p.colorPalettes : ((Array.isArray(extra.colorPalettes) && extra.colorPalettes.length > 0) ? extra.colorPalettes : (localPkg.colorPalettes || []))),
             slotsAlert: slotsAlertVal,
             slots_alert: slotsAlertVal,
-            whyChoose: p.why_choose || p.whyChoose || extra.whyChoose || localPkg.whyChoose || DEFAULT_WHY_CHOOSE
+            whyChoose: p.why_choose || p.whyChoose || extra.whyChoose || localPkg.whyChoose || DEFAULT_WHY_CHOOSE,
+            options: optionsVal
           };
           fetchedMap.set(p.id, mergedPkg);
         });
@@ -989,6 +1017,37 @@
             fetchedMap.set(id, localPkg);
           }
         });
+
+        // Ensure wedding services in window.SITE_DATA.weddingServices are also updated from Supabase
+        const weddingProds = Array.from(fetchedMap.values()).filter(p => p.category === 'wedding');
+        if (weddingProds.length > 0) {
+          if (typeof window.SITE_DATA === 'undefined') window.SITE_DATA = {};
+          if (!Array.isArray(window.SITE_DATA.weddingServices)) window.SITE_DATA.weddingServices = [];
+          if (!window.SITE_DATA.weddingConfigs) window.SITE_DATA.weddingConfigs = {};
+
+          weddingProds.forEach(wp => {
+            let existingWs = window.SITE_DATA.weddingServices.find(s => s.id === wp.id);
+            const wpOptions = Array.isArray(wp.options) && wp.options.length > 0 ? wp.options : (window.SITE_DATA.weddingConfigs[wp.id] || []);
+            const wsObj = {
+              id: wp.id,
+              title: wp.title,
+              badge: wp.badge || 'TRADITIONAL',
+              image: wp.image,
+              desc: wp.aboutDescription || wp.description || '',
+              options: wpOptions
+            };
+            if (existingWs) {
+              Object.assign(existingWs, wsObj);
+            } else {
+              window.SITE_DATA.weddingServices.push(wsObj);
+            }
+            if (wpOptions && wpOptions.length > 0) {
+              window.SITE_DATA.weddingConfigs[wp.id] = wpOptions;
+            }
+          });
+          localStorage.setItem(STORAGE_KEYS.WEDDING_SERVICES, JSON.stringify(window.SITE_DATA.weddingServices));
+          localStorage.setItem(STORAGE_KEYS.WEDDING_CONFIGS, JSON.stringify(window.SITE_DATA.weddingConfigs));
+        }
 
         appState.products = Array.from(fetchedMap.values());
         localStorage.setItem(STORAGE_KEYS.PRODUCTS, JSON.stringify(appState.products));
@@ -1122,7 +1181,19 @@
           else console.warn('Supabase details sync warning:', error);
         });
 
-        // Sync wedding configs & options to Supabase Cloud
+        // Sync wedding services & configs to Supabase Cloud
+        if (window.SITE_DATA?.weddingServices) {
+          supabase.from('categories').upsert({
+            id: '__site_wedding_services__',
+            name: 'Global Wedding Services List',
+            image: 'https://images.unsplash.com/photo-1519741497674-611481863552',
+            desc: JSON.stringify(window.SITE_DATA.weddingServices)
+          }).then(({ error }) => {
+            if (!error) console.log('Wedding services synced to Supabase Cloud');
+            else console.warn('Supabase wedding services sync warning:', error);
+          });
+        }
+
         if (window.SITE_DATA?.weddingConfigs) {
           supabase.from('categories').upsert({
             id: '__site_wedding_configs__',
@@ -1136,7 +1207,7 @@
         }
 
         const catRows = appState.categories
-          .filter(c => c.id !== '__site_subcategories__' && c.id !== '__site_package_details__')
+          .filter(c => !c.id.startsWith('__site_'))
           .map(c => ({
             id: c.id,
             name: c.name,
@@ -2090,9 +2161,29 @@
             lifespan_note: p.lifespanNote || '',
             location_note: p.locationNote || '',
             color_palettes: p.colorPalettes || [],
+            options: p.options || [],
             tags: tagsWithSubcat
           };
         });
+
+        // 3. Sync Wedding Services & Configs
+        if (window.SITE_DATA?.weddingServices) {
+          await supabase.from('categories').upsert({
+            id: '__site_wedding_services__',
+            name: 'Global Wedding Services List',
+            image: 'https://images.unsplash.com/photo-1519741497674-611481863552',
+            desc: JSON.stringify(window.SITE_DATA.weddingServices)
+          });
+        }
+
+        if (window.SITE_DATA?.weddingConfigs) {
+          await supabase.from('categories').upsert({
+            id: '__site_wedding_configs__',
+            name: 'Global Wedding Configs & Options',
+            image: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed',
+            desc: JSON.stringify(window.SITE_DATA.weddingConfigs)
+          });
+        }
 
         const { error: prodErr } = await supabase.from('products').upsert(prodRows);
         if (prodErr) throw prodErr;
@@ -2918,7 +3009,7 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
         prevImg.src = imgUrl;
         prevImg.style.display = 'block';
       } else {
-        prevImg.src = '';
+        prevImg.src = BLANK_PIXEL;
         prevImg.style.display = 'none';
       }
     }
@@ -3184,7 +3275,7 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
           imgPreview.src = cat.image;
           imgPreview.style.display = 'block';
         } else {
-          imgPreview.src = '';
+          imgPreview.src = BLANK_PIXEL;
           imgPreview.style.display = 'none';
         }
       }
@@ -3201,7 +3292,7 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
       document.getElementById('catImage').value = '';
       document.getElementById('catDesc').value = '';
       if (imgPreview) {
-        imgPreview.src = '';
+        imgPreview.src = BLANK_PIXEL;
         imgPreview.style.display = 'none';
       }
       renderCatModalSubcategories(null);
@@ -3863,7 +3954,7 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
       if (badgeInput) badgeInput.value = '';
       if (imageInput) imageInput.value = '';
       if (previewImg) {
-        previewImg.src = '';
+        previewImg.src = BLANK_PIXEL;
         previewImg.style.display = 'none';
       }
       if (taglineInput) taglineInput.value = '';
@@ -3947,48 +4038,17 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
               <span style="font-size:12.5px; font-weight:700; color:#1e293b;">Selectable Choices / Menu Items</span>
               <span style="background:#e2e8f0; color:#334155; font-size:11px; font-weight:800; padding:2px 10px; border-radius:99px; white-space:nowrap;">${(opt.subItems || []).length} Choices</span>
             </div>
-            <span style="font-size:11.5px; color:#64748b;">Each choice can have its own photo preview for customers</span>
+            <span style="font-size:11.5px; color:#64748b;">(e.g. 2 pin, 4 pin, 8 pin, Live Counter, etc.)</span>
           </div>
 
-          <div class="wse-subitems-wrap" style="display:flex; flex-direction:column; gap:10px; margin:8px 0;">
+          <div class="wse-subitems-wrap" style="display:flex; flex-direction:column; gap:8px; margin:8px 0;">
             ${(opt.subItems && opt.subItems.length > 0) ? opt.subItems.map((subItem, subIdx) => {
               const subName = (typeof subItem === 'object' && subItem !== null) ? (subItem.name || '') : String(subItem || '');
-              const subImage = (typeof subItem === 'object' && subItem !== null) ? (subItem.image || '') : '';
               return `
-              <div class="wse-subitem-row" style="background:#ffffff; border:1.5px solid #cbd5e1; border-radius:10px; padding:10px 14px; box-shadow:0 1px 3px rgba(0,0,0,0.03);">
-                <!-- Top Row: Index, Choice Name, Photo Action, Delete -->
-                <div style="display:flex; align-items:center; gap:10px;">
-                  <span style="font-size:11.5px; font-weight:800; color:#64748b; background:#f1f5f9; padding:5px 9px; border-radius:6px; white-space:nowrap; flex-shrink:0;">#${subIdx + 1}</span>
-                  <input type="text" value="${escapeHtml(subName)}" placeholder="Choice name (e.g. 2 pin, 4 pin, 8 pin)" oninput="window.adminStudio.updateWseSubItemName(${optIdx}, ${subIdx}, this.value)" style="flex:1; min-width:140px; padding:8px 12px; font-size:13.5px; font-weight:600; color:#0f172a; border:1.5px solid #cbd5e1; border-radius:8px; background:#f8fafc; outline:none;" />
-
-                  <!-- Photo Controls -->
-                  <div style="display:flex; align-items:center; gap:8px; flex-shrink:0;">
-                    ${subImage ? `
-                      <div style="width:36px; height:36px; border-radius:7px; overflow:hidden; border:1.5px solid #cbd5e1; flex-shrink:0; background:#0f172a;" title="Choice Preview">
-                        <img src="${escapeHtml(subImage)}" alt="${escapeHtml(subName)}" style="width:100%; height:100%; object-fit:cover;" onerror="this.style.display='none'" />
-                      </div>
-                      <label style="font-size:11.5px; padding:6px 10px; cursor:pointer; background:#f0f9ff; border:1px solid #bae6fd; color:#0284c7; border-radius:7px; display:inline-flex; align-items:center; gap:4px; font-weight:700; white-space:nowrap;">
-                        <span id="wseChoiceUploadLabel_${optIdx}_${subIdx}">🔄 Change Photo</span>
-                        <input type="file" accept="image/*" style="display:none;" onchange="window.adminStudio.handleWseChoiceImageUpload(${optIdx}, ${subIdx}, this)" />
-                      </label>
-                      <button type="button" onclick="window.adminStudio.updateWseSubItemImage(${optIdx}, ${subIdx}, '')" title="Remove choice photo" style="background:#fee2e2; border:1px solid #fecdd3; color:#e11d48; border-radius:7px; padding:6px 9px; font-size:11.5px; font-weight:700; cursor:pointer; white-space:nowrap;">✕ Photo</button>
-                    ` : `
-                      <label style="font-size:12px; padding:7px 12px; cursor:pointer; background:#f0f9ff; border:1.5px solid #bae6fd; color:#0284c7; border-radius:7px; display:inline-flex; align-items:center; gap:5px; font-weight:700; white-space:nowrap;">
-                        <span id="wseChoiceUploadLabel_${optIdx}_${subIdx}">☁️ Choice Photo</span>
-                        <input type="file" accept="image/*" style="display:none;" onchange="window.adminStudio.handleWseChoiceImageUpload(${optIdx}, ${subIdx}, this)" />
-                      </label>
-                    `}
-                  </div>
-
-                  <!-- Delete Choice -->
-                  <button type="button" onclick="window.adminStudio.removeWseSubItem(${optIdx}, ${subIdx})" title="Delete this choice" style="background:#fff1f2; border:1px solid #fecdd3; color:#ef4444; font-size:14px; font-weight:800; cursor:pointer; padding:7px 11px; border-radius:8px; flex-shrink:0;">✕</button>
-                </div>
-
-                <!-- Bottom Row: Clean image URL field -->
-                <div style="display:flex; align-items:center; gap:8px; margin-top:8px; padding-left:36px;">
-                  <span style="font-size:11px; font-weight:600; color:#64748b; white-space:nowrap;">Image URL:</span>
-                  <input type="url" value="${escapeHtml(subImage)}" placeholder="Paste direct image URL (https://...) or click Choice Photo above" onchange="window.adminStudio.updateWseSubItemImage(${optIdx}, ${subIdx}, this.value)" style="flex:1; padding:6px 10px; font-size:12px; color:#334155; border:1px solid #e2e8f0; border-radius:6px; background:#ffffff; outline:none;" />
-                </div>
+              <div class="wse-subitem-row" style="display:flex; align-items:center; gap:10px; background:#ffffff; border:1.5px solid #cbd5e1; border-radius:10px; padding:8px 12px; box-shadow:0 1px 3px rgba(0,0,0,0.02);">
+                <span style="font-size:11.5px; font-weight:800; color:#64748b; background:#f1f5f9; padding:5px 9px; border-radius:6px; white-space:nowrap; flex-shrink:0;">#${subIdx + 1}</span>
+                <input type="text" value="${escapeHtml(subName)}" placeholder="Choice name (e.g. 2 pin, 4 pin, 8 pin)" oninput="window.adminStudio.updateWseSubItemName(${optIdx}, ${subIdx}, this.value)" style="flex:1; padding:8px 12px; font-size:13.5px; font-weight:600; color:#0f172a; border:1.5px solid #cbd5e1; border-radius:8px; background:#f8fafc; outline:none;" />
+                <button type="button" onclick="window.adminStudio.removeWseSubItem(${optIdx}, ${subIdx})" title="Delete this choice" style="background:#fff1f2; border:1px solid #fecdd3; color:#ef4444; font-size:14px; font-weight:800; cursor:pointer; padding:7px 12px; border-radius:8px; flex-shrink:0;">✕</button>
               </div>
               `;
             }).join('') : '<div style="font-size:12px; color:#94a3b8; font-style:italic; padding:6px 0;">No choices added yet. Type below to add choices.</div>'}
@@ -4005,53 +4065,13 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
     `).join('');
   }
 
-  async function handleWseChoiceImageUpload(optIdx, subIdx, fileInput) {
-    const file = fileInput.files?.[0];
-    if (!file) return;
-
-    const labelEl = document.getElementById(`wseChoiceUploadLabel_${optIdx}_${subIdx}`);
-    if (labelEl) labelEl.textContent = 'Uploading...';
-
-    try {
-      showToast('Uploading choice photo to Cloudinary...', 'info');
-      const url = await uploadToCloudinary(file, 'celebration-wedding-choices');
-      const opt = appState.weddingEditorOptions?.[optIdx];
-      if (opt && Array.isArray(opt.subItems) && opt.subItems[subIdx]) {
-        if (typeof opt.subItems[subIdx] === 'string') {
-          opt.subItems[subIdx] = { name: opt.subItems[subIdx], image: url };
-        } else {
-          opt.subItems[subIdx].image = url;
-        }
-        renderWeddingEditorOptions();
-        showToast('Choice photo uploaded successfully!', 'success');
-      }
-    } catch (err) {
-      showToast('Cloudinary upload error: ' + err.message, 'error');
-    } finally {
-      if (labelEl) labelEl.textContent = '☁️ Choice Photo';
-      fileInput.value = '';
-    }
-  }
-
-  function updateWseSubItemImage(optIdx, subIdx, val) {
-    const opt = appState.weddingEditorOptions?.[optIdx];
-    if (opt && Array.isArray(opt.subItems) && opt.subItems[subIdx]) {
-      if (typeof opt.subItems[subIdx] === 'string') {
-        opt.subItems[subIdx] = { name: opt.subItems[subIdx], image: (val || '').trim() };
-      } else {
-        opt.subItems[subIdx].image = (val || '').trim();
-      }
-      renderWeddingEditorOptions();
-    }
-  }
-
   function updateWseSubItemName(optIdx, subIdx, val) {
     const opt = appState.weddingEditorOptions?.[optIdx];
-    if (opt && Array.isArray(opt.subItems) && opt.subItems[subIdx]) {
-      if (typeof opt.subItems[subIdx] === 'string') {
-        opt.subItems[subIdx] = { name: (val || '').trim(), image: '' };
-      } else {
+    if (opt && Array.isArray(opt.subItems) && opt.subItems[subIdx] !== undefined) {
+      if (typeof opt.subItems[subIdx] === 'object' && opt.subItems[subIdx] !== null) {
         opt.subItems[subIdx].name = (val || '').trim();
+      } else {
+        opt.subItems[subIdx] = (val || '').trim();
       }
     }
   }
@@ -4206,7 +4226,59 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
       localStorage.setItem(STORAGE_KEYS.WEDDING_SERVICES, JSON.stringify(window.SITE_DATA.weddingServices));
     }
 
-    await commitData(`Wedding service "${title}" and inside options saved!`);
+    // Direct Supabase Cloud Sync
+    if (supabase) {
+      const prodRecord = {
+        id: slug,
+        title,
+        category: 'wedding',
+        category_name: 'Wedding',
+        subcategory: '',
+        price: Number(existingPkg?.price) || 0,
+        original_price: Number(existingPkg?.originalPrice) || 0,
+        discount: 0,
+        rating: 4.9,
+        reviews_count: 100,
+        badge: badge || 'TRADITIONAL',
+        setup_duration: 'Custom Schedule',
+        slots_alert: '',
+        image,
+        gallery: [image],
+        description: tagline,
+        about_description: tagline,
+        inclusions: inclusions,
+        not_included: [],
+        faqs: [],
+        addons: [],
+        tags: ['Wedding', 'Custom Decor'],
+        options: cleanOptions
+      };
+
+      supabase.from('products').upsert(prodRecord).then(({ error }) => {
+        if (!error) console.log('Wedding service synced to Supabase products table:', slug);
+        else console.warn('Supabase product sync warning:', error);
+      });
+
+      supabase.from('categories').upsert({
+        id: '__site_wedding_services__',
+        name: 'Global Wedding Services List',
+        image: 'https://images.unsplash.com/photo-1519741497674-611481863552',
+        desc: JSON.stringify(window.SITE_DATA?.weddingServices || [])
+      }).then(({ error }) => {
+        if (!error) console.log('Wedding services synced to Supabase Cloud');
+      });
+
+      supabase.from('categories').upsert({
+        id: '__site_wedding_configs__',
+        name: 'Global Wedding Configs & Options',
+        image: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed',
+        desc: JSON.stringify(window.SITE_DATA?.weddingConfigs || {})
+      }).then(({ error }) => {
+        if (!error) console.log('Wedding configs synced to Supabase Cloud');
+      });
+    }
+
+    await commitData(`Wedding service "${title}" saved & synced to Supabase!`);
     closeAllModals();
   }
 
@@ -4449,7 +4521,7 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
           previewImg.src = blog.image;
           previewImg.style.display = 'block';
         } else {
-          previewImg.src = '';
+          previewImg.src = BLANK_PIXEL;
           previewImg.style.display = 'none';
         }
       }
@@ -4474,7 +4546,7 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
 
       if (imageInput) imageInput.value = '';
       if (previewImg) {
-        previewImg.src = '';
+        previewImg.src = BLANK_PIXEL;
         previewImg.style.display = 'none';
       }
       if (excerptInput) excerptInput.value = '';
@@ -5636,7 +5708,7 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
       if (titleInput) titleInput.value = '';
       if (subInput) subInput.value = '';
       if (imgUrlInput) imgUrlInput.value = '';
-      if (previewImg) previewImg.src = '';
+      if (previewImg) previewImg.src = BLANK_PIXEL;
       const previewWrap = document.getElementById('bannerModalPreviewWrap');
       if (previewWrap) previewWrap.style.display = 'none';
       if (linkTextInput) linkTextInput.value = '';
@@ -5680,7 +5752,7 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
     const previewImg = document.getElementById('bannerModalPreviewImg');
     const previewWrap = document.getElementById('bannerModalPreviewWrap');
     if (previewImg) {
-      previewImg.src = url || '';
+      previewImg.src = url || BLANK_PIXEL;
     }
     if (previewWrap) {
       previewWrap.style.display = url ? 'block' : 'none';
@@ -5854,8 +5926,6 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
     addWseSubItem,
     removeWseSubItem,
     handleWseOptImageUpload,
-    handleWseChoiceImageUpload,
-    updateWseSubItemImage,
     updateWseSubItemName,
     openBlogModal,
     insertBlogTemplate,
