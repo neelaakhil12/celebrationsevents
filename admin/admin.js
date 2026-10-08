@@ -6985,6 +6985,50 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
       await commitData(`New Gift "${title}" published to Gift Marketplace!`);
     }
 
+    // Direct Supabase Cloud Sync for Gift
+    if (supabase) {
+      try {
+        const dbRow = {
+          id: slug,
+          title: title,
+          category: 'gifts',
+          category_name: 'Gift Marketplace',
+          subcategory: subcategory,
+          price: price,
+          original_price: origPrice,
+          discount: discount,
+          rating: rating,
+          reviews_count: reviewsCount,
+          badge: badge,
+          setup_duration: 'Same Day Delivery',
+          image: image,
+          gallery: gallery,
+          description: description,
+          about_description: description,
+          inclusions: currentGiftHighlights.filter(h => h && h.trim()),
+          tags: ['Gift Marketplace', subcategory, `subcat:${subcategory}`],
+          material: material,
+          dimensions: dimensions,
+          color: color,
+          recommended_age: recommendedAge,
+          wash_care: washCare,
+          packaging: packaging,
+          subtitle: subtitle,
+          bought_text: boughtText,
+          specs: giftData.specs,
+          highlights: giftData.highlights,
+          why_choose: giftData.whyChoose,
+          delivery_note: deliveryNote
+        };
+        supabase.from('products').upsert(dbRow).then(({ error }) => {
+          if (!error) console.log('Gift product synced to Supabase:', slug);
+          else console.warn('Supabase gift sync error:', error);
+        });
+      } catch (err) {
+        console.warn('Supabase product sync warning:', err);
+      }
+    }
+
     closeAllModals();
     renderPackages();
     updateMetrics();
