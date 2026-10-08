@@ -251,8 +251,6 @@
 
         <div class="blog-detail-meta" id="articleMeta">
           <span id="articleDate">Date</span>
-          <span>•</span>
-          <span id="articleReadTime">Read time</span>
         </div>
 
         <!-- Big Featured Image -->
@@ -332,7 +330,7 @@
     </section>
 
     <!-- Value Props Strip matching Video 2 frame 00:03 -->
-    <div class="blog-value-strip" data-aos="fade-up">
+    <div class="blog-value-strip" id="blogValueStrip" data-aos="fade-up">
       <div class="blog-value-card">
         <span class="blog-value-icon">🔒</span>
         <div class="blog-value-text">
@@ -509,6 +507,7 @@
       } catch (e) {}
 
       loadArticleDetails();
+      renderBlogValueStrip();
     });
 
     function loadArticleDetails() {
@@ -530,7 +529,6 @@
       document.getElementById("articleCategoryTag").textContent = article.categoryName;
       document.getElementById("articleTitle").textContent = article.title;
       document.getElementById("articleDate").textContent = article.date;
-      document.getElementById("articleReadTime").textContent = `⏱️ ${article.readTime}`;
 
       const coverImg = document.getElementById("articleCoverImage");
       coverImg.src = article.image;
@@ -604,6 +602,30 @@
           </a>
         `).join("");
       }
+    }
+
+    function renderBlogValueStrip() {
+      const container = document.getElementById("blogValueStrip");
+      if (!container) return;
+      let features = null;
+      try {
+        const stored = localStorage.getItem("celebration_custom_blog_features");
+        if (stored) features = JSON.parse(stored);
+      } catch(e){}
+      if (!features && typeof SITE_DATA !== "undefined" && Array.isArray(SITE_DATA.blogFeatures)) {
+        features = SITE_DATA.blogFeatures;
+      }
+      if (!Array.isArray(features) || features.length === 0) return;
+
+      container.innerHTML = features.map(f => `
+        <div class="blog-value-card">
+          <span class="blog-value-icon">${f.icon || '🛡️'}</span>
+          <div class="blog-value-text">
+            <h4>${f.title}</h4>
+            <p>${f.desc}</p>
+          </div>
+        </div>
+      `).join("");
     }
   </script>
 </body>

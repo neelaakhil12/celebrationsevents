@@ -4559,7 +4559,12 @@ const SITE_DATA = {
         ]
       }
     ]
-  }
+  },
+  "blogFeatures": [
+    { "icon": "🔒", "title": "Secure Payments", "desc": "Safe & encrypted transactions" },
+    { "icon": "🚚", "title": "Pan-India Delivery", "desc": "Serving 50+ cities nationwide" },
+    { "icon": "💬", "title": "Dedicated Support", "desc": "Expert help 10 AM - 7 PM" }
+  ]
 };
 
 if (typeof window !== "undefined") {

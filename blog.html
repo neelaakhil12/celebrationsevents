@@ -255,8 +255,6 @@
         <div class="blog-meta-row">
           <div class="blog-author-avatar">PD</div>
           <span><strong>Pooja Deshmukh</strong> • Creative Director</span>
-          <span>•</span>
-          <span>6 min read</span>
         </div>
         <a href="blog-detail.html?id=ultimate-2026-home-party-decoration-guide" class="blog-read-btn" style="text-decoration: none;">
           <span>Read Full Article</span>
@@ -321,26 +319,26 @@
     </section>
 
     <!-- Value Props Strip -->
-    <div class="blog-value-strip" data-aos="fade-up">
+    <div class="blog-value-strip" id="blogValueStrip" data-aos="fade-up">
       <div class="blog-value-card">
-        <span class="blog-value-icon">🛡️</span>
+        <span class="blog-value-icon">🔒</span>
         <div class="blog-value-text">
-          <h4>Verified Decorators</h4>
-          <p>Trained, background-verified setup technicians</p>
+          <h4>Secure Payments</h4>
+          <p>Safe & encrypted transactions</p>
         </div>
       </div>
       <div class="blog-value-card">
-        <span class="blog-value-icon">⚡</span>
+        <span class="blog-value-icon">🚚</span>
         <div class="blog-value-text">
           <h4>Pan-India Delivery</h4>
-          <p>Same-day 2-hour express slots in 100+ cities</p>
+          <p>Serving 50+ cities nationwide</p>
         </div>
       </div>
       <div class="blog-value-card">
-        <span class="blog-value-icon">⭐</span>
+        <span class="blog-value-icon">💬</span>
         <div class="blog-value-text">
-          <h4>4.9/5 Client Rating</h4>
-          <p>Trusted by over 5 Lakh happy families</p>
+          <h4>Dedicated Support</h4>
+          <p>Expert help 10 AM - 7 PM</p>
         </div>
       </div>
     </div>
@@ -497,6 +495,7 @@
 
       renderBlogTopics();
       renderBlogGrid("all");
+      renderBlogValueStrip();
 
       // Filter pills binding
       const pills = document.querySelectorAll("#blogFilterBar .blog-filter-pill");
@@ -562,7 +561,6 @@
         <article class="blog-card" onclick="window.location.href='blog-detail.html?id=${blog.id}'" data-aos="fade-up" style="cursor: pointer;">
           <div class="blog-card-img-wrap">
             <span class="blog-card-badge">${blog.tag}</span>
-            <span class="blog-card-time">⏱️ ${blog.readTime}</span>
             <img src="${blog.image}" alt="${blog.title}" loading="lazy" />
           </div>
           <div class="blog-card-body">
@@ -582,6 +580,30 @@
       if (typeof AOS !== "undefined") {
         setTimeout(() => AOS.refresh(), 80);
       }
+    }
+
+    function renderBlogValueStrip() {
+      const container = document.getElementById("blogValueStrip");
+      if (!container) return;
+      let features = null;
+      try {
+        const stored = localStorage.getItem("celebration_custom_blog_features");
+        if (stored) features = JSON.parse(stored);
+      } catch(e){}
+      if (!features && typeof SITE_DATA !== "undefined" && Array.isArray(SITE_DATA.blogFeatures)) {
+        features = SITE_DATA.blogFeatures;
+      }
+      if (!Array.isArray(features) || features.length === 0) return;
+
+      container.innerHTML = features.map(f => `
+        <div class="blog-value-card">
+          <span class="blog-value-icon">${f.icon || '🛡️'}</span>
+          <div class="blog-value-text">
+            <h4>${f.title}</h4>
+            <p>${f.desc}</p>
+          </div>
+        </div>
+      `).join("");
     }
   </script>
 </body>

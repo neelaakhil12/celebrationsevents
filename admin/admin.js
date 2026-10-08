@@ -25,6 +25,7 @@
     CATEGORIES: 'celebration_custom_categories',
     PRODUCTS: 'celebration_custom_products',
     BLOGS: 'celebration_custom_blogs',
+    BLOG_FEATURES: 'celebration_custom_blog_features',
     REVIEWS: 'celebration_custom_reviews',
     WEDDING_CONFIGS: 'celebration_custom_wedding_configs',
     WEDDING_SERVICES: 'celebration_custom_wedding_services',
@@ -32,6 +33,12 @@
     ANNOUNCEMENT: 'celebration_custom_announcement',
     BANNERS: 'celebration_custom_banners'
   };
+
+  const DEFAULT_BLOG_FEATURES = [
+    { icon: "🔒", title: "Secure Payments", desc: "Safe & encrypted transactions" },
+    { icon: "🚚", title: "Pan-India Delivery", desc: "Serving 50+ cities nationwide" },
+    { icon: "💬", title: "Dedicated Support", desc: "Expert help 10 AM - 7 PM" }
+  ];
 
   const BLANK_PIXEL = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E";
 
@@ -51,6 +58,7 @@
     categories: [],
     products: [],
     blogs: [],
+    blogFeatures: [],
     reviews: [],
     cities: [],
     banners: [],
@@ -753,6 +761,24 @@
     appState.blogs = blogs;
     localStorage.setItem(STORAGE_KEYS.BLOGS, JSON.stringify(appState.blogs));
 
+    // 3b. Blog Value / Trust Badges
+    let blogFeatures = [];
+    const storedFeatures = localStorage.getItem(STORAGE_KEYS.BLOG_FEATURES);
+    if (storedFeatures) {
+      try {
+        const parsed = JSON.parse(storedFeatures);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          blogFeatures = parsed;
+        }
+      } catch(e){}
+    }
+    if (blogFeatures.length === 0) {
+      const siteFeatures = (typeof window.SITE_DATA !== 'undefined' && Array.isArray(window.SITE_DATA.blogFeatures)) ? window.SITE_DATA.blogFeatures : DEFAULT_BLOG_FEATURES;
+      blogFeatures = JSON.parse(JSON.stringify(siteFeatures));
+    }
+    appState.blogFeatures = blogFeatures;
+    localStorage.setItem(STORAGE_KEYS.BLOG_FEATURES, JSON.stringify(appState.blogFeatures));
+
     // 4. Customer Reviews & Video Reels
     let reviews = [];
     const storedReviews = localStorage.getItem(STORAGE_KEYS.REVIEWS);
@@ -919,6 +945,30 @@
               appState.banners = cloudBanners;
               if (typeof window.SITE_DATA !== 'undefined') window.SITE_DATA.banners = cloudBanners;
               localStorage.setItem(STORAGE_KEYS.BANNERS, JSON.stringify(cloudBanners));
+            }
+          } catch(e){}
+        }
+
+        const siteBlogsConfig = catsRes.data.find(c => c.id === '__site_blogs__');
+        if (siteBlogsConfig && siteBlogsConfig.desc) {
+          try {
+            const cloudBlogs = JSON.parse(siteBlogsConfig.desc);
+            if (Array.isArray(cloudBlogs) && cloudBlogs.length > 0) {
+              appState.blogs = cloudBlogs;
+              if (typeof window.SITE_DATA !== 'undefined') window.SITE_DATA.blogs = cloudBlogs;
+              localStorage.setItem(STORAGE_KEYS.BLOGS, JSON.stringify(cloudBlogs));
+            }
+          } catch(e){}
+        }
+
+        const siteBlogFeaturesConfig = catsRes.data.find(c => c.id === '__site_blog_features__');
+        if (siteBlogFeaturesConfig && siteBlogFeaturesConfig.desc) {
+          try {
+            const cloudBF = JSON.parse(siteBlogFeaturesConfig.desc);
+            if (Array.isArray(cloudBF) && cloudBF.length > 0) {
+              appState.blogFeatures = cloudBF;
+              if (typeof window.SITE_DATA !== 'undefined') window.SITE_DATA.blogFeatures = cloudBF;
+              localStorage.setItem(STORAGE_KEYS.BLOG_FEATURES, JSON.stringify(cloudBF));
             }
           } catch(e){}
         }
@@ -1490,6 +1540,7 @@
       let banner = appState.banners.find(b => b.location === catId);
       if (banner) {
         banner.image = uploadedUrl;
+        banner.active = true;
         banner.updatedAt = new Date().toISOString();
       } else {
         banner = {
@@ -3950,9 +4001,8 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
     document.getElementById('blogSearchInput')?.addEventListener('input', renderBlogs);
     document.getElementById('blogTopicFilter')?.addEventListener('change', renderBlogs);
     document.getElementById('blogTitle')?.addEventListener('input', (e) => {
-      if (appState.editingBlogId === null) {
-        document.getElementById('blogSlug').value = slugify(e.target.value);
-      }
+      const slugInput = document.getElementById('blogSlug');
+      if (slugInput) slugInput.value = slugify(e.target.value);
     });
     document.getElementById('blogImage')?.addEventListener('input', (e) => {
       const img = document.getElementById('blogImgPreview');
@@ -4490,6 +4540,7 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
     if (countEl) countEl.textContent = `• ${appState.blogs.length} Articles Published`;
 
     if (!grid) return;
+    renderBlogFeaturesAdmin();
 
     let items = [...appState.blogs];
 
@@ -4531,7 +4582,6 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
         <div class="blog-card-media">
           <img src="${escapeHtml(b.image)}" alt="${escapeHtml(b.title)}" onerror="this.src='https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=600&q=80'" loading="lazy" />
           <span class="blog-media-badge">${escapeHtml(b.tag || 'EDITORIAL')}</span>
-          <span class="blog-media-time">⏱️ ${escapeHtml(b.readTime || '5 min read')}</span>
         </div>
         <div class="blog-card-content">
           <div class="blog-card-top-row">
@@ -4683,7 +4733,6 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
     const slugInput = document.getElementById('blogSlug');
     const catSelect = document.getElementById('blogCategory');
     const tagInput = document.getElementById('blogTag');
-    const readInput = document.getElementById('blogReadTime');
     const authorInput = document.getElementById('blogAuthor');
     const dateInput = document.getElementById('blogDate');
     const imageInput = document.getElementById('blogImage');
@@ -4704,11 +4753,10 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
       if (titleInput) titleInput.value = blog.title || '';
       if (slugInput) {
         slugInput.value = blog.id || '';
-        slugInput.readOnly = true;
+        slugInput.readOnly = false; // Always editable and synced with title
       }
       if (catSelect) catSelect.value = blog.category || 'balloon-tips';
       if (tagInput) tagInput.value = blog.tag || 'Decor Hacks';
-      if (readInput) readInput.value = blog.readTime || '5 min read';
       if (authorInput) authorInput.value = blog.author || 'Celebration Events Team';
       if (dateInput) dateInput.value = blog.date || '';
       if (imageInput) imageInput.value = blog.image || '';
@@ -4733,7 +4781,6 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
       }
       if (titleInput) titleInput.value = '';
       if (tagInput) tagInput.value = '';
-      if (readInput) readInput.value = '';
       if (authorInput) authorInput.value = '';
       
       const now = new Date();
@@ -4758,7 +4805,6 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
     const slug = slugify(document.getElementById('blogSlug').value.trim());
     const category = document.getElementById('blogCategory').value;
     const tag = document.getElementById('blogTag').value.trim();
-    const readTime = document.getElementById('blogReadTime').value.trim();
     const author = document.getElementById('blogAuthor').value.trim();
     const date = document.getElementById('blogDate').value.trim();
     const image = document.getElementById('blogImage').value.trim();
@@ -4787,7 +4833,6 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
       category,
       categoryName,
       tag: tag || 'Decor Guide',
-      readTime: readTime || '5 min read',
       author: author || 'Celebration Events Team',
       date: date || new Date().toLocaleDateString('en-US', { month: 'long', day: '2-digit', year: 'numeric' }),
       image,
@@ -4799,6 +4844,11 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
     if (appState.editingBlogId) {
       const idx = appState.blogs.findIndex(b => b.id === appState.editingBlogId);
       if (idx !== -1) {
+        // If slug changed, ensure no other blog is using the same slug
+        if (slug !== appState.editingBlogId && appState.blogs.some((b, i) => i !== idx && b.id === slug)) {
+          showToast(`Article slug "${slug}" already exists on another article.`, 'error');
+          return;
+        }
         appState.blogs[idx] = blogData;
         await commitBlogs(`Article "${title}" updated successfully!`);
       }
@@ -4820,6 +4870,21 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
       window.SITE_DATA.blogs = appState.blogs;
     }
 
+    // Direct Supabase Cloud Sync
+    if (supabase) {
+      try {
+        await supabase.from('categories').upsert({
+          id: '__site_blogs__',
+          name: 'Site Blog Articles',
+          desc: JSON.stringify(appState.blogs),
+          image: '',
+          badge: ''
+        }, { onConflict: 'id' });
+      } catch(e) {
+        console.warn('Supabase blogs sync error:', e);
+      }
+    }
+
     fetch('/api/save-data', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -4827,13 +4892,123 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
         categories: appState.categories,
         products: appState.products,
         blogs: appState.blogs,
+        blogFeatures: appState.blogFeatures,
         reviews: appState.reviews,
+        cities: appState.cities,
+        announcement: appState.announcement,
+        banners: appState.banners,
         updatedAt: new Date().toISOString()
       })
     }).catch(() => {});
 
     renderBlogs();
     updateMetrics();
+    if (message) showToast(message, 'success');
+  }
+
+  // --- Blog Value / Trust Badges Management ---
+  function renderBlogFeaturesAdmin() {
+    const container = document.getElementById('blogFeaturesPreviewBadges');
+    if (!container) return;
+
+    const features = (Array.isArray(appState.blogFeatures) && appState.blogFeatures.length > 0)
+      ? appState.blogFeatures
+      : DEFAULT_BLOG_FEATURES;
+
+    container.innerHTML = features.map((f, idx) => `
+      <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:10px 14px; min-width:180px; display:flex; align-items:center; gap:10px;">
+        <span style="font-size:22px;">${escapeHtml(f.icon || '🛡️')}</span>
+        <div>
+          <strong style="display:block; font-size:13px; color:#1e293b;">${escapeHtml(f.title || `Badge ${idx + 1}`)}</strong>
+          <span style="display:block; font-size:11.5px; color:#64748b;">${escapeHtml(f.desc || '')}</span>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function openBlogFeaturesModal() {
+    const modal = document.getElementById('blogFeaturesModal');
+    if (!modal) return;
+
+    const features = (Array.isArray(appState.blogFeatures) && appState.blogFeatures.length >= 3)
+      ? appState.blogFeatures
+      : DEFAULT_BLOG_FEATURES;
+
+    for (let i = 1; i <= 3; i++) {
+      const item = features[i - 1] || DEFAULT_BLOG_FEATURES[i - 1] || { icon: '🛡️', title: '', desc: '' };
+      const iconInput = document.getElementById(`bfIcon${i}`);
+      const titleInput = document.getElementById(`bfTitle${i}`);
+      const descInput = document.getElementById(`bfDesc${i}`);
+
+      if (iconInput) iconInput.value = item.icon || '';
+      if (titleInput) titleInput.value = item.title || '';
+      if (descInput) descInput.value = item.desc || '';
+    }
+
+    modal.classList.add('active');
+  }
+
+  async function saveBlogFeatures(event) {
+    if (event && event.preventDefault) event.preventDefault();
+
+    const newFeatures = [];
+    for (let i = 1; i <= 3; i++) {
+      const icon = (document.getElementById(`bfIcon${i}`)?.value || '').trim() || '🛡️';
+      const title = (document.getElementById(`bfTitle${i}`)?.value || '').trim();
+      const desc = (document.getElementById(`bfDesc${i}`)?.value || '').trim();
+
+      if (!title || !desc) {
+        showToast(`Please fill title and description for Badge ${i}.`, 'error');
+        return;
+      }
+
+      newFeatures.push({ icon, title, desc });
+    }
+
+    appState.blogFeatures = newFeatures;
+    await commitBlogFeatures('🎉 Blog value & trust badges updated and synced live!');
+    const modal = document.getElementById('blogFeaturesModal');
+    if (modal) modal.classList.remove('active');
+  }
+
+  async function commitBlogFeatures(message = 'Blog badges updated!') {
+    localStorage.setItem(STORAGE_KEYS.BLOG_FEATURES, JSON.stringify(appState.blogFeatures));
+    if (typeof window.SITE_DATA !== 'undefined') {
+      window.SITE_DATA.blogFeatures = appState.blogFeatures;
+    }
+
+    // Direct Supabase Cloud Sync
+    if (supabase) {
+      try {
+        await supabase.from('categories').upsert({
+          id: '__site_blog_features__',
+          name: 'Site Blog Trust Badges',
+          desc: JSON.stringify(appState.blogFeatures),
+          image: '',
+          badge: ''
+        }, { onConflict: 'id' });
+      } catch(e) {
+        console.warn('Supabase blog features sync error:', e);
+      }
+    }
+
+    fetch('/api/save-data', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        categories: appState.categories,
+        products: appState.products,
+        blogs: appState.blogs,
+        blogFeatures: appState.blogFeatures,
+        reviews: appState.reviews,
+        cities: appState.cities,
+        announcement: appState.announcement,
+        banners: appState.banners,
+        updatedAt: new Date().toISOString()
+      })
+    }).catch(() => {});
+
+    renderBlogFeaturesAdmin();
     if (message) showToast(message, 'success');
   }
 
@@ -6089,8 +6264,7 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
           name: 'Site Banners Configuration',
           desc: JSON.stringify(appState.banners),
           image: '',
-          badge: '',
-          subcategories: []
+          badge: ''
         }, { onConflict: 'id' });
       } catch(e) {
         console.warn('Supabase banner sync error:', e);
@@ -6178,6 +6352,9 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
     insertBlogTemplate,
     cleanAllBlogHtmlTags,
     renderBlogs,
+    openBlogFeaturesModal,
+    saveBlogFeatures,
+    renderBlogFeaturesAdmin,
     openReviewModal,
     deleteReview,
     handleReviewFormSubmit,

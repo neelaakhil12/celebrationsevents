@@ -98,6 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
       try { if (typeof renderCorporateSubFilter === 'function') renderCorporateSubFilter(); } catch(e){}
       try { if (typeof initWeddingServicesPage === 'function') initWeddingServicesPage(); } catch(e){}
       try { if (typeof initPackagePage === 'function') initPackagePage(); } catch(e){}
+      try { if (typeof renderPageBanners === 'function') renderPageBanners(); } catch(e){}
       try { window.dispatchEvent(new CustomEvent('celebration:data-updated')); } catch(e){}
     }
 
@@ -177,6 +178,31 @@ document.addEventListener("DOMContentLoaded", () => {
               SITE_DATA.banners = cloudBanners;
               localStorage.setItem('celebration_custom_banners', JSON.stringify(cloudBanners));
               try { initHeroBanners(); } catch(e){}
+              try { renderPageBanners(); } catch(e){}
+            }
+          } catch(e){}
+        }
+
+        const siteBlogsConfig = cloudCats.find(c => c.id === '__site_blogs__');
+        if (siteBlogsConfig && siteBlogsConfig.desc) {
+          try {
+            const cloudBlogs = JSON.parse(siteBlogsConfig.desc);
+            if (Array.isArray(cloudBlogs) && cloudBlogs.length > 0) {
+              SITE_DATA.blogs = cloudBlogs;
+              localStorage.setItem('celebration_custom_blogs', JSON.stringify(cloudBlogs));
+              try { if (typeof renderBlogGrid === 'function') renderBlogGrid('all'); } catch(e){}
+            }
+          } catch(e){}
+        }
+
+        const siteBlogFeaturesConfig = cloudCats.find(c => c.id === '__site_blog_features__');
+        if (siteBlogFeaturesConfig && siteBlogFeaturesConfig.desc) {
+          try {
+            const cloudBF = JSON.parse(siteBlogFeaturesConfig.desc);
+            if (Array.isArray(cloudBF) && cloudBF.length > 0) {
+              SITE_DATA.blogFeatures = cloudBF;
+              localStorage.setItem('celebration_custom_blog_features', JSON.stringify(cloudBF));
+              try { if (typeof renderBlogValueStrip === 'function') renderBlogValueStrip(); } catch(e){}
             }
           } catch(e){}
         }
@@ -667,9 +693,9 @@ function renderPageBanners() {
   }
 
   if (pageCat) {
-    const catBanner = banners.find(b => b.location === pageCat && b.active !== false);
+    const catBanner = banners.find(b => (b.location === pageCat || (b.location && b.location.toLowerCase() === pageCat)) && b.active !== false);
     if (catBanner) {
-      const catCarouselSlides = document.querySelector('.page-wrapper > .hero-carousel .carousel-slides');
+      const catCarouselSlides = document.querySelector('.hero-carousel .carousel-slides') || document.querySelector('.carousel-slides');
       if (catCarouselSlides) {
         catCarouselSlides.innerHTML = `
           <div class="carousel-slide">
@@ -2836,6 +2862,7 @@ function initWeddingServicesPage() {
 
   renderWeddingServicesGrid();
   updateWeddingQuoteBar();
+  try { renderPageBanners(); } catch(e){}
 
   // Auto-open specific service modal if deep-linked via hash (e.g. #service-house-decor or #house-decor)
   const hash = window.location.hash;

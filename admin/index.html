@@ -1856,11 +1856,31 @@
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                   <span>Add New Blog Article</span>
                 </button>
+                <button type="button" class="btn-hero-action" onclick="window.adminStudio.openBlogFeaturesModal()" style="background:#ffffff; border-color:#cbd5e1; color:#0f172a; font-weight:700; cursor:pointer;">
+                  🛡️ Edit Trust & Value Badges
+                </button>
                 <a href="../blog.html" target="_blank" class="btn-hero-action" style="text-decoration:none;">
                   🌐 View Live Blog Page
                 </a>
               </div>
             </div>
+          </div>
+
+          <!-- Blog Trust & Value Badges Strip Preview -->
+          <div class="blog-features-admin-strip" id="blogFeaturesAdminStrip" style="margin-bottom:20px; background:#ffffff; border:1px solid #e2e8f0; border-radius:14px; padding:16px 20px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; box-shadow:0 1px 3px rgba(0,0,0,0.04);">
+            <div style="display:flex; align-items:center; gap:12px;">
+              <span style="font-size:24px;">🛡️</span>
+              <div>
+                <h4 style="margin:0; font-size:15px; font-weight:700; color:#1e293b;">Blog Value & Trust Badges</h4>
+                <p style="margin:2px 0 0; font-size:12.5px; color:#64748b;">Customizable 3 trust proposition cards displayed on blog.html and blog-detail.html</p>
+              </div>
+            </div>
+            <div id="blogFeaturesPreviewBadges" style="display:flex; gap:12px; flex-wrap:wrap;">
+              <!-- Dynamically populated badge preview cards -->
+            </div>
+            <button type="button" class="btn-secondary" onclick="window.adminStudio.openBlogFeaturesModal()" style="font-size:12.5px; padding:7px 16px; font-weight:600; display:inline-flex; align-items:center; gap:6px; cursor:pointer;">
+              ✏️ Edit 3 Badges
+            </button>
           </div>
 
           <!-- Toolbar for Blogs -->
@@ -2960,7 +2980,7 @@
             </div>
           </div>
 
-          <div class="form-row-3">
+          <div class="form-row-2">
             <div class="form-field">
               <label for="blogCategory">Topic Category *</label>
               <select id="blogCategory" required>
@@ -2975,10 +2995,6 @@
             <div class="form-field">
               <label for="blogTag">Badge / Tag Label</label>
               <input type="text" id="blogTag" placeholder="e.g. Editor's Choice, Decor Hacks, Checklist" />
-            </div>
-            <div class="form-field">
-              <label for="blogReadTime">Read Time</label>
-              <input type="text" id="blogReadTime" placeholder="e.g. 5 min read" />
             </div>
           </div>
 
@@ -3040,6 +3056,96 @@
           <button type="submit" id="saveBlogBtn" class="btn-primary" style="padding:10px 24px;">
             Save Article
           </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ======================================================================
+       MODAL: EDIT BLOG TRUST & VALUE BADGES
+       ====================================================================== -->
+  <div id="blogFeaturesModal" class="modal-backdrop">
+    <div class="modal-dialog" style="max-width: 680px; width: 95vw;">
+      <div class="modal-header">
+        <div class="modal-header-title">
+          <span style="font-size:24px;">🛡️</span>
+          <div>
+            <h2 style="margin:0; font-size:18px;">Edit Blog Value & Trust Badges</h2>
+            <div style="font-size:12px; color:var(--text-muted); margin-top:2px;">Customize the 3 trust proposition cards shown on blog.html & blog-detail.html</div>
+          </div>
+        </div>
+        <button type="button" class="btn-modal-close" data-close-modal aria-label="Close modal">✕</button>
+      </div>
+
+      <form id="blogFeaturesForm" onsubmit="window.adminStudio.saveBlogFeatures(event)">
+        <div class="modal-body" style="padding: 24px; max-height: calc(85vh - 140px); overflow-y: auto;">
+          <!-- Badge 1 -->
+          <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:12px; padding:16px; margin-bottom:16px;">
+            <div style="font-size:13px; font-weight:700; color:#1e293b; margin-bottom:12px; display:flex; align-items:center; gap:6px;">
+              <span>Card 1</span>
+            </div>
+            <div class="form-row-2">
+              <div class="form-field" style="flex:0 0 90px;">
+                <label for="bfIcon1">Icon Emoji</label>
+                <input type="text" id="bfIcon1" value="🔒" style="text-align:center; font-size:20px;" required />
+              </div>
+              <div class="form-field">
+                <label for="bfTitle1">Card Title *</label>
+                <input type="text" id="bfTitle1" value="Secure Payments" required />
+              </div>
+            </div>
+            <div class="form-field" style="margin-top:10px;">
+              <label for="bfDesc1">Card Subtitle / Description *</label>
+              <input type="text" id="bfDesc1" value="Safe & encrypted transactions" required />
+            </div>
+          </div>
+
+          <!-- Badge 2 -->
+          <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:12px; padding:16px; margin-bottom:16px;">
+            <div style="font-size:13px; font-weight:700; color:#1e293b; margin-bottom:12px; display:flex; align-items:center; gap:6px;">
+              <span>Card 2</span>
+            </div>
+            <div class="form-row-2">
+              <div class="form-field" style="flex:0 0 90px;">
+                <label for="bfIcon2">Icon Emoji</label>
+                <input type="text" id="bfIcon2" value="🚚" style="text-align:center; font-size:20px;" required />
+              </div>
+              <div class="form-field">
+                <label for="bfTitle2">Card Title *</label>
+                <input type="text" id="bfTitle2" value="Pan-India Delivery" required />
+              </div>
+            </div>
+            <div class="form-field" style="margin-top:10px;">
+              <label for="bfDesc2">Card Subtitle / Description *</label>
+              <input type="text" id="bfDesc2" value="Serving 50+ cities nationwide" required />
+            </div>
+          </div>
+
+          <!-- Badge 3 -->
+          <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:12px; padding:16px;">
+            <div style="font-size:13px; font-weight:700; color:#1e293b; margin-bottom:12px; display:flex; align-items:center; gap:6px;">
+              <span>Card 3</span>
+            </div>
+            <div class="form-row-2">
+              <div class="form-field" style="flex:0 0 90px;">
+                <label for="bfIcon3">Icon Emoji</label>
+                <input type="text" id="bfIcon3" value="💬" style="text-align:center; font-size:20px;" required />
+              </div>
+              <div class="form-field">
+                <label for="bfTitle3">Card Title *</label>
+                <input type="text" id="bfTitle3" value="Dedicated Support" required />
+              </div>
+            </div>
+            <div class="form-field" style="margin-top:10px;">
+              <label for="bfDesc3">Card Subtitle / Description *</label>
+              <input type="text" id="bfDesc3" value="Expert help 10 AM - 7 PM" required />
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn-secondary" data-close-modal>Cancel</button>
+          <button type="submit" class="btn-primary" style="padding:10px 24px;">Save & Publish Live</button>
         </div>
       </form>
     </div>
