@@ -200,13 +200,8 @@
   const CURRENT_DATA_VERSION = '2026.10.05.v10_subcategories';
 
   function checkAuthStatus() {
-    const loggedOut = sessionStorage.getItem('celebration_admin_logged_out');
-    const isAuth = sessionStorage.getItem(STORAGE_KEYS.AUTH) || localStorage.getItem(STORAGE_KEYS.AUTH);
-    if (!loggedOut || isAuth) {
-      showDashboard();
-    } else {
-      showLogin();
-    }
+    sessionStorage.removeItem('celebration_admin_logged_out');
+    showDashboard();
   }
 
   function showLogin() {
@@ -1385,9 +1380,11 @@
                     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                     <span>${isWedding ? 'Add Wedding Service' : `Add Package to ${escapeHtml(catObj.name)}`}</span>
                   </button>
+                  ${!isWedding ? `
                   <button type="button" class="btn-hero-action" onclick="window.adminStudio.openSubcategoryModal('add', '${catObj.id}')" style="color:var(--brand-primary); font-weight:700;">
                     ➕ Add Subcategory
                   </button>
+                  ` : ''}
                   ${isWedding ? `
                     <a href="../wedding.html" target="_blank" class="btn-hero-action" style="text-decoration:none;">
                       🌐 View Live Wedding Page
@@ -1405,7 +1402,12 @@
           `;
         }
 
-        renderCategorySubcategoriesBar(catObj.id);
+        if (catObj.id === 'wedding') {
+          const subcatContainer = document.getElementById('categorySubcategoriesContainer');
+          if (subcatContainer) subcatContainer.innerHTML = '';
+        } else {
+          renderCategorySubcategoriesBar(catObj.id);
+        }
       } else {
         if (topbarTitle) topbarTitle.textContent = 'Decoration Packages';
         if (heroContainer) heroContainer.innerHTML = '';
@@ -1492,7 +1494,7 @@
     const container = document.getElementById('categorySubcategoriesContainer');
     if (!container) return;
 
-    if (!catId || catId === 'all') {
+    if (!catId || catId === 'all' || catId === 'wedding') {
       container.innerHTML = '';
       return;
     }
@@ -3840,6 +3842,16 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
       } else {
         opts = exactPreset ? JSON.parse(JSON.stringify(exactPreset)) : [];
       }
+      opts.forEach(opt => {
+        if (Array.isArray(opt.subItems)) {
+          opt.subItems = opt.subItems.map(item => {
+            if (typeof item === 'object' && item !== null) {
+              return { name: item.name || '', image: item.image || '' };
+            }
+            return { name: String(item || ''), image: '' };
+          });
+        }
+      });
       appState.weddingEditorOptions = opts;
     } else {
       if (modalTitle) modalTitle.textContent = 'Add New Wedding Service';
@@ -3929,26 +3941,61 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
           </div>
         </div>
 
-        <div class="wse-choices-box" style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:14px 16px;">
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-            <span style="font-size:12px; font-weight:700; color:#334155; display:flex; align-items:center; gap:6px;">
-              <span>Selectable Choices / Menu Items</span>
-              <span style="background:#e2e8f0; color:#475569; font-size:11px; font-weight:800; padding:2px 8px; border-radius:99px;">${(opt.subItems || []).length} Choices</span>
-            </span>
-            <span style="font-size:11.5px; color:#64748b;">Selectable in quotation checklist</span>
+        <div class="wse-choices-box" style="background:#f8fafc; border:1.5px solid #e2e8f0; border-radius:12px; padding:14px 16px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+            <div style="display:flex; align-items:center; gap:8px;">
+              <span style="font-size:12.5px; font-weight:700; color:#1e293b;">Selectable Choices / Menu Items</span>
+              <span style="background:#e2e8f0; color:#334155; font-size:11px; font-weight:800; padding:2px 10px; border-radius:99px; white-space:nowrap;">${(opt.subItems || []).length} Choices</span>
+            </div>
+            <span style="font-size:11.5px; color:#64748b;">Each choice can have its own photo preview for customers</span>
           </div>
 
-          <div class="wse-subitems-wrap" style="display:flex; flex-wrap:wrap; gap:8px; margin:10px 0; min-height:30px; align-items:center;">
-            ${(opt.subItems && opt.subItems.length > 0) ? opt.subItems.map((subItem, subIdx) => `
-              <div class="wse-subitem-chip" style="display:inline-flex; align-items:center; gap:8px; background:#ffffff; border:1.5px solid #cbd5e1; border-radius:99px; padding:6px 14px; font-size:12.5px; font-weight:600; color:#1e293b; box-shadow:0 1px 3px rgba(0,0,0,0.03);">
-                <span>${escapeHtml(subItem)}</span>
-                <button type="button" class="wse-chip-del-btn" onclick="window.adminStudio.removeWseSubItem(${optIdx}, ${subIdx})" title="Remove this choice" style="background:none; border:none; color:#94a3b8; font-size:14px; font-weight:800; cursor:pointer; padding:0; line-height:1; margin-left:2px;">✕</button>
+          <div class="wse-subitems-wrap" style="display:flex; flex-direction:column; gap:10px; margin:8px 0;">
+            ${(opt.subItems && opt.subItems.length > 0) ? opt.subItems.map((subItem, subIdx) => {
+              const subName = (typeof subItem === 'object' && subItem !== null) ? (subItem.name || '') : String(subItem || '');
+              const subImage = (typeof subItem === 'object' && subItem !== null) ? (subItem.image || '') : '';
+              return `
+              <div class="wse-subitem-row" style="background:#ffffff; border:1.5px solid #cbd5e1; border-radius:10px; padding:10px 14px; box-shadow:0 1px 3px rgba(0,0,0,0.03);">
+                <!-- Top Row: Index, Choice Name, Photo Action, Delete -->
+                <div style="display:flex; align-items:center; gap:10px;">
+                  <span style="font-size:11.5px; font-weight:800; color:#64748b; background:#f1f5f9; padding:5px 9px; border-radius:6px; white-space:nowrap; flex-shrink:0;">#${subIdx + 1}</span>
+                  <input type="text" value="${escapeHtml(subName)}" placeholder="Choice name (e.g. 2 pin, 4 pin, 8 pin)" oninput="window.adminStudio.updateWseSubItemName(${optIdx}, ${subIdx}, this.value)" style="flex:1; min-width:140px; padding:8px 12px; font-size:13.5px; font-weight:600; color:#0f172a; border:1.5px solid #cbd5e1; border-radius:8px; background:#f8fafc; outline:none;" />
+
+                  <!-- Photo Controls -->
+                  <div style="display:flex; align-items:center; gap:8px; flex-shrink:0;">
+                    ${subImage ? `
+                      <div style="width:36px; height:36px; border-radius:7px; overflow:hidden; border:1.5px solid #cbd5e1; flex-shrink:0; background:#0f172a;" title="Choice Preview">
+                        <img src="${escapeHtml(subImage)}" alt="${escapeHtml(subName)}" style="width:100%; height:100%; object-fit:cover;" onerror="this.style.display='none'" />
+                      </div>
+                      <label style="font-size:11.5px; padding:6px 10px; cursor:pointer; background:#f0f9ff; border:1px solid #bae6fd; color:#0284c7; border-radius:7px; display:inline-flex; align-items:center; gap:4px; font-weight:700; white-space:nowrap;">
+                        <span id="wseChoiceUploadLabel_${optIdx}_${subIdx}">🔄 Change Photo</span>
+                        <input type="file" accept="image/*" style="display:none;" onchange="window.adminStudio.handleWseChoiceImageUpload(${optIdx}, ${subIdx}, this)" />
+                      </label>
+                      <button type="button" onclick="window.adminStudio.updateWseSubItemImage(${optIdx}, ${subIdx}, '')" title="Remove choice photo" style="background:#fee2e2; border:1px solid #fecdd3; color:#e11d48; border-radius:7px; padding:6px 9px; font-size:11.5px; font-weight:700; cursor:pointer; white-space:nowrap;">✕ Photo</button>
+                    ` : `
+                      <label style="font-size:12px; padding:7px 12px; cursor:pointer; background:#f0f9ff; border:1.5px solid #bae6fd; color:#0284c7; border-radius:7px; display:inline-flex; align-items:center; gap:5px; font-weight:700; white-space:nowrap;">
+                        <span id="wseChoiceUploadLabel_${optIdx}_${subIdx}">☁️ Choice Photo</span>
+                        <input type="file" accept="image/*" style="display:none;" onchange="window.adminStudio.handleWseChoiceImageUpload(${optIdx}, ${subIdx}, this)" />
+                      </label>
+                    `}
+                  </div>
+
+                  <!-- Delete Choice -->
+                  <button type="button" onclick="window.adminStudio.removeWseSubItem(${optIdx}, ${subIdx})" title="Delete this choice" style="background:#fff1f2; border:1px solid #fecdd3; color:#ef4444; font-size:14px; font-weight:800; cursor:pointer; padding:7px 11px; border-radius:8px; flex-shrink:0;">✕</button>
+                </div>
+
+                <!-- Bottom Row: Clean image URL field -->
+                <div style="display:flex; align-items:center; gap:8px; margin-top:8px; padding-left:36px;">
+                  <span style="font-size:11px; font-weight:600; color:#64748b; white-space:nowrap;">Image URL:</span>
+                  <input type="url" value="${escapeHtml(subImage)}" placeholder="Paste direct image URL (https://...) or click Choice Photo above" onchange="window.adminStudio.updateWseSubItemImage(${optIdx}, ${subIdx}, this.value)" style="flex:1; padding:6px 10px; font-size:12px; color:#334155; border:1px solid #e2e8f0; border-radius:6px; background:#ffffff; outline:none;" />
+                </div>
               </div>
-            `).join('') : '<span style="font-size:12px; color:#94a3b8; font-style:italic;">No choices added yet. Type below to add choices.</span>'}
+              `;
+            }).join('') : '<div style="font-size:12px; color:#94a3b8; font-style:italic; padding:6px 0;">No choices added yet. Type below to add choices.</div>'}
           </div>
 
-          <div class="wse-add-subitem-row" style="display:flex; gap:10px; margin-top:8px; align-items:center;">
-            <input type="text" id="wseNewSub_${optIdx}" class="wse-new-subitem-input" placeholder="Type new choice (e.g. Tenkaya pandhiri, Normal pendals) and click Add..." onkeydown="if(event.key==='Enter'){event.preventDefault();window.adminStudio.addWseSubItem(${optIdx});}" style="flex:1; padding:9px 14px; font-size:13px; border:1.5px dashed #cbd5e1; border-radius:8px; background:#ffffff; box-sizing:border-box; outline:none;" />
+          <div class="wse-add-subitem-row" style="display:flex; gap:10px; margin-top:10px; align-items:center;">
+            <input type="text" id="wseNewSub_${optIdx}" class="wse-new-subitem-input" placeholder="Type new choice (e.g. 2 pin, 4 pin, 8 pin) and click Add..." onkeydown="if(event.key==='Enter'){event.preventDefault();window.adminStudio.addWseSubItem(${optIdx});}" style="flex:1; padding:9px 14px; font-size:13px; border:1.5px dashed #cbd5e1; border-radius:8px; background:#ffffff; box-sizing:border-box; outline:none;" />
             <button type="button" class="wse-add-subitem-btn" onclick="window.adminStudio.addWseSubItem(${optIdx})" style="padding:9px 18px; font-size:12.5px; font-weight:700; border-radius:8px; background:#15803d; color:#ffffff; border:none; cursor:pointer; white-space:nowrap; display:inline-flex; align-items:center; gap:6px;">
               ➕ Add Choice
             </button>
@@ -3958,29 +4005,54 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
     `).join('');
   }
 
-  async function handleWseOptImageUpload(optIdx, fileInput) {
+  async function handleWseChoiceImageUpload(optIdx, subIdx, fileInput) {
     const file = fileInput.files?.[0];
     if (!file) return;
 
-    const progressEl = document.getElementById(`wseOptUploadProgress_${optIdx}`);
-    const labelEl = document.getElementById(`wseOptUploadLabel_${optIdx}`);
-    if (progressEl) progressEl.style.display = 'block';
+    const labelEl = document.getElementById(`wseChoiceUploadLabel_${optIdx}_${subIdx}`);
     if (labelEl) labelEl.textContent = 'Uploading...';
 
     try {
-      showToast('Uploading option photo to Cloudinary...', 'info');
-      const url = await uploadToCloudinary(file, 'celebration-wedding-options');
-      if (appState.weddingEditorOptions && appState.weddingEditorOptions[optIdx]) {
-        appState.weddingEditorOptions[optIdx].image = url;
+      showToast('Uploading choice photo to Cloudinary...', 'info');
+      const url = await uploadToCloudinary(file, 'celebration-wedding-choices');
+      const opt = appState.weddingEditorOptions?.[optIdx];
+      if (opt && Array.isArray(opt.subItems) && opt.subItems[subIdx]) {
+        if (typeof opt.subItems[subIdx] === 'string') {
+          opt.subItems[subIdx] = { name: opt.subItems[subIdx], image: url };
+        } else {
+          opt.subItems[subIdx].image = url;
+        }
         renderWeddingEditorOptions();
-        showToast('Option photo uploaded successfully!', 'success');
+        showToast('Choice photo uploaded successfully!', 'success');
       }
     } catch (err) {
       showToast('Cloudinary upload error: ' + err.message, 'error');
     } finally {
-      if (progressEl) progressEl.style.display = 'none';
-      if (labelEl) labelEl.textContent = '☁️ Upload Photo';
+      if (labelEl) labelEl.textContent = '☁️ Choice Photo';
       fileInput.value = '';
+    }
+  }
+
+  function updateWseSubItemImage(optIdx, subIdx, val) {
+    const opt = appState.weddingEditorOptions?.[optIdx];
+    if (opt && Array.isArray(opt.subItems) && opt.subItems[subIdx]) {
+      if (typeof opt.subItems[subIdx] === 'string') {
+        opt.subItems[subIdx] = { name: opt.subItems[subIdx], image: (val || '').trim() };
+      } else {
+        opt.subItems[subIdx].image = (val || '').trim();
+      }
+      renderWeddingEditorOptions();
+    }
+  }
+
+  function updateWseSubItemName(optIdx, subIdx, val) {
+    const opt = appState.weddingEditorOptions?.[optIdx];
+    if (opt && Array.isArray(opt.subItems) && opt.subItems[subIdx]) {
+      if (typeof opt.subItems[subIdx] === 'string') {
+        opt.subItems[subIdx] = { name: (val || '').trim(), image: '' };
+      } else {
+        opt.subItems[subIdx].name = (val || '').trim();
+      }
     }
   }
 
@@ -4022,7 +4094,7 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
     if (!Array.isArray(opt.subItems)) {
       opt.subItems = [];
     }
-    opt.subItems.push(val);
+    opt.subItems.push({ name: val, image: '' });
     input.value = '';
     renderWeddingEditorOptions();
   }
@@ -4032,6 +4104,32 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
     if (!opt || !Array.isArray(opt.subItems)) return;
     opt.subItems.splice(subIdx, 1);
     renderWeddingEditorOptions();
+  }
+
+  async function handleWseOptImageUpload(optIdx, fileInput) {
+    const file = fileInput.files?.[0];
+    if (!file) return;
+
+    const progressEl = document.getElementById(`wseOptUploadProgress_${optIdx}`);
+    const labelEl = document.getElementById(`wseOptUploadLabel_${optIdx}`);
+    if (progressEl) progressEl.style.display = 'block';
+    if (labelEl) labelEl.textContent = 'Uploading...';
+
+    try {
+      showToast('Uploading option photo to Cloudinary...', 'info');
+      const url = await uploadToCloudinary(file, 'celebration-wedding-options');
+      if (appState.weddingEditorOptions && appState.weddingEditorOptions[optIdx]) {
+        appState.weddingEditorOptions[optIdx].image = url;
+        renderWeddingEditorOptions();
+        showToast('Option photo uploaded successfully!', 'success');
+      }
+    } catch (err) {
+      showToast('Cloudinary upload error: ' + err.message, 'error');
+    } finally {
+      if (progressEl) progressEl.style.display = 'none';
+      if (labelEl) labelEl.textContent = '☁️ Upload Photo';
+      fileInput.value = '';
+    }
   }
 
   async function handleWeddingServiceFormSubmit(e) {
@@ -5755,8 +5853,10 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
     updateWseOptField,
     addWseSubItem,
     removeWseSubItem,
-    resetWseToWebsiteDefaults,
     handleWseOptImageUpload,
+    handleWseChoiceImageUpload,
+    updateWseSubItemImage,
+    updateWseSubItemName,
     openBlogModal,
     insertBlogTemplate,
     cleanAllBlogHtmlTags,

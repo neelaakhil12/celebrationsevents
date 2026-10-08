@@ -3238,13 +3238,37 @@ function renderWcmIndividual(listEl, cfg) {
       ${subList && subList.length > 0 ? `
         <div class="wcm-sub-options-row" onclick="event.stopPropagation();">
           ${(opt.subPrompt || opt.subtitle) ? `<span class="wcm-sub-prompt">${opt.subPrompt || opt.subtitle}</span>` : ''}
-          <div class="wcm-radios-wrap">
-            ${subList.map((r, i) => `
-              <label class="wcm-radio-label">
-                <input type="radio" name="${opt.radioName || ('r_' + optId)}" value="${r}" class="wcm-radio-input" ${r === opt.selectedRadio || i === 0 ? 'checked' : ''} onchange="updateWcmRadio('${optId}', '${r}')" />
-                <span>${r}</span>
-              </label>
-            `).join("")}
+          <div class="wcm-radios-wrap" style="display:flex; flex-wrap:wrap; gap:8px; align-items:center;">
+            ${subList.map((item, i) => {
+              const choiceName = (typeof item === 'object' && item !== null) ? (item.name || '') : String(item || '');
+              const choiceImg = (typeof item === 'object' && item !== null) ? (item.image || '') : '';
+              const choiceId = `${optId}_choice_${i}`;
+              const safeChoiceName = (choiceName || 'Choice').replace(/"/g, '&quot;');
+              const safeChoiceImg = (choiceImg || '').replace(/"/g, '&quot;');
+              const hasChoiceImg = Boolean(choiceImg && choiceImg.trim());
+
+              return `
+              <div class="wcm-choice-chip-card" 
+                   id="wcm_choice_${choiceId}"
+                   data-image="${safeChoiceImg}"
+                   onclick="event.stopPropagation(); inspectWcmChoice('${choiceId}', '${safeChoiceImg}')"
+                   title="${hasChoiceImg ? 'Tap to preview photo on left' : 'Tap to focus choice'}">
+                <label class="wcm-choice-check-label" onclick="event.stopPropagation();">
+                  <input type="checkbox" 
+                         class="wcm-check-input wcm-choice-checkbox" 
+                         id="chk_${choiceId}" 
+                         value="${safeChoiceName}" 
+                         onchange="handleWcmChoiceSelect('${optId}', this)" />
+                  <span class="wcm-choice-text">${choiceName}</span>
+                </label>
+                ${hasChoiceImg ? `
+                  <div class="wcm-choice-thumb" onclick="event.stopPropagation(); inspectWcmChoice('${choiceId}', '${safeChoiceImg}');" title="Tap to preview photo on left">
+                    <img src="${choiceImg}" alt="${safeChoiceName}" loading="lazy" />
+                  </div>
+                ` : ''}
+              </div>
+              `;
+            }).join("")}
           </div>
         </div>
       ` : ''}
@@ -3995,8 +4019,52 @@ function toggleWcmOption(optId) {
   updateWcmSelectedCount();
 }
 
+function inspectWcmChoice(choiceId, imageUrl) {
+  const modal = document.getElementById("weddingServiceDetailModal");
+  if (modal) {
+    modal.querySelectorAll(".wcm-choice-chip-card.is-viewing-choice").forEach(c => c.classList.remove("is-viewing-choice"));
+  }
+  const el = document.getElementById(`wcm_choice_${choiceId}`);
+  if (el) el.classList.add("is-viewing-choice");
+
+  const photo = document.getElementById("wcmPhoto");
+  if (!photo) return;
+
+  const targetImg = (imageUrl && imageUrl.trim()) ? imageUrl.trim() : '';
+  if (targetImg && photo.getAttribute("src") !== targetImg) {
+    photo.style.transition = "opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1), transform 0.25s cubic-bezier(0.4, 0, 0.2, 1)";
+    photo.style.opacity = "0.35";
+    photo.style.transform = "scale(0.97)";
+
+    const newImg = new Image();
+    const handleLoaded = () => {
+      photo.src = targetImg;
+      photo.style.opacity = "1";
+      photo.style.transform = "scale(1)";
+    };
+    newImg.onload = handleLoaded;
+    newImg.onerror = handleLoaded;
+    newImg.src = targetImg;
+  }
+}
+
+function handleWcmChoiceSelect(optId, chkInput) {
+  const card = document.getElementById(`wcm_card_${optId}`);
+  if (card) {
+    const anyChecked = card.querySelectorAll(".wcm-choice-checkbox:checked").length > 0;
+    if (anyChecked) {
+      card.classList.add("active");
+    } else {
+      card.classList.remove("active");
+    }
+  }
+  updateWcmSelectedCount();
+}
+
 window.inspectWcmOption = inspectWcmOption;
 window.toggleWcmOption = toggleWcmOption;
+window.inspectWcmChoice = inspectWcmChoice;
+window.handleWcmChoiceSelect = handleWcmChoiceSelect;
 
 function updateWcmRadio(optId, radioVal) {
   const card = document.getElementById(`wcm_card_${optId}`);
@@ -4058,13 +4126,24 @@ function updateWcmSelectedCount() {
   if (!modal) return;
 
   let count = 0;
-  // Count active cards
-  const activeCards = modal.querySelectorAll(".wcm-option-card.active, .wcm-icon-card.active");
-  count += activeCards.length;
+  // 1. Choices checked (e.g. 2 pin, 4 pin)
+  const choiceCheckboxes = modal.querySelectorAll(".wcm-choice-checkbox:checked");
+  count += choiceCheckboxes.length;
 
-  // Count checked checkboxes
-  const checkedBoxes = modal.querySelectorAll(".wcm-check-input:checked");
-  count += checkedBoxes.length;
+  // 2. Active option cards that DO NOT have choice checkboxes
+  modal.querySelectorAll(".wcm-option-card.active").forEach(card => {
+    if (card.querySelectorAll(".wcm-choice-checkbox").length === 0) {
+      count += 1;
+    }
+  });
+
+  // 3. Active icon cards
+  const activeIconCards = modal.querySelectorAll(".wcm-icon-card.active");
+  count += activeIconCards.length;
+
+  // 4. Standalone checkboxes outside choice cards
+  const otherChecked = modal.querySelectorAll(".wcm-check-input:checked:not(.wcm-choice-checkbox)");
+  count += otherChecked.length;
 
   const countText = document.getElementById("wcmSelectedCountText");
   if (countText) {
