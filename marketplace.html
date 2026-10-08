@@ -149,9 +149,9 @@
         <div class="filter-group">
           <button class="filter-group-header" onclick="toggleFilterAccordion(this)">
             <span>Category</span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m18 15-6-6-6 6"/></svg>
           </button>
-          <div class="filter-options-list" id="giftCategoryCheckboxes">
+          <div class="filter-options-list" id="giftCategoryCheckboxes" style="display: flex;">
             <!-- Dynamically populated from Gift Marketplace Subcategories -->
           </div>
         </div>
@@ -178,7 +178,7 @@
       <section class="marketplace-main">
         <div class="marketplace-controls-bar">
           <div class="marketplace-results-count">
-            Showing <strong id="giftsShowingRange">1–12</strong> of <strong id="giftsTotalCount">845</strong> <span class="mp-count-label">products</span>
+            Showing <strong id="giftsShowingRange">0</strong> of <strong id="giftsTotalCount">0</strong> <span class="mp-count-label">products</span>
           </div>
           <div class="marketplace-sort-wrap">
             <select class="marketplace-sort-select" id="giftSortSelect" onchange="handleGiftSort(this.value)" aria-label="Sort products">
@@ -191,22 +191,9 @@
           </div>
         </div>
 
-        <!-- 4-Column Product Grid (Exact Match to 12 Items) -->
+        <!-- 4-Column Product Grid -->
         <div class="gifts-product-grid" id="giftsProductGrid">
           <!-- Dynamically rendered via JS -->
-        </div>
-
-        <!-- Pagination -->
-        <div class="marketplace-pagination">
-          <button class="mp-page-btn" aria-label="Previous Page">&lsaquo;</button>
-          <button class="mp-page-btn active">1</button>
-          <button class="mp-page-btn">2</button>
-          <button class="mp-page-btn">3</button>
-          <button class="mp-page-btn">4</button>
-          <button class="mp-page-btn">5</button>
-          <span class="mp-page-dots">...</span>
-          <button class="mp-page-btn">71</button>
-          <button class="mp-page-btn" aria-label="Next Page">&rsaquo;</button>
         </div>
       </section>
     </div>
@@ -555,71 +542,126 @@
     let activeSubCategory = 'all';
 
     function getGiftsData() {
-      if (typeof SITE_DATA !== "undefined" && Array.isArray(SITE_DATA.products)) {
-        const prods = SITE_DATA.products.filter(p => p.category === 'gifts' || (p.id && p.id.startsWith('gift-')));
+      try {
+        let prods = [];
+        if (typeof SITE_DATA !== "undefined" && Array.isArray(SITE_DATA.products) && SITE_DATA.products.length > 0) {
+          prods = SITE_DATA.products.filter(p => p && (p.category === 'gifts' || (typeof p.id === 'string' && p.id.startsWith('gift-'))));
+        }
+        if (prods.length === 0) {
+          try {
+            const stored = localStorage.getItem("celebration_custom_products");
+            if (stored) {
+              const parsed = JSON.parse(stored);
+              if (Array.isArray(parsed) && parsed.length > 0) {
+                prods = parsed.filter(p => p && (p.category === 'gifts' || (typeof p.id === 'string' && p.id.startsWith('gift-'))));
+              }
+            }
+          } catch(e){}
+        }
         if (prods.length > 0) return prods;
+      } catch(err) {
+        console.warn('Error reading gift products:', err);
       }
       return DEFAULT_GIFTS;
     }
 
     function getGiftSubcategories() {
-      if (typeof SITE_DATA !== "undefined" && Array.isArray(SITE_DATA.categories)) {
-        const giftCat = SITE_DATA.categories.find(c => c.id === 'gifts');
-        if (giftCat && Array.isArray(giftCat.subcategories) && giftCat.subcategories.length > 0) {
-          return giftCat.subcategories;
+      let subcats = [];
+      try {
+        if (typeof SITE_DATA !== "undefined" && Array.isArray(SITE_DATA.categories)) {
+          const giftCat = SITE_DATA.categories.find(c => c && c.id === 'gifts');
+          if (giftCat && Array.isArray(giftCat.subcategories) && giftCat.subcategories.length > 0) {
+            subcats = giftCat.subcategories;
+          }
         }
+        if (subcats.length === 0) {
+          try {
+            const storedCats = localStorage.getItem("celebration_custom_categories");
+            if (storedCats) {
+              const parsed = JSON.parse(storedCats);
+              const giftCat = Array.isArray(parsed) ? parsed.find(c => c && c.id === 'gifts') : null;
+              if (giftCat && Array.isArray(giftCat.subcategories) && giftCat.subcategories.length > 0) {
+                subcats = giftCat.subcategories;
+              }
+            }
+          } catch(e){}
+        }
+      } catch(err) {
+        console.warn('Error reading gift subcategories:', err);
       }
-      return [
-        { id: "boys", name: "Gifts for Boys", icon: "👦" },
-        { id: "girls", name: "Gifts for Girls", icon: "👧" },
-        { id: "men", name: "Gifts for Men", icon: "👨" },
-        { id: "women", name: "Gifts for Women", icon: "👩" },
-        { id: "cakes", name: "Cakes", icon: "🎂" },
-        { id: "flowers", name: "Flowers", icon: "💐" }
-      ];
+
+      if (!subcats || subcats.length === 0) {
+        subcats = [
+          { id: "boys", name: "Gifts for Boys", icon: "👦" },
+          { id: "girls", name: "Gifts for Girls", icon: "👧" },
+          { id: "men", name: "Gifts for Men", icon: "👨" },
+          { id: "women", name: "Gifts for Women", icon: "👩" },
+          { id: "cakes", name: "Cakes", icon: "🎂" },
+          { id: "flowers", name: "Flowers", icon: "💐" }
+        ];
+      }
+
+      return subcats.map(s => {
+        if (typeof s === 'string') return { id: s.toLowerCase().trim(), name: s, icon: '🏷️' };
+        if (!s || typeof s !== 'object') return null;
+        const id = String(s.id || s.slug || '').toLowerCase().trim();
+        const name = s.name || s.title || id;
+        const icon = s.icon || '🏷️';
+        return { ...s, id, name, icon };
+      }).filter(s => s && s.id);
     }
 
     function renderGiftSubcategories() {
-      const subcats = getGiftSubcategories();
-      const allGifts = getGiftsData();
+      try {
+        const subcats = getGiftSubcategories();
+        const allGifts = getGiftsData();
 
-      function countForSub(subId) {
-        return allGifts.filter(g => {
-          const s = (g.subcategory || '').toLowerCase();
-          const target = subId.toLowerCase();
-          if (s === target) return true;
-          if (g.tags && Array.isArray(g.tags) && g.tags.some(t => t.toLowerCase() === target || t.toLowerCase() === `subcat:${target}`)) return true;
-          return false;
-        }).length;
-      }
+        function countForSub(subId) {
+          if (!subId) return 0;
+          const target = String(subId).toLowerCase().trim();
+          return allGifts.filter(g => {
+            const s = String(g.subcategory || '').toLowerCase().trim();
+            if (s === target) return true;
+            if (Array.isArray(g.tags)) {
+              return g.tags.some(t => {
+                const str = String(t || '').toLowerCase().trim();
+                return str === target || str === `subcat:${target}`;
+              });
+            }
+            return false;
+          }).length;
+        }
 
-      // 1. Horizontal Pills
-      const pillsContainer = document.getElementById("giftsHorizontalFilterPills");
-      if (pillsContainer) {
-        let pillsHtml = `<button type="button" class="filter-pill ${activeSubCategory === 'all' ? 'active' : ''}" onclick="selectGiftHorizontalCategory('all', this)">All Gifts (${allGifts.length})</button>`;
-        subcats.forEach(sub => {
-          const count = countForSub(sub.id);
-          const isActive = activeSubCategory === sub.id ? 'active' : '';
-          pillsHtml += `<button type="button" class="filter-pill ${isActive}" onclick="selectGiftHorizontalCategory('${escapeHtml(sub.id)}', this)">${sub.icon ? sub.icon + ' ' : ''}${escapeHtml(sub.name)} (${count})</button>`;
-        });
-        pillsContainer.innerHTML = pillsHtml;
-      }
+        // 1. Horizontal Pills
+        const pillsContainer = document.getElementById("giftsHorizontalFilterPills");
+        if (pillsContainer) {
+          let pillsHtml = `<button type="button" class="filter-pill ${activeSubCategory === 'all' ? 'active' : ''}" onclick="selectGiftHorizontalCategory('all', this)">All Gifts (${allGifts.length})</button>`;
+          subcats.forEach(sub => {
+            const count = countForSub(sub.id);
+            const isActive = activeSubCategory === sub.id ? 'active' : '';
+            pillsHtml += `<button type="button" class="filter-pill ${isActive}" onclick="selectGiftHorizontalCategory('${escapeHtml(sub.id)}', this)">${sub.icon ? sub.icon + ' ' : ''}${escapeHtml(sub.name)} (${count})</button>`;
+          });
+          pillsContainer.innerHTML = pillsHtml;
+        }
 
-      // 2. Sidebar Category Checkboxes
-      const checkboxesContainer = document.getElementById("giftCategoryCheckboxes");
-      if (checkboxesContainer) {
-        let cbHtml = '';
-        subcats.forEach(sub => {
-          const count = countForSub(sub.id);
-          const isChecked = activeSubCategory === sub.id;
-          cbHtml += `
-            <label class="filter-checkbox-item">
-              <input type="checkbox" name="cat" value="${escapeHtml(sub.id)}" onchange="applyGiftFilters(true)" ${isChecked ? 'checked' : ''} />
-              <span>${sub.icon ? sub.icon + ' ' : ''}${escapeHtml(sub.name)} <span class="filter-count">(${count})</span></span>
-            </label>
-          `;
-        });
-        checkboxesContainer.innerHTML = cbHtml;
+        // 2. Sidebar Category Checkboxes
+        const checkboxesContainer = document.getElementById("giftCategoryCheckboxes");
+        if (checkboxesContainer) {
+          let cbHtml = '';
+          subcats.forEach(sub => {
+            const count = countForSub(sub.id);
+            const isChecked = activeSubCategory === sub.id;
+            cbHtml += `
+              <label class="filter-checkbox-item">
+                <input type="checkbox" name="cat" value="${escapeHtml(sub.id)}" onchange="applyGiftFilters(true)" ${isChecked ? 'checked' : ''} />
+                <span>${sub.icon ? sub.icon + ' ' : ''}${escapeHtml(sub.name)} <span class="filter-count">(${count})</span></span>
+              </label>
+            `;
+          });
+          checkboxesContainer.innerHTML = cbHtml;
+        }
+      } catch(err) {
+        console.error('Error in renderGiftSubcategories:', err);
       }
     }
 
@@ -853,20 +895,32 @@
     }
 
     function initMarketplace() {
-      renderGiftSubcategories();
-      const params = new URLSearchParams(window.location.search);
-      const reqCat = params.get("category") || params.get("cat") || params.get("sub");
-      if (reqCat) {
-        selectGiftHorizontalCategory(reqCat);
-      } else {
-        applyGiftFilters(false);
+      try {
+        renderGiftSubcategories();
+        const params = new URLSearchParams(window.location.search);
+        const reqCat = params.get("category") || params.get("cat") || params.get("sub");
+        if (reqCat) {
+          selectGiftHorizontalCategory(reqCat);
+        } else {
+          applyGiftFilters(false);
+        }
+      } catch(err) {
+        console.error('Error in initMarketplace:', err);
       }
     }
 
-    document.addEventListener("DOMContentLoaded", initMarketplace);
+    // Ensure it executes immediately if DOM is already parsed, plus listen to events
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initMarketplace);
+    } else {
+      initMarketplace();
+    }
+    window.addEventListener("load", initMarketplace);
     window.addEventListener("celebration:data-updated", initMarketplace);
     window.renderMarketplaceGifts = initMarketplace;
     window.renderGiftSubcategories = initMarketplace;
+    setTimeout(initMarketplace, 100);
+    setTimeout(initMarketplace, 500);
   </script>
   <!-- Mobile Sidebar Drawer -->
   <div class="mobile-sidebar-overlay" id="mobileSidebarOverlay">
