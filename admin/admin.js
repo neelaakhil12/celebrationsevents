@@ -6865,8 +6865,12 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
       const card = editBtn.closest('.package-admin-card');
       const pkgId = card ? card.getAttribute('data-pkg-id') : null;
       if (pkgId) {
-        const item = appState.products.find(p => p.id === pkgId);
-        if (item && item.category === 'gifts') {
+        let item = appState.products.find(p => p.id === pkgId);
+        if (!item && typeof window.SITE_DATA !== 'undefined' && Array.isArray(window.SITE_DATA.products)) {
+          item = window.SITE_DATA.products.find(p => p.id === pkgId);
+        }
+        const isGiftItem = (item && item.category === 'gifts') || pkgId.startsWith('gift-') || (editBtn.textContent && editBtn.textContent.includes('Gift'));
+        if (isGiftItem) {
           e.preventDefault();
           e.stopPropagation();
           openGiftModal('edit', pkgId);

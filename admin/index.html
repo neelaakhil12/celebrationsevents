@@ -9,8 +9,29 @@
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
   <link rel="icon" href="https://cdn.balloondekor.com/images/61/7ebf2dbd-60dd-4643-8029-763dc6a3e5e3.webp" type="image/webp" />
-  <link rel="stylesheet" href="/admin/admin.css?v=20261006_v19_password_icon_fix" />
+  <link rel="stylesheet" href="/admin/admin.css?v=20261008_gift_studio_v6" />
   <style>
+    /* Direct High-Priority Modal Display Engine */
+    #giftModal.active,
+    .modal-backdrop.active {
+      display: flex !important;
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      bottom: 0 !important;
+      z-index: 999999 !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      background: rgba(15, 23, 42, 0.5) !important;
+      backdrop-filter: blur(8px) !important;
+      -webkit-backdrop-filter: blur(8px) !important;
+      align-items: center !important;
+      justify-content: center !important;
+      padding: 24px !important;
+      overflow-y: auto !important;
+    }
+
     /* Global image constraint to prevent layout blowouts */
     img {
       max-width: 100% !important;
@@ -3396,6 +3417,10 @@
           <button type="submit" id="saveCityBtn" class="btn-primary" style="padding:10px 24px;">
             Save City
           </button>
+        </div>
+      </form>
+    </div>
+  </div>
   <!-- ======================================================================
        MODAL: ADD / EDIT PROMOTIONAL BANNER (CRUD WITH CLOUDINARY)
        ====================================================================== -->
@@ -3731,12 +3756,13 @@
       </form>
     </div>
   </div>
+  </div> <!-- Close #adminAppView -->
 
   <!-- Toast Container -->
   <div id="toastContainer" class="toast-container"></div>
 
   <!-- Scripts -->
-  <script src="/data.js?v=20261008_gift_studio_v5"></script>
-  <script src="/admin/admin.js?v=20261008_gift_studio_v5"></script>
+  <script src="/data.js?v=20261008_gift_studio_v6"></script>
+  <script src="/admin/admin.js?v=20261008_gift_studio_v6"></script>
 </body>
 </html>
