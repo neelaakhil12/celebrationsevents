@@ -552,18 +552,18 @@
       { id: "melam_band_set", title: "Band Set", subPrompt: "Select band strength", subItems: ["Band Set (7 Members)", "Band Set (12 Members)", "Band Set (15 Members)"] }
     ],
     "house-decor": [
-      { id: "hd_pendals", title: "Pendals In Front Of House", subPrompt: "Choose pendal type", subItems: ["Tenkaya pandhiri", "Normal pendals"] },
-      { id: "hd_lighting", title: "Lighting Decoration For Building", subPrompt: "3 or 5 Days with Max of 50 Serial Sets", subItems: ["3 Days (Max 50 Serial Sets)", "5 Days (Max 50 Serial Sets)"] },
-      { id: "hd_banana", title: "Banana Trees & Mango Leaves", subPrompt: "Main doorway auspicious pillars", subItems: ["Banana Trees & Mango Leaves"] },
-      { id: "hd_marigold", title: "Marigold Flowers For Main Door And Inside the House", subPrompt: "Choose flower type", subItems: ["Normal", "Special"] },
-      { id: "hd_gaja", title: "Gaja Maala For Main Door", subPrompt: "Grand entrance garland", subItems: ["Yes", "No"] }
+      { id: "hd_pendals", title: "Pendals In Front Of House", subPrompt: "Choose pendal type", image: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=600&q=80", subItems: ["Tenkaya pandhiri", "Normal pendals"] },
+      { id: "hd_lighting", title: "Lighting Decoration For Building", subPrompt: "3 or 5 Days with Max of 50 Serial Sets", image: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=600&q=80", subItems: ["3 Days (Max 50 Serial Sets)", "5 Days (Max 50 Serial Sets)"] },
+      { id: "hd_banana", title: "Banana Trees & Mango Leaves", subPrompt: "Main doorway auspicious pillars", image: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=600&q=80", subItems: ["Banana Trees & Mango Leaves"] },
+      { id: "hd_marigold", title: "Marigold Flowers For Main Door And Inside the House", subPrompt: "Choose flower type", image: "https://images.unsplash.com/photo-1537633552985-df8429e8048b?auto=format&fit=crop&w=600&q=80", subItems: ["Normal", "Special"] },
+      { id: "hd_gaja", title: "Gaja Maala For Main Door", subPrompt: "Grand entrance garland", image: "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=600&q=80", subItems: ["Yes", "No"] }
     ],
     "house-decoration": [
-      { id: "hd_pendals", title: "Pendals In Front Of House", subPrompt: "Choose pendal type", subItems: ["Tenkaya pandhiri", "Normal pendals"] },
-      { id: "hd_lighting", title: "Lighting Decoration For Building", subPrompt: "3 or 5 Days with Max of 50 Serial Sets", subItems: ["3 Days (Max 50 Serial Sets)", "5 Days (Max 50 Serial Sets)"] },
-      { id: "hd_banana", title: "Banana Trees & Mango Leaves", subPrompt: "Main doorway auspicious pillars", subItems: ["Banana Trees & Mango Leaves"] },
-      { id: "hd_marigold", title: "Marigold Flowers For Main Door And Inside the House", subPrompt: "Choose flower type", subItems: ["Normal", "Special"] },
-      { id: "hd_gaja", title: "Gaja Maala For Main Door", subPrompt: "Grand entrance garland", subItems: ["Yes", "No"] }
+      { id: "hd_pendals", title: "Pendals In Front Of House", subPrompt: "Choose pendal type", image: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=600&q=80", subItems: ["Tenkaya pandhiri", "Normal pendals"] },
+      { id: "hd_lighting", title: "Lighting Decoration For Building", subPrompt: "3 or 5 Days with Max of 50 Serial Sets", image: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=600&q=80", subItems: ["3 Days (Max 50 Serial Sets)", "5 Days (Max 50 Serial Sets)"] },
+      { id: "hd_banana", title: "Banana Trees & Mango Leaves", subPrompt: "Main doorway auspicious pillars", image: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=600&q=80", subItems: ["Banana Trees & Mango Leaves"] },
+      { id: "hd_marigold", title: "Marigold Flowers For Main Door And Inside the House", subPrompt: "Choose flower type", image: "https://images.unsplash.com/photo-1537633552985-df8429e8048b?auto=format&fit=crop&w=600&q=80", subItems: ["Normal", "Special"] },
+      { id: "hd_gaja", title: "Gaja Maala For Main Door", subPrompt: "Grand entrance garland", image: "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=600&q=80", subItems: ["Yes", "No"] }
     ],
     "nalugu-snanam": [
       { id: "ns_concept", title: "Main Decoration Services", subPrompt: "Traditional rituals decor", subItems: ["Nalugu Concept Decoration", "Mangala Sanam Decoration", "Flower Jewellery", "Nalugu Maala (Petals)", "Nalugu Maala (Normal)"] },
@@ -3889,6 +3889,32 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
           </div>
         </div>
 
+        <!-- Option Image Upload Section (Tap to Preview on Website) -->
+        <div class="wse-opt-image-box" style="background:#f8fafc; border:1.5px solid #e2e8f0; border-radius:10px; padding:12px 14px; margin-bottom:14px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+            <label style="font-size:12px; font-weight:700; color:#334155; display:flex; align-items:center; gap:6px; margin:0;">
+              <span>🖼️ Option Preview Photo</span>
+              <span style="font-weight:400; color:#64748b; font-size:11.5px;">(Displayed on left viewer when customer taps this option)</span>
+            </label>
+            <label class="btn-secondary" style="font-size:11.5px; padding:4px 12px; cursor:pointer; background:#f0f9ff; border:1px solid #bae6fd; color:#0284c7; border-radius:6px; display:inline-flex; align-items:center; gap:5px; font-weight:700;">
+              <span id="wseOptUploadLabel_${optIdx}">☁️ Upload Photo</span>
+              <input type="file" accept="image/*" style="display:none;" onchange="window.adminStudio.handleWseOptImageUpload(${optIdx}, this)" />
+            </label>
+          </div>
+          <div style="display:flex; gap:10px; align-items:center;">
+            <input type="url" class="wse-opt-input" value="${escapeHtml(opt.image || '')}" placeholder="Paste image URL (https://...) or click Upload Photo" oninput="window.adminStudio.updateWseOptField(${optIdx}, 'image', this.value)" style="flex:1; padding:9px 12px; font-size:13px; color:#0f172a; background:#ffffff; border:1.5px solid #cbd5e1; border-radius:8px; outline:none;" />
+            ${opt.image ? `
+              <div style="width:42px; height:42px; border-radius:8px; overflow:hidden; border:1.5px solid #cbd5e1; flex-shrink:0; background:#0f172a; display:flex; align-items:center; justify-content:center;">
+                <img src="${escapeHtml(opt.image)}" alt="Preview" style="width:100%; height:100%; object-fit:cover;" onerror="this.style.display='none'" />
+              </div>
+              <button type="button" onclick="window.adminStudio.updateWseOptField(${optIdx}, 'image', ''); window.adminStudio.renderWeddingEditorOptions();" title="Remove photo" style="background:#fee2e2; border:1px solid #fecdd3; color:#e11d48; border-radius:6px; padding:6px 10px; font-size:12px; font-weight:700; cursor:pointer;">✕</button>
+            ` : ''}
+          </div>
+          <div id="wseOptUploadProgress_${optIdx}" style="display:none; font-size:11.5px; color:#0284c7; font-weight:700; margin-top:6px;">
+            ⏳ Uploading photo to Cloudinary...
+          </div>
+        </div>
+
         <div class="wse-choices-box" style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:14px 16px;">
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
             <span style="font-size:12px; font-weight:700; color:#334155; display:flex; align-items:center; gap:6px;">
@@ -3918,6 +3944,32 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
     `).join('');
   }
 
+  async function handleWseOptImageUpload(optIdx, fileInput) {
+    const file = fileInput.files?.[0];
+    if (!file) return;
+
+    const progressEl = document.getElementById(`wseOptUploadProgress_${optIdx}`);
+    const labelEl = document.getElementById(`wseOptUploadLabel_${optIdx}`);
+    if (progressEl) progressEl.style.display = 'block';
+    if (labelEl) labelEl.textContent = 'Uploading...';
+
+    try {
+      showToast('Uploading option photo to Cloudinary...', 'info');
+      const url = await uploadToCloudinary(file, 'celebration-wedding-options');
+      if (appState.weddingEditorOptions && appState.weddingEditorOptions[optIdx]) {
+        appState.weddingEditorOptions[optIdx].image = url;
+        renderWeddingEditorOptions();
+        showToast('Option photo uploaded successfully!', 'success');
+      }
+    } catch (err) {
+      showToast('Cloudinary upload error: ' + err.message, 'error');
+    } finally {
+      if (progressEl) progressEl.style.display = 'none';
+      if (labelEl) labelEl.textContent = '☁️ Upload Photo';
+      fileInput.value = '';
+    }
+  }
+
   function addWseOption() {
     if (!Array.isArray(appState.weddingEditorOptions)) {
       appState.weddingEditorOptions = [];
@@ -3926,6 +3978,7 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
       id: `opt_${Date.now().toString(36)}`,
       title: '',
       subPrompt: '',
+      image: '',
       subItems: []
     });
     renderWeddingEditorOptions();
@@ -5689,6 +5742,7 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
     addWseSubItem,
     removeWseSubItem,
     resetWseToWebsiteDefaults,
+    handleWseOptImageUpload,
     openBlogModal,
     insertBlogTemplate,
     cleanAllBlogHtmlTags,

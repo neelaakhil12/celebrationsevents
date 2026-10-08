@@ -2711,6 +2711,19 @@ function initWeddingServicesPage() {
           }
         });
       }
+    } else if (SITE_DATA?.weddingConfigs && typeof SITE_DATA.weddingConfigs === 'object') {
+      Object.keys(SITE_DATA.weddingConfigs).forEach(k => {
+        if (!WEDDING_MODAL_CONFIGS[k]) {
+          WEDDING_MODAL_CONFIGS[k] = {
+            title: k,
+            subtitle: 'Select the services you need. Dates and time will be confirmed later.',
+            type: 'individual',
+            options: SITE_DATA.weddingConfigs[k]
+          };
+        } else if (!WEDDING_MODAL_CONFIGS[k].options || WEDDING_MODAL_CONFIGS[k].options.length === 0) {
+          WEDDING_MODAL_CONFIGS[k].options = SITE_DATA.weddingConfigs[k];
+        }
+      });
     }
   } catch (e) {}
 
@@ -2862,6 +2875,7 @@ const WEDDING_MODAL_CONFIGS = {
         id: "hd_pendals",
         title: "Pendals In Front Of House",
         checked: false,
+        image: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=600&q=80",
         subPrompt: "Choose pendal type",
         radioName: "hd_pendal_type",
         radios: ["Tenkaya pandhiri", "Normal pendals"],
@@ -2871,16 +2885,19 @@ const WEDDING_MODAL_CONFIGS = {
         id: "hd_lighting",
         title: "Lighting Decoration For Building",
         subtitle: "3 or 5 Days with Max of 50 Serial Sets",
+        image: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=600&q=80",
         checked: false
       },
       {
         id: "hd_banana",
         title: "Banana Trees & Mango Leaves",
+        image: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=600&q=80",
         checked: false
       },
       {
         id: "hd_marigold",
         title: "Marigold Flowers For Main Door And Inside the House",
+        image: "https://images.unsplash.com/photo-1537633552985-df8429e8048b?auto=format&fit=crop&w=600&q=80",
         checked: false,
         subPrompt: "Choose flower type",
         radioName: "hd_flower_type",
@@ -2890,6 +2907,7 @@ const WEDDING_MODAL_CONFIGS = {
       {
         id: "hd_gaja",
         title: "Gaja Maala For Main Door",
+        image: "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=600&q=80",
         checked: false,
         subPrompt: "",
         radioName: "hd_gaja_choice",
@@ -3090,38 +3108,55 @@ function openWeddingServiceModal(serviceId) {
   const modal = document.getElementById("weddingServiceDetailModal");
   if (!modal) return;
 
-  const cfg = WEDDING_MODAL_CONFIGS[serviceId] || {
-    title: service.title,
-    subtitle: "Select the services you need. Dates and time will be confirmed later.",
-    image: service.image,
-    tagline: `Make your ${service.title} special with professional setup and quality arrangements.`,
-    icon: service.icon || "sparkles",
-    type: "fallback",
-    items: (service.inclusions || []).map((inc, i) => ({
-      id: `${serviceId}_inc_${i}`,
-      title: inc,
-      checked: false
-    }))
-  };
+  // Retrieve custom options if set via admin or database
+  const customOpts = (Array.isArray(service.options) && service.options.length > 0)
+    ? service.options
+    : (window.SITE_DATA?.weddingConfigs?.[serviceId] || null);
+
+  let cfg = WEDDING_MODAL_CONFIGS[serviceId];
+  if (!cfg) {
+    cfg = {
+      title: service.title,
+      subtitle: "Select the services you need. Dates and time will be confirmed later.",
+      image: service.image,
+      tagline: `Make your ${service.title} special with professional setup and quality arrangements.`,
+      icon: service.icon || "sparkles",
+      type: (customOpts && customOpts.length > 0) ? "individual" : "fallback",
+      options: customOpts || [],
+      items: (service.inclusions || []).map((inc, i) => ({
+        id: `${serviceId}_inc_${i}`,
+        title: inc,
+        checked: false
+      }))
+    };
+    WEDDING_MODAL_CONFIGS[serviceId] = cfg;
+  } else if (customOpts && Array.isArray(customOpts) && customOpts.length > 0) {
+    cfg.options = customOpts;
+    cfg.type = "individual";
+  }
 
   // Set header info
   const titleEl = document.getElementById("wcmTitle");
-  if (titleEl) titleEl.textContent = cfg.title;
+  if (titleEl) titleEl.textContent = cfg.title || service.title;
 
   const subEl = document.getElementById("wcmSubtitle");
-  if (subEl) subEl.textContent = cfg.subtitle;
+  if (subEl) subEl.textContent = cfg.subtitle || "Select the services you need. Dates and time will be confirmed later.";
 
   const imgEl = document.getElementById("wcmPhoto");
-  if (imgEl) imgEl.src = cfg.image;
+  if (imgEl) {
+    imgEl.src = service.image || cfg.image;
+    imgEl.style.opacity = "1";
+    imgEl.style.transform = "scale(1)";
+  }
 
   const tagText = document.getElementById("wcmTaglineText");
-  if (tagText) tagText.textContent = cfg.tagline;
+  if (tagText) tagText.textContent = cfg.tagline || service.desc || `Make your ${service.title} special with professional setup and quality arrangements.`;
 
   const tagIcon = document.getElementById("wcmTaglineIcon");
-  if (tagIcon) tagIcon.innerHTML = WEDDING_SERVICE_ICONS[cfg.icon] || WEDDING_SERVICE_ICONS.sparkles;
+  if (tagIcon) tagIcon.innerHTML = WEDDING_SERVICE_ICONS[cfg.icon || service.icon] || WEDDING_SERVICE_ICONS.sparkles;
 
   const headerIcon = document.getElementById("wcmHeaderIcon");
-  if (headerIcon) headerIcon.innerHTML = WEDDING_SERVICE_ICONS[cfg.icon] || WEDDING_SERVICE_ICONS.sparkles;
+  if (headerIcon) headerIcon.innerHTML = WEDDING_SERVICE_ICONS[cfg.icon || service.icon] || WEDDING_SERVICE_ICONS.sparkles;
 
   const listEl = document.getElementById("wcmOptionsList");
   if (!listEl) return;
@@ -3161,28 +3196,52 @@ function openWeddingServiceModal(serviceId) {
   } catch(e) {}
 }
 
-// 1. Individual mode renderer (House Decoration)
+// 1. Individual mode renderer (House Decoration & Custom Options)
 function renderWcmIndividual(listEl, cfg) {
-  listEl.innerHTML = cfg.options.map(opt => `
-    <div class="wcm-option-card ${opt.checked ? 'active' : ''}" id="wcm_card_${opt.id}">
-      <div class="wcm-option-header" onclick="toggleWcmOption('${opt.id}')">
-        <div class="wcm-checkbox">
+  listEl.innerHTML = (cfg.options || []).map((opt, idx) => {
+    const hasImage = Boolean(opt.image && opt.image.trim());
+    const subList = opt.radios || opt.subItems;
+    const optId = opt.id || (`opt_${idx}_` + (opt.title || 'item').toLowerCase().replace(/[^a-z0-9]/g, ''));
+    const safeTitle = (opt.title || 'Option').replace(/"/g, '&quot;');
+    const safeSubtitle = (opt.subtitle || '').replace(/"/g, '&quot;');
+    const safeImage = (opt.image || '').replace(/"/g, '&quot;');
+
+    return `
+    <div class="wcm-option-card ${opt.checked ? 'active' : ''}" 
+         id="wcm_card_${optId}" 
+         data-id="${optId}" 
+         data-image="${safeImage}" 
+         onclick="inspectWcmOption('${optId}')"
+         title="${hasImage ? 'Tap to view option photo' : 'Tap to inspect'}">
+      <div class="wcm-option-header">
+        <div class="wcm-checkbox" 
+             onclick="event.stopPropagation(); toggleWcmOption('${optId}');" 
+             title="Click checkbox to select/unselect for quotation"
+             aria-label="Select ${safeTitle}">
           <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="20 6 9 17 4 12"></polyline>
           </svg>
         </div>
         <div class="wcm-option-title-box">
-          <h4 class="wcm-option-title">${opt.title}</h4>
+          <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+            <h4 class="wcm-option-title" style="margin:0;">${opt.title || 'Untitled Option'}</h4>
+            ${hasImage ? `<span class="wcm-photo-badge">🖼️ Photo</span>` : ''}
+          </div>
           ${opt.subtitle ? `<p class="wcm-option-subtitle">${opt.subtitle}</p>` : ''}
         </div>
+        ${hasImage ? `
+          <div class="wcm-opt-thumb" onclick="event.stopPropagation(); inspectWcmOption('${optId}');" title="Tap to preview image on left">
+            <img src="${opt.image}" alt="${safeTitle}" loading="lazy" />
+          </div>
+        ` : ''}
       </div>
-      ${(opt.radios || opt.subItems) ? `
-        <div class="wcm-sub-options-row">
+      ${subList && subList.length > 0 ? `
+        <div class="wcm-sub-options-row" onclick="event.stopPropagation();">
           ${(opt.subPrompt || opt.subtitle) ? `<span class="wcm-sub-prompt">${opt.subPrompt || opt.subtitle}</span>` : ''}
           <div class="wcm-radios-wrap">
-            ${(opt.radios || opt.subItems).map((r, i) => `
+            ${subList.map((r, i) => `
               <label class="wcm-radio-label">
-                <input type="radio" name="${opt.radioName || ('r_' + opt.id)}" value="${r}" class="wcm-radio-input" ${r === opt.selectedRadio || i === 0 ? 'checked' : ''} onchange="updateWcmRadio('${opt.id}', '${r}')" />
+                <input type="radio" name="${opt.radioName || ('r_' + optId)}" value="${r}" class="wcm-radio-input" ${r === opt.selectedRadio || i === 0 ? 'checked' : ''} onchange="updateWcmRadio('${optId}', '${r}')" />
                 <span>${r}</span>
               </label>
             `).join("")}
@@ -3190,7 +3249,8 @@ function renderWcmIndividual(listEl, cfg) {
         </div>
       ` : ''}
     </div>
-  `).join("");
+    `;
+  }).join("");
 }
 
 // 2. Grouped mode renderer (Nalugu & Function Hall Flower)
@@ -3794,15 +3854,15 @@ function renderWcmSpecialEvents(listEl) {
 // 8. Musical Events renderer (Icon cards)
 function renderWcmMusicalEvents(listEl) {
   const cards = [
-    { id: "me_orchestra", title: "Orchestra", desc: "Full orchestra for a grand musical experience", icon: WEDDING_SERVICE_ICONS.orchestra },
-    { id: "me_dj", title: "DJ", desc: "Professional DJ with latest music collection", icon: WEDDING_SERVICE_ICONS.dj },
-    { id: "me_light_music", title: "Light Music", desc: "Melodious light music for a pleasant atmosphere", icon: WEDDING_SERVICE_ICONS.music },
-    { id: "me_instrumental", title: "Live Instrumental Music", desc: "Live instrumental performance", icon: WEDDING_SERVICE_ICONS.guitar }
+    { id: "me_orchestra", title: "Orchestra", desc: "Full orchestra for a grand musical experience", icon: WEDDING_SERVICE_ICONS.orchestra, image: "https://images.unsplash.com/photo-1465847899084-d164df4dedc6?auto=format&fit=crop&w=600&q=80" },
+    { id: "me_dj", title: "DJ", desc: "Professional DJ with latest music collection", icon: WEDDING_SERVICE_ICONS.dj, image: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=600&q=80" },
+    { id: "me_light_music", title: "Light Music", desc: "Melodious light music for a pleasant atmosphere", icon: WEDDING_SERVICE_ICONS.music, image: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=600&q=80" },
+    { id: "me_instrumental", title: "Live Instrumental Music", desc: "Live instrumental performance", icon: WEDDING_SERVICE_ICONS.guitar, image: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=600&q=80" }
   ];
 
   listEl.innerHTML = cards.map(c => `
-    <div class="wcm-icon-card" id="wcm_card_${c.id}" onclick="toggleWcmOption('${c.id}')">
-      <div class="wcm-checkbox">
+    <div class="wcm-icon-card" id="wcm_card_${c.id}" data-id="${c.id}" data-image="${c.image}" onclick="inspectWcmOption('${c.id}')" title="Tap to preview photo on left">
+      <div class="wcm-checkbox" onclick="event.stopPropagation(); toggleWcmOption('${c.id}')" title="Click checkbox to select/unselect">
         <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
           <polyline points="20 6 9 17 4 12"></polyline>
         </svg>
@@ -3864,10 +3924,15 @@ function renderWcmSangyamBags(listEl) {
 
 // 10. Fallback renderer
 function renderWcmFallback(listEl, cfg) {
-  listEl.innerHTML = cfg.items.map(item => `
-    <div class="wcm-option-card ${item.checked ? 'active' : ''}" id="wcm_card_${item.id}" onclick="toggleWcmOption('${item.id}')">
+  listEl.innerHTML = (cfg.items || []).map(item => `
+    <div class="wcm-option-card ${item.checked ? 'active' : ''}" 
+         id="wcm_card_${item.id}" 
+         data-id="${item.id}" 
+         data-image="${(item.image || '').replace(/"/g, '&quot;')}" 
+         onclick="inspectWcmOption('${item.id}')"
+         title="Tap to preview photo on left">
       <div class="wcm-option-header">
-        <div class="wcm-checkbox">
+        <div class="wcm-checkbox" onclick="event.stopPropagation(); toggleWcmOption('${item.id}')" title="Click checkbox to select/unselect">
           <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="20 6 9 17 4 12"></polyline>
           </svg>
@@ -3875,18 +3940,63 @@ function renderWcmFallback(listEl, cfg) {
         <div class="wcm-option-title-box">
           <h4 class="wcm-option-title">${item.title}</h4>
         </div>
+        ${item.image ? `
+          <div class="wcm-opt-thumb" onclick="event.stopPropagation(); inspectWcmOption('${item.id}');">
+            <img src="${item.image}" alt="${item.title}" loading="lazy" />
+          </div>
+        ` : ''}
       </div>
     </div>
   `).join("");
 }
 
 // Interactive helper functions
+function inspectWcmOption(optId) {
+  const card = document.getElementById(`wcm_card_${optId}`);
+  if (!card) return;
+
+  const modal = document.getElementById("weddingServiceDetailModal");
+  if (modal) {
+    modal.querySelectorAll(".wcm-option-card.is-viewing, .wcm-icon-card.is-viewing").forEach(c => {
+      if (c !== card) c.classList.remove("is-viewing");
+    });
+  }
+  card.classList.add("is-viewing");
+
+  const imgUrl = (card.dataset.image || '').trim();
+  const photo = document.getElementById("wcmPhoto");
+  if (!photo) return;
+
+  const service = (SITE_DATA.weddingServices || []).find(s => s.id === activeWeddingModalServiceId);
+  const defaultImg = service?.image || (activeWeddingModalServiceId && WEDDING_MODAL_CONFIGS[activeWeddingModalServiceId]?.image) || '';
+  const targetImg = imgUrl || defaultImg;
+
+  if (targetImg && photo.getAttribute("src") !== targetImg) {
+    photo.style.transition = "opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1), transform 0.25s cubic-bezier(0.4, 0, 0.2, 1)";
+    photo.style.opacity = "0.35";
+    photo.style.transform = "scale(0.97)";
+
+    const newImg = new Image();
+    const handleLoaded = () => {
+      photo.src = targetImg;
+      photo.style.opacity = "1";
+      photo.style.transform = "scale(1)";
+    };
+    newImg.onload = handleLoaded;
+    newImg.onerror = handleLoaded;
+    newImg.src = targetImg;
+  }
+}
+
 function toggleWcmOption(optId) {
   const card = document.getElementById(`wcm_card_${optId}`);
   if (!card) return;
   card.classList.toggle("active");
   updateWcmSelectedCount();
 }
+
+window.inspectWcmOption = inspectWcmOption;
+window.toggleWcmOption = toggleWcmOption;
 
 function updateWcmRadio(optId, radioVal) {
   const card = document.getElementById(`wcm_card_${optId}`);
