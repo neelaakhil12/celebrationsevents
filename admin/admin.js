@@ -1761,7 +1761,7 @@
                       : escapeHtml(catObj.desc || `All premier ${catObj.name} celebration setups, themes, and decoration packages.`))}
                 </p>
                 <div class="category-hero-actions">
-                  <button type="button" class="btn-hero-add-pkg" onclick="window.adminStudio.openPackageModal('add', null, '${catObj.id}')">
+                  <button type="button" class="btn-hero-add-pkg" onclick="${isGifts ? `window.adminStudio.openGiftModal('add')` : `window.adminStudio.openPackageModal('add', null, '${catObj.id}')`}">
                     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                     <span>${isWedding ? 'Add Wedding Service' : (isGifts ? 'Add Gift / Hamper' : `Add Package to ${escapeHtml(catObj.name)}`)}</span>
                   </button>
@@ -2888,8 +2888,15 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
         openWeddingServiceEditor(packageId);
         return;
       }
+      if (pkg && pkg.category === 'gifts') {
+        openGiftModal(mode, packageId);
+        return;
+      }
     } else if (preselectedCat === 'wedding') {
       openWeddingServiceEditor(null);
+      return;
+    } else if (preselectedCat === 'gifts' || (appState.selectedCategoryTab === 'gifts' && !packageId)) {
+      openGiftModal(mode, packageId);
       return;
     }
 
@@ -6682,102 +6689,160 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
   }
 
   function openGiftModal(mode, giftId = null) {
-    appState.editingGiftId = (mode === 'edit') ? giftId : null;
-    const modal = document.getElementById('giftModal');
-    const titleEl = document.getElementById('giftModalTitle');
-    const form = document.getElementById('giftForm');
-    if (!modal || !form) return;
+    try {
+      appState.editingGiftId = (mode === 'edit') ? giftId : null;
+      const modal = document.getElementById('giftModal');
+      const titleEl = document.getElementById('giftModalTitle');
+      const form = document.getElementById('giftForm');
+      if (!modal || !form) {
+        console.error('Gift modal or form element not found in DOM');
+        return;
+      }
 
-    switchGiftTab('core');
+      switchGiftTab('core');
 
-    // Populate subcategories dropdown
-    const subcatSelect = document.getElementById('giftSubcategory');
-    const giftsCat = appState.categories.find(c => c.id === 'gifts');
-    if (subcatSelect && giftsCat && Array.isArray(giftsCat.subcategories) && giftsCat.subcategories.length > 0) {
-      subcatSelect.innerHTML = giftsCat.subcategories.map(s => `
-        <option value="${s.id}">${s.icon || '🏷️'} ${escapeHtml(s.name)}</option>
-      `).join('');
-    }
+      // Populate subcategories dropdown
+      const subcatSelect = document.getElementById('giftSubcategory');
+      const giftsCat = appState.categories.find(c => c.id === 'gifts');
+      if (subcatSelect && giftsCat && Array.isArray(giftsCat.subcategories) && giftsCat.subcategories.length > 0) {
+        subcatSelect.innerHTML = giftsCat.subcategories.map(s => `
+          <option value="${s.id}">${s.icon || '🏷️'} ${escapeHtml(s.name)}</option>
+        `).join('');
+      }
 
-    if (mode === 'edit' && giftId) {
-      const g = appState.products.find(p => p.id === giftId);
-      if (!g) return;
-
-      titleEl.textContent = `Edit Gift: "${g.title}"`;
-      document.getElementById('giftTitle').value = g.title || '';
-      const slugInput = document.getElementById('giftSlug');
-      slugInput.value = g.id || '';
-      slugInput.readOnly = true;
-
-      if (subcatSelect) subcatSelect.value = g.subcategory || 'boys';
-      document.getElementById('giftBadge').value = g.badge || '';
-      document.getElementById('giftPrice').value = g.price || '';
-      document.getElementById('giftOriginalPrice').value = g.originalPrice || g.original_price || '';
-      document.getElementById('giftBoughtText').value = g.boughtText || '';
-      document.getElementById('giftRating').value = g.rating || '4.8';
-      document.getElementById('giftReviewsCount').value = g.reviewsCount || g.reviews_count || '150';
-      document.getElementById('giftDeliveryNote').value = g.deliveryNote || g.delivery_note || 'Same Day Delivery: Get it delivered in 2 to 4 hours at your location.';
-
-      document.getElementById('giftImage').value = g.image || '';
-      previewGiftImage(g.image || '');
-      currentGiftGallery = Array.isArray(g.gallery) ? [...g.gallery.filter(x => x !== g.image)] : [];
-      renderGiftGalleryInputs();
-
-      // Product Details / Specifications
-      const s = g.specs || {};
-      document.getElementById('giftMaterial').value = g.material || s.material || '';
-      document.getElementById('giftDimensions').value = g.dimensions || s.dimensions || '';
-      document.getElementById('giftColor').value = g.color || s.color || '';
-      document.getElementById('giftRecommendedAge').value = g.recommendedAge || s.recommendedAge || '';
-      document.getElementById('giftWashCare').value = g.washCare || s.washCare || '';
-      document.getElementById('giftPackaging').value = g.packaging || s.packaging || '';
-
-      // Description & Highlights
-      document.getElementById('giftSubtitle').value = g.subtitle || '';
-      document.getElementById('giftDescription').value = g.description || g.aboutDescription || '';
-      currentGiftHighlights = Array.isArray(g.highlights) ? [...g.highlights] : (Array.isArray(g.inclusions) ? [...g.inclusions] : []);
-      renderGiftHighlightsInputs();
-      currentGiftWhy = Array.isArray(g.whyChoose) ? [...g.whyChoose] : [];
-      renderGiftWhyInputs();
-    } else {
-      titleEl.textContent = '+ Add New Gift / Hamper';
-      form.reset();
-      const slugInput = document.getElementById('giftSlug');
-      slugInput.value = '';
-      slugInput.readOnly = false;
-      document.getElementById('giftRating').value = '4.8';
-      document.getElementById('giftReviewsCount').value = '150';
-      document.getElementById('giftBoughtText').value = '250+ bought in last month';
-      document.getElementById('giftDeliveryNote').value = 'Same Day Delivery: Get it delivered in 2 to 4 hours at your location.';
-      document.getElementById('giftBadge').value = 'Best Gift';
-      document.getElementById('giftImagePreviewWrap').style.display = 'none';
-
-      currentGiftGallery = [];
-      renderGiftGalleryInputs();
-      currentGiftHighlights = [
-        "Handcrafted luxury gift presentation",
-        "Tested safe and child-friendly components",
-        "Includes personalized greeting message card"
-      ];
-      renderGiftHighlightsInputs();
-      currentGiftWhy = [
-        "Premium quality guaranteed",
-        "Safe shockproof packaging",
-        "Express same day delivery in 2 to 4 hours"
-      ];
-      renderGiftWhyInputs();
-
-      // Auto slug generator from title
-      const titleInput = document.getElementById('giftTitle');
-      titleInput.oninput = () => {
-        if (!slugInput.readOnly) {
-          slugInput.value = 'gift-' + slugify(titleInput.value);
+      if (mode === 'edit' && giftId) {
+        const g = appState.products.find(p => p.id === giftId);
+        if (!g) {
+          console.warn('Gift not found with ID:', giftId);
+          return;
         }
-      };
-    }
 
-    modal.classList.add('active');
+        if (titleEl) titleEl.textContent = `Edit Gift: "${g.title}"`;
+        const titleInput = document.getElementById('giftTitle');
+        if (titleInput) titleInput.value = g.title || '';
+        const slugInput = document.getElementById('giftSlug');
+        if (slugInput) {
+          slugInput.value = g.id || '';
+          slugInput.readOnly = true;
+        }
+
+        if (subcatSelect) subcatSelect.value = g.subcategory || 'boys';
+        const badgeEl = document.getElementById('giftBadge');
+        if (badgeEl) badgeEl.value = g.badge || '';
+        const priceEl = document.getElementById('giftPrice');
+        if (priceEl) priceEl.value = g.price || '';
+        const origPriceEl = document.getElementById('giftOriginalPrice');
+        if (origPriceEl) origPriceEl.value = g.originalPrice || g.original_price || '';
+        const boughtEl = document.getElementById('giftBoughtText');
+        if (boughtEl) boughtEl.value = g.boughtText || '';
+        const ratingEl = document.getElementById('giftRating');
+        if (ratingEl) ratingEl.value = g.rating || '4.8';
+        const revCountEl = document.getElementById('giftReviewsCount');
+        if (revCountEl) revCountEl.value = g.reviewsCount || g.reviews_count || '150';
+        const delNoteEl = document.getElementById('giftDeliveryNote');
+        if (delNoteEl) delNoteEl.value = g.deliveryNote || g.delivery_note || 'Same Day Delivery: Get it delivered in 2 to 4 hours at your location.';
+
+        const imgEl = document.getElementById('giftImage');
+        if (imgEl) imgEl.value = g.image || '';
+        previewGiftImage(g.image || '');
+        currentGiftGallery = Array.isArray(g.gallery) ? [...g.gallery.filter(x => x !== g.image)] : [];
+        renderGiftGalleryInputs();
+
+        // Product Details / Specifications
+        const s = g.specs || {};
+        const matEl = document.getElementById('giftMaterial');
+        if (matEl) matEl.value = g.material || s.material || '';
+        const dimEl = document.getElementById('giftDimensions');
+        if (dimEl) dimEl.value = g.dimensions || s.dimensions || '';
+        const colEl = document.getElementById('giftColor');
+        if (colEl) colEl.value = g.color || s.color || '';
+        const ageEl = document.getElementById('giftRecommendedAge');
+        if (ageEl) ageEl.value = g.recommendedAge || s.recommendedAge || '';
+        const washEl = document.getElementById('giftWashCare');
+        if (washEl) washEl.value = g.washCare || s.washCare || '';
+        const packEl = document.getElementById('giftPackaging');
+        if (packEl) packEl.value = g.packaging || s.packaging || '';
+
+        // Description & Highlights
+        const subEl = document.getElementById('giftSubtitle');
+        if (subEl) subEl.value = g.subtitle || '';
+        const descEl = document.getElementById('giftDescription');
+        if (descEl) descEl.value = g.description || g.aboutDescription || '';
+        currentGiftHighlights = Array.isArray(g.highlights) ? [...g.highlights] : (Array.isArray(g.inclusions) ? [...g.inclusions] : []);
+        renderGiftHighlightsInputs();
+
+        let whyList = [];
+        if (Array.isArray(g.whyChoose)) {
+          whyList = g.whyChoose.map(w => typeof w === 'string' ? w : (w?.title ? `${w.title} - ${w.desc || ''}` : JSON.stringify(w)));
+        } else if (g.whyChoose && Array.isArray(g.whyChoose.highlights)) {
+          whyList = g.whyChoose.highlights.map(h => typeof h === 'string' ? h : (h?.title ? `${h.title} - ${h.desc || ''}` : ''));
+        }
+        currentGiftWhy = whyList.length > 0 ? whyList : [
+          "Premium quality guaranteed",
+          "Safe shockproof packaging",
+          "Express same day delivery in 2 to 4 hours"
+        ];
+        renderGiftWhyInputs();
+      } else {
+        if (titleEl) titleEl.textContent = '+ Add New Gift / Hamper';
+        form.reset();
+        const slugInput = document.getElementById('giftSlug');
+        if (slugInput) {
+          slugInput.value = '';
+          slugInput.readOnly = false;
+        }
+        const ratingEl = document.getElementById('giftRating');
+        if (ratingEl) ratingEl.value = '4.8';
+        const revCountEl = document.getElementById('giftReviewsCount');
+        if (revCountEl) revCountEl.value = '150';
+        const boughtEl = document.getElementById('giftBoughtText');
+        if (boughtEl) boughtEl.value = '250+ bought in last month';
+        const delNoteEl = document.getElementById('giftDeliveryNote');
+        if (delNoteEl) delNoteEl.value = 'Same Day Delivery: Get it delivered in 2 to 4 hours at your location.';
+        const badgeEl = document.getElementById('giftBadge');
+        if (badgeEl) badgeEl.value = 'Best Gift';
+        const prevWrap = document.getElementById('giftImagePreviewWrap');
+        if (prevWrap) prevWrap.style.display = 'none';
+
+        currentGiftGallery = [];
+        renderGiftGalleryInputs();
+        currentGiftHighlights = [
+          "Handcrafted luxury gift presentation",
+          "Tested safe and child-friendly components",
+          "Includes personalized greeting message card"
+        ];
+        renderGiftHighlightsInputs();
+        currentGiftWhy = [
+          "Premium quality guaranteed",
+          "Safe shockproof packaging",
+          "Express same day delivery in 2 to 4 hours"
+        ];
+        renderGiftWhyInputs();
+
+        // Auto slug generator from title
+        const titleInput = document.getElementById('giftTitle');
+        if (titleInput) {
+          titleInput.oninput = () => {
+            if (slugInput && !slugInput.readOnly) {
+              slugInput.value = 'gift-' + slugify(titleInput.value);
+            }
+          };
+        }
+      }
+
+      modal.classList.add('active');
+    } catch(err) {
+      console.error('Error opening Gift Modal:', err);
+      const modal = document.getElementById('giftModal');
+      if (modal) modal.classList.add('active');
+    }
   }
+
+  // Also bind to window directly for global accessibility
+  window.openGiftModal = openGiftModal;
+  window.switchGiftTab = switchGiftTab;
+  window.previewGiftImage = previewGiftImage;
+  window.saveGift = saveGift;
 
   async function saveGift(event) {
     event.preventDefault();
