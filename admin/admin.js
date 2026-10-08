@@ -1109,7 +1109,17 @@
             slotsAlert: slotsAlertVal,
             slots_alert: slotsAlertVal,
             whyChoose: p.why_choose || p.whyChoose || extra.whyChoose || localPkg.whyChoose || DEFAULT_WHY_CHOOSE,
-            options: optionsVal
+            options: optionsVal,
+            material: p.material || extra.material || localPkg.material || '',
+            dimensions: p.dimensions || extra.dimensions || localPkg.dimensions || '',
+            color: p.color || extra.color || localPkg.color || '',
+            recommendedAge: p.recommended_age || p.recommendedAge || extra.recommendedAge || localPkg.recommendedAge || '',
+            washCare: p.wash_care || p.washCare || extra.washCare || localPkg.washCare || '',
+            packaging: p.packaging || extra.packaging || localPkg.packaging || '',
+            specs: p.specs || extra.specs || localPkg.specs || {},
+            subtitle: p.subtitle || extra.subtitle || localPkg.subtitle || '',
+            boughtText: p.bought_text || p.boughtText || extra.boughtText || localPkg.boughtText || '',
+            highlights: (Array.isArray(p.highlights) && p.highlights.length > 0) ? p.highlights : ((Array.isArray(extra.highlights) && extra.highlights.length > 0) ? extra.highlights : (localPkg.highlights || []))
           };
           fetchedMap.set(p.id, mergedPkg);
         });
@@ -1272,7 +1282,17 @@
               colorPalettes: p.colorPalettes || [],
               slotsAlert: p.slotsAlert || '',
               whyChoose: p.whyChoose || DEFAULT_WHY_CHOOSE,
-              options: p.options || []
+              options: p.options || [],
+              material: p.material || p.specs?.material || '',
+              dimensions: p.dimensions || p.specs?.dimensions || '',
+              color: p.color || p.specs?.color || '',
+              recommendedAge: p.recommendedAge || p.specs?.recommendedAge || '',
+              washCare: p.washCare || p.specs?.washCare || '',
+              packaging: p.packaging || p.specs?.packaging || '',
+              specs: p.specs || {},
+              subtitle: p.subtitle || '',
+              boughtText: p.boughtText || '',
+              highlights: p.highlights || []
             };
           }
         });
@@ -1423,8 +1443,12 @@
     });
 
     document.getElementById('topbarAddPackageBtn')?.addEventListener('click', () => {
-      const activeCat = appState.selectedCategoryTab !== 'all' ? appState.selectedCategoryTab : null;
-      openPackageModal('add', null, activeCat);
+      if (appState.selectedCategoryTab === 'gifts') {
+        openGiftModal('add');
+      } else {
+        const activeCat = appState.selectedCategoryTab !== 'all' ? appState.selectedCategoryTab : null;
+        openPackageModal('add', null, activeCat);
+      }
     });
 
     document.getElementById('topbarAddCatBtn')?.addEventListener('click', () => {
@@ -2411,6 +2435,43 @@
           desc: JSON.stringify(subcatMap)
         });
 
+        const pkgDetailsMap = {};
+        appState.products.forEach(p => {
+          if (p.id) {
+            pkgDetailsMap[p.id] = {
+              subcategory: p.subcategory || '',
+              faqs: p.faqs || [],
+              addons: p.addons || [],
+              notIncluded: p.notIncluded || [],
+              aboutDescription: p.aboutDescription || p.description || '',
+              deliveryNote: p.deliveryNote || '',
+              decoratorNote: p.decoratorNote || '',
+              lifespanNote: p.lifespanNote || '',
+              locationNote: p.locationNote || '',
+              colorPalettes: p.colorPalettes || [],
+              slotsAlert: p.slotsAlert || '',
+              whyChoose: p.whyChoose || DEFAULT_WHY_CHOOSE,
+              options: p.options || [],
+              material: p.material || p.specs?.material || '',
+              dimensions: p.dimensions || p.specs?.dimensions || '',
+              color: p.color || p.specs?.color || '',
+              recommendedAge: p.recommendedAge || p.specs?.recommendedAge || '',
+              washCare: p.washCare || p.specs?.washCare || '',
+              packaging: p.packaging || p.specs?.packaging || '',
+              specs: p.specs || {},
+              subtitle: p.subtitle || '',
+              boughtText: p.boughtText || '',
+              highlights: p.highlights || []
+            };
+          }
+        });
+        await supabase.from('categories').upsert({
+          id: '__site_package_details__',
+          name: 'Global Package Extended Details',
+          image: 'https://images.unsplash.com/photo-1530103862676-de8c9debad1d',
+          desc: JSON.stringify(pkgDetailsMap)
+        });
+
         const catRows = appState.categories
           .filter(c => c.id !== '__site_subcategories__')
           .map(c => ({
@@ -2744,7 +2805,7 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
                 </button>
               ` : `
                 ${isGifts ? `
-                  <button type="button" class="btn-card-action btn-card-edit" onclick="window.adminStudio.openPackageModal('edit', '${p.id}')">
+                  <button type="button" class="btn-card-action btn-card-edit" onclick="window.adminStudio.openGiftModal('edit', '${p.id}')">
                     ✏️ Edit Gift
                   </button>
                   <a href="../gift-detail.html?id=${encodeURIComponent(p.id)}" target="_blank" class="btn-card-action btn-card-view" title="Preview live on Gift Marketplace">
@@ -6453,7 +6514,380 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
   }
 
   // Global methods
+  
+  /* ==========================================================================
+     DEDICATED GIFT MARKETPLACE STUDIO LOGIC (Exact Specifications)
+     ========================================================================== */
+  let currentGiftGallery = [];
+  let currentGiftHighlights = [];
+  let currentGiftWhy = [];
+
+  function switchGiftTab(tabId, btn) {
+    document.querySelectorAll('#giftStudioNav .pkg-studio-tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('#giftModal .pkg-studio-pane').forEach(p => p.classList.remove('active'));
+    if (btn) {
+      btn.classList.add('active');
+    } else {
+      const targetBtn = document.querySelector(`#giftStudioNav .pkg-studio-tab-btn[onclick*="'${tabId}'"]`);
+      if (targetBtn) targetBtn.classList.add('active');
+    }
+    const targetPane = document.getElementById('giftPane-' + tabId);
+    if (targetPane) targetPane.classList.add('active');
+  }
+
+  function previewGiftImage(url) {
+    const preview = document.getElementById('giftImagePreview');
+    const wrap = document.getElementById('giftImagePreviewWrap');
+    if (preview && url) {
+      preview.src = url;
+      if (wrap) wrap.style.display = 'block';
+    }
+  }
+
+  async function handleGiftImageUpload(event) {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    const statusEl = document.getElementById('giftUploadStatus');
+    const inputEl = document.getElementById('giftImage');
+    if (statusEl) {
+      statusEl.style.display = 'block';
+      statusEl.textContent = '⏳ Uploading image to Cloudinary...';
+    }
+
+    try {
+      const reader = new FileReader();
+      reader.onload = async (e) => {
+        const base64 = e.target.result;
+        try {
+          const res = await fetch('/api/upload-image', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ image: base64, folder: 'celebration_gifts' })
+          });
+          const data = await res.json();
+          if (data && data.url) {
+            inputEl.value = data.url;
+            previewGiftImage(data.url);
+            if (statusEl) {
+              statusEl.textContent = '✓ Image uploaded to Cloudinary successfully!';
+              statusEl.style.color = '#059669';
+              setTimeout(() => { statusEl.style.display = 'none'; }, 2500);
+            }
+          } else {
+            throw new Error(data.error || 'Upload failed');
+          }
+        } catch(err) {
+          console.warn('Direct upload fallback:', err);
+          inputEl.value = base64;
+          previewGiftImage(base64);
+          if (statusEl) {
+            statusEl.textContent = '✓ Photo loaded locally';
+            statusEl.style.color = '#059669';
+            setTimeout(() => { statusEl.style.display = 'none'; }, 2000);
+          }
+        }
+      };
+      reader.readAsDataURL(file);
+    } catch(err) {
+      if (statusEl) statusEl.textContent = 'Upload error: ' + err.message;
+    }
+  }
+
+  function renderGiftGalleryInputs() {
+    const container = document.getElementById('giftGalleryContainer');
+    if (!container) return;
+    if (currentGiftGallery.length === 0) {
+      container.innerHTML = '<span style="font-size:12px; color:var(--text-muted); font-style:italic;">No additional gallery angles yet. Click + Add Image to upload or enter image URL.</span>';
+      return;
+    }
+    container.innerHTML = currentGiftGallery.map((imgUrl, idx) => `
+      <div style="display:flex; gap:10px; align-items:center;">
+        <input type="url" class="form-control" value="${escapeHtml(imgUrl)}" placeholder="https://..." onchange="window.adminStudio.updateGiftGalleryImage(${idx}, this.value)" />
+        <button type="button" class="btn-remove-inclusion" onclick="window.adminStudio.removeGiftGalleryImage(${idx})" title="Remove">✕</button>
+      </div>
+    `).join('');
+  }
+
+  function addGiftGalleryField(defaultVal = '') {
+    currentGiftGallery.push(defaultVal);
+    renderGiftGalleryInputs();
+  }
+
+  function updateGiftGalleryImage(idx, val) {
+    if (currentGiftGallery[idx] !== undefined) currentGiftGallery[idx] = val;
+  }
+
+  function removeGiftGalleryImage(idx) {
+    currentGiftGallery.splice(idx, 1);
+    renderGiftGalleryInputs();
+  }
+
+  function renderGiftHighlightsInputs() {
+    const container = document.getElementById('giftHighlightsContainer');
+    if (!container) return;
+    if (currentGiftHighlights.length === 0) {
+      container.innerHTML = '<span style="font-size:12px; color:var(--text-muted); font-style:italic;">No key highlights added yet. Click + Add Highlight.</span>';
+      return;
+    }
+    container.innerHTML = currentGiftHighlights.map((text, idx) => `
+      <div style="display:flex; gap:10px; align-items:center;">
+        <input type="text" class="form-control" value="${escapeHtml(text)}" placeholder="e.g. UV400 cool sunglasses / 15 Fresh Dutch Roses" onchange="window.adminStudio.updateGiftHighlight(${idx}, this.value)" />
+        <button type="button" class="btn-remove-inclusion" onclick="window.adminStudio.removeGiftHighlight(${idx})" title="Remove">✕</button>
+      </div>
+    `).join('');
+  }
+
+  function addGiftHighlightField(defaultVal = '') {
+    currentGiftHighlights.push(defaultVal);
+    renderGiftHighlightsInputs();
+  }
+
+  function updateGiftHighlight(idx, val) {
+    if (currentGiftHighlights[idx] !== undefined) currentGiftHighlights[idx] = val;
+  }
+
+  function removeGiftHighlight(idx) {
+    currentGiftHighlights.splice(idx, 1);
+    renderGiftHighlightsInputs();
+  }
+
+  function renderGiftWhyInputs() {
+    const container = document.getElementById('giftWhyContainer');
+    if (!container) return;
+    if (currentGiftWhy.length === 0) {
+      container.innerHTML = '<span style="font-size:12px; color:var(--text-muted); font-style:italic;">No why choose points added yet. Click + Add Reason.</span>';
+      return;
+    }
+    container.innerHTML = currentGiftWhy.map((text, idx) => `
+      <div style="display:flex; gap:10px; align-items:center;">
+        <input type="text" class="form-control" value="${escapeHtml(text)}" placeholder="e.g. Same day express delivery (2 to 4 hours)" onchange="window.adminStudio.updateGiftWhy(${idx}, this.value)" />
+        <button type="button" class="btn-remove-inclusion" onclick="window.adminStudio.removeGiftWhy(${idx})" title="Remove">✕</button>
+      </div>
+    `).join('');
+  }
+
+  function addGiftWhyField(defaultVal = '') {
+    currentGiftWhy.push(defaultVal);
+    renderGiftWhyInputs();
+  }
+
+  function updateGiftWhy(idx, val) {
+    if (currentGiftWhy[idx] !== undefined) currentGiftWhy[idx] = val;
+  }
+
+  function removeGiftWhy(idx) {
+    currentGiftWhy.splice(idx, 1);
+    renderGiftWhyInputs();
+  }
+
+  function openGiftModal(mode, giftId = null) {
+    appState.editingGiftId = (mode === 'edit') ? giftId : null;
+    const modal = document.getElementById('giftModal');
+    const titleEl = document.getElementById('giftModalTitle');
+    const form = document.getElementById('giftForm');
+    if (!modal || !form) return;
+
+    switchGiftTab('core');
+
+    // Populate subcategories dropdown
+    const subcatSelect = document.getElementById('giftSubcategory');
+    const giftsCat = appState.categories.find(c => c.id === 'gifts');
+    if (subcatSelect && giftsCat && Array.isArray(giftsCat.subcategories) && giftsCat.subcategories.length > 0) {
+      subcatSelect.innerHTML = giftsCat.subcategories.map(s => `
+        <option value="${s.id}">${s.icon || '🏷️'} ${escapeHtml(s.name)}</option>
+      `).join('');
+    }
+
+    if (mode === 'edit' && giftId) {
+      const g = appState.products.find(p => p.id === giftId);
+      if (!g) return;
+
+      titleEl.textContent = `Edit Gift: "${g.title}"`;
+      document.getElementById('giftTitle').value = g.title || '';
+      const slugInput = document.getElementById('giftSlug');
+      slugInput.value = g.id || '';
+      slugInput.readOnly = true;
+
+      if (subcatSelect) subcatSelect.value = g.subcategory || 'boys';
+      document.getElementById('giftBadge').value = g.badge || '';
+      document.getElementById('giftPrice').value = g.price || '';
+      document.getElementById('giftOriginalPrice').value = g.originalPrice || g.original_price || '';
+      document.getElementById('giftBoughtText').value = g.boughtText || '';
+      document.getElementById('giftRating').value = g.rating || '4.8';
+      document.getElementById('giftReviewsCount').value = g.reviewsCount || g.reviews_count || '150';
+      document.getElementById('giftDeliveryNote').value = g.deliveryNote || g.delivery_note || 'Same Day Delivery: Get it delivered in 2 to 4 hours at your location.';
+
+      document.getElementById('giftImage').value = g.image || '';
+      previewGiftImage(g.image || '');
+      currentGiftGallery = Array.isArray(g.gallery) ? [...g.gallery.filter(x => x !== g.image)] : [];
+      renderGiftGalleryInputs();
+
+      // Product Details / Specifications
+      const s = g.specs || {};
+      document.getElementById('giftMaterial').value = g.material || s.material || '';
+      document.getElementById('giftDimensions').value = g.dimensions || s.dimensions || '';
+      document.getElementById('giftColor').value = g.color || s.color || '';
+      document.getElementById('giftRecommendedAge').value = g.recommendedAge || s.recommendedAge || '';
+      document.getElementById('giftWashCare').value = g.washCare || s.washCare || '';
+      document.getElementById('giftPackaging').value = g.packaging || s.packaging || '';
+
+      // Description & Highlights
+      document.getElementById('giftSubtitle').value = g.subtitle || '';
+      document.getElementById('giftDescription').value = g.description || g.aboutDescription || '';
+      currentGiftHighlights = Array.isArray(g.highlights) ? [...g.highlights] : (Array.isArray(g.inclusions) ? [...g.inclusions] : []);
+      renderGiftHighlightsInputs();
+      currentGiftWhy = Array.isArray(g.whyChoose) ? [...g.whyChoose] : [];
+      renderGiftWhyInputs();
+    } else {
+      titleEl.textContent = '+ Add New Gift / Hamper';
+      form.reset();
+      const slugInput = document.getElementById('giftSlug');
+      slugInput.value = '';
+      slugInput.readOnly = false;
+      document.getElementById('giftRating').value = '4.8';
+      document.getElementById('giftReviewsCount').value = '150';
+      document.getElementById('giftBoughtText').value = '250+ bought in last month';
+      document.getElementById('giftDeliveryNote').value = 'Same Day Delivery: Get it delivered in 2 to 4 hours at your location.';
+      document.getElementById('giftBadge').value = 'Best Gift';
+      document.getElementById('giftImagePreviewWrap').style.display = 'none';
+
+      currentGiftGallery = [];
+      renderGiftGalleryInputs();
+      currentGiftHighlights = [
+        "Handcrafted luxury gift presentation",
+        "Tested safe and child-friendly components",
+        "Includes personalized greeting message card"
+      ];
+      renderGiftHighlightsInputs();
+      currentGiftWhy = [
+        "Premium quality guaranteed",
+        "Safe shockproof packaging",
+        "Express same day delivery in 2 to 4 hours"
+      ];
+      renderGiftWhyInputs();
+
+      // Auto slug generator from title
+      const titleInput = document.getElementById('giftTitle');
+      titleInput.oninput = () => {
+        if (!slugInput.readOnly) {
+          slugInput.value = 'gift-' + slugify(titleInput.value);
+        }
+      };
+    }
+
+    modal.classList.add('active');
+  }
+
+  async function saveGift(event) {
+    event.preventDefault();
+    const title = document.getElementById('giftTitle')?.value.trim();
+    const rawSlug = document.getElementById('giftSlug')?.value.trim();
+    const slug = rawSlug.startsWith('gift-') ? rawSlug : ('gift-' + slugify(rawSlug));
+    const subcategory = document.getElementById('giftSubcategory')?.value || 'boys';
+    const badge = document.getElementById('giftBadge')?.value.trim() || 'Best Gift';
+    const price = parseFloat(document.getElementById('giftPrice')?.value) || 0;
+    const origPrice = parseFloat(document.getElementById('giftOriginalPrice')?.value) || Math.round(price * 1.25);
+    const boughtText = document.getElementById('giftBoughtText')?.value.trim() || '250+ bought in last month';
+    const rating = parseFloat(document.getElementById('giftRating')?.value) || 4.8;
+    const reviewsCount = parseInt(document.getElementById('giftReviewsCount')?.value, 10) || 120;
+    const deliveryNote = document.getElementById('giftDeliveryNote')?.value.trim() || 'Same Day Delivery: Get it delivered in 2 to 4 hours at your location.';
+    const image = document.getElementById('giftImage')?.value.trim() || 'https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=600&q=80';
+
+    const material = document.getElementById('giftMaterial')?.value.trim() || 'Ultra-Soft Hypoallergenic Plush & PP Cotton';
+    const dimensions = document.getElementById('giftDimensions')?.value.trim() || '35 cm (Sitting Height)';
+    const color = document.getElementById('giftColor')?.value.trim() || 'Warm Honey Brown with Silk Ribbon';
+    const recommendedAge = document.getElementById('giftRecommendedAge')?.value.trim() || 'Safe for all age groups (3+ to Adults)';
+    const washCare = document.getElementById('giftWashCare')?.value.trim() || 'Hand wash with mild detergent or damp wipe';
+    const packaging = document.getElementById('giftPackaging')?.value.trim() || 'Gift Wrapped in Polka Box with Satin Bow';
+
+    const subtitle = document.getElementById('giftSubtitle')?.value.trim() || title;
+    const description = document.getElementById('giftDescription')?.value.trim() || subtitle;
+
+    const discount = origPrice > price ? Math.round(((origPrice - price) / origPrice) * 100) : 0;
+    const gallery = [image, ...currentGiftGallery.filter(x => x && x !== image)];
+
+    const giftData = {
+      id: slug,
+      title: title,
+      category: 'gifts',
+      category_name: 'Gift Marketplace',
+      categoryName: 'Gift Marketplace',
+      subcategory: subcategory,
+      badge: badge,
+      price: price,
+      original_price: origPrice,
+      originalPrice: origPrice,
+      discount: discount,
+      rating: rating,
+      reviews_count: reviewsCount,
+      reviewsCount: reviewsCount,
+      boughtText: boughtText,
+      image: image,
+      gallery: gallery,
+      material: material,
+      dimensions: dimensions,
+      color: color,
+      recommendedAge: recommendedAge,
+      washCare: washCare,
+      packaging: packaging,
+      specs: {
+        material: material,
+        dimensions: dimensions,
+        color: color,
+        recommendedAge: recommendedAge,
+        washCare: washCare,
+        packaging: packaging
+      },
+      subtitle: subtitle,
+      description: description,
+      aboutDescription: description,
+      about_description: description,
+      deliveryNote: deliveryNote,
+      delivery_note: deliveryNote,
+      highlights: currentGiftHighlights.filter(h => h && h.trim()),
+      inclusions: currentGiftHighlights.filter(h => h && h.trim()),
+      whyChoose: currentGiftWhy.filter(w => w && w.trim()),
+      tags: ['Gift Marketplace', subcategory, `subcat:${subcategory}`]
+    };
+
+    if (appState.editingGiftId) {
+      const idx = appState.products.findIndex(p => p.id === appState.editingGiftId);
+      if (idx !== -1) {
+        appState.products[idx] = { ...appState.products[idx], ...giftData };
+      } else {
+        appState.products.unshift(giftData);
+      }
+      await commitData(`Gift "${title}" updated successfully!`);
+    } else {
+      if (appState.products.some(p => p.id === slug)) {
+        showToast(`Gift with ID "${slug}" already exists.`, 'error');
+        return;
+      }
+      appState.products.unshift(giftData);
+      await commitData(`New Gift "${title}" published to Gift Marketplace!`);
+    }
+
+    closeAllModals();
+    renderPackages();
+    updateMetrics();
+  }
+
   window.adminStudio = {
+    openGiftModal,
+    switchGiftTab,
+    previewGiftImage,
+    handleGiftImageUpload,
+    addGiftGalleryField,
+    updateGiftGalleryImage,
+    removeGiftGalleryImage,
+    addGiftHighlightField,
+    updateGiftHighlight,
+    removeGiftHighlight,
+    addGiftWhyField,
+    updateGiftWhy,
+    removeGiftWhy,
+    saveGift,
     selectCategoryTab,
     clearPackageSearch,
     openPackageModal,

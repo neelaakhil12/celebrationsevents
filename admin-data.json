@@ -150,6 +150,20 @@
       "active": true,
       "order": 1,
       "updatedAt": "2026-10-08T12:32:43.204Z"
+    },
+    {
+      "id": "banner-cat-dusera",
+      "location": "dusera",
+      "locationName": "dusera Page Banner",
+      "tag": "✨ The Ultimate dusera Collection",
+      "title": "Professional dusera Balloon Decorations",
+      "subtitle": "Make their milestone unforgettable! Premium celebration setups in 100+ cities.",
+      "image": "https://res.cloudinary.com/gu0q1mxy/image/upload/v1791467092/celebration-banners/hl3zx6kt9jid5zztp40k.jpg",
+      "linkText": "Explore Setups Below ↓",
+      "linkUrl": "#duseraCatalog",
+      "active": true,
+      "order": 1,
+      "updatedAt": "2026-10-08T13:44:52.381Z"
     }
   ],
   "categories": [
@@ -683,7 +697,17 @@
           }
         ]
       },
-      "options": []
+      "options": [],
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommendedAge": "",
+      "washCare": "",
+      "packaging": "",
+      "specs": {},
+      "subtitle": "",
+      "boughtText": "",
+      "highlights": []
     },
     {
       "id": "happy-anniversary-backdrop-decoration",
@@ -828,7 +852,17 @@
           }
         ]
       },
-      "options": []
+      "options": [],
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommendedAge": "",
+      "washCare": "",
+      "packaging": "",
+      "specs": {},
+      "subtitle": "",
+      "boughtText": "",
+      "highlights": []
     },
     {
       "id": "cabana-canopy-terrace-decor",
@@ -971,7 +1005,17 @@
           }
         ]
       },
-      "options": []
+      "options": [],
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommendedAge": "",
+      "washCare": "",
+      "packaging": "",
+      "specs": {},
+      "subtitle": "",
+      "boughtText": "",
+      "highlights": []
     },
     {
       "id": "cocomelon-kids-theme",
@@ -1116,7 +1160,17 @@
           }
         ]
       },
-      "options": []
+      "options": [],
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommendedAge": "",
+      "washCare": "",
+      "packaging": "",
+      "specs": {},
+      "subtitle": "",
+      "boughtText": "",
+      "highlights": []
     },
     {
       "id": "baby-shark-underwater-theme",
@@ -1259,7 +1313,17 @@
           }
         ]
       },
-      "options": []
+      "options": [],
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommendedAge": "",
+      "washCare": "",
+      "packaging": "",
+      "specs": {},
+      "subtitle": "",
+      "boughtText": "",
+      "highlights": []
     },
     {
       "id": "boss-baby-theme-decor",
@@ -1402,7 +1466,17 @@
           }
         ]
       },
-      "options": []
+      "options": [],
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommendedAge": "",
+      "washCare": "",
+      "packaging": "",
+      "specs": {},
+      "subtitle": "",
+      "boughtText": "",
+      "highlights": []
     },
     {
       "id": "jungle-safari-kids-party",
@@ -1545,7 +1619,17 @@
           }
         ]
       },
-      "options": []
+      "options": [],
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommendedAge": "",
+      "washCare": "",
+      "packaging": "",
+      "specs": {},
+      "subtitle": "",
+      "boughtText": "",
+      "highlights": []
     },
     {
       "id": "frozen-wonderland-theme",
@@ -1688,7 +1772,17 @@
           }
         ]
       },
-      "options": []
+      "options": [],
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommendedAge": "",
+      "washCare": "",
+      "packaging": "",
+      "specs": {},
+      "subtitle": "",
+      "boughtText": "",
+      "highlights": []
     },
     {
       "id": "baby-shower-pastel-decor",
@@ -1831,7 +1925,17 @@
           }
         ]
       },
-      "options": []
+      "options": [],
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommendedAge": "",
+      "washCare": "",
+      "packaging": "",
+      "specs": {},
+      "subtitle": "",
+      "boughtText": "",
+      "highlights": []
     },
     {
       "id": "baby-shower-teddy-bear-theme",
@@ -1974,7 +2078,17 @@
           }
         ]
       },
-      "options": []
+      "options": [],
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommendedAge": "",
+      "washCare": "",
+      "packaging": "",
+      "specs": {},
+      "subtitle": "",
+      "boughtText": "",
+      "highlights": []
     },
     {
       "id": "baby-shower-teddy-cloud-cradle-decor",
@@ -2117,7 +2231,17 @@
           }
         ]
       },
-      "options": []
+      "options": [],
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommendedAge": "",
+      "washCare": "",
+      "packaging": "",
+      "specs": {},
+      "subtitle": "",
+      "boughtText": "",
+      "highlights": []
     },
     {
       "id": "baby-welcome-home-balloon-surprise",
@@ -2260,7 +2384,17 @@
           }
         ]
       },
-      "options": []
+      "options": [],
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommendedAge": "",
+      "washCare": "",
+      "packaging": "",
+      "specs": {},
+      "subtitle": "",
+      "boughtText": "",
+      "highlights": []
     },
     {
       "id": "blush-glow-birthday-theme",
@@ -2404,7 +2538,17 @@
           }
         ]
       },
-      "options": []
+      "options": [],
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommendedAge": "",
+      "washCare": "",
+      "packaging": "",
+      "specs": {},
+      "subtitle": "",
+      "boughtText": "",
+      "highlights": []
     },
     {
       "id": "house-decor",
@@ -2598,7 +2742,17 @@
             "No"
           ]
         }
-      ]
+      ],
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommendedAge": "",
+      "washCare": "",
+      "packaging": "",
+      "specs": {},
+      "subtitle": "",
+      "boughtText": "",
+      "highlights": []
     },
     {
       "id": "simple-balloon-decor-for-home",
@@ -2742,7 +2896,17 @@
           }
         ]
       },
-      "options": []
+      "options": [],
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommendedAge": "",
+      "washCare": "",
+      "packaging": "",
+      "specs": {},
+      "subtitle": "",
+      "boughtText": "",
+      "highlights": []
     },
     {
       "id": "rose-gold-birthday-home-decor",
@@ -2887,7 +3051,17 @@
           }
         ]
       },
-      "options": []
+      "options": [],
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommendedAge": "",
+      "washCare": "",
+      "packaging": "",
+      "specs": {},
+      "subtitle": "",
+      "boughtText": "",
+      "highlights": []
     },
     {
       "id": "adorable-birthday-arch-backdrop",
@@ -3031,7 +3205,17 @@
           }
         ]
       },
-      "options": []
+      "options": [],
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommendedAge": "",
+      "washCare": "",
+      "packaging": "",
+      "specs": {},
+      "subtitle": "",
+      "boughtText": "",
+      "highlights": []
     },
     {
       "id": "anniversary-bliss-setup",
@@ -3175,7 +3359,17 @@
           }
         ]
       },
-      "options": []
+      "options": [],
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommendedAge": "",
+      "washCare": "",
+      "packaging": "",
+      "specs": {},
+      "subtitle": "",
+      "boughtText": "",
+      "highlights": []
     },
     {
       "id": "corporate-office-milestone-decor",
@@ -3318,7 +3512,17 @@
           }
         ]
       },
-      "options": []
+      "options": [],
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommendedAge": "",
+      "washCare": "",
+      "packaging": "",
+      "specs": {},
+      "subtitle": "",
+      "boughtText": "",
+      "highlights": []
     },
     {
       "id": "corporate-annual-day-grand-stage",
@@ -3461,7 +3665,17 @@
           }
         ]
       },
-      "options": []
+      "options": [],
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommendedAge": "",
+      "washCare": "",
+      "packaging": "",
+      "specs": {},
+      "subtitle": "",
+      "boughtText": "",
+      "highlights": []
     },
     {
       "id": "corporate-product-launch-balloon-arch",
@@ -3604,7 +3818,17 @@
           }
         ]
       },
-      "options": []
+      "options": [],
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommendedAge": "",
+      "washCare": "",
+      "packaging": "",
+      "specs": {},
+      "subtitle": "",
+      "boughtText": "",
+      "highlights": []
     },
     {
       "id": "corporate-cubicle-bay-festive-decor",
@@ -3747,7 +3971,17 @@
           }
         ]
       },
-      "options": []
+      "options": [],
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommendedAge": "",
+      "washCare": "",
+      "packaging": "",
+      "specs": {},
+      "subtitle": "",
+      "boughtText": "",
+      "highlights": []
     },
     {
       "id": "corporate-executive-townhall-stage-backdrop",
@@ -3890,7 +4124,17 @@
           }
         ]
       },
-      "options": []
+      "options": [],
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommendedAge": "",
+      "washCare": "",
+      "packaging": "",
+      "specs": {},
+      "subtitle": "",
+      "boughtText": "",
+      "highlights": []
     },
     {
       "id": "gift-01",
@@ -3932,7 +4176,7 @@
       "not_included": [],
       "faqs": [],
       "addons": [],
-      "delivery_note": "",
+      "delivery_note": "Same Day Delivery: Get it delivered in 2 to 4 hours at your location.",
       "decorator_note": "",
       "lifespan_note": "",
       "location_note": "",
@@ -3982,7 +4226,7 @@
       },
       "notIncluded": [],
       "aboutDescription": "Adorable, ultra-soft plush teddy bear crafted with hypoallergenic material. A timeless gift for birthdays, anniversaries, and heartfelt surprises.",
-      "deliveryNote": "",
+      "deliveryNote": "Same Day Delivery: Get it delivered in 2 to 4 hours at your location.",
       "decoratorNote": "",
       "lifespanNote": "",
       "locationNote": "",
@@ -4031,7 +4275,29 @@
           }
         ]
       },
-      "options": []
+      "options": [],
+      "subtitle": "A cute and cuddly teddy bear, perfect for every special occasion.",
+      "material": "Ultra-Soft Hypoallergenic Plush & PP Cotton",
+      "dimensions": "35 cm (Sitting Height)",
+      "color": "Warm Honey Brown with Silk Ribbon",
+      "recommendedAge": "Safe for all age groups (3+ to Adults)",
+      "washCare": "Hand wash with mild detergent or damp wipe",
+      "packaging": "Gift Wrapped in Polka Box with Satin Bow",
+      "boughtText": "500+ bought in last month",
+      "highlights": [
+        "Soft and high-quality plush material",
+        "Perfect for gifting on birthdays, anniversaries, and special occasions",
+        "Safe for kids and adults",
+        "A timeless gift for your loved ones"
+      ],
+      "specs": {
+        "material": "Ultra-Soft Hypoallergenic Plush & PP Cotton",
+        "dimensions": "35 cm (Sitting Height)",
+        "color": "Warm Honey Brown with Silk Ribbon",
+        "recommendedAge": "Safe for all age groups (3+ to Adults)",
+        "washCare": "Hand wash with mild detergent or damp wipe",
+        "packaging": "Gift Wrapped in Polka Box with Satin Bow"
+      }
     },
     {
       "id": "gift-02",
@@ -4073,7 +4339,7 @@
       "not_included": [],
       "faqs": [],
       "addons": [],
-      "delivery_note": "",
+      "delivery_note": "Same Day Delivery: Get it delivered in 2 to 4 hours at your location.",
       "decorator_note": "",
       "lifespan_note": "",
       "location_note": "",
@@ -4123,7 +4389,7 @@
       },
       "notIncluded": [],
       "aboutDescription": "High-grade ceramic coffee mug customized with your favorite memory and quote in vibrant, dishwasher-safe sublimation print.",
-      "deliveryNote": "",
+      "deliveryNote": "Same Day Delivery: Get it delivered in 2 to 4 hours at your location.",
       "decoratorNote": "",
       "lifespanNote": "",
       "locationNote": "",
@@ -4172,7 +4438,29 @@
           }
         ]
       },
-      "options": []
+      "options": [],
+      "subtitle": "High-grade ceramic glossy mug customized with your cherished photo and text.",
+      "material": "High-Grade Glossy White Ceramic (Sublimation Coating)",
+      "dimensions": "330 ml (9.5 cm Height x 8.2 cm Dia)",
+      "color": "Glossy White with Multicolor Photo Print",
+      "recommendedAge": "Safe for all ages",
+      "washCare": "Microwave & Dishwasher Safe",
+      "packaging": "Shockproof Thermocol Safety Box with Ribbon",
+      "boughtText": "350+ bought in last month",
+      "highlights": [
+        "Premium 330ml glossy white ceramic",
+        "Scratch-resistant HD photo printing",
+        "Microwave and dishwasher friendly",
+        "Comes in secure shockproof packaging"
+      ],
+      "specs": {
+        "material": "High-Grade Glossy White Ceramic (Sublimation Coating)",
+        "dimensions": "330 ml (9.5 cm Height x 8.2 cm Dia)",
+        "color": "Glossy White with Multicolor Photo Print",
+        "recommendedAge": "Safe for all ages",
+        "washCare": "Microwave & Dishwasher Safe",
+        "packaging": "Shockproof Thermocol Safety Box with Ribbon"
+      }
     },
     {
       "id": "gift-03",
@@ -4215,7 +4503,7 @@
       "not_included": [],
       "faqs": [],
       "addons": [],
-      "delivery_note": "",
+      "delivery_note": "Same Day Delivery: Get it delivered in 2 to 4 hours at your location.",
       "decorator_note": "",
       "lifespan_note": "",
       "location_note": "",
@@ -4265,7 +4553,7 @@
       },
       "notIncluded": [],
       "aboutDescription": "Curated luxury pampering hamper featuring scented soy candles, artisan bath bombs, Ferrero Rocher chocolates, and greeting card in a golden-embossed reusable box.",
-      "deliveryNote": "",
+      "deliveryNote": "Same Day Delivery: Get it delivered in 2 to 4 hours at your location.",
       "decoratorNote": "",
       "lifespanNote": "",
       "locationNote": "",
@@ -4314,7 +4602,29 @@
           }
         ]
       },
-      "options": []
+      "options": [],
+      "subtitle": "Indulgent pampering gift basket with scented candle, skincare, chocolates and silk scarf.",
+      "material": "Artisanal Pine Wood, Soy Wax & Organic Botanical Skincare",
+      "dimensions": "30 x 22 x 15 cm",
+      "color": "Blush Pink & Rose Gold Theme",
+      "recommendedAge": "Adults (Women)",
+      "washCare": "Keep in cool, dry place away from direct sunlight",
+      "packaging": "Artisan Pine Wood Keepsake Basket with Satin Bow",
+      "boughtText": "200+ bought in last month",
+      "highlights": [
+        "Artisan pine wood keepsake box with satin ribbon",
+        "Aromatherapy soy lavender scented candle",
+        "Premium imported chocolate delicacies",
+        "Custom greeting card included"
+      ],
+      "specs": {
+        "material": "Artisanal Pine Wood, Soy Wax & Organic Botanical Skincare",
+        "dimensions": "30 x 22 x 15 cm",
+        "color": "Blush Pink & Rose Gold Theme",
+        "recommendedAge": "Adults (Women)",
+        "washCare": "Keep in cool, dry place away from direct sunlight",
+        "packaging": "Artisan Pine Wood Keepsake Basket with Satin Bow"
+      }
     },
     {
       "id": "gift-04",
@@ -4357,7 +4667,7 @@
       "not_included": [],
       "faqs": [],
       "addons": [],
-      "delivery_note": "",
+      "delivery_note": "Same Day Delivery: Get it delivered in 2 to 4 hours at your location.",
       "decorator_note": "",
       "lifespan_note": "",
       "location_note": "",
@@ -4407,7 +4717,7 @@
       },
       "notIncluded": [],
       "aboutDescription": "Sleek stainless steel analog timepiece featuring mineral glass dial, genuine leather strap, and water resistance in a signature presentation box.",
-      "deliveryNote": "",
+      "deliveryNote": "Same Day Delivery: Get it delivered in 2 to 4 hours at your location.",
       "decoratorNote": "",
       "lifespanNote": "",
       "locationNote": "",
@@ -4456,7 +4766,29 @@
           }
         ]
       },
-      "options": []
+      "options": [],
+      "subtitle": "Classic stainless steel leather strap timepiece designed for modern style.",
+      "material": "Japanese Quartz Movement, Mineral Glass & Genuine Leather",
+      "dimensions": "42 mm Dial Diameter, 22 mm Strap Width",
+      "color": "Classic Black Dial with Tan Brown Strap",
+      "recommendedAge": "Adults (Men)",
+      "washCare": "3 ATM Water Resistant (Wipe with soft cloth)",
+      "packaging": "Luxury Velvet Watch Box with Warranty Card",
+      "boughtText": "180+ bought in last month",
+      "highlights": [
+        "Japanese quartz movement with scratch-proof mineral glass",
+        "Genuine hand-stitched leather strap",
+        "3 ATM water resistant",
+        "1 Year brand warranty card included"
+      ],
+      "specs": {
+        "material": "Japanese Quartz Movement, Mineral Glass & Genuine Leather",
+        "dimensions": "42 mm Dial Diameter, 22 mm Strap Width",
+        "color": "Classic Black Dial with Tan Brown Strap",
+        "recommendedAge": "Adults (Men)",
+        "washCare": "3 ATM Water Resistant (Wipe with soft cloth)",
+        "packaging": "Luxury Velvet Watch Box with Warranty Card"
+      }
     },
     {
       "id": "gift-05",
@@ -4499,7 +4831,7 @@
       "not_included": [],
       "faqs": [],
       "addons": [],
-      "delivery_note": "",
+      "delivery_note": "Same Day Delivery: Hand-delivered in 2 to 3 hours fresh from florists.",
       "decorator_note": "",
       "lifespan_note": "",
       "location_note": "",
@@ -4549,7 +4881,7 @@
       },
       "notIncluded": [],
       "aboutDescription": "Bunch of 20 hand-picked Dutch red roses wrapped in matte black paper and tied with a crimson satin ribbon.",
-      "deliveryNote": "",
+      "deliveryNote": "Same Day Delivery: Hand-delivered in 2 to 3 hours fresh from florists.",
       "decoratorNote": "",
       "lifespanNote": "",
       "locationNote": "",
@@ -4598,7 +4930,29 @@
           }
         ]
       },
-      "options": []
+      "options": [],
+      "subtitle": "Handpicked 15 fresh Dutch red roses wrapped in eco-craft tissue paper with satin bow.",
+      "material": "15 Premium Long-Stem Dutch Red Roses & Eco Paper",
+      "dimensions": "45 cm Stem Height",
+      "color": "Vibrant Crimson Red",
+      "recommendedAge": "Safe for all ages",
+      "washCare": "Trim stems diagonally & place in clean water with flower food",
+      "packaging": "Double-Layer Craft Wrapping with Crimson Satin Bow",
+      "boughtText": "650+ bought in last month",
+      "highlights": [
+        "15 long-stem Dutch red roses",
+        "Double-layer eco paper wrapping with crimson satin bow",
+        "Comes with flower food packet for longer vase life",
+        "Free message card included"
+      ],
+      "specs": {
+        "material": "15 Premium Long-Stem Dutch Red Roses & Eco Paper",
+        "dimensions": "45 cm Stem Height",
+        "color": "Vibrant Crimson Red",
+        "recommendedAge": "Safe for all ages",
+        "washCare": "Trim stems diagonally & place in clean water with flower food",
+        "packaging": "Double-Layer Craft Wrapping with Crimson Satin Bow"
+      }
     },
     {
       "id": "gift-06",
@@ -4641,7 +4995,7 @@
       "not_included": [],
       "faqs": [],
       "addons": [],
-      "delivery_note": "",
+      "delivery_note": "Same Day Delivery: Get it delivered in 2 to 4 hours at your location.",
       "decorator_note": "",
       "lifespan_note": "",
       "location_note": "",
@@ -4691,7 +5045,7 @@
       },
       "notIncluded": [],
       "aboutDescription": "Crispy hazelnut chocolate pralines encased in gold foil, guaranteed to sweeten any celebration.",
-      "deliveryNote": "",
+      "deliveryNote": "Same Day Delivery: Get it delivered in 2 to 4 hours at your location.",
       "decoratorNote": "",
       "lifespanNote": "",
       "locationNote": "",
@@ -4740,7 +5094,29 @@
           }
         ]
       },
-      "options": []
+      "options": [],
+      "subtitle": "Golden hazelnut pralines packed in an iconic 16-piece celebration box.",
+      "material": "Crispy Hazelnut Pralines & Milk Chocolate (16 Pieces)",
+      "dimensions": "200 grams Net Weight",
+      "color": "Iconic Golden Foil Wrap",
+      "recommendedAge": "All Ages",
+      "washCare": "Store in a cool, dry place between 18°C - 22°C",
+      "packaging": "Original Transparent Jewel Presentation Box with Ribbon",
+      "boughtText": "450+ bought in last month",
+      "highlights": [
+        "Whole crunchy hazelnut in center",
+        "Delicious creamy cocoa filling",
+        "Crisp wafer shell covered with milk chocolate",
+        "16 individually wrapped golden pralines"
+      ],
+      "specs": {
+        "material": "Crispy Hazelnut Pralines & Milk Chocolate (16 Pieces)",
+        "dimensions": "200 grams Net Weight",
+        "color": "Iconic Golden Foil Wrap",
+        "recommendedAge": "All Ages",
+        "washCare": "Store in a cool, dry place between 18°C - 22°C",
+        "packaging": "Original Transparent Jewel Presentation Box with Ribbon"
+      }
     },
     {
       "id": "ballon-decoration",
@@ -4881,7 +5257,17 @@
           }
         ]
       },
-      "options": []
+      "options": [],
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommendedAge": "",
+      "washCare": "",
+      "packaging": "",
+      "specs": {},
+      "subtitle": "",
+      "boughtText": "",
+      "highlights": []
     },
     {
       "id": "nalugu-snanam",
@@ -5073,7 +5459,17 @@
             "2 Sannai"
           ]
         }
-      ]
+      ],
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommendedAge": "",
+      "washCare": "",
+      "packaging": "",
+      "specs": {},
+      "subtitle": "",
+      "boughtText": "",
+      "highlights": []
     },
     {
       "id": "function-hall-decor",
@@ -5269,7 +5665,17 @@
             "Coolers"
           ]
         }
-      ]
+      ],
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommendedAge": "",
+      "washCare": "",
+      "packaging": "",
+      "specs": {},
+      "subtitle": "",
+      "boughtText": "",
+      "highlights": []
     },
     {
       "id": "catering",
@@ -5556,7 +5962,17 @@
             "Chips or Papad"
           ]
         }
-      ]
+      ],
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommendedAge": "",
+      "washCare": "",
+      "packaging": "",
+      "specs": {},
+      "subtitle": "",
+      "boughtText": "",
+      "highlights": []
     },
     {
       "id": "red-anniversary-home-decor",
@@ -5700,7 +6116,17 @@
           }
         ]
       },
-      "options": []
+      "options": [],
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommendedAge": "",
+      "washCare": "",
+      "packaging": "",
+      "specs": {},
+      "subtitle": "",
+      "boughtText": "",
+      "highlights": []
     },
     {
       "id": "romantic-anniversary-room-celebration",
@@ -5844,7 +6270,17 @@
           }
         ]
       },
-      "options": []
+      "options": [],
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommendedAge": "",
+      "washCare": "",
+      "packaging": "",
+      "specs": {},
+      "subtitle": "",
+      "boughtText": "",
+      "highlights": []
     },
     {
       "id": "newborn-welcome-baby-decor",
@@ -5987,7 +6423,17 @@
           }
         ]
       },
-      "options": []
+      "options": [],
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommendedAge": "",
+      "washCare": "",
+      "packaging": "",
+      "specs": {},
+      "subtitle": "",
+      "boughtText": "",
+      "highlights": []
     },
     {
       "id": "sangyam-sweets",
@@ -6167,7 +6613,17 @@
             "Chekkalu"
           ]
         }
-      ]
+      ],
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommendedAge": "",
+      "washCare": "",
+      "packaging": "",
+      "specs": {},
+      "subtitle": "",
+      "boughtText": "",
+      "highlights": []
     },
     {
       "id": "photo-video",
@@ -6368,7 +6824,17 @@
             "No"
           ]
         }
-      ]
+      ],
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommendedAge": "",
+      "washCare": "",
+      "packaging": "",
+      "specs": {},
+      "subtitle": "",
+      "boughtText": "",
+      "highlights": []
     },
     {
       "id": "melam",
@@ -6559,7 +7025,17 @@
             "Band Set (15 Members)"
           ]
         }
-      ]
+      ],
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommendedAge": "",
+      "washCare": "",
+      "packaging": "",
+      "specs": {},
+      "subtitle": "",
+      "boughtText": "",
+      "highlights": []
     },
     {
       "id": "special-events",
@@ -6734,7 +7210,17 @@
             "Design Butta"
           ]
         }
-      ]
+      ],
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommendedAge": "",
+      "washCare": "",
+      "packaging": "",
+      "specs": {},
+      "subtitle": "",
+      "boughtText": "",
+      "highlights": []
     },
     {
       "id": "sangyam-bags",
@@ -6902,7 +7388,17 @@
             "500 Sets"
           ]
         }
-      ]
+      ],
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommendedAge": "",
+      "washCare": "",
+      "packaging": "",
+      "specs": {},
+      "subtitle": "",
+      "boughtText": "",
+      "highlights": []
     },
     {
       "id": "bridal-makeup",
@@ -7066,7 +7562,17 @@
             "Traditional Saree Draping & Jewellery Setting"
           ]
         }
-      ]
+      ],
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommendedAge": "",
+      "washCare": "",
+      "packaging": "",
+      "specs": {},
+      "subtitle": "",
+      "boughtText": "",
+      "highlights": []
     },
     {
       "id": "mehandi",
@@ -7229,7 +7735,17 @@
             "100% Organic Fresh Henna Cones"
           ]
         }
-      ]
+      ],
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommendedAge": "",
+      "washCare": "",
+      "packaging": "",
+      "specs": {},
+      "subtitle": "",
+      "boughtText": "",
+      "highlights": []
     },
     {
       "id": "sangeet",
@@ -7393,7 +7909,17 @@
             "Professional Sangeet DJ & Emcee"
           ]
         }
-      ]
+      ],
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommendedAge": "",
+      "washCare": "",
+      "packaging": "",
+      "specs": {},
+      "subtitle": "",
+      "boughtText": "",
+      "highlights": []
     },
     {
       "id": "musical-events",
@@ -7548,7 +8074,17 @@
             "Live Instrumental Music (Live instrumental performance)"
           ]
         }
-      ]
+      ],
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommendedAge": "",
+      "washCare": "",
+      "packaging": "",
+      "specs": {},
+      "subtitle": "",
+      "boughtText": "",
+      "highlights": []
     },
     {
       "id": "anniversary-home-decoration",
@@ -7693,7 +8229,17 @@
           }
         ]
       },
-      "options": []
+      "options": [],
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommendedAge": "",
+      "washCare": "",
+      "packaging": "",
+      "specs": {},
+      "subtitle": "",
+      "boughtText": "",
+      "highlights": []
     },
     {
       "id": "dj-kolatam",
@@ -7872,7 +8418,17 @@
             "title": "100% smile assurance"
           }
         ]
-      }
+      },
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommendedAge": "",
+      "washCare": "",
+      "packaging": "",
+      "specs": {},
+      "subtitle": "",
+      "boughtText": "",
+      "highlights": []
     },
     {
       "id": "dj-and-kolatam",
@@ -8029,7 +8585,17 @@
             "title": "100% smile assurance"
           }
         ]
-      }
+      },
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommendedAge": "",
+      "washCare": "",
+      "packaging": "",
+      "specs": {},
+      "subtitle": "",
+      "boughtText": "",
+      "highlights": []
     },
     {
       "id": "gift-07",
@@ -8071,7 +8637,7 @@
       "not_included": [],
       "faqs": [],
       "addons": [],
-      "delivery_note": "",
+      "delivery_note": "Same Day Delivery: Get it delivered in 2 to 4 hours at your location.",
       "decorator_note": "",
       "lifespan_note": "",
       "location_note": "",
@@ -8121,7 +8687,7 @@
       },
       "notIncluded": [],
       "aboutDescription": "High-speed drift RC racing sports car with LED headlights, rechargeable battery pack, and ergonomic remote controller.",
-      "deliveryNote": "",
+      "deliveryNote": "Same Day Delivery: Get it delivered in 2 to 4 hours at your location.",
       "decoratorNote": "",
       "lifespanNote": "",
       "locationNote": "",
@@ -8170,7 +8736,29 @@
           }
         ]
       },
-      "options": []
+      "options": [],
+      "subtitle": "High-speed 1:18 scale rechargeable RC monster truck with all-terrain suspension.",
+      "material": "Non-Toxic ABS Plastic & Heavy-Duty Rubber Tires",
+      "dimensions": "24 x 14 x 11 cm",
+      "color": "Flame Red & Black Racing Stripes",
+      "recommendedAge": "4 to 12 Years",
+      "washCare": "Keep away from water; recharge via USB",
+      "packaging": "Window Display Box with Remote & USB Charger",
+      "boughtText": "220+ bought in last month",
+      "highlights": [
+        "2.4GHz anti-interference wireless remote",
+        "Shockproof suspension for multi-terrain drive",
+        "Rechargeable battery pack included with USB cable",
+        "Durable drop-resistant bumper"
+      ],
+      "specs": {
+        "material": "Non-Toxic ABS Plastic & Heavy-Duty Rubber Tires",
+        "dimensions": "24 x 14 x 11 cm",
+        "color": "Flame Red & Black Racing Stripes",
+        "recommendedAge": "4 to 12 Years",
+        "washCare": "Keep away from water; recharge via USB",
+        "packaging": "Window Display Box with Remote & USB Charger"
+      }
     },
     {
       "id": "gift-08",
@@ -8212,7 +8800,7 @@
       "not_included": [],
       "faqs": [],
       "addons": [],
-      "delivery_note": "",
+      "delivery_note": "Same Day Delivery: Baked fresh and hand-delivered in 2 to 4 hours.",
       "decorator_note": "",
       "lifespan_note": "",
       "location_note": "",
@@ -8262,7 +8850,7 @@
       },
       "notIncluded": [],
       "aboutDescription": "Decadent eggless dark chocolate truffle cake layered with rich Belgian ganache and chocolate curls.",
-      "deliveryNote": "",
+      "deliveryNote": "Same Day Delivery: Baked fresh and hand-delivered in 2 to 4 hours.",
       "decoratorNote": "",
       "lifespanNote": "",
       "locationNote": "",
@@ -8311,7 +8899,29 @@
           }
         ]
       },
-      "options": []
+      "options": [],
+      "subtitle": "Rich Belgian dark chocolate ganache layered sponge cake freshly baked on order.",
+      "material": "Fresh Eggless Sponge, Belgian Dark Chocolate & Dutch Cocoa",
+      "dimensions": "500 grams (Serves 4 - 6 People)",
+      "color": "Glossy Dark Chocolate Mirror Glaze",
+      "recommendedAge": "All Ages",
+      "washCare": "Keep refrigerated; consume within 24 hours of delivery",
+      "packaging": "Insulated Cake Box with Candle & Wooden Knife",
+      "boughtText": "520+ bought in last month",
+      "highlights": [
+        "100% Eggless artisan recipe",
+        "Silky Belgian dark chocolate ganache",
+        "Complimentary candles and wooden cake knife included",
+        "Personalized icing message available"
+      ],
+      "specs": {
+        "material": "Fresh Eggless Sponge, Belgian Dark Chocolate & Dutch Cocoa",
+        "dimensions": "500 grams (Serves 4 - 6 People)",
+        "color": "Glossy Dark Chocolate Mirror Glaze",
+        "recommendedAge": "All Ages",
+        "washCare": "Keep refrigerated; consume within 24 hours of delivery",
+        "packaging": "Insulated Cake Box with Candle & Wooden Knife"
+      }
     },
     {
       "id": "gift-09",
@@ -8353,7 +8963,7 @@
       "not_included": [],
       "faqs": [],
       "addons": [],
-      "delivery_note": "",
+      "delivery_note": "Same Day Delivery: Get it delivered in 2 to 4 hours at your location.",
       "decorator_note": "",
       "lifespan_note": "",
       "location_note": "",
@@ -8403,7 +9013,7 @@
       },
       "notIncluded": [],
       "aboutDescription": "Intricately embossed laser-cut metallic gold greeting card with heartfelt warm wishes for newlyweds.",
-      "deliveryNote": "",
+      "deliveryNote": "Same Day Delivery: Get it delivered in 2 to 4 hours at your location.",
       "decoratorNote": "",
       "lifespanNote": "",
       "locationNote": "",
@@ -8452,7 +9062,29 @@
           }
         ]
       },
-      "options": []
+      "options": [],
+      "subtitle": "Embossed metallic gold foil floral wedding card with heartfelt wishes envelope.",
+      "material": "350 GSM Textured Metallic Ivory Cardstock",
+      "dimensions": "15 x 20 cm (Folded)",
+      "color": "Ivory & Metallic Gold Foil",
+      "recommendedAge": "Adults",
+      "washCare": "Keep dry",
+      "packaging": "Sealed Golden Shimmer Envelope with Wax Seal Stamp",
+      "boughtText": "140+ bought in last month",
+      "highlights": [
+        "Luxury 350 GSM textured pearl finish paper",
+        "Intricate laser-cut floral motifs with gold foil stamping",
+        "Blank interior sheet for handwritten wishes",
+        "Matching luxury metallic envelope"
+      ],
+      "specs": {
+        "material": "350 GSM Textured Metallic Ivory Cardstock",
+        "dimensions": "15 x 20 cm (Folded)",
+        "color": "Ivory & Metallic Gold Foil",
+        "recommendedAge": "Adults",
+        "washCare": "Keep dry",
+        "packaging": "Sealed Golden Shimmer Envelope with Wax Seal Stamp"
+      }
     },
     {
       "id": "gift-10",
@@ -8494,7 +9126,7 @@
       "not_included": [],
       "faqs": [],
       "addons": [],
-      "delivery_note": "",
+      "delivery_note": "Instant Digital Delivery within 2 to 4 hours via WhatsApp & Email.",
       "decorator_note": "",
       "lifespan_note": "",
       "location_note": "",
@@ -8544,7 +9176,7 @@
       },
       "notIncluded": [],
       "aboutDescription": "Customized 1080p full HD animated video invite with background music, couple photos, event dates, and GPS venue directions for WhatsApp sharing.",
-      "deliveryNote": "",
+      "deliveryNote": "Instant Digital Delivery within 2 to 4 hours via WhatsApp & Email.",
       "decoratorNote": "",
       "lifespanNote": "",
       "locationNote": "",
@@ -8593,7 +9225,29 @@
           }
         ]
       },
-      "options": []
+      "options": [],
+      "subtitle": "Custom cinematic animated video invite formatted for instant WhatsApp sharing.",
+      "material": "1080p Full HD MP4 Motion Graphics File",
+      "dimensions": "9:16 Vertical Story / WhatsApp Format (60 Secs)",
+      "color": "Royal Gold & Burgundy Floral Theme",
+      "recommendedAge": "All Ages",
+      "washCare": "Digital Delivery via WhatsApp & Email",
+      "packaging": "Cloud Download Link with Lifetime Access",
+      "boughtText": "250+ bought in last month",
+      "highlights": [
+        "Customized with your names, event timeline and photos",
+        "Cinematic background music and smooth transitions",
+        "Direct Google Maps venue link integration",
+        "Delivered in Full HD 1080p format"
+      ],
+      "specs": {
+        "material": "1080p Full HD MP4 Motion Graphics File",
+        "dimensions": "9:16 Vertical Story / WhatsApp Format (60 Secs)",
+        "color": "Royal Gold & Burgundy Floral Theme",
+        "recommendedAge": "All Ages",
+        "washCare": "Digital Delivery via WhatsApp & Email",
+        "packaging": "Cloud Download Link with Lifetime Access"
+      }
     },
     {
       "id": "gift-11",
@@ -8635,7 +9289,7 @@
       "not_included": [],
       "faqs": [],
       "addons": [],
-      "delivery_note": "",
+      "delivery_note": "Same Day Delivery: Get it delivered in 2 to 4 hours at your location.",
       "decorator_note": "",
       "lifespan_note": "",
       "location_note": "",
@@ -8685,7 +9339,7 @@
       },
       "notIncluded": [],
       "aboutDescription": "Set of 10 handcrafted brass diyas and aromatic wax votives packed in organza potlis for baby shower and birthday return gifts.",
-      "deliveryNote": "",
+      "deliveryNote": "Same Day Delivery: Get it delivered in 2 to 4 hours at your location.",
       "decoratorNote": "",
       "lifespanNote": "",
       "locationNote": "",
@@ -8734,7 +9388,29 @@
           }
         ]
       },
-      "options": []
+      "options": [],
+      "subtitle": "Eco-friendly hand-crafted jute pouch gift set containing scented potpourri and brass diyas.",
+      "material": "Handwoven Golden Jute, Scented Botanicals & Pure Brass Diyas",
+      "dimensions": "Set of 10 Pouches (15 x 10 cm each)",
+      "color": "Natural Golden Jute with Red Pull String",
+      "recommendedAge": "All Ages",
+      "washCare": "Wipe clean with dry cloth",
+      "packaging": "Master Carton with 10 Individually Tied Gift Pouches",
+      "boughtText": "320+ bought in last month",
+      "highlights": [
+        "Set of 10 pre-assembled return gift favors",
+        "Handmade sustainable jute bags with drawstring",
+        "Includes mini pure brass oil lamp in each pouch",
+        "Customizable 'Thank You for Celebrating' tag"
+      ],
+      "specs": {
+        "material": "Handwoven Golden Jute, Scented Botanicals & Pure Brass Diyas",
+        "dimensions": "Set of 10 Pouches (15 x 10 cm each)",
+        "color": "Natural Golden Jute with Red Pull String",
+        "recommendedAge": "All Ages",
+        "washCare": "Wipe clean with dry cloth",
+        "packaging": "Master Carton with 10 Individually Tied Gift Pouches"
+      }
     },
     {
       "id": "gift-12",
@@ -8777,7 +9453,7 @@
       "not_included": [],
       "faqs": [],
       "addons": [],
-      "delivery_note": "",
+      "delivery_note": "Same Day Delivery: Get it delivered in 2 to 4 hours at your location.",
       "decorator_note": "",
       "lifespan_note": "",
       "location_note": "",
@@ -8827,7 +9503,7 @@
       },
       "notIncluded": [],
       "aboutDescription": "Fun celebration hamper for young boys containing action figures, chocolate bars, a superhero cap, and a party badge.",
-      "deliveryNote": "",
+      "deliveryNote": "Same Day Delivery: Get it delivered in 2 to 4 hours at your location.",
       "decoratorNote": "",
       "lifespanNote": "",
       "locationNote": "",
@@ -8876,7 +9552,29 @@
           }
         ]
       },
-      "options": []
+      "options": [],
+      "subtitle": "Cool superhero themed gift crate with smartwatch, sunglasses, stationery and sweets.",
+      "material": "Superhero Crate, PU Leather & Acrylic Utilities",
+      "dimensions": "28 x 20 x 12 cm (Box Size)",
+      "color": "Midnight Blue & Red Accent",
+      "recommendedAge": "6 to 14 Years (Boys)",
+      "washCare": "Wipe clean with dry microfiber cloth",
+      "packaging": "Magnetic Luxury Superhero Keepsake Box with Ribbon",
+      "boughtText": "280+ bought in last month",
+      "highlights": [
+        "High-grade LED digital sports watch with alarm",
+        "UV400 cool superhero sunglasses",
+        "Designer notebook, pen and sticker set",
+        "Gourmet chocolate treats and personalized card"
+      ],
+      "specs": {
+        "material": "Superhero Crate, PU Leather & Acrylic Utilities",
+        "dimensions": "28 x 20 x 12 cm (Box Size)",
+        "color": "Midnight Blue & Red Accent",
+        "recommendedAge": "6 to 14 Years (Boys)",
+        "washCare": "Wipe clean with dry microfiber cloth",
+        "packaging": "Magnetic Luxury Superhero Keepsake Box with Ribbon"
+      }
     }
   ],
   "blogs": [
@@ -9240,7 +9938,7 @@
       "popular": false
     }
   ],
-  "updatedAt": "2026-10-08T13:02:50.119Z",
+  "updatedAt": "2026-10-08T13:45:38.886Z",
   "blogFeatures": [
     {
       "icon": "🔒",
@@ -9259,7 +9957,9 @@
     }
   ],
   "deletedItems": {
-    "products": [],
+    "products": [
+      "boho-theme-birthday-decoration"
+    ],
     "blogs": [
       "ultimate-2026-home-party-decoration-guide",
       "helium-vs-air-filled-balloons-comparison",

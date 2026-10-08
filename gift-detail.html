@@ -935,26 +935,84 @@
     // Read URL param ?id=gift-xx
     window.addEventListener("DOMContentLoaded", () => {
       const params = new URLSearchParams(window.location.search);
-      const giftId = params.get("id") || "gift-01";
-      if (GIFTS_CATALOG[giftId]) {
+      const giftId = params.get("id") || "gift-12";
+
+      // 1. Check custom products from localStorage / SITE_DATA
+      let customGifts = [];
+      try {
+        const stored = localStorage.getItem('celebration_custom_products');
+        if (stored) customGifts = JSON.parse(stored);
+      } catch(e){}
+
+      const allProds = (customGifts && customGifts.length > 0) ? customGifts : (typeof SITE_DATA !== 'undefined' && Array.isArray(SITE_DATA.products) ? SITE_DATA.products : []);
+      const matched = allProds.find(p => p.id === giftId || p.id === `gift-${giftId}`);
+
+      if (matched) {
+        const catName = matched.subcategory ? `Gifts for ${matched.subcategory.charAt(0).toUpperCase() + matched.subcategory.slice(1)}` : 'Hampers';
+        activeProduct = {
+          id: matched.id,
+          title: matched.title,
+          subtitle: matched.subtitle || matched.description || 'Curated luxury gift hamper with express same-day delivery.',
+          badge: matched.badge || 'Best Gift',
+          categoryPath: ['Home', 'Gift Marketplace', catName, matched.title],
+          price: matched.price || 999,
+          originalPrice: matched.originalPrice || matched.original_price || Math.round((matched.price || 999) * 1.25),
+          discount: matched.discount ? `${matched.discount}% OFF` : (matched.originalPrice ? `${Math.round((1 - (matched.price / matched.originalPrice)) * 100)}% OFF` : '20% OFF'),
+          rating: matched.rating || 4.8,
+          reviews: matched.reviewsCount || matched.reviews_count || 168,
+          bought: matched.boughtText || `${matched.reviewsCount || 280}+ bought in last month`,
+          heroImage: matched.image || 'https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=600&q=80',
+          thumbnails: (Array.isArray(matched.gallery) && matched.gallery.length > 0)
+            ? [matched.image, ...matched.gallery.filter(g => g !== matched.image)]
+            : (Array.isArray(matched.thumbnails) ? matched.thumbnails : [matched.image]),
+          description: matched.description || matched.aboutDescription || 'Curated gift item designed to create joyful and unforgettable celebration memories.',
+          highlights: (Array.isArray(matched.highlights) && matched.highlights.length > 0)
+            ? matched.highlights
+            : (Array.isArray(matched.inclusions) && matched.inclusions.length > 0 ? matched.inclusions : [
+                "Handcrafted luxury gift presentation",
+                "Includes personalized greeting message card",
+                "Tested safe and premium materials",
+                "Fast, damage-free express delivery"
+              ]),
+          whyChoose: (Array.isArray(matched.whyChoose) && matched.whyChoose.length > 0)
+            ? matched.whyChoose
+            : [
+                "Premium quality guaranteed",
+                "Loved by all age groups",
+                "Safe shockproof gift packaging",
+                "Same-day express delivery in 2 to 4 hours"
+              ],
+          specs: {
+            material: matched.material || matched.specs?.material || 'Ultra-Soft Hypoallergenic Plush & PP Cotton',
+            dimensions: matched.dimensions || matched.specs?.dimensions || '35 cm (Sitting Height)',
+            color: matched.color || matched.specs?.color || 'Warm Honey Brown with Silk Ribbon',
+            recommendedAge: matched.recommendedAge || matched.specs?.recommendedAge || 'Safe for all age groups (3+ to Adults)',
+            washCare: matched.washCare || matched.specs?.washCare || 'Hand wash with mild detergent or damp wipe',
+            packaging: matched.packaging || matched.specs?.packaging || 'Gift Wrapped in Polka Box with Satin Bow'
+          },
+          deliveryNote: matched.deliveryNote || matched.delivery_note || 'Same Day Delivery: Get it delivered in 2 to 4 hours at your location.'
+        };
+      } else if (GIFTS_CATALOG[giftId]) {
         activeProduct = GIFTS_CATALOG[giftId];
       }
+
       populateProductDetails(activeProduct);
+      renderDynamicRelatedGifts(allProds, activeProduct.id);
     });
 
     function populateProductDetails(prod) {
-      document.getElementById("gdpPageTitle").textContent = `${prod.title} | Gifts Marketplace | Celebration Events`;
+      document.getElementById("gdpPageTitle").textContent = `${prod.title} | Gift Marketplace | Celebration Events`;
       document.getElementById("gdpTitle").textContent = prod.title;
-      document.getElementById("gdpTagline").textContent = prod.subtitle;
-      document.getElementById("gdpBadge").textContent = prod.badge || "Bestseller";
+      document.getElementById("gdpTagline").textContent = prod.subtitle || prod.description || '';
+      document.getElementById("gdpBadge").textContent = prod.badge || "Best Gift";
       document.getElementById("gdpCrumbTitle").textContent = prod.title;
 
-      document.getElementById("gdpPriceNow").textContent = `₹${prod.price.toLocaleString("en-IN")}`;
-      document.getElementById("gdpPriceOrig").textContent = `₹${prod.originalPrice.toLocaleString("en-IN")}`;
-      document.getElementById("gdpPriceDiscount").textContent = prod.discount;
+      document.getElementById("gdpPriceNow").textContent = `₹${Number(prod.price || 0).toLocaleString("en-IN")}`;
+      document.getElementById("gdpPriceOrig").textContent = `₹${Number(prod.originalPrice || prod.price).toLocaleString("en-IN")}`;
+      document.getElementById("gdpPriceDiscount").textContent = prod.discount || '';
 
-      document.getElementById("gdpRatingText").textContent = `${prod.rating} (${prod.reviews} reviews)`;
-      document.getElementById("gdpBoughtText").textContent = prod.bought;
+      document.getElementById("gdpRatingText").textContent = `${prod.rating || 4.8} (${prod.reviews || 120} reviews)`;
+      document.getElementById("gdpBoughtText").textContent = prod.bought || '250+ bought in last month';
 
       // Hero Image & Thumbnails
       document.getElementById("gdpMainImg").src = prod.heroImage;
@@ -977,9 +1035,9 @@
         crumbEl.innerHTML = `
           <a href="index.html">Home</a>
           <span class="separator">›</span>
-          <a href="marketplace.html">${prod.categoryPath[1] || 'Marketplace'}</a>
+          <a href="marketplace.html">${prod.categoryPath[1] || 'Gift Marketplace'}</a>
           <span class="separator">›</span>
-          <a href="marketplace.html">${prod.categoryPath[2] || 'Gifts'}</a>
+          <a href="marketplace.html">${prod.categoryPath[2] || 'Hampers'}</a>
           <span class="separator">›</span>
           <span class="current">${prod.title}</span>
         `;
@@ -1001,6 +1059,49 @@
           </li>
         `).join("");
       }
+
+      // Dynamic Product Details (Specs Table - Exact Screenshot 2 Match)
+      const specsTable = document.getElementById("gdpSpecsTable");
+      if (specsTable) {
+        const s = prod.specs || {
+          material: prod.material || 'Ultra-Soft Hypoallergenic Plush & PP Cotton',
+          dimensions: prod.dimensions || '35 cm (Sitting Height)',
+          color: prod.color || 'Warm Honey Brown with Silk Ribbon',
+          recommendedAge: prod.recommendedAge || 'Safe for all age groups (3+ to Adults)',
+          washCare: prod.washCare || 'Hand wash with mild detergent or damp wipe',
+          packaging: prod.packaging || 'Gift Wrapped in Polka Box with Satin Bow'
+        };
+        specsTable.innerHTML = `
+          <tr style="border-bottom: 1px solid #f1f5f9;"><td style="padding: 10px 0; color: #64748b; width: 35%;">Material</td><td style="padding: 10px 0; font-weight: 600; color: #1e293b;">${s.material || 'Premium Quality Material'}</td></tr>
+          <tr style="border-bottom: 1px solid #f1f5f9;"><td style="padding: 10px 0; color: #64748b;">Dimensions</td><td style="padding: 10px 0; font-weight: 600; color: #1e293b;">${s.dimensions || 'Standard Size'}</td></tr>
+          <tr style="border-bottom: 1px solid #f1f5f9;"><td style="padding: 10px 0; color: #64748b;">Color</td><td style="padding: 10px 0; font-weight: 600; color: #1e293b;">${s.color || 'As Shown in Picture'}</td></tr>
+          <tr style="border-bottom: 1px solid #f1f5f9;"><td style="padding: 10px 0; color: #64748b;">Recommended Age</td><td style="padding: 10px 0; font-weight: 600; color: #1e293b;">${s.recommendedAge || 'Safe for all age groups'}</td></tr>
+          <tr style="border-bottom: 1px solid #f1f5f9;"><td style="padding: 10px 0; color: #64748b;">Wash Care</td><td style="padding: 10px 0; font-weight: 600; color: #1e293b;">${s.washCare || 'Handle with care'}</td></tr>
+          <tr><td style="padding: 10px 0; color: #64748b;">Packaging</td><td style="padding: 10px 0; font-weight: 600; color: #1e293b;">${s.packaging || 'Gift Wrapped in Polka Box with Satin Bow'}</td></tr>
+        `;
+      }
+    }
+
+    function renderDynamicRelatedGifts(allProds, currentId) {
+      const container = document.querySelector(".gdp-related-grid");
+      if (!container || !Array.isArray(allProds) || allProds.length === 0) return;
+      const gifts = allProds.filter(p => p.category === 'gifts' && p.id !== currentId).slice(0, 6);
+      if (gifts.length === 0) return;
+      container.innerHTML = gifts.map(g => `
+        <div class="gdp-related-card" onclick="location.href='gift-detail.html?id=${encodeURIComponent(g.id)}'">
+          <div class="gdp-rel-img-box">
+            <img src="${g.image}" alt="${g.title}" loading="lazy" />
+          </div>
+          <div class="gdp-rel-info">
+            <h4 class="gdp-rel-title">${g.title}</h4>
+            <div class="gdp-rel-price-row">
+              <span class="gdp-rel-price">₹${Number(g.price).toLocaleString('en-IN')}</span>
+              <button class="gdp-rel-cart-btn" onclick="event.stopPropagation(); addRelatedToCart('${g.title.replace(/'/g, "\\'")}', ${g.price}, '${g.image}')">🛒</button>
+            </div>
+            <div class="gdp-rel-rating"><span class="star">★</span> ${g.rating || '4.8'} (${g.reviewsCount || 150})</div>
+          </div>
+        </div>
+      `).join("");
     }
 
     // Switch Thumbnail Click

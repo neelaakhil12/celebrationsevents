@@ -101,6 +101,18 @@ ALTER TABLE public.products ADD COLUMN IF NOT EXISTS color_palettes JSONB DEFAUL
 ALTER TABLE public.products ADD COLUMN IF NOT EXISTS options JSONB DEFAULT '[]'::jsonb;
 ALTER TABLE public.products ADD COLUMN IF NOT EXISTS why_choose JSONB DEFAULT NULL;
 
+-- Gift Marketplace Specific Specification Columns
+ALTER TABLE public.products ADD COLUMN IF NOT EXISTS material TEXT;
+ALTER TABLE public.products ADD COLUMN IF NOT EXISTS dimensions TEXT;
+ALTER TABLE public.products ADD COLUMN IF NOT EXISTS color TEXT;
+ALTER TABLE public.products ADD COLUMN IF NOT EXISTS recommended_age TEXT;
+ALTER TABLE public.products ADD COLUMN IF NOT EXISTS wash_care TEXT;
+ALTER TABLE public.products ADD COLUMN IF NOT EXISTS packaging TEXT;
+ALTER TABLE public.products ADD COLUMN IF NOT EXISTS subtitle TEXT;
+ALTER TABLE public.products ADD COLUMN IF NOT EXISTS bought_text TEXT;
+ALTER TABLE public.products ADD COLUMN IF NOT EXISTS specs JSONB DEFAULT '{}'::jsonb;
+ALTER TABLE public.products ADD COLUMN IF NOT EXISTS highlights JSONB DEFAULT '[]'::jsonb;
+
 -- ------------------------------------------------------------------------------
 -- 5. Enable Row Level Security (RLS)
 -- ------------------------------------------------------------------------------

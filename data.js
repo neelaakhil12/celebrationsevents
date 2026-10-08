@@ -1426,313 +1426,251 @@ const SITE_DATA = {
   ],
   "products": [
     {
-      "id": "simple-balloon-decor-for-home",
-      "title": "Simple Balloon Decor for Home",
+      "id": "happ-birthday-harish",
+      "title": "happ birthday harish",
       "category": "birthday",
-      "categoryName": "Birthday",
-      "price": 1499,
-      "originalPrice": 1999,
-      "discount": 25,
-      "rating": 4.9,
-      "reviewsCount": 313,
+      "category_name": "Birthday",
+      "price": 1599,
+      "original_price": 3999,
+      "discount": 60,
+      "rating": 4.5,
+      "reviews_count": 100,
       "badge": "BESTSELLER",
-      "image": "https://cdn.balloondekor.com/14/simple-balloon-decor-for-home-1785476680249-529705.webp",
+      "setup_duration": "1-3hours",
+      "image": "https://res.cloudinary.com/gu0q1mxy/image/upload/v1791436412/celebration-packages/t0xabqs8jrnht2g4xaik.jpg",
       "gallery": [
-        "https://cdn.balloondekor.com/14/simple-balloon-decor-for-home-1785476680249-529705.webp",
-        "https://cdn.balloondekor.com/14/1744720943222.webp"
+        "https://res.cloudinary.com/gu0q1mxy/image/upload/v1791436412/celebration-packages/t0xabqs8jrnht2g4xaik.jpg",
+        "https://res.cloudinary.com/gu0q1mxy/image/upload/v1791436419/celebration-gallery/spdahlyiuf7hz3doxknk.jpg",
+        "https://res.cloudinary.com/gu0q1mxy/image/upload/v1791436430/celebration-gallery/yynedyltyihuexzxdi0y.jpg"
       ],
-      "setupDuration": "1.5 - 2 Hours",
-      "description": "A chic, minimalist home celebration setup featuring metallic latex balloons, happy birthday bunting, and fairy lights. Ideal for living rooms and bedroom surprises.",
+      "description": "aEWARZXCTYVUB",
       "inclusions": [
-        "100 Metallic Balloons (Pastel Blue, White & Chrome Gold)",
-        "1 'Happy Birthday' Rose Gold Cursive Cardstock Banner",
-        "2 Star Foil Balloons (18 inches)",
-        "Fairy String Lights (Warm White, 10 meters)",
-        "Ribbons, Glue Dots & Complete Home Setup by Expert Decorator"
+        "super",
+        "very good"
       ],
       "tags": [
-        "Home Decor",
-        "Same Day Available",
-        "Budget Friendly"
+        "homedecor",
+        "subcategory",
+        "subcat:harish-neela"
       ],
-      "subcategory": "home"
-    },
-    {
-      "id": "rose-gold-birthday-home-decor",
-      "title": "Rose Gold Birthday Home Decor",
-      "category": "birthday",
+      "created_at": "2026-10-08T05:16:40.782619+00:00",
+      "updated_at": "2026-10-08T05:16:40.782619+00:00",
+      "subcategory": "harish-neela",
+      "slots_alert": "5",
+      "about_description": "DQWAESRDTFKGHGFCVJNC,V/.Z;L",
+      "not_included": [
+        "not included",
+        "yes not included"
+      ],
+      "faqs": [
+        {
+          "a": "I AM AKHIL",
+          "q": "WHO ARE YOU"
+        },
+        {
+          "a": "MY NAME IS Akhil",
+          "q": "WHAT IS YOUR NAME"
+        }
+      ],
+      "addons": [
+        {
+          "id": "addon-1791436528986",
+          "name": "dsfg",
+          "badge": "popular",
+          "image": "https://res.cloudinary.com/gu0q1mxy/image/upload/v1791436535/celebration-addons/qsoikyimsxi6pe0la6cw.jpg",
+          "price": 299
+        },
+        {
+          "id": "addon-1791436538104",
+          "name": "SADFGHM",
+          "badge": "trending",
+          "image": "https://res.cloudinary.com/gu0q1mxy/image/upload/v1791436544/celebration-addons/gef2obeaa1slyhtahg3l.jpg",
+          "price": 399
+        }
+      ],
+      "delivery_note": "adserdxfthcgyhj",
+      "decorator_note": "Saewrzstxdcfvjhb",
+      "lifespan_note": "QEWArzstxydcfgvjbn",
+      "location_note": "dawzestrxdcygvhjb",
+      "color_palettes": [
+        {
+          "name": "",
+          "gradient": "linear-gradient(135deg, #be123c, #fb7185)"
+        },
+        {
+          "name": "Same as Image",
+          "gradient": "linear-gradient(135deg, #be123c 50%, #f59e0b 50%)"
+        },
+        {
+          "name": "Rose Gold & White",
+          "gradient": "linear-gradient(135deg, #ffffff 50%, #f59e0b 50%)"
+        },
+        {
+          "name": "Gold & Black",
+          "gradient": "linear-gradient(135deg, #f59e0b 50%, #0f172a 50%)"
+        },
+        {
+          "name": "Pastel Blue & White",
+          "gradient": "#3b82f6"
+        },
+        {
+          "name": "Pink & Purple",
+          "gradient": "linear-gradient(135deg, #a855f7 50%, #e9d5ff 50%)"
+        },
+        {
+          "name": "Multicolors / Rainbow",
+          "gradient": "linear-gradient(135deg, #ef4444 25%, #eab308 25%, #eab308 50%, #22c55e 50%, #22c55e 75%, #3b82f6 75%)"
+        }
+      ],
+      "why_choose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10K+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.8 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
       "categoryName": "Birthday",
-      "price": 1999,
-      "originalPrice": 2499,
-      "discount": 20,
-      "rating": 4.9,
-      "reviewsCount": 352,
-      "badge": "POPULAR",
-      "image": "https://cdn.balloondekor.com/14/1744720943222.webp",
-      "gallery": [
-        "https://cdn.balloondekor.com/14/1744720943222.webp",
-        "https://cdn.balloondekor.com/14/1748087900974.webp"
+      "originalPrice": 3999,
+      "setupDuration": "1-3hours",
+      "reviewsCount": 100,
+      "notIncluded": [
+        "not included",
+        "yes not included"
       ],
-      "setupDuration": "2 Hours",
-      "description": "Sophisticated rose gold luxury balloon ring with shimmering foil curtains, star balloons, and ambient fairy lights tailored for women and girls.",
-      "inclusions": [
-        "150 Metallic Rose Gold & Pastel Pink Balloons",
-        "2 Shimmering Rose Gold Foil Curtains for Backdrop",
-        "1 Happy Birthday Foil Balloon Set (16 inches)",
-        "4 Rose Gold Confetti Transparent Balloons",
-        "4 Heart & Star Foil Balloons",
-        "Warm LED Rice Lights for Glamorous Glow"
+      "aboutDescription": "DQWAESRDTFKGHGFCVJNC,V/.Z;L",
+      "deliveryNote": "adserdxfthcgyhj",
+      "decoratorNote": "Saewrzstxdcfvjhb",
+      "lifespanNote": "QEWArzstxydcfgvjbn",
+      "locationNote": "dawzestrxdcygvhjb",
+      "colorPalettes": [
+        {
+          "name": "",
+          "gradient": "linear-gradient(135deg, #be123c, #fb7185)"
+        },
+        {
+          "name": "Same as Image",
+          "gradient": "linear-gradient(135deg, #be123c 50%, #f59e0b 50%)"
+        },
+        {
+          "name": "Rose Gold & White",
+          "gradient": "linear-gradient(135deg, #ffffff 50%, #f59e0b 50%)"
+        },
+        {
+          "name": "Gold & Black",
+          "gradient": "linear-gradient(135deg, #f59e0b 50%, #0f172a 50%)"
+        },
+        {
+          "name": "Pastel Blue & White",
+          "gradient": "#3b82f6"
+        },
+        {
+          "name": "Pink & Purple",
+          "gradient": "linear-gradient(135deg, #a855f7 50%, #e9d5ff 50%)"
+        },
+        {
+          "name": "Multicolors / Rainbow",
+          "gradient": "linear-gradient(135deg, #ef4444 25%, #eab308 25%, #eab308 50%, #22c55e 50%, #22c55e 75%, #3b82f6 75%)"
+        }
       ],
-      "tags": [
-        "Rose Gold",
-        "Girls Birthday",
-        "Insta-Worthy"
-      ],
-      "subcategory": "home"
-    },
-    {
-      "id": "adorable-birthday-arch-backdrop",
-      "title": "Adorable Birthday Arch Backdrop",
-      "category": "birthday",
-      "categoryName": "Birthday",
-      "price": 2499,
-      "originalPrice": 3299,
-      "discount": 24,
-      "rating": 5,
-      "reviewsCount": 374,
-      "badge": "TOP RATED",
-      "image": "https://cdn.balloondekor.com/14/1744890426934.webp",
-      "gallery": [
-        "https://cdn.balloondekor.com/14/1744890426934.webp",
-        "https://cdn.balloondekor.com/images/33/8f427771-4dd9-4d69-be54-946fdf81b81d.webp"
-      ],
-      "setupDuration": "2.5 Hours",
-      "description": "Stunning half-arch organic balloon garland framed on circular backdrop ring with customized name tag and ambient spotlight.",
-      "inclusions": [
-        "200 Chrome & Metallic Balloons (Golden, White, Chrome Mauve)",
-        "Circular Metallic Backdrop Stand on Rental",
-        "1 Happy Birthday Neon Sign (Warm White)",
-        "4 Confetti Giant Balloons",
-        "Professional Florist & Decor Team at Venue"
-      ],
-      "tags": [
-        "Circular Arch",
-        "Milestone 30th",
-        "Banquet Hall"
-      ],
-      "subcategory": "arch"
-    },
-    {
-      "id": "blush-glow-birthday-theme",
-      "title": "Blush & Glow Birthday Theme",
-      "category": "birthday",
-      "categoryName": "Birthday",
-      "price": 2199,
-      "originalPrice": 2899,
-      "discount": 24,
-      "rating": 4.8,
-      "reviewsCount": 228,
-      "badge": "TRENDING",
-      "image": "https://cdn.balloondekor.com/14/1748087900974.webp",
-      "gallery": [
-        "https://cdn.balloondekor.com/14/1748087900974.webp",
-        "https://cdn.balloondekor.com/images/33/c43fa93c-2a62-4aa8-9fce-ba7a966838b9.webp"
-      ],
-      "setupDuration": "2 Hours",
-      "description": "Gentle blush pink and champagne gold theme with elegant cascading wall balloon drape and fairy canopy.",
-      "inclusions": [
-        "140 Pastel Pink, White & Champagne Balloons",
-        "LED Neon Sign 'Happy Birthday'",
-        "Fairy Light Backdrop Curtain (8x6 ft)",
-        "2 Foil Number Balloons (32 inches, Golden)",
-        "Table Decor with Confetti Sprinkles"
-      ],
-      "tags": [
-        "Blush Pink",
-        "Bedroom Surprise",
-        "Evening Glow"
-      ],
-      "subcategory": "home"
-    },
-    {
-      "id": "boho-theme-birthday-decoration",
-      "title": "Boho Theme Luxury Birthday Decor",
-      "category": "birthday",
-      "categoryName": "Birthday",
-      "price": 8499,
-      "originalPrice": 10999,
-      "discount": 23,
-      "rating": 5,
-      "reviewsCount": 395,
-      "badge": "LUXURY",
-      "image": "https://cdn.balloondekor.com/16/boho-theme-birthday-decoration-1785501861053-625298.webp",
-      "gallery": [
-        "https://cdn.balloondekor.com/16/boho-theme-birthday-decoration-1785501861053-625298.webp",
-        "https://cdn.balloondekor.com/33/birthday-decoration-d67f374a-0151-409d-96ea-36e9527e0ffc.webp"
-      ],
-      "setupDuration": "3.5 Hours",
-      "description": "Premium Bohemian celebration setup with natural pampas grass, macrame backdrops, earthy terracotta balloons, and ambient warm wicker lighting.",
-      "inclusions": [
-        "350 Earthy & Pastel Organic Balloons (Nude, Eucalyptus, Ivory)",
-        "Custom Laser-cut Wooden Birthday Name Plaque",
-        "Natural Dried Pampas Grass & Palm Leaves Floral Styling",
-        "Boho Teepee Tent / Cabana with Floor Rugs & Cushions",
-        "Wicker Lanterns with Warm Fairy Lights",
-        "Senior Designer with 2 Assistants On-Site"
-      ],
-      "tags": [
-        "Boho Luxury",
-        "Pampas Grass",
-        "Milestone 50th / 1st"
-      ],
-      "subcategory": "luxury"
-    },
-    {
-      "id": "anniversary-home-decoration",
-      "title": "Anniversary Home Surprise Decor",
-      "category": "anniversary",
-      "categoryName": "Anniversary",
-      "price": 2199,
-      "originalPrice": 2899,
-      "discount": 24,
-      "rating": 4.9,
-      "reviewsCount": 284,
-      "badge": "BESTSELLER",
-      "image": "https://cdn.balloondekor.com/14/anniversary-home-decoration-1785476722055-756184.webp",
-      "gallery": [
-        "https://cdn.balloondekor.com/14/anniversary-home-decoration-1785476722055-756184.webp",
-        "https://cdn.balloondekor.com/29/1784709508118-669326.webp"
-      ],
-      "setupDuration": "2 Hours",
-      "description": "An enchanting romantic home surprise featuring metallic red heart balloons, fairy light curtains, and bed styling with rose petals.",
-      "inclusions": [
-        "120 Red & White Metallic Balloons with Curling Ribbons",
-        "10 Heart Foil Balloons (18 inches)",
-        "Happy Anniversary Foil Bunting Banner",
-        "Fresh Rose Petal Bed Pathway & Heart Formation",
-        "Tea-light LED Candles (Set of 12)",
-        "Fairy String Lights (12 meters)"
-      ],
-      "tags": [
-        "Romantic Surprise",
-        "Bedroom Decor",
-        "Rose Petals"
-      ],
-      "subcategory": "room"
-    },
-    {
-      "id": "red-anniversary-home-decor",
-      "title": "Red Passion Anniversary Canopy & Decor",
-      "category": "anniversary",
-      "categoryName": "Anniversary",
-      "price": 2099,
-      "originalPrice": 2699,
-      "discount": 22,
-      "rating": 4.8,
-      "reviewsCount": 310,
-      "badge": "POPULAR",
-      "image": "https://cdn.balloondekor.com/14/1744883492822.webp",
-      "gallery": [
-        "https://cdn.balloondekor.com/14/1744883492822.webp",
-        "https://cdn.balloondekor.com/14/anniversary-home-decoration-1785476722055-756184.webp"
-      ],
-      "setupDuration": "2 Hours",
-      "description": "Passionate crimson red theme with balloon bunches, ceiling balloon drops with hanging couple photo polaroids, and heart foil clusters.",
-      "inclusions": [
-        "150 Crimson Red & Golden Chrome Balloons",
-        "16 Custom Couple Polaroids printed & hung from ceiling balloons",
-        "1 'Love' Cursive Foil Balloon",
-        "Fairy Light Net Backdrop",
-        "Fragranced Red Rose Petal Carpet Styling"
-      ],
-      "tags": [
-        "Red Passion",
-        "Polaroid Photos",
-        "Proposals"
-      ],
-      "subcategory": "canopy"
-    },
-    {
-      "id": "romantic-anniversary-room-celebration",
-      "title": "Romantic Anniversary Room Celebration",
-      "category": "anniversary",
-      "categoryName": "Anniversary",
-      "price": 2399,
-      "originalPrice": 3199,
-      "discount": 25,
-      "rating": 5,
-      "reviewsCount": 342,
-      "badge": "TOP RATED",
-      "image": "https://cdn.balloondekor.com/14/1744884242691.webp",
-      "gallery": [
-        "https://cdn.balloondekor.com/14/1744884242691.webp",
-        "https://cdn.balloondekor.com/29/1784709508118-669326.webp"
-      ],
-      "setupDuration": "2.5 Hours",
-      "description": "Complete 360-degree hotel room or master bedroom styling with fairy light ceiling, balloon clusters, and candlelight floor pathway.",
-      "inclusions": [
-        "200 Metallic & Chrome Balloons (Red, Rose Gold, Pearl White)",
-        "Happy Anniversary Neon Sign on Acrylic Board",
-        "Romantic Canopy Structure with Sheer White Drapes",
-        "40 Tealight LED Candles creating illuminated pathway",
-        "Fresh Red Roses (10 Stems) & Flower Petal Art"
-      ],
-      "tags": [
-        "Hotel Room",
-        "Canopy",
-        "Candlelight Pathway"
-      ],
-      "subcategory": "room"
-    },
-    {
-      "id": "anniversary-bliss-setup",
-      "title": "Anniversary Bliss Ring Setup",
-      "category": "anniversary",
-      "categoryName": "Anniversary",
-      "price": 2499,
-      "originalPrice": 3399,
-      "discount": 26,
-      "rating": 4.9,
-      "reviewsCount": 198,
-      "badge": "TRENDING",
-      "image": "https://cdn.balloondekor.com/29/1784709508118-669326.webp",
-      "gallery": [
-        "https://cdn.balloondekor.com/29/1784709508118-669326.webp",
-        "https://cdn.balloondekor.com/14/1744883492822.webp"
-      ],
-      "setupDuration": "2 Hours",
-      "description": "Circular arch balloon ring in luxurious golden and white tones with warm spotlight and customized Anniversary message.",
-      "inclusions": [
-        "180 Metallic Chrome Gold & Pastel White Balloons",
-        "Circular Ring Stand on Rental",
-        "Warm White Neon Sign ('Better Together' or 'Happy Anniversary')",
-        "Artificial Floral Bunches on Arch corners",
-        "Complete hassle-free assembly & disassembly"
-      ],
-      "tags": [
-        "Circular Arch",
-        "Silver Jubilee",
-        "Photo Booth"
-      ],
-      "subcategory": "ring"
+      "slotsAlert": "5",
+      "whyChoose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10K+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.8 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "options": []
     },
     {
       "id": "happy-anniversary-backdrop-decoration",
       "title": "Grand Golden Anniversary Backdrop",
       "category": "anniversary",
-      "categoryName": "Anniversary",
+      "category_name": "Anniversary",
       "price": 6499,
-      "originalPrice": 8499,
+      "original_price": 8499,
       "discount": 24,
       "rating": 5,
-      "reviewsCount": 412,
-      "badge": "LUXURY",
+      "reviews_count": 412,
+      "badge": "",
+      "setup_duration": "3",
       "image": "https://cdn.balloondekor.com/16/happy-anniversary-backdrop-decoration-1785501861053-832104.webp",
       "gallery": [
         "https://cdn.balloondekor.com/16/happy-anniversary-backdrop-decoration-1785501861053-832104.webp",
         "https://cdn.balloondekor.com/29/1784709508118-669326.webp"
       ],
-      "setupDuration": "3.5 Hours",
       "description": "Grand sequin shimmer wall backdrop with dual circular arches, custom LED numerals (25th / 50th), and organic balloon drapes.",
       "inclusions": [
         "Gold Shimmer Sequin Wall (8x8 ft)",
@@ -1745,26 +1683,138 @@ const SITE_DATA = {
       "tags": [
         "25th Silver Jubilee",
         "50th Golden Jubilee",
-        "Shimmer Wall"
+        "Shimmer Wall",
+        "subcat:grand"
       ],
-      "subcategory": "grand"
+      "created_at": "2026-10-03T09:42:33.449+00:00",
+      "updated_at": "2026-10-03T09:42:33.449+00:00",
+      "subcategory": "grand",
+      "categoryName": "Anniversary",
+      "originalPrice": 8499,
+      "setupDuration": "3",
+      "reviewsCount": 412,
+      "slots_alert": "",
+      "about_description": "Grand sequin shimmer wall backdrop with dual circular arches, custom LED numerals (25th / 50th), and organic balloon drapes.",
+      "not_included": [],
+      "faqs": [],
+      "addons": [],
+      "delivery_note": "",
+      "decorator_note": "",
+      "lifespan_note": "",
+      "location_note": "",
+      "color_palettes": [],
+      "why_choose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "notIncluded": [],
+      "aboutDescription": "Grand sequin shimmer wall backdrop with dual circular arches, custom LED numerals (25th / 50th), and organic balloon drapes.",
+      "deliveryNote": "",
+      "decoratorNote": "",
+      "lifespanNote": "",
+      "locationNote": "",
+      "colorPalettes": [],
+      "slotsAlert": "",
+      "whyChoose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "options": []
     },
     {
       "id": "cabana-canopy-terrace-decor",
       "title": "Magical Cabana Canopy Terrace Decor",
       "category": "anniversary",
-      "categoryName": "Anniversary",
+      "category_name": "Anniversary",
       "price": 3499,
-      "originalPrice": 4499,
+      "original_price": 4499,
       "discount": 22,
       "rating": 4.9,
-      "reviewsCount": 275,
+      "reviews_count": 275,
       "badge": "ROMANTIC",
+      "setup_duration": "2.5 Hours",
       "image": "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=600&q=80",
       "gallery": [
         "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=600&q=80"
       ],
-      "setupDuration": "2.5 Hours",
       "description": "Open-air terrace or lawn cabana tent draped in flowing chiffon fabrics with star fairy light canopy and floor mattress seating.",
       "inclusions": [
         "Wooden Cabana Structure with White Chiffon Drapes",
@@ -1776,27 +1826,139 @@ const SITE_DATA = {
       "tags": [
         "Terrace Cabana",
         "Stargazing Dinner",
-        "Proposal"
+        "Proposal",
+        "subcat:canopy"
       ],
-      "subcategory": "canopy"
+      "created_at": "2026-10-03T09:42:33.449+00:00",
+      "updated_at": "2026-10-03T09:42:33.449+00:00",
+      "subcategory": "canopy",
+      "categoryName": "Anniversary",
+      "originalPrice": 4499,
+      "setupDuration": "2.5 Hours",
+      "reviewsCount": 275,
+      "slots_alert": "",
+      "about_description": "Open-air terrace or lawn cabana tent draped in flowing chiffon fabrics with star fairy light canopy and floor mattress seating.",
+      "not_included": [],
+      "faqs": [],
+      "addons": [],
+      "delivery_note": "",
+      "decorator_note": "",
+      "lifespan_note": "",
+      "location_note": "",
+      "color_palettes": [],
+      "why_choose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "notIncluded": [],
+      "aboutDescription": "Open-air terrace or lawn cabana tent draped in flowing chiffon fabrics with star fairy light canopy and floor mattress seating.",
+      "deliveryNote": "",
+      "decoratorNote": "",
+      "lifespanNote": "",
+      "locationNote": "",
+      "colorPalettes": [],
+      "slotsAlert": "",
+      "whyChoose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "options": []
     },
     {
       "id": "cocomelon-kids-theme",
       "title": "Cocomelon Fun Kids Birthday Theme",
       "category": "kids",
-      "categoryName": "Kids Themes",
+      "category_name": "Kids Themes",
       "price": 2999,
-      "originalPrice": 3999,
+      "original_price": 3999,
       "discount": 25,
       "rating": 5,
-      "reviewsCount": 412,
+      "reviews_count": 412,
       "badge": "POPULAR",
+      "setup_duration": "2.5 Hours",
       "image": "https://cdn.balloondekor.com/33/kids-birthday-decoration-4b6bce2b-e65d-40fa-bdea-3f1367688305.webp",
       "gallery": [
         "https://cdn.balloondekor.com/33/kids-birthday-decoration-4b6bce2b-e65d-40fa-bdea-3f1367688305.webp",
         "https://cdn.balloondekor.com/images/33/dbe87a70-56bc-42bc-ad96-2847b88c00dd.webp"
       ],
-      "setupDuration": "2.5 Hours",
       "description": "Vibrant Cocomelon themed backdrop featuring JJ character cutouts, watermelon foil balloons, and bright pastel balloon arch.",
       "inclusions": [
         "220 Green, Yellow, Blue & Pink Pastel Balloons",
@@ -1809,26 +1971,138 @@ const SITE_DATA = {
       "tags": [
         "Cocomelon",
         "1st Birthday",
-        "Toddlers"
+        "Toddlers",
+        "subcat:cocomelon"
       ],
-      "subcategory": "cocomelon"
+      "created_at": "2026-10-03T09:42:33.449+00:00",
+      "updated_at": "2026-10-03T09:42:33.449+00:00",
+      "subcategory": "cocomelon",
+      "categoryName": "Kids Themes",
+      "originalPrice": 3999,
+      "setupDuration": "2.5 Hours",
+      "reviewsCount": 412,
+      "slots_alert": "",
+      "about_description": "Vibrant Cocomelon themed backdrop featuring JJ character cutouts, watermelon foil balloons, and bright pastel balloon arch.",
+      "not_included": [],
+      "faqs": [],
+      "addons": [],
+      "delivery_note": "",
+      "decorator_note": "",
+      "lifespan_note": "",
+      "location_note": "",
+      "color_palettes": [],
+      "why_choose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "notIncluded": [],
+      "aboutDescription": "Vibrant Cocomelon themed backdrop featuring JJ character cutouts, watermelon foil balloons, and bright pastel balloon arch.",
+      "deliveryNote": "",
+      "decoratorNote": "",
+      "lifespanNote": "",
+      "locationNote": "",
+      "colorPalettes": [],
+      "slotsAlert": "",
+      "whyChoose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "options": []
     },
     {
       "id": "baby-shark-underwater-theme",
       "title": "Baby Shark Underwater Theme",
       "category": "kids",
-      "categoryName": "Kids Themes",
+      "category_name": "Kids Themes",
       "price": 3199,
-      "originalPrice": 4299,
+      "original_price": 4299,
       "discount": 26,
       "rating": 4.9,
-      "reviewsCount": 318,
+      "reviews_count": 318,
       "badge": "LOVED",
+      "setup_duration": "2.5 Hours",
       "image": "https://cdn.balloondekor.com/images/33/dbe87a70-56bc-42bc-ad96-2847b88c00dd.webp",
       "gallery": [
         "https://cdn.balloondekor.com/images/33/dbe87a70-56bc-42bc-ad96-2847b88c00dd.webp"
       ],
-      "setupDuration": "2.5 Hours",
       "description": "Dive into ocean fun! Baby shark character cutouts, sea-weed balloon pillars, bubble transparent balloons, and oceanic arch.",
       "inclusions": [
         "200 Ocean Blue, Teal & Sunshine Yellow Balloons",
@@ -1840,26 +2114,138 @@ const SITE_DATA = {
       "tags": [
         "Baby Shark",
         "Ocean Theme",
-        "Under 5 Years"
+        "Under 5 Years",
+        "subcat:babyshark"
       ],
-      "subcategory": "babyshark"
+      "created_at": "2026-10-03T09:42:33.449+00:00",
+      "updated_at": "2026-10-03T09:42:33.449+00:00",
+      "subcategory": "babyshark",
+      "categoryName": "Kids Themes",
+      "originalPrice": 4299,
+      "setupDuration": "2.5 Hours",
+      "reviewsCount": 318,
+      "slots_alert": "",
+      "about_description": "Dive into ocean fun! Baby shark character cutouts, sea-weed balloon pillars, bubble transparent balloons, and oceanic arch.",
+      "not_included": [],
+      "faqs": [],
+      "addons": [],
+      "delivery_note": "",
+      "decorator_note": "",
+      "lifespan_note": "",
+      "location_note": "",
+      "color_palettes": [],
+      "why_choose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "notIncluded": [],
+      "aboutDescription": "Dive into ocean fun! Baby shark character cutouts, sea-weed balloon pillars, bubble transparent balloons, and oceanic arch.",
+      "deliveryNote": "",
+      "decoratorNote": "",
+      "lifespanNote": "",
+      "locationNote": "",
+      "colorPalettes": [],
+      "slotsAlert": "",
+      "whyChoose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "options": []
     },
     {
       "id": "boss-baby-theme-decor",
       "title": "The Boss Baby Theme Decor",
       "category": "kids",
-      "categoryName": "Kids Themes",
+      "category_name": "Kids Themes",
       "price": 3499,
-      "originalPrice": 4599,
+      "original_price": 4599,
       "discount": 24,
       "rating": 4.8,
-      "reviewsCount": 260,
+      "reviews_count": 260,
       "badge": "TRENDING",
+      "setup_duration": "2.5 Hours",
       "image": "https://cdn.balloondekor.com/images/33/8f427771-4dd9-4d69-be54-946fdf81b81d.webp",
       "gallery": [
         "https://cdn.balloondekor.com/images/33/8f427771-4dd9-4d69-be54-946fdf81b81d.webp"
       ],
-      "setupDuration": "2.5 Hours",
       "description": "Sophisticated navy blue, baby blue, and chrome silver theme for your little boss with briefcase cutouts and bow-ties.",
       "inclusions": [
         "200 Navy Blue, Sky Blue & Chrome Silver Balloons",
@@ -1871,26 +2257,138 @@ const SITE_DATA = {
       "tags": [
         "Boss Baby",
         "Boy Birthday",
-        "Corporate Baby"
+        "Corporate Baby",
+        "subcat:bossbaby"
       ],
-      "subcategory": "bossbaby"
+      "created_at": "2026-10-03T09:42:33.449+00:00",
+      "updated_at": "2026-10-03T09:42:33.449+00:00",
+      "subcategory": "bossbaby",
+      "categoryName": "Kids Themes",
+      "originalPrice": 4599,
+      "setupDuration": "2.5 Hours",
+      "reviewsCount": 260,
+      "slots_alert": "",
+      "about_description": "Sophisticated navy blue, baby blue, and chrome silver theme for your little boss with briefcase cutouts and bow-ties.",
+      "not_included": [],
+      "faqs": [],
+      "addons": [],
+      "delivery_note": "",
+      "decorator_note": "",
+      "lifespan_note": "",
+      "location_note": "",
+      "color_palettes": [],
+      "why_choose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "notIncluded": [],
+      "aboutDescription": "Sophisticated navy blue, baby blue, and chrome silver theme for your little boss with briefcase cutouts and bow-ties.",
+      "deliveryNote": "",
+      "decoratorNote": "",
+      "lifespanNote": "",
+      "locationNote": "",
+      "colorPalettes": [],
+      "slotsAlert": "",
+      "whyChoose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "options": []
     },
     {
       "id": "jungle-safari-kids-party",
       "title": "Wild Jungle Safari Theme Decor",
       "category": "kids",
-      "categoryName": "Kids Themes",
+      "category_name": "Kids Themes",
       "price": 3299,
-      "originalPrice": 4399,
+      "original_price": 4399,
       "discount": 25,
       "rating": 5,
-      "reviewsCount": 388,
+      "reviews_count": 388,
       "badge": "BESTSELLER",
+      "setup_duration": "3 Hours",
       "image": "https://cdn.balloondekor.com/images/33/c43fa93c-2a62-4aa8-9fce-ba7a966838b9.webp",
       "gallery": [
         "https://cdn.balloondekor.com/images/33/c43fa93c-2a62-4aa8-9fce-ba7a966838b9.webp"
       ],
-      "setupDuration": "3 Hours",
       "description": "An adventurous jungle forest setting with lion, giraffe, and zebra foil cutouts, tropical palm leaves, and earthy balloon garlands.",
       "inclusions": [
         "250 Safari Green, Yellow, Brown & Gold Chrome Balloons",
@@ -1902,26 +2400,138 @@ const SITE_DATA = {
       "tags": [
         "Jungle Safari",
         "Wild One",
-        "Animals"
+        "Animals",
+        "subcat:jungle"
       ],
-      "subcategory": "jungle"
+      "created_at": "2026-10-03T09:42:33.449+00:00",
+      "updated_at": "2026-10-03T09:42:33.449+00:00",
+      "subcategory": "jungle",
+      "categoryName": "Kids Themes",
+      "originalPrice": 4399,
+      "setupDuration": "3 Hours",
+      "reviewsCount": 388,
+      "slots_alert": "",
+      "about_description": "An adventurous jungle forest setting with lion, giraffe, and zebra foil cutouts, tropical palm leaves, and earthy balloon garlands.",
+      "not_included": [],
+      "faqs": [],
+      "addons": [],
+      "delivery_note": "",
+      "decorator_note": "",
+      "lifespan_note": "",
+      "location_note": "",
+      "color_palettes": [],
+      "why_choose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "notIncluded": [],
+      "aboutDescription": "An adventurous jungle forest setting with lion, giraffe, and zebra foil cutouts, tropical palm leaves, and earthy balloon garlands.",
+      "deliveryNote": "",
+      "decoratorNote": "",
+      "lifespanNote": "",
+      "locationNote": "",
+      "colorPalettes": [],
+      "slotsAlert": "",
+      "whyChoose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "options": []
     },
     {
       "id": "frozen-wonderland-theme",
       "title": "Frozen Ice Wonderland Theme",
       "category": "kids",
-      "categoryName": "Kids Themes",
+      "category_name": "Kids Themes",
       "price": 3599,
-      "originalPrice": 4799,
+      "original_price": 4799,
       "discount": 25,
       "rating": 4.9,
-      "reviewsCount": 340,
+      "reviews_count": 340,
       "badge": "LOVED",
+      "setup_duration": "3 Hours",
       "image": "https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=600&q=80",
       "gallery": [
         "https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=600&q=80"
       ],
-      "setupDuration": "3 Hours",
       "description": "Magical snowy castle theme featuring Elsa and Olaf cutouts, snowflake balloon clusters, and glistening icy silver foil drapes.",
       "inclusions": [
         "220 Icy Blue, Metallic Purple & Chrome Silver Balloons",
@@ -1933,26 +2543,138 @@ const SITE_DATA = {
       "tags": [
         "Frozen",
         "Elsa & Olaf",
-        "Princess Theme"
+        "Princess Theme",
+        "subcat:frozen"
       ],
-      "subcategory": "frozen"
+      "created_at": "2026-10-03T09:42:33.449+00:00",
+      "updated_at": "2026-10-03T09:42:33.449+00:00",
+      "subcategory": "frozen",
+      "categoryName": "Kids Themes",
+      "originalPrice": 4799,
+      "setupDuration": "3 Hours",
+      "reviewsCount": 340,
+      "slots_alert": "",
+      "about_description": "Magical snowy castle theme featuring Elsa and Olaf cutouts, snowflake balloon clusters, and glistening icy silver foil drapes.",
+      "not_included": [],
+      "faqs": [],
+      "addons": [],
+      "delivery_note": "",
+      "decorator_note": "",
+      "lifespan_note": "",
+      "location_note": "",
+      "color_palettes": [],
+      "why_choose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "notIncluded": [],
+      "aboutDescription": "Magical snowy castle theme featuring Elsa and Olaf cutouts, snowflake balloon clusters, and glistening icy silver foil drapes.",
+      "deliveryNote": "",
+      "decoratorNote": "",
+      "lifespanNote": "",
+      "locationNote": "",
+      "colorPalettes": [],
+      "slotsAlert": "",
+      "whyChoose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "options": []
     },
     {
       "id": "baby-shower-pastel-decor",
       "title": "Pastel Dream Baby Shower Decor",
       "category": "baby-shower",
-      "categoryName": "Baby Shower & Welcome",
+      "category_name": "Baby Shower & Welcome",
       "price": 2699,
-      "originalPrice": 3499,
+      "original_price": 3499,
       "discount": 23,
       "rating": 4.9,
-      "reviewsCount": 230,
+      "reviews_count": 230,
       "badge": "LOVED",
+      "setup_duration": "2 Hours",
       "image": "https://cdn.balloondekor.com/33/baby-shower-decoration-1ba3a3a3-d2eb-40e6-98bd-aed4eb907984.webp",
       "gallery": [
         "https://cdn.balloondekor.com/33/baby-shower-decoration-1ba3a3a3-d2eb-40e6-98bd-aed4eb907984.webp"
       ],
-      "setupDuration": "2 Hours",
       "description": "Dreamy gender-neutral pastel palette with soft beige, blush and mint tones, 'Oh Baby' neon sign, and floral accents.",
       "inclusions": [
         "180 Macaron Pastel Balloons (Peach, Ivory, Mint & Gold)",
@@ -1964,57 +2686,138 @@ const SITE_DATA = {
       "tags": [
         "Gender Neutral",
         "Pastel Colors",
-        "Mom To Be"
+        "Mom To Be",
+        "subcat:shower"
       ],
-      "subcategory": "shower"
-    },
-    {
-      "id": "newborn-welcome-baby-decor",
-      "title": "Welcome Baby Home Decor (Boy/Girl)",
-      "category": "baby-shower",
+      "created_at": "2026-10-03T09:42:33.449+00:00",
+      "updated_at": "2026-10-03T09:42:33.449+00:00",
+      "subcategory": "shower",
       "categoryName": "Baby Shower & Welcome",
-      "price": 1899,
-      "originalPrice": 2499,
-      "discount": 24,
-      "rating": 4.8,
-      "reviewsCount": 195,
-      "badge": "EXPRESS",
-      "image": "https://cdn.balloondekor.com/33/baby-shower-decoration-1ba3a3a3-d2eb-40e6-98bd-aed4eb907984.webp",
-      "gallery": [
-        "https://cdn.balloondekor.com/33/baby-shower-decoration-1ba3a3a3-d2eb-40e6-98bd-aed4eb907984.webp"
-      ],
-      "setupDuration": "1.5 Hours",
-      "description": "Hassle-free, quick 90-minute doorstep setup before mother and baby arrive from the hospital. Gentle noise-free setup.",
-      "inclusions": [
-        "100 Soft Metallic Balloons (Customizable: Pink or Blue)",
-        "1 'Welcome Baby' Foil Letter Banner",
-        "Cradle / Bassinet Ribbon & Balloon Garland",
-        "Baby Carriage Foil Balloon",
-        "Doorway Welcome Toran"
-      ],
-      "tags": [
-        "Hospital Arrival",
-        "Same Day Setup",
-        "Baby Welcome"
-      ],
-      "subcategory": "welcome"
+      "originalPrice": 3499,
+      "setupDuration": "2 Hours",
+      "reviewsCount": 230,
+      "slots_alert": "",
+      "about_description": "Dreamy gender-neutral pastel palette with soft beige, blush and mint tones, 'Oh Baby' neon sign, and floral accents.",
+      "not_included": [],
+      "faqs": [],
+      "addons": [],
+      "delivery_note": "",
+      "decorator_note": "",
+      "lifespan_note": "",
+      "location_note": "",
+      "color_palettes": [],
+      "why_choose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "notIncluded": [],
+      "aboutDescription": "Dreamy gender-neutral pastel palette with soft beige, blush and mint tones, 'Oh Baby' neon sign, and floral accents.",
+      "deliveryNote": "",
+      "decoratorNote": "",
+      "lifespanNote": "",
+      "locationNote": "",
+      "colorPalettes": [],
+      "slotsAlert": "",
+      "whyChoose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "options": []
     },
     {
       "id": "baby-shower-teddy-bear-theme",
       "title": "Oh Baby Teddy Bear Luxury Theme Setup",
       "category": "baby-shower",
-      "categoryName": "Baby Shower & Welcome",
+      "category_name": "Baby Shower & Welcome",
       "price": 3499,
-      "originalPrice": 4699,
+      "original_price": 4699,
       "discount": 26,
       "rating": 5,
-      "reviewsCount": 310,
+      "reviews_count": 310,
       "badge": "TRENDING",
+      "setup_duration": "2.5 Hours",
       "image": "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=600&q=80",
       "gallery": [
         "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=600&q=80"
       ],
-      "setupDuration": "2.5 Hours",
       "description": "Trendy 'We Can Bearly Wait' theme with giant plush teddy bear, caramel and cream organic arches, and baby block boxes.",
       "inclusions": [
         "220 Caramel, Sand White & Coffee Tone Balloons",
@@ -2026,26 +2829,138 @@ const SITE_DATA = {
       "tags": [
         "Teddy Bear",
         "Bearly Wait",
-        "Godh Bharai"
+        "Godh Bharai",
+        "subcat:teddy"
       ],
-      "subcategory": "teddy"
+      "created_at": "2026-10-03T09:42:33.449+00:00",
+      "updated_at": "2026-10-03T09:42:33.449+00:00",
+      "subcategory": "teddy",
+      "categoryName": "Baby Shower & Welcome",
+      "originalPrice": 4699,
+      "setupDuration": "2.5 Hours",
+      "reviewsCount": 310,
+      "slots_alert": "",
+      "about_description": "Trendy 'We Can Bearly Wait' theme with giant plush teddy bear, caramel and cream organic arches, and baby block boxes.",
+      "not_included": [],
+      "faqs": [],
+      "addons": [],
+      "delivery_note": "",
+      "decorator_note": "",
+      "lifespan_note": "",
+      "location_note": "",
+      "color_palettes": [],
+      "why_choose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "notIncluded": [],
+      "aboutDescription": "Trendy 'We Can Bearly Wait' theme with giant plush teddy bear, caramel and cream organic arches, and baby block boxes.",
+      "deliveryNote": "",
+      "decoratorNote": "",
+      "lifespanNote": "",
+      "locationNote": "",
+      "colorPalettes": [],
+      "slotsAlert": "",
+      "whyChoose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "options": []
     },
     {
       "id": "baby-shower-teddy-cloud-cradle-decor",
       "title": "Teddy & Pastel Clouds Baby Shower Cradle Decor",
       "category": "baby-shower",
-      "categoryName": "Baby Shower & Welcome",
+      "category_name": "Baby Shower & Welcome",
       "price": 3499,
-      "originalPrice": 4499,
+      "original_price": 4499,
       "discount": 22,
       "rating": 4.9,
-      "reviewsCount": 220,
+      "reviews_count": 220,
       "badge": "LOVED",
+      "setup_duration": "2.5 Hours",
       "image": "https://cdn.balloondekor.com/33/baby-shower-decoration-1ba3a3a3-d2eb-40e6-98bd-aed4eb907984.webp",
       "gallery": [
         "https://cdn.balloondekor.com/33/baby-shower-decoration-1ba3a3a3-d2eb-40e6-98bd-aed4eb907984.webp"
       ],
-      "setupDuration": "2.5 Hours",
       "description": "Fluffy balloon cloud clusters surrounding traditional ceremonial cradle with hanging stars and glowing moon.",
       "inclusions": [
         "180 White & Soft Blue/Pink Cloud Balloons",
@@ -2057,26 +2972,138 @@ const SITE_DATA = {
       "tags": [
         "Cradle Decor",
         "Naming Ceremony",
-        "Tradition"
+        "Tradition",
+        "subcat:teddy"
       ],
-      "subcategory": "teddy"
+      "created_at": "2026-10-03T09:42:33.449+00:00",
+      "updated_at": "2026-10-03T09:42:33.449+00:00",
+      "subcategory": "teddy",
+      "categoryName": "Baby Shower & Welcome",
+      "originalPrice": 4499,
+      "setupDuration": "2.5 Hours",
+      "reviewsCount": 220,
+      "slots_alert": "",
+      "about_description": "Fluffy balloon cloud clusters surrounding traditional ceremonial cradle with hanging stars and glowing moon.",
+      "not_included": [],
+      "faqs": [],
+      "addons": [],
+      "delivery_note": "",
+      "decorator_note": "",
+      "lifespan_note": "",
+      "location_note": "",
+      "color_palettes": [],
+      "why_choose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "notIncluded": [],
+      "aboutDescription": "Fluffy balloon cloud clusters surrounding traditional ceremonial cradle with hanging stars and glowing moon.",
+      "deliveryNote": "",
+      "decoratorNote": "",
+      "lifespanNote": "",
+      "locationNote": "",
+      "colorPalettes": [],
+      "slotsAlert": "",
+      "whyChoose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "options": []
     },
     {
       "id": "baby-welcome-home-balloon-surprise",
       "title": "Baby Welcome Home Room Surprise Decor",
       "category": "baby-shower",
-      "categoryName": "Baby Shower & Welcome",
+      "category_name": "Baby Shower & Welcome",
       "price": 2199,
-      "originalPrice": 2899,
+      "original_price": 2899,
       "discount": 24,
       "rating": 4.8,
-      "reviewsCount": 180,
+      "reviews_count": 180,
       "badge": "SWEET",
+      "setup_duration": "2 Hours",
       "image": "https://cdn.balloondekor.com/33/baby-shower-decoration-1ba3a3a3-d2eb-40e6-98bd-aed4eb907984.webp",
       "gallery": [
         "https://cdn.balloondekor.com/33/baby-shower-decoration-1ba3a3a3-d2eb-40e6-98bd-aed4eb907984.webp"
       ],
-      "setupDuration": "2 Hours",
       "description": "Bright, welcoming bedroom surprise for mommy and the newborn with customized welcome poster and floor balloon pool.",
       "inclusions": [
         "120 Metallic Pastel Balloons (Floor & Ceiling with Ribbons)",
@@ -2088,26 +3115,282 @@ const SITE_DATA = {
       "tags": [
         "Room Surprise",
         "Welcome Baby",
-        "Newborn"
+        "Newborn",
+        "subcat:welcome"
       ],
-      "subcategory": "welcome"
+      "created_at": "2026-10-03T09:42:33.449+00:00",
+      "updated_at": "2026-10-03T09:42:33.449+00:00",
+      "subcategory": "welcome",
+      "categoryName": "Baby Shower & Welcome",
+      "originalPrice": 2899,
+      "setupDuration": "2 Hours",
+      "reviewsCount": 180,
+      "slots_alert": "",
+      "about_description": "Bright, welcoming bedroom surprise for mommy and the newborn with customized welcome poster and floor balloon pool.",
+      "not_included": [],
+      "faqs": [],
+      "addons": [],
+      "delivery_note": "",
+      "decorator_note": "",
+      "lifespan_note": "",
+      "location_note": "",
+      "color_palettes": [],
+      "why_choose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "notIncluded": [],
+      "aboutDescription": "Bright, welcoming bedroom surprise for mommy and the newborn with customized welcome poster and floor balloon pool.",
+      "deliveryNote": "",
+      "decoratorNote": "",
+      "lifespanNote": "",
+      "locationNote": "",
+      "colorPalettes": [],
+      "slotsAlert": "",
+      "whyChoose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "options": []
+    },
+    {
+      "id": "blush-glow-birthday-theme",
+      "title": "Blush & Glow Birthday Theme",
+      "category": "birthday",
+      "category_name": "Birthday",
+      "price": 2199,
+      "original_price": 2899,
+      "discount": 24,
+      "rating": 4.8,
+      "reviews_count": 228,
+      "badge": "TRENDING",
+      "setup_duration": "2 Hours",
+      "image": "https://cdn.balloondekor.com/14/1748087900974.webp",
+      "gallery": [
+        "https://cdn.balloondekor.com/14/1748087900974.webp",
+        "https://cdn.balloondekor.com/images/33/c43fa93c-2a62-4aa8-9fce-ba7a966838b9.webp"
+      ],
+      "description": "Gentle blush pink and champagne gold theme with elegant cascading wall balloon drape and fairy canopy.",
+      "inclusions": [
+        "140 Pastel Pink, White & Champagne Balloons",
+        "LED Neon Sign 'Happy Birthday'",
+        "Fairy Light Backdrop Curtain (8x6 ft)",
+        "2 Foil Number Balloons (32 inches, Golden)",
+        "Table Decor with Confetti Sprinkles"
+      ],
+      "tags": [
+        "Blush Pink",
+        "Bedroom Surprise",
+        "Evening Glow",
+        "subcat:home"
+      ],
+      "created_at": "2026-10-03T09:42:33.449+00:00",
+      "updated_at": "2026-10-03T09:42:33.449+00:00",
+      "subcategory": "home",
+      "categoryName": "Birthday",
+      "originalPrice": 2899,
+      "setupDuration": "2 Hours",
+      "reviewsCount": 228,
+      "slots_alert": "",
+      "about_description": "Gentle blush pink and champagne gold theme with elegant cascading wall balloon drape and fairy canopy.",
+      "not_included": [],
+      "faqs": [],
+      "addons": [],
+      "delivery_note": "",
+      "decorator_note": "",
+      "lifespan_note": "",
+      "location_note": "",
+      "color_palettes": [],
+      "why_choose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "notIncluded": [],
+      "aboutDescription": "Gentle blush pink and champagne gold theme with elegant cascading wall balloon drape and fairy canopy.",
+      "deliveryNote": "",
+      "decoratorNote": "",
+      "lifespanNote": "",
+      "locationNote": "",
+      "colorPalettes": [],
+      "slotsAlert": "",
+      "whyChoose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "options": []
     },
     {
       "id": "house-decor",
       "title": "House Decoration",
       "category": "wedding",
-      "categoryName": "Wedding",
+      "category_name": "Wedding",
       "price": 9999,
-      "originalPrice": 12999,
+      "original_price": 12999,
       "discount": 23,
       "rating": 4.9,
-      "reviewsCount": 240,
+      "reviews_count": 240,
       "badge": "TRADITIONAL",
+      "setup_duration": "3 - 4 Hours",
       "image": "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=800&q=80",
       "gallery": [
         "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=800&q=80"
       ],
-      "setupDuration": "3 - 4 Hours",
       "description": "Complete traditional home decoration for weddings including front gate pandals, vibrant LED string lights, fresh banana tree pillars, marigold entrance torans, and courtyard styling.",
       "inclusions": [
         "Entrance Banana Trees with Fresh Floral Garlands",
@@ -2120,13 +3403,126 @@ const SITE_DATA = {
         "Pandals",
         "Lighting",
         "Banana Trees",
-        "Flowers"
+        "Flowers",
+        "subcat:house-decor"
       ],
+      "created_at": "2026-10-04T12:29:15.410883+00:00",
+      "updated_at": "2026-10-04T12:29:15.410883+00:00",
+      "subcategory": "house-decor",
+      "categoryName": "Wedding",
+      "originalPrice": 12999,
+      "setupDuration": "3 - 4 Hours",
+      "reviewsCount": 240,
+      "slots_alert": "",
+      "about_description": "Complete traditional home decoration for weddings including front gate pandals, vibrant LED string lights, fresh banana tree pillars, marigold entrance torans, and courtyard styling.",
+      "not_included": [],
+      "faqs": [],
+      "addons": [],
+      "delivery_note": "",
+      "decorator_note": "",
+      "lifespan_note": "",
+      "location_note": "",
+      "color_palettes": [],
+      "why_choose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "notIncluded": [],
+      "aboutDescription": "Complete traditional home decoration for weddings including front gate pandals, vibrant LED string lights, fresh banana tree pillars, marigold entrance torans, and courtyard styling.",
+      "deliveryNote": "",
+      "decoratorNote": "",
+      "lifespanNote": "",
+      "locationNote": "",
+      "colorPalettes": [],
+      "slotsAlert": "",
+      "whyChoose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
       "options": [
         {
           "id": "hd_pendals",
           "title": "Pendals In Front Of House",
           "subPrompt": "Choose pendal type",
+          "image": "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=600&q=80",
           "subItems": [
             "Tenkaya pandhiri",
             "Normal pendals"
@@ -2136,6 +3532,7 @@ const SITE_DATA = {
           "id": "hd_lighting",
           "title": "Lighting Decoration For Building",
           "subPrompt": "3 or 5 Days with Max of 50 Serial Sets",
+          "image": "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=600&q=80",
           "subItems": [
             "3 Days (Max 50 Serial Sets)",
             "5 Days (Max 50 Serial Sets)"
@@ -2145,6 +3542,7 @@ const SITE_DATA = {
           "id": "hd_banana",
           "title": "Banana Trees & Mango Leaves",
           "subPrompt": "Main doorway auspicious pillars",
+          "image": "https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=600&q=80",
           "subItems": [
             "Banana Trees & Mango Leaves"
           ]
@@ -2153,6 +3551,7 @@ const SITE_DATA = {
           "id": "hd_marigold",
           "title": "Marigold Flowers For Main Door And Inside the House",
           "subPrompt": "Choose flower type",
+          "image": "https://images.unsplash.com/photo-1537633552985-df8429e8048b?auto=format&fit=crop&w=600&q=80",
           "subItems": [
             "Normal",
             "Special"
@@ -2162,30 +3561,2223 @@ const SITE_DATA = {
           "id": "hd_gaja",
           "title": "Gaja Maala For Main Door",
           "subPrompt": "Grand entrance garland",
+          "image": "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=600&q=80",
           "subItems": [
             "Yes",
             "No"
           ]
         }
+      ]
+    },
+    {
+      "id": "simple-balloon-decor-for-home",
+      "title": "Simple Balloon Decor for Home",
+      "category": "birthday",
+      "category_name": "Birthday",
+      "price": 1499,
+      "original_price": 1999,
+      "discount": 25,
+      "rating": 4.9,
+      "reviews_count": 313,
+      "badge": "BESTSELLER",
+      "setup_duration": "1.5 - 2 Hours",
+      "image": "https://cdn.balloondekor.com/14/simple-balloon-decor-for-home-1785476680249-529705.webp",
+      "gallery": [
+        "https://cdn.balloondekor.com/14/simple-balloon-decor-for-home-1785476680249-529705.webp",
+        "https://cdn.balloondekor.com/14/1744720943222.webp"
       ],
-      "subcategory": "house-decor"
+      "description": "A chic, minimalist home celebration setup featuring metallic latex balloons, happy birthday bunting, and fairy lights. Ideal for living rooms and bedroom surprises.",
+      "inclusions": [
+        "100 Metallic Balloons (Pastel Blue, White & Chrome Gold)",
+        "1 'Happy Birthday' Rose Gold Cursive Cardstock Banner",
+        "2 Star Foil Balloons (18 inches)",
+        "Fairy String Lights (Warm White, 10 meters)",
+        "Ribbons, Glue Dots & Complete Home Setup by Expert Decorator"
+      ],
+      "tags": [
+        "Home Decor",
+        "Same Day Available",
+        "Budget Friendly",
+        "subcat:home"
+      ],
+      "created_at": "2026-10-03T09:42:33.449+00:00",
+      "updated_at": "2026-10-03T09:42:33.449+00:00",
+      "subcategory": "home",
+      "categoryName": "Birthday",
+      "originalPrice": 1999,
+      "setupDuration": "1.5 - 2 Hours",
+      "reviewsCount": 313,
+      "slots_alert": "",
+      "about_description": "A chic, minimalist home celebration setup featuring metallic latex balloons, happy birthday bunting, and fairy lights. Ideal for living rooms and bedroom surprises.",
+      "not_included": [],
+      "faqs": [],
+      "addons": [],
+      "delivery_note": "",
+      "decorator_note": "",
+      "lifespan_note": "",
+      "location_note": "",
+      "color_palettes": [],
+      "why_choose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "notIncluded": [],
+      "aboutDescription": "A chic, minimalist home celebration setup featuring metallic latex balloons, happy birthday bunting, and fairy lights. Ideal for living rooms and bedroom surprises.",
+      "deliveryNote": "",
+      "decoratorNote": "",
+      "lifespanNote": "",
+      "locationNote": "",
+      "colorPalettes": [],
+      "slotsAlert": "",
+      "whyChoose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "options": []
+    },
+    {
+      "id": "rose-gold-birthday-home-decor",
+      "title": "Rose Gold Birthday Home Decor",
+      "category": "birthday",
+      "category_name": "Birthday",
+      "price": 1999,
+      "original_price": 2499,
+      "discount": 20,
+      "rating": 4.9,
+      "reviews_count": 352,
+      "badge": "POPULAR",
+      "setup_duration": "2 Hours",
+      "image": "https://cdn.balloondekor.com/14/1744720943222.webp",
+      "gallery": [
+        "https://cdn.balloondekor.com/14/1744720943222.webp",
+        "https://cdn.balloondekor.com/14/1748087900974.webp"
+      ],
+      "description": "Sophisticated rose gold luxury balloon ring with shimmering foil curtains, star balloons, and ambient fairy lights tailored for women and girls.",
+      "inclusions": [
+        "150 Metallic Rose Gold & Pastel Pink Balloons",
+        "2 Shimmering Rose Gold Foil Curtains for Backdrop",
+        "1 Happy Birthday Foil Balloon Set (16 inches)",
+        "4 Rose Gold Confetti Transparent Balloons",
+        "4 Heart & Star Foil Balloons",
+        "Warm LED Rice Lights for Glamorous Glow"
+      ],
+      "tags": [
+        "Rose Gold",
+        "Girls Birthday",
+        "Insta-Worthy",
+        "subcat:home"
+      ],
+      "created_at": "2026-10-03T09:42:33.449+00:00",
+      "updated_at": "2026-10-03T09:42:33.449+00:00",
+      "subcategory": "home",
+      "categoryName": "Birthday",
+      "originalPrice": 2499,
+      "setupDuration": "2 Hours",
+      "reviewsCount": 352,
+      "slots_alert": "",
+      "about_description": "Sophisticated rose gold luxury balloon ring with shimmering foil curtains, star balloons, and ambient fairy lights tailored for women and girls.",
+      "not_included": [],
+      "faqs": [],
+      "addons": [],
+      "delivery_note": "",
+      "decorator_note": "",
+      "lifespan_note": "",
+      "location_note": "",
+      "color_palettes": [],
+      "why_choose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "notIncluded": [],
+      "aboutDescription": "Sophisticated rose gold luxury balloon ring with shimmering foil curtains, star balloons, and ambient fairy lights tailored for women and girls.",
+      "deliveryNote": "",
+      "decoratorNote": "",
+      "lifespanNote": "",
+      "locationNote": "",
+      "colorPalettes": [],
+      "slotsAlert": "",
+      "whyChoose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "options": []
+    },
+    {
+      "id": "adorable-birthday-arch-backdrop",
+      "title": "Adorable Birthday Arch Backdrop",
+      "category": "birthday",
+      "category_name": "Birthday",
+      "price": 2499,
+      "original_price": 3299,
+      "discount": 24,
+      "rating": 5,
+      "reviews_count": 374,
+      "badge": "TOP RATED",
+      "setup_duration": "2.5 Hours",
+      "image": "https://cdn.balloondekor.com/14/1744890426934.webp",
+      "gallery": [
+        "https://cdn.balloondekor.com/14/1744890426934.webp",
+        "https://cdn.balloondekor.com/images/33/8f427771-4dd9-4d69-be54-946fdf81b81d.webp"
+      ],
+      "description": "Stunning half-arch organic balloon garland framed on circular backdrop ring with customized name tag and ambient spotlight.",
+      "inclusions": [
+        "200 Chrome & Metallic Balloons (Golden, White, Chrome Mauve)",
+        "Circular Metallic Backdrop Stand on Rental",
+        "1 Happy Birthday Neon Sign (Warm White)",
+        "4 Confetti Giant Balloons",
+        "Professional Florist & Decor Team at Venue"
+      ],
+      "tags": [
+        "Circular Arch",
+        "Milestone 30th",
+        "Banquet Hall",
+        "subcat:arch"
+      ],
+      "created_at": "2026-10-03T09:42:33.449+00:00",
+      "updated_at": "2026-10-03T09:42:33.449+00:00",
+      "subcategory": "arch",
+      "categoryName": "Birthday",
+      "originalPrice": 3299,
+      "setupDuration": "2.5 Hours",
+      "reviewsCount": 374,
+      "slots_alert": "",
+      "about_description": "Stunning half-arch organic balloon garland framed on circular backdrop ring with customized name tag and ambient spotlight.",
+      "not_included": [],
+      "faqs": [],
+      "addons": [],
+      "delivery_note": "",
+      "decorator_note": "",
+      "lifespan_note": "",
+      "location_note": "",
+      "color_palettes": [],
+      "why_choose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "notIncluded": [],
+      "aboutDescription": "Stunning half-arch organic balloon garland framed on circular backdrop ring with customized name tag and ambient spotlight.",
+      "deliveryNote": "",
+      "decoratorNote": "",
+      "lifespanNote": "",
+      "locationNote": "",
+      "colorPalettes": [],
+      "slotsAlert": "",
+      "whyChoose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "options": []
+    },
+    {
+      "id": "anniversary-bliss-setup",
+      "title": "Anniversary Bliss Ring Setup",
+      "category": "anniversary",
+      "category_name": "Anniversary",
+      "price": 2499,
+      "original_price": 3399,
+      "discount": 26,
+      "rating": 4.9,
+      "reviews_count": 198,
+      "badge": "TRENDING",
+      "setup_duration": "2 Hours",
+      "image": "https://cdn.balloondekor.com/29/1784709508118-669326.webp",
+      "gallery": [
+        "https://cdn.balloondekor.com/29/1784709508118-669326.webp",
+        "https://cdn.balloondekor.com/14/1744883492822.webp"
+      ],
+      "description": "Circular arch balloon ring in luxurious golden and white tones with warm spotlight and customized Anniversary message.",
+      "inclusions": [
+        "180 Metallic Chrome Gold & Pastel White Balloons",
+        "Circular Ring Stand on Rental",
+        "Warm White Neon Sign ('Better Together' or 'Happy Anniversary')",
+        "Artificial Floral Bunches on Arch corners",
+        "Complete hassle-free assembly & disassembly"
+      ],
+      "tags": [
+        "Circular Arch",
+        "Silver Jubilee",
+        "Photo Booth",
+        "subcat:ring"
+      ],
+      "created_at": "2026-10-03T09:42:33.449+00:00",
+      "updated_at": "2026-10-03T09:42:33.449+00:00",
+      "subcategory": "ring",
+      "categoryName": "Anniversary",
+      "originalPrice": 3399,
+      "setupDuration": "2 Hours",
+      "reviewsCount": 198,
+      "slots_alert": "",
+      "about_description": "Circular arch balloon ring in luxurious golden and white tones with warm spotlight and customized Anniversary message.",
+      "not_included": [],
+      "faqs": [],
+      "addons": [],
+      "delivery_note": "",
+      "decorator_note": "",
+      "lifespan_note": "",
+      "location_note": "",
+      "color_palettes": [],
+      "why_choose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "notIncluded": [],
+      "aboutDescription": "Circular arch balloon ring in luxurious golden and white tones with warm spotlight and customized Anniversary message.",
+      "deliveryNote": "",
+      "decoratorNote": "",
+      "lifespanNote": "",
+      "locationNote": "",
+      "colorPalettes": [],
+      "slotsAlert": "",
+      "whyChoose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "options": []
+    },
+    {
+      "id": "corporate-office-milestone-decor",
+      "title": "Corporate Milestone & Office Celebration Decor",
+      "category": "corporate",
+      "category_name": "Corporate",
+      "price": 4499,
+      "original_price": 5999,
+      "discount": 25,
+      "rating": 4.9,
+      "reviews_count": 165,
+      "badge": "BUSINESS",
+      "setup_duration": "2 Hours",
+      "image": "https://cdn.balloondekor.com/33/office-decoration-b84c3312-f4cd-4baf-8d1f-b03d28c61242.webp",
+      "gallery": [
+        "https://cdn.balloondekor.com/33/office-decoration-b84c3312-f4cd-4baf-8d1f-b03d28c61242.webp"
+      ],
+      "description": "Professional office anniversary or company milestone balloon arch with brand colors, metallic pillars, and stage balloon bouquets.",
+      "inclusions": [
+        "200 Brand-Aligned Chrome & Metallic Balloons (PMS Match)",
+        "Reception Entrance Balloon Arch (8x7 ft)",
+        "6 Helium Balloon Bunches on Conference Tables",
+        "1 Foil Number Milestone Balloon (e.g., '10 Years')",
+        "Quiet after-hours or early morning setup by corporate team"
+      ],
+      "tags": [
+        "Office Decor",
+        "Foundation Day",
+        "Brand Colors",
+        "subcat:office"
+      ],
+      "created_at": "2026-10-03T09:42:33.449+00:00",
+      "updated_at": "2026-10-03T09:42:33.449+00:00",
+      "subcategory": "office",
+      "categoryName": "Corporate",
+      "originalPrice": 5999,
+      "setupDuration": "2 Hours",
+      "reviewsCount": 165,
+      "slots_alert": "",
+      "about_description": "Professional office anniversary or company milestone balloon arch with brand colors, metallic pillars, and stage balloon bouquets.",
+      "not_included": [],
+      "faqs": [],
+      "addons": [],
+      "delivery_note": "",
+      "decorator_note": "",
+      "lifespan_note": "",
+      "location_note": "",
+      "color_palettes": [],
+      "why_choose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "notIncluded": [],
+      "aboutDescription": "Professional office anniversary or company milestone balloon arch with brand colors, metallic pillars, and stage balloon bouquets.",
+      "deliveryNote": "",
+      "decoratorNote": "",
+      "lifespanNote": "",
+      "locationNote": "",
+      "colorPalettes": [],
+      "slotsAlert": "",
+      "whyChoose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "options": []
+    },
+    {
+      "id": "corporate-annual-day-grand-stage",
+      "title": "Grand Corporate Annual Day & Conference Stage Decor",
+      "category": "corporate",
+      "category_name": "Corporate",
+      "price": 6999,
+      "original_price": 9499,
+      "discount": 26,
+      "rating": 5,
+      "reviews_count": 210,
+      "badge": "EXECUTIVE",
+      "setup_duration": "3 Hours",
+      "image": "https://cdn.balloondekor.com/33/office-decoration-b84c3312-f4cd-4baf-8d1f-b03d28c61242.webp",
+      "gallery": [
+        "https://cdn.balloondekor.com/33/office-decoration-b84c3312-f4cd-4baf-8d1f-b03d28c61242.webp"
+      ],
+      "description": "Grand auditorium stage backdrop decoration with balloon clusters, customized company logo board, and VIP entry podium styling.",
+      "inclusions": [
+        "350 Chrome & Matte Balloons matching corporate palette",
+        "Auditorium Stage Framing with dual organic pillars",
+        "VIP Entrance Walkway Ribbon Cutting Setup",
+        "Custom Acrylic Company Logo Emblem",
+        "GST Invoice with dedicated B2B account manager"
+      ],
+      "tags": [
+        "Annual Day",
+        "Townhall",
+        "Auditorium",
+        "subcat:stage"
+      ],
+      "created_at": "2026-10-03T09:42:33.449+00:00",
+      "updated_at": "2026-10-03T09:42:33.449+00:00",
+      "subcategory": "stage",
+      "categoryName": "Corporate",
+      "originalPrice": 9499,
+      "setupDuration": "3 Hours",
+      "reviewsCount": 210,
+      "slots_alert": "",
+      "about_description": "Grand auditorium stage backdrop decoration with balloon clusters, customized company logo board, and VIP entry podium styling.",
+      "not_included": [],
+      "faqs": [],
+      "addons": [],
+      "delivery_note": "",
+      "decorator_note": "",
+      "lifespan_note": "",
+      "location_note": "",
+      "color_palettes": [],
+      "why_choose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "notIncluded": [],
+      "aboutDescription": "Grand auditorium stage backdrop decoration with balloon clusters, customized company logo board, and VIP entry podium styling.",
+      "deliveryNote": "",
+      "decoratorNote": "",
+      "lifespanNote": "",
+      "locationNote": "",
+      "colorPalettes": [],
+      "slotsAlert": "",
+      "whyChoose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "options": []
+    },
+    {
+      "id": "corporate-product-launch-balloon-arch",
+      "title": "Corporate Product Launch Ribbon Cutting Decor",
+      "category": "corporate",
+      "category_name": "Corporate",
+      "price": 4999,
+      "original_price": 6499,
+      "discount": 23,
+      "rating": 4.8,
+      "reviews_count": 140,
+      "badge": "LAUNCH",
+      "setup_duration": "2.5 Hours",
+      "image": "https://cdn.balloondekor.com/33/office-decoration-b84c3312-f4cd-4baf-8d1f-b03d28c61242.webp",
+      "gallery": [
+        "https://cdn.balloondekor.com/33/office-decoration-b84c3312-f4cd-4baf-8d1f-b03d28c61242.webp"
+      ],
+      "description": "Sleek retail store or product showcase entrance arch with red carpet runner, brass stanchions with velvet ropes, and ceremonial scissors.",
+      "inclusions": [
+        "Grand Store Entrance Balloon Arch (250 Balloons)",
+        "Red Carpet Runway (15 ft length)",
+        "4 Golden Stanchion Poles with Red Velvet Ropes",
+        "Ribbon Cutting Stand with Golden Scissors on Tray",
+        "Product Pedestal Spotlight Highlighting"
+      ],
+      "tags": [
+        "Product Launch",
+        "Store Opening",
+        "Ribbon Cutting",
+        "subcat:office"
+      ],
+      "created_at": "2026-10-03T09:42:33.449+00:00",
+      "updated_at": "2026-10-03T09:42:33.449+00:00",
+      "subcategory": "office",
+      "categoryName": "Corporate",
+      "originalPrice": 6499,
+      "setupDuration": "2.5 Hours",
+      "reviewsCount": 140,
+      "slots_alert": "",
+      "about_description": "Sleek retail store or product showcase entrance arch with red carpet runner, brass stanchions with velvet ropes, and ceremonial scissors.",
+      "not_included": [],
+      "faqs": [],
+      "addons": [],
+      "delivery_note": "",
+      "decorator_note": "",
+      "lifespan_note": "",
+      "location_note": "",
+      "color_palettes": [],
+      "why_choose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "notIncluded": [],
+      "aboutDescription": "Sleek retail store or product showcase entrance arch with red carpet runner, brass stanchions with velvet ropes, and ceremonial scissors.",
+      "deliveryNote": "",
+      "decoratorNote": "",
+      "lifespanNote": "",
+      "locationNote": "",
+      "colorPalettes": [],
+      "slotsAlert": "",
+      "whyChoose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "options": []
+    },
+    {
+      "id": "corporate-cubicle-bay-festive-decor",
+      "title": "Office Workstation & Cubicle Festive Surprise",
+      "category": "corporate",
+      "category_name": "Corporate",
+      "price": 2999,
+      "original_price": 3999,
+      "discount": 25,
+      "rating": 4.7,
+      "reviews_count": 190,
+      "badge": "FESTIVE",
+      "setup_duration": "2 Hours",
+      "image": "https://cdn.balloondekor.com/33/office-decoration-b84c3312-f4cd-4baf-8d1f-b03d28c61242.webp",
+      "gallery": [
+        "https://cdn.balloondekor.com/33/office-decoration-b84c3312-f4cd-4baf-8d1f-b03d28c61242.webp"
+      ],
+      "description": "Transform open cubicle bays and workstations for Diwali, New Year, or Christmas with ceiling hangings and desk bunches.",
+      "inclusions": [
+        "150 Ceiling Suspended Metallic Balloons with Ribbons",
+        "10 Desktop Balloon Bouquets for Department Pods",
+        "Festive Bunting & LED Warm Rice Lights across bays",
+        "Cafeteria / Breakout Zone Balloon Drop",
+        "Quick clean-up safe adhesives used"
+      ],
+      "tags": [
+        "Cubicle Decor",
+        "Diwali",
+        "Office Party",
+        "subcat:office"
+      ],
+      "created_at": "2026-10-03T09:42:33.449+00:00",
+      "updated_at": "2026-10-03T09:42:33.449+00:00",
+      "subcategory": "office",
+      "categoryName": "Corporate",
+      "originalPrice": 3999,
+      "setupDuration": "2 Hours",
+      "reviewsCount": 190,
+      "slots_alert": "",
+      "about_description": "Transform open cubicle bays and workstations for Diwali, New Year, or Christmas with ceiling hangings and desk bunches.",
+      "not_included": [],
+      "faqs": [],
+      "addons": [],
+      "delivery_note": "",
+      "decorator_note": "",
+      "lifespan_note": "",
+      "location_note": "",
+      "color_palettes": [],
+      "why_choose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "notIncluded": [],
+      "aboutDescription": "Transform open cubicle bays and workstations for Diwali, New Year, or Christmas with ceiling hangings and desk bunches.",
+      "deliveryNote": "",
+      "decoratorNote": "",
+      "lifespanNote": "",
+      "locationNote": "",
+      "colorPalettes": [],
+      "slotsAlert": "",
+      "whyChoose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "options": []
+    },
+    {
+      "id": "corporate-executive-townhall-stage-backdrop",
+      "title": "Executive Townhall & Leadership Meet Backdrop",
+      "category": "corporate",
+      "category_name": "Corporate",
+      "price": 7499,
+      "original_price": 9999,
+      "discount": 25,
+      "rating": 5,
+      "reviews_count": 110,
+      "badge": "PREMIUM",
+      "setup_duration": "3 Hours",
+      "image": "https://cdn.balloondekor.com/33/office-decoration-b84c3312-f4cd-4baf-8d1f-b03d28c61242.webp",
+      "gallery": [
+        "https://cdn.balloondekor.com/33/office-decoration-b84c3312-f4cd-4baf-8d1f-b03d28c61242.webp"
+      ],
+      "description": "Sleek, minimalist conference backdrop for quarterly townhalls, board meetings, and high-level leadership summits.",
+      "inclusions": [
+        "Matte Black & Chrome Platinum Architectural Balloon Frame",
+        "Dual Stage Podiums with Branded Floral Accents",
+        "Sound-Dampened Backdrop Panel Integration",
+        "Conference Stage LED Uplighting (Pair of 4 Lights)",
+        "Dedicated Corporate Operations Supervisor"
+      ],
+      "tags": [
+        "Townhall",
+        "Leadership Meet",
+        "Board Meeting",
+        "subcat:stage"
+      ],
+      "created_at": "2026-10-03T09:42:33.449+00:00",
+      "updated_at": "2026-10-03T09:42:33.449+00:00",
+      "subcategory": "stage",
+      "categoryName": "Corporate",
+      "originalPrice": 9999,
+      "setupDuration": "3 Hours",
+      "reviewsCount": 110,
+      "slots_alert": "",
+      "about_description": "Sleek, minimalist conference backdrop for quarterly townhalls, board meetings, and high-level leadership summits.",
+      "not_included": [],
+      "faqs": [],
+      "addons": [],
+      "delivery_note": "",
+      "decorator_note": "",
+      "lifespan_note": "",
+      "location_note": "",
+      "color_palettes": [],
+      "why_choose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "notIncluded": [],
+      "aboutDescription": "Sleek, minimalist conference backdrop for quarterly townhalls, board meetings, and high-level leadership summits.",
+      "deliveryNote": "",
+      "decoratorNote": "",
+      "lifespanNote": "",
+      "locationNote": "",
+      "colorPalettes": [],
+      "slotsAlert": "",
+      "whyChoose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "options": []
+    },
+    {
+      "id": "gift-01",
+      "title": "Soft Teddy Bear",
+      "category": "gifts",
+      "category_name": "Gifts Market",
+      "price": 699,
+      "original_price": 899,
+      "discount": 22,
+      "rating": 4.8,
+      "reviews_count": 320,
+      "badge": "POPULAR",
+      "setup_duration": "Same Day Delivery",
+      "image": "assets/soft-teddy-bear-hero.jpg",
+      "gallery": [
+        "assets/soft-teddy-bear-hero.jpg"
+      ],
+      "description": "Adorable, ultra-soft plush teddy bear crafted with hypoallergenic material. A timeless gift for birthdays, anniversaries, and heartfelt surprises.",
+      "inclusions": [
+        "Premium Soft Fur Plush Teddy Bear (35cm)",
+        "Gift Ribbon & Greeting Note Card",
+        "Safe Dust-Free Packaging"
+      ],
+      "tags": [
+        "Gifts for Boys",
+        "Gifts for Girls",
+        "TeddyJoy",
+        "subcat:girls"
+      ],
+      "created_at": "2026-10-04T11:19:07.968893+00:00",
+      "updated_at": "2026-10-04T11:19:07.968893+00:00",
+      "subcategory": "girls",
+      "categoryName": "Gifts Market",
+      "originalPrice": 899,
+      "setupDuration": "Same Day Delivery",
+      "reviewsCount": 320,
+      "slots_alert": "",
+      "about_description": "Adorable, ultra-soft plush teddy bear crafted with hypoallergenic material. A timeless gift for birthdays, anniversaries, and heartfelt surprises.",
+      "not_included": [],
+      "faqs": [],
+      "addons": [],
+      "delivery_note": "",
+      "decorator_note": "",
+      "lifespan_note": "",
+      "location_note": "",
+      "color_palettes": [],
+      "why_choose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "notIncluded": [],
+      "aboutDescription": "Adorable, ultra-soft plush teddy bear crafted with hypoallergenic material. A timeless gift for birthdays, anniversaries, and heartfelt surprises.",
+      "deliveryNote": "Same Day Delivery: Get it delivered in 2 to 4 hours at your location.",
+      "decoratorNote": "",
+      "lifespanNote": "",
+      "locationNote": "",
+      "colorPalettes": [],
+      "slotsAlert": "",
+      "whyChoose": [
+        "Premium quality fabric",
+        "Loved by all age groups",
+        "Same day delivery (2 to 4 hours)",
+        "Makes a thoughtful and memorable gift"
+      ],
+      "options": [],
+      "subtitle": "A cute and cuddly teddy bear, perfect for every special occasion.",
+      "material": "Ultra-Soft Hypoallergenic Plush & PP Cotton",
+      "dimensions": "35 cm (Sitting Height)",
+      "color": "Warm Honey Brown with Silk Ribbon",
+      "recommendedAge": "Safe for all age groups (3+ to Adults)",
+      "washCare": "Hand wash with mild detergent or damp wipe",
+      "packaging": "Gift Wrapped in Polka Box with Satin Bow",
+      "boughtText": "500+ bought in last month",
+      "highlights": [
+        "Soft and high-quality plush material",
+        "Perfect for gifting on birthdays, anniversaries, and special occasions",
+        "Safe for kids and adults",
+        "A timeless gift for your loved ones"
+      ],
+      "specs": {
+        "material": "Ultra-Soft Hypoallergenic Plush & PP Cotton",
+        "dimensions": "35 cm (Sitting Height)",
+        "color": "Warm Honey Brown with Silk Ribbon",
+        "recommendedAge": "Safe for all age groups (3+ to Adults)",
+        "washCare": "Hand wash with mild detergent or damp wipe",
+        "packaging": "Gift Wrapped in Polka Box with Satin Bow"
+      }
+    },
+    {
+      "id": "gift-02",
+      "title": "Personalized Photo Mug",
+      "category": "gifts",
+      "category_name": "Gifts Market",
+      "price": 499,
+      "original_price": 699,
+      "discount": 29,
+      "rating": 4.6,
+      "reviews_count": 210,
+      "badge": "CUSTOM",
+      "setup_duration": "Same Day Delivery",
+      "image": "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=600&q=80",
+      "gallery": [
+        "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=600&q=80"
+      ],
+      "description": "High-grade ceramic coffee mug customized with your favorite memory and quote in vibrant, dishwasher-safe sublimation print.",
+      "inclusions": [
+        "325ml Premium Ceramic Gloss Mug",
+        "High-Definition Photo & Name Printing",
+        "Shockproof Thermocol Gift Box"
+      ],
+      "tags": [
+        "Gifts for Men",
+        "Gifts for Women",
+        "Archies",
+        "subcat:boys"
+      ],
+      "created_at": "2026-10-04T11:19:07.968893+00:00",
+      "updated_at": "2026-10-04T11:19:07.968893+00:00",
+      "subcategory": "boys",
+      "categoryName": "Gifts Market",
+      "originalPrice": 699,
+      "setupDuration": "Same Day Delivery",
+      "reviewsCount": 210,
+      "slots_alert": "",
+      "about_description": "High-grade ceramic coffee mug customized with your favorite memory and quote in vibrant, dishwasher-safe sublimation print.",
+      "not_included": [],
+      "faqs": [],
+      "addons": [],
+      "delivery_note": "",
+      "decorator_note": "",
+      "lifespan_note": "",
+      "location_note": "",
+      "color_palettes": [],
+      "why_choose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "notIncluded": [],
+      "aboutDescription": "High-grade ceramic coffee mug customized with your favorite memory and quote in vibrant, dishwasher-safe sublimation print.",
+      "deliveryNote": "Same Day Delivery: Get it delivered in 2 to 4 hours at your location.",
+      "decoratorNote": "",
+      "lifespanNote": "",
+      "locationNote": "",
+      "colorPalettes": [],
+      "slotsAlert": "",
+      "whyChoose": [
+        "100% Customized with your photos",
+        "Durable ceramic finish",
+        "Express same day dispatch",
+        "Perfect surprise for birthdays & desk decor"
+      ],
+      "options": [],
+      "subtitle": "High-grade ceramic glossy mug customized with your cherished photo and text.",
+      "material": "High-Grade Glossy White Ceramic (Sublimation Coating)",
+      "dimensions": "330 ml (9.5 cm Height x 8.2 cm Dia)",
+      "color": "Glossy White with Multicolor Photo Print",
+      "recommendedAge": "Safe for all ages",
+      "washCare": "Microwave & Dishwasher Safe",
+      "packaging": "Shockproof Thermocol Safety Box with Ribbon",
+      "boughtText": "350+ bought in last month",
+      "highlights": [
+        "Premium 330ml glossy white ceramic",
+        "Scratch-resistant HD photo printing",
+        "Microwave and dishwasher friendly",
+        "Comes in secure shockproof packaging"
+      ],
+      "specs": {
+        "material": "High-Grade Glossy White Ceramic (Sublimation Coating)",
+        "dimensions": "330 ml (9.5 cm Height x 8.2 cm Dia)",
+        "color": "Glossy White with Multicolor Photo Print",
+        "recommendedAge": "Safe for all ages",
+        "washCare": "Microwave & Dishwasher Safe",
+        "packaging": "Shockproof Thermocol Safety Box with Ribbon"
+      }
+    },
+    {
+      "id": "gift-03",
+      "title": "Luxury Gift Hamper for Women",
+      "category": "gifts",
+      "category_name": "Gifts Market",
+      "price": 1999,
+      "original_price": 2499,
+      "discount": 20,
+      "rating": 4.7,
+      "reviews_count": 185,
+      "badge": "LUXURY",
+      "setup_duration": "Express Delivery",
+      "image": "https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=600&q=80",
+      "gallery": [
+        "https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=600&q=80"
+      ],
+      "description": "Curated luxury pampering hamper featuring scented soy candles, artisan bath bombs, Ferrero Rocher chocolates, and greeting card in a golden-embossed reusable box.",
+      "inclusions": [
+        "Aromatic Soy Wax Jar Candle",
+        "Assorted Artisan Chocolates (8 Pcs)",
+        "Rose Scented Bath Salts & Loofah",
+        "Gold Embossed Reusable Keepsake Box"
+      ],
+      "tags": [
+        "Gifts for Women",
+        "Wedding Gifts",
+        "Archies",
+        "subcat:women"
+      ],
+      "created_at": "2026-10-04T11:19:07.968893+00:00",
+      "updated_at": "2026-10-04T11:19:07.968893+00:00",
+      "subcategory": "women",
+      "categoryName": "Gifts Market",
+      "originalPrice": 2499,
+      "setupDuration": "Express Delivery",
+      "reviewsCount": 185,
+      "slots_alert": "",
+      "about_description": "Curated luxury pampering hamper featuring scented soy candles, artisan bath bombs, Ferrero Rocher chocolates, and greeting card in a golden-embossed reusable box.",
+      "not_included": [],
+      "faqs": [],
+      "addons": [],
+      "delivery_note": "",
+      "decorator_note": "",
+      "lifespan_note": "",
+      "location_note": "",
+      "color_palettes": [],
+      "why_choose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "notIncluded": [],
+      "aboutDescription": "Curated luxury pampering hamper featuring scented soy candles, artisan bath bombs, Ferrero Rocher chocolates, and greeting card in a golden-embossed reusable box.",
+      "deliveryNote": "Same Day Delivery: Get it delivered in 2 to 4 hours at your location.",
+      "decoratorNote": "",
+      "lifespanNote": "",
+      "locationNote": "",
+      "colorPalettes": [],
+      "slotsAlert": "",
+      "whyChoose": [
+        "Opulent presentation ready for gifting",
+        "Handpicked premium products",
+        "Loved by women of all ages",
+        "Instant delivery available"
+      ],
+      "options": [],
+      "subtitle": "Indulgent pampering gift basket with scented candle, skincare, chocolates and silk scarf.",
+      "material": "Artisanal Pine Wood, Soy Wax & Organic Botanical Skincare",
+      "dimensions": "30 x 22 x 15 cm",
+      "color": "Blush Pink & Rose Gold Theme",
+      "recommendedAge": "Adults (Women)",
+      "washCare": "Keep in cool, dry place away from direct sunlight",
+      "packaging": "Artisan Pine Wood Keepsake Basket with Satin Bow",
+      "boughtText": "200+ bought in last month",
+      "highlights": [
+        "Artisan pine wood keepsake box with satin ribbon",
+        "Aromatherapy soy lavender scented candle",
+        "Premium imported chocolate delicacies",
+        "Custom greeting card included"
+      ],
+      "specs": {
+        "material": "Artisanal Pine Wood, Soy Wax & Organic Botanical Skincare",
+        "dimensions": "30 x 22 x 15 cm",
+        "color": "Blush Pink & Rose Gold Theme",
+        "recommendedAge": "Adults (Women)",
+        "washCare": "Keep in cool, dry place away from direct sunlight",
+        "packaging": "Artisan Pine Wood Keepsake Basket with Satin Bow"
+      }
+    },
+    {
+      "id": "gift-04",
+      "title": "Men's Analog Watch",
+      "category": "gifts",
+      "category_name": "Gifts Market",
+      "price": 2499,
+      "original_price": 3499,
+      "discount": 29,
+      "rating": 4.5,
+      "reviews_count": 98,
+      "badge": "ELEGANT",
+      "setup_duration": "Same Day Delivery",
+      "image": "https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=600&q=80",
+      "gallery": [
+        "https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=600&q=80"
+      ],
+      "description": "Sleek stainless steel analog timepiece featuring mineral glass dial, genuine leather strap, and water resistance in a signature presentation box.",
+      "inclusions": [
+        "Classic Analog Chronograph Watch",
+        "Genuine Leather Strap (Brown/Black)",
+        "1-Year Manufacturer Warranty Card",
+        "Luxury Velvet Lined Gift Box"
+      ],
+      "tags": [
+        "Gifts for Men",
+        "Archies",
+        "Analog Watch",
+        "subcat:men"
+      ],
+      "created_at": "2026-10-04T11:19:07.968893+00:00",
+      "updated_at": "2026-10-04T11:19:07.968893+00:00",
+      "subcategory": "men",
+      "categoryName": "Gifts Market",
+      "originalPrice": 3499,
+      "setupDuration": "Same Day Delivery",
+      "reviewsCount": 98,
+      "slots_alert": "",
+      "about_description": "Sleek stainless steel analog timepiece featuring mineral glass dial, genuine leather strap, and water resistance in a signature presentation box.",
+      "not_included": [],
+      "faqs": [],
+      "addons": [],
+      "delivery_note": "",
+      "decorator_note": "",
+      "lifespan_note": "",
+      "location_note": "",
+      "color_palettes": [],
+      "why_choose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "notIncluded": [],
+      "aboutDescription": "Sleek stainless steel analog timepiece featuring mineral glass dial, genuine leather strap, and water resistance in a signature presentation box.",
+      "deliveryNote": "Same Day Delivery: Get it delivered in 2 to 4 hours at your location.",
+      "decoratorNote": "",
+      "lifespanNote": "",
+      "locationNote": "",
+      "colorPalettes": [],
+      "slotsAlert": "",
+      "whyChoose": [
+        "Timeless versatile styling",
+        "Luxury velvet watch box",
+        "Great gift for husbands, fathers & colleagues",
+        "Same day delivery available"
+      ],
+      "options": [],
+      "subtitle": "Classic stainless steel leather strap timepiece designed for modern style.",
+      "material": "Japanese Quartz Movement, Mineral Glass & Genuine Leather",
+      "dimensions": "42 mm Dial Diameter, 22 mm Strap Width",
+      "color": "Classic Black Dial with Tan Brown Strap",
+      "recommendedAge": "Adults (Men)",
+      "washCare": "3 ATM Water Resistant (Wipe with soft cloth)",
+      "packaging": "Luxury Velvet Watch Box with Warranty Card",
+      "boughtText": "180+ bought in last month",
+      "highlights": [
+        "Japanese quartz movement with scratch-proof mineral glass",
+        "Genuine hand-stitched leather strap",
+        "3 ATM water resistant",
+        "1 Year brand warranty card included"
+      ],
+      "specs": {
+        "material": "Japanese Quartz Movement, Mineral Glass & Genuine Leather",
+        "dimensions": "42 mm Dial Diameter, 22 mm Strap Width",
+        "color": "Classic Black Dial with Tan Brown Strap",
+        "recommendedAge": "Adults (Men)",
+        "washCare": "3 ATM Water Resistant (Wipe with soft cloth)",
+        "packaging": "Luxury Velvet Watch Box with Warranty Card"
+      }
+    },
+    {
+      "id": "gift-05",
+      "title": "Fresh Red Rose Bouquet",
+      "category": "gifts",
+      "category_name": "Gifts Market",
+      "price": 1299,
+      "original_price": 1599,
+      "discount": 19,
+      "rating": 4.8,
+      "reviews_count": 412,
+      "badge": "FRESH",
+      "setup_duration": "2-Hour Express Delivery",
+      "image": "https://images.unsplash.com/photo-1518895949257-7621c3c786d7?auto=format&fit=crop&w=600&q=80",
+      "gallery": [
+        "https://images.unsplash.com/photo-1518895949257-7621c3c786d7?auto=format&fit=crop&w=600&q=80"
+      ],
+      "description": "Bunch of 20 hand-picked Dutch red roses wrapped in matte black paper and tied with a crimson satin ribbon.",
+      "inclusions": [
+        "20 Fresh Dutch Long-Stem Red Roses",
+        "Premium Matte Black & Gold Wrapping",
+        "Satin Ribbon Bow & Greeting Note Card",
+        "Flower Food Sachet for Longevity"
+      ],
+      "tags": [
+        "Flowers",
+        "Gifts for Women",
+        "FlowerAura",
+        "subcat:flowers"
+      ],
+      "created_at": "2026-10-04T11:19:07.968893+00:00",
+      "updated_at": "2026-10-04T11:19:07.968893+00:00",
+      "subcategory": "flowers",
+      "categoryName": "Gifts Market",
+      "originalPrice": 1599,
+      "setupDuration": "2-Hour Express Delivery",
+      "reviewsCount": 412,
+      "slots_alert": "",
+      "about_description": "Bunch of 20 hand-picked Dutch red roses wrapped in matte black paper and tied with a crimson satin ribbon.",
+      "not_included": [],
+      "faqs": [],
+      "addons": [],
+      "delivery_note": "",
+      "decorator_note": "",
+      "lifespan_note": "",
+      "location_note": "",
+      "color_palettes": [],
+      "why_choose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "notIncluded": [],
+      "aboutDescription": "Bunch of 20 hand-picked Dutch red roses wrapped in matte black paper and tied with a crimson satin ribbon.",
+      "deliveryNote": "Same Day Delivery: Hand-delivered in 2 to 3 hours fresh from florists.",
+      "decoratorNote": "",
+      "lifespanNote": "",
+      "locationNote": "",
+      "colorPalettes": [],
+      "slotsAlert": "",
+      "whyChoose": [
+        "Farm-fresh guarantee with crisp petals",
+        "Hand-delivered in 2 to 3 hours",
+        "Iconic romantic expression",
+        "100% On-time surprise delivery"
+      ],
+      "options": [],
+      "subtitle": "Handpicked 15 fresh Dutch red roses wrapped in eco-craft tissue paper with satin bow.",
+      "material": "15 Premium Long-Stem Dutch Red Roses & Eco Paper",
+      "dimensions": "45 cm Stem Height",
+      "color": "Vibrant Crimson Red",
+      "recommendedAge": "Safe for all ages",
+      "washCare": "Trim stems diagonally & place in clean water with flower food",
+      "packaging": "Double-Layer Craft Wrapping with Crimson Satin Bow",
+      "boughtText": "650+ bought in last month",
+      "highlights": [
+        "15 long-stem Dutch red roses",
+        "Double-layer eco paper wrapping with crimson satin bow",
+        "Comes with flower food packet for longer vase life",
+        "Free message card included"
+      ],
+      "specs": {
+        "material": "15 Premium Long-Stem Dutch Red Roses & Eco Paper",
+        "dimensions": "45 cm Stem Height",
+        "color": "Vibrant Crimson Red",
+        "recommendedAge": "Safe for all ages",
+        "washCare": "Trim stems diagonally & place in clean water with flower food",
+        "packaging": "Double-Layer Craft Wrapping with Crimson Satin Bow"
+      }
+    },
+    {
+      "id": "gift-06",
+      "title": "Ferrero Rocher Chocolate Box",
+      "category": "gifts",
+      "category_name": "Gifts Market",
+      "price": 899,
+      "original_price": 1099,
+      "discount": 18,
+      "rating": 4.6,
+      "reviews_count": 276,
+      "badge": "SWEET",
+      "setup_duration": "Same Day Delivery",
+      "image": "https://images.unsplash.com/photo-1549007994-cb92caebd54b?auto=format&fit=crop&w=600&q=80",
+      "gallery": [
+        "https://images.unsplash.com/photo-1549007994-cb92caebd54b?auto=format&fit=crop&w=600&q=80"
+      ],
+      "description": "Crispy hazelnut chocolate pralines encased in gold foil, guaranteed to sweeten any celebration.",
+      "inclusions": [
+        "16 Pieces Authentic Ferrero Rocher Pralines",
+        "Luxury Transparent Gift Case",
+        "Decorative Gift Ribbon & Card"
+      ],
+      "tags": [
+        "Chocolates",
+        "Gifts for Women",
+        "Gifts for Men",
+        "Ferrero Rocher",
+        "subcat:cakes"
+      ],
+      "created_at": "2026-10-04T11:19:07.968893+00:00",
+      "updated_at": "2026-10-04T11:19:07.968893+00:00",
+      "subcategory": "cakes",
+      "categoryName": "Gifts Market",
+      "originalPrice": 1099,
+      "setupDuration": "Same Day Delivery",
+      "reviewsCount": 276,
+      "slots_alert": "",
+      "about_description": "Crispy hazelnut chocolate pralines encased in gold foil, guaranteed to sweeten any celebration.",
+      "not_included": [],
+      "faqs": [],
+      "addons": [],
+      "delivery_note": "",
+      "decorator_note": "",
+      "lifespan_note": "",
+      "location_note": "",
+      "color_palettes": [],
+      "why_choose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "notIncluded": [],
+      "aboutDescription": "Crispy hazelnut chocolate pralines encased in gold foil, guaranteed to sweeten any celebration.",
+      "deliveryNote": "Same Day Delivery: Get it delivered in 2 to 4 hours at your location.",
+      "decoratorNote": "",
+      "lifespanNote": "",
+      "locationNote": "",
+      "colorPalettes": [],
+      "slotsAlert": "",
+      "whyChoose": [
+        "World renowned gourmet confection",
+        "Loved by all ages",
+        "Ready to gift box packaging",
+        "Express same day delivery"
+      ],
+      "options": [],
+      "subtitle": "Golden hazelnut pralines packed in an iconic 16-piece celebration box.",
+      "material": "Crispy Hazelnut Pralines & Milk Chocolate (16 Pieces)",
+      "dimensions": "200 grams Net Weight",
+      "color": "Iconic Golden Foil Wrap",
+      "recommendedAge": "All Ages",
+      "washCare": "Store in a cool, dry place between 18°C - 22°C",
+      "packaging": "Original Transparent Jewel Presentation Box with Ribbon",
+      "boughtText": "450+ bought in last month",
+      "highlights": [
+        "Whole crunchy hazelnut in center",
+        "Delicious creamy cocoa filling",
+        "Crisp wafer shell covered with milk chocolate",
+        "16 individually wrapped golden pralines"
+      ],
+      "specs": {
+        "material": "Crispy Hazelnut Pralines & Milk Chocolate (16 Pieces)",
+        "dimensions": "200 grams Net Weight",
+        "color": "Iconic Golden Foil Wrap",
+        "recommendedAge": "All Ages",
+        "washCare": "Store in a cool, dry place between 18°C - 22°C",
+        "packaging": "Original Transparent Jewel Presentation Box with Ribbon"
+      }
+    },
+    {
+      "id": "ballon-decoration",
+      "title": "ballon decoration",
+      "category": "birthday",
+      "category_name": "Birthday",
+      "price": 1499,
+      "original_price": 2500,
+      "discount": 40,
+      "rating": 4.8,
+      "reviews_count": 100,
+      "badge": "BESTSELLER",
+      "setup_duration": "1-4hours",
+      "image": "https://res.cloudinary.com/gu0q1mxy/image/upload/v1791374359/celebration-packages/hiou5oafu28cal6goabf.jpg",
+      "gallery": [
+        "https://res.cloudinary.com/gu0q1mxy/image/upload/v1791374359/celebration-packages/hiou5oafu28cal6goabf.jpg",
+        "https://res.cloudinary.com/gu0q1mxy/image/upload/v1791374372/celebration-gallery/eexur8hmcgr07zmnmduf.jpg",
+        "https://res.cloudinary.com/gu0q1mxy/image/upload/v1791374379/celebration-gallery/cp5tfcteh9dhrgw0vlr3.jpg"
+      ],
+      "description": "aserdtjk",
+      "inclusions": [
+        "akhil",
+        "raju",
+        "ramu"
+      ],
+      "tags": [
+        "homedecor",
+        "subcat:ramya"
+      ],
+      "created_at": "2026-10-07T11:57:41.012096+00:00",
+      "updated_at": "2026-10-07T11:57:41.012096+00:00",
+      "subcategory": "ramya",
+      "categoryName": "Birthday",
+      "originalPrice": 2500,
+      "setupDuration": "1-4hours",
+      "reviewsCount": 100,
+      "slots_alert": "",
+      "about_description": "aserdtjk",
+      "not_included": [],
+      "faqs": [],
+      "addons": [],
+      "delivery_note": "",
+      "decorator_note": "",
+      "lifespan_note": "",
+      "location_note": "",
+      "color_palettes": [],
+      "why_choose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "notIncluded": [],
+      "aboutDescription": "aserdtjk",
+      "deliveryNote": "",
+      "decoratorNote": "",
+      "lifespanNote": "",
+      "locationNote": "",
+      "colorPalettes": [],
+      "slotsAlert": "",
+      "whyChoose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "options": []
     },
     {
       "id": "nalugu-snanam",
       "title": "Nalugu & Mangala Snanam Decoration",
       "category": "wedding",
-      "categoryName": "Wedding",
+      "category_name": "Wedding",
       "price": 7499,
-      "originalPrice": 9499,
+      "original_price": 9499,
       "discount": 21,
       "rating": 4.9,
-      "reviewsCount": 185,
+      "reviews_count": 185,
       "badge": "RITUAL SPECIAL",
+      "setup_duration": "2 - 3 Hours",
       "image": "https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=800&q=80",
       "gallery": [
         "https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=800&q=80"
       ],
-      "setupDuration": "2 - 3 Hours",
       "description": "Auspicious yellow and orange marigold setup designed for ritual purifications, Nalugu and Mangala Snanam. Features traditional brass urlis, wooden peeta, flower jewellery for the bride/groom, and vibrant backdrop frames.",
       "inclusions": [
         "Traditional Brass Urli with fresh yellow marigold & rose petals",
@@ -2197,8 +5789,120 @@ const SITE_DATA = {
       "tags": [
         "Traditional decorations",
         "Flower jewellery",
-        "Nallu items"
+        "Nallu items",
+        "subcat:nalugu-snanam"
       ],
+      "created_at": "2026-10-04T12:29:15.410883+00:00",
+      "updated_at": "2026-10-04T12:29:15.410883+00:00",
+      "subcategory": "nalugu-snanam",
+      "categoryName": "Wedding",
+      "originalPrice": 9499,
+      "setupDuration": "2 - 3 Hours",
+      "reviewsCount": 185,
+      "slots_alert": "",
+      "about_description": "Auspicious yellow and orange marigold setup designed for ritual purifications, Nalugu and Mangala Snanam. Features traditional brass urlis, wooden peeta, flower jewellery for the bride/groom, and vibrant backdrop frames.",
+      "not_included": [],
+      "faqs": [],
+      "addons": [],
+      "delivery_note": "",
+      "decorator_note": "",
+      "lifespan_note": "",
+      "location_note": "",
+      "color_palettes": [],
+      "why_choose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "notIncluded": [],
+      "aboutDescription": "Auspicious yellow and orange marigold setup designed for ritual purifications, Nalugu and Mangala Snanam. Features traditional brass urlis, wooden peeta, flower jewellery for the bride/groom, and vibrant backdrop frames.",
+      "deliveryNote": "",
+      "decoratorNote": "",
+      "lifespanNote": "",
+      "locationNote": "",
+      "colorPalettes": [],
+      "slotsAlert": "",
+      "whyChoose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
       "options": [
         {
           "id": "ns_concept",
@@ -2248,25 +5952,24 @@ const SITE_DATA = {
             "2 Sannai"
           ]
         }
-      ],
-      "subcategory": "nalugu-snanam"
+      ]
     },
     {
       "id": "function-hall-decor",
       "title": "Function Hall Flower Decoration",
       "category": "wedding",
-      "categoryName": "Wedding",
+      "category_name": "Wedding",
       "price": 24999,
-      "originalPrice": 32999,
+      "original_price": 32999,
       "discount": 24,
       "rating": 5,
-      "reviewsCount": 310,
+      "reviews_count": 310,
       "badge": "GRAND STAGE",
+      "setup_duration": "4 - 6 Hours",
       "image": "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80",
       "gallery": [
         "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80"
       ],
-      "setupDuration": "4 - 6 Hours",
       "description": "Grand banquet hall and convention center wedding styling. Includes majestic grand entrance arch, mandapam / stage backdrop with exotic flowers, couple sofa, aisle walkway runners, and chandeliers.",
       "inclusions": [
         "Grand Hall Entrance Floral Arch with welcome board",
@@ -2279,8 +5982,120 @@ const SITE_DATA = {
         "Entrance",
         "Stage",
         "Reception",
-        "Flower decoration"
+        "Flower decoration",
+        "subcat:mandap-stage"
       ],
+      "created_at": "2026-10-04T12:29:15.410883+00:00",
+      "updated_at": "2026-10-04T12:29:15.410883+00:00",
+      "subcategory": "mandap-stage",
+      "categoryName": "Wedding",
+      "originalPrice": 32999,
+      "setupDuration": "4 - 6 Hours",
+      "reviewsCount": 310,
+      "slots_alert": "",
+      "about_description": "Grand banquet hall and convention center wedding styling. Includes majestic grand entrance arch, mandapam / stage backdrop with exotic flowers, couple sofa, aisle walkway runners, and chandeliers.",
+      "not_included": [],
+      "faqs": [],
+      "addons": [],
+      "delivery_note": "",
+      "decorator_note": "",
+      "lifespan_note": "",
+      "location_note": "",
+      "color_palettes": [],
+      "why_choose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "notIncluded": [],
+      "aboutDescription": "Grand banquet hall and convention center wedding styling. Includes majestic grand entrance arch, mandapam / stage backdrop with exotic flowers, couple sofa, aisle walkway runners, and chandeliers.",
+      "deliveryNote": "",
+      "decoratorNote": "",
+      "lifespanNote": "",
+      "locationNote": "",
+      "colorPalettes": [],
+      "slotsAlert": "",
+      "whyChoose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
       "options": [
         {
           "id": "fhd_entrance",
@@ -2333,25 +6148,24 @@ const SITE_DATA = {
             "Coolers"
           ]
         }
-      ],
-      "subcategory": "mandap-stage"
+      ]
     },
     {
       "id": "catering",
       "title": "Catering",
       "category": "wedding",
-      "categoryName": "Wedding",
+      "category_name": "Wedding",
       "price": 49999,
-      "originalPrice": 59999,
+      "original_price": 59999,
       "discount": 17,
       "rating": 4.8,
-      "reviewsCount": 420,
+      "reviews_count": 420,
       "badge": "MULTI-CUISINE",
+      "setup_duration": "Full Day Service",
       "image": "https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=800&q=80",
       "gallery": [
         "https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=800&q=80"
       ],
-      "setupDuration": "Full Day Service",
       "description": "Hygienic, authentic traditional and multi-cuisine wedding catering. Includes welcome mocktails, live chaat counter, traditional banana leaf / buffet service, signature curries, biryani, artisanal breads, and decadent desserts.",
       "inclusions": [
         "Welcome Drinks & Live Mocktail Station",
@@ -2363,8 +6177,120 @@ const SITE_DATA = {
       "tags": [
         "Customizable veg menu",
         "Buffet service",
-        "Live counters"
+        "Live counters",
+        "subcat:house-decor"
       ],
+      "created_at": "2026-10-04T12:29:15.410883+00:00",
+      "updated_at": "2026-10-04T12:29:15.410883+00:00",
+      "subcategory": "house-decor",
+      "categoryName": "Wedding",
+      "originalPrice": 59999,
+      "setupDuration": "Full Day Service",
+      "reviewsCount": 420,
+      "slots_alert": "",
+      "about_description": "Hygienic, authentic traditional and multi-cuisine wedding catering. Includes welcome mocktails, live chaat counter, traditional banana leaf / buffet service, signature curries, biryani, artisanal breads, and decadent desserts.",
+      "not_included": [],
+      "faqs": [],
+      "addons": [],
+      "delivery_note": "",
+      "decorator_note": "",
+      "lifespan_note": "",
+      "location_note": "",
+      "color_palettes": [],
+      "why_choose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "notIncluded": [],
+      "aboutDescription": "Hygienic, authentic traditional and multi-cuisine wedding catering. Includes welcome mocktails, live chaat counter, traditional banana leaf / buffet service, signature curries, biryani, artisanal breads, and decadent desserts.",
+      "deliveryNote": "",
+      "decoratorNote": "",
+      "lifespanNote": "",
+      "locationNote": "",
+      "colorPalettes": [],
+      "slotsAlert": "",
+      "whyChoose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
       "options": [
         {
           "id": "cat_infrastructure",
@@ -2509,25 +6435,455 @@ const SITE_DATA = {
             "Chips or Papad"
           ]
         }
+      ]
+    },
+    {
+      "id": "red-anniversary-home-decor",
+      "title": "Red Passion Anniversary Canopy & Decor",
+      "category": "anniversary",
+      "category_name": "Anniversary",
+      "price": 2099,
+      "original_price": 2699,
+      "discount": 22,
+      "rating": 4.8,
+      "reviews_count": 310,
+      "badge": "POPULAR",
+      "setup_duration": "2 Hours",
+      "image": "https://cdn.balloondekor.com/14/1744883492822.webp",
+      "gallery": [
+        "https://cdn.balloondekor.com/14/1744883492822.webp",
+        "https://cdn.balloondekor.com/14/anniversary-home-decoration-1785476722055-756184.webp"
       ],
-      "subcategory": "house-decor"
+      "description": "Passionate crimson red theme with balloon bunches, ceiling balloon drops with hanging couple photo polaroids, and heart foil clusters.",
+      "inclusions": [
+        "150 Crimson Red & Golden Chrome Balloons",
+        "16 Custom Couple Polaroids printed & hung from ceiling balloons",
+        "1 'Love' Cursive Foil Balloon",
+        "Fairy Light Net Backdrop",
+        "Fragranced Red Rose Petal Carpet Styling"
+      ],
+      "tags": [
+        "Red Passion",
+        "Polaroid Photos",
+        "Proposals",
+        "subcat:canopy"
+      ],
+      "created_at": "2026-10-03T09:42:33.449+00:00",
+      "updated_at": "2026-10-03T09:42:33.449+00:00",
+      "subcategory": "canopy",
+      "categoryName": "Anniversary",
+      "originalPrice": 2699,
+      "setupDuration": "2 Hours",
+      "reviewsCount": 310,
+      "slots_alert": "",
+      "about_description": "Passionate crimson red theme with balloon bunches, ceiling balloon drops with hanging couple photo polaroids, and heart foil clusters.",
+      "not_included": [],
+      "faqs": [],
+      "addons": [],
+      "delivery_note": "",
+      "decorator_note": "",
+      "lifespan_note": "",
+      "location_note": "",
+      "color_palettes": [],
+      "why_choose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "notIncluded": [],
+      "aboutDescription": "Passionate crimson red theme with balloon bunches, ceiling balloon drops with hanging couple photo polaroids, and heart foil clusters.",
+      "deliveryNote": "",
+      "decoratorNote": "",
+      "lifespanNote": "",
+      "locationNote": "",
+      "colorPalettes": [],
+      "slotsAlert": "",
+      "whyChoose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "options": []
+    },
+    {
+      "id": "romantic-anniversary-room-celebration",
+      "title": "Romantic Anniversary Room Celebration",
+      "category": "anniversary",
+      "category_name": "Anniversary",
+      "price": 2399,
+      "original_price": 3199,
+      "discount": 25,
+      "rating": 5,
+      "reviews_count": 342,
+      "badge": "TOP RATED",
+      "setup_duration": "2.5 Hours",
+      "image": "https://cdn.balloondekor.com/14/1744884242691.webp",
+      "gallery": [
+        "https://cdn.balloondekor.com/14/1744884242691.webp",
+        "https://cdn.balloondekor.com/29/1784709508118-669326.webp"
+      ],
+      "description": "Complete 360-degree hotel room or master bedroom styling with fairy light ceiling, balloon clusters, and candlelight floor pathway.",
+      "inclusions": [
+        "200 Metallic & Chrome Balloons (Red, Rose Gold, Pearl White)",
+        "Happy Anniversary Neon Sign on Acrylic Board",
+        "Romantic Canopy Structure with Sheer White Drapes",
+        "40 Tealight LED Candles creating illuminated pathway",
+        "Fresh Red Roses (10 Stems) & Flower Petal Art"
+      ],
+      "tags": [
+        "Hotel Room",
+        "Canopy",
+        "Candlelight Pathway",
+        "subcat:room"
+      ],
+      "created_at": "2026-10-03T09:42:33.449+00:00",
+      "updated_at": "2026-10-03T09:42:33.449+00:00",
+      "subcategory": "room",
+      "categoryName": "Anniversary",
+      "originalPrice": 3199,
+      "setupDuration": "2.5 Hours",
+      "reviewsCount": 342,
+      "slots_alert": "",
+      "about_description": "Complete 360-degree hotel room or master bedroom styling with fairy light ceiling, balloon clusters, and candlelight floor pathway.",
+      "not_included": [],
+      "faqs": [],
+      "addons": [],
+      "delivery_note": "",
+      "decorator_note": "",
+      "lifespan_note": "",
+      "location_note": "",
+      "color_palettes": [],
+      "why_choose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "notIncluded": [],
+      "aboutDescription": "Complete 360-degree hotel room or master bedroom styling with fairy light ceiling, balloon clusters, and candlelight floor pathway.",
+      "deliveryNote": "",
+      "decoratorNote": "",
+      "lifespanNote": "",
+      "locationNote": "",
+      "colorPalettes": [],
+      "slotsAlert": "",
+      "whyChoose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "options": []
+    },
+    {
+      "id": "newborn-welcome-baby-decor",
+      "title": "Welcome Baby Home Decor (Boy/Girl)",
+      "category": "baby-shower",
+      "category_name": "Baby Shower & Welcome",
+      "price": 1899,
+      "original_price": 2499,
+      "discount": 24,
+      "rating": 4.8,
+      "reviews_count": 195,
+      "badge": "EXPRESS",
+      "setup_duration": "1.5 Hours",
+      "image": "https://cdn.balloondekor.com/33/baby-shower-decoration-1ba3a3a3-d2eb-40e6-98bd-aed4eb907984.webp",
+      "gallery": [
+        "https://cdn.balloondekor.com/33/baby-shower-decoration-1ba3a3a3-d2eb-40e6-98bd-aed4eb907984.webp"
+      ],
+      "description": "Hassle-free, quick 90-minute doorstep setup before mother and baby arrive from the hospital. Gentle noise-free setup.",
+      "inclusions": [
+        "100 Soft Metallic Balloons (Customizable: Pink or Blue)",
+        "1 'Welcome Baby' Foil Letter Banner",
+        "Cradle / Bassinet Ribbon & Balloon Garland",
+        "Baby Carriage Foil Balloon",
+        "Doorway Welcome Toran"
+      ],
+      "tags": [
+        "Hospital Arrival",
+        "Same Day Setup",
+        "Baby Welcome",
+        "subcat:welcome"
+      ],
+      "created_at": "2026-10-03T09:42:33.449+00:00",
+      "updated_at": "2026-10-03T09:42:33.449+00:00",
+      "subcategory": "welcome",
+      "categoryName": "Baby Shower & Welcome",
+      "originalPrice": 2499,
+      "setupDuration": "1.5 Hours",
+      "reviewsCount": 195,
+      "slots_alert": "",
+      "about_description": "Hassle-free, quick 90-minute doorstep setup before mother and baby arrive from the hospital. Gentle noise-free setup.",
+      "not_included": [],
+      "faqs": [],
+      "addons": [],
+      "delivery_note": "",
+      "decorator_note": "",
+      "lifespan_note": "",
+      "location_note": "",
+      "color_palettes": [],
+      "why_choose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "notIncluded": [],
+      "aboutDescription": "Hassle-free, quick 90-minute doorstep setup before mother and baby arrive from the hospital. Gentle noise-free setup.",
+      "deliveryNote": "",
+      "decoratorNote": "",
+      "lifespanNote": "",
+      "locationNote": "",
+      "colorPalettes": [],
+      "slotsAlert": "",
+      "whyChoose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "options": []
     },
     {
       "id": "sangyam-sweets",
       "title": "Sangyam Sweets",
       "category": "wedding",
-      "categoryName": "Wedding",
+      "category_name": "Wedding",
       "price": 4999,
-      "originalPrice": 5999,
+      "original_price": 5999,
       "discount": 17,
       "rating": 4.9,
-      "reviewsCount": 190,
+      "reviews_count": 190,
       "badge": "PURE GHEE",
+      "setup_duration": "Delivered to Venue",
       "image": "assets/sangyam-sweets.jpg",
       "gallery": [
         "assets/sangyam-sweets.jpg"
       ],
-      "setupDuration": "Delivered to Venue",
       "description": "Handcrafted authentic wedding sweets and savory snacks made with pure cow ghee. Packaged in customized wedding gift boxes, perfect for guest welcome and rituals.",
       "inclusions": [
         "Pure Desi Ghee Motichoor Laddoos & Kaju Katli",
@@ -2540,8 +6896,120 @@ const SITE_DATA = {
         "Traditional sweets",
         "Snacks",
         "Pure Ghee",
-        "Sangyam"
+        "Sangyam",
+        "subcat:house-decor"
       ],
+      "created_at": "2026-10-04T12:29:15.410883+00:00",
+      "updated_at": "2026-10-04T12:29:15.410883+00:00",
+      "subcategory": "house-decor",
+      "categoryName": "Wedding",
+      "originalPrice": 5999,
+      "setupDuration": "Delivered to Venue",
+      "reviewsCount": 190,
+      "slots_alert": "",
+      "about_description": "Handcrafted authentic wedding sweets and savory snacks made with pure cow ghee. Packaged in customized wedding gift boxes, perfect for guest welcome and rituals.",
+      "not_included": [],
+      "faqs": [],
+      "addons": [],
+      "delivery_note": "",
+      "decorator_note": "",
+      "lifespan_note": "",
+      "location_note": "",
+      "color_palettes": [],
+      "why_choose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "notIncluded": [],
+      "aboutDescription": "Handcrafted authentic wedding sweets and savory snacks made with pure cow ghee. Packaged in customized wedding gift boxes, perfect for guest welcome and rituals.",
+      "deliveryNote": "",
+      "decoratorNote": "",
+      "lifespanNote": "",
+      "locationNote": "",
+      "colorPalettes": [],
+      "slotsAlert": "",
+      "whyChoose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
       "options": [
         {
           "id": "sw_sweets",
@@ -2578,25 +7046,24 @@ const SITE_DATA = {
             "Chekkalu"
           ]
         }
-      ],
-      "subcategory": "house-decor"
+      ]
     },
     {
       "id": "photo-video",
       "title": "Photo & Videography",
       "category": "wedding",
-      "categoryName": "Wedding",
+      "category_name": "Wedding",
       "price": 29999,
-      "originalPrice": 39999,
+      "original_price": 39999,
       "discount": 25,
       "rating": 5,
-      "reviewsCount": 260,
+      "reviews_count": 260,
       "badge": "4K CINEMATIC",
+      "setup_duration": "Event Duration",
       "image": "https://images.unsplash.com/photo-1537633552985-df8429e8048b?auto=format&fit=crop&w=800&q=80",
       "gallery": [
         "https://images.unsplash.com/photo-1537633552985-df8429e8048b?auto=format&fit=crop&w=800&q=80"
       ],
-      "setupDuration": "Event Duration",
       "description": "Top-tier wedding cinematographers capturing every emotional ritual and candid smile. Includes high-res digital albums, 4K cinematic wedding teaser, drone footage, and traditional full-length coverage.",
       "inclusions": [
         "2 Candid Photographers + 2 Traditional Cameras",
@@ -2608,8 +7075,120 @@ const SITE_DATA = {
       "tags": [
         "Traditional & candid photography",
         "4K Video",
-        "Drone"
+        "Drone",
+        "subcat:photo-video"
       ],
+      "created_at": "2026-10-04T12:29:15.410883+00:00",
+      "updated_at": "2026-10-04T12:29:15.410883+00:00",
+      "subcategory": "photo-video",
+      "categoryName": "Wedding",
+      "originalPrice": 39999,
+      "setupDuration": "Event Duration",
+      "reviewsCount": 260,
+      "slots_alert": "",
+      "about_description": "Top-tier wedding cinematographers capturing every emotional ritual and candid smile. Includes high-res digital albums, 4K cinematic wedding teaser, drone footage, and traditional full-length coverage.",
+      "not_included": [],
+      "faqs": [],
+      "addons": [],
+      "delivery_note": "",
+      "decorator_note": "",
+      "lifespan_note": "",
+      "location_note": "",
+      "color_palettes": [],
+      "why_choose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "notIncluded": [],
+      "aboutDescription": "Top-tier wedding cinematographers capturing every emotional ritual and candid smile. Includes high-res digital albums, 4K cinematic wedding teaser, drone footage, and traditional full-length coverage.",
+      "deliveryNote": "",
+      "decoratorNote": "",
+      "lifespanNote": "",
+      "locationNote": "",
+      "colorPalettes": [],
+      "slotsAlert": "",
+      "whyChoose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
       "options": [
         {
           "id": "pv_main",
@@ -2668,25 +7247,24 @@ const SITE_DATA = {
             "No"
           ]
         }
-      ],
-      "subcategory": "photo-video"
+      ]
     },
     {
       "id": "melam",
       "title": "Melam",
       "category": "wedding",
-      "categoryName": "Wedding",
+      "category_name": "Wedding",
       "price": 8499,
-      "originalPrice": 10999,
+      "original_price": 10999,
       "discount": 23,
       "rating": 4.8,
-      "reviewsCount": 140,
+      "reviews_count": 140,
       "badge": "AUSPICIOUS",
+      "setup_duration": "Ritual Timings",
       "image": "assets/traditional-melam.jpg",
       "gallery": [
         "assets/traditional-melam.jpg"
       ],
-      "setupDuration": "Ritual Timings",
       "description": "Master musicians providing soul-stirring auspicious melodies for your muhurat and Baraat processions. Traditional Nadaswaram, Thavil, Punjabi Dhol, and Shehnai troupes.",
       "inclusions": [
         "Traditional Nadaswaram & Thavil Vidwans Troupe",
@@ -2698,8 +7276,120 @@ const SITE_DATA = {
       "tags": [
         "Nadaswaram",
         "Dhol",
-        "Traditional music"
+        "Traditional music",
+        "subcat:melam-music"
       ],
+      "created_at": "2026-10-04T12:29:15.410883+00:00",
+      "updated_at": "2026-10-04T12:29:15.410883+00:00",
+      "subcategory": "melam-music",
+      "categoryName": "Wedding",
+      "originalPrice": 10999,
+      "setupDuration": "Ritual Timings",
+      "reviewsCount": 140,
+      "slots_alert": "",
+      "about_description": "Master musicians providing soul-stirring auspicious melodies for your muhurat and Baraat processions. Traditional Nadaswaram, Thavil, Punjabi Dhol, and Shehnai troupes.",
+      "not_included": [],
+      "faqs": [],
+      "addons": [],
+      "delivery_note": "",
+      "decorator_note": "",
+      "lifespan_note": "",
+      "location_note": "",
+      "color_palettes": [],
+      "why_choose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "notIncluded": [],
+      "aboutDescription": "Master musicians providing soul-stirring auspicious melodies for your muhurat and Baraat processions. Traditional Nadaswaram, Thavil, Punjabi Dhol, and Shehnai troupes.",
+      "deliveryNote": "",
+      "decoratorNote": "",
+      "lifespanNote": "",
+      "locationNote": "",
+      "colorPalettes": [],
+      "slotsAlert": "",
+      "whyChoose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
       "options": [
         {
           "id": "melam_mangala",
@@ -2748,25 +7438,24 @@ const SITE_DATA = {
             "Band Set (15 Members)"
           ]
         }
-      ],
-      "subcategory": "melam-music"
+      ]
     },
     {
       "id": "special-events",
       "title": "Special Events",
       "category": "wedding",
-      "categoryName": "Wedding",
+      "category_name": "Wedding",
       "price": 11999,
-      "originalPrice": 14999,
+      "original_price": 14999,
       "discount": 20,
       "rating": 4.9,
-      "reviewsCount": 175,
+      "reviews_count": 175,
       "badge": "THEME DECOR",
+      "setup_duration": "3 Hours",
       "image": "assets/special-events-pyro.jpg",
       "gallery": [
         "assets/special-events-pyro.jpg"
       ],
-      "setupDuration": "3 Hours",
       "description": "Full-scale themed pre-wedding parties and grand receptions. Includes concept design, special lighting, cold fire entry pyrotechnics, dry ice smoke, and personalized themes.",
       "inclusions": [
         "Thematic Concept & Custom Lighting Rig",
@@ -2779,8 +7468,120 @@ const SITE_DATA = {
         "Sangeet",
         "Reception",
         "Theme events",
-        "Cold Pyro"
+        "Cold Pyro",
+        "subcat:melam-music"
       ],
+      "created_at": "2026-10-04T12:29:15.410883+00:00",
+      "updated_at": "2026-10-04T12:29:15.410883+00:00",
+      "subcategory": "melam-music",
+      "categoryName": "Wedding",
+      "originalPrice": 14999,
+      "setupDuration": "3 Hours",
+      "reviewsCount": 175,
+      "slots_alert": "",
+      "about_description": "Full-scale themed pre-wedding parties and grand receptions. Includes concept design, special lighting, cold fire entry pyrotechnics, dry ice smoke, and personalized themes.",
+      "not_included": [],
+      "faqs": [],
+      "addons": [],
+      "delivery_note": "",
+      "decorator_note": "",
+      "lifespan_note": "",
+      "location_note": "",
+      "color_palettes": [],
+      "why_choose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "notIncluded": [],
+      "aboutDescription": "Full-scale themed pre-wedding parties and grand receptions. Includes concept design, special lighting, cold fire entry pyrotechnics, dry ice smoke, and personalized themes.",
+      "deliveryNote": "",
+      "decoratorNote": "",
+      "lifespanNote": "",
+      "locationNote": "",
+      "colorPalettes": [],
+      "slotsAlert": "",
+      "whyChoose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
       "options": [
         {
           "id": "se_col1",
@@ -2812,69 +7613,24 @@ const SITE_DATA = {
             "Design Butta"
           ]
         }
-      ],
-      "subcategory": "melam-music"
-    },
-    {
-      "id": "musical-events",
-      "title": "Musical Events",
-      "category": "wedding",
-      "categoryName": "Wedding",
-      "price": 19999,
-      "originalPrice": 24999,
-      "discount": 20,
-      "rating": 4.9,
-      "reviewsCount": 160,
-      "badge": "LIVE BAND",
-      "image": "https://images.unsplash.com/photo-1465847899084-d164df4dedc6?auto=format&fit=crop&w=800&q=80",
-      "gallery": [
-        "https://images.unsplash.com/photo-1465847899084-d164df4dedc6?auto=format&fit=crop&w=800&q=80"
-      ],
-      "setupDuration": "3 Hours Show",
-      "description": "Enthralling live musical bands, acoustic singers, Sufi ensembles, and classical fusion orchestras to keep your wedding guests mesmerized throughout the evening.",
-      "inclusions": [
-        "Live Acoustic / Bollywood / Sufi Fusion Band",
-        "Professional Stage Audio & Line-Array Speakers",
-        "Stage Lighting, Moving Heads & LED Par Cans",
-        "Sound Engineer & Stage Tech Crew",
-        "Customized 3-Hour Musical Performance Setlist"
-      ],
-      "tags": [
-        "Live music",
-        "Orchestra",
-        "Cultural programs"
-      ],
-      "options": [
-        {
-          "id": "me_options",
-          "title": "Musical Entertainment Cards",
-          "subPrompt": "Select music genres & setup",
-          "subItems": [
-            "Orchestra (Full orchestra for a grand musical experience)",
-            "DJ (Professional DJ with latest music collection)",
-            "Light Music (Melodious light music for a pleasant atmosphere)",
-            "Live Instrumental Music (Live instrumental performance)"
-          ]
-        }
-      ],
-      "subcategory": "melam-music"
+      ]
     },
     {
       "id": "sangyam-bags",
       "title": "Sangyam Bags",
       "category": "wedding",
-      "categoryName": "Wedding",
+      "category_name": "Wedding",
       "price": 2999,
-      "originalPrice": 3999,
+      "original_price": 3999,
       "discount": 25,
       "rating": 4.8,
-      "reviewsCount": 215,
+      "reviews_count": 215,
       "badge": "RETURN GIFTS",
+      "setup_duration": "Delivered in Bulk",
       "image": "assets/sangyam-bags.jpg",
       "gallery": [
         "assets/sangyam-bags.jpg"
       ],
-      "setupDuration": "Delivered in Bulk",
       "description": "Exquisitely designed wedding favor bags featuring silk brocade, jute-cotton, or golden foil prints with bride and groom names. Perfect for distributing sweets, clothes, and tamboolam.",
       "inclusions": [
         "Customized High-Quality Fabric / Paper Gift Bags",
@@ -2886,8 +7642,120 @@ const SITE_DATA = {
       "tags": [
         "Return gifts",
         "Customized bags",
-        "Favors"
+        "Favors",
+        "subcat:house-decor"
       ],
+      "created_at": "2026-10-04T12:29:15.410883+00:00",
+      "updated_at": "2026-10-04T12:29:15.410883+00:00",
+      "subcategory": "house-decor",
+      "categoryName": "Wedding",
+      "originalPrice": 3999,
+      "setupDuration": "Delivered in Bulk",
+      "reviewsCount": 215,
+      "slots_alert": "",
+      "about_description": "Exquisitely designed wedding favor bags featuring silk brocade, jute-cotton, or golden foil prints with bride and groom names. Perfect for distributing sweets, clothes, and tamboolam.",
+      "not_included": [],
+      "faqs": [],
+      "addons": [],
+      "delivery_note": "",
+      "decorator_note": "",
+      "lifespan_note": "",
+      "location_note": "",
+      "color_palettes": [],
+      "why_choose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "notIncluded": [],
+      "aboutDescription": "Exquisitely designed wedding favor bags featuring silk brocade, jute-cotton, or golden foil prints with bride and groom names. Perfect for distributing sweets, clothes, and tamboolam.",
+      "deliveryNote": "",
+      "decoratorNote": "",
+      "lifespanNote": "",
+      "locationNote": "",
+      "colorPalettes": [],
+      "slotsAlert": "",
+      "whyChoose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
       "options": [
         {
           "id": "sb_combo",
@@ -2913,25 +7781,24 @@ const SITE_DATA = {
             "500 Sets"
           ]
         }
-      ],
-      "subcategory": "house-decor"
+      ]
     },
     {
       "id": "bridal-makeup",
       "title": "Bridal Makeup",
       "category": "wedding",
-      "categoryName": "Wedding",
+      "category_name": "Wedding",
       "price": 14999,
-      "originalPrice": 18999,
+      "original_price": 18999,
       "discount": 21,
       "rating": 5,
-      "reviewsCount": 280,
+      "reviews_count": 280,
       "badge": "CELEBRITY ARTISTS",
+      "setup_duration": "3 Hours Session",
       "image": "https://images.unsplash.com/photo-1596704017254-9b121068fb31?auto=format&fit=crop&w=800&q=80",
       "gallery": [
         "https://images.unsplash.com/photo-1596704017254-9b121068fb31?auto=format&fit=crop&w=800&q=80"
       ],
-      "setupDuration": "3 Hours Session",
       "description": "Certified celebrity bridal hair and makeup artists providing HD and Airbrush makeup that stays flawless for 16+ hours through tearful farewells and intense photo flashes.",
       "inclusions": [
         "HD / Airbrush Bridal Makeup using luxury international brands (MAC, Huda, Dior)",
@@ -2943,8 +7810,120 @@ const SITE_DATA = {
       "tags": [
         "Professional bridal makeup",
         "HD & Airbrush",
-        "Styling"
+        "Styling",
+        "subcat:bridal-styling"
       ],
+      "created_at": "2026-10-04T12:29:15.410883+00:00",
+      "updated_at": "2026-10-04T12:29:15.410883+00:00",
+      "subcategory": "bridal-styling",
+      "categoryName": "Wedding",
+      "originalPrice": 18999,
+      "setupDuration": "3 Hours Session",
+      "reviewsCount": 280,
+      "slots_alert": "",
+      "about_description": "Certified celebrity bridal hair and makeup artists providing HD and Airbrush makeup that stays flawless for 16+ hours through tearful farewells and intense photo flashes.",
+      "not_included": [],
+      "faqs": [],
+      "addons": [],
+      "delivery_note": "",
+      "decorator_note": "",
+      "lifespan_note": "",
+      "location_note": "",
+      "color_palettes": [],
+      "why_choose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "notIncluded": [],
+      "aboutDescription": "Certified celebrity bridal hair and makeup artists providing HD and Airbrush makeup that stays flawless for 16+ hours through tearful farewells and intense photo flashes.",
+      "deliveryNote": "",
+      "decoratorNote": "",
+      "lifespanNote": "",
+      "locationNote": "",
+      "colorPalettes": [],
+      "slotsAlert": "",
+      "whyChoose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
       "options": [
         {
           "id": "bm_makeup",
@@ -2966,25 +7945,24 @@ const SITE_DATA = {
             "Traditional Saree Draping & Jewellery Setting"
           ]
         }
-      ],
-      "subcategory": "bridal-styling"
+      ]
     },
     {
       "id": "mehandi",
       "title": "Mehandi",
       "category": "wedding",
-      "categoryName": "Wedding",
+      "category_name": "Wedding",
       "price": 5999,
-      "originalPrice": 7999,
+      "original_price": 7999,
       "discount": 25,
       "rating": 4.9,
-      "reviewsCount": 310,
+      "reviews_count": 310,
       "badge": "ORGANIC HENNA",
+      "setup_duration": "4 Hours Session",
       "image": "https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=800&q=80",
       "gallery": [
         "https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=800&q=80"
       ],
-      "setupDuration": "4 Hours Session",
       "description": "Master henna artists creating intricate Arabic, Marwari, floral, and portrait bridal mehendi with 100% organic, chemical-free henna paste for rich dark mahogany stains.",
       "inclusions": [
         "Full Arm & Leg Intricate Bridal Henna with personalized motifs (Couple portrait, wedding date)",
@@ -2996,8 +7974,120 @@ const SITE_DATA = {
       "tags": [
         "Bridal & guest mehendi",
         "Organic Henna",
-        "Dark Stain"
+        "Dark Stain",
+        "subcat:bridal-styling"
       ],
+      "created_at": "2026-10-04T12:29:15.410883+00:00",
+      "updated_at": "2026-10-04T12:29:15.410883+00:00",
+      "subcategory": "bridal-styling",
+      "categoryName": "Wedding",
+      "originalPrice": 7999,
+      "setupDuration": "4 Hours Session",
+      "reviewsCount": 310,
+      "slots_alert": "",
+      "about_description": "Master henna artists creating intricate Arabic, Marwari, floral, and portrait bridal mehendi with 100% organic, chemical-free henna paste for rich dark mahogany stains.",
+      "not_included": [],
+      "faqs": [],
+      "addons": [],
+      "delivery_note": "",
+      "decorator_note": "",
+      "lifespan_note": "",
+      "location_note": "",
+      "color_palettes": [],
+      "why_choose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "notIncluded": [],
+      "aboutDescription": "Master henna artists creating intricate Arabic, Marwari, floral, and portrait bridal mehendi with 100% organic, chemical-free henna paste for rich dark mahogany stains.",
+      "deliveryNote": "",
+      "decoratorNote": "",
+      "lifespanNote": "",
+      "locationNote": "",
+      "colorPalettes": [],
+      "slotsAlert": "",
+      "whyChoose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
       "options": [
         {
           "id": "mh_bridal",
@@ -3018,25 +8108,24 @@ const SITE_DATA = {
             "100% Organic Fresh Henna Cones"
           ]
         }
-      ],
-      "subcategory": "bridal-styling"
+      ]
     },
     {
       "id": "sangeet",
       "title": "Sangeet",
       "category": "wedding",
-      "categoryName": "Wedding",
+      "category_name": "Wedding",
       "price": 19999,
-      "originalPrice": 24999,
+      "original_price": 24999,
       "discount": 20,
       "rating": 4.9,
-      "reviewsCount": 220,
+      "reviews_count": 220,
       "badge": "PARTY & DJ",
+      "setup_duration": "Event Duration",
       "image": "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=800&q=80",
       "gallery": [
         "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=800&q=80"
       ],
-      "setupDuration": "Event Duration",
       "description": "Electrifying Sangeet night choreography and entertainment. Includes dance choreographers for family rehearsals, energetic wedding DJ with concert sound, and dazzling dance-floor LED screens.",
       "inclusions": [
         "Professional Bollywood & Folk Dance Choreographer for Family Rehearsals (7 sessions)",
@@ -3048,8 +8137,120 @@ const SITE_DATA = {
       "tags": [
         "Dance",
         "Music & entertainment",
-        "Sangeet DJ"
+        "Sangeet DJ",
+        "subcat:melam-music"
       ],
+      "created_at": "2026-10-04T12:29:15.410883+00:00",
+      "updated_at": "2026-10-04T12:29:15.410883+00:00",
+      "subcategory": "melam-music",
+      "categoryName": "Wedding",
+      "originalPrice": 24999,
+      "setupDuration": "Event Duration",
+      "reviewsCount": 220,
+      "slots_alert": "",
+      "about_description": "Electrifying Sangeet night choreography and entertainment. Includes dance choreographers for family rehearsals, energetic wedding DJ with concert sound, and dazzling dance-floor LED screens.",
+      "not_included": [],
+      "faqs": [],
+      "addons": [],
+      "delivery_note": "",
+      "decorator_note": "",
+      "lifespan_note": "",
+      "location_note": "",
+      "color_palettes": [],
+      "why_choose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "notIncluded": [],
+      "aboutDescription": "Electrifying Sangeet night choreography and entertainment. Includes dance choreographers for family rehearsals, energetic wedding DJ with concert sound, and dazzling dance-floor LED screens.",
+      "deliveryNote": "",
+      "decoratorNote": "",
+      "lifespanNote": "",
+      "locationNote": "",
+      "colorPalettes": [],
+      "slotsAlert": "",
+      "whyChoose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
       "options": [
         {
           "id": "sg_choreo",
@@ -3071,358 +8272,660 @@ const SITE_DATA = {
             "Professional Sangeet DJ & Emcee"
           ]
         }
-      ],
-      "subcategory": "melam-music"
+      ]
     },
     {
-      "id": "corporate-office-milestone-decor",
-      "title": "Corporate Milestone & Office Celebration Decor",
-      "category": "corporate",
-      "categoryName": "Corporate",
-      "price": 4499,
-      "originalPrice": 5999,
-      "discount": 25,
-      "rating": 4.9,
-      "reviewsCount": 165,
-      "badge": "BUSINESS",
-      "image": "https://cdn.balloondekor.com/33/office-decoration-b84c3312-f4cd-4baf-8d1f-b03d28c61242.webp",
-      "gallery": [
-        "https://cdn.balloondekor.com/33/office-decoration-b84c3312-f4cd-4baf-8d1f-b03d28c61242.webp"
-      ],
-      "setupDuration": "2 Hours",
-      "description": "Professional office anniversary or company milestone balloon arch with brand colors, metallic pillars, and stage balloon bouquets.",
-      "inclusions": [
-        "200 Brand-Aligned Chrome & Metallic Balloons (PMS Match)",
-        "Reception Entrance Balloon Arch (8x7 ft)",
-        "6 Helium Balloon Bunches on Conference Tables",
-        "1 Foil Number Milestone Balloon (e.g., '10 Years')",
-        "Quiet after-hours or early morning setup by corporate team"
-      ],
-      "tags": [
-        "Office Decor",
-        "Foundation Day",
-        "Brand Colors"
-      ],
-      "subcategory": "office"
-    },
-    {
-      "id": "corporate-annual-day-grand-stage",
-      "title": "Grand Corporate Annual Day & Conference Stage Decor",
-      "category": "corporate",
-      "categoryName": "Corporate",
-      "price": 6999,
-      "originalPrice": 9499,
-      "discount": 26,
-      "rating": 5,
-      "reviewsCount": 210,
-      "badge": "EXECUTIVE",
-      "image": "https://cdn.balloondekor.com/33/office-decoration-b84c3312-f4cd-4baf-8d1f-b03d28c61242.webp",
-      "gallery": [
-        "https://cdn.balloondekor.com/33/office-decoration-b84c3312-f4cd-4baf-8d1f-b03d28c61242.webp"
-      ],
-      "setupDuration": "3 Hours",
-      "description": "Grand auditorium stage backdrop decoration with balloon clusters, customized company logo board, and VIP entry podium styling.",
-      "inclusions": [
-        "350 Chrome & Matte Balloons matching corporate palette",
-        "Auditorium Stage Framing with dual organic pillars",
-        "VIP Entrance Walkway Ribbon Cutting Setup",
-        "Custom Acrylic Company Logo Emblem",
-        "GST Invoice with dedicated B2B account manager"
-      ],
-      "tags": [
-        "Annual Day",
-        "Townhall",
-        "Auditorium"
-      ],
-      "subcategory": "stage"
-    },
-    {
-      "id": "corporate-product-launch-balloon-arch",
-      "title": "Corporate Product Launch Ribbon Cutting Decor",
-      "category": "corporate",
-      "categoryName": "Corporate",
-      "price": 4999,
-      "originalPrice": 6499,
-      "discount": 23,
-      "rating": 4.8,
-      "reviewsCount": 140,
-      "badge": "LAUNCH",
-      "image": "https://cdn.balloondekor.com/33/office-decoration-b84c3312-f4cd-4baf-8d1f-b03d28c61242.webp",
-      "gallery": [
-        "https://cdn.balloondekor.com/33/office-decoration-b84c3312-f4cd-4baf-8d1f-b03d28c61242.webp"
-      ],
-      "setupDuration": "2.5 Hours",
-      "description": "Sleek retail store or product showcase entrance arch with red carpet runner, brass stanchions with velvet ropes, and ceremonial scissors.",
-      "inclusions": [
-        "Grand Store Entrance Balloon Arch (250 Balloons)",
-        "Red Carpet Runway (15 ft length)",
-        "4 Golden Stanchion Poles with Red Velvet Ropes",
-        "Ribbon Cutting Stand with Golden Scissors on Tray",
-        "Product Pedestal Spotlight Highlighting"
-      ],
-      "tags": [
-        "Product Launch",
-        "Store Opening",
-        "Ribbon Cutting"
-      ],
-      "subcategory": "office"
-    },
-    {
-      "id": "corporate-cubicle-bay-festive-decor",
-      "title": "Office Workstation & Cubicle Festive Surprise",
-      "category": "corporate",
-      "categoryName": "Corporate",
-      "price": 2999,
-      "originalPrice": 3999,
-      "discount": 25,
-      "rating": 4.7,
-      "reviewsCount": 190,
-      "badge": "FESTIVE",
-      "image": "https://cdn.balloondekor.com/33/office-decoration-b84c3312-f4cd-4baf-8d1f-b03d28c61242.webp",
-      "gallery": [
-        "https://cdn.balloondekor.com/33/office-decoration-b84c3312-f4cd-4baf-8d1f-b03d28c61242.webp"
-      ],
-      "setupDuration": "2 Hours",
-      "description": "Transform open cubicle bays and workstations for Diwali, New Year, or Christmas with ceiling hangings and desk bunches.",
-      "inclusions": [
-        "150 Ceiling Suspended Metallic Balloons with Ribbons",
-        "10 Desktop Balloon Bouquets for Department Pods",
-        "Festive Bunting & LED Warm Rice Lights across bays",
-        "Cafeteria / Breakout Zone Balloon Drop",
-        "Quick clean-up safe adhesives used"
-      ],
-      "tags": [
-        "Cubicle Decor",
-        "Diwali",
-        "Office Party"
-      ],
-      "subcategory": "office"
-    },
-    {
-      "id": "corporate-executive-townhall-stage-backdrop",
-      "title": "Executive Townhall & Leadership Meet Backdrop",
-      "category": "corporate",
-      "categoryName": "Corporate",
-      "price": 7499,
-      "originalPrice": 9999,
-      "discount": 25,
-      "rating": 5,
-      "reviewsCount": 110,
-      "badge": "PREMIUM",
-      "image": "https://cdn.balloondekor.com/33/office-decoration-b84c3312-f4cd-4baf-8d1f-b03d28c61242.webp",
-      "gallery": [
-        "https://cdn.balloondekor.com/33/office-decoration-b84c3312-f4cd-4baf-8d1f-b03d28c61242.webp"
-      ],
-      "setupDuration": "3 Hours",
-      "description": "Sleek, minimalist conference backdrop for quarterly townhalls, board meetings, and high-level leadership summits.",
-      "inclusions": [
-        "Matte Black & Chrome Platinum Architectural Balloon Frame",
-        "Dual Stage Podiums with Branded Floral Accents",
-        "Sound-Dampened Backdrop Panel Integration",
-        "Conference Stage LED Uplighting (Pair of 4 Lights)",
-        "Dedicated Corporate Operations Supervisor"
-      ],
-      "tags": [
-        "Townhall",
-        "Leadership Meet",
-        "Board Meeting"
-      ],
-      "subcategory": "stage"
-    },
-    {
-      "id": "gift-01",
-      "title": "Soft Teddy Bear",
-      "category": "gifts",
-      "categoryName": "Gifts Market",
-      "price": 699,
-      "originalPrice": 899,
-      "discount": 22,
-      "rating": 4.8,
-      "reviewsCount": 320,
-      "badge": "POPULAR",
-      "image": "assets/soft-teddy-bear-hero.jpg",
-      "gallery": [
-        "assets/soft-teddy-bear-hero.jpg"
-      ],
-      "setupDuration": "Same Day Delivery",
-      "description": "Adorable, ultra-soft plush teddy bear crafted with hypoallergenic material. A timeless gift for birthdays, anniversaries, and heartfelt surprises.",
-      "inclusions": [
-        "Premium Soft Fur Plush Teddy Bear (35cm)",
-        "Gift Ribbon & Greeting Note Card",
-        "Safe Dust-Free Packaging"
-      ],
-      "tags": [
-        "Gifts for Boys",
-        "Gifts for Girls",
-        "TeddyJoy"
-      ],
-      "subcategory": "girls"
-    },
-    {
-      "id": "gift-02",
-      "title": "Personalized Photo Mug",
-      "category": "gifts",
-      "categoryName": "Gifts Market",
-      "price": 499,
-      "originalPrice": 699,
-      "discount": 29,
-      "rating": 4.6,
-      "reviewsCount": 210,
-      "badge": "CUSTOM",
-      "image": "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=600&q=80",
-      "gallery": [
-        "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=600&q=80"
-      ],
-      "setupDuration": "Same Day Delivery",
-      "description": "High-grade ceramic coffee mug customized with your favorite memory and quote in vibrant, dishwasher-safe sublimation print.",
-      "inclusions": [
-        "325ml Premium Ceramic Gloss Mug",
-        "High-Definition Photo & Name Printing",
-        "Shockproof Thermocol Gift Box"
-      ],
-      "tags": [
-        "Gifts for Men",
-        "Gifts for Women",
-        "Archies"
-      ],
-      "subcategory": "boys"
-    },
-    {
-      "id": "gift-03",
-      "title": "Luxury Gift Hamper for Women",
-      "category": "gifts",
-      "categoryName": "Gifts Market",
-      "price": 1999,
-      "originalPrice": 2499,
+      "id": "musical-events",
+      "title": "Musical Events",
+      "category": "wedding",
+      "category_name": "Wedding",
+      "price": 19999,
+      "original_price": 24999,
       "discount": 20,
-      "rating": 4.7,
-      "reviewsCount": 185,
-      "badge": "LUXURY",
-      "image": "https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=600&q=80",
+      "rating": 4.9,
+      "reviews_count": 160,
+      "badge": "LIVE BAND",
+      "setup_duration": "3 Hours Show",
+      "image": "https://images.unsplash.com/photo-1465847899084-d164df4dedc6?auto=format&fit=crop&w=800&q=80",
       "gallery": [
-        "https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=600&q=80"
+        "https://images.unsplash.com/photo-1465847899084-d164df4dedc6?auto=format&fit=crop&w=800&q=80"
       ],
-      "setupDuration": "Express Delivery",
-      "description": "Curated luxury pampering hamper featuring scented soy candles, artisan bath bombs, Ferrero Rocher chocolates, and greeting card in a golden-embossed reusable box.",
+      "description": "Enthralling live musical bands, acoustic singers, Sufi ensembles, and classical fusion orchestras to keep your wedding guests mesmerized throughout the evening.",
       "inclusions": [
-        "Aromatic Soy Wax Jar Candle",
-        "Assorted Artisan Chocolates (8 Pcs)",
-        "Rose Scented Bath Salts & Loofah",
-        "Gold Embossed Reusable Keepsake Box"
+        "Live Acoustic / Bollywood / Sufi Fusion Band",
+        "Professional Stage Audio & Line-Array Speakers",
+        "Stage Lighting, Moving Heads & LED Par Cans",
+        "Sound Engineer & Stage Tech Crew",
+        "Customized 3-Hour Musical Performance Setlist"
       ],
       "tags": [
-        "Gifts for Women",
-        "Wedding Gifts",
-        "Archies"
+        "Live music",
+        "Orchestra",
+        "Cultural programs",
+        "subcat:melam-music"
       ],
-      "subcategory": "women"
+      "created_at": "2026-10-04T12:29:15.410883+00:00",
+      "updated_at": "2026-10-04T12:29:15.410883+00:00",
+      "subcategory": "melam-music",
+      "categoryName": "Wedding",
+      "originalPrice": 24999,
+      "setupDuration": "3 Hours Show",
+      "reviewsCount": 160,
+      "slots_alert": "",
+      "about_description": "Enthralling live musical bands, acoustic singers, Sufi ensembles, and classical fusion orchestras to keep your wedding guests mesmerized throughout the evening.",
+      "not_included": [],
+      "faqs": [],
+      "addons": [],
+      "delivery_note": "",
+      "decorator_note": "",
+      "lifespan_note": "",
+      "location_note": "",
+      "color_palettes": [],
+      "why_choose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "notIncluded": [],
+      "aboutDescription": "Enthralling live musical bands, acoustic singers, Sufi ensembles, and classical fusion orchestras to keep your wedding guests mesmerized throughout the evening.",
+      "deliveryNote": "",
+      "decoratorNote": "",
+      "lifespanNote": "",
+      "locationNote": "",
+      "colorPalettes": [],
+      "slotsAlert": "",
+      "whyChoose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "me_options",
+          "title": "Musical Entertainment Cards",
+          "subPrompt": "Select music genres & setup",
+          "subItems": [
+            "Orchestra (Full orchestra for a grand musical experience)",
+            "DJ (Professional DJ with latest music collection)",
+            "Light Music (Melodious light music for a pleasant atmosphere)",
+            "Live Instrumental Music (Live instrumental performance)"
+          ]
+        }
+      ]
     },
     {
-      "id": "gift-04",
-      "title": "Men's Analog Watch",
-      "category": "gifts",
-      "categoryName": "Gifts Market",
-      "price": 2499,
-      "originalPrice": 3499,
-      "discount": 29,
-      "rating": 4.5,
-      "reviewsCount": 98,
-      "badge": "ELEGANT",
-      "image": "https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=600&q=80",
+      "id": "anniversary-home-decoration",
+      "title": "Anniversary Home Surprise Decor",
+      "category": "anniversary",
+      "category_name": "Anniversary",
+      "price": 2199,
+      "original_price": 2899,
+      "discount": 24,
+      "rating": 4.9,
+      "reviews_count": 284,
+      "badge": "BESTSELLER",
+      "setup_duration": "2 Hours",
+      "image": "https://cdn.balloondekor.com/14/anniversary-home-decoration-1785476722055-756184.webp",
       "gallery": [
-        "https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=600&q=80"
+        "https://cdn.balloondekor.com/14/anniversary-home-decoration-1785476722055-756184.webp",
+        "https://cdn.balloondekor.com/29/1784709508118-669326.webp"
       ],
-      "setupDuration": "Same Day Delivery",
-      "description": "Sleek stainless steel analog timepiece featuring mineral glass dial, genuine leather strap, and water resistance in a signature presentation box.",
+      "description": "An enchanting romantic home surprise featuring metallic red heart balloons, fairy light curtains, and bed styling with rose petals.",
       "inclusions": [
-        "Classic Analog Chronograph Watch",
-        "Genuine Leather Strap (Brown/Black)",
-        "1-Year Manufacturer Warranty Card",
-        "Luxury Velvet Lined Gift Box"
+        "120 Red & White Metallic Balloons with Curling Ribbons",
+        "10 Heart Foil Balloons (18 inches)",
+        "Happy Anniversary Foil Bunting Banner",
+        "Fresh Rose Petal Bed Pathway & Heart Formation",
+        "Tea-light LED Candles (Set of 12)",
+        "Fairy String Lights (12 meters)"
       ],
       "tags": [
-        "Gifts for Men",
-        "Archies",
-        "Analog Watch"
+        "Romantic Surprise",
+        "Bedroom Decor",
+        "Rose Petals",
+        "subcat:room"
       ],
-      "subcategory": "men"
+      "created_at": "2026-10-03T09:42:33.449+00:00",
+      "updated_at": "2026-10-03T09:42:33.449+00:00",
+      "subcategory": "room",
+      "categoryName": "Anniversary",
+      "originalPrice": 2899,
+      "setupDuration": "2 Hours",
+      "reviewsCount": 284,
+      "slots_alert": "",
+      "about_description": "An enchanting romantic home surprise featuring metallic red heart balloons, fairy light curtains, and bed styling with rose petals.",
+      "not_included": [],
+      "faqs": [],
+      "addons": [],
+      "delivery_note": "",
+      "decorator_note": "",
+      "lifespan_note": "",
+      "location_note": "",
+      "color_palettes": [],
+      "why_choose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "notIncluded": [],
+      "aboutDescription": "An enchanting romantic home surprise featuring metallic red heart balloons, fairy light curtains, and bed styling with rose petals.",
+      "deliveryNote": "",
+      "decoratorNote": "",
+      "lifespanNote": "",
+      "locationNote": "",
+      "colorPalettes": [],
+      "slotsAlert": "",
+      "whyChoose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "options": []
     },
     {
-      "id": "gift-05",
-      "title": "Fresh Red Rose Bouquet",
-      "category": "gifts",
-      "categoryName": "Gifts Market",
-      "price": 1299,
-      "originalPrice": 1599,
-      "discount": 19,
-      "rating": 4.8,
-      "reviewsCount": 412,
-      "badge": "FRESH",
-      "image": "https://images.unsplash.com/photo-1518895949257-7621c3c786d7?auto=format&fit=crop&w=600&q=80",
+      "id": "dj-kolatam",
+      "title": "dj & kolatam",
+      "category": "wedding",
+      "categoryName": "Wedding",
+      "badge": "traditional",
+      "image": "https://res.cloudinary.com/gu0q1mxy/image/upload/v1791452557/celebration-wedding/eai6viqtzalynpl1aive.jpg",
       "gallery": [
-        "https://images.unsplash.com/photo-1518895949257-7621c3c786d7?auto=format&fit=crop&w=600&q=80"
+        "https://res.cloudinary.com/gu0q1mxy/image/upload/v1791452557/celebration-wedding/eai6viqtzalynpl1aive.jpg"
       ],
-      "setupDuration": "2-Hour Express Delivery",
-      "description": "Bunch of 20 hand-picked Dutch red roses wrapped in matte black paper and tied with a crimson satin ribbon.",
+      "description": "swedrtvfugbnhijmkl",
+      "options": [
+        {
+          "id": "opt_muzclqut",
+          "image": "https://res.cloudinary.com/gu0q1mxy/image/upload/v1791452638/celebration-wedding-options/uqyuzry2pqiuuivhrv0u.jpg",
+          "title": "dj ",
+          "subItems": [
+            {
+              "name": "3 pin",
+              "image": ""
+            },
+            {
+              "name": "5 pin",
+              "image": ""
+            },
+            {
+              "name": "8 pin",
+              "image": ""
+            }
+          ],
+          "subPrompt": "choose dj type"
+        },
+        {
+          "id": "opt_muzfdif4",
+          "image": "https://res.cloudinary.com/gu0q1mxy/image/upload/v1791457246/celebration-wedding-options/niytambb4pwa3s3o66ed.jpg",
+          "title": "kolatam",
+          "subItems": [
+            {
+              "name": "2 mmebers",
+              "image": ""
+            },
+            {
+              "name": "3 members",
+              "image": ""
+            },
+            {
+              "name": "4 memebers",
+              "image": ""
+            }
+          ],
+          "subPrompt": "choose kolatam type"
+        }
+      ],
       "inclusions": [
-        "20 Fresh Dutch Long-Stem Red Roses",
-        "Premium Matte Black & Gold Wrapping",
-        "Satin Ribbon Bow & Greeting Note Card",
-        "Flower Food Sachet for Longevity"
+        "dj ",
+        "kolatam"
       ],
       "tags": [
-        "Flowers",
-        "Gifts for Women",
-        "FlowerAura"
+        "Wedding",
+        "Custom Decor"
       ],
-      "subcategory": "flowers"
+      "category_name": "Wedding",
+      "price": 0,
+      "original_price": 0,
+      "discount": 0,
+      "rating": 4.9,
+      "reviews_count": 100,
+      "setup_duration": "Custom Schedule",
+      "created_at": "2026-10-08T10:00:14.388558+00:00",
+      "updated_at": "2026-10-08T10:00:14.388558+00:00",
+      "subcategory": "",
+      "slots_alert": "",
+      "about_description": "swedrtvfugbnhijmkl",
+      "not_included": [],
+      "faqs": [],
+      "addons": [],
+      "delivery_note": "",
+      "decorator_note": "",
+      "lifespan_note": "",
+      "location_note": "",
+      "color_palettes": [],
+      "why_choose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "originalPrice": 0,
+      "setupDuration": "Custom Schedule",
+      "reviewsCount": 100,
+      "notIncluded": [],
+      "aboutDescription": "swedrtvfugbnhijmkl",
+      "deliveryNote": "",
+      "decoratorNote": "",
+      "lifespanNote": "",
+      "locationNote": "",
+      "colorPalettes": [],
+      "slotsAlert": "",
+      "whyChoose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      }
     },
     {
-      "id": "gift-06",
-      "title": "Ferrero Rocher Chocolate Box",
-      "category": "gifts",
-      "categoryName": "Gifts Market",
-      "price": 899,
-      "originalPrice": 1099,
-      "discount": 18,
-      "rating": 4.6,
-      "reviewsCount": 276,
-      "badge": "SWEET",
-      "image": "https://images.unsplash.com/photo-1549007994-cb92caebd54b?auto=format&fit=crop&w=600&q=80",
+      "id": "dj-and-kolatam",
+      "title": "DJ and kolatam",
+      "category": "wedding",
+      "category_name": "Wedding",
+      "price": 0,
+      "original_price": 0,
+      "discount": 0,
+      "rating": 4.9,
+      "reviews_count": 100,
+      "badge": "traditional and folk",
+      "setup_duration": "Custom Schedule",
+      "image": "https://res.cloudinary.com/gu0q1mxy/image/upload/v1791449942/celebration-wedding/axlwtb5w6mgbwvajj6i9.jpg",
       "gallery": [
-        "https://images.unsplash.com/photo-1549007994-cb92caebd54b?auto=format&fit=crop&w=600&q=80"
+        "https://res.cloudinary.com/gu0q1mxy/image/upload/v1791449942/celebration-wedding/axlwtb5w6mgbwvajj6i9.jpg"
       ],
-      "setupDuration": "Same Day Delivery",
-      "description": "Crispy hazelnut chocolate pralines encased in gold foil, guaranteed to sweeten any celebration.",
+      "description": "sadfghtjykujyhgd",
       "inclusions": [
-        "16 Pieces Authentic Ferrero Rocher Pralines",
-        "Luxury Transparent Gift Case",
-        "Decorative Gift Ribbon & Card"
+        "dj "
       ],
       "tags": [
-        "Chocolates",
-        "Gifts for Women",
-        "Gifts for Men",
-        "Ferrero Rocher"
+        "Wedding",
+        "Custom Decor"
       ],
-      "subcategory": "cakes"
+      "created_at": "2026-10-08T10:45:33.322415+00:00",
+      "updated_at": "2026-10-08T10:45:33.322415+00:00",
+      "subcategory": "",
+      "slots_alert": "",
+      "about_description": "sadfghtjykujyhgd",
+      "not_included": [],
+      "faqs": [],
+      "addons": [],
+      "delivery_note": "",
+      "decorator_note": "",
+      "lifespan_note": "",
+      "location_note": "",
+      "color_palettes": [],
+      "why_choose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "opt_muzb2g8v",
+          "title": "dj ",
+          "subItems": [
+            {
+              "name": "2 pin",
+              "image": ""
+            },
+            {
+              "name": "4 pin",
+              "image": ""
+            },
+            {
+              "name": "9 pin",
+              "image": ""
+            }
+          ],
+          "subPrompt": "choose dj type"
+        }
+      ],
+      "categoryName": "Wedding",
+      "originalPrice": 0,
+      "setupDuration": "Custom Schedule",
+      "reviewsCount": 100,
+      "notIncluded": [],
+      "aboutDescription": "sadfghtjykujyhgd",
+      "deliveryNote": "",
+      "decoratorNote": "",
+      "lifespanNote": "",
+      "locationNote": "",
+      "colorPalettes": [],
+      "slotsAlert": "",
+      "whyChoose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      }
     },
     {
       "id": "gift-07",
       "title": "Remote Control Car for Kids",
       "category": "gifts",
-      "categoryName": "Gifts Market",
+      "category_name": "Gifts Market",
       "price": 1199,
-      "originalPrice": 1599,
+      "original_price": 1599,
       "discount": 25,
       "rating": 4.4,
-      "reviewsCount": 190,
+      "reviews_count": 190,
       "badge": "KIDS SPECIAL",
+      "setup_duration": "Same Day Delivery",
       "image": "https://images.unsplash.com/photo-1594787318286-3d835c1d207f?auto=format&fit=crop&w=600&q=80",
       "gallery": [
         "https://images.unsplash.com/photo-1594787318286-3d835c1d207f?auto=format&fit=crop&w=600&q=80"
       ],
-      "setupDuration": "Same Day Delivery",
       "description": "High-speed drift RC racing sports car with LED headlights, rechargeable battery pack, and ergonomic remote controller.",
       "inclusions": [
         "1:16 Scale RC Racing Sports Car",
@@ -3432,26 +8935,123 @@ const SITE_DATA = {
       "tags": [
         "Gifts for Boys",
         "Archies",
-        "RC Car"
+        "RC Car",
+        "subcat:boys"
       ],
-      "subcategory": "boys"
+      "created_at": "2026-10-04T11:19:07.968893+00:00",
+      "updated_at": "2026-10-04T11:19:07.968893+00:00",
+      "subcategory": "boys",
+      "categoryName": "Gifts Market",
+      "originalPrice": 1599,
+      "setupDuration": "Same Day Delivery",
+      "reviewsCount": 190,
+      "slots_alert": "",
+      "about_description": "High-speed drift RC racing sports car with LED headlights, rechargeable battery pack, and ergonomic remote controller.",
+      "not_included": [],
+      "faqs": [],
+      "addons": [],
+      "delivery_note": "",
+      "decorator_note": "",
+      "lifespan_note": "",
+      "location_note": "",
+      "color_palettes": [],
+      "why_choose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "notIncluded": [],
+      "aboutDescription": "High-speed drift RC racing sports car with LED headlights, rechargeable battery pack, and ergonomic remote controller.",
+      "deliveryNote": "Same Day Delivery: Get it delivered in 2 to 4 hours at your location.",
+      "decoratorNote": "",
+      "lifespanNote": "",
+      "locationNote": "",
+      "colorPalettes": [],
+      "slotsAlert": "",
+      "whyChoose": [
+        "Exciting high-speed action for kids",
+        "Safe durable build quality",
+        "Complete set ready to play",
+        "Fast 2-4 hour delivery"
+      ],
+      "options": [],
+      "subtitle": "High-speed 1:18 scale rechargeable RC monster truck with all-terrain suspension.",
+      "material": "Non-Toxic ABS Plastic & Heavy-Duty Rubber Tires",
+      "dimensions": "24 x 14 x 11 cm",
+      "color": "Flame Red & Black Racing Stripes",
+      "recommendedAge": "4 to 12 Years",
+      "washCare": "Keep away from water; recharge via USB",
+      "packaging": "Window Display Box with Remote & USB Charger",
+      "boughtText": "220+ bought in last month",
+      "highlights": [
+        "2.4GHz anti-interference wireless remote",
+        "Shockproof suspension for multi-terrain drive",
+        "Rechargeable battery pack included with USB cable",
+        "Durable drop-resistant bumper"
+      ],
+      "specs": {
+        "material": "Non-Toxic ABS Plastic & Heavy-Duty Rubber Tires",
+        "dimensions": "24 x 14 x 11 cm",
+        "color": "Flame Red & Black Racing Stripes",
+        "recommendedAge": "4 to 12 Years",
+        "washCare": "Keep away from water; recharge via USB",
+        "packaging": "Window Display Box with Remote & USB Charger"
+      }
     },
     {
       "id": "gift-08",
       "title": "Chocolate Truffle Cake (500g)",
       "category": "gifts",
-      "categoryName": "Gifts Market",
+      "category_name": "Gifts Market",
       "price": 799,
-      "originalPrice": 999,
+      "original_price": 999,
       "discount": 20,
       "rating": 4.7,
-      "reviewsCount": 305,
+      "reviews_count": 305,
       "badge": "EGGLESS",
+      "setup_duration": "2-Hour Express Delivery",
       "image": "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=600&q=80",
       "gallery": [
         "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=600&q=80"
       ],
-      "setupDuration": "2-Hour Express Delivery",
       "description": "Decadent eggless dark chocolate truffle cake layered with rich Belgian ganache and chocolate curls.",
       "inclusions": [
         "500g Fresh Baked Eggless Chocolate Truffle Cake",
@@ -3461,26 +9061,123 @@ const SITE_DATA = {
       "tags": [
         "Cakes",
         "FlowerAura",
-        "Eggless Truffle"
+        "Eggless Truffle",
+        "subcat:cakes"
       ],
-      "subcategory": "cakes"
+      "created_at": "2026-10-04T11:19:07.968893+00:00",
+      "updated_at": "2026-10-04T11:19:07.968893+00:00",
+      "subcategory": "cakes",
+      "categoryName": "Gifts Market",
+      "originalPrice": 999,
+      "setupDuration": "2-Hour Express Delivery",
+      "reviewsCount": 305,
+      "slots_alert": "",
+      "about_description": "Decadent eggless dark chocolate truffle cake layered with rich Belgian ganache and chocolate curls.",
+      "not_included": [],
+      "faqs": [],
+      "addons": [],
+      "delivery_note": "",
+      "decorator_note": "",
+      "lifespan_note": "",
+      "location_note": "",
+      "color_palettes": [],
+      "why_choose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "notIncluded": [],
+      "aboutDescription": "Decadent eggless dark chocolate truffle cake layered with rich Belgian ganache and chocolate curls.",
+      "deliveryNote": "Same Day Delivery: Baked fresh and hand-delivered in 2 to 4 hours.",
+      "decoratorNote": "",
+      "lifespanNote": "",
+      "locationNote": "",
+      "colorPalettes": [],
+      "slotsAlert": "",
+      "whyChoose": [
+        "Freshly baked upon order confirmation",
+        "Temperature controlled delivery",
+        "Decadent rich flavor",
+        "Punctual celebration arrival"
+      ],
+      "options": [],
+      "subtitle": "Rich Belgian dark chocolate ganache layered sponge cake freshly baked on order.",
+      "material": "Fresh Eggless Sponge, Belgian Dark Chocolate & Dutch Cocoa",
+      "dimensions": "500 grams (Serves 4 - 6 People)",
+      "color": "Glossy Dark Chocolate Mirror Glaze",
+      "recommendedAge": "All Ages",
+      "washCare": "Keep refrigerated; consume within 24 hours of delivery",
+      "packaging": "Insulated Cake Box with Candle & Wooden Knife",
+      "boughtText": "520+ bought in last month",
+      "highlights": [
+        "100% Eggless artisan recipe",
+        "Silky Belgian dark chocolate ganache",
+        "Complimentary candles and wooden cake knife included",
+        "Personalized icing message available"
+      ],
+      "specs": {
+        "material": "Fresh Eggless Sponge, Belgian Dark Chocolate & Dutch Cocoa",
+        "dimensions": "500 grams (Serves 4 - 6 People)",
+        "color": "Glossy Dark Chocolate Mirror Glaze",
+        "recommendedAge": "All Ages",
+        "washCare": "Keep refrigerated; consume within 24 hours of delivery",
+        "packaging": "Insulated Cake Box with Candle & Wooden Knife"
+      }
     },
     {
       "id": "gift-09",
       "title": "Elegant Wedding Greeting Card",
       "category": "gifts",
-      "categoryName": "Gifts Market",
+      "category_name": "Gifts Market",
       "price": 49,
-      "originalPrice": 99,
+      "original_price": 99,
       "discount": 51,
       "rating": 4.5,
-      "reviewsCount": 134,
+      "reviews_count": 134,
       "badge": "HEARTFELT",
+      "setup_duration": "Same Day Delivery",
       "image": "https://images.unsplash.com/photo-1607344645866-009c320b5ab8?auto=format&fit=crop&w=600&q=80",
       "gallery": [
         "https://images.unsplash.com/photo-1607344645866-009c320b5ab8?auto=format&fit=crop&w=600&q=80"
       ],
-      "setupDuration": "Same Day Delivery",
       "description": "Intricately embossed laser-cut metallic gold greeting card with heartfelt warm wishes for newlyweds.",
       "inclusions": [
         "Laser Cut Embossed Wedding Card",
@@ -3490,26 +9187,123 @@ const SITE_DATA = {
       "tags": [
         "Cards",
         "Wedding Gifts",
-        "Archies"
+        "Archies",
+        "subcat:women"
       ],
-      "subcategory": "women"
+      "created_at": "2026-10-04T11:19:07.968893+00:00",
+      "updated_at": "2026-10-04T11:19:07.968893+00:00",
+      "subcategory": "women",
+      "categoryName": "Gifts Market",
+      "originalPrice": 99,
+      "setupDuration": "Same Day Delivery",
+      "reviewsCount": 134,
+      "slots_alert": "",
+      "about_description": "Intricately embossed laser-cut metallic gold greeting card with heartfelt warm wishes for newlyweds.",
+      "not_included": [],
+      "faqs": [],
+      "addons": [],
+      "delivery_note": "",
+      "decorator_note": "",
+      "lifespan_note": "",
+      "location_note": "",
+      "color_palettes": [],
+      "why_choose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "notIncluded": [],
+      "aboutDescription": "Intricately embossed laser-cut metallic gold greeting card with heartfelt warm wishes for newlyweds.",
+      "deliveryNote": "Same Day Delivery: Get it delivered in 2 to 4 hours at your location.",
+      "decoratorNote": "",
+      "lifespanNote": "",
+      "locationNote": "",
+      "colorPalettes": [],
+      "slotsAlert": "",
+      "whyChoose": [
+        "Classy and memorable keepsake",
+        "Premium tactile touch",
+        "Fits cash/gift card inserts",
+        "Express delivery"
+      ],
+      "options": [],
+      "subtitle": "Embossed metallic gold foil floral wedding card with heartfelt wishes envelope.",
+      "material": "350 GSM Textured Metallic Ivory Cardstock",
+      "dimensions": "15 x 20 cm (Folded)",
+      "color": "Ivory & Metallic Gold Foil",
+      "recommendedAge": "Adults",
+      "washCare": "Keep dry",
+      "packaging": "Sealed Golden Shimmer Envelope with Wax Seal Stamp",
+      "boughtText": "140+ bought in last month",
+      "highlights": [
+        "Luxury 350 GSM textured pearl finish paper",
+        "Intricate laser-cut floral motifs with gold foil stamping",
+        "Blank interior sheet for handwritten wishes",
+        "Matching luxury metallic envelope"
+      ],
+      "specs": {
+        "material": "350 GSM Textured Metallic Ivory Cardstock",
+        "dimensions": "15 x 20 cm (Folded)",
+        "color": "Ivory & Metallic Gold Foil",
+        "recommendedAge": "Adults",
+        "washCare": "Keep dry",
+        "packaging": "Sealed Golden Shimmer Envelope with Wax Seal Stamp"
+      }
     },
     {
       "id": "gift-10",
       "title": "Digital Invitation Video",
       "category": "gifts",
-      "categoryName": "Gifts Market",
+      "category_name": "Gifts Market",
       "price": 299,
-      "originalPrice": 499,
+      "original_price": 499,
       "discount": 40,
       "rating": 4.6,
-      "reviewsCount": 97,
+      "reviews_count": 97,
       "badge": "DIGITAL",
+      "setup_duration": "Delivered in 2 Hours",
       "image": "https://images.unsplash.com/photo-1512499617640-c74ae3a79d37?auto=format&fit=crop&w=600&q=80",
       "gallery": [
         "https://images.unsplash.com/photo-1512499617640-c74ae3a79d37?auto=format&fit=crop&w=600&q=80"
       ],
-      "setupDuration": "Delivered in 2 Hours",
       "description": "Customized 1080p full HD animated video invite with background music, couple photos, event dates, and GPS venue directions for WhatsApp sharing.",
       "inclusions": [
         "Full HD Animated Video Invitation (MP4)",
@@ -3519,26 +9313,123 @@ const SITE_DATA = {
       "tags": [
         "Digital Invitations",
         "Archies",
-        "Video Invite"
+        "Video Invite",
+        "subcat:men"
       ],
-      "subcategory": "men"
+      "created_at": "2026-10-04T11:19:07.968893+00:00",
+      "updated_at": "2026-10-04T11:19:07.968893+00:00",
+      "subcategory": "men",
+      "categoryName": "Gifts Market",
+      "originalPrice": 499,
+      "setupDuration": "Delivered in 2 Hours",
+      "reviewsCount": 97,
+      "slots_alert": "",
+      "about_description": "Customized 1080p full HD animated video invite with background music, couple photos, event dates, and GPS venue directions for WhatsApp sharing.",
+      "not_included": [],
+      "faqs": [],
+      "addons": [],
+      "delivery_note": "",
+      "decorator_note": "",
+      "lifespan_note": "",
+      "location_note": "",
+      "color_palettes": [],
+      "why_choose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "notIncluded": [],
+      "aboutDescription": "Customized 1080p full HD animated video invite with background music, couple photos, event dates, and GPS venue directions for WhatsApp sharing.",
+      "deliveryNote": "Instant Digital Delivery within 2 to 4 hours via WhatsApp & Email.",
+      "decoratorNote": "",
+      "lifespanNote": "",
+      "locationNote": "",
+      "colorPalettes": [],
+      "slotsAlert": "",
+      "whyChoose": [
+        "Zero paper waste, eco-friendly invitation",
+        "Instant WhatsApp sharing",
+        "Unlimited minor revisions",
+        "Fast turnaround time"
+      ],
+      "options": [],
+      "subtitle": "Custom cinematic animated video invite formatted for instant WhatsApp sharing.",
+      "material": "1080p Full HD MP4 Motion Graphics File",
+      "dimensions": "9:16 Vertical Story / WhatsApp Format (60 Secs)",
+      "color": "Royal Gold & Burgundy Floral Theme",
+      "recommendedAge": "All Ages",
+      "washCare": "Digital Delivery via WhatsApp & Email",
+      "packaging": "Cloud Download Link with Lifetime Access",
+      "boughtText": "250+ bought in last month",
+      "highlights": [
+        "Customized with your names, event timeline and photos",
+        "Cinematic background music and smooth transitions",
+        "Direct Google Maps venue link integration",
+        "Delivered in Full HD 1080p format"
+      ],
+      "specs": {
+        "material": "1080p Full HD MP4 Motion Graphics File",
+        "dimensions": "9:16 Vertical Story / WhatsApp Format (60 Secs)",
+        "color": "Royal Gold & Burgundy Floral Theme",
+        "recommendedAge": "All Ages",
+        "washCare": "Digital Delivery via WhatsApp & Email",
+        "packaging": "Cloud Download Link with Lifetime Access"
+      }
     },
     {
       "id": "gift-11",
       "title": "Return Gifts Combo (Set of 10)",
       "category": "gifts",
-      "categoryName": "Gifts Market",
+      "category_name": "Gifts Market",
       "price": 999,
-      "originalPrice": 1299,
+      "original_price": 1299,
       "discount": 23,
       "rating": 4.8,
-      "reviewsCount": 221,
+      "reviews_count": 221,
       "badge": "BULK SPECIAL",
+      "setup_duration": "Same Day Delivery",
       "image": "https://images.unsplash.com/photo-1485955900006-10f4d324d411?auto=format&fit=crop&w=600&q=80",
       "gallery": [
         "https://images.unsplash.com/photo-1485955900006-10f4d324d411?auto=format&fit=crop&w=600&q=80"
       ],
-      "setupDuration": "Same Day Delivery",
       "description": "Set of 10 handcrafted brass diyas and aromatic wax votives packed in organza potlis for baby shower and birthday return gifts.",
       "inclusions": [
         "10 Handcrafted Traditional Brass Votives",
@@ -3548,26 +9439,123 @@ const SITE_DATA = {
       "tags": [
         "Returns Gifts",
         "Archies",
-        "Set of 10"
+        "Set of 10",
+        "subcat:boys"
       ],
-      "subcategory": "boys"
+      "created_at": "2026-10-04T11:19:07.968893+00:00",
+      "updated_at": "2026-10-04T11:19:07.968893+00:00",
+      "subcategory": "boys",
+      "categoryName": "Gifts Market",
+      "originalPrice": 1299,
+      "setupDuration": "Same Day Delivery",
+      "reviewsCount": 221,
+      "slots_alert": "",
+      "about_description": "Set of 10 handcrafted brass diyas and aromatic wax votives packed in organza potlis for baby shower and birthday return gifts.",
+      "not_included": [],
+      "faqs": [],
+      "addons": [],
+      "delivery_note": "",
+      "decorator_note": "",
+      "lifespan_note": "",
+      "location_note": "",
+      "color_palettes": [],
+      "why_choose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "notIncluded": [],
+      "aboutDescription": "Set of 10 handcrafted brass diyas and aromatic wax votives packed in organza potlis for baby shower and birthday return gifts.",
+      "deliveryNote": "Same Day Delivery: Get it delivered in 2 to 4 hours at your location.",
+      "decoratorNote": "",
+      "lifespanNote": "",
+      "locationNote": "",
+      "colorPalettes": [],
+      "slotsAlert": "",
+      "whyChoose": [
+        "Traditional and eco-conscious",
+        "Hassle-free bulk return gifts ready to distribute",
+        "Budget friendly elegance",
+        "Same day delivery available"
+      ],
+      "options": [],
+      "subtitle": "Eco-friendly hand-crafted jute pouch gift set containing scented potpourri and brass diyas.",
+      "material": "Handwoven Golden Jute, Scented Botanicals & Pure Brass Diyas",
+      "dimensions": "Set of 10 Pouches (15 x 10 cm each)",
+      "color": "Natural Golden Jute with Red Pull String",
+      "recommendedAge": "All Ages",
+      "washCare": "Wipe clean with dry cloth",
+      "packaging": "Master Carton with 10 Individually Tied Gift Pouches",
+      "boughtText": "320+ bought in last month",
+      "highlights": [
+        "Set of 10 pre-assembled return gift favors",
+        "Handmade sustainable jute bags with drawstring",
+        "Includes mini pure brass oil lamp in each pouch",
+        "Customizable 'Thank You for Celebrating' tag"
+      ],
+      "specs": {
+        "material": "Handwoven Golden Jute, Scented Botanicals & Pure Brass Diyas",
+        "dimensions": "Set of 10 Pouches (15 x 10 cm each)",
+        "color": "Natural Golden Jute with Red Pull String",
+        "recommendedAge": "All Ages",
+        "washCare": "Wipe clean with dry cloth",
+        "packaging": "Master Carton with 10 Individually Tied Gift Pouches"
+      }
     },
     {
       "id": "gift-12",
       "title": "Gift Hamper for Boys",
       "category": "gifts",
-      "categoryName": "Gifts Market",
+      "category_name": "Gifts Market",
       "price": 1499,
-      "originalPrice": 1899,
+      "original_price": 1899,
       "discount": 21,
       "rating": 4.7,
-      "reviewsCount": 145,
+      "reviews_count": 145,
       "badge": "POPULAR",
+      "setup_duration": "Same Day Delivery",
       "image": "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=600&q=80",
       "gallery": [
         "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=600&q=80"
       ],
-      "setupDuration": "Same Day Delivery",
       "description": "Fun celebration hamper for young boys containing action figures, chocolate bars, a superhero cap, and a party badge.",
       "inclusions": [
         "Superhero Toy Figurine",
@@ -3578,9 +9566,106 @@ const SITE_DATA = {
       "tags": [
         "Gifts for Boys",
         "Archies",
-        "Hamper"
+        "Hamper",
+        "subcat:boys"
       ],
-      "subcategory": "boys"
+      "created_at": "2026-10-04T11:19:07.968893+00:00",
+      "updated_at": "2026-10-04T11:19:07.968893+00:00",
+      "subcategory": "boys",
+      "categoryName": "Gifts Market",
+      "originalPrice": 1899,
+      "setupDuration": "Same Day Delivery",
+      "reviewsCount": 145,
+      "slots_alert": "",
+      "about_description": "Fun celebration hamper for young boys containing action figures, chocolate bars, a superhero cap, and a party badge.",
+      "not_included": [],
+      "faqs": [],
+      "addons": [],
+      "delivery_note": "",
+      "decorator_note": "",
+      "lifespan_note": "",
+      "location_note": "",
+      "color_palettes": [],
+      "why_choose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "notIncluded": [],
+      "aboutDescription": "Fun celebration hamper for young boys containing action figures, chocolate bars, a superhero cap, and a party badge.",
+      "deliveryNote": "Same Day Delivery: Get it delivered in 2 to 4 hours at your location.",
+      "decoratorNote": "",
+      "lifespanNote": "",
+      "locationNote": "",
+      "colorPalettes": [],
+      "slotsAlert": "",
+      "whyChoose": [
+        "Exciting all-in-one curated gift for boys",
+        "Reusable magnetic keepsake storage crate",
+        "Tested safe, child-friendly components",
+        "Delivered in 2 to 4 hours"
+      ],
+      "options": [],
+      "subtitle": "Cool superhero themed gift crate with smartwatch, sunglasses, stationery and sweets.",
+      "material": "Superhero Crate, PU Leather & Acrylic Utilities",
+      "dimensions": "28 x 20 x 12 cm (Box Size)",
+      "color": "Midnight Blue & Red Accent",
+      "recommendedAge": "6 to 14 Years (Boys)",
+      "washCare": "Wipe clean with dry microfiber cloth",
+      "packaging": "Magnetic Luxury Superhero Keepsake Box with Ribbon",
+      "boughtText": "280+ bought in last month",
+      "highlights": [
+        "High-grade LED digital sports watch with alarm",
+        "UV400 cool superhero sunglasses",
+        "Designer notebook, pen and sticker set",
+        "Gourmet chocolate treats and personalized card"
+      ],
+      "specs": {
+        "material": "Superhero Crate, PU Leather & Acrylic Utilities",
+        "dimensions": "28 x 20 x 12 cm (Box Size)",
+        "color": "Midnight Blue & Red Accent",
+        "recommendedAge": "6 to 14 Years (Boys)",
+        "washCare": "Wipe clean with dry microfiber cloth",
+        "packaging": "Magnetic Luxury Superhero Keepsake Box with Ribbon"
+      }
     }
   ],
   "reviews": [
