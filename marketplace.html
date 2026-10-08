@@ -110,11 +110,7 @@
     </section>
 
     <!-- Horizontal Category Filter Pills (Exact Match to Screenshot) -->
-    <section data-aos="fade-up" style="margin-top: 16px; margin-bottom: 20px;">
-      <div class="filter-pills" id="giftsHorizontalFilterPills" style="display: flex; gap: 8px; overflow-x: auto; padding-bottom: 6px; scrollbar-width: none;">
-        <!-- Dynamically rendered via JS -->
-      </div>
-    </section>
+    
 
     <!-- Perks Row -->
     <div class="mph-perks-row" style="margin-bottom: 24px;" data-aos="fade-up">
@@ -152,7 +148,34 @@
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m18 15-6-6-6 6"/></svg>
           </button>
           <div class="filter-options-list" id="giftCategoryCheckboxes" style="display: flex;">
-            <!-- Dynamically populated from Gift Marketplace Subcategories -->
+            <label class="filter-checkbox-item">
+              <input type="checkbox" name="cat" value="boys" onchange="applyGiftFilters(true)" />
+              <span>👦 Gifts for Boys <span class="filter-count">(5)</span></span>
+            </label>
+            <label class="filter-checkbox-item">
+              <input type="checkbox" name="cat" value="girls" onchange="applyGiftFilters(true)" />
+              <span>👧 Gifts for Girls <span class="filter-count">(1)</span></span>
+            </label>
+            <label class="filter-checkbox-item">
+              <input type="checkbox" name="cat" value="men" onchange="applyGiftFilters(true)" />
+              <span>👨 Gifts for Men <span class="filter-count">(2)</span></span>
+            </label>
+            <label class="filter-checkbox-item">
+              <input type="checkbox" name="cat" value="women" onchange="applyGiftFilters(true)" />
+              <span>👩 Gifts for Women <span class="filter-count">(2)</span></span>
+            </label>
+            <label class="filter-checkbox-item">
+              <input type="checkbox" name="cat" value="cakes" onchange="applyGiftFilters(true)" />
+              <span>🎂 Cakes <span class="filter-count">(2)</span></span>
+            </label>
+            <label class="filter-checkbox-item">
+              <input type="checkbox" name="cat" value="flowers" onchange="applyGiftFilters(true)" />
+              <span>💐 Flowers <span class="filter-count">(1)</span></span>
+            </label>
+            <label class="filter-checkbox-item">
+              <input type="checkbox" name="cat" value="raja" onchange="applyGiftFilters(true)" />
+              <span>raja <span class="filter-count">(0)</span></span>
+            </label>
           </div>
         </div>
 
@@ -178,7 +201,7 @@
       <section class="marketplace-main">
         <div class="marketplace-controls-bar">
           <div class="marketplace-results-count">
-            Showing <strong id="giftsShowingRange">0</strong> of <strong id="giftsTotalCount">0</strong> <span class="mp-count-label">products</span>
+            Showing <strong id="giftsShowingRange">1–13</strong> of <strong id="giftsTotalCount">13</strong> <span class="mp-count-label">products</span>
           </div>
           <div class="marketplace-sort-wrap">
             <select class="marketplace-sort-select" id="giftSortSelect" onchange="handleGiftSort(this.value)" aria-label="Sort products">
@@ -191,9 +214,319 @@
           </div>
         </div>
 
+        <!-- Horizontal Category Filter Pills (Directly on Top of Gifts) -->
+        <div class="filter-pills" id="giftsHorizontalFilterPills" style="display: flex; gap: 8px; overflow-x: auto; padding-bottom: 12px; margin-bottom: 16px; scrollbar-width: none;">
+          <button type="button" class="filter-pill active" onclick="selectGiftHorizontalCategory('all', this)">All Gifts (13)</button>
+          <button type="button" class="filter-pill" onclick="selectGiftHorizontalCategory('boys', this)">👦 Gifts for Boys (5)</button>
+          <button type="button" class="filter-pill" onclick="selectGiftHorizontalCategory('girls', this)">👧 Gifts for Girls (1)</button>
+          <button type="button" class="filter-pill" onclick="selectGiftHorizontalCategory('men', this)">👨 Gifts for Men (2)</button>
+          <button type="button" class="filter-pill" onclick="selectGiftHorizontalCategory('women', this)">👩 Gifts for Women (2)</button>
+          <button type="button" class="filter-pill" onclick="selectGiftHorizontalCategory('cakes', this)">🎂 Cakes (2)</button>
+          <button type="button" class="filter-pill" onclick="selectGiftHorizontalCategory('flowers', this)">💐 Flowers (1)</button>
+          <button type="button" class="filter-pill" onclick="selectGiftHorizontalCategory('raja', this)">raja (0)</button>
+        </div>
+
         <!-- 4-Column Product Grid -->
         <div class="gifts-product-grid" id="giftsProductGrid">
-          <!-- Dynamically rendered via JS -->
+          <div class="gift-card" id="card-gift-teddy-babyu" onclick="window.location.href='gift-detail.html?id=gift-teddy-babyu'" style="cursor: pointer;">
+            <div class="gift-img-box">
+              <img src="https://res.cloudinary.com/gu0q1mxy/image/upload/v1791473251/celebration_gifts/zknzmgqd1ax98gp1k2jg.png" alt="teddy babyu" loading="lazy" onerror="this.src='assets/soft-teddy-bear-hero.jpg'" />
+            </div>
+            <div class="gift-info">
+              <h3 class="gift-title" title="teddy babyu">teddy babyu</h3>
+              <div class="gift-meta-row">
+                <span class="gift-price">₹1,500</span>
+                <span class="gift-rating-badge">
+                  <span class="star">★</span>
+                  <span>4.8 (150)</span>
+                </span>
+              </div>
+              <div class="gift-actions-row">
+                <button class="gift-add-cart-btn" id="btn-add-gift-teddy-babyu" onclick="event.stopPropagation(); handleGiftAddToCart('gift-teddy-babyu')">
+                  Add to Cart
+                </button>
+                <button class="gift-wishlist-btn" onclick="event.stopPropagation(); toggleGiftWishlist('gift-teddy-babyu', this)" aria-label="Add to Wishlist">
+                  ♡
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="gift-card" id="card-gift-01" onclick="window.location.href='gift-detail.html?id=gift-01'" style="cursor: pointer;">
+            <div class="gift-img-box">
+              <img src="assets/soft-teddy-bear-hero.jpg" alt="Soft Teddy Bear" loading="lazy" onerror="this.src='assets/soft-teddy-bear-hero.jpg'" />
+            </div>
+            <div class="gift-info">
+              <h3 class="gift-title" title="Soft Teddy Bear">Soft Teddy Bear</h3>
+              <div class="gift-meta-row">
+                <span class="gift-price">₹699</span>
+                <span class="gift-rating-badge">
+                  <span class="star">★</span>
+                  <span>4.8 (320)</span>
+                </span>
+              </div>
+              <div class="gift-actions-row">
+                <button class="gift-add-cart-btn" id="btn-add-gift-01" onclick="event.stopPropagation(); handleGiftAddToCart('gift-01')">
+                  Add to Cart
+                </button>
+                <button class="gift-wishlist-btn" onclick="event.stopPropagation(); toggleGiftWishlist('gift-01', this)" aria-label="Add to Wishlist">
+                  ♡
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="gift-card" id="card-gift-02" onclick="window.location.href='gift-detail.html?id=gift-02'" style="cursor: pointer;">
+            <div class="gift-img-box">
+              <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Personalized Photo Mug" loading="lazy" onerror="this.src='assets/soft-teddy-bear-hero.jpg'" />
+            </div>
+            <div class="gift-info">
+              <h3 class="gift-title" title="Personalized Photo Mug">Personalized Photo Mug</h3>
+              <div class="gift-meta-row">
+                <span class="gift-price">₹499</span>
+                <span class="gift-rating-badge">
+                  <span class="star">★</span>
+                  <span>4.6 (210)</span>
+                </span>
+              </div>
+              <div class="gift-actions-row">
+                <button class="gift-add-cart-btn" id="btn-add-gift-02" onclick="event.stopPropagation(); handleGiftAddToCart('gift-02')">
+                  Add to Cart
+                </button>
+                <button class="gift-wishlist-btn" onclick="event.stopPropagation(); toggleGiftWishlist('gift-02', this)" aria-label="Add to Wishlist">
+                  ♡
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="gift-card" id="card-gift-03" onclick="window.location.href='gift-detail.html?id=gift-03'" style="cursor: pointer;">
+            <div class="gift-img-box">
+              <img src="https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Luxury Gift Hamper for Women" loading="lazy" onerror="this.src='assets/soft-teddy-bear-hero.jpg'" />
+            </div>
+            <div class="gift-info">
+              <h3 class="gift-title" title="Luxury Gift Hamper for Women">Luxury Gift Hamper for Women</h3>
+              <div class="gift-meta-row">
+                <span class="gift-price">₹1,999</span>
+                <span class="gift-rating-badge">
+                  <span class="star">★</span>
+                  <span>4.7 (185)</span>
+                </span>
+              </div>
+              <div class="gift-actions-row">
+                <button class="gift-add-cart-btn" id="btn-add-gift-03" onclick="event.stopPropagation(); handleGiftAddToCart('gift-03')">
+                  Add to Cart
+                </button>
+                <button class="gift-wishlist-btn" onclick="event.stopPropagation(); toggleGiftWishlist('gift-03', this)" aria-label="Add to Wishlist">
+                  ♡
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="gift-card" id="card-gift-04" onclick="window.location.href='gift-detail.html?id=gift-04'" style="cursor: pointer;">
+            <div class="gift-img-box">
+              <img src="https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Men&#39;s Analog Watch" loading="lazy" onerror="this.src='assets/soft-teddy-bear-hero.jpg'" />
+            </div>
+            <div class="gift-info">
+              <h3 class="gift-title" title="Men&#39;s Analog Watch">Men&#39;s Analog Watch</h3>
+              <div class="gift-meta-row">
+                <span class="gift-price">₹2,499</span>
+                <span class="gift-rating-badge">
+                  <span class="star">★</span>
+                  <span>4.5 (98)</span>
+                </span>
+              </div>
+              <div class="gift-actions-row">
+                <button class="gift-add-cart-btn" id="btn-add-gift-04" onclick="event.stopPropagation(); handleGiftAddToCart('gift-04')">
+                  Add to Cart
+                </button>
+                <button class="gift-wishlist-btn" onclick="event.stopPropagation(); toggleGiftWishlist('gift-04', this)" aria-label="Add to Wishlist">
+                  ♡
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="gift-card" id="card-gift-05" onclick="window.location.href='gift-detail.html?id=gift-05'" style="cursor: pointer;">
+            <div class="gift-img-box">
+              <img src="https://images.unsplash.com/photo-1518895949257-7621c3c786d7?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Fresh Red Rose Bouquet" loading="lazy" onerror="this.src='assets/soft-teddy-bear-hero.jpg'" />
+            </div>
+            <div class="gift-info">
+              <h3 class="gift-title" title="Fresh Red Rose Bouquet">Fresh Red Rose Bouquet</h3>
+              <div class="gift-meta-row">
+                <span class="gift-price">₹1,299</span>
+                <span class="gift-rating-badge">
+                  <span class="star">★</span>
+                  <span>4.8 (412)</span>
+                </span>
+              </div>
+              <div class="gift-actions-row">
+                <button class="gift-add-cart-btn" id="btn-add-gift-05" onclick="event.stopPropagation(); handleGiftAddToCart('gift-05')">
+                  Add to Cart
+                </button>
+                <button class="gift-wishlist-btn" onclick="event.stopPropagation(); toggleGiftWishlist('gift-05', this)" aria-label="Add to Wishlist">
+                  ♡
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="gift-card" id="card-gift-06" onclick="window.location.href='gift-detail.html?id=gift-06'" style="cursor: pointer;">
+            <div class="gift-img-box">
+              <img src="https://images.unsplash.com/photo-1549007994-cb92caebd54b?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Ferrero Rocher Chocolate Box" loading="lazy" onerror="this.src='assets/soft-teddy-bear-hero.jpg'" />
+            </div>
+            <div class="gift-info">
+              <h3 class="gift-title" title="Ferrero Rocher Chocolate Box">Ferrero Rocher Chocolate Box</h3>
+              <div class="gift-meta-row">
+                <span class="gift-price">₹899</span>
+                <span class="gift-rating-badge">
+                  <span class="star">★</span>
+                  <span>4.6 (276)</span>
+                </span>
+              </div>
+              <div class="gift-actions-row">
+                <button class="gift-add-cart-btn" id="btn-add-gift-06" onclick="event.stopPropagation(); handleGiftAddToCart('gift-06')">
+                  Add to Cart
+                </button>
+                <button class="gift-wishlist-btn" onclick="event.stopPropagation(); toggleGiftWishlist('gift-06', this)" aria-label="Add to Wishlist">
+                  ♡
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="gift-card" id="card-gift-07" onclick="window.location.href='gift-detail.html?id=gift-07'" style="cursor: pointer;">
+            <div class="gift-img-box">
+              <img src="https://images.unsplash.com/photo-1594787318286-3d835c1d207f?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Remote Control Car for Kids" loading="lazy" onerror="this.src='assets/soft-teddy-bear-hero.jpg'" />
+            </div>
+            <div class="gift-info">
+              <h3 class="gift-title" title="Remote Control Car for Kids">Remote Control Car for Kids</h3>
+              <div class="gift-meta-row">
+                <span class="gift-price">₹1,199</span>
+                <span class="gift-rating-badge">
+                  <span class="star">★</span>
+                  <span>4.4 (190)</span>
+                </span>
+              </div>
+              <div class="gift-actions-row">
+                <button class="gift-add-cart-btn" id="btn-add-gift-07" onclick="event.stopPropagation(); handleGiftAddToCart('gift-07')">
+                  Add to Cart
+                </button>
+                <button class="gift-wishlist-btn" onclick="event.stopPropagation(); toggleGiftWishlist('gift-07', this)" aria-label="Add to Wishlist">
+                  ♡
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="gift-card" id="card-gift-08" onclick="window.location.href='gift-detail.html?id=gift-08'" style="cursor: pointer;">
+            <div class="gift-img-box">
+              <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Chocolate Truffle Cake (500g)" loading="lazy" onerror="this.src='assets/soft-teddy-bear-hero.jpg'" />
+            </div>
+            <div class="gift-info">
+              <h3 class="gift-title" title="Chocolate Truffle Cake (500g)">Chocolate Truffle Cake (500g)</h3>
+              <div class="gift-meta-row">
+                <span class="gift-price">₹799</span>
+                <span class="gift-rating-badge">
+                  <span class="star">★</span>
+                  <span>4.7 (305)</span>
+                </span>
+              </div>
+              <div class="gift-actions-row">
+                <button class="gift-add-cart-btn" id="btn-add-gift-08" onclick="event.stopPropagation(); handleGiftAddToCart('gift-08')">
+                  Add to Cart
+                </button>
+                <button class="gift-wishlist-btn" onclick="event.stopPropagation(); toggleGiftWishlist('gift-08', this)" aria-label="Add to Wishlist">
+                  ♡
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="gift-card" id="card-gift-09" onclick="window.location.href='gift-detail.html?id=gift-09'" style="cursor: pointer;">
+            <div class="gift-img-box">
+              <img src="https://images.unsplash.com/photo-1607344645866-009c320b5ab8?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Elegant Wedding Greeting Card" loading="lazy" onerror="this.src='assets/soft-teddy-bear-hero.jpg'" />
+            </div>
+            <div class="gift-info">
+              <h3 class="gift-title" title="Elegant Wedding Greeting Card">Elegant Wedding Greeting Card</h3>
+              <div class="gift-meta-row">
+                <span class="gift-price">₹49</span>
+                <span class="gift-rating-badge">
+                  <span class="star">★</span>
+                  <span>4.5 (134)</span>
+                </span>
+              </div>
+              <div class="gift-actions-row">
+                <button class="gift-add-cart-btn" id="btn-add-gift-09" onclick="event.stopPropagation(); handleGiftAddToCart('gift-09')">
+                  Add to Cart
+                </button>
+                <button class="gift-wishlist-btn" onclick="event.stopPropagation(); toggleGiftWishlist('gift-09', this)" aria-label="Add to Wishlist">
+                  ♡
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="gift-card" id="card-gift-10" onclick="window.location.href='gift-detail.html?id=gift-10'" style="cursor: pointer;">
+            <div class="gift-img-box">
+              <img src="https://images.unsplash.com/photo-1512499617640-c74ae3a79d37?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Digital Invitation Video" loading="lazy" onerror="this.src='assets/soft-teddy-bear-hero.jpg'" />
+            </div>
+            <div class="gift-info">
+              <h3 class="gift-title" title="Digital Invitation Video">Digital Invitation Video</h3>
+              <div class="gift-meta-row">
+                <span class="gift-price">₹299</span>
+                <span class="gift-rating-badge">
+                  <span class="star">★</span>
+                  <span>4.6 (97)</span>
+                </span>
+              </div>
+              <div class="gift-actions-row">
+                <button class="gift-add-cart-btn" id="btn-add-gift-10" onclick="event.stopPropagation(); handleGiftAddToCart('gift-10')">
+                  Add to Cart
+                </button>
+                <button class="gift-wishlist-btn" onclick="event.stopPropagation(); toggleGiftWishlist('gift-10', this)" aria-label="Add to Wishlist">
+                  ♡
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="gift-card" id="card-gift-11" onclick="window.location.href='gift-detail.html?id=gift-11'" style="cursor: pointer;">
+            <div class="gift-img-box">
+              <img src="https://images.unsplash.com/photo-1485955900006-10f4d324d411?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Return Gifts Combo (Set of 10)" loading="lazy" onerror="this.src='assets/soft-teddy-bear-hero.jpg'" />
+            </div>
+            <div class="gift-info">
+              <h3 class="gift-title" title="Return Gifts Combo (Set of 10)">Return Gifts Combo (Set of 10)</h3>
+              <div class="gift-meta-row">
+                <span class="gift-price">₹999</span>
+                <span class="gift-rating-badge">
+                  <span class="star">★</span>
+                  <span>4.8 (221)</span>
+                </span>
+              </div>
+              <div class="gift-actions-row">
+                <button class="gift-add-cart-btn" id="btn-add-gift-11" onclick="event.stopPropagation(); handleGiftAddToCart('gift-11')">
+                  Add to Cart
+                </button>
+                <button class="gift-wishlist-btn" onclick="event.stopPropagation(); toggleGiftWishlist('gift-11', this)" aria-label="Add to Wishlist">
+                  ♡
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="gift-card" id="card-gift-12" onclick="window.location.href='gift-detail.html?id=gift-12'" style="cursor: pointer;">
+            <div class="gift-img-box">
+              <img src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Gift Hamper for Boys" loading="lazy" onerror="this.src='assets/soft-teddy-bear-hero.jpg'" />
+            </div>
+            <div class="gift-info">
+              <h3 class="gift-title" title="Gift Hamper for Boys">Gift Hamper for Boys</h3>
+              <div class="gift-meta-row">
+                <span class="gift-price">₹1,499</span>
+                <span class="gift-rating-badge">
+                  <span class="star">★</span>
+                  <span>4.7 (145)</span>
+                </span>
+              </div>
+              <div class="gift-actions-row">
+                <button class="gift-add-cart-btn" id="btn-add-gift-12" onclick="event.stopPropagation(); handleGiftAddToCart('gift-12')">
+                  Add to Cart
+                </button>
+                <button class="gift-wishlist-btn" onclick="event.stopPropagation(); toggleGiftWishlist('gift-12', this)" aria-label="Add to Wishlist">
+                  ♡
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     </div>

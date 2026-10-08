@@ -1482,67 +1482,6 @@ const SITE_DATA = {
   ],
   "products": [
     {
-      "id": "gift-teddy-babyu",
-      "title": "teddy babyu",
-      "category": "gifts",
-      "category_name": "Gift Marketplace",
-      "categoryName": "Gift Marketplace",
-      "subcategory": "boys",
-      "badge": "Best Gift",
-      "price": 1500,
-      "original_price": 2000,
-      "originalPrice": 2000,
-      "discount": 25,
-      "rating": 4.8,
-      "reviews_count": 150,
-      "reviewsCount": 150,
-      "boughtText": "250+ bought in last month",
-      "image": "https://res.cloudinary.com/gu0q1mxy/image/upload/v1791473251/celebration_gifts/zknzmgqd1ax98gp1k2jg.png",
-      "gallery": [
-        "https://res.cloudinary.com/gu0q1mxy/image/upload/v1791473251/celebration_gifts/zknzmgqd1ax98gp1k2jg.png"
-      ],
-      "material": "dWAESRDTHFYGJH",
-      "dimensions": "SAdfG",
-      "color": "SaDFGNH",
-      "recommendedAge": "SAdwefrsgdth",
-      "washCare": "sawesrdthfyg",
-      "packaging": "sADFGM",
-      "specs": {
-        "material": "dWAESRDTHFYGJH",
-        "dimensions": "SAdfG",
-        "color": "SaDFGNH",
-        "recommendedAge": "SAdwefrsgdth",
-        "washCare": "sawesrdthfyg",
-        "packaging": "sADFGM"
-      },
-      "subtitle": "teddy babyu",
-      "description": "teddy babyu",
-      "aboutDescription": "teddy babyu",
-      "about_description": "teddy babyu",
-      "deliveryNote": "Same Day Delivery: Get it delivered in 2 to 4 hours at your location.",
-      "delivery_note": "Same Day Delivery: Get it delivered in 2 to 4 hours at your location.",
-      "highlights": [
-        "Handcrafted luxury gift presentation",
-        "Tested safe and child-friendly components",
-        "Includes personalized greeting message card"
-      ],
-      "inclusions": [
-        "Handcrafted luxury gift presentation",
-        "Tested safe and child-friendly components",
-        "Includes personalized greeting message card"
-      ],
-      "whyChoose": [
-        "Premium quality guaranteed",
-        "Safe shockproof packaging",
-        "Express same day delivery in 2 to 4 hours"
-      ],
-      "tags": [
-        "Gift Marketplace",
-        "boys",
-        "subcat:boys"
-      ]
-    },
-    {
       "id": "happ-birthday-harish",
       "title": "happ birthday harish",
       "category": "birthday",
@@ -9772,6 +9711,94 @@ const SITE_DATA = {
       "bought_text": null
     },
     {
+      "id": "gift-teddy-babyu",
+      "title": "teddy babyu",
+      "category": "gifts",
+      "category_name": "Gift Marketplace",
+      "categoryName": "Gift Marketplace",
+      "subcategory": "boys",
+      "badge": "Best Gift",
+      "price": 1500,
+      "original_price": 2000,
+      "originalPrice": 2000,
+      "discount": 25,
+      "rating": 4.8,
+      "reviews_count": 150,
+      "reviewsCount": 150,
+      "boughtText": "250+ bought in last month",
+      "image": "https://res.cloudinary.com/gu0q1mxy/image/upload/v1791473251/celebration_gifts/zknzmgqd1ax98gp1k2jg.png",
+      "gallery": [
+        "https://res.cloudinary.com/gu0q1mxy/image/upload/v1791473251/celebration_gifts/zknzmgqd1ax98gp1k2jg.png"
+      ],
+      "material": "dWAESRDTHFYGJH",
+      "dimensions": "SAdfG",
+      "color": "SaDFGNH",
+      "recommendedAge": "SAdwefrsgdth",
+      "washCare": "sawesrdthfyg",
+      "packaging": "sADFGM",
+      "specs": {
+        "color": "SaDFGNH",
+        "material": "dWAESRDTHFYGJH",
+        "washCare": "sawesrdthfyg",
+        "packaging": "sADFGM",
+        "dimensions": "SAdfG",
+        "recommendedAge": "SAdwefrsgdth"
+      },
+      "subtitle": "teddy babyu",
+      "description": "teddy babyu",
+      "aboutDescription": "teddy babyu",
+      "about_description": "teddy babyu",
+      "deliveryNote": "Same Day Delivery: Get it delivered in 2 to 4 hours at your location.",
+      "delivery_note": "Same Day Delivery: Get it delivered in 2 to 4 hours at your location.",
+      "highlights": [
+        "Handcrafted luxury gift presentation",
+        "Tested safe and child-friendly components",
+        "Includes personalized greeting message card"
+      ],
+      "inclusions": [
+        "Handcrafted luxury gift presentation",
+        "Tested safe and child-friendly components",
+        "Includes personalized greeting message card"
+      ],
+      "whyChoose": [
+        "Premium quality guaranteed",
+        "Safe shockproof packaging",
+        "Express same day delivery in 2 to 4 hours"
+      ],
+      "tags": [
+        "Gift Marketplace",
+        "boys",
+        "subcat:boys"
+      ],
+      "setup_duration": "Same Day Delivery",
+      "created_at": "2026-10-08T16:21:19.389095+00:00",
+      "updated_at": "2026-10-08T16:21:19.389095+00:00",
+      "slots_alert": "",
+      "not_included": [],
+      "faqs": [],
+      "addons": [],
+      "decorator_note": "",
+      "lifespan_note": "",
+      "location_note": "",
+      "color_palettes": [],
+      "why_choose": [
+        "Premium quality guaranteed",
+        "Safe shockproof packaging",
+        "Express same day delivery in 2 to 4 hours"
+      ],
+      "options": [],
+      "recommended_age": "SAdwefrsgdth",
+      "wash_care": "sawesrdthfyg",
+      "bought_text": "250+ bought in last month",
+      "setupDuration": "Same Day Delivery",
+      "notIncluded": [],
+      "decoratorNote": "",
+      "lifespanNote": "",
+      "locationNote": "",
+      "colorPalettes": [],
+      "slotsAlert": ""
+    },
+    {
       "id": "gift-07",
       "title": "Remote Control Car for Kids",
       "category": "gifts",
@@ -10741,89 +10768,40 @@ const SITE_DATA = {
       "verified": true
     },
     {
-      "id": "rev-6",
-      "name": "Vikram Singhania",
-      "city": "Gurugram",
+      "id": "rev-2",
+      "name": "Rahul & Sneha",
+      "city": "Mumbai",
       "rating": 5,
-      "date": "2 weeks ago",
+      "date": "5 days ago",
       "type": "image",
-      "media": "https://cdn.balloondekor.com/14/1748087900974.webp",
-      "service": "Blush & Champagne Surprise",
-      "text": "Ordered a midnight bedroom surprise decor for my wife. The LED fairy lights and backdrop were 10/10!",
+      "media": "https://cdn.balloondekor.com/29/1784709508118-669326.webp",
+      "service": "Cabana Terrace Anniversary",
+      "text": "Booked the terrace cabana for our 5th anniversary. The fairy lights and balloon styling were unbelievable!",
       "verified": true
     },
     {
-      "id": "rev-7",
-      "name": "Neha & Amit Kapoor",
-      "city": "Noida",
+      "id": "rev-3",
+      "name": "Ananya Deshmukh",
+      "city": "Pune",
       "rating": 5,
-      "date": "3 weeks ago",
+      "date": "1 week ago",
       "type": "image",
-      "media": "https://cdn.balloondekor.com/14/simple-balloon-decor-for-home-1785476680249-529705.webp",
-      "service": "Express Home Celebration",
-      "text": "Fastest party setup ever! Booked at 2 PM, technician was at home by 4:30 PM with electric pump.",
+      "media": "https://cdn.balloondekor.com/images/33/dbe87a70-56bc-42bc-ad96-2847b88c00dd.webp",
+      "service": "Cocomelon 2nd Birthday",
+      "text": "Our son JJ was so thrilled! The balloon quality was top notch, vibrant colors and lasted 3 whole days.",
       "verified": true
     },
     {
-      "id": "rev-8",
-      "name": "Rohan Joshi",
-      "city": "Kolkata",
+      "id": "rev-4",
+      "name": "Kunal & Riya Mehra",
+      "city": "Bangalore",
       "rating": 5,
-      "date": "3 weeks ago",
+      "date": "1 week ago",
       "type": "video",
       "media": "customer-review-video-1.mp4",
-      "poster": "https://cdn.balloondekor.com/images/61/7ebf2dbd-60dd-4643-8029-763dc6a3e5e3.webp",
-      "service": "Midnight Terrace Canopy",
-      "text": "Check out this night tour video of our terrace setup! Truly worth every single rupee.",
-      "verified": true
-    },
-    {
-      "id": "rev-9",
-      "name": "Kavita Reddy",
-      "city": "Chennai",
-      "rating": 5,
-      "date": "1 month ago",
-      "type": "image",
-      "media": "https://cdn.balloondekor.com/33/teddy-baby-shower.webp",
-      "service": "Oh Baby Teddy Bear Setup",
-      "text": "The giant plush teddy bear and caramel pastel arch were the biggest hit of our baby shower.",
-      "verified": true
-    },
-    {
-      "id": "rev-10",
-      "name": "Aman & Priya Verma",
-      "city": "Jaipur",
-      "rating": 5,
-      "date": "1 month ago",
-      "type": "image",
-      "media": "https://cdn.balloondekor.com/33/haldi-decoration-92abeb45-8776-4485-8300-d177622d3c40.webp",
-      "service": "Haldi Marigold & Balloons",
-      "text": "Bright vibrant yellow marigold florals with metallic balloons. The photo shoot turned out stunning!",
-      "verified": true
-    },
-    {
-      "id": "rev-11",
-      "name": "Ritu Malhotra",
-      "city": "Chandigarh",
-      "rating": 5,
-      "date": "1 month ago",
-      "type": "video",
-      "media": "customer-review-video-1.mp4",
-      "poster": "https://cdn.balloondekor.com/33/baby-shower-decoration-1ba3a3a3-d2eb-40e6-98bd-aed4eb907984.webp",
-      "service": "Welcome Baby Girl Decor",
-      "text": "Welcomed our newborn princess home from hospital. Our entire family loved this cute setup!",
-      "verified": true
-    },
-    {
-      "id": "rev-12",
-      "name": "Tanvi & Siddharth",
-      "city": "Ahmedabad",
-      "rating": 5,
-      "date": "1 month ago",
-      "type": "image",
-      "media": "https://cdn.balloondekor.com/33/bachelorette-decoration-83f7bd3a-a52d-4755-b8a5-4b6d3126f5e0.webp",
-      "service": "Bachelorette Glam Party",
-      "text": "Foil fringe backdrop, giant champagne balloons and rose gold arches. Made our bride-to-be so happy!",
+      "poster": "https://cdn.balloondekor.com/14/1744890426934.webp",
+      "service": "Golden Birthday Arch",
+      "text": "Super smooth same-day booking in Indiranagar. Watch our live celebration reveal video!",
       "verified": true
     }
   ],
@@ -11648,7 +11626,7 @@ const SITE_DATA = {
     {
       "icon": "🚚",
       "title": "Pan-India Delivery",
-      "desc": "Serving 50+ cities nationwide"
+      "desc": "Serving 50+ cities nationwid"
     },
     {
       "icon": "💬",
@@ -11666,7 +11644,27 @@ const SITE_DATA = {
       "haldi-mehendi-decoration-ideas-at-home"
     ],
     "categories": []
-  }
+  },
+  "users": [
+    {
+      "id": "usr_1791270575034",
+      "name": "Rahul Sharma",
+      "email": "rahul@example.com",
+      "phone": "+91 9876543210",
+      "password": "customerpass123",
+      "createdAt": "2026-10-06T07:09:35.034Z"
+    }
+  ],
+  "announcement": {
+    "enabled": true,
+    "text": "⚡ Same Day 2-Hour Express Delivery in 100+ Cities",
+    "badge": "⚡ EXPRESS",
+    "linkText": "Book Now",
+    "linkUrl": "#",
+    "theme": "rose-gradient",
+    "bg": "linear-gradient(135deg, #be123c 0%, #fb7185 100%)"
+  },
+  "updatedAt": "2026-10-08T17:00:22.861Z"
 };
 
 if (typeof window !== "undefined") {
