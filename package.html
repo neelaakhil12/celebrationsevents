@@ -2317,6 +2317,16 @@
       initPackagePage();
     });
 
+    window.initPackagePage = initPackagePage;
+    window.addEventListener("celebration:data-updated", () => {
+      initPackagePage();
+    });
+    window.addEventListener("storage", (e) => {
+      if (e.key === "celebration_custom_products" || e.key === "celebration_selected_package_id") {
+        initPackagePage();
+      }
+    });
+
     function initPackagePage() {
       // Sync customized products from admin studio if available
       try {
@@ -2446,24 +2456,33 @@
       // Delivery Specifications
       const deliveryEl = document.querySelector(".pkg-delivery-info");
       if (deliveryEl) {
-        const speed = currentPackage.deliveryNote || "Available in 100+ cities including Delhi NCR, Mumbai, Bangalore, Pune, Hyderabad, and Kolkata.";
-        const dec = currentPackage.decoratorNote || "Arrives equipped with electric pumps, ladder-ready equipment, and premium materials.";
-        const dur = currentPackage.setupDuration || "1 to 1.5 hours";
+        const rawSpeed = currentPackage.deliveryNote || currentPackage.delivery_note || "";
+        const rawDec = currentPackage.decoratorNote || currentPackage.decorator_note || "";
+        const rawDur = currentPackage.setupDuration || currentPackage.setup_duration || "";
+
+        const speed = rawSpeed.trim() || "Available in 100+ cities including Delhi NCR, Mumbai, Bangalore, Pune, Hyderabad, and Kolkata.";
+        const dec = rawDec.trim() || "Arrives equipped with electric pumps, ladder-ready equipment, and premium materials.";
+        const dur = rawDur.trim() || "1 to 1.5 hours";
+
         deliveryEl.innerHTML = `
-          <p>⚡ <strong>Same-Day 2-Hour Setup:</strong> ${speed}</p>
-          <p>🧑‍🔧 <strong>Verified Decorator:</strong> ${dec}</p>
-          <p>⏱️ <strong>Setup Duration:</strong> Typically takes ${dur} depending on ceiling height and space.</p>
+          <p>⚡ <strong>Same-Day 2-Hour Setup:</strong> ${escapeHtml(speed)}</p>
+          <p>🧑‍🔧 <strong>Verified Decorator:</strong> ${escapeHtml(dec)}</p>
+          <p>⏱️ <strong>Setup Duration:</strong> Typically takes ${escapeHtml(dur)} depending on ceiling height and space.</p>
         `;
       }
 
       // Care Info
       const careEl = document.querySelector(".pkg-care-info");
       if (careEl) {
-        const lifespan = currentPackage.lifespanNote || "Air-filled latex balloons remain inflated for 24 to 48 hours indoors in room temperature.";
-        const location = currentPackage.locationNote || "Keep away from sharp edges, hot direct halogen lights, and outdoor harsh sunlight.";
+        const rawLifespan = currentPackage.lifespanNote || currentPackage.lifespan_note || "";
+        const rawLocation = currentPackage.locationNote || currentPackage.location_note || "";
+
+        const lifespan = rawLifespan.trim() || "Air-filled latex balloons remain inflated for 24 to 48 hours indoors in room temperature.";
+        const location = rawLocation.trim() || "Keep away from sharp edges, hot direct halogen lights, and outdoor harsh sunlight.";
+
         careEl.innerHTML = `
-          <p>🎈 <strong>Lifespan:</strong> ${lifespan}</p>
-          <p>☀️ <strong>Location:</strong> ${location}</p>
+          <p>🎈 <strong>Lifespan:</strong> ${escapeHtml(lifespan)}</p>
+          <p>☀️ <strong>Location:</strong> ${escapeHtml(location)}</p>
         `;
       }
 

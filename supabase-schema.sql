@@ -65,15 +65,38 @@ CREATE TABLE IF NOT EXISTS public.products (
     reviews_count INTEGER DEFAULT 100,
     badge TEXT DEFAULT 'BESTSELLER',
     setup_duration TEXT DEFAULT '1.5 - 2 Hours',
+    slots_alert TEXT,
     image TEXT NOT NULL,
     gallery JSONB DEFAULT '[]'::jsonb,
     description TEXT,
+    about_description TEXT,
     inclusions JSONB DEFAULT '[]'::jsonb,
+    not_included JSONB DEFAULT '[]'::jsonb,
+    faqs JSONB DEFAULT '[]'::jsonb,
+    addons JSONB DEFAULT '[]'::jsonb,
+    delivery_note TEXT,
+    decorator_note TEXT,
+    lifespan_note TEXT,
+    location_note TEXT,
+    color_palettes JSONB DEFAULT '[]'::jsonb,
     tags JSONB DEFAULT '[]'::jsonb,
     why_choose JSONB DEFAULT NULL,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL,
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL
 );
+
+-- Ensure columns exist if table was already created
+ALTER TABLE public.products ADD COLUMN IF NOT EXISTS subcategory TEXT;
+ALTER TABLE public.products ADD COLUMN IF NOT EXISTS slots_alert TEXT;
+ALTER TABLE public.products ADD COLUMN IF NOT EXISTS about_description TEXT;
+ALTER TABLE public.products ADD COLUMN IF NOT EXISTS not_included JSONB DEFAULT '[]'::jsonb;
+ALTER TABLE public.products ADD COLUMN IF NOT EXISTS faqs JSONB DEFAULT '[]'::jsonb;
+ALTER TABLE public.products ADD COLUMN IF NOT EXISTS addons JSONB DEFAULT '[]'::jsonb;
+ALTER TABLE public.products ADD COLUMN IF NOT EXISTS delivery_note TEXT;
+ALTER TABLE public.products ADD COLUMN IF NOT EXISTS decorator_note TEXT;
+ALTER TABLE public.products ADD COLUMN IF NOT EXISTS lifespan_note TEXT;
+ALTER TABLE public.products ADD COLUMN IF NOT EXISTS location_note TEXT;
+ALTER TABLE public.products ADD COLUMN IF NOT EXISTS color_palettes JSONB DEFAULT '[]'::jsonb;
 
 -- ------------------------------------------------------------------------------
 -- 5. Enable Row Level Security (RLS)

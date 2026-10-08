@@ -97,6 +97,7 @@ document.addEventListener("DOMContentLoaded", () => {
       try { if (typeof initCorporatePage === 'function') initCorporatePage(); } catch(e){}
       try { if (typeof renderCorporateSubFilter === 'function') renderCorporateSubFilter(); } catch(e){}
       try { if (typeof initWeddingServicesPage === 'function') initWeddingServicesPage(); } catch(e){}
+      try { if (typeof initPackagePage === 'function') initPackagePage(); } catch(e){}
       try { window.dispatchEvent(new CustomEvent('celebration:data-updated')); } catch(e){}
     }
 
@@ -174,24 +175,49 @@ document.addEventListener("DOMContentLoaded", () => {
             const subTag = p.tags.find(t => typeof t === 'string' && t.startsWith('subcat:'));
             if (subTag) subcat = subTag.replace('subcat:', '');
           }
+          const deliveryNoteVal = (p.delivery_note !== undefined && p.delivery_note !== null && p.delivery_note !== '')
+            ? p.delivery_note
+            : (extra.deliveryNote || p.deliveryNote || existing.deliveryNote || '');
+          const decoratorNoteVal = (p.decorator_note !== undefined && p.decorator_note !== null && p.decorator_note !== '')
+            ? p.decorator_note
+            : (extra.decoratorNote || p.decoratorNote || existing.decoratorNote || '');
+          const lifespanNoteVal = (p.lifespan_note !== undefined && p.lifespan_note !== null && p.lifespan_note !== '')
+            ? p.lifespan_note
+            : (extra.lifespanNote || p.lifespanNote || existing.lifespanNote || '');
+          const locationNoteVal = (p.location_note !== undefined && p.location_note !== null && p.location_note !== '')
+            ? p.location_note
+            : (extra.locationNote || p.locationNote || existing.locationNote || '');
+          const aboutDescVal = p.about_description || extra.aboutDescription || p.aboutDescription || existing.aboutDescription || p.description || '';
+          const setupDurVal = p.setup_duration || p.setupDuration || existing.setupDuration || "1.5 - 2 Hours";
+          const slotsAlertVal = p.slots_alert || extra.slotsAlert || p.slotsAlert || existing.slotsAlert || '';
+
           mergedProdsMap.set(p.id, {
             ...existing,
             ...p,
             subcategory: subcat,
             categoryName: p.category_name || p.categoryName || p.category,
-            originalPrice: p.original_price || p.originalPrice || p.price,
-            setupDuration: p.setup_duration || p.setupDuration || "1.5 - 2 Hours",
-            reviewsCount: p.reviews_count || p.reviewsCount || 100,
-            faqs: (extra.faqs && extra.faqs.length > 0) ? extra.faqs : ((p.faqs && p.faqs.length > 0) ? p.faqs : (existing.faqs || [])),
-            addons: (extra.addons && extra.addons.length > 0) ? extra.addons : ((p.addons && p.addons.length > 0) ? p.addons : (existing.addons || [])),
-            notIncluded: (extra.notIncluded && extra.notIncluded.length > 0) ? extra.notIncluded : (p.notIncluded || existing.notIncluded || []),
-            aboutDescription: extra.aboutDescription || p.aboutDescription || existing.aboutDescription || p.description,
-            deliveryNote: extra.deliveryNote || p.deliveryNote || existing.deliveryNote || '',
-            decoratorNote: extra.decoratorNote || p.decoratorNote || existing.decoratorNote || '',
-            lifespanNote: extra.lifespanNote || p.lifespanNote || existing.lifespanNote || '',
-            locationNote: extra.locationNote || p.locationNote || existing.locationNote || '',
-            colorPalettes: (extra.colorPalettes && extra.colorPalettes.length > 0) ? extra.colorPalettes : (p.colorPalettes || existing.colorPalettes || []),
-            slotsAlert: extra.slotsAlert || p.slotsAlert || existing.slotsAlert || '',
+            originalPrice: p.original_price != null ? p.original_price : (p.originalPrice != null ? p.originalPrice : p.price),
+            setupDuration: setupDurVal,
+            setup_duration: setupDurVal,
+            reviewsCount: p.reviews_count != null ? p.reviews_count : (p.reviewsCount != null ? p.reviewsCount : 100),
+            faqs: (p.faqs && p.faqs.length > 0) ? p.faqs : ((extra.faqs && extra.faqs.length > 0) ? extra.faqs : (existing.faqs || [])),
+            addons: (p.addons && p.addons.length > 0) ? p.addons : ((extra.addons && extra.addons.length > 0) ? extra.addons : (existing.addons || [])),
+            notIncluded: (Array.isArray(p.not_included) && p.not_included.length > 0) ? p.not_included : ((Array.isArray(p.notIncluded) && p.notIncluded.length > 0) ? p.notIncluded : ((Array.isArray(extra.notIncluded) && extra.notIncluded.length > 0) ? extra.notIncluded : (existing.notIncluded || []))),
+            not_included: (Array.isArray(p.not_included) && p.not_included.length > 0) ? p.not_included : ((Array.isArray(p.notIncluded) && p.notIncluded.length > 0) ? p.notIncluded : ((Array.isArray(extra.notIncluded) && extra.notIncluded.length > 0) ? extra.notIncluded : (existing.notIncluded || []))),
+            aboutDescription: aboutDescVal,
+            about_description: aboutDescVal,
+            deliveryNote: deliveryNoteVal,
+            delivery_note: deliveryNoteVal,
+            decoratorNote: decoratorNoteVal,
+            decorator_note: decoratorNoteVal,
+            lifespanNote: lifespanNoteVal,
+            lifespan_note: lifespanNoteVal,
+            locationNote: locationNoteVal,
+            location_note: locationNoteVal,
+            colorPalettes: (Array.isArray(p.color_palettes) && p.color_palettes.length > 0) ? p.color_palettes : ((Array.isArray(p.colorPalettes) && p.color_palettes.length > 0) ? p.colorPalettes : ((Array.isArray(extra.colorPalettes) && extra.colorPalettes.length > 0) ? extra.colorPalettes : (existing.colorPalettes || []))),
+            color_palettes: (Array.isArray(p.color_palettes) && p.color_palettes.length > 0) ? p.color_palettes : ((Array.isArray(p.colorPalettes) && p.colorPalettes.length > 0) ? p.colorPalettes : ((Array.isArray(extra.colorPalettes) && extra.colorPalettes.length > 0) ? extra.colorPalettes : (existing.colorPalettes || []))),
+            slotsAlert: slotsAlertVal,
+            slots_alert: slotsAlertVal,
             whyChoose: p.why_choose || p.whyChoose || extra.whyChoose || existing.whyChoose || null
           });
         });
@@ -248,6 +274,16 @@ document.addEventListener("DOMContentLoaded", () => {
               const ex = pMap.get(rp.id);
               if (ex) {
                 Object.assign(ex, rp);
+                if (rp.deliveryNote) { ex.delivery_note = rp.deliveryNote; }
+                if (rp.delivery_note) { ex.deliveryNote = rp.delivery_note; }
+                if (rp.decoratorNote) { ex.decorator_note = rp.decoratorNote; }
+                if (rp.decorator_note) { ex.decoratorNote = rp.decorator_note; }
+                if (rp.lifespanNote) { ex.lifespan_note = rp.lifespanNote; }
+                if (rp.lifespan_note) { ex.lifespanNote = rp.lifespan_note; }
+                if (rp.locationNote) { ex.location_note = rp.locationNote; }
+                if (rp.location_note) { ex.locationNote = rp.location_note; }
+                if (rp.aboutDescription) { ex.about_description = rp.aboutDescription; }
+                if (rp.about_description) { ex.aboutDescription = rp.about_description; }
               } else {
                 pMap.set(rp.id, rp);
               }

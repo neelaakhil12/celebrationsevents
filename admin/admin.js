@@ -940,24 +940,49 @@
             const subTag = p.tags.find(t => typeof t === 'string' && t.startsWith('subcat:'));
             if (subTag) subcat = subTag.replace('subcat:', '');
           }
+          const deliveryNoteVal = (p.delivery_note !== undefined && p.delivery_note !== null && p.delivery_note !== '')
+            ? p.delivery_note
+            : (extra.deliveryNote || p.deliveryNote || localPkg.deliveryNote || '');
+          const decoratorNoteVal = (p.decorator_note !== undefined && p.decorator_note !== null && p.decorator_note !== '')
+            ? p.decorator_note
+            : (extra.decoratorNote || p.decoratorNote || localPkg.decoratorNote || '');
+          const lifespanNoteVal = (p.lifespan_note !== undefined && p.lifespan_note !== null && p.lifespan_note !== '')
+            ? p.lifespan_note
+            : (extra.lifespanNote || p.lifespanNote || localPkg.lifespanNote || '');
+          const locationNoteVal = (p.location_note !== undefined && p.location_note !== null && p.location_note !== '')
+            ? p.location_note
+            : (extra.locationNote || p.locationNote || localPkg.locationNote || '');
+          const aboutDescVal = p.about_description || extra.aboutDescription || p.aboutDescription || localPkg.aboutDescription || p.description || '';
+          const setupDurVal = p.setup_duration || p.setupDuration || localPkg.setupDuration || '1.5 - 2 Hours';
+          const slotsAlertVal = p.slots_alert || extra.slotsAlert || p.slotsAlert || localPkg.slotsAlert || '';
+
           const mergedPkg = {
             ...localPkg,
             ...p,
             subcategory: subcat,
             categoryName: p.category_name || p.categoryName || p.category,
-            originalPrice: p.original_price || p.originalPrice || p.price,
-            setupDuration: p.setup_duration || p.setupDuration || '1.5 - 2 Hours',
-            reviewsCount: p.reviews_count || p.reviewsCount || 100,
-            faqs: (extra.faqs && extra.faqs.length > 0) ? extra.faqs : ((p.faqs && p.faqs.length > 0) ? p.faqs : (localPkg.faqs || [])),
-            addons: (extra.addons && extra.addons.length > 0) ? extra.addons : ((p.addons && p.addons.length > 0) ? p.addons : (localPkg.addons || [])),
-            notIncluded: (extra.notIncluded && extra.notIncluded.length > 0) ? extra.notIncluded : (p.notIncluded || localPkg.notIncluded || []),
-            aboutDescription: extra.aboutDescription || p.aboutDescription || localPkg.aboutDescription || p.description,
-            deliveryNote: extra.deliveryNote || p.deliveryNote || localPkg.deliveryNote || '',
-            decoratorNote: extra.decoratorNote || p.decoratorNote || localPkg.decoratorNote || '',
-            lifespanNote: extra.lifespanNote || p.lifespanNote || localPkg.lifespanNote || '',
-            locationNote: extra.locationNote || p.locationNote || localPkg.locationNote || '',
-            colorPalettes: (extra.colorPalettes && extra.colorPalettes.length > 0) ? extra.colorPalettes : (p.colorPalettes || localPkg.colorPalettes || []),
-            slotsAlert: extra.slotsAlert || p.slotsAlert || localPkg.slotsAlert || '',
+            originalPrice: p.original_price != null ? p.original_price : (p.originalPrice != null ? p.originalPrice : p.price),
+            setupDuration: setupDurVal,
+            setup_duration: setupDurVal,
+            reviewsCount: p.reviews_count != null ? p.reviews_count : (p.reviewsCount != null ? p.reviewsCount : 100),
+            faqs: (p.faqs && p.faqs.length > 0) ? p.faqs : ((extra.faqs && extra.faqs.length > 0) ? extra.faqs : (localPkg.faqs || [])),
+            addons: (p.addons && p.addons.length > 0) ? p.addons : ((extra.addons && extra.addons.length > 0) ? extra.addons : (localPkg.addons || [])),
+            notIncluded: (Array.isArray(p.not_included) && p.not_included.length > 0) ? p.not_included : ((Array.isArray(p.notIncluded) && p.notIncluded.length > 0) ? p.notIncluded : ((Array.isArray(extra.notIncluded) && extra.notIncluded.length > 0) ? extra.notIncluded : (localPkg.notIncluded || []))),
+            not_included: (Array.isArray(p.not_included) && p.not_included.length > 0) ? p.not_included : ((Array.isArray(p.notIncluded) && p.notIncluded.length > 0) ? p.notIncluded : ((Array.isArray(extra.notIncluded) && extra.notIncluded.length > 0) ? extra.notIncluded : (localPkg.notIncluded || []))),
+            aboutDescription: aboutDescVal,
+            about_description: aboutDescVal,
+            deliveryNote: deliveryNoteVal,
+            delivery_note: deliveryNoteVal,
+            decoratorNote: decoratorNoteVal,
+            decorator_note: decoratorNoteVal,
+            lifespanNote: lifespanNoteVal,
+            lifespan_note: lifespanNoteVal,
+            locationNote: locationNoteVal,
+            location_note: locationNoteVal,
+            colorPalettes: (Array.isArray(p.color_palettes) && p.color_palettes.length > 0) ? p.color_palettes : ((Array.isArray(p.colorPalettes) && p.colorPalettes.length > 0) ? p.colorPalettes : ((Array.isArray(extra.colorPalettes) && extra.colorPalettes.length > 0) ? extra.colorPalettes : (localPkg.colorPalettes || []))),
+            color_palettes: (Array.isArray(p.color_palettes) && p.color_palettes.length > 0) ? p.color_palettes : ((Array.isArray(p.colorPalettes) && p.colorPalettes.length > 0) ? p.colorPalettes : ((Array.isArray(extra.colorPalettes) && extra.colorPalettes.length > 0) ? extra.colorPalettes : (localPkg.colorPalettes || []))),
+            slotsAlert: slotsAlertVal,
+            slots_alert: slotsAlertVal,
             whyChoose: p.why_choose || p.whyChoose || extra.whyChoose || localPkg.whyChoose || DEFAULT_WHY_CHOOSE
           };
           fetchedMap.set(p.id, mergedPkg);
@@ -2426,16 +2451,16 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
 
       // Tab 4: About This Package
       document.getElementById('pkgDescription').value = pkg.description || '';
-      document.getElementById('pkgAboutDescription').value = pkg.aboutDescription || pkg.description || '';
+      document.getElementById('pkgAboutDescription').value = pkg.aboutDescription || pkg.about_description || pkg.description || '';
 
       // Tab 5: FAQs
       appState.faqsList = Array.isArray(pkg.faqs) ? JSON.parse(JSON.stringify(pkg.faqs)) : [];
 
       // Tab 6: Delivery & Care
-      document.getElementById('pkgDeliveryNote').value = pkg.deliveryNote || '';
-      document.getElementById('pkgDecoratorNote').value = pkg.decoratorNote || '';
-      document.getElementById('pkgLifespanNote').value = pkg.lifespanNote || '';
-      document.getElementById('pkgLocationNote').value = pkg.locationNote || '';
+      document.getElementById('pkgDeliveryNote').value = pkg.deliveryNote || pkg.delivery_note || '';
+      document.getElementById('pkgDecoratorNote').value = pkg.decoratorNote || pkg.decorator_note || '';
+      document.getElementById('pkgLifespanNote').value = pkg.lifespanNote || pkg.lifespan_note || '';
+      document.getElementById('pkgLocationNote').value = pkg.locationNote || pkg.location_note || '';
 
       // Tab 7: Add-ons & Colors
       const loadedAddons = Array.isArray(pkg.addons) ? JSON.parse(JSON.stringify(pkg.addons)) : [];
@@ -2956,16 +2981,24 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
       gallery,
       description,
       aboutDescription,
+      about_description: aboutDescription,
       inclusions: [...appState.inclusionsList],
       notIncluded: [...appState.notIncludedList],
+      not_included: [...appState.notIncludedList],
       faqs: JSON.parse(JSON.stringify(appState.faqsList || [])),
       deliveryNote,
+      delivery_note: deliveryNote,
       decoratorNote,
+      decorator_note: decoratorNote,
       lifespanNote,
+      lifespan_note: lifespanNote,
       locationNote,
+      location_note: locationNote,
       addons: JSON.parse(JSON.stringify(appState.addonsList || [])),
       colorPalettes: JSON.parse(JSON.stringify(appState.colorPalettesList || [])),
+      color_palettes: JSON.parse(JSON.stringify(appState.colorPalettesList || [])),
       whyChoose: readWhyChooseInputs(),
+      why_choose: readWhyChooseInputs(),
       tags
     };
 
