@@ -15,8 +15,50 @@ let appState = {
   showAllProducts: false
 };
 
+// Global Deleted Registry & Tombstone Filter
+function getGlobalDeletedRegistry() {
+  const reg = {
+    products: new Set(),
+    blogs: new Set(),
+    categories: new Set()
+  };
+  try {
+    const stored = localStorage.getItem('celebration_deleted_items');
+    if (stored) {
+      const p = JSON.parse(stored);
+      if (Array.isArray(p.products)) p.products.forEach(id => reg.products.add(id));
+      if (Array.isArray(p.blogs)) p.blogs.forEach(id => reg.blogs.add(id));
+      if (Array.isArray(p.categories)) p.categories.forEach(id => reg.categories.add(id));
+    }
+    if (typeof SITE_DATA !== 'undefined' && SITE_DATA?.deletedItems) {
+      if (Array.isArray(SITE_DATA.deletedItems.products)) SITE_DATA.deletedItems.products.forEach(id => reg.products.add(id));
+      if (Array.isArray(SITE_DATA.deletedItems.blogs)) SITE_DATA.deletedItems.blogs.forEach(id => reg.blogs.add(id));
+      if (Array.isArray(SITE_DATA.deletedItems.categories)) SITE_DATA.deletedItems.categories.forEach(id => reg.categories.add(id));
+    }
+  } catch(e){}
+  return reg;
+}
+
+function filterSiteDataDeleted() {
+  if (typeof SITE_DATA === 'undefined') return;
+  const reg = getGlobalDeletedRegistry();
+  if (Array.isArray(SITE_DATA.products)) {
+    SITE_DATA.products = SITE_DATA.products.filter(p => !reg.products.has(p.id));
+  }
+  if (Array.isArray(SITE_DATA.blogs)) {
+    SITE_DATA.blogs = SITE_DATA.blogs.filter(b => !reg.blogs.has(b.id));
+  }
+  if (Array.isArray(SITE_DATA.categories)) {
+    SITE_DATA.categories = SITE_DATA.categories.filter(c => !reg.categories.has(c.id));
+  }
+}
+filterSiteDataDeleted();
+
 // DOM Initialization
 document.addEventListener("DOMContentLoaded", () => {
+  filterSiteDataDeleted();
+  const delReg = getGlobalDeletedRegistry();
+
   // Sync custom products, categories, and reviews from admin panel if present
   try {
     const customProds = localStorage.getItem("celebration_custom_products");
@@ -24,8 +66,12 @@ document.addEventListener("DOMContentLoaded", () => {
       const parsed = JSON.parse(customProds);
       if (Array.isArray(parsed) && parsed.length > 0) {
         const pMap = new Map();
-        SITE_DATA.products.forEach(p => pMap.set(p.id, p));
-        parsed.forEach(p => pMap.set(p.id, p));
+        SITE_DATA.products.forEach(p => {
+          if (!delReg.products.has(p.id)) pMap.set(p.id, p);
+        });
+        parsed.forEach(p => {
+          if (!delReg.products.has(p.id)) pMap.set(p.id, p);
+        });
         SITE_DATA.products = Array.from(pMap.values());
       }
     }
@@ -34,8 +80,11 @@ document.addEventListener("DOMContentLoaded", () => {
       const parsed = JSON.parse(customCats);
       if (Array.isArray(parsed) && parsed.length > 0) {
         const cMap = new Map();
-        SITE_DATA.categories.forEach(c => cMap.set(c.id, c));
+        SITE_DATA.categories.forEach(c => {
+          if (!delReg.categories.has(c.id)) cMap.set(c.id, c);
+        });
         parsed.forEach(c => {
+          if (delReg.categories.has(c.id)) return;
           const existing = cMap.get(c.id);
           if (existing && (!c.subcategories || c.subcategories.length === 0) && existing.subcategories) {
             c.subcategories = existing.subcategories;
@@ -170,6 +219,24 @@ document.addEventListener("DOMContentLoaded", () => {
           } catch(e){}
         }
 
+        // 0. Cloud Deleted Items Registry (Permanent Tombstones)
+        const siteDeletedConfig = cloudCats.find(c => c.id === '__site_deleted_items__');
+        if (siteDeletedConfig && siteDeletedConfig.desc) {
+          try {
+            const cloudDel = JSON.parse(siteDeletedConfig.desc);
+            const curReg = getGlobalDeletedRegistry();
+            if (Array.isArray(cloudDel.products)) cloudDel.products.forEach(id => curReg.products.add(id));
+            if (Array.isArray(cloudDel.blogs)) cloudDel.blogs.forEach(id => curReg.blogs.add(id));
+            if (Array.isArray(cloudDel.categories)) cloudDel.categories.forEach(id => curReg.categories.add(id));
+            localStorage.setItem('celebration_deleted_items', JSON.stringify({
+              products: Array.from(curReg.products),
+              blogs: Array.from(curReg.blogs),
+              categories: Array.from(curReg.categories)
+            }));
+          } catch(e){}
+        }
+        const activeDelReg = getGlobalDeletedRegistry();
+
         const siteBannersConfig = cloudCats.find(c => c.id === '__site_banners__');
         if (siteBannersConfig && siteBannersConfig.desc) {
           try {
@@ -187,9 +254,11 @@ document.addEventListener("DOMContentLoaded", () => {
         if (siteBlogsConfig && siteBlogsConfig.desc) {
           try {
             const cloudBlogs = JSON.parse(siteBlogsConfig.desc);
-            if (Array.isArray(cloudBlogs) && cloudBlogs.length > 0) {
-              SITE_DATA.blogs = cloudBlogs;
-              localStorage.setItem('celebration_custom_blogs', JSON.stringify(cloudBlogs));
+            if (Array.isArray(cloudBlogs)) {
+              const activeBlogs = cloudBlogs.filter(b => !activeDelReg.blogs.has(b.id));
+              SITE_DATA.blogs = activeBlogs;
+              localStorage.setItem('celebration_custom_blogs', JSON.stringify(activeBlogs));
+              try { if (typeof renderBlogFeaturedStory === 'function') renderBlogFeaturedStory(); } catch(e){}
               try { if (typeof renderBlogGrid === 'function') renderBlogGrid('all'); } catch(e){}
             }
           } catch(e){}
@@ -207,7 +276,7 @@ document.addEventListener("DOMContentLoaded", () => {
           } catch(e){}
         }
 
-        const filteredCloudCats = cloudCats.filter(c => !c.id.startsWith('__site_'));
+        const filteredCloudCats = cloudCats.filter(c => !c.id.startsWith('__site_') && !activeDelReg.categories.has(c.id));
 
         const existingCatMap = new Map();
         (SITE_DATA.categories || []).forEach(c => existingCatMap.set(c.id, c));
@@ -303,15 +372,16 @@ document.addEventListener("DOMContentLoaded", () => {
           });
         });
 
-        // Retain any existing products not yet in Supabase
+        // Retain any existing products not yet in Supabase (skip deleted ones!)
         existingProdMap.forEach((existingProd, id) => {
+          if (activeDelReg.products.has(id)) return; // CRITICAL: NEVER RESTORE DELETED PRODUCT!
           if (!mergedProdsMap.has(id)) {
             mergedProdsMap.set(id, existingProd);
           }
         });
 
         // Synchronize wedding services from products in Supabase
-        const cloudWeddingProds = cloudProds.filter(p => p.category === 'wedding');
+        const cloudWeddingProds = cloudProds.filter(p => p.category === 'wedding' && !activeDelReg.products.has(p.id));
         if (cloudWeddingProds.length > 0) {
           if (!Array.isArray(SITE_DATA.weddingServices)) SITE_DATA.weddingServices = [];
           if (!SITE_DATA.weddingConfigs) SITE_DATA.weddingConfigs = {};
@@ -354,7 +424,7 @@ document.addEventListener("DOMContentLoaded", () => {
           dataChanged = true;
         }
 
-        SITE_DATA.products = Array.from(mergedProdsMap.values());
+        SITE_DATA.products = Array.from(mergedProdsMap.values()).filter(p => !activeDelReg.products.has(p.id));
         localStorage.setItem("celebration_custom_products", JSON.stringify(SITE_DATA.products));
         dataChanged = true;
       }

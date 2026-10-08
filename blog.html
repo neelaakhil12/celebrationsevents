@@ -240,28 +240,11 @@
       </p>
     </header>
 
-    <!-- Featured Story (Editor's Pick) -->
-    <section class="blog-featured-card" onclick="location.href='blog-detail.html?id=ultimate-2026-home-party-decoration-guide'" data-aos="fade-up">
-      <div class="blog-featured-img-wrap">
-        <span class="blog-featured-badge">⭐ EDITOR'S PICK</span>
-        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80" alt="Home Party Decoration Guide" />
-      </div>
-      <div class="blog-featured-content">
-        <span class="blog-category-tag">Party Trends & Styling</span>
-        <h2 class="blog-featured-title">The Ultimate 2026 Home Party Decoration Guide: Trends, Balloon Styles & Budget Secrets</h2>
-        <p class="blog-featured-excerpt">
-          Planning a celebration at your apartment, terrace or party hall? Discover the newest color palettes, organic arches vs helium bouquets, technician timing tips, and how to create unforgettable photo zones without breaking your budget.
-        </p>
-        <div class="blog-meta-row">
-          <div class="blog-author-avatar">PD</div>
-          <span><strong>Pooja Deshmukh</strong> • Creative Director</span>
-        </div>
-        <a href="blog-detail.html?id=ultimate-2026-home-party-decoration-guide" class="blog-read-btn" style="text-decoration: none;">
-          <span>Read Full Article</span>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-        </a>
-      </div>
+    <!-- Featured Story (Editor's Pick - Dynamically Rendered) -->
+    <section class="blog-featured-card" id="blogFeaturedCard" data-aos="fade-up" style="display: none;">
+      <!-- Populated dynamically via renderBlogFeaturedStory() -->
     </section>
+
 
     <!-- Browse by Topic Section -->
     <section class="blog-section" data-aos="fade-up">
@@ -482,6 +465,64 @@
   <script src="app.js?v=3.0"></script>
   <script>
     // Blog Hub Specific Rendering
+    function getDeletedBlogIds() {
+      const set = new Set();
+      try {
+        const stored = localStorage.getItem('celebration_deleted_items');
+        if (stored) {
+          const parsed = JSON.parse(stored);
+          if (Array.isArray(parsed.blogs)) parsed.blogs.forEach(id => set.add(id));
+        }
+        if (typeof SITE_DATA !== 'undefined' && SITE_DATA?.deletedItems?.blogs) {
+          SITE_DATA.deletedItems.blogs.forEach(id => set.add(id));
+        }
+      } catch(e){}
+      return set;
+    }
+
+    function renderBlogFeaturedStory() {
+      const card = document.getElementById("blogFeaturedCard");
+      if (!card || !SITE_DATA || !Array.isArray(SITE_DATA.blogs)) return;
+
+      const deleted = getDeletedBlogIds();
+      const validBlogs = SITE_DATA.blogs.filter(b => !deleted.has(b.id));
+
+      if (validBlogs.length === 0) {
+        card.style.display = 'none';
+        return;
+      }
+
+      const featured = validBlogs.find(b => b.featured) || validBlogs[0];
+      const author = featured.author || 'Pooja Deshmukh • Creative Director';
+      const initials = author.split(' ').map(w => w[0]).filter(Boolean).slice(0, 2).join('').toUpperCase() || 'CE';
+      const excerpt = featured.excerpt || featured.description || 'Expert party planning insights and decoration advice from our certified decorators.';
+
+      card.style.display = 'grid';
+      card.onclick = () => {
+        location.href = `blog-detail.html?id=${encodeURIComponent(featured.id)}`;
+      };
+      card.innerHTML = `
+        <div class="blog-featured-img-wrap">
+          <span class="blog-featured-badge">${featured.tag || "⭐ EDITOR'S PICK"}</span>
+          <img src="${featured.image}" alt="${featured.title}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80'" />
+        </div>
+        <div class="blog-featured-content">
+          <span class="blog-category-tag">${featured.categoryName || featured.category || 'Celebration Guide'}</span>
+          <h2 class="blog-featured-title">${featured.title}</h2>
+          <p class="blog-featured-excerpt">${excerpt}</p>
+          <div class="blog-meta-row">
+            <div class="blog-author-avatar">${initials}</div>
+            <span><strong>${author}</strong></span>
+          </div>
+          <a href="blog-detail.html?id=${encodeURIComponent(featured.id)}" class="blog-read-btn" style="text-decoration: none;">
+            <span>Read Full Article</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </a>
+        </div>
+      `;
+    }
+    window.renderBlogFeaturedStory = renderBlogFeaturedStory;
+
     document.addEventListener("DOMContentLoaded", () => {
       try {
         const customBlogs = localStorage.getItem('celebration_custom_blogs');
@@ -493,7 +534,14 @@
         }
       } catch (e) {}
 
+      // Filter out any tombstoned / deleted blogs
+      const deleted = getDeletedBlogIds();
+      if (Array.isArray(SITE_DATA.blogs)) {
+        SITE_DATA.blogs = SITE_DATA.blogs.filter(b => !deleted.has(b.id));
+      }
+
       renderBlogTopics();
+      renderBlogFeaturedStory();
       renderBlogGrid("all");
       renderBlogValueStrip();
 
@@ -542,7 +590,8 @@
       const container = document.getElementById("blogGrid");
       if (!container || !SITE_DATA.blogs) return;
 
-      let items = [...SITE_DATA.blogs];
+      const deleted = getDeletedBlogIds();
+      let items = SITE_DATA.blogs.filter(b => !deleted.has(b.id));
       if (topicFilter && topicFilter !== "all") {
         items = items.filter(b => b.category === topicFilter);
       }

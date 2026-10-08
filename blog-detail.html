@@ -510,15 +510,38 @@
       renderBlogValueStrip();
     });
 
+    function getDeletedBlogIds() {
+      const set = new Set();
+      try {
+        const stored = localStorage.getItem('celebration_deleted_items');
+        if (stored) {
+          const parsed = JSON.parse(stored);
+          if (Array.isArray(parsed.blogs)) parsed.blogs.forEach(id => set.add(id));
+        }
+        if (typeof SITE_DATA !== 'undefined' && SITE_DATA?.deletedItems?.blogs) {
+          SITE_DATA.deletedItems.blogs.forEach(id => set.add(id));
+        }
+      } catch(e){}
+      return set;
+    }
+
     function loadArticleDetails() {
       if (!SITE_DATA || !SITE_DATA.blogs) return;
+
+      const deleted = getDeletedBlogIds();
+      const validBlogs = (SITE_DATA.blogs || []).filter(b => !deleted.has(b.id));
+
+      if (validBlogs.length === 0) {
+        window.location.href = 'blog.html';
+        return;
+      }
 
       const urlParams = new URLSearchParams(window.location.search);
       const articleId = urlParams.get("id");
 
-      let article = SITE_DATA.blogs.find(b => b.id === articleId);
+      let article = validBlogs.find(b => b.id === articleId);
       if (!article) {
-        article = SITE_DATA.blogs[0]; // Fallback to first article
+        article = validBlogs[0]; // Fallback to first active article
       }
 
       // Update Document Title

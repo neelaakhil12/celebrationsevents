@@ -31,7 +31,8 @@
     WEDDING_SERVICES: 'celebration_custom_wedding_services',
     CITIES: 'celebration_custom_cities',
     ANNOUNCEMENT: 'celebration_custom_announcement',
-    BANNERS: 'celebration_custom_banners'
+    BANNERS: 'celebration_custom_banners',
+    DELETED: 'celebration_deleted_items'
   };
 
   const DEFAULT_BLOG_FEATURES = [
@@ -63,6 +64,7 @@
     cities: [],
     banners: [],
     bannerFilterLocation: 'all',
+    deletedItems: { products: [], blogs: [], categories: [] },
     announcement: {
       enabled: true,
       text: "⚡ Same Day 2-Hour Express Delivery in 100+ Cities",
@@ -627,6 +629,24 @@
   };
 
   function initLocalData() {
+    // 0. Load Permanent Tombstones / Deleted Items Registry
+    try {
+      const storedDeleted = localStorage.getItem(STORAGE_KEYS.DELETED);
+      if (storedDeleted) {
+        const parsedDel = JSON.parse(storedDeleted);
+        if (Array.isArray(parsedDel.products)) appState.deletedItems.products = parsedDel.products;
+        if (Array.isArray(parsedDel.blogs)) appState.deletedItems.blogs = parsedDel.blogs;
+        if (Array.isArray(parsedDel.categories)) appState.deletedItems.categories = parsedDel.categories;
+      }
+      if (typeof window.SITE_DATA !== 'undefined' && window.SITE_DATA?.deletedItems) {
+        const sDel = window.SITE_DATA.deletedItems;
+        if (Array.isArray(sDel.products)) sDel.products.forEach(id => { if (!appState.deletedItems.products.includes(id)) appState.deletedItems.products.push(id); });
+        if (Array.isArray(sDel.blogs)) sDel.blogs.forEach(id => { if (!appState.deletedItems.blogs.includes(id)) appState.deletedItems.blogs.push(id); });
+        if (Array.isArray(sDel.categories)) sDel.categories.forEach(id => { if (!appState.deletedItems.categories.includes(id)) appState.deletedItems.categories.push(id); });
+      }
+    } catch (e) {
+      console.warn('Could not parse stored deleted items:', e);
+    }
     // 0. Auto-upgrade stored data if version changed
     const storedVer = localStorage.getItem(DATA_VERSION_KEY);
     if (storedVer !== CURRENT_DATA_VERSION) {
@@ -669,7 +689,7 @@
       if (!Array.isArray(c.subcategories)) c.subcategories = [];
     });
 
-    appState.categories = sortCategoriesByHeader(cats);
+    appState.categories = sortCategoriesByHeader(cats.filter(c => !appState.deletedItems.categories.includes(c.id)));
     localStorage.setItem(STORAGE_KEYS.CATEGORIES, JSON.stringify(appState.categories));
 
     // 2. Products / Packages
@@ -690,8 +710,9 @@
     if (prods.length === 0) {
       prods = JSON.parse(JSON.stringify(siteProds));
     } else {
-      // Ensure any missing site products (like wedding services or marketplace gifts) are merged
+      // Ensure any missing site products are merged, but NEVER resurrect deleted products
       siteProds.forEach(sp => {
+        if (appState.deletedItems.products.includes(sp.id)) return; // DO NOT RESURRECT!
         if (!prods.some(p => p.id === sp.id)) {
           prods.push(JSON.parse(JSON.stringify(sp)));
         }
@@ -731,7 +752,7 @@
       }
     });
 
-    appState.products = prods;
+    appState.products = prods.filter(p => !appState.deletedItems.products.includes(p.id));
     localStorage.setItem(STORAGE_KEYS.PRODUCTS, JSON.stringify(appState.products));
 
     // 3. Blog Articles
@@ -753,12 +774,13 @@
       blogs = JSON.parse(JSON.stringify(siteBlogs));
     } else {
       siteBlogs.forEach(sb => {
+        if (appState.deletedItems.blogs.includes(sb.id)) return; // DO NOT RESURRECT!
         if (!blogs.some(b => b.id === sb.id)) {
           blogs.push(JSON.parse(JSON.stringify(sb)));
         }
       });
     }
-    appState.blogs = blogs;
+    appState.blogs = blogs.filter(b => !appState.deletedItems.blogs.includes(b.id));
     localStorage.setItem(STORAGE_KEYS.BLOGS, JSON.stringify(appState.blogs));
 
     // 3b. Blog Value / Trust Badges
@@ -937,6 +959,24 @@
           } catch(e){}
         }
 
+        // Sync Cloud Deleted Items Registry
+        const siteDeletedConfig = catsRes.data.find(c => c.id === '__site_deleted_items__');
+        if (siteDeletedConfig && siteDeletedConfig.desc) {
+          try {
+            const cloudDel = JSON.parse(siteDeletedConfig.desc);
+            if (Array.isArray(cloudDel.products)) {
+              cloudDel.products.forEach(id => { if (!appState.deletedItems.products.includes(id)) appState.deletedItems.products.push(id); });
+            }
+            if (Array.isArray(cloudDel.blogs)) {
+              cloudDel.blogs.forEach(id => { if (!appState.deletedItems.blogs.includes(id)) appState.deletedItems.blogs.push(id); });
+            }
+            if (Array.isArray(cloudDel.categories)) {
+              cloudDel.categories.forEach(id => { if (!appState.deletedItems.categories.includes(id)) appState.deletedItems.categories.push(id); });
+            }
+            localStorage.setItem(STORAGE_KEYS.DELETED, JSON.stringify(appState.deletedItems));
+          } catch(e){}
+        }
+
         const siteBannersConfig = catsRes.data.find(c => c.id === '__site_banners__');
         if (siteBannersConfig && siteBannersConfig.desc) {
           try {
@@ -954,7 +994,7 @@
           try {
             const cloudBlogs = JSON.parse(siteBlogsConfig.desc);
             if (Array.isArray(cloudBlogs) && cloudBlogs.length > 0) {
-              appState.blogs = cloudBlogs;
+              appState.blogs = cloudBlogs.filter(b => !appState.deletedItems.blogs.includes(b.id));
               if (typeof window.SITE_DATA !== 'undefined') window.SITE_DATA.blogs = cloudBlogs;
               localStorage.setItem(STORAGE_KEYS.BLOGS, JSON.stringify(cloudBlogs));
             }
@@ -973,7 +1013,7 @@
           } catch(e){}
         }
 
-        const validDbCats = catsRes.data.filter(c => !c.id.startsWith('__site_'));
+        const validDbCats = catsRes.data.filter(c => !c.id.startsWith('__site_') && !appState.deletedItems.categories.includes(c.id));
 
         const siteCats = (typeof window.SITE_DATA !== 'undefined' && Array.isArray(window.SITE_DATA.categories)) ? window.SITE_DATA.categories : [];
         const mergedCats = validDbCats.map(dbCat => {
@@ -997,8 +1037,9 @@
           };
         });
 
-        // Also ensure any category in siteCats missing from Supabase is kept
+        // Also ensure any category in siteCats missing from Supabase is kept (skip deleted)
         siteCats.forEach(sc => {
+          if (appState.deletedItems.categories.includes(sc.id)) return; // DO NOT RESURRECT!
           if (!mergedCats.some(c => c.id === sc.id) && !sc.id.startsWith('__site_')) {
             mergedCats.push(JSON.parse(JSON.stringify(sc)));
           }
@@ -1073,8 +1114,9 @@
           fetchedMap.set(p.id, mergedPkg);
         });
 
-        // Retain any locally created packages not yet in Supabase
+        // Retain any locally created packages not yet in Supabase (skip deleted)
         existingMap.forEach((localPkg, id) => {
+          if (appState.deletedItems.products.includes(id)) return; // DO NOT RESURRECT!
           if (!fetchedMap.has(id)) {
             fetchedMap.set(id, localPkg);
           }
@@ -1111,7 +1153,7 @@
           localStorage.setItem(STORAGE_KEYS.WEDDING_CONFIGS, JSON.stringify(window.SITE_DATA.weddingConfigs));
         }
 
-        appState.products = Array.from(fetchedMap.values());
+        appState.products = Array.from(fetchedMap.values()).filter(p => !appState.deletedItems.products.includes(p.id));
         localStorage.setItem(STORAGE_KEYS.PRODUCTS, JSON.stringify(appState.products));
       }
 
@@ -1181,6 +1223,7 @@
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
+        deletedItems: appState.deletedItems,
         categories: appState.categories,
         products: appState.products,
         blogs: appState.blogs,
@@ -1656,12 +1699,21 @@
       if (catObj) {
         const pkgCount = appState.products.filter(p => p.category === catObj.id).length;
         const isWedding = (catObj.id === 'wedding');
+        const isGifts = (catObj.id === 'gifts');
         
         if (topbarTitle) {
-          topbarTitle.textContent = isWedding ? `💍 Wedding Services (${pkgCount})` : `${catObj.icon || '🎈'} ${catObj.name} Packages (${pkgCount})`;
+          topbarTitle.textContent = isWedding 
+            ? `💍 Wedding Services (${pkgCount})` 
+            : isGifts 
+              ? `🎁 Gift Marketplace (${pkgCount})` 
+              : `${catObj.icon || '🎈'} ${catObj.name} Packages (${pkgCount})`;
         }
         if (topbarAddBtn) {
-          topbarAddBtn.querySelector('span').textContent = isWedding ? 'Add Wedding Service' : 'Add Package';
+          topbarAddBtn.querySelector('span').textContent = isWedding 
+            ? 'Add Wedding Service' 
+            : isGifts 
+              ? 'Add Gift / Hamper' 
+              : 'Add Package';
         }
 
         if (heroContainer) {
@@ -1673,19 +1725,21 @@
               </div>
               <div class="category-hero-info">
                 <div class="category-hero-top">
-                  <h2 class="category-hero-title">${isWedding ? 'Wedding Services & Quotation Builder' : escapeHtml(catObj.name)}</h2>
-                  <span class="category-hero-badge">${isWedding ? 'MODULAR SERVICES' : escapeHtml(catObj.badge || 'POPULAR')}</span>
-                  <span class="category-hero-count">• ${pkgCount} ${isWedding ? 'Services Available' : 'Packages Available'}</span>
+                  <h2 class="category-hero-title">${isWedding ? 'Wedding Services & Quotation Builder' : (isGifts ? 'Gift Marketplace' : escapeHtml(catObj.name))}</h2>
+                  <span class="category-hero-badge">${isWedding ? 'MODULAR SERVICES' : (isGifts ? 'CURATED GIFTS' : escapeHtml(catObj.badge || 'POPULAR'))}</span>
+                  <span class="category-hero-count">• ${pkgCount} ${isWedding ? 'Services Available' : (isGifts ? 'Gifts & Hampers Available' : 'Packages Available')}</span>
                 </div>
                 <p class="category-hero-desc">
                   ${isWedding 
                     ? 'Individual wedding services (House Decor, Nalugu, Catering, Photography, Melam, Sweets, etc.). Each service has custom inside options and checklists for generating customized WhatsApp quotations.' 
-                    : escapeHtml(catObj.desc || `All premier ${catObj.name} celebration setups, themes, and decoration packages.`)}
+                    : (isGifts 
+                      ? 'Curated gift hampers, surprise boxes, flower bouquets, personalized gifts & cakes delivered across India.' 
+                      : escapeHtml(catObj.desc || `All premier ${catObj.name} celebration setups, themes, and decoration packages.`))}
                 </p>
                 <div class="category-hero-actions">
                   <button type="button" class="btn-hero-add-pkg" onclick="window.adminStudio.openPackageModal('add', null, '${catObj.id}')">
                     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-                    <span>${isWedding ? 'Add Wedding Service' : `Add Package to ${escapeHtml(catObj.name)}`}</span>
+                    <span>${isWedding ? 'Add Wedding Service' : (isGifts ? 'Add Gift / Hamper' : `Add Package to ${escapeHtml(catObj.name)}`)}</span>
                   </button>
                   ${!isWedding ? `
                   <button type="button" class="btn-hero-action" onclick="window.adminStudio.openSubcategoryModal('add', '${catObj.id}')" style="color:var(--brand-primary); font-weight:700;">
@@ -1695,6 +1749,11 @@
                   ${isWedding ? `
                     <a href="../wedding.html" target="_blank" class="btn-hero-action" style="text-decoration:none;">
                       🌐 View Live Wedding Page
+                    </a>
+                  ` : ''}
+                  ${isGifts ? `
+                    <a href="../marketplace.html" target="_blank" class="btn-hero-action" style="text-decoration:none;">
+                      🌐 View Live Gift Marketplace
                     </a>
                   ` : ''}
                   <button type="button" class="btn-hero-action" onclick="window.adminStudio.openCategoryModal('edit', '${catObj.id}')">
@@ -1836,7 +1895,7 @@
         <div class="subcat-pills-row">
           <div class="admin-subcat-pill ${isAllActive ? 'active' : ''}">
             <span class="admin-subcat-pill-target" onclick="window.adminStudio.selectSubcategoryFilter('all')">
-              <span>All Packages</span>
+              <span>${catObj.id === 'gifts' ? 'All Gifts & Hampers' : 'All Packages'}</span>
               <span class="subcat-pill-count">${totalCount}</span>
             </span>
           </div>
@@ -2611,8 +2670,9 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
 
     grid.innerHTML = items.map(p => {
       const isWedding = (p.category === 'wedding');
+      const isGifts = (p.category === 'gifts');
       const catObj = appState.categories.find(c => c.id === p.category);
-      const catName = isWedding ? '💍 Wedding Service' : (catObj ? `${catObj.icon || '🎈'} ${catObj.name}` : (p.categoryName || p.category));
+      const catName = isWedding ? '💍 Wedding Service' : (isGifts ? '🎁 Gift Marketplace' : (catObj ? `${catObj.icon || '🎈'} ${catObj.name}` : (p.categoryName || p.category)));
       const subcatObj = (catObj && Array.isArray(catObj.subcategories)) ? catObj.subcategories.find(s => s.id === p.subcategory) : null;
       const subcatBadge = subcatObj 
         ? `<span class="card-subcat-tag">${subcatObj.icon || '🏷️'} ${escapeHtml(subcatObj.name)}</span>` 
@@ -2651,6 +2711,11 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
               <div class="card-meta-row" style="font-size:12px; color:var(--text-muted); line-height:1.4;">
                 <span style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:100%; display:block;">${escapeHtml(p.description || p.desc || 'Custom traditional wedding service')}</span>
               </div>
+            ` : isGifts ? `
+              <div class="card-meta-row">
+                <span class="meta-rating">★ ${p.rating || '4.9'} <span style="color:var(--text-dim);font-weight:400;">(${p.reviewsCount || 100})</span></span>
+                <span class="meta-time">🚚 Express Pan-India Delivery</span>
+              </div>
             ` : `
               <div class="card-meta-row">
                 <span class="meta-rating">★ ${p.rating || '4.9'} <span style="color:var(--text-dim);font-weight:400;">(${p.reviewsCount || 100})</span></span>
@@ -2661,7 +2726,9 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
             <div class="card-inclusions-summary">
               ${isWedding 
                 ? `⚙️ <strong>${optionsCount} Inside Option Sections</strong> • 100% Configurable` 
-                : `✨ Includes <strong>${inclusionsCount} items</strong> ${Array.isArray(p.tags) && p.tags.length > 0 ? `• ${p.tags[0]}` : ''}`}
+                : isGifts 
+                  ? `🎁 Curated <strong>Gift Hamper / Bouquet / Cake</strong>` 
+                  : `✨ Includes <strong>${inclusionsCount} items</strong> ${Array.isArray(p.tags) && p.tags.length > 0 ? `• ${p.tags[0]}` : ''}`}
             </div>
 
             <div class="card-actions-row">
@@ -2676,15 +2743,27 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
                   🗑️
                 </button>
               ` : `
-                <button type="button" class="btn-card-action btn-card-edit" onclick="window.adminStudio.openPackageModal('edit', '${p.id}')">
-                  ✏️ Edit Package
-                </button>
-                <a href="../package.html?id=${encodeURIComponent(p.id)}" target="_blank" class="btn-card-action btn-card-view" title="Preview live on website">
-                  👁️
-                </a>
-                <button type="button" class="btn-card-action btn-card-delete" onclick="window.adminStudio.openDeleteModal('package', '${p.id}', '${escapeHtml(p.title)}')" title="Delete package">
-                  🗑️
-                </button>
+                ${isGifts ? `
+                  <button type="button" class="btn-card-action btn-card-edit" onclick="window.adminStudio.openPackageModal('edit', '${p.id}')">
+                    ✏️ Edit Gift
+                  </button>
+                  <a href="../gift-detail.html?id=${encodeURIComponent(p.id)}" target="_blank" class="btn-card-action btn-card-view" title="Preview live on Gift Marketplace">
+                    👁️
+                  </a>
+                  <button type="button" class="btn-card-action btn-card-delete" onclick="window.adminStudio.openDeleteModal('package', '${p.id}', '${escapeHtml(p.title)}')" title="Delete Gift">
+                    🗑️
+                  </button>
+                ` : `
+                  <button type="button" class="btn-card-action btn-card-edit" onclick="window.adminStudio.openPackageModal('edit', '${p.id}')">
+                    ✏️ Edit Package
+                  </button>
+                  <a href="../package.html?id=${encodeURIComponent(p.id)}" target="_blank" class="btn-card-action btn-card-view" title="Preview live on website">
+                    👁️
+                  </a>
+                  <button type="button" class="btn-card-action btn-card-delete" onclick="window.adminStudio.openDeleteModal('package', '${p.id}', '${escapeHtml(p.title)}')" title="Delete package">
+                    🗑️
+                  </button>
+                `}
               `}
             </div>
           </div>
@@ -3789,7 +3868,14 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
     } else if (type === 'blog') {
       msgEl.innerHTML = `Are you sure you want to permanently delete this blog article from your website?`;
     } else {
-      msgEl.innerHTML = `Are you sure you want to permanently delete this decoration package?`;
+      const delPkg = appState.products.find(p => p.id === id);
+      if (delPkg?.category === 'gifts') {
+        msgEl.innerHTML = `Are you sure you want to permanently delete this gift / hamper from Gift Marketplace?`;
+      } else if (delPkg?.category === 'wedding') {
+        msgEl.innerHTML = `Are you sure you want to permanently delete this wedding service?`;
+      } else {
+        msgEl.innerHTML = `Are you sure you want to permanently delete this decoration package?`;
+      }
     }
 
     modal.classList.add('active');
@@ -3803,16 +3889,30 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
       const catObj = appState.categories.find(c => c.id === catId);
       appState.categories = appState.categories.filter(c => c.id !== catId);
 
-      // If current category view was deleted, reset to all packages
+      if (!appState.deletedItems.categories.includes(catId)) {
+        appState.deletedItems.categories.push(catId);
+      }
+      localStorage.setItem(STORAGE_KEYS.DELETED, JSON.stringify(appState.deletedItems));
+      localStorage.setItem(STORAGE_KEYS.CATEGORIES, JSON.stringify(appState.categories));
+
       if (appState.selectedCategoryTab === catId) {
         appState.selectedCategoryTab = 'all';
         appState.selectedCategory = 'all';
       }
 
-      commitData(`Category "${catObj ? catObj.name : catId}" deleted.`);
+      await commitData(`Category "${catObj ? catObj.name : catId}" deleted permanently.`);
 
       if (supabase) {
-        supabase.from('categories').delete().eq('id', catId);
+        try {
+          await supabase.from('categories').delete().eq('id', catId);
+          await supabase.from('categories').upsert({
+            id: '__site_deleted_items__',
+            name: 'Deleted Items Registry',
+            desc: JSON.stringify(appState.deletedItems)
+          }, { onConflict: 'id' });
+        } catch(err) {
+          console.warn('Supabase category deletion error:', err);
+        }
       }
     } else if (appState.deletingType === 'subcategory') {
       const subId = appState.deletingId;
@@ -3836,17 +3936,54 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
     } else if (appState.deletingType === 'package') {
       const pkgId = appState.deletingId;
       const pkgObj = appState.products.find(p => p.id === pkgId);
+      const isGift = pkgObj?.category === 'gifts';
+      const itemLabel = isGift ? 'Gift / Hamper' : (pkgObj?.category === 'wedding' ? 'Wedding service' : 'Package');
+      
       appState.products = appState.products.filter(p => p.id !== pkgId);
-      commitData(`Package "${pkgObj ? pkgObj.title : pkgId}" deleted.`);
+      if (!appState.deletedItems.products.includes(pkgId)) {
+        appState.deletedItems.products.push(pkgId);
+      }
+      localStorage.setItem(STORAGE_KEYS.DELETED, JSON.stringify(appState.deletedItems));
+      localStorage.setItem(STORAGE_KEYS.PRODUCTS, JSON.stringify(appState.products));
+
+      await commitData(`${itemLabel} "${pkgObj ? pkgObj.title : pkgId}" deleted permanently.`);
 
       if (supabase) {
-        supabase.from('products').delete().eq('id', pkgId);
+        try {
+          await supabase.from('products').delete().eq('id', pkgId);
+          await supabase.from('categories').upsert({
+            id: '__site_deleted_items__',
+            name: 'Deleted Items Registry',
+            desc: JSON.stringify(appState.deletedItems)
+          }, { onConflict: 'id' });
+        } catch(err) {
+          console.warn('Supabase product deletion error:', err);
+        }
       }
     } else if (appState.deletingType === 'blog') {
       const blogId = appState.deletingId;
       const blogObj = appState.blogs.find(b => b.id === blogId);
       appState.blogs = appState.blogs.filter(b => b.id !== blogId);
-      commitBlogs(`Article "${blogObj ? blogObj.title : blogId}" deleted.`);
+
+      if (!appState.deletedItems.blogs.includes(blogId)) {
+        appState.deletedItems.blogs.push(blogId);
+      }
+      localStorage.setItem(STORAGE_KEYS.DELETED, JSON.stringify(appState.deletedItems));
+      localStorage.setItem(STORAGE_KEYS.BLOGS, JSON.stringify(appState.blogs));
+
+      await commitBlogs(`Article "${blogObj ? blogObj.title : blogId}" deleted permanently.`);
+
+      if (supabase) {
+        try {
+          await supabase.from('categories').upsert({
+            id: '__site_deleted_items__',
+            name: 'Deleted Items Registry',
+            desc: JSON.stringify(appState.deletedItems)
+          }, { onConflict: 'id' });
+        } catch(err) {
+          console.warn('Supabase blog deletion error:', err);
+        }
+      }
     }
 
     appState.deletingType = null;
