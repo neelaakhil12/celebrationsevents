@@ -846,6 +846,157 @@ body {
 }
 
 /* ==========================================================================
+   CATEGORY HEADER BANNER MANAGER BLOCK IN CATEGORY VIEW
+   ========================================================================== */
+.category-banner-block {
+  background: #ffffff;
+  border: 1px solid var(--admin-border);
+  border-radius: var(--radius-lg);
+  padding: 20px 22px;
+  margin-bottom: 22px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+  position: relative;
+}
+
+.category-banner-block-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.category-banner-block-title-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.category-banner-block-title-row h3 {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--text-main);
+}
+
+.category-banner-preview-box {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 4.6;
+  min-height: 180px;
+  max-height: 270px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.1);
+  display: flex;
+  align-items: center;
+}
+
+.category-banner-preview-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.category-banner-preview-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(15, 23, 42, 0.88) 0%, rgba(15, 23, 42, 0.5) 55%, rgba(15, 23, 42, 0.15) 100%);
+}
+
+.category-banner-preview-content {
+  position: relative;
+  z-index: 2;
+  padding: 22px 30px;
+  max-width: 660px;
+  color: #ffffff;
+}
+
+.category-banner-preview-tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  background: rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(8px);
+  color: #ffffff;
+  padding: 4px 12px;
+  border-radius: 99px;
+  margin-bottom: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.category-banner-preview-title {
+  margin: 0 0 6px 0;
+  font-family: var(--font-heading);
+  font-size: 22px;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.25;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.35);
+}
+
+.category-banner-preview-sub {
+  margin: 0 0 12px 0;
+  font-size: 12.5px;
+  color: #e2e8f0;
+  line-height: 1.4;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.category-banner-preview-btn {
+  display: inline-block;
+  font-size: 11.5px;
+  font-weight: 700;
+  background: var(--brand-gradient, linear-gradient(135deg, #e11d48 0%, #be123c 100%));
+  color: #ffffff;
+  padding: 6px 14px;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 3px 10px rgba(225, 29, 72, 0.3);
+}
+
+.category-banner-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 14px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.category-banner-empty-box {
+  padding: 32px 20px;
+  text-align: center;
+  background: linear-gradient(135deg, #fff1f2 0%, #fdf2f8 50%, #f8fafc 100%);
+  border: 2px dashed #fca5a5;
+  border-radius: var(--radius-md);
+}
+
+@media (max-width: 768px) {
+  .category-banner-preview-box {
+    aspect-ratio: auto;
+    height: 220px;
+  }
+  .category-banner-preview-content {
+    padding: 16px 20px;
+  }
+  .category-banner-preview-title {
+    font-size: 17px;
+  }
+}
+
+
+/* ==========================================================================
    SUBCATEGORIES MANAGEMENT BAR & PILLS
    ========================================================================== */
 .category-subcategories-bar {

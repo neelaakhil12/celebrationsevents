@@ -407,10 +407,19 @@
         ? SITE_DATA.categories.find(c => c.id && c.id.toLowerCase() === currentCategoryId)
         : null;
 
+      // Check if a custom banner is configured for this category in SITE_DATA.banners or localStorage
+      const allBanners = (typeof SITE_DATA !== 'undefined' && Array.isArray(SITE_DATA.banners))
+        ? SITE_DATA.banners
+        : (JSON.parse(localStorage.getItem('celebration_custom_banners') || '[]'));
+      const catBanner = allBanners.find(b => b.location && b.location.toLowerCase() === currentCategoryId && b.active !== false);
+
       const catName = catObj?.name || (currentCategoryId.charAt(0).toUpperCase() + currentCategoryId.slice(1));
-      const catImage = catObj?.image || 'https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=1600&q=80';
-      const catBadge = catObj?.badge || 'EXCLUSIVE OCCASION';
-      const catDesc = catObj?.desc || `Explore premium balloon decoration packages for ${catName}. Same-day 2-hour express setup in 100+ cities.`;
+      const catImage = catBanner?.image || catObj?.image || 'https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=1600&q=80';
+      const catBadge = catBanner?.tag || (catObj?.badge ? `✨ ${catObj.badge}` : '✨ EXCLUSIVE OCCASION');
+      const catTitle = catBanner?.title || `${catName} Celebrations & Decor`;
+      const catDesc = catBanner?.subtitle || catObj?.desc || `Explore premium balloon decoration packages for ${catName}. Same-day 2-hour express setup in 100+ cities.`;
+      const catBtnText = catBanner?.linkText || 'Explore Packages Below ↓';
+      const catBtnUrl = catBanner?.linkUrl || '#catCatalog';
 
       // Update Page Meta & Titles
       document.title = `${catName} Decorations | Celebration Events®`;
@@ -424,13 +433,19 @@
         heroImg.alt = `${catName} Decoration`;
       }
       const heroBadge = document.getElementById('catHeroBadge');
-      if (heroBadge) heroBadge.textContent = catBadge ? `✨ ${catBadge}` : '✨ SPECIAL OCCASION';
+      if (heroBadge) heroBadge.textContent = catBadge;
 
       const heroTitle = document.getElementById('catHeroTitle');
-      if (heroTitle) heroTitle.textContent = `${catName} Celebrations & Decor`;
+      if (heroTitle) heroTitle.textContent = catTitle;
 
       const heroDesc = document.getElementById('catHeroDesc');
       if (heroDesc) heroDesc.textContent = catDesc;
+
+      const heroBtn = document.querySelector('.hero-carousel .slide-btn');
+      if (heroBtn) {
+        heroBtn.textContent = catBtnText;
+        heroBtn.href = catBtnUrl;
+      }
 
       // Update Catalog Titles
       const catalogTitle = document.getElementById('catCatalogTitle');

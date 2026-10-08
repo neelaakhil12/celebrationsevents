@@ -911,6 +911,18 @@
           } catch(e){}
         }
 
+        const siteBannersConfig = catsRes.data.find(c => c.id === '__site_banners__');
+        if (siteBannersConfig && siteBannersConfig.desc) {
+          try {
+            const cloudBanners = JSON.parse(siteBannersConfig.desc);
+            if (Array.isArray(cloudBanners) && cloudBanners.length > 0) {
+              appState.banners = cloudBanners;
+              if (typeof window.SITE_DATA !== 'undefined') window.SITE_DATA.banners = cloudBanners;
+              localStorage.setItem(STORAGE_KEYS.BANNERS, JSON.stringify(cloudBanners));
+            }
+          } catch(e){}
+        }
+
         const validDbCats = catsRes.data.filter(c => !c.id.startsWith('__site_'));
 
         const siteCats = (typeof window.SITE_DATA !== 'undefined' && Array.isArray(window.SITE_DATA.categories)) ? window.SITE_DATA.categories : [];
@@ -1206,6 +1218,18 @@
           });
         }
 
+        if (Array.isArray(appState.banners) && appState.banners.length > 0) {
+          supabase.from('categories').upsert({
+            id: '__site_banners__',
+            name: 'Site Banners Configuration',
+            image: '',
+            desc: JSON.stringify(appState.banners)
+          }).then(({ error }) => {
+            if (!error) console.log('Site banners synced to Supabase Cloud');
+            else console.warn('Supabase site banners sync warning:', error);
+          });
+        }
+
         const catRows = appState.categories
           .filter(c => !c.id.startsWith('__site_'))
           .map(c => ({
@@ -1360,6 +1384,167 @@
     });
   }
 
+  // Render Category Header Banner Card (Direct in Category View)
+  function renderCategoryBannerHtml(catObj) {
+    if (!catObj) return '';
+    const catId = catObj.id;
+    const catName = catObj.name || catId;
+    const isWedding = (catId === 'wedding');
+    const catBanner = (Array.isArray(appState.banners)) ? appState.banners.find(b => b.location === catId) : null;
+    const livePageUrl = isWedding ? '../wedding.html' : `../category.html?id=${encodeURIComponent(catId)}`;
+
+    if (catBanner) {
+      const isActive = (catBanner.active !== false);
+      return `
+        <div class="category-banner-block" id="categoryBannerCard_${escapeHtml(catId)}">
+          <div class="category-banner-block-header">
+            <div class="category-banner-block-title-row">
+              <span style="font-size:18px;">🖼️</span>
+              <h3>${escapeHtml(catName)} Page Header Banner</h3>
+              ${isActive 
+                ? '<span style="background:#ecfdf5; color:#059669; border:1px solid #a7f3d0; font-size:11px; font-weight:700; padding:2px 9px; border-radius:99px;">● Active on Live Page</span>' 
+                : '<span style="background:#f1f5f9; color:#64748b; font-size:11px; font-weight:700; padding:2px 9px; border-radius:99px;">Hidden</span>'}
+              <span style="font-size:11.5px; color:#94a3b8; font-weight:500;">(Recommended: 1200×380px or 16:5 ratio)</span>
+            </div>
+            <div>
+              <a href="${livePageUrl}" target="_blank" style="font-size:12px; font-weight:700; color:var(--brand-primary); text-decoration:none; display:inline-flex; align-items:center; gap:4px;">
+                🌐 View on Live Website →
+              </a>
+            </div>
+          </div>
+
+          <!-- Live Visual Banner Preview -->
+          <div class="category-banner-preview-box">
+            <img src="${escapeHtml(catBanner.image || '')}" alt="${escapeHtml(catBanner.title || 'Banner')}" class="category-banner-preview-img" onerror="this.src='https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=1200&q=80'" />
+            <div class="category-banner-preview-overlay"></div>
+            <div class="category-banner-preview-content">
+              ${catBanner.tag ? `<span class="category-banner-preview-tag">${escapeHtml(catBanner.tag)}</span>` : ''}
+              <h2 class="category-banner-preview-title">${escapeHtml(catBanner.title || `${catName} Decorations`)}</h2>
+              ${catBanner.subtitle ? `<p class="category-banner-preview-sub">${escapeHtml(catBanner.subtitle)}</p>` : ''}
+              ${catBanner.linkText ? `<span class="category-banner-preview-btn">${escapeHtml(catBanner.linkText)}</span>` : ''}
+            </div>
+          </div>
+
+          <!-- Banner Action Controls Toolbar -->
+          <div class="category-banner-controls">
+            <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+              <label class="btn-secondary" style="margin:0; padding:7px 15px; font-size:12.5px; font-weight:700; cursor:pointer; display:inline-flex; align-items:center; gap:6px; background:#f8fafc; border:1px solid #cbd5e1; border-radius:8px;">
+                <span>📁 Upload New Banner Photo</span>
+                <input type="file" accept="image/*" style="display:none;" onchange="window.adminStudio.handleCategoryBannerDirectUpload(event, '${escapeHtml(catId)}')" />
+              </label>
+              <button type="button" class="btn-secondary" onclick="window.adminStudio.openCategoryBannerModal('${escapeHtml(catId)}')" style="padding:7px 15px; font-size:12.5px; font-weight:700; display:inline-flex; align-items:center; gap:6px; background:#f8fafc; border:1px solid #cbd5e1; border-radius:8px; cursor:pointer;">
+                ✏️ Edit Text & Link
+              </button>
+            </div>
+            <div>
+              <button type="button" onclick="window.adminStudio.deleteCategoryBanner('${escapeHtml(catId)}')" style="padding:7px 14px; font-size:12.5px; font-weight:700; color:#b91c1c; background:#fef2f2; border:1px solid #fecdd3; border-radius:8px; cursor:pointer; display:inline-flex; align-items:center; gap:6px;">
+                🗑️ Delete Banner
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+    } else {
+      // Empty banner state
+      return `
+        <div class="category-banner-block" id="categoryBannerCard_${escapeHtml(catId)}">
+          <div class="category-banner-empty-box">
+            <div style="font-size:32px; margin-bottom:8px;">🖼️</div>
+            <h4 style="margin:0 0 6px 0; font-family:var(--font-heading); font-size:16px; font-weight:800; color:var(--text-main);">
+              No Custom Header Banner for ${escapeHtml(catName)}
+            </h4>
+            <p style="margin:0 auto 16px auto; font-size:13px; color:var(--text-muted); max-width:540px; line-height:1.5;">
+              Upload a landscape banner photo (1200×380px) to showcase at the top of the <strong>${escapeHtml(catName)}</strong> page, exactly like Birthday & Anniversary banner designs.
+            </p>
+            <div style="display:flex; justify-content:center; align-items:center; gap:10px; flex-wrap:wrap;">
+              <label class="btn-primary" style="margin:0; padding:8px 18px; font-size:13px; font-weight:700; cursor:pointer; display:inline-flex; align-items:center; gap:6px; border-radius:8px;">
+                <span>📁 Upload Banner Image</span>
+                <input type="file" accept="image/*" style="display:none;" onchange="window.adminStudio.handleCategoryBannerDirectUpload(event, '${escapeHtml(catId)}')" />
+              </label>
+              <button type="button" class="btn-secondary" onclick="window.adminStudio.openCategoryBannerModal('${escapeHtml(catId)}')" style="padding:8px 16px; font-size:13px; font-weight:700; border-radius:8px; cursor:pointer; background:#ffffff; border:1px solid #cbd5e1;">
+                ➕ Create with Custom Text
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+  }
+
+  async function handleCategoryBannerDirectUpload(event, catId) {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    const catObj = appState.categories.find(c => c.id === catId);
+    const catName = catObj?.name || catId;
+
+    showToast(`⏳ Uploading banner image for ${catName} to Cloudinary...`, 'info');
+
+    try {
+      const uploadedUrl = await uploadToCloudinary(file, 'celebration-banners');
+      if (!uploadedUrl) {
+        showToast('Image upload failed. Please try again.', 'error');
+        return;
+      }
+
+      let banner = appState.banners.find(b => b.location === catId);
+      if (banner) {
+        banner.image = uploadedUrl;
+        banner.updatedAt = new Date().toISOString();
+      } else {
+        banner = {
+          id: `banner-cat-${catId}`,
+          location: catId,
+          locationName: `${catName} Page Banner`,
+          tag: `✨ The Ultimate ${catName} Collection`,
+          title: `Professional ${catName} Balloon Decorations`,
+          subtitle: `Make their milestone unforgettable! Premium celebration setups in 100+ cities.`,
+          image: uploadedUrl,
+          linkText: 'Explore Setups Below ↓',
+          linkUrl: `#${catId}Catalog`,
+          active: true,
+          order: 1,
+          updatedAt: new Date().toISOString()
+        };
+        appState.banners.push(banner);
+      }
+
+      await commitBanners(`🎉 Banner for ${catName} updated successfully!`);
+      if (appState.selectedCategoryTab === catId) {
+        selectCategoryTab(catId);
+      }
+    } catch (err) {
+      console.error('Banner upload error:', err);
+      showToast('Failed to upload banner: ' + err.message, 'error');
+    }
+  }
+
+  async function deleteCategoryBanner(catId) {
+    const catObj = appState.categories.find(c => c.id === catId);
+    const catName = catObj?.name || catId;
+    const banner = appState.banners.find(b => b.location === catId);
+    if (!banner) return;
+
+    if (!confirm(`Are you sure you want to delete the promotional banner for "${catName}"?\n\nThe customer page will fall back to default header styling.`)) {
+      return;
+    }
+
+    appState.banners = appState.banners.filter(b => b.location !== catId);
+    await commitBanners(`Banner for "${catName}" deleted.`);
+    if (appState.selectedCategoryTab === catId) {
+      selectCategoryTab(catId);
+    }
+  }
+
+  function openCategoryBannerModal(catId) {
+    const existing = appState.banners.find(b => b.location === catId);
+    if (existing) {
+      openBannerModal('edit', existing.id, catId);
+    } else {
+      openBannerModal('add', null, catId);
+    }
+  }
+
   function selectCategoryTab(catId) {
     appState.activeTab = 'packages';
     appState.selectedCategoryTab = catId;
@@ -1470,6 +1655,7 @@
                 </div>
               </div>
             </div>
+            ${renderCategoryBannerHtml(catObj)}
           `;
         }
 
@@ -2182,6 +2368,16 @@
             name: 'Global Wedding Configs & Options',
             image: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed',
             desc: JSON.stringify(window.SITE_DATA.weddingConfigs)
+          });
+        }
+
+        // 4. Sync Site Banners Configuration
+        if (Array.isArray(appState.banners) && appState.banners.length > 0) {
+          await supabase.from('categories').upsert({
+            id: '__site_banners__',
+            name: 'Site Banners Configuration',
+            image: '',
+            desc: JSON.stringify(appState.banners)
           });
         }
 
@@ -5678,9 +5874,37 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
     renderBannersAdmin();
   }
 
-  function openBannerModal(mode = 'add', bannerId = null) {
+  function populateBannerLocationSelect(selectedVal = null) {
+    const locSelect = document.getElementById('bannerLocationSelect');
+    if (!locSelect) return;
+
+    const currentVal = selectedVal || locSelect.value || 'home';
+    let html = `
+      <optgroup label="Homepage">
+        <option value="home">🏠 Homepage Carousel Slide</option>
+      </optgroup>
+      <optgroup label="Category Pages">
+    `;
+
+    if (Array.isArray(appState.categories)) {
+      appState.categories.forEach(cat => {
+        if (!cat.id.startsWith('__site_')) {
+          const icon = cat.icon || '🎈';
+          html += `<option value="${escapeHtml(cat.id)}">${icon} ${escapeHtml(cat.name)} Category Page</option>`;
+        }
+      });
+    }
+
+    html += `</optgroup>`;
+    locSelect.innerHTML = html;
+    locSelect.value = currentVal;
+  }
+
+  function openBannerModal(mode = 'add', bannerId = null, preselectedLoc = null) {
     const modal = document.getElementById('bannerModal');
     if (!modal) return;
+
+    populateBannerLocationSelect(preselectedLoc);
 
     const modeInput = document.getElementById('bannerModalMode');
     const origIdInput = document.getElementById('bannerOriginalId');
@@ -5698,21 +5922,25 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
     const activeCheckbox = document.getElementById('bannerActiveCheckbox');
 
     if (mode === 'add') {
+      const targetLoc = preselectedLoc || ((appState.bannerFilterLocation === 'home') ? 'home' : (appState.bannerFilterLocation === 'category' ? 'birthday' : 'home'));
+      const catObj = appState.categories.find(c => c.id === targetLoc);
+      const catName = catObj?.name || targetLoc;
+
       if (modeInput) modeInput.value = 'add';
       if (origIdInput) origIdInput.value = '';
-      if (titleModal) titleModal.textContent = 'Add New Promotional Banner';
+      if (titleModal) titleModal.textContent = preselectedLoc ? `Add Banner for ${catName}` : 'Add New Promotional Banner';
 
-      if (locSelect) locSelect.value = (appState.bannerFilterLocation === 'home') ? 'home' : (appState.bannerFilterLocation === 'category' ? 'birthday' : 'home');
+      if (locSelect) locSelect.value = targetLoc;
       if (orderInput) orderInput.value = (appState.banners.length + 1);
-      if (tagInput) tagInput.value = '';
-      if (titleInput) titleInput.value = '';
-      if (subInput) subInput.value = '';
+      if (tagInput) tagInput.value = preselectedLoc ? `✨ The Ultimate ${catName} Collection` : '';
+      if (titleInput) titleInput.value = preselectedLoc ? `Professional ${catName} Balloon Decorations` : '';
+      if (subInput) subInput.value = preselectedLoc ? `Make their milestone unforgettable! Premium celebration setups in 100+ cities.` : '';
       if (imgUrlInput) imgUrlInput.value = '';
       if (previewImg) previewImg.src = BLANK_PIXEL;
       const previewWrap = document.getElementById('bannerModalPreviewWrap');
       if (previewWrap) previewWrap.style.display = 'none';
-      if (linkTextInput) linkTextInput.value = '';
-      if (linkUrlInput) linkUrlInput.value = '';
+      if (linkTextInput) linkTextInput.value = preselectedLoc ? 'Explore Setups Below ↓' : '';
+      if (linkUrlInput) linkUrlInput.value = preselectedLoc ? `#${preselectedLoc}Catalog` : '';
       if (activeCheckbox) activeCheckbox.checked = true;
     } else {
       // Editing
@@ -5732,9 +5960,9 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
       if (titleInput) titleInput.value = banner.title || '';
       if (subInput) subInput.value = banner.subtitle || '';
       if (imgUrlInput) imgUrlInput.value = banner.image || '';
-      if (previewImg) previewImg.src = banner.image || '';
+      if (previewImg) previewImg.src = banner.image || BLANK_PIXEL;
       const previewWrap = document.getElementById('bannerModalPreviewWrap');
-      if (previewWrap) previewWrap.style.display = banner.image ? 'block' : 'none';
+      previewWrap.style.display = banner.image ? 'block' : 'none';
       if (linkTextInput) linkTextInput.value = banner.linkText || '';
       if (linkUrlInput) linkUrlInput.value = banner.linkUrl || '';
       if (activeCheckbox) activeCheckbox.checked = (banner.active !== false);
@@ -5853,6 +6081,22 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
       window.SITE_DATA.banners = appState.banners;
     }
 
+    // Supabase Cloud Sync for banners
+    if (supabase) {
+      try {
+        await supabase.from('categories').upsert({
+          id: '__site_banners__',
+          name: 'Site Banners Configuration',
+          desc: JSON.stringify(appState.banners),
+          image: '',
+          badge: '',
+          subcategories: []
+        }, { onConflict: 'id' });
+      } catch(e) {
+        console.warn('Supabase banner sync error:', e);
+      }
+    }
+
     fetch('/api/save-data', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -5869,6 +6113,9 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
     }).catch(() => {});
 
     renderBannersAdmin();
+    if (appState.activeTab === 'packages' && appState.selectedCategoryTab && appState.selectedCategoryTab !== 'all') {
+      selectCategoryTab(appState.selectedCategoryTab);
+    }
     updateMetrics();
     if (message) showToast(message, 'success');
   }
@@ -5969,7 +6216,12 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
     handleBannerLocationChange,
     saveBanner,
     deleteBanner,
-    toggleBannerActive
+    toggleBannerActive,
+    // Category In-View Banner Methods
+    renderCategoryBannerHtml,
+    handleCategoryBannerDirectUpload,
+    deleteCategoryBanner,
+    openCategoryBannerModal
   };
 
   if (document.readyState === 'loading') {

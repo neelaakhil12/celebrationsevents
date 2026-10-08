@@ -169,6 +169,18 @@ document.addEventListener("DOMContentLoaded", () => {
           } catch(e){}
         }
 
+        const siteBannersConfig = cloudCats.find(c => c.id === '__site_banners__');
+        if (siteBannersConfig && siteBannersConfig.desc) {
+          try {
+            const cloudBanners = JSON.parse(siteBannersConfig.desc);
+            if (Array.isArray(cloudBanners) && cloudBanners.length > 0) {
+              SITE_DATA.banners = cloudBanners;
+              localStorage.setItem('celebration_custom_banners', JSON.stringify(cloudBanners));
+              try { initHeroBanners(); } catch(e){}
+            }
+          } catch(e){}
+        }
+
         const filteredCloudCats = cloudCats.filter(c => !c.id.startsWith('__site_'));
 
         const existingCatMap = new Map();
@@ -641,14 +653,18 @@ function renderPageBanners() {
 
   // 2. Category Pages Hero Banner Rendering
   const pathname = window.location.pathname.toLowerCase();
-  let pageCat = null;
-  if (pathname.includes('birthday')) pageCat = 'birthday';
-  else if (pathname.includes('anniversary')) pageCat = 'anniversary';
-  else if (pathname.includes('kids')) pageCat = 'kids';
-  else if (pathname.includes('baby-shower')) pageCat = 'baby-shower';
-  else if (pathname.includes('wedding')) pageCat = 'wedding';
-  else if (pathname.includes('corporate')) pageCat = 'corporate';
-  else if (pathname.includes('marketplace') || pathname.includes('gift')) pageCat = 'gifts';
+  const searchParams = new URLSearchParams(window.location.search);
+  const searchCat = searchParams.get('id') || searchParams.get('cat') || searchParams.get('slug');
+  let pageCat = searchCat ? searchCat.toLowerCase() : null;
+  if (!pageCat) {
+    if (pathname.includes('birthday')) pageCat = 'birthday';
+    else if (pathname.includes('anniversary')) pageCat = 'anniversary';
+    else if (pathname.includes('kids')) pageCat = 'kids';
+    else if (pathname.includes('baby-shower')) pageCat = 'baby-shower';
+    else if (pathname.includes('wedding')) pageCat = 'wedding';
+    else if (pathname.includes('corporate')) pageCat = 'corporate';
+    else if (pathname.includes('marketplace') || pathname.includes('gift')) pageCat = 'gifts';
+  }
 
   if (pageCat) {
     const catBanner = banners.find(b => b.location === pageCat && b.active !== false);
