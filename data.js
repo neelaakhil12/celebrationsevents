@@ -116,11 +116,12 @@ const SITE_DATA = {
       "tag": "💍 Wedding & Ceremonies",
       "title": "Royal Haldi, Mehendi & Wedding Event Setups",
       "subtitle": "Traditional marigold flowers, pendals, stage decoration, photography & complete wedding service execution.",
-      "image": "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80",
+      "image": "https://res.cloudinary.com/gu0q1mxy/image/upload/v1791461914/celebration-banners/uatnmystx2rozq3xwlww.jpg",
       "linkText": "Explore Wedding Services ↓",
       "linkUrl": "#weddingCatalog",
       "active": true,
-      "order": 1
+      "order": 1,
+      "updatedAt": "2026-10-08T12:18:34.547Z"
     },
     {
       "id": "banner-cat-corporate",
@@ -142,11 +143,26 @@ const SITE_DATA = {
       "tag": "🎁 Celebration Gifts",
       "title": "Personalized Celebration Gifts & Hampers",
       "subtitle": "Custom photo frames, milestone boards, balloon bouquets & surprise delivery across 100+ cities.",
-      "image": "https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=1200&q=80",
+      "image": "https://res.cloudinary.com/gu0q1mxy/image/upload/v1791462763/celebration-banners/lft6b4gjp4oikkkwwuuq.jpg",
       "linkText": "Shop Gifts ↓",
       "linkUrl": "#giftsCatalog",
       "active": true,
-      "order": 1
+      "order": 1,
+      "updatedAt": "2026-10-08T12:32:43.204Z"
+    },
+    {
+      "id": "banner-cat-dusera",
+      "location": "dusera",
+      "locationName": "dusera Page Banner",
+      "tag": "✨ The Ultimate dusera Collection",
+      "title": "Professional dusera Balloon Decorations",
+      "subtitle": "Make their milestone unforgettable! Premium celebration setups in 100+ cities.",
+      "image": "https://res.cloudinary.com/gu0q1mxy/image/upload/v1791467092/celebration-banners/hl3zx6kt9jid5zztp40k.jpg",
+      "linkText": "Explore Setups Below ↓",
+      "linkUrl": "#duseraCatalog",
+      "active": true,
+      "order": 1,
+      "updatedAt": "2026-10-08T13:44:52.381Z"
     }
   ],
   "cities": [
@@ -255,6 +271,8 @@ const SITE_DATA = {
       "badge": "POPULAR",
       "image": "https://cdn.balloondekor.com/33/birthday-decoration-d67f374a-0151-409d-96ea-36e9527e0ffc.webp",
       "desc": "Stunning birthday setups for home, terrace & banquet",
+      "created_at": "2026-10-03T09:42:33.142881+00:00",
+      "updated_at": "2026-10-03T09:42:33.142881+00:00",
       "subcategories": [
         {
           "id": "home",
@@ -281,6 +299,18 @@ const SITE_DATA = {
           "title": "Kids Themes",
           "isLink": true,
           "href": "kids.html"
+        },
+        {
+          "id": "ramya",
+          "name": "ramya",
+          "icon": "",
+          "title": "awsdgfhjkyutrw"
+        },
+        {
+          "id": "harish-neela",
+          "name": "harish neela",
+          "icon": "",
+          "title": "SQWAEFSRDTHG"
         }
       ]
     },
@@ -291,6 +321,8 @@ const SITE_DATA = {
       "badge": "HOT",
       "image": "https://cdn.balloondekor.com/29/1784709508118-669326.webp",
       "desc": "Surprise room, canopy, candlelight & heart balloon decor",
+      "created_at": "2026-10-03T09:42:33.142881+00:00",
+      "updated_at": "2026-10-03T09:42:33.142881+00:00",
       "subcategories": [
         {
           "id": "room",
@@ -325,6 +357,8 @@ const SITE_DATA = {
       "badge": "TRENDING",
       "image": "https://cdn.balloondekor.com/33/kids-birthday-decoration-4b6bce2b-e65d-40fa-bdea-3f1367688305.webp",
       "desc": "Cocomelon, Frozen, Superhero, Jungle & Barbie themes",
+      "created_at": "2026-10-03T09:42:33.142881+00:00",
+      "updated_at": "2026-10-03T09:42:33.142881+00:00",
       "subcategories": [
         {
           "id": "cocomelon",
@@ -365,6 +399,8 @@ const SITE_DATA = {
       "badge": "LOVED",
       "image": "https://cdn.balloondekor.com/33/baby-shower-decoration-1ba3a3a3-d2eb-40e6-98bd-aed4eb907984.webp",
       "desc": "Celebrate motherhood with gentle pastel setups",
+      "created_at": "2026-10-03T09:42:33.142881+00:00",
+      "updated_at": "2026-10-03T09:42:33.142881+00:00",
       "subcategories": [
         {
           "id": "shower",
@@ -391,8 +427,10 @@ const SITE_DATA = {
       "name": "Wedding",
       "icon": "💍",
       "badge": "SPECIAL",
-      "image": "https://cdn.balloondekor.com/33/wedding-decoration-0c8b0952-fe10-44cb-ac91-8f640239beaf.webp",
+      "image": "https://res.cloudinary.com/gu0q1mxy/image/upload/v1791456433/celebration-categories/iwijsi4w55z2c7hktt37.jpg",
       "desc": "Haldi marigold setups, car decor & bridal showers",
+      "created_at": "2026-10-03T09:42:33.142881+00:00",
+      "updated_at": "2026-10-03T09:42:33.142881+00:00",
       "subcategories": [
         {
           "id": "house-decor",
@@ -429,6 +467,12 @@ const SITE_DATA = {
           "name": "Bridal Makeup & Mehendi",
           "icon": "💅",
           "title": "Bridal Makeup, Draping & Mehendi Art"
+        },
+        {
+          "id": "raju",
+          "name": "raju",
+          "icon": "",
+          "title": "sdfgnh"
         }
       ]
     },
@@ -439,6 +483,8 @@ const SITE_DATA = {
       "badge": "BUSINESS",
       "image": "https://cdn.balloondekor.com/33/office-decoration-b84c3312-f4cd-4baf-8d1f-b03d28c61242.webp",
       "desc": "Office anniversary, annual day & milestone celebrations",
+      "created_at": "2026-10-03T09:42:33.142881+00:00",
+      "updated_at": "2026-10-03T09:42:33.142881+00:00",
       "subcategories": [
         {
           "id": "office",
@@ -461,6 +507,8 @@ const SITE_DATA = {
       "badge": "NEW",
       "image": "https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=600&q=80",
       "desc": "Curated gift hampers, surprise boxes, flower bouquets, personalized gifts & cakes delivered across India.",
+      "created_at": "2026-10-03T09:42:33.142881+00:00",
+      "updated_at": "2026-10-03T09:42:33.142881+00:00",
       "subcategories": [
         {
           "id": "boys",
@@ -497,16 +545,24 @@ const SITE_DATA = {
           "name": "Flowers",
           "icon": "💐",
           "title": "Fresh Floral Bouquets"
+        },
+        {
+          "id": "raja",
+          "name": "raja",
+          "icon": "",
+          "title": "rama rama"
         }
       ]
     },
     {
       "id": "dusera",
       "name": "dusera",
-      "icon": "",
-      "badge": "TRENDING",
+      "icon": "🎈",
+      "badge": "trending",
       "image": "https://res.cloudinary.com/gu0q1mxy/image/upload/v1791367187/celebration-categories/ptwy7yh1wvwg6xekh3bx.jpg",
       "desc": "asdfgnh",
+      "created_at": "2026-10-07T09:59:54.047708+00:00",
+      "updated_at": "2026-10-07T09:59:54.047708+00:00",
       "subcategories": []
     }
   ],
@@ -1426,6 +1482,67 @@ const SITE_DATA = {
   ],
   "products": [
     {
+      "id": "gift-teddy-babyu",
+      "title": "teddy babyu",
+      "category": "gifts",
+      "category_name": "Gift Marketplace",
+      "categoryName": "Gift Marketplace",
+      "subcategory": "boys",
+      "badge": "Best Gift",
+      "price": 1500,
+      "original_price": 2000,
+      "originalPrice": 2000,
+      "discount": 25,
+      "rating": 4.8,
+      "reviews_count": 150,
+      "reviewsCount": 150,
+      "boughtText": "250+ bought in last month",
+      "image": "https://res.cloudinary.com/gu0q1mxy/image/upload/v1791473251/celebration_gifts/zknzmgqd1ax98gp1k2jg.png",
+      "gallery": [
+        "https://res.cloudinary.com/gu0q1mxy/image/upload/v1791473251/celebration_gifts/zknzmgqd1ax98gp1k2jg.png"
+      ],
+      "material": "dWAESRDTHFYGJH",
+      "dimensions": "SAdfG",
+      "color": "SaDFGNH",
+      "recommendedAge": "SAdwefrsgdth",
+      "washCare": "sawesrdthfyg",
+      "packaging": "sADFGM",
+      "specs": {
+        "material": "dWAESRDTHFYGJH",
+        "dimensions": "SAdfG",
+        "color": "SaDFGNH",
+        "recommendedAge": "SAdwefrsgdth",
+        "washCare": "sawesrdthfyg",
+        "packaging": "sADFGM"
+      },
+      "subtitle": "teddy babyu",
+      "description": "teddy babyu",
+      "aboutDescription": "teddy babyu",
+      "about_description": "teddy babyu",
+      "deliveryNote": "Same Day Delivery: Get it delivered in 2 to 4 hours at your location.",
+      "delivery_note": "Same Day Delivery: Get it delivered in 2 to 4 hours at your location.",
+      "highlights": [
+        "Handcrafted luxury gift presentation",
+        "Tested safe and child-friendly components",
+        "Includes personalized greeting message card"
+      ],
+      "inclusions": [
+        "Handcrafted luxury gift presentation",
+        "Tested safe and child-friendly components",
+        "Includes personalized greeting message card"
+      ],
+      "whyChoose": [
+        "Premium quality guaranteed",
+        "Safe shockproof packaging",
+        "Express same day delivery in 2 to 4 hours"
+      ],
+      "tags": [
+        "Gift Marketplace",
+        "boys",
+        "subcat:boys"
+      ]
+    },
+    {
       "id": "happ-birthday-harish",
       "title": "happ birthday harish",
       "category": "birthday",
@@ -1652,7 +1769,20 @@ const SITE_DATA = {
           }
         ]
       },
-      "options": []
+      "options": [],
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommendedAge": "",
+      "washCare": "",
+      "packaging": "",
+      "specs": {},
+      "subtitle": "",
+      "boughtText": "",
+      "highlights": [],
+      "recommended_age": null,
+      "wash_care": null,
+      "bought_text": null
     },
     {
       "id": "happy-anniversary-backdrop-decoration",
@@ -1797,7 +1927,20 @@ const SITE_DATA = {
           }
         ]
       },
-      "options": []
+      "options": [],
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommendedAge": "",
+      "washCare": "",
+      "packaging": "",
+      "specs": {},
+      "subtitle": "",
+      "boughtText": "",
+      "highlights": [],
+      "recommended_age": null,
+      "wash_care": null,
+      "bought_text": null
     },
     {
       "id": "cabana-canopy-terrace-decor",
@@ -1940,7 +2083,20 @@ const SITE_DATA = {
           }
         ]
       },
-      "options": []
+      "options": [],
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommendedAge": "",
+      "washCare": "",
+      "packaging": "",
+      "specs": {},
+      "subtitle": "",
+      "boughtText": "",
+      "highlights": [],
+      "recommended_age": null,
+      "wash_care": null,
+      "bought_text": null
     },
     {
       "id": "cocomelon-kids-theme",
@@ -2085,7 +2241,20 @@ const SITE_DATA = {
           }
         ]
       },
-      "options": []
+      "options": [],
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommendedAge": "",
+      "washCare": "",
+      "packaging": "",
+      "specs": {},
+      "subtitle": "",
+      "boughtText": "",
+      "highlights": [],
+      "recommended_age": null,
+      "wash_care": null,
+      "bought_text": null
     },
     {
       "id": "baby-shark-underwater-theme",
@@ -2228,7 +2397,20 @@ const SITE_DATA = {
           }
         ]
       },
-      "options": []
+      "options": [],
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommendedAge": "",
+      "washCare": "",
+      "packaging": "",
+      "specs": {},
+      "subtitle": "",
+      "boughtText": "",
+      "highlights": [],
+      "recommended_age": null,
+      "wash_care": null,
+      "bought_text": null
     },
     {
       "id": "boss-baby-theme-decor",
@@ -2371,7 +2553,20 @@ const SITE_DATA = {
           }
         ]
       },
-      "options": []
+      "options": [],
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommendedAge": "",
+      "washCare": "",
+      "packaging": "",
+      "specs": {},
+      "subtitle": "",
+      "boughtText": "",
+      "highlights": [],
+      "recommended_age": null,
+      "wash_care": null,
+      "bought_text": null
     },
     {
       "id": "jungle-safari-kids-party",
@@ -2514,7 +2709,20 @@ const SITE_DATA = {
           }
         ]
       },
-      "options": []
+      "options": [],
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommendedAge": "",
+      "washCare": "",
+      "packaging": "",
+      "specs": {},
+      "subtitle": "",
+      "boughtText": "",
+      "highlights": [],
+      "recommended_age": null,
+      "wash_care": null,
+      "bought_text": null
     },
     {
       "id": "frozen-wonderland-theme",
@@ -2657,7 +2865,20 @@ const SITE_DATA = {
           }
         ]
       },
-      "options": []
+      "options": [],
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommendedAge": "",
+      "washCare": "",
+      "packaging": "",
+      "specs": {},
+      "subtitle": "",
+      "boughtText": "",
+      "highlights": [],
+      "recommended_age": null,
+      "wash_care": null,
+      "bought_text": null
     },
     {
       "id": "baby-shower-pastel-decor",
@@ -2800,7 +3021,20 @@ const SITE_DATA = {
           }
         ]
       },
-      "options": []
+      "options": [],
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommendedAge": "",
+      "washCare": "",
+      "packaging": "",
+      "specs": {},
+      "subtitle": "",
+      "boughtText": "",
+      "highlights": [],
+      "recommended_age": null,
+      "wash_care": null,
+      "bought_text": null
     },
     {
       "id": "baby-shower-teddy-bear-theme",
@@ -2943,7 +3177,20 @@ const SITE_DATA = {
           }
         ]
       },
-      "options": []
+      "options": [],
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommendedAge": "",
+      "washCare": "",
+      "packaging": "",
+      "specs": {},
+      "subtitle": "",
+      "boughtText": "",
+      "highlights": [],
+      "recommended_age": null,
+      "wash_care": null,
+      "bought_text": null
     },
     {
       "id": "baby-shower-teddy-cloud-cradle-decor",
@@ -3086,7 +3333,20 @@ const SITE_DATA = {
           }
         ]
       },
-      "options": []
+      "options": [],
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommendedAge": "",
+      "washCare": "",
+      "packaging": "",
+      "specs": {},
+      "subtitle": "",
+      "boughtText": "",
+      "highlights": [],
+      "recommended_age": null,
+      "wash_care": null,
+      "bought_text": null
     },
     {
       "id": "baby-welcome-home-balloon-surprise",
@@ -3229,7 +3489,20 @@ const SITE_DATA = {
           }
         ]
       },
-      "options": []
+      "options": [],
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommendedAge": "",
+      "washCare": "",
+      "packaging": "",
+      "specs": {},
+      "subtitle": "",
+      "boughtText": "",
+      "highlights": [],
+      "recommended_age": null,
+      "wash_care": null,
+      "bought_text": null
     },
     {
       "id": "blush-glow-birthday-theme",
@@ -3373,7 +3646,20 @@ const SITE_DATA = {
           }
         ]
       },
-      "options": []
+      "options": [],
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommendedAge": "",
+      "washCare": "",
+      "packaging": "",
+      "specs": {},
+      "subtitle": "",
+      "boughtText": "",
+      "highlights": [],
+      "recommended_age": null,
+      "wash_care": null,
+      "bought_text": null
     },
     {
       "id": "house-decor",
@@ -3567,7 +3853,20 @@ const SITE_DATA = {
             "No"
           ]
         }
-      ]
+      ],
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommendedAge": "",
+      "washCare": "",
+      "packaging": "",
+      "specs": {},
+      "subtitle": "",
+      "boughtText": "",
+      "highlights": [],
+      "recommended_age": null,
+      "wash_care": null,
+      "bought_text": null
     },
     {
       "id": "simple-balloon-decor-for-home",
@@ -3711,7 +4010,20 @@ const SITE_DATA = {
           }
         ]
       },
-      "options": []
+      "options": [],
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommendedAge": "",
+      "washCare": "",
+      "packaging": "",
+      "specs": {},
+      "subtitle": "",
+      "boughtText": "",
+      "highlights": [],
+      "recommended_age": null,
+      "wash_care": null,
+      "bought_text": null
     },
     {
       "id": "rose-gold-birthday-home-decor",
@@ -3856,7 +4168,20 @@ const SITE_DATA = {
           }
         ]
       },
-      "options": []
+      "options": [],
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommendedAge": "",
+      "washCare": "",
+      "packaging": "",
+      "specs": {},
+      "subtitle": "",
+      "boughtText": "",
+      "highlights": [],
+      "recommended_age": null,
+      "wash_care": null,
+      "bought_text": null
     },
     {
       "id": "adorable-birthday-arch-backdrop",
@@ -4000,7 +4325,20 @@ const SITE_DATA = {
           }
         ]
       },
-      "options": []
+      "options": [],
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommendedAge": "",
+      "washCare": "",
+      "packaging": "",
+      "specs": {},
+      "subtitle": "",
+      "boughtText": "",
+      "highlights": [],
+      "recommended_age": null,
+      "wash_care": null,
+      "bought_text": null
     },
     {
       "id": "anniversary-bliss-setup",
@@ -4144,7 +4482,20 @@ const SITE_DATA = {
           }
         ]
       },
-      "options": []
+      "options": [],
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommendedAge": "",
+      "washCare": "",
+      "packaging": "",
+      "specs": {},
+      "subtitle": "",
+      "boughtText": "",
+      "highlights": [],
+      "recommended_age": null,
+      "wash_care": null,
+      "bought_text": null
     },
     {
       "id": "corporate-office-milestone-decor",
@@ -4287,7 +4638,20 @@ const SITE_DATA = {
           }
         ]
       },
-      "options": []
+      "options": [],
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommendedAge": "",
+      "washCare": "",
+      "packaging": "",
+      "specs": {},
+      "subtitle": "",
+      "boughtText": "",
+      "highlights": [],
+      "recommended_age": null,
+      "wash_care": null,
+      "bought_text": null
     },
     {
       "id": "corporate-annual-day-grand-stage",
@@ -4430,7 +4794,20 @@ const SITE_DATA = {
           }
         ]
       },
-      "options": []
+      "options": [],
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommendedAge": "",
+      "washCare": "",
+      "packaging": "",
+      "specs": {},
+      "subtitle": "",
+      "boughtText": "",
+      "highlights": [],
+      "recommended_age": null,
+      "wash_care": null,
+      "bought_text": null
     },
     {
       "id": "corporate-product-launch-balloon-arch",
@@ -4573,7 +4950,20 @@ const SITE_DATA = {
           }
         ]
       },
-      "options": []
+      "options": [],
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommendedAge": "",
+      "washCare": "",
+      "packaging": "",
+      "specs": {},
+      "subtitle": "",
+      "boughtText": "",
+      "highlights": [],
+      "recommended_age": null,
+      "wash_care": null,
+      "bought_text": null
     },
     {
       "id": "corporate-cubicle-bay-festive-decor",
@@ -4716,7 +5106,20 @@ const SITE_DATA = {
           }
         ]
       },
-      "options": []
+      "options": [],
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommendedAge": "",
+      "washCare": "",
+      "packaging": "",
+      "specs": {},
+      "subtitle": "",
+      "boughtText": "",
+      "highlights": [],
+      "recommended_age": null,
+      "wash_care": null,
+      "bought_text": null
     },
     {
       "id": "corporate-executive-townhall-stage-backdrop",
@@ -4859,7 +5262,20 @@ const SITE_DATA = {
           }
         ]
       },
-      "options": []
+      "options": [],
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommendedAge": "",
+      "washCare": "",
+      "packaging": "",
+      "specs": {},
+      "subtitle": "",
+      "boughtText": "",
+      "highlights": [],
+      "recommended_age": null,
+      "wash_care": null,
+      "bought_text": null
     },
     {
       "id": "gift-01",
@@ -4901,7 +5317,7 @@ const SITE_DATA = {
       "not_included": [],
       "faqs": [],
       "addons": [],
-      "delivery_note": "",
+      "delivery_note": "Same Day Delivery: Get it delivered in 2 to 4 hours at your location.",
       "decorator_note": "",
       "lifespan_note": "",
       "location_note": "",
@@ -4957,12 +5373,49 @@ const SITE_DATA = {
       "locationNote": "",
       "colorPalettes": [],
       "slotsAlert": "",
-      "whyChoose": [
-        "Premium quality fabric",
-        "Loved by all age groups",
-        "Same day delivery (2 to 4 hours)",
-        "Makes a thoughtful and memorable gift"
-      ],
+      "whyChoose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
       "options": [],
       "subtitle": "A cute and cuddly teddy bear, perfect for every special occasion.",
       "material": "Ultra-Soft Hypoallergenic Plush & PP Cotton",
@@ -4978,14 +5431,10 @@ const SITE_DATA = {
         "Safe for kids and adults",
         "A timeless gift for your loved ones"
       ],
-      "specs": {
-        "material": "Ultra-Soft Hypoallergenic Plush & PP Cotton",
-        "dimensions": "35 cm (Sitting Height)",
-        "color": "Warm Honey Brown with Silk Ribbon",
-        "recommendedAge": "Safe for all age groups (3+ to Adults)",
-        "washCare": "Hand wash with mild detergent or damp wipe",
-        "packaging": "Gift Wrapped in Polka Box with Satin Bow"
-      }
+      "specs": {},
+      "recommended_age": null,
+      "wash_care": null,
+      "bought_text": null
     },
     {
       "id": "gift-02",
@@ -5027,7 +5476,7 @@ const SITE_DATA = {
       "not_included": [],
       "faqs": [],
       "addons": [],
-      "delivery_note": "",
+      "delivery_note": "Same Day Delivery: Get it delivered in 2 to 4 hours at your location.",
       "decorator_note": "",
       "lifespan_note": "",
       "location_note": "",
@@ -5083,12 +5532,49 @@ const SITE_DATA = {
       "locationNote": "",
       "colorPalettes": [],
       "slotsAlert": "",
-      "whyChoose": [
-        "100% Customized with your photos",
-        "Durable ceramic finish",
-        "Express same day dispatch",
-        "Perfect surprise for birthdays & desk decor"
-      ],
+      "whyChoose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
       "options": [],
       "subtitle": "High-grade ceramic glossy mug customized with your cherished photo and text.",
       "material": "High-Grade Glossy White Ceramic (Sublimation Coating)",
@@ -5104,14 +5590,10 @@ const SITE_DATA = {
         "Microwave and dishwasher friendly",
         "Comes in secure shockproof packaging"
       ],
-      "specs": {
-        "material": "High-Grade Glossy White Ceramic (Sublimation Coating)",
-        "dimensions": "330 ml (9.5 cm Height x 8.2 cm Dia)",
-        "color": "Glossy White with Multicolor Photo Print",
-        "recommendedAge": "Safe for all ages",
-        "washCare": "Microwave & Dishwasher Safe",
-        "packaging": "Shockproof Thermocol Safety Box with Ribbon"
-      }
+      "specs": {},
+      "recommended_age": null,
+      "wash_care": null,
+      "bought_text": null
     },
     {
       "id": "gift-03",
@@ -5154,7 +5636,7 @@ const SITE_DATA = {
       "not_included": [],
       "faqs": [],
       "addons": [],
-      "delivery_note": "",
+      "delivery_note": "Same Day Delivery: Get it delivered in 2 to 4 hours at your location.",
       "decorator_note": "",
       "lifespan_note": "",
       "location_note": "",
@@ -5210,12 +5692,49 @@ const SITE_DATA = {
       "locationNote": "",
       "colorPalettes": [],
       "slotsAlert": "",
-      "whyChoose": [
-        "Opulent presentation ready for gifting",
-        "Handpicked premium products",
-        "Loved by women of all ages",
-        "Instant delivery available"
-      ],
+      "whyChoose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
       "options": [],
       "subtitle": "Indulgent pampering gift basket with scented candle, skincare, chocolates and silk scarf.",
       "material": "Artisanal Pine Wood, Soy Wax & Organic Botanical Skincare",
@@ -5231,14 +5750,10 @@ const SITE_DATA = {
         "Premium imported chocolate delicacies",
         "Custom greeting card included"
       ],
-      "specs": {
-        "material": "Artisanal Pine Wood, Soy Wax & Organic Botanical Skincare",
-        "dimensions": "30 x 22 x 15 cm",
-        "color": "Blush Pink & Rose Gold Theme",
-        "recommendedAge": "Adults (Women)",
-        "washCare": "Keep in cool, dry place away from direct sunlight",
-        "packaging": "Artisan Pine Wood Keepsake Basket with Satin Bow"
-      }
+      "specs": {},
+      "recommended_age": null,
+      "wash_care": null,
+      "bought_text": null
     },
     {
       "id": "gift-04",
@@ -5281,7 +5796,7 @@ const SITE_DATA = {
       "not_included": [],
       "faqs": [],
       "addons": [],
-      "delivery_note": "",
+      "delivery_note": "Same Day Delivery: Get it delivered in 2 to 4 hours at your location.",
       "decorator_note": "",
       "lifespan_note": "",
       "location_note": "",
@@ -5337,12 +5852,49 @@ const SITE_DATA = {
       "locationNote": "",
       "colorPalettes": [],
       "slotsAlert": "",
-      "whyChoose": [
-        "Timeless versatile styling",
-        "Luxury velvet watch box",
-        "Great gift for husbands, fathers & colleagues",
-        "Same day delivery available"
-      ],
+      "whyChoose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
       "options": [],
       "subtitle": "Classic stainless steel leather strap timepiece designed for modern style.",
       "material": "Japanese Quartz Movement, Mineral Glass & Genuine Leather",
@@ -5358,14 +5910,10 @@ const SITE_DATA = {
         "3 ATM water resistant",
         "1 Year brand warranty card included"
       ],
-      "specs": {
-        "material": "Japanese Quartz Movement, Mineral Glass & Genuine Leather",
-        "dimensions": "42 mm Dial Diameter, 22 mm Strap Width",
-        "color": "Classic Black Dial with Tan Brown Strap",
-        "recommendedAge": "Adults (Men)",
-        "washCare": "3 ATM Water Resistant (Wipe with soft cloth)",
-        "packaging": "Luxury Velvet Watch Box with Warranty Card"
-      }
+      "specs": {},
+      "recommended_age": null,
+      "wash_care": null,
+      "bought_text": null
     },
     {
       "id": "gift-05",
@@ -5408,7 +5956,7 @@ const SITE_DATA = {
       "not_included": [],
       "faqs": [],
       "addons": [],
-      "delivery_note": "",
+      "delivery_note": "Same Day Delivery: Hand-delivered in 2 to 3 hours fresh from florists.",
       "decorator_note": "",
       "lifespan_note": "",
       "location_note": "",
@@ -5464,12 +6012,49 @@ const SITE_DATA = {
       "locationNote": "",
       "colorPalettes": [],
       "slotsAlert": "",
-      "whyChoose": [
-        "Farm-fresh guarantee with crisp petals",
-        "Hand-delivered in 2 to 3 hours",
-        "Iconic romantic expression",
-        "100% On-time surprise delivery"
-      ],
+      "whyChoose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
       "options": [],
       "subtitle": "Handpicked 15 fresh Dutch red roses wrapped in eco-craft tissue paper with satin bow.",
       "material": "15 Premium Long-Stem Dutch Red Roses & Eco Paper",
@@ -5485,14 +6070,10 @@ const SITE_DATA = {
         "Comes with flower food packet for longer vase life",
         "Free message card included"
       ],
-      "specs": {
-        "material": "15 Premium Long-Stem Dutch Red Roses & Eco Paper",
-        "dimensions": "45 cm Stem Height",
-        "color": "Vibrant Crimson Red",
-        "recommendedAge": "Safe for all ages",
-        "washCare": "Trim stems diagonally & place in clean water with flower food",
-        "packaging": "Double-Layer Craft Wrapping with Crimson Satin Bow"
-      }
+      "specs": {},
+      "recommended_age": null,
+      "wash_care": null,
+      "bought_text": null
     },
     {
       "id": "gift-06",
@@ -5535,7 +6116,7 @@ const SITE_DATA = {
       "not_included": [],
       "faqs": [],
       "addons": [],
-      "delivery_note": "",
+      "delivery_note": "Same Day Delivery: Get it delivered in 2 to 4 hours at your location.",
       "decorator_note": "",
       "lifespan_note": "",
       "location_note": "",
@@ -5591,12 +6172,49 @@ const SITE_DATA = {
       "locationNote": "",
       "colorPalettes": [],
       "slotsAlert": "",
-      "whyChoose": [
-        "World renowned gourmet confection",
-        "Loved by all ages",
-        "Ready to gift box packaging",
-        "Express same day delivery"
-      ],
+      "whyChoose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
       "options": [],
       "subtitle": "Golden hazelnut pralines packed in an iconic 16-piece celebration box.",
       "material": "Crispy Hazelnut Pralines & Milk Chocolate (16 Pieces)",
@@ -5612,14 +6230,10 @@ const SITE_DATA = {
         "Crisp wafer shell covered with milk chocolate",
         "16 individually wrapped golden pralines"
       ],
-      "specs": {
-        "material": "Crispy Hazelnut Pralines & Milk Chocolate (16 Pieces)",
-        "dimensions": "200 grams Net Weight",
-        "color": "Iconic Golden Foil Wrap",
-        "recommendedAge": "All Ages",
-        "washCare": "Store in a cool, dry place between 18°C - 22°C",
-        "packaging": "Original Transparent Jewel Presentation Box with Ribbon"
-      }
+      "specs": {},
+      "recommended_age": null,
+      "wash_care": null,
+      "bought_text": null
     },
     {
       "id": "ballon-decoration",
@@ -5760,7 +6374,20 @@ const SITE_DATA = {
           }
         ]
       },
-      "options": []
+      "options": [],
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommendedAge": "",
+      "washCare": "",
+      "packaging": "",
+      "specs": {},
+      "subtitle": "",
+      "boughtText": "",
+      "highlights": [],
+      "recommended_age": null,
+      "wash_care": null,
+      "bought_text": null
     },
     {
       "id": "nalugu-snanam",
@@ -5952,7 +6579,20 @@ const SITE_DATA = {
             "2 Sannai"
           ]
         }
-      ]
+      ],
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommendedAge": "",
+      "washCare": "",
+      "packaging": "",
+      "specs": {},
+      "subtitle": "",
+      "boughtText": "",
+      "highlights": [],
+      "recommended_age": null,
+      "wash_care": null,
+      "bought_text": null
     },
     {
       "id": "function-hall-decor",
@@ -6148,7 +6788,20 @@ const SITE_DATA = {
             "Coolers"
           ]
         }
-      ]
+      ],
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommendedAge": "",
+      "washCare": "",
+      "packaging": "",
+      "specs": {},
+      "subtitle": "",
+      "boughtText": "",
+      "highlights": [],
+      "recommended_age": null,
+      "wash_care": null,
+      "bought_text": null
     },
     {
       "id": "catering",
@@ -6435,7 +7088,20 @@ const SITE_DATA = {
             "Chips or Papad"
           ]
         }
-      ]
+      ],
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommendedAge": "",
+      "washCare": "",
+      "packaging": "",
+      "specs": {},
+      "subtitle": "",
+      "boughtText": "",
+      "highlights": [],
+      "recommended_age": null,
+      "wash_care": null,
+      "bought_text": null
     },
     {
       "id": "red-anniversary-home-decor",
@@ -6579,7 +7245,20 @@ const SITE_DATA = {
           }
         ]
       },
-      "options": []
+      "options": [],
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommendedAge": "",
+      "washCare": "",
+      "packaging": "",
+      "specs": {},
+      "subtitle": "",
+      "boughtText": "",
+      "highlights": [],
+      "recommended_age": null,
+      "wash_care": null,
+      "bought_text": null
     },
     {
       "id": "romantic-anniversary-room-celebration",
@@ -6723,7 +7402,20 @@ const SITE_DATA = {
           }
         ]
       },
-      "options": []
+      "options": [],
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommendedAge": "",
+      "washCare": "",
+      "packaging": "",
+      "specs": {},
+      "subtitle": "",
+      "boughtText": "",
+      "highlights": [],
+      "recommended_age": null,
+      "wash_care": null,
+      "bought_text": null
     },
     {
       "id": "newborn-welcome-baby-decor",
@@ -6866,7 +7558,20 @@ const SITE_DATA = {
           }
         ]
       },
-      "options": []
+      "options": [],
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommendedAge": "",
+      "washCare": "",
+      "packaging": "",
+      "specs": {},
+      "subtitle": "",
+      "boughtText": "",
+      "highlights": [],
+      "recommended_age": null,
+      "wash_care": null,
+      "bought_text": null
     },
     {
       "id": "sangyam-sweets",
@@ -7046,7 +7751,20 @@ const SITE_DATA = {
             "Chekkalu"
           ]
         }
-      ]
+      ],
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommendedAge": "",
+      "washCare": "",
+      "packaging": "",
+      "specs": {},
+      "subtitle": "",
+      "boughtText": "",
+      "highlights": [],
+      "recommended_age": null,
+      "wash_care": null,
+      "bought_text": null
     },
     {
       "id": "photo-video",
@@ -7247,7 +7965,20 @@ const SITE_DATA = {
             "No"
           ]
         }
-      ]
+      ],
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommendedAge": "",
+      "washCare": "",
+      "packaging": "",
+      "specs": {},
+      "subtitle": "",
+      "boughtText": "",
+      "highlights": [],
+      "recommended_age": null,
+      "wash_care": null,
+      "bought_text": null
     },
     {
       "id": "melam",
@@ -7438,7 +8169,20 @@ const SITE_DATA = {
             "Band Set (15 Members)"
           ]
         }
-      ]
+      ],
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommendedAge": "",
+      "washCare": "",
+      "packaging": "",
+      "specs": {},
+      "subtitle": "",
+      "boughtText": "",
+      "highlights": [],
+      "recommended_age": null,
+      "wash_care": null,
+      "bought_text": null
     },
     {
       "id": "special-events",
@@ -7613,7 +8357,20 @@ const SITE_DATA = {
             "Design Butta"
           ]
         }
-      ]
+      ],
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommendedAge": "",
+      "washCare": "",
+      "packaging": "",
+      "specs": {},
+      "subtitle": "",
+      "boughtText": "",
+      "highlights": [],
+      "recommended_age": null,
+      "wash_care": null,
+      "bought_text": null
     },
     {
       "id": "sangyam-bags",
@@ -7781,7 +8538,20 @@ const SITE_DATA = {
             "500 Sets"
           ]
         }
-      ]
+      ],
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommendedAge": "",
+      "washCare": "",
+      "packaging": "",
+      "specs": {},
+      "subtitle": "",
+      "boughtText": "",
+      "highlights": [],
+      "recommended_age": null,
+      "wash_care": null,
+      "bought_text": null
     },
     {
       "id": "bridal-makeup",
@@ -7945,7 +8715,20 @@ const SITE_DATA = {
             "Traditional Saree Draping & Jewellery Setting"
           ]
         }
-      ]
+      ],
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommendedAge": "",
+      "washCare": "",
+      "packaging": "",
+      "specs": {},
+      "subtitle": "",
+      "boughtText": "",
+      "highlights": [],
+      "recommended_age": null,
+      "wash_care": null,
+      "bought_text": null
     },
     {
       "id": "mehandi",
@@ -8108,7 +8891,20 @@ const SITE_DATA = {
             "100% Organic Fresh Henna Cones"
           ]
         }
-      ]
+      ],
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommendedAge": "",
+      "washCare": "",
+      "packaging": "",
+      "specs": {},
+      "subtitle": "",
+      "boughtText": "",
+      "highlights": [],
+      "recommended_age": null,
+      "wash_care": null,
+      "bought_text": null
     },
     {
       "id": "sangeet",
@@ -8272,7 +9068,20 @@ const SITE_DATA = {
             "Professional Sangeet DJ & Emcee"
           ]
         }
-      ]
+      ],
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommendedAge": "",
+      "washCare": "",
+      "packaging": "",
+      "specs": {},
+      "subtitle": "",
+      "boughtText": "",
+      "highlights": [],
+      "recommended_age": null,
+      "wash_care": null,
+      "bought_text": null
     },
     {
       "id": "musical-events",
@@ -8427,7 +9236,20 @@ const SITE_DATA = {
             "Live Instrumental Music (Live instrumental performance)"
           ]
         }
-      ]
+      ],
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommendedAge": "",
+      "washCare": "",
+      "packaging": "",
+      "specs": {},
+      "subtitle": "",
+      "boughtText": "",
+      "highlights": [],
+      "recommended_age": null,
+      "wash_care": null,
+      "bought_text": null
     },
     {
       "id": "anniversary-home-decoration",
@@ -8572,7 +9394,20 @@ const SITE_DATA = {
           }
         ]
       },
-      "options": []
+      "options": [],
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommendedAge": "",
+      "washCare": "",
+      "packaging": "",
+      "specs": {},
+      "subtitle": "",
+      "boughtText": "",
+      "highlights": [],
+      "recommended_age": null,
+      "wash_care": null,
+      "bought_text": null
     },
     {
       "id": "dj-kolatam",
@@ -8751,7 +9586,20 @@ const SITE_DATA = {
             "title": "100% smile assurance"
           }
         ]
-      }
+      },
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommendedAge": "",
+      "washCare": "",
+      "packaging": "",
+      "specs": {},
+      "subtitle": "",
+      "boughtText": "",
+      "highlights": [],
+      "recommended_age": null,
+      "wash_care": null,
+      "bought_text": null
     },
     {
       "id": "dj-and-kolatam",
@@ -8908,7 +9756,20 @@ const SITE_DATA = {
             "title": "100% smile assurance"
           }
         ]
-      }
+      },
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommendedAge": "",
+      "washCare": "",
+      "packaging": "",
+      "specs": {},
+      "subtitle": "",
+      "boughtText": "",
+      "highlights": [],
+      "recommended_age": null,
+      "wash_care": null,
+      "bought_text": null
     },
     {
       "id": "gift-07",
@@ -8950,7 +9811,7 @@ const SITE_DATA = {
       "not_included": [],
       "faqs": [],
       "addons": [],
-      "delivery_note": "",
+      "delivery_note": "Same Day Delivery: Get it delivered in 2 to 4 hours at your location.",
       "decorator_note": "",
       "lifespan_note": "",
       "location_note": "",
@@ -9006,12 +9867,49 @@ const SITE_DATA = {
       "locationNote": "",
       "colorPalettes": [],
       "slotsAlert": "",
-      "whyChoose": [
-        "Exciting high-speed action for kids",
-        "Safe durable build quality",
-        "Complete set ready to play",
-        "Fast 2-4 hour delivery"
-      ],
+      "whyChoose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
       "options": [],
       "subtitle": "High-speed 1:18 scale rechargeable RC monster truck with all-terrain suspension.",
       "material": "Non-Toxic ABS Plastic & Heavy-Duty Rubber Tires",
@@ -9027,14 +9925,10 @@ const SITE_DATA = {
         "Rechargeable battery pack included with USB cable",
         "Durable drop-resistant bumper"
       ],
-      "specs": {
-        "material": "Non-Toxic ABS Plastic & Heavy-Duty Rubber Tires",
-        "dimensions": "24 x 14 x 11 cm",
-        "color": "Flame Red & Black Racing Stripes",
-        "recommendedAge": "4 to 12 Years",
-        "washCare": "Keep away from water; recharge via USB",
-        "packaging": "Window Display Box with Remote & USB Charger"
-      }
+      "specs": {},
+      "recommended_age": null,
+      "wash_care": null,
+      "bought_text": null
     },
     {
       "id": "gift-08",
@@ -9076,7 +9970,7 @@ const SITE_DATA = {
       "not_included": [],
       "faqs": [],
       "addons": [],
-      "delivery_note": "",
+      "delivery_note": "Same Day Delivery: Baked fresh and hand-delivered in 2 to 4 hours.",
       "decorator_note": "",
       "lifespan_note": "",
       "location_note": "",
@@ -9132,12 +10026,49 @@ const SITE_DATA = {
       "locationNote": "",
       "colorPalettes": [],
       "slotsAlert": "",
-      "whyChoose": [
-        "Freshly baked upon order confirmation",
-        "Temperature controlled delivery",
-        "Decadent rich flavor",
-        "Punctual celebration arrival"
-      ],
+      "whyChoose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
       "options": [],
       "subtitle": "Rich Belgian dark chocolate ganache layered sponge cake freshly baked on order.",
       "material": "Fresh Eggless Sponge, Belgian Dark Chocolate & Dutch Cocoa",
@@ -9153,14 +10084,10 @@ const SITE_DATA = {
         "Complimentary candles and wooden cake knife included",
         "Personalized icing message available"
       ],
-      "specs": {
-        "material": "Fresh Eggless Sponge, Belgian Dark Chocolate & Dutch Cocoa",
-        "dimensions": "500 grams (Serves 4 - 6 People)",
-        "color": "Glossy Dark Chocolate Mirror Glaze",
-        "recommendedAge": "All Ages",
-        "washCare": "Keep refrigerated; consume within 24 hours of delivery",
-        "packaging": "Insulated Cake Box with Candle & Wooden Knife"
-      }
+      "specs": {},
+      "recommended_age": null,
+      "wash_care": null,
+      "bought_text": null
     },
     {
       "id": "gift-09",
@@ -9202,7 +10129,7 @@ const SITE_DATA = {
       "not_included": [],
       "faqs": [],
       "addons": [],
-      "delivery_note": "",
+      "delivery_note": "Same Day Delivery: Get it delivered in 2 to 4 hours at your location.",
       "decorator_note": "",
       "lifespan_note": "",
       "location_note": "",
@@ -9258,12 +10185,49 @@ const SITE_DATA = {
       "locationNote": "",
       "colorPalettes": [],
       "slotsAlert": "",
-      "whyChoose": [
-        "Classy and memorable keepsake",
-        "Premium tactile touch",
-        "Fits cash/gift card inserts",
-        "Express delivery"
-      ],
+      "whyChoose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
       "options": [],
       "subtitle": "Embossed metallic gold foil floral wedding card with heartfelt wishes envelope.",
       "material": "350 GSM Textured Metallic Ivory Cardstock",
@@ -9279,14 +10243,10 @@ const SITE_DATA = {
         "Blank interior sheet for handwritten wishes",
         "Matching luxury metallic envelope"
       ],
-      "specs": {
-        "material": "350 GSM Textured Metallic Ivory Cardstock",
-        "dimensions": "15 x 20 cm (Folded)",
-        "color": "Ivory & Metallic Gold Foil",
-        "recommendedAge": "Adults",
-        "washCare": "Keep dry",
-        "packaging": "Sealed Golden Shimmer Envelope with Wax Seal Stamp"
-      }
+      "specs": {},
+      "recommended_age": null,
+      "wash_care": null,
+      "bought_text": null
     },
     {
       "id": "gift-10",
@@ -9328,7 +10288,7 @@ const SITE_DATA = {
       "not_included": [],
       "faqs": [],
       "addons": [],
-      "delivery_note": "",
+      "delivery_note": "Instant Digital Delivery within 2 to 4 hours via WhatsApp & Email.",
       "decorator_note": "",
       "lifespan_note": "",
       "location_note": "",
@@ -9384,12 +10344,49 @@ const SITE_DATA = {
       "locationNote": "",
       "colorPalettes": [],
       "slotsAlert": "",
-      "whyChoose": [
-        "Zero paper waste, eco-friendly invitation",
-        "Instant WhatsApp sharing",
-        "Unlimited minor revisions",
-        "Fast turnaround time"
-      ],
+      "whyChoose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
       "options": [],
       "subtitle": "Custom cinematic animated video invite formatted for instant WhatsApp sharing.",
       "material": "1080p Full HD MP4 Motion Graphics File",
@@ -9405,14 +10402,10 @@ const SITE_DATA = {
         "Direct Google Maps venue link integration",
         "Delivered in Full HD 1080p format"
       ],
-      "specs": {
-        "material": "1080p Full HD MP4 Motion Graphics File",
-        "dimensions": "9:16 Vertical Story / WhatsApp Format (60 Secs)",
-        "color": "Royal Gold & Burgundy Floral Theme",
-        "recommendedAge": "All Ages",
-        "washCare": "Digital Delivery via WhatsApp & Email",
-        "packaging": "Cloud Download Link with Lifetime Access"
-      }
+      "specs": {},
+      "recommended_age": null,
+      "wash_care": null,
+      "bought_text": null
     },
     {
       "id": "gift-11",
@@ -9454,7 +10447,7 @@ const SITE_DATA = {
       "not_included": [],
       "faqs": [],
       "addons": [],
-      "delivery_note": "",
+      "delivery_note": "Same Day Delivery: Get it delivered in 2 to 4 hours at your location.",
       "decorator_note": "",
       "lifespan_note": "",
       "location_note": "",
@@ -9510,12 +10503,49 @@ const SITE_DATA = {
       "locationNote": "",
       "colorPalettes": [],
       "slotsAlert": "",
-      "whyChoose": [
-        "Traditional and eco-conscious",
-        "Hassle-free bulk return gifts ready to distribute",
-        "Budget friendly elegance",
-        "Same day delivery available"
-      ],
+      "whyChoose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
       "options": [],
       "subtitle": "Eco-friendly hand-crafted jute pouch gift set containing scented potpourri and brass diyas.",
       "material": "Handwoven Golden Jute, Scented Botanicals & Pure Brass Diyas",
@@ -9531,14 +10561,10 @@ const SITE_DATA = {
         "Includes mini pure brass oil lamp in each pouch",
         "Customizable 'Thank You for Celebrating' tag"
       ],
-      "specs": {
-        "material": "Handwoven Golden Jute, Scented Botanicals & Pure Brass Diyas",
-        "dimensions": "Set of 10 Pouches (15 x 10 cm each)",
-        "color": "Natural Golden Jute with Red Pull String",
-        "recommendedAge": "All Ages",
-        "washCare": "Wipe clean with dry cloth",
-        "packaging": "Master Carton with 10 Individually Tied Gift Pouches"
-      }
+      "specs": {},
+      "recommended_age": null,
+      "wash_care": null,
+      "bought_text": null
     },
     {
       "id": "gift-12",
@@ -9581,7 +10607,7 @@ const SITE_DATA = {
       "not_included": [],
       "faqs": [],
       "addons": [],
-      "delivery_note": "",
+      "delivery_note": "Same Day Delivery: Get it delivered in 2 to 4 hours at your location.",
       "decorator_note": "",
       "lifespan_note": "",
       "location_note": "",
@@ -9637,12 +10663,49 @@ const SITE_DATA = {
       "locationNote": "",
       "colorPalettes": [],
       "slotsAlert": "",
-      "whyChoose": [
-        "Exciting all-in-one curated gift for boys",
-        "Reusable magnetic keepsake storage crate",
-        "Tested safe, child-friendly components",
-        "Delivered in 2 to 4 hours"
-      ],
+      "whyChoose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
       "options": [],
       "subtitle": "Cool superhero themed gift crate with smartwatch, sunglasses, stationery and sweets.",
       "material": "Superhero Crate, PU Leather & Acrylic Utilities",
@@ -9658,67 +10721,13 @@ const SITE_DATA = {
         "Designer notebook, pen and sticker set",
         "Gourmet chocolate treats and personalized card"
       ],
-      "specs": {
-        "material": "Superhero Crate, PU Leather & Acrylic Utilities",
-        "dimensions": "28 x 20 x 12 cm (Box Size)",
-        "color": "Midnight Blue & Red Accent",
-        "recommendedAge": "6 to 14 Years (Boys)",
-        "washCare": "Wipe clean with dry microfiber cloth",
-        "packaging": "Magnetic Luxury Superhero Keepsake Box with Ribbon"
-      }
+      "specs": {},
+      "recommended_age": null,
+      "wash_care": null,
+      "bought_text": null
     }
   ],
   "reviews": [
-    {
-      "id": "rev-1",
-      "name": "Pooja Sharma",
-      "city": "Delhi NCR",
-      "rating": 5,
-      "date": "2 days ago",
-      "type": "video",
-      "media": "customer-review-video-1.mp4",
-      "poster": "https://cdn.balloondekor.com/14/1744720943222.webp",
-      "service": "Rose Gold Birthday Setup",
-      "text": "The decorator arrived 15 mins early and set up the balloon arch without any mess! Look at this magical video reel!",
-      "verified": true
-    },
-    {
-      "id": "rev-2",
-      "name": "Rahul & Sneha",
-      "city": "Mumbai",
-      "rating": 5,
-      "date": "5 days ago",
-      "type": "image",
-      "media": "https://cdn.balloondekor.com/29/1784709508118-669326.webp",
-      "service": "Cabana Terrace Anniversary",
-      "text": "Booked the terrace cabana for our 5th anniversary. The fairy lights and balloon styling were unbelievable!",
-      "verified": true
-    },
-    {
-      "id": "rev-3",
-      "name": "Ananya Deshmukh",
-      "city": "Pune",
-      "rating": 5,
-      "date": "1 week ago",
-      "type": "image",
-      "media": "https://cdn.balloondekor.com/images/33/dbe87a70-56bc-42bc-ad96-2847b88c00dd.webp",
-      "service": "Cocomelon 2nd Birthday",
-      "text": "Our son JJ was so thrilled! The balloon quality was top notch, vibrant colors and lasted 3 whole days.",
-      "verified": true
-    },
-    {
-      "id": "rev-4",
-      "name": "Kunal & Riya Mehra",
-      "city": "Bangalore",
-      "rating": 5,
-      "date": "1 week ago",
-      "type": "video",
-      "media": "customer-review-video-1.mp4",
-      "poster": "https://cdn.balloondekor.com/14/1744890426934.webp",
-      "service": "Golden Birthday Arch",
-      "text": "Super smooth same-day booking in Indiranagar. Watch our live celebration reveal video!",
-      "verified": true
-    },
     {
       "id": "rev-5",
       "name": "Divya Nair",
@@ -9903,7 +10912,7 @@ const SITE_DATA = {
       "tag": "popular",
       "author": "ramya neela",
       "date": "October 08, 2026",
-      "image": "https://res.cloudinary.com/gu0q1mxy/image/upload/v1791462221/celebration-blogs/iqcnhteq3ug3ep7dsxsk.jpg",
+      "image": "https://res.cloudinary.com/gu0q1mxy/image/upload/v1791467443/celebration-blogs/gwzpn5fvza0w9ejolyp7.jpg",
       "excerpt": "Decide your budget first and select decorations accordingly.",
       "content": "<p>Birthday Decoration Ideas: Make Every Birthday Celebration Special</p>\n\n<p>A birthday is a special occasion that brings friends and family together to celebrate another wonderful year of life. One of the easiest ways to make a birthday celebration more memorable is with beautiful and creative **birthday decorations**. From colorful balloons and elegant backdrops to customized themes and table decorations, the right decoration can completely transform your celebration space.</p>\n\n<h3>Why Birthday Decoration Is Important</h3>\n\n<p>Birthday decorations create the atmosphere for the entire celebration. A well-decorated room makes the event feel more festive, attractive, and memorable. Decorations also provide a beautiful background for photographs and help create a special environment for the birthday person and guests.</p>\n\n<p>Whether you are planning a small home celebration or a large birthday party, decorations can be customized according to the age, theme, location, and budget.</p>\n\n<h3>Popular Birthday Decoration Ideas</h3>\n\n<h3>1. Balloon Decorations</h3>\n\n<p>Balloons are one of the most popular choices for birthday parties. They are affordable, colorful, and available in different shapes, sizes, and designs.</p>\n\n<h3>Some popular balloon decoration options include:</h3>\n\n<ul>\n  <li>Balloon arches</li>\n  <li>Balloon garlands</li>\n  <li>Balloon bouquets</li>\n  <li>Number balloons</li>\n  <li>Foil balloons</li>\n  <li>Ceiling balloon decorations</li>\n  <li>Balloon walls</li>\n</ul>\n\n<p>You can choose balloon colors according to the birthday theme or the favorite colors of the birthday person.</p>\n\n<h3>2. Birthday Backdrop Decoration</h3>\n\n<p>A beautiful backdrop can become the main attraction of a birthday party. It also creates an excellent area for taking photographs.</p>\n\n<h3>Backdrops can include:</h3>\n\n<ul>\n  <li>Fabric curtains</li>\n  <li>Flower walls</li>\n  <li>Balloon arrangements</li>\n  <li>LED lights</li>\n  <li>Customized birthday banners</li>\n  <li>Name boards</li>\n  <li>Photo frames</li>\n  <li>Themed decorations</li>\n</ul>\n\n<p>A personalized backdrop with the birthday person&amp;#039;s name and age can make the celebration feel more special.</p>\n\n<h3>3. Theme-Based Birthday Decoration</h3>\n\n<p>Theme-based decorations are especially popular for children&amp;#039;s birthdays. The entire decoration can be designed around a particular character, color, hobby, or concept.</p>\n\n<h3>Popular birthday themes include:</h3>\n\n<ul>\n  <li>Cartoon themes</li>\n  <li>Superhero themes</li>\n  <li>Princess themes</li>\n  <li>Jungle themes</li>\n  <li>Space themes</li>\n  <li>Cars and racing themes</li>\n  <li>Unicorn themes</li>\n  <li>Football themes</li>\n  <li>Dinosaur themes</li>\n  <li>Fairy-tale themes</li>\n</ul>\n\n<p>For adults, elegant themes such as black and gold, pastel, floral, luxury, or minimalistic designs can create a stylish atmosphere.</p>\n\n<h3>4. Birthday Table Decoration</h3>\n\n<p>The cake table is one of the most important parts of a birthday celebration. Decorating the cake table beautifully can make the entire setup look more attractive.</p>\n\n<h3>You can decorate the table with:</h3>\n\n<ul>\n  <li>Birthday cake</li>\n  <li>Flowers</li>\n  <li>Small balloons</li>\n  <li>Candles</li>\n  <li>Cake stands</li>\n  <li>LED lights</li>\n  <li>Personalized name plates</li>\n  <li>Decorative props</li>\n  <li>Confetti</li>\n</ul>\n\n<p>The table decoration should match the overall birthday theme for a coordinated look.</p>\n\n<h3>5. Flower Decorations</h3>\n\n<p>Flowers can give birthday decorations a fresh and elegant appearance. Fresh flowers as well as artificial flowers can be used depending on the budget and decoration style.</p>\n\n<p>Popular choices include roses, lilies, baby&amp;#039;s breath, orchids, and other decorative flowers. Flower arrangements can be used for backdrops, tables, entrances, and photo areas.</p>\n\n<h3>6. LED and Light Decorations</h3>\n\n<p>Lighting can dramatically change the appearance of a birthday venue, especially for evening celebrations.</p>\n\n<h3>Popular lighting options include:</h3>\n\n<ul>\n  <li>Fairy lights</li>\n  <li>LED strips</li>\n  <li>Curtain lights</li>\n  <li>Neon signs</li>\n  <li>Decorative lamps</li>\n  <li>Warm white lights</li>\n  <li>Customized LED name signs</li>\n</ul>\n\n<p>Lights can be combined with balloons and backdrops to create a beautiful party environment.</p>\n\n<h3>Birthday Decoration for Kids</h3>\n\n<p>Children usually enjoy colorful and playful decorations. Bright balloons, cartoon characters, themed backdrops, colorful banners, and fun props can make the celebration exciting.</p>\n\n<p>When decorating a children&amp;#039;s birthday party, choose a theme based on the child&amp;#039;s interests. A favorite cartoon character, superhero, animal, sport, or hobby can become the central theme.</p>\n\n<h3>Birthday Decoration for Adults</h3>\n\n<p>Adult birthday celebrations often focus on elegant and stylish decoration. Instead of using too many colors, you can choose a simple color combination and add sophisticated decorative elements.</p>\n\n<h3>Popular combinations include:</h3>\n\n<ul>\n  <li>Black and gold</li>\n  <li>White and gold</li>\n  <li>Silver and white</li>\n  <li>Pink and white</li>\n  <li>Pastel colors</li>\n  <li>Black and silver</li>\n</ul>\n\n<p>Personalized neon signs, flowers, candles, balloons, and elegant backdrops can create a premium look.</p>\n\n<h3>Home Birthday Decoration Ideas</h3>\n\n<p>You don&amp;#039;t need a large venue to create a beautiful birthday celebration. A small area at home can be transformed using balloons, fairy lights, banners, and a customized backdrop.</p>\n\n<h3>For a simple home birthday setup, you can use:</h3>\n\n<h3>1. A balloon arch</h3>\n\n<h3>2. A birthday banner</h3>\n\n<h3>3. A cake table</h3>\n\n<h3>4. Fairy lights</h3>\n\n<h3>5. A personalized backdrop</h3>\n\n<h3>6. Flowers or decorative props</h3>\n\n<p>With proper arrangement, even a small room can look attractive and photo-friendly.</p>\n\n<h3>Budget-Friendly Birthday Decorations</h3>\n\n<p>A beautiful birthday decoration does not always require a large budget. Simple decorations can create an impressive result when they are arranged creatively.</p>\n\n<h3>Some affordable ideas include:</h3>\n\n<ul>\n  <li>DIY balloon garlands</li>\n  <li>Paper decorations</li>\n  <li>Handmade banners</li>\n  <li>Fairy lights</li>\n  <li>Simple flower arrangements</li>\n  <li>Photo collages</li>\n  <li>Customized printed decorations</li>\n  <li>Reusable decorative props</li>\n</ul>\n\n<p>Planning the decoration in advance can also help control costs.</p>\n\n<h3>How to Choose the Right Birthday Decoration</h3>\n\n<p>Before selecting a decoration, consider the following factors:</p>\n\n<p>**Birthday Person:** Choose a design that matches their age, personality, and interests.</p>\n\n<p>**Theme:** Select a theme and maintain consistent colors and decorations throughout the venue.</p>\n\n<p>**Venue:** Consider the available space before choosing large backdrops or balloon arrangements.</p>\n\n<p>**Budget:** Decide your budget first and select decorations accordingly.</p>\n\n<p>**Photography:** Create a dedicated photo area with an attractive backdrop so guests can capture memorable moments.</p>\n\n<h3>Conclusion</h3>\n\n<p>Birthday decorations play an important role in creating a joyful and memorable celebration. Whether you prefer a simple home setup, a colorful children&amp;#039;s theme, or an elegant birthday arrangement for adults, there are countless decoration options available.</p>\n\n<p>The key is to choose a theme that matches the birthday person&amp;#039;s personality and create a balanced combination of **balloons, backdrops, flowers, lights, and personalized decorations**. With a little creativity and planning, you can turn any space into a beautiful birthday celebration venue.</p>",
       "featured": false
@@ -10631,13 +11640,26 @@ const SITE_DATA = {
     ]
   },
   "blogFeatures": [
-    { "icon": "🔒", "title": "Secure Payments", "desc": "Safe & encrypted transactions" },
-    { "icon": "🚚", "title": "Pan-India Delivery", "desc": "Serving 50+ cities nationwide" },
-    { "icon": "💬", "title": "Dedicated Support", "desc": "Expert help 10 AM - 7 PM" }
-  ]
-,
+    {
+      "icon": "🔒",
+      "title": "Secure Payments",
+      "desc": "Safe & encrypted transactions"
+    },
+    {
+      "icon": "🚚",
+      "title": "Pan-India Delivery",
+      "desc": "Serving 50+ cities nationwide"
+    },
+    {
+      "icon": "💬",
+      "title": "Dedicated Support",
+      "desc": "Expert help 10 AM - 7 PM"
+    }
+  ],
   "deletedItems": {
-    "products": [],
+    "products": [
+      "boho-theme-birthday-decoration"
+    ],
     "blogs": [
       "ultimate-2026-home-party-decoration-guide",
       "helium-vs-air-filled-balloons-comparison",

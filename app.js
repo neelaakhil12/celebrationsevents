@@ -148,6 +148,10 @@ document.addEventListener("DOMContentLoaded", () => {
       try { if (typeof initWeddingServicesPage === 'function') initWeddingServicesPage(); } catch(e){}
       try { if (typeof initPackagePage === 'function') initPackagePage(); } catch(e){}
       try { if (typeof renderPageBanners === 'function') renderPageBanners(); } catch(e){}
+      try { if (typeof initDynamicCategoryPage === 'function') initDynamicCategoryPage(); } catch(e){}
+      try { if (typeof initMarketplace === 'function') initMarketplace(); } catch(e){}
+      try { if (typeof renderMarketplaceGifts === 'function') renderMarketplaceGifts(); } catch(e){}
+      try { if (typeof renderGiftSubcategories === 'function') renderGiftSubcategories(); } catch(e){}
       try { window.dispatchEvent(new CustomEvent('celebration:data-updated')); } catch(e){}
     }
 

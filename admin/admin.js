@@ -1248,6 +1248,8 @@
     // 3. Supabase Cloud Sync (Instant cross-device & Vercel sync)
     if (supabase) {
       try {
+        const syncPromises = [];
+
         // Sync subcategories mapping
         const subcatMap = {};
         appState.categories.forEach(c => {
@@ -1255,15 +1257,17 @@
             subcatMap[c.id] = c.subcategories;
           }
         });
-        supabase.from('categories').upsert({
-          id: '__site_subcategories__',
-          name: 'Global Subcategories Mapping',
-          image: 'https://cdn.balloondekor.com/33/birthday-decoration-d67f374a-0151-409d-96ea-36e9527e0ffc.webp',
-          desc: JSON.stringify(subcatMap)
-        }).then(({ error }) => {
-          if (!error) console.log('Subcategories synced to Supabase Cloud');
-          else console.warn('Supabase subcategories sync warning:', error);
-        });
+        syncPromises.push(
+          supabase.from('categories').upsert({
+            id: '__site_subcategories__',
+            name: 'Global Subcategories Mapping',
+            image: 'https://cdn.balloondekor.com/33/birthday-decoration-d67f374a-0151-409d-96ea-36e9527e0ffc.webp',
+            desc: JSON.stringify(subcatMap)
+          }).then(({ error }) => {
+            if (!error) console.log('Subcategories synced to Supabase Cloud');
+            else console.warn('Supabase subcategories sync warning:', error);
+          })
+        );
 
         // Sync extended package details (faqs, addons, notIncluded, notes, etc.)
         const pkgDetailsMap = {};
@@ -1296,51 +1300,59 @@
             };
           }
         });
-        supabase.from('categories').upsert({
-          id: '__site_package_details__',
-          name: 'Global Package Extended Details',
-          image: 'https://images.unsplash.com/photo-1530103862676-de8c9debad1d',
-          desc: JSON.stringify(pkgDetailsMap)
-        }).then(({ error }) => {
-          if (!error) console.log('Package extended details synced to Supabase Cloud');
-          else console.warn('Supabase details sync warning:', error);
-        });
+        syncPromises.push(
+          supabase.from('categories').upsert({
+            id: '__site_package_details__',
+            name: 'Global Package Extended Details',
+            image: 'https://images.unsplash.com/photo-1530103862676-de8c9debad1d',
+            desc: JSON.stringify(pkgDetailsMap)
+          }).then(({ error }) => {
+            if (!error) console.log('Package extended details synced to Supabase Cloud');
+            else console.warn('Supabase details sync warning:', error);
+          })
+        );
 
         // Sync wedding services & configs to Supabase Cloud
         if (window.SITE_DATA?.weddingServices) {
-          supabase.from('categories').upsert({
-            id: '__site_wedding_services__',
-            name: 'Global Wedding Services List',
-            image: 'https://images.unsplash.com/photo-1519741497674-611481863552',
-            desc: JSON.stringify(window.SITE_DATA.weddingServices)
-          }).then(({ error }) => {
-            if (!error) console.log('Wedding services synced to Supabase Cloud');
-            else console.warn('Supabase wedding services sync warning:', error);
-          });
+          syncPromises.push(
+            supabase.from('categories').upsert({
+              id: '__site_wedding_services__',
+              name: 'Global Wedding Services List',
+              image: 'https://images.unsplash.com/photo-1519741497674-611481863552',
+              desc: JSON.stringify(window.SITE_DATA.weddingServices)
+            }).then(({ error }) => {
+              if (!error) console.log('Wedding services synced to Supabase Cloud');
+              else console.warn('Supabase wedding services sync warning:', error);
+            })
+          );
         }
 
         if (window.SITE_DATA?.weddingConfigs) {
-          supabase.from('categories').upsert({
-            id: '__site_wedding_configs__',
-            name: 'Global Wedding Configs & Options',
-            image: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed',
-            desc: JSON.stringify(window.SITE_DATA.weddingConfigs)
-          }).then(({ error }) => {
-            if (!error) console.log('Wedding configs synced to Supabase Cloud');
-            else console.warn('Supabase wedding configs sync warning:', error);
-          });
+          syncPromises.push(
+            supabase.from('categories').upsert({
+              id: '__site_wedding_configs__',
+              name: 'Global Wedding Configs & Options',
+              image: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed',
+              desc: JSON.stringify(window.SITE_DATA.weddingConfigs)
+            }).then(({ error }) => {
+              if (!error) console.log('Wedding configs synced to Supabase Cloud');
+              else console.warn('Supabase wedding configs sync warning:', error);
+            })
+          );
         }
 
         if (Array.isArray(appState.banners) && appState.banners.length > 0) {
-          supabase.from('categories').upsert({
-            id: '__site_banners__',
-            name: 'Site Banners Configuration',
-            image: '',
-            desc: JSON.stringify(appState.banners)
-          }).then(({ error }) => {
-            if (!error) console.log('Site banners synced to Supabase Cloud');
-            else console.warn('Supabase site banners sync warning:', error);
-          });
+          syncPromises.push(
+            supabase.from('categories').upsert({
+              id: '__site_banners__',
+              name: 'Site Banners Configuration',
+              image: '',
+              desc: JSON.stringify(appState.banners)
+            }).then(({ error }) => {
+              if (!error) console.log('Site banners synced to Supabase Cloud');
+              else console.warn('Supabase site banners sync warning:', error);
+            })
+          );
         }
 
         const catRows = appState.categories
@@ -1353,14 +1365,19 @@
             image: c.image,
             desc: c.desc || ''
           }));
-        supabase.from('categories').upsert(catRows).then(({ error }) => {
-          if (!error) console.log('Categories synced to Supabase Cloud');
-        });
+        syncPromises.push(
+          supabase.from('categories').upsert(catRows).then(({ error }) => {
+            if (!error) console.log('Categories synced to Supabase Cloud');
+          })
+        );
+
+        await Promise.allSettled(syncPromises);
       } catch (err) {
         console.warn('Supabase sync warning in commitData:', err);
       }
     }
 
+    try { window.dispatchEvent(new CustomEvent('celebration:data-updated')); } catch(e){}
     refreshAll();
     if (message) showToast(message, 'success');
   }

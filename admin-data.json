@@ -471,6 +471,67 @@
   ],
   "products": [
     {
+      "id": "gift-teddy-babyu",
+      "title": "teddy babyu",
+      "category": "gifts",
+      "category_name": "Gift Marketplace",
+      "categoryName": "Gift Marketplace",
+      "subcategory": "boys",
+      "badge": "Best Gift",
+      "price": 1500,
+      "original_price": 2000,
+      "originalPrice": 2000,
+      "discount": 25,
+      "rating": 4.8,
+      "reviews_count": 150,
+      "reviewsCount": 150,
+      "boughtText": "250+ bought in last month",
+      "image": "https://res.cloudinary.com/gu0q1mxy/image/upload/v1791473251/celebration_gifts/zknzmgqd1ax98gp1k2jg.png",
+      "gallery": [
+        "https://res.cloudinary.com/gu0q1mxy/image/upload/v1791473251/celebration_gifts/zknzmgqd1ax98gp1k2jg.png"
+      ],
+      "material": "dWAESRDTHFYGJH",
+      "dimensions": "SAdfG",
+      "color": "SaDFGNH",
+      "recommendedAge": "SAdwefrsgdth",
+      "washCare": "sawesrdthfyg",
+      "packaging": "sADFGM",
+      "specs": {
+        "material": "dWAESRDTHFYGJH",
+        "dimensions": "SAdfG",
+        "color": "SaDFGNH",
+        "recommendedAge": "SAdwefrsgdth",
+        "washCare": "sawesrdthfyg",
+        "packaging": "sADFGM"
+      },
+      "subtitle": "teddy babyu",
+      "description": "teddy babyu",
+      "aboutDescription": "teddy babyu",
+      "about_description": "teddy babyu",
+      "deliveryNote": "Same Day Delivery: Get it delivered in 2 to 4 hours at your location.",
+      "delivery_note": "Same Day Delivery: Get it delivered in 2 to 4 hours at your location.",
+      "highlights": [
+        "Handcrafted luxury gift presentation",
+        "Tested safe and child-friendly components",
+        "Includes personalized greeting message card"
+      ],
+      "inclusions": [
+        "Handcrafted luxury gift presentation",
+        "Tested safe and child-friendly components",
+        "Includes personalized greeting message card"
+      ],
+      "whyChoose": [
+        "Premium quality guaranteed",
+        "Safe shockproof packaging",
+        "Express same day delivery in 2 to 4 hours"
+      ],
+      "tags": [
+        "Gift Marketplace",
+        "boys",
+        "subcat:boys"
+      ]
+    },
+    {
       "id": "happ-birthday-harish",
       "title": "happ birthday harish",
       "category": "birthday",
@@ -9966,7 +10027,7 @@
       "popular": false
     }
   ],
-  "updatedAt": "2026-10-08T15:18:20.147Z",
+  "updatedAt": "2026-10-08T15:27:52.238Z",
   "blogFeatures": [
     {
       "icon": "🔒",

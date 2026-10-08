@@ -61,6 +61,28 @@ function getAdminData() {
 function saveAdminData(data) {
   const dataFilePath = path.join(ROOT_DIR, 'admin-data.json');
   fs.writeFileSync(dataFilePath, JSON.stringify(data, null, 2), 'utf-8');
+
+  // Also sync to data.js so local dev and Vercel git deploys are 100% in sync
+  try {
+    const dataJsPath = path.join(ROOT_DIR, 'data.js');
+    if (fs.existsSync(dataJsPath)) {
+      let currentSiteData = {};
+      try {
+        const fileContent = fs.readFileSync(dataJsPath, 'utf-8');
+        const match = fileContent.match(/const\s+SITE_DATA\s*=\s*(\{[\s\S]*?\});?\s*(?:if\s*\(typeof|$)/);
+        if (match) {
+          currentSiteData = JSON.parse(match[1]);
+        }
+      } catch (e) {}
+
+      const merged = { ...currentSiteData, ...data };
+      if (data.announcement) merged.announcementBar = data.announcement;
+      const outputCode = `const SITE_DATA = ${JSON.stringify(merged, null, 2)};\n\nif (typeof window !== "undefined") {\n  window.SITE_DATA = SITE_DATA;\n}\n\nif (typeof module !== "undefined" && module.exports) {\n  module.exports = SITE_DATA;\n}\n`;
+      fs.writeFileSync(dataJsPath, outputCode, 'utf-8');
+    }
+  } catch (err) {
+    console.warn('Could not sync data.js:', err.message);
+  }
 }
 
 const DEFAULT_ADMIN_EMAIL = (process.env.ADMIN_EMAIL || process.env.SMTP_USER || 'kishorek80192@gmail.com').toLowerCase().trim();
