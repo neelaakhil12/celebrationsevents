@@ -81,6 +81,7 @@ CREATE TABLE IF NOT EXISTS public.products (
     color_palettes JSONB DEFAULT '[]'::jsonb,
     tags JSONB DEFAULT '[]'::jsonb,
     why_choose JSONB DEFAULT NULL,
+    options JSONB DEFAULT '[]'::jsonb,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL,
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL
 );
@@ -97,6 +98,8 @@ ALTER TABLE public.products ADD COLUMN IF NOT EXISTS decorator_note TEXT;
 ALTER TABLE public.products ADD COLUMN IF NOT EXISTS lifespan_note TEXT;
 ALTER TABLE public.products ADD COLUMN IF NOT EXISTS location_note TEXT;
 ALTER TABLE public.products ADD COLUMN IF NOT EXISTS color_palettes JSONB DEFAULT '[]'::jsonb;
+ALTER TABLE public.products ADD COLUMN IF NOT EXISTS options JSONB DEFAULT '[]'::jsonb;
+ALTER TABLE public.products ADD COLUMN IF NOT EXISTS why_choose JSONB DEFAULT NULL;
 
 -- ------------------------------------------------------------------------------
 -- 5. Enable Row Level Security (RLS)

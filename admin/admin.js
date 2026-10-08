@@ -1112,7 +1112,8 @@
               locationNote: p.locationNote || '',
               colorPalettes: p.colorPalettes || [],
               slotsAlert: p.slotsAlert || '',
-              whyChoose: p.whyChoose || DEFAULT_WHY_CHOOSE
+              whyChoose: p.whyChoose || DEFAULT_WHY_CHOOSE,
+              options: p.options || []
             };
           }
         });
@@ -1125,6 +1126,19 @@
           if (!error) console.log('Package extended details synced to Supabase Cloud');
           else console.warn('Supabase details sync warning:', error);
         });
+
+        // Sync wedding configs & options to Supabase Cloud
+        if (window.SITE_DATA?.weddingConfigs) {
+          supabase.from('categories').upsert({
+            id: '__site_wedding_configs__',
+            name: 'Global Wedding Configs & Options',
+            image: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed',
+            desc: JSON.stringify(window.SITE_DATA.weddingConfigs)
+          }).then(({ error }) => {
+            if (!error) console.log('Wedding configs synced to Supabase Cloud');
+            else console.warn('Supabase wedding configs sync warning:', error);
+          });
+        }
 
         const catRows = appState.categories
           .filter(c => c.id !== '__site_subcategories__' && c.id !== '__site_package_details__')
