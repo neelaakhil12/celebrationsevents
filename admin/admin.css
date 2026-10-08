@@ -2033,8 +2033,9 @@ body {
   overflow-y: auto;
 }
 
-.modal-backdrop.active {
-  display: flex;
+.modal-backdrop.active,
+#giftModal.active {
+  display: flex !important;
 }
 
 .modal-dialog {

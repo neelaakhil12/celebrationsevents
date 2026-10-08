@@ -4279,6 +4279,7 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
   function closeAllModals() {
     document.querySelectorAll('.modal-backdrop').forEach(modal => {
       modal.classList.remove('active');
+      modal.style.display = '';
     });
   }
 
@@ -6699,6 +6700,8 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
         return;
       }
 
+      modal.classList.add('active');
+      modal.style.display = 'flex';
       switchGiftTab('core');
 
       // Populate subcategories dropdown
