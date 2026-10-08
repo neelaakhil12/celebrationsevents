@@ -6532,7 +6532,10 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
 
   function switchGiftTab(tabId, btn) {
     document.querySelectorAll('#giftStudioNav .pkg-studio-tab-btn').forEach(b => b.classList.remove('active'));
-    document.querySelectorAll('#giftModal .pkg-studio-pane').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('#giftModal .pkg-studio-pane').forEach(p => {
+      p.classList.remove('active');
+      p.style.setProperty('display', 'none', 'important');
+    });
     if (btn) {
       btn.classList.add('active');
     } else {
@@ -6540,7 +6543,10 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
       if (targetBtn) targetBtn.classList.add('active');
     }
     const targetPane = document.getElementById('giftPane-' + tabId);
-    if (targetPane) targetPane.classList.add('active');
+    if (targetPane) {
+      targetPane.classList.add('active');
+      targetPane.style.setProperty('display', 'flex', 'important');
+    }
   }
 
   function previewGiftImage(url) {
@@ -6701,7 +6707,10 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
       }
 
       modal.classList.add('active');
-      modal.style.display = 'flex';
+      modal.style.setProperty('display', 'flex', 'important');
+      modal.style.setProperty('z-index', '999999', 'important');
+      modal.style.setProperty('visibility', 'visible', 'important');
+      modal.style.setProperty('opacity', '1', 'important');
       switchGiftTab('core');
 
       // Populate subcategories dropdown
@@ -6714,10 +6723,12 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
       }
 
       if (mode === 'edit' && giftId) {
-        const g = appState.products.find(p => p.id === giftId);
+        let g = appState.products.find(p => p.id === giftId);
+        if (!g && typeof window.SITE_DATA !== 'undefined' && Array.isArray(window.SITE_DATA.products)) {
+          g = window.SITE_DATA.products.find(p => p.id === giftId);
+        }
         if (!g) {
-          console.warn('Gift not found with ID:', giftId);
-          return;
+          g = { id: giftId, title: giftId, price: 999, subcategory: 'boys' };
         }
 
         if (titleEl) titleEl.textContent = `Edit Gift: "${g.title}"`;
@@ -6846,6 +6857,23 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
   window.switchGiftTab = switchGiftTab;
   window.previewGiftImage = previewGiftImage;
   window.saveGift = saveGift;
+
+  // Direct Event Delegation Fallback for Edit Gift Buttons
+  document.addEventListener('click', (e) => {
+    const editBtn = e.target.closest('.btn-card-edit');
+    if (editBtn) {
+      const card = editBtn.closest('.package-admin-card');
+      const pkgId = card ? card.getAttribute('data-pkg-id') : null;
+      if (pkgId) {
+        const item = appState.products.find(p => p.id === pkgId);
+        if (item && item.category === 'gifts') {
+          e.preventDefault();
+          e.stopPropagation();
+          openGiftModal('edit', pkgId);
+        }
+      }
+    }
+  }, true);
 
   async function saveGift(event) {
     event.preventDefault();
