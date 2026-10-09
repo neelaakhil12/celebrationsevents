@@ -7689,46 +7689,59 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
           slugInput.value = '';
           slugInput.readOnly = false;
         }
+        const priceEl = document.getElementById('giftPrice');
+        if (priceEl) priceEl.value = '';
+        const origPriceEl = document.getElementById('giftOriginalPrice');
+        if (origPriceEl) origPriceEl.value = '';
         const ratingEl = document.getElementById('giftRating');
-        if (ratingEl) ratingEl.value = '4.8';
+        if (ratingEl) ratingEl.value = '';
         const revCountEl = document.getElementById('giftReviewsCount');
-        if (revCountEl) revCountEl.value = '150';
+        if (revCountEl) revCountEl.value = '';
         const boughtEl = document.getElementById('giftBoughtText');
-        if (boughtEl) boughtEl.value = '250+ bought in last month';
+        if (boughtEl) boughtEl.value = '';
         const delNoteEl = document.getElementById('giftDeliveryNote');
-        if (delNoteEl) delNoteEl.value = 'Same Day Delivery: Get it delivered in 2 to 4 hours at your location.';
+        if (delNoteEl) delNoteEl.value = '';
         const badgeEl = document.getElementById('giftBadge');
-        if (badgeEl) badgeEl.value = 'Best Gift';
+        if (badgeEl) badgeEl.value = '';
         const prevWrap = document.getElementById('giftImagePreviewWrap');
         if (prevWrap) prevWrap.style.display = 'none';
 
         currentGiftGallery = [];
         renderGiftGalleryInputs();
-        currentGiftHighlights = [
-          "Handcrafted luxury gift presentation",
-          "Tested safe and child-friendly components",
-          "Includes personalized greeting message card"
-        ];
+        currentGiftHighlights = [];
         renderGiftHighlightsInputs();
-        currentGiftWhy = [
-          "Premium quality guaranteed",
-          "Safe shockproof packaging",
-          "Express same day delivery in 2 to 4 hours"
-        ];
+        currentGiftWhy = [];
         renderGiftWhyInputs();
 
-        // Standard Delivery & Returns Defaults
-        fillStandardDeliveryTemplate('express');
-        fillStandardDeliveryTemplate('return');
+        // Clear Delivery & Returns
+        const expTitle = document.getElementById('giftDelivExpressTitle');
+        if (expTitle) expTitle.value = '';
+        const expText = document.getElementById('giftDelivExpressText');
+        if (expText) expText.value = '';
+        const cutoffEl = document.getElementById('giftDelivCutoff');
+        if (cutoffEl) cutoffEl.value = '';
+        const speedEl = document.getElementById('giftDelivSpeed');
+        if (speedEl) speedEl.value = '';
+        const citiesEl = document.getElementById('giftDelivCities');
+        if (citiesEl) citiesEl.value = '';
+        const retTitle = document.getElementById('giftDelivReturnTitle');
+        if (retTitle) retTitle.value = '';
+        const retText = document.getElementById('giftDelivReturnText');
+        if (retText) retText.value = '';
+        const retDays = document.getElementById('giftDelivReturnDays');
+        if (retDays) retDays.value = '';
+        const waEl = document.getElementById('giftDelivWhatsApp');
+        if (waEl) waEl.value = '';
 
-        // Customer Reviews Defaults
+        // Clear Customer Reviews
         const revScoreEl = document.getElementById('giftReviewsScore');
-        if (revScoreEl) revScoreEl.value = '4.8';
+        if (revScoreEl) revScoreEl.value = '';
         const revVerCountEl = document.getElementById('giftReviewsVerifiedCount');
-        if (revVerCountEl) revVerCountEl.value = '320';
+        if (revVerCountEl) revVerCountEl.value = '';
         const revSubEl = document.getElementById('giftReviewsSubtext');
-        if (revSubEl) revSubEl.value = 'Based on 320 verified customer reviews';
-        populateSampleGiftReviews();
+        if (revSubEl) revSubEl.value = '';
+        currentGiftReviewsList = [];
+        renderGiftReviewsList();
 
         // Auto slug generator from title
         const titleInput = document.getElementById('giftTitle');
