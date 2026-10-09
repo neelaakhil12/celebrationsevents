@@ -750,6 +750,7 @@ document.addEventListener("DOMContentLoaded", () => {
   try { scrollActiveNavIntoView(); } catch(e){}
   try { initNavHorizontalScroll(); } catch(e){}
   try { updateUserAuthHeader(); } catch(e){}
+  try { checkAutoCityPrompt(); } catch(e){}
 
   setTimeout(() => {
     if (typeof AOS !== "undefined") AOS.refresh();
@@ -802,62 +803,345 @@ function setupEventListeners() {
 }
 
 // ----------------------------------------------------
-// City Management
+// City Management & Service Coverage
 // ----------------------------------------------------
+function escapeCityHtml(str) {
+  if (!str) return "";
+  return String(str)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
+function getOperationalCities() {
+  let list = [];
+  try {
+    const custom = localStorage.getItem("celebration_custom_cities");
+    if (custom) {
+      const parsed = JSON.parse(custom);
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        list = parsed;
+      }
+    }
+  } catch(e){}
+
+  if (!list.length && typeof SITE_DATA !== "undefined" && Array.isArray(SITE_DATA.cities) && SITE_DATA.cities.length > 0) {
+    list = SITE_DATA.cities;
+  }
+
+  // Ensure default fallback list if empty
+  if (!list.length) {
+    list = [
+      { id: "delhi", name: "Delhi NCR", state: "Delhi", popular: true },
+      { id: "mumbai", name: "Mumbai", state: "Maharashtra", popular: true },
+      { id: "bangalore", name: "Bangalore", state: "Karnataka", popular: true },
+      { id: "hyderabad", name: "Hyderabad", state: "Telangana", popular: true },
+      { id: "pune", name: "Pune", state: "Maharashtra", popular: true },
+      { id: "kolkata", name: "Kolkata", state: "West Bengal", popular: true },
+      { id: "chennai", name: "Chennai", state: "Tamil Nadu", popular: true },
+      { id: "ahmedabad", name: "Ahmedabad", state: "Gujarat", popular: true },
+      { id: "jaipur", name: "Jaipur", state: "Rajasthan", popular: true },
+      { id: "gurgaon", name: "Gurgaon", state: "Haryana", popular: true },
+      { id: "noida", name: "Noida", state: "Uttar Pradesh", popular: true },
+      { id: "chandigarh", name: "Chandigarh", state: "Punjab", popular: true },
+      { id: "lucknow", name: "Lucknow", state: "Uttar Pradesh", popular: false },
+      { id: "surat", name: "Surat", state: "Gujarat", popular: false },
+      { id: "kochi", name: "Kochi", state: "Kerala", popular: false },
+      { id: "hasthinapuram", name: "hasthinapuram", state: "TELANAGANA", popular: false }
+    ];
+  }
+  return list;
+}
+
 function initCity() {
+  const city = appState.selectedCity || localStorage.getItem("balloondekor_city") || "Delhi NCR";
+  appState.selectedCity = city;
+
   const cityNameEl = document.getElementById("headerCityName");
   const mobileCityText = document.getElementById("mobileCityText");
-  if (cityNameEl) cityNameEl.textContent = appState.selectedCity;
-  if (mobileCityText) mobileCityText.textContent = appState.selectedCity;
+  const modalDeliveringCity = document.getElementById("modalDeliveringCity");
+  const currentCityDisplay = document.getElementById("currentCityDisplay");
+  const qdocCity = document.getElementById("qdocCity");
+
+  if (cityNameEl) cityNameEl.textContent = city;
+  if (mobileCityText) mobileCityText.textContent = city;
+  if (modalDeliveringCity) modalDeliveringCity.textContent = city;
+  if (currentCityDisplay) currentCityDisplay.textContent = city;
+  if (qdocCity) qdocCity.textContent = city;
+
+  document.querySelectorAll("[data-city-display], .js-selected-city-text").forEach(el => {
+    el.textContent = city;
+  });
+}
+
+function ensureCityModalStructure() {
+  const overlay = document.getElementById("cityModalOverlay");
+  if (!overlay) return null;
+
+  // If already structured with modern layout, return
+  if (overlay.querySelector(".city-selector-modal-box")) {
+    return overlay;
+  }
+
+  overlay.innerHTML = `
+    <div class="city-selector-modal-box" onclick="event.stopPropagation()">
+      <div class="city-modal-header">
+        <div class="city-modal-title-wrap">
+          <div class="city-modal-badge">
+            <span class="city-badge-dot"></span>
+            <span>SERVICE COVERAGE</span>
+          </div>
+          <h3 class="city-modal-heading">Select Your Delivery City</h3>
+          <p class="city-modal-subtitle">Choose your location to check same-day decorator availability</p>
+        </div>
+        <button type="button" class="city-modal-close-btn" onclick="closeCityModal()" aria-label="Close dialog">&times;</button>
+      </div>
+
+      <div class="city-modal-scroll-body">
+        <!-- Service Notice Banner: Informs users of admin-authorized locations -->
+        <div class="city-service-notice-banner">
+          <div class="notice-icon">🎈</div>
+          <div class="notice-content">
+            <strong>Authorized Celebration Events Locations:</strong>
+            <p>Celebration Events operates exclusively in the authorized operational cities listed below. Please select your city to view available decorator slots & exact package pricing.</p>
+          </div>
+        </div>
+
+        <!-- Real-time search box -->
+        <div class="city-search-box-wrap">
+          <svg class="city-search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+          <input type="text" id="cityModalSearchInput" class="city-search-input" placeholder="Search your city (e.g. Delhi NCR, Mumbai, Hyderabad, Pune)..." oninput="filterCities(this.value)" autocomplete="off" />
+          <button type="button" id="citySearchClearBtn" class="city-search-clear" onclick="clearCitySearch()" style="display: none;" title="Clear search">&times;</button>
+        </div>
+
+        <!-- Dynamic Content Area -->
+        <div id="cityModalContentWrap"></div>
+
+        <div class="city-modal-footer-note">
+          <span>⚡ Express 2-Hour Setup</span>
+          <span>•</span>
+          <span>🔒 100% On-Time Guarantee</span>
+          <span>•</span>
+          <span>🛡️ Verified Local Technicians</span>
+        </div>
+      </div>
+    </div>
+  `;
+
+  // Close when clicking directly on overlay backdrop
+  overlay.onclick = function(e) {
+    if (e.target === overlay) {
+      closeCityModal();
+    }
+  };
+
+  return overlay;
+}
+
+function renderCityCard(city, currentCity) {
+  const cityName = city.name || "";
+  const isSelected = cityName.trim().toLowerCase() === currentCity || (city.id && city.id.toLowerCase() === currentCity);
+  const idOrName = city.id || cityName;
+
+  return `
+    <button type="button" class="city-card-btn ${isSelected ? 'selected' : ''}" onclick="selectCity('${escapeCityHtml(idOrName)}')">
+      <span class="city-card-icon">📍</span>
+      <div class="city-card-info">
+        <span class="city-card-name">${escapeCityHtml(cityName)}</span>
+        ${city.state ? `<span class="city-card-state">${escapeCityHtml(city.state)}</span>` : ''}
+      </div>
+      ${isSelected ? `<span class="city-card-badge">✓ Selected</span>` : ''}
+    </button>
+  `;
+}
+
+function renderCitiesList(query = "") {
+  ensureCityModalStructure();
+  const contentWrap = document.getElementById("cityModalContentWrap");
+  if (!contentWrap) return;
+
+  const cities = getOperationalCities();
+  const currentCity = (appState.selectedCity || localStorage.getItem("balloondekor_city") || "Delhi NCR").trim().toLowerCase();
+  const clearBtn = document.getElementById("citySearchClearBtn");
+  const q = (query || "").trim().toLowerCase();
+
+  if (clearBtn) {
+    clearBtn.style.display = q ? "inline-flex" : "none";
+  }
+
+  if (q) {
+    // Search mode
+    const filtered = cities.filter(c => {
+      const name = (c.name || "").toLowerCase();
+      const state = (c.state || "").toLowerCase();
+      return name.includes(q) || state.includes(q);
+    });
+
+    if (filtered.length === 0) {
+      contentWrap.innerHTML = `
+        <div class="city-no-match-state">
+          <div class="no-match-icon">📍⚠️</div>
+          <h4>We do not currently serve "${escapeCityHtml(query)}"</h4>
+          <p>Celebration Events services are currently restricted exclusively to our admin-authorized locations. Please pick an authorized operational city near you.</p>
+          <button type="button" class="city-reset-btn" onclick="clearCitySearch()">Show All Operational Cities</button>
+        </div>
+      `;
+      return;
+    }
+
+    contentWrap.innerHTML = `
+      <div class="city-section-header">
+        <span>Matching Operational Locations</span>
+        <span class="city-section-count">${filtered.length} found</span>
+      </div>
+      <div class="cities-grid" id="cityListModal">
+        ${filtered.map(c => renderCityCard(c, currentCity)).join("")}
+      </div>
+    `;
+    return;
+  }
+
+  // Normal view: Popular + All operational cities
+  const popular = cities.filter(c => c.popular);
+
+  let html = "";
+
+  if (popular.length > 0) {
+    html += `
+      <div class="city-section-header">
+        <span>⭐ Top Operating Hubs</span>
+        <span class="city-section-count">${popular.length} Hubs</span>
+      </div>
+      <div class="cities-grid" id="popularCitiesGrid">
+        ${popular.map(c => renderCityCard(c, currentCity)).join("")}
+      </div>
+    `;
+  }
+
+  html += `
+    <div class="city-section-header" style="${popular.length > 0 ? 'margin-top: 20px;' : ''}">
+      <span>📍 All Operational Cities</span>
+      <span class="city-section-count">${cities.length} Cities</span>
+    </div>
+    <div class="cities-grid" id="allCitiesGrid">
+      ${cities.map(c => renderCityCard(c, currentCity)).join("")}
+    </div>
+  `;
+
+  contentWrap.innerHTML = html;
+}
+
+function filterCities(query) {
+  renderCitiesList(query);
+}
+
+function clearCitySearch() {
+  const input = document.getElementById("cityModalSearchInput");
+  if (input) {
+    input.value = "";
+    input.focus();
+  }
+  renderCitiesList("");
 }
 
 function selectCity(cityIdOrName) {
+  const cities = getOperationalCities();
   let cityName = cityIdOrName;
-  const found = SITE_DATA.cities.find(c => c.id === cityIdOrName || c.name.toLowerCase() === cityIdOrName.toLowerCase());
+  const found = cities.find(c => c.id === cityIdOrName || c.name.toLowerCase() === cityIdOrName.toLowerCase());
   if (found) cityName = found.name;
 
   appState.selectedCity = cityName;
   localStorage.setItem("balloondekor_city", cityName);
+  sessionStorage.setItem("celebration_city_session_confirmed", "true");
+
   initCity();
   closeCityModal();
   renderCitiesList();
+  renderFooterCities();
+
   showToast(`📍 Delivering to ${cityName}`);
 }
 
-function openCityModal() {
+function openCityModal(isAutoPrompt = false) {
+  ensureCityModalStructure();
   renderCitiesList();
-  document.getElementById("cityModalOverlay").classList.add("active");
+  const overlay = document.getElementById("cityModalOverlay");
+  if (overlay) {
+    overlay.classList.add("active");
+    const input = document.getElementById("cityModalSearchInput");
+    if (input && !isAutoPrompt) {
+      input.value = "";
+      setTimeout(() => input.focus(), 150);
+    }
+  }
 }
 
-function closeCityModal() {
-  document.getElementById("cityModalOverlay").classList.remove("active");
+function closeCityModal(event) {
+  if (event && event.target && event.target !== document.getElementById("cityModalOverlay") && !event.target.classList.contains("city-modal-close-btn") && !event.target.classList.contains("modal-close-btn")) {
+    return;
+  }
+  const overlay = document.getElementById("cityModalOverlay");
+  if (overlay) {
+    overlay.classList.remove("active");
+  }
+  // Record session prompt flag so page transitions in this browsing session aren't repeatedly interrupted
+  if (!sessionStorage.getItem("celebration_city_session_confirmed")) {
+    sessionStorage.setItem("celebration_city_session_confirmed", "dismissed");
+  }
 }
 
-function renderCitiesList() {
-  const container = document.getElementById("cityListModal");
-  if (!container) return;
-
-  container.innerHTML = SITE_DATA.cities.map(city => {
-    const isSelected = city.name === appState.selectedCity;
-    return `
-      <button class="city-option-btn ${isSelected ? 'selected' : ''}" onclick="selectCity('${city.id}')">
-        <span>📍</span>
-        <span>${city.name}</span>
-      </button>
-    `;
-  }).join("");
+function checkAutoCityPrompt() {
+  // Check if location was already chosen or prompted in this browsing session
+  const confirmed = sessionStorage.getItem("celebration_city_session_confirmed");
+  if (!confirmed) {
+    setTimeout(() => {
+      openCityModal(true);
+    }, 450);
+  }
 }
 
 function renderFooterCities() {
   const container = document.getElementById("footerCitiesLinks");
   if (!container) return;
 
-  container.innerHTML = SITE_DATA.cities.map(city => `
-    <a href="#" onclick="selectCity('${city.id}'); window.scrollTo({top: 0, behavior: 'smooth'}); return false;">
-      Balloon Decoration in ${city.name}
+  const cities = getOperationalCities();
+  container.innerHTML = cities.map(city => `
+    <a href="#" onclick="selectCity('${escapeCityHtml(city.id || city.name)}'); window.scrollTo({top: 0, behavior: 'smooth'}); return false;">
+      Balloon Decoration in ${escapeCityHtml(city.name)}
     </a>
   `).join("");
 }
+
+// Window global bindings for inline handlers across all category & detail pages
+window.openCityModal = openCityModal;
+window.closeCityModal = closeCityModal;
+window.selectCity = selectCity;
+window.filterCities = filterCities;
+window.handleCitySearch = filterCities;
+window.clearCitySearch = clearCitySearch;
+window.renderCitiesList = renderCitiesList;
+window.initCity = initCity;
+
+// React to admin city changes in real-time
+window.addEventListener("storage", (e) => {
+  if (e.key === "celebration_custom_cities") {
+    try {
+      const parsed = JSON.parse(e.newValue);
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        if (typeof SITE_DATA !== "undefined") SITE_DATA.cities = parsed;
+        renderCitiesList();
+        renderFooterCities();
+      }
+    } catch(err){}
+  }
+});
+window.addEventListener("celebration:data-updated", () => {
+  renderCitiesList();
+  renderFooterCities();
+  initCity();
+});
 
 // ----------------------------------------------------
 // Top Announcement Bar Dynamic Renderer
