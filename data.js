@@ -578,7 +578,14 @@ const SITE_DATA = {
       "desc": "asdfgnh",
       "created_at": "2026-10-07T09:59:54.047708+00:00",
       "updated_at": "2026-10-07T09:59:54.047708+00:00",
-      "subcategories": []
+      "subcategories": [
+        {
+          "id": "akhil-neela",
+          "name": "akhil neela",
+          "icon": "",
+          "title": "sdfgnh"
+        }
+      ]
     }
   ],
   "weddingServices": [
@@ -1496,6 +1503,235 @@ const SITE_DATA = {
     }
   ],
   "products": [
+    {
+      "id": "amma",
+      "title": "AMMA",
+      "category": "dusera",
+      "categoryName": "dusera",
+      "subcategory": "akhil-neela",
+      "price": 1999,
+      "originalPrice": 2999,
+      "discount": 33,
+      "rating": 4.5,
+      "reviewsCount": 100,
+      "badge": "",
+      "setupDuration": "3 - 4 Hours",
+      "slotsAlert": "5 SLOTS",
+      "image": "https://res.cloudinary.com/gu0q1mxy/image/upload/v1791553757/celebration-packages/ymsj4khx263vvqooljce.jpg",
+      "gallery": [
+        "https://res.cloudinary.com/gu0q1mxy/image/upload/v1791553757/celebration-packages/ymsj4khx263vvqooljce.jpg",
+        "https://res.cloudinary.com/gu0q1mxy/image/upload/v1791553749/celebration-gallery/zdo8qshcqs8wwdmkkskc.jpg"
+      ],
+      "description": "REIUOIRWERATHVJB",
+      "aboutDescription": "E23W4TE5YRUGLIHKGUYDSTREAW",
+      "about_description": "E23W4TE5YRUGLIHKGUYDSTREAW",
+      "inclusions": [
+        "HI",
+        "GELLO"
+      ],
+      "notIncluded": [
+        "AMMA",
+        "NANNA"
+      ],
+      "not_included": [
+        "AMMA",
+        "NANNA"
+      ],
+      "faqs": [
+        {
+          "q": "WHO ARE YOU",
+          "a": "AKHIL"
+        },
+        {
+          "q": "I AM HARISH",
+          "a": "AKHIL"
+        }
+      ],
+      "deliveryNote": "DAsfBCXHBSDGA",
+      "delivery_note": "DAsfBCXHBSDGA",
+      "decoratorNote": "SZFDGXHVJBNMCBXFVZD",
+      "decorator_note": "SZFDGXHVJBNMCBXFVZD",
+      "lifespanNote": "SDafHJDSFA",
+      "lifespan_note": "SDafHJDSFA",
+      "locationNote": "DSfzDSFAFGHM",
+      "location_note": "DSfzDSFAFGHM",
+      "addons": [
+        {
+          "id": "addon-1791553829075",
+          "name": "XZSCDFGBHNMJ,MH",
+          "price": 1999,
+          "badge": "POPULAR",
+          "image": "https://res.cloudinary.com/gu0q1mxy/image/upload/v1791553835/celebration-addons/zhqt8i602jiflsba1wrj.jpg"
+        }
+      ],
+      "colorPalettes": [
+        {
+          "name": "GREEN",
+          "gradient": "linear-gradient(135deg, #22c55e 50%, #bbf7d0 50%)"
+        },
+        {
+          "name": "Same as Image",
+          "gradient": "linear-gradient(135deg, #be123c 50%, #f59e0b 50%)"
+        },
+        {
+          "name": "Rose Gold & White",
+          "gradient": "linear-gradient(135deg, #ffffff 50%, #f59e0b 50%)"
+        },
+        {
+          "name": "Gold & Black",
+          "gradient": "linear-gradient(135deg, #f59e0b 50%, #0f172a 50%)"
+        },
+        {
+          "name": "Pastel Blue & White",
+          "gradient": "#3b82f6"
+        },
+        {
+          "name": "Gold & Black",
+          "gradient": "linear-gradient(135deg, #f59e0b 50%, #0f172a 50%)"
+        },
+        {
+          "name": "Pastel Blue & White",
+          "gradient": "#3b82f6"
+        },
+        {
+          "name": "Pink & Purple",
+          "gradient": "linear-gradient(135deg, #a855f7 50%, #e9d5ff 50%)"
+        },
+        {
+          "name": "Multicolors / Rainbow",
+          "gradient": "linear-gradient(135deg, #ef4444 25%, #eab308 25%, #eab308 50%, #22c55e 50%, #22c55e 75%, #3b82f6 75%)"
+        }
+      ],
+      "color_palettes": [
+        {
+          "name": "GREEN",
+          "gradient": "linear-gradient(135deg, #22c55e 50%, #bbf7d0 50%)"
+        },
+        {
+          "name": "Same as Image",
+          "gradient": "linear-gradient(135deg, #be123c 50%, #f59e0b 50%)"
+        },
+        {
+          "name": "Rose Gold & White",
+          "gradient": "linear-gradient(135deg, #ffffff 50%, #f59e0b 50%)"
+        },
+        {
+          "name": "Gold & Black",
+          "gradient": "linear-gradient(135deg, #f59e0b 50%, #0f172a 50%)"
+        },
+        {
+          "name": "Pastel Blue & White",
+          "gradient": "#3b82f6"
+        },
+        {
+          "name": "Gold & Black",
+          "gradient": "linear-gradient(135deg, #f59e0b 50%, #0f172a 50%)"
+        },
+        {
+          "name": "Pastel Blue & White",
+          "gradient": "#3b82f6"
+        },
+        {
+          "name": "Pink & Purple",
+          "gradient": "linear-gradient(135deg, #a855f7 50%, #e9d5ff 50%)"
+        },
+        {
+          "name": "Multicolors / Rainbow",
+          "gradient": "linear-gradient(135deg, #ef4444 25%, #eab308 25%, #eab308 50%, #22c55e 50%, #22c55e 75%, #3b82f6 75%)"
+        }
+      ],
+      "whyChoose": {
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "icon": "🏆",
+            "title": "India's #1 decoration brand",
+            "desc": "10L+ celebrations made special"
+          },
+          {
+            "icon": "👔",
+            "title": "Dedicated event planner",
+            "desc": "End to end assistance for your event"
+          },
+          {
+            "icon": "⚡",
+            "title": "Same-day service",
+            "desc": "Professional decorators for every setup"
+          },
+          {
+            "icon": "💯",
+            "title": "100% smile assurance",
+            "desc": "Lowest price promised"
+          }
+        ],
+        "stats": [
+          {
+            "value": "10L+",
+            "label": "Customers"
+          },
+          {
+            "value": "50+",
+            "label": "Cities"
+          },
+          {
+            "value": "4.9 ★",
+            "label": "Rating"
+          },
+          {
+            "value": "5+",
+            "label": "Years"
+          }
+        ]
+      },
+      "why_choose": {
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "icon": "🏆",
+            "title": "India's #1 decoration brand",
+            "desc": "10L+ celebrations made special"
+          },
+          {
+            "icon": "👔",
+            "title": "Dedicated event planner",
+            "desc": "End to end assistance for your event"
+          },
+          {
+            "icon": "⚡",
+            "title": "Same-day service",
+            "desc": "Professional decorators for every setup"
+          },
+          {
+            "icon": "💯",
+            "title": "100% smile assurance",
+            "desc": "Lowest price promised"
+          }
+        ],
+        "stats": [
+          {
+            "value": "10L+",
+            "label": "Customers"
+          },
+          {
+            "value": "50+",
+            "label": "Cities"
+          },
+          {
+            "value": "4.9 ★",
+            "label": "Rating"
+          },
+          {
+            "value": "5+",
+            "label": "Years"
+          }
+        ]
+      },
+      "tags": [
+        "House Decoration",
+        "Traditional Wedding",
+        "Marigold & Lights"
+      ]
+    },
     {
       "id": "happ-birthday-harish",
       "title": "happ birthday harish",
@@ -9364,206 +9600,6 @@ const SITE_DATA = {
       "bought_text": null
     },
     {
-      "id": "dj-kolatam",
-      "title": "dj & kolatam",
-      "category": "wedding",
-      "categoryName": "Wedding",
-      "badge": "traditional",
-      "image": "https://res.cloudinary.com/gu0q1mxy/image/upload/v1791452557/celebration-wedding/eai6viqtzalynpl1aive.jpg",
-      "gallery": [
-        "https://res.cloudinary.com/gu0q1mxy/image/upload/v1791452557/celebration-wedding/eai6viqtzalynpl1aive.jpg"
-      ],
-      "description": "swedrtvfugbnhijmkl",
-      "options": [
-        {
-          "id": "opt_muzclqut",
-          "image": "https://res.cloudinary.com/gu0q1mxy/image/upload/v1791452638/celebration-wedding-options/uqyuzry2pqiuuivhrv0u.jpg",
-          "title": "dj ",
-          "subItems": [
-            {
-              "name": "3 pin",
-              "price": 300,
-              "image": ""
-            },
-            {
-              "name": "5 pin",
-              "price": 7800,
-              "image": ""
-            },
-            {
-              "name": "8 pin",
-              "price": 15000,
-              "image": ""
-            }
-          ],
-          "subPrompt": "choose dj type",
-          "price": 0
-        },
-        {
-          "id": "opt_muzfdif4",
-          "image": "https://res.cloudinary.com/gu0q1mxy/image/upload/v1791457246/celebration-wedding-options/niytambb4pwa3s3o66ed.jpg",
-          "title": "kolatam",
-          "subItems": [
-            {
-              "name": "2 mmebers",
-              "price": 1600,
-              "image": ""
-            },
-            {
-              "name": "3 members",
-              "price": 1700,
-              "image": ""
-            },
-            {
-              "name": "4 memebers",
-              "price": 1781,
-              "image": ""
-            }
-          ],
-          "subPrompt": "choose kolatam type",
-          "price": 0
-        }
-      ],
-      "inclusions": [
-        "dj ",
-        "kolatam"
-      ],
-      "tags": [
-        "Wedding",
-        "Custom Decor"
-      ],
-      "category_name": "Wedding",
-      "price": 0,
-      "original_price": 0,
-      "discount": 0,
-      "rating": 4.9,
-      "reviews_count": 100,
-      "setup_duration": "Custom Schedule",
-      "created_at": "2026-10-08T10:00:14.388558+00:00",
-      "updated_at": "2026-10-08T10:00:14.388558+00:00",
-      "subcategory": "",
-      "slots_alert": "",
-      "about_description": "swedrtvfugbnhijmkl",
-      "not_included": [],
-      "faqs": [],
-      "addons": [],
-      "delivery_note": "",
-      "decorator_note": "",
-      "lifespan_note": "",
-      "location_note": "",
-      "color_palettes": [],
-      "why_choose": {
-        "stats": [
-          {
-            "label": "Customers",
-            "value": "10L+"
-          },
-          {
-            "label": "Cities",
-            "value": "50+"
-          },
-          {
-            "label": "Rating",
-            "value": "4.9 ★"
-          },
-          {
-            "label": "Years",
-            "value": "5+"
-          }
-        ],
-        "title": "Why choose Celebration Events?",
-        "highlights": [
-          {
-            "desc": "10L+ celebrations made special",
-            "icon": "🏆",
-            "title": "India's #1 decoration brand"
-          },
-          {
-            "desc": "End to end assistance for your event",
-            "icon": "👔",
-            "title": "Dedicated event planner"
-          },
-          {
-            "desc": "Professional decorators for every setup",
-            "icon": "⚡",
-            "title": "Same-day service"
-          },
-          {
-            "desc": "Lowest price promised",
-            "icon": "💯",
-            "title": "100% smile assurance"
-          }
-        ]
-      },
-      "originalPrice": 0,
-      "setupDuration": "Custom Schedule",
-      "reviewsCount": 100,
-      "notIncluded": [],
-      "aboutDescription": "swedrtvfugbnhijmkl",
-      "deliveryNote": "",
-      "decoratorNote": "",
-      "lifespanNote": "",
-      "locationNote": "",
-      "colorPalettes": [],
-      "slotsAlert": "",
-      "whyChoose": {
-        "stats": [
-          {
-            "label": "Customers",
-            "value": "10L+"
-          },
-          {
-            "label": "Cities",
-            "value": "50+"
-          },
-          {
-            "label": "Rating",
-            "value": "4.9 ★"
-          },
-          {
-            "label": "Years",
-            "value": "5+"
-          }
-        ],
-        "title": "Why choose Celebration Events?",
-        "highlights": [
-          {
-            "desc": "10L+ celebrations made special",
-            "icon": "🏆",
-            "title": "India's #1 decoration brand"
-          },
-          {
-            "desc": "End to end assistance for your event",
-            "icon": "👔",
-            "title": "Dedicated event planner"
-          },
-          {
-            "desc": "Professional decorators for every setup",
-            "icon": "⚡",
-            "title": "Same-day service"
-          },
-          {
-            "desc": "Lowest price promised",
-            "icon": "💯",
-            "title": "100% smile assurance"
-          }
-        ]
-      },
-      "material": "",
-      "dimensions": "",
-      "color": "",
-      "recommendedAge": "",
-      "washCare": "",
-      "packaging": "",
-      "specs": {},
-      "subtitle": "",
-      "boughtText": "",
-      "highlights": [],
-      "recommended_age": null,
-      "wash_care": null,
-      "bought_text": null
-    },
-    {
       "id": "dj-and-kolatam",
       "title": "DJ and kolatam",
       "category": "wedding",
@@ -9881,6 +9917,206 @@ const SITE_DATA = {
         }
       ],
       "reviewsSubtext": "Based on 150 verified customer reviews"
+    },
+    {
+      "id": "dj-kolatam",
+      "title": "dj & kolatam",
+      "category": "wedding",
+      "categoryName": "Wedding",
+      "badge": "traditional",
+      "image": "https://res.cloudinary.com/gu0q1mxy/image/upload/v1791452557/celebration-wedding/eai6viqtzalynpl1aive.jpg",
+      "gallery": [
+        "https://res.cloudinary.com/gu0q1mxy/image/upload/v1791452557/celebration-wedding/eai6viqtzalynpl1aive.jpg"
+      ],
+      "description": "swedrtvfugbnhijmkl",
+      "options": [
+        {
+          "id": "opt_muzclqut",
+          "image": "https://res.cloudinary.com/gu0q1mxy/image/upload/v1791452638/celebration-wedding-options/uqyuzry2pqiuuivhrv0u.jpg",
+          "price": 0,
+          "title": "dj ",
+          "subItems": [
+            {
+              "name": "3 pin",
+              "image": "",
+              "price": 300
+            },
+            {
+              "name": "5 pin",
+              "image": "",
+              "price": 7800
+            },
+            {
+              "name": "8 pin",
+              "image": "",
+              "price": 15000
+            }
+          ],
+          "subPrompt": "choose dj type"
+        },
+        {
+          "id": "opt_muzfdif4",
+          "image": "https://res.cloudinary.com/gu0q1mxy/image/upload/v1791457246/celebration-wedding-options/niytambb4pwa3s3o66ed.jpg",
+          "price": 0,
+          "title": "kolatam",
+          "subItems": [
+            {
+              "name": "2 mmebers",
+              "image": "",
+              "price": 1600
+            },
+            {
+              "name": "3 members",
+              "image": "",
+              "price": 1700
+            },
+            {
+              "name": "4 memebers",
+              "image": "",
+              "price": 1781
+            }
+          ],
+          "subPrompt": "choose kolatam type"
+        }
+      ],
+      "inclusions": [
+        "dj ",
+        "kolatam"
+      ],
+      "tags": [
+        "Wedding",
+        "Custom Decor"
+      ],
+      "category_name": "Wedding",
+      "price": 0,
+      "original_price": 0,
+      "discount": 0,
+      "rating": 4.9,
+      "reviews_count": 100,
+      "setup_duration": "Custom Schedule",
+      "created_at": "2026-10-08T10:00:14.388558+00:00",
+      "updated_at": "2026-10-08T10:00:14.388558+00:00",
+      "subcategory": "",
+      "slots_alert": "",
+      "about_description": "swedrtvfugbnhijmkl",
+      "not_included": [],
+      "faqs": [],
+      "addons": [],
+      "delivery_note": "",
+      "decorator_note": "",
+      "lifespan_note": "",
+      "location_note": "",
+      "color_palettes": [],
+      "why_choose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "originalPrice": 0,
+      "setupDuration": "Custom Schedule",
+      "reviewsCount": 100,
+      "notIncluded": [],
+      "aboutDescription": "swedrtvfugbnhijmkl",
+      "deliveryNote": "",
+      "decoratorNote": "",
+      "lifespanNote": "",
+      "locationNote": "",
+      "colorPalettes": [],
+      "slotsAlert": "",
+      "whyChoose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommendedAge": "",
+      "washCare": "",
+      "packaging": "",
+      "specs": {},
+      "subtitle": "",
+      "boughtText": "",
+      "highlights": [],
+      "recommended_age": null,
+      "wash_care": null,
+      "bought_text": null
     },
     {
       "id": "gift-07",
@@ -10642,7 +10878,7 @@ const SITE_DATA = {
           },
           {
             "desc": "End to end assistance for your event",
-            "icon": "👔",
+            "icon": "��",
             "title": "Dedicated event planner"
           },
           {
@@ -10836,6 +11072,46 @@ const SITE_DATA = {
       "recommended_age": null,
       "wash_care": null,
       "bought_text": null
+    },
+    {
+      "id": "zumba-dance",
+      "title": "ZUMBA DANCE",
+      "category": "wedding",
+      "categoryName": "Wedding",
+      "badge": "traditional",
+      "image": "https://res.cloudinary.com/gu0q1mxy/image/upload/v1791554015/celebration-wedding/rrzh6c2tfnliyby1fwj2.jpg",
+      "gallery": [
+        "https://res.cloudinary.com/gu0q1mxy/image/upload/v1791554015/celebration-wedding/rrzh6c2tfnliyby1fwj2.jpg"
+      ],
+      "description": "SADFTGHJKLJHG",
+      "options": [
+        {
+          "id": "opt_mv1108am",
+          "title": "PAINTING",
+          "price": 0,
+          "subPrompt": "CHOOSE PAINT COLOR",
+          "image": "https://res.cloudinary.com/gu0q1mxy/image/upload/v1791554055/celebration-wedding-options/xhy9haivnwlaltqouc3p.jpg",
+          "subItems": [
+            {
+              "name": "RED",
+              "price": 100,
+              "image": ""
+            },
+            {
+              "name": "BLUE",
+              "price": 150,
+              "image": ""
+            }
+          ]
+        }
+      ],
+      "inclusions": [
+        "PAINTING"
+      ],
+      "tags": [
+        "Wedding",
+        "Custom Decor"
+      ]
     }
   ],
   "reviews": [
@@ -11700,7 +11976,7 @@ const SITE_DATA = {
     "bg": "linear-gradient(135deg, #059669 0%, #10b981 100%)",
     "updatedAt": "2026-10-09T03:53:29.837Z"
   },
-  "updatedAt": "2026-10-09T09:53:04.603Z"
+  "updatedAt": "2026-10-09T13:54:45.339Z"
 };
 
 if (typeof window !== "undefined") {
