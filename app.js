@@ -3228,7 +3228,12 @@ function sendWeddingWhatsAppQuote() {
   msg += `📍 *Delivery / Venue City:* ${city}\n`;
   msg += `✨ *Selected Wedding Services (${selectedObjs.length}):*\n`;
   selectedObjs.forEach((s, idx) => {
-    msg += `${idx + 1}. ${s.title}\n`;
+    msg += `${idx + 1}. ${s.title}`;
+    const opts = window.selectedWeddingCustomOptions?.[s.id];
+    if (opts && opts.length > 0) {
+      msg += `\n   • ${opts.join("\n   • ")}`;
+    }
+    msg += `\n`;
   });
   msg += `\nPlease share customized package quotation, available dates, and decorator team details!`;
 
@@ -4392,7 +4397,16 @@ function inspectWcmOption(optId) {
 function toggleWcmOption(optId) {
   const card = document.getElementById(`wcm_card_${optId}`);
   if (!card) return;
-  card.classList.toggle("active");
+  const isNowActive = card.classList.toggle("active");
+  const choices = card.querySelectorAll(".wcm-choice-checkbox");
+  if (!isNowActive) {
+    choices.forEach(chk => { chk.checked = false; });
+  } else if (choices.length > 0) {
+    const anyChecked = card.querySelectorAll(".wcm-choice-checkbox:checked").length > 0;
+    if (!anyChecked && choices[0]) {
+      choices[0].checked = true;
+    }
+  }
   updateWcmSelectedCount();
 }
 
@@ -4503,24 +4517,29 @@ function updateWcmSelectedCount() {
   if (!modal) return;
 
   let count = 0;
-  // 1. Choices checked (e.g. 2 pin, 4 pin)
-  const choiceCheckboxes = modal.querySelectorAll(".wcm-choice-checkbox:checked");
-  count += choiceCheckboxes.length;
 
-  // 2. Active option cards that DO NOT have choice checkboxes
-  modal.querySelectorAll(".wcm-option-card.active").forEach(card => {
-    if (card.querySelectorAll(".wcm-choice-checkbox").length === 0) {
+  // 1. Service Option cards (e.g. Pendals, Lighting, Banana Trees, Marigold Flowers)
+  // Each card is ONE service. Selecting 1, 2 or more sub-options inside the same card counts as 1 service.
+  const optionCards = modal.querySelectorAll(".wcm-option-card");
+  optionCards.forEach(card => {
+    const isCardActive = card.classList.contains("active");
+    const hasCheckedInner = card.querySelectorAll(".wcm-choice-checkbox:checked, .wcm-check-input:checked").length > 0;
+    if (isCardActive || hasCheckedInner) {
       count += 1;
     }
   });
 
-  // 3. Active icon cards
+  // 2. Active icon cards (Musical Events: Orchestra, DJ, etc.)
   const activeIconCards = modal.querySelectorAll(".wcm-icon-card.active");
   count += activeIconCards.length;
 
-  // 4. Standalone checkboxes outside choice cards
-  const otherChecked = modal.querySelectorAll(".wcm-check-input:checked:not(.wcm-choice-checkbox)");
-  count += otherChecked.length;
+  // 3. Standalone checkboxes outside of .wcm-option-card
+  // (e.g. Catering dishes/snacks, Photo-Video coverage, Nalugu grouped items, Special Events rows)
+  modal.querySelectorAll(".wcm-check-input:checked").forEach(input => {
+    if (!input.closest(".wcm-option-card")) {
+      count += 1;
+    }
+  });
 
   const countText = document.getElementById("wcmSelectedCountText");
   if (countText) {
@@ -4551,6 +4570,40 @@ function confirmWeddingCustomModal() {
     if (!selectedWeddingServices.includes(activeWeddingModalServiceId)) {
       selectedWeddingServices.push(activeWeddingModalServiceId);
     }
+
+    // Save detailed sub-options selection for quotation preview and WhatsApp message
+    const modal = document.getElementById("weddingServiceDetailModal");
+    if (modal) {
+      const chosenDetails = [];
+      modal.querySelectorAll(".wcm-option-card").forEach(card => {
+        const isCardActive = card.classList.contains("active");
+        const checkedChoices = Array.from(card.querySelectorAll(".wcm-choice-checkbox:checked")).map(c => c.value);
+        if (isCardActive || checkedChoices.length > 0) {
+          const title = card.querySelector(".wcm-option-title")?.textContent?.trim() || "";
+          if (checkedChoices.length > 0) {
+            chosenDetails.push(`${title} [${checkedChoices.join(", ")}]`);
+          } else if (title) {
+            chosenDetails.push(title);
+          }
+        }
+      });
+
+      modal.querySelectorAll(".wcm-icon-card.active").forEach(card => {
+        const title = card.querySelector(".wcm-card-text-title")?.textContent?.trim() || "";
+        if (title) chosenDetails.push(title);
+      });
+
+      modal.querySelectorAll(".wcm-check-input:checked").forEach(input => {
+        if (!input.closest(".wcm-option-card")) {
+          const label = input.closest("label")?.textContent?.trim() || "";
+          if (label) chosenDetails.push(label);
+        }
+      });
+
+      window.selectedWeddingCustomOptions = window.selectedWeddingCustomOptions || {};
+      window.selectedWeddingCustomOptions[activeWeddingModalServiceId] = chosenDetails;
+    }
+
     const card = document.getElementById(`card-${activeWeddingModalServiceId}`);
     if (card) card.classList.add("selected");
     updateWeddingQuoteBar();
