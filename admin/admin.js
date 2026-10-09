@@ -1,5 +1,5 @@
 /**
- * Celebration Events - Admin Studio Logic
+ * Affectioin Events - Admin Studio Logic
  * Sidebar Layout, White Luxury Theme, Cloudinary Image Storage & Supabase Cloud DB
  */
 
@@ -160,7 +160,7 @@
   ];
 
   const DEFAULT_WHY_CHOOSE = {
-    title: "Why choose Celebration Events?",
+    title: "Why choose Affectioin Events?",
     highlights: [
       { icon: "🏆", title: "India's #1 decoration brand", desc: "10L+ celebrations made special" },
       { icon: "👔", title: "Dedicated event planner", desc: "End to end assistance for your event" },
@@ -3197,7 +3197,7 @@
     });
 
     copySchemaBtn?.addEventListener('click', () => {
-      const sqlSchema = `-- Celebration Events - Supabase Schema & Migration
+      const sqlSchema = `-- Affectioin Events - Supabase Schema & Migration
 -- 1. Create Tables (if setting up fresh)
 CREATE TABLE IF NOT EXISTS public.categories (
     id TEXT PRIMARY KEY,
@@ -4857,7 +4857,7 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
 
   function exportDataBackup() {
     const dataToExport = {
-      brand: "Celebration Events",
+      brand: "Affectioin Events",
       exportedAt: new Date().toISOString(),
       categories: appState.categories,
       products: appState.products
@@ -5466,7 +5466,7 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
           <h3 class="blog-card-heading" title="${escapeHtml(b.title)}">${escapeHtml(b.title)}</h3>
           <p class="blog-card-summary">${escapeHtml(b.excerpt || '')}</p>
           <div class="blog-card-meta-line">
-            <span>✍️ <strong>${escapeHtml(b.author || 'Celebration Team')}</strong></span>
+            <span>✍️ <strong>${escapeHtml(b.author || 'Affectioin Team')}</strong></span>
             <span>📅 ${escapeHtml(b.date || 'Recent')}</span>
           </div>
           <div class="card-actions-row">
@@ -5632,7 +5632,7 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
       }
       if (catSelect) catSelect.value = blog.category || 'balloon-tips';
       if (tagInput) tagInput.value = blog.tag || 'Decor Hacks';
-      if (authorInput) authorInput.value = blog.author || 'Celebration Events Team';
+      if (authorInput) authorInput.value = blog.author || 'Affectioin Events Team';
       if (dateInput) dateInput.value = blog.date || '';
       if (imageInput) imageInput.value = blog.image || '';
       if (previewImg) {
@@ -5708,7 +5708,7 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
       category,
       categoryName,
       tag: tag || 'Decor Guide',
-      author: author || 'Celebration Events Team',
+      author: author || 'Affectioin Events Team',
       date: date || new Date().toLocaleDateString('en-US', { month: 'long', day: '2-digit', year: 'numeric' }),
       image,
       excerpt,

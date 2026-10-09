@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Celebration Events - Modern White Luxury Admin Studio Design System
+   Affectioin Events - Modern White Luxury Admin Studio Design System
    Sidebar Layout & Clean High-End White Aesthetic
    ========================================================================== */
 
@@ -4405,3 +4405,26 @@ body {
   transform: translateX(3px);
 }
 
+
+
+/* Admin Logo Image Engine */
+.login-brand-logo {
+  height: 85px;
+  max-height: 85px;
+  width: auto;
+  max-width: 180px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto 12px;
+  filter: drop-shadow(0 4px 12px rgba(212, 175, 55, 0.25));
+}
+
+.sidebar-brand-logo {
+  height: 46px;
+  max-height: 46px;
+  width: auto;
+  max-width: 140px;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 2px 8px rgba(212, 175, 55, 0.2));
+}

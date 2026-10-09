@@ -353,7 +353,7 @@ const server = http.createServer(async (req, res) => {
         return;
       }
 
-      const fromAddress = process.env.SMTP_FROM || `"Celebration Events" <${process.env.SMTP_USER || 'kishorek80192@gmail.com'}>`;
+      const fromAddress = process.env.SMTP_FROM || `"Affectioin Events" <${process.env.SMTP_USER || 'kishorek80192@gmail.com'}>`;
       const isRoleAdmin = role === 'admin';
 
       const emailHtml = `
@@ -368,7 +368,7 @@ const server = http.createServer(async (req, res) => {
         <div style="max-width: 520px; margin: 0 auto; background: #ffffff; border-radius: 16px; border: 1px solid #e2e8f0; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.05);">
           <div style="background: linear-gradient(135deg, #d81b60 0%, #be123c 100%); padding: 30px 24px; text-align: center; color: #ffffff;">
             <div style="font-size: 38px; margin-bottom: 6px;">🎈</div>
-            <h1 style="margin: 0; font-size: 24px; font-weight: 800; letter-spacing: -0.5px;">Celebration Events</h1>
+            <h1 style="margin: 0; font-size: 24px; font-weight: 800; letter-spacing: -0.5px;">Affectioin Events</h1>
             <p style="margin: 6px 0 0; opacity: 0.92; font-size: 13.5px; font-weight: 500;">
               ${isRoleAdmin ? 'Administrator Security Portal' : 'Customer Account Verification'}
             </p>
@@ -391,7 +391,7 @@ const server = http.createServer(async (req, res) => {
             </p>
           </div>
           <div style="background: #f8fafc; border-top: 1px solid #e2e8f0; padding: 16px 24px; text-align: center; font-size: 12px; color: #64748b;">
-            &copy; ${new Date().getFullYear()} Celebration Events. All rights reserved.
+            &copy; ${new Date().getFullYear()} Affectioin Events. All rights reserved.
           </div>
         </div>
       </body>
@@ -401,8 +401,8 @@ const server = http.createServer(async (req, res) => {
       await transporter.sendMail({
         from: fromAddress,
         to: email,
-        subject: `🔐 Celebration Events - ${isRoleAdmin ? 'Admin ' : ''}Password Reset Code: ${otp}`,
-        text: `Your Celebration Events verification code is: ${otp}. This code is valid for 10 minutes.`,
+        subject: `🔐 Affectioin Events - ${isRoleAdmin ? 'Admin ' : ''}Password Reset Code: ${otp}`,
+        text: `Your Affectioin Events verification code is: ${otp}. This code is valid for 10 minutes.`,
         html: emailHtml
       });
 
@@ -620,6 +620,7 @@ const server = http.createServer(async (req, res) => {
         if (Array.isArray(merged.products)) merged.products = merged.products.filter(p => !delProds.has(p.id));
         if (Array.isArray(merged.blogs)) merged.blogs = merged.blogs.filter(b => !delBlogs.has(b.id));
         if (Array.isArray(merged.categories)) merged.categories = merged.categories.filter(c => !delCats.has(c.id));
+      }
       saveAdminData(merged);
 
       // Also persist reviews directly to Supabase from localhost dev-server
@@ -793,7 +794,7 @@ const server = http.createServer(async (req, res) => {
 function startServer(port, maxTries = 10) {
   server.listen(port, () => {
     console.log('\n====================================================');
-    console.log(`🎉 Celebration Events Server is running!`);
+    console.log(`🎉 Affectioin Events Server is running!`);
     console.log(`👉 Local:   http://localhost:${port}/`);
     console.log(`👉 Admin:   http://localhost:${port}/admin`);
     console.log(`👉 Admin Email: ${DEFAULT_ADMIN_EMAIL}`);

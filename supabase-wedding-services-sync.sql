@@ -1,5 +1,5 @@
 -- ==============================================================================
--- Celebration Events: Sync Wedding Services Exact Options to Supabase
+-- Affectioin Events: Sync Wedding Services Exact Options to Supabase
 -- Run this in your Supabase SQL Editor:
 -- https://supabase.com/dashboard/project/wqnobkskmvilfhduvxsu/sql/new
 -- ==============================================================================

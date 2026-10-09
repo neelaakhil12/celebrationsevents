@@ -1,6 +1,6 @@
 const SITE_DATA = {
   "brand": {
-    "name": "Celebration Events",
+    "name": "Affectioin Events",
     "tagline": "India ka Party Expert",
     "phone": "+91 82820 25444",
     "whatsapp": "918282025444",
@@ -65,11 +65,12 @@ const SITE_DATA = {
       "tag": "🎂 The Ultimate Birthday Collection",
       "title": "Professional Birthday Balloon Decorations",
       "subtitle": "Make their milestone unforgettable! From simple living room surprises to grand circular arch sequin backdrops in 100+ cities.",
-      "image": "https://cdn.balloondekor.com/images/16/49e5480a-1fcd-42eb-ad97-cafd993c260d.webp",
+      "image": "https://res.cloudinary.com/gu0q1mxy/image/upload/v1791560681/celebration-banners/cmsbmfrco1ylkwhr9oo5.jpg",
       "linkText": "Explore Setups Below ↓",
       "linkUrl": "#birthdayCatalog",
       "active": true,
-      "order": 1
+      "order": 1,
+      "updatedAt": "2026-10-09T15:44:41.883Z"
     },
     {
       "id": "banner-cat-anniversary",
@@ -274,6 +275,12 @@ const SITE_DATA = {
       "popular": false
     },
     {
+      "id": "indore",
+      "name": "Indore",
+      "state": "Madhya Pradesh",
+      "popular": false
+    },
+    {
       "id": "surat",
       "name": "Surat",
       "state": "Gujarat",
@@ -289,6 +296,12 @@ const SITE_DATA = {
       "id": "hasthinapuram",
       "name": "hasthinapuram",
       "state": "TELANAGANA",
+      "popular": false
+    },
+    {
+      "id": "nalgonda",
+      "name": "nalgonda",
+      "state": "telangana",
       "popular": false
     },
     {
@@ -1651,7 +1664,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -1738,7 +1751,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -1855,7 +1868,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -1919,7 +1932,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -2015,7 +2028,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -2066,7 +2079,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -2292,7 +2305,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -2343,7 +2356,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -2450,7 +2463,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -2501,7 +2514,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -2606,7 +2619,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -2657,7 +2670,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -2762,7 +2775,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -2813,7 +2826,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -2918,7 +2931,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -2969,7 +2982,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -3074,7 +3087,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -3125,7 +3138,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -3230,7 +3243,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -3281,7 +3294,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -3386,7 +3399,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -3437,7 +3450,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -3542,7 +3555,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -3593,7 +3606,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -3698,7 +3711,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -3749,7 +3762,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -3855,7 +3868,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -3906,7 +3919,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -4012,7 +4025,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -4063,7 +4076,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -4219,7 +4232,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -4270,7 +4283,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -4377,7 +4390,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -4428,7 +4441,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -4534,7 +4547,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -4585,7 +4598,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -4691,7 +4704,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -4742,7 +4755,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -4847,7 +4860,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -4898,7 +4911,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -5003,7 +5016,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -5054,7 +5067,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -5159,7 +5172,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -5210,7 +5223,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -5315,7 +5328,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -5366,7 +5379,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -5471,7 +5484,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -5522,7 +5535,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -5625,7 +5638,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -5676,7 +5689,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -5784,7 +5797,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -5835,7 +5848,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -5944,7 +5957,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -5995,7 +6008,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -6104,7 +6117,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -6155,7 +6168,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -6264,7 +6277,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -6315,7 +6328,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -6424,7 +6437,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -6475,7 +6488,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -6583,7 +6596,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -6634,7 +6647,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -6739,7 +6752,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -6790,7 +6803,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -6945,7 +6958,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -6996,7 +7009,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -7153,7 +7166,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -7204,7 +7217,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -7454,7 +7467,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -7505,7 +7518,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -7611,7 +7624,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -7662,7 +7675,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -7767,7 +7780,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -7818,7 +7831,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -7924,7 +7937,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -7975,7 +7988,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -8116,7 +8129,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -8167,7 +8180,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -8330,7 +8343,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -8381,7 +8394,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -8535,7 +8548,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -8586,7 +8599,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -8722,7 +8735,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -8773,7 +8786,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -8903,7 +8916,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -8954,7 +8967,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -9080,7 +9093,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -9131,7 +9144,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -9256,7 +9269,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -9307,7 +9320,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -9433,7 +9446,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -9484,7 +9497,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -9603,7 +9616,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -9654,7 +9667,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -9749,7 +9762,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -9825,7 +9838,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -10120,7 +10133,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -10174,7 +10187,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -10368,7 +10381,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -10411,7 +10424,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -10527,7 +10540,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -10578,7 +10591,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -10686,7 +10699,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -10737,7 +10750,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -10845,7 +10858,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -10896,7 +10909,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -11004,7 +11017,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -11055,7 +11068,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -11163,7 +11176,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -11214,7 +11227,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -11323,7 +11336,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -11374,7 +11387,7 @@ const SITE_DATA = {
             "value": "5+"
           }
         ],
-        "title": "Why choose Celebration Events?",
+        "title": "Why choose Affectioin Events?",
         "highlights": [
           {
             "desc": "10L+ celebrations made special",
@@ -11550,7 +11563,7 @@ const SITE_DATA = {
       "readTime": "5 min read",
       "image": "https://cdn.balloondekor.com/33/birthday-decoration-d67f374a-0151-409d-96ea-36e9527e0ffc.webp",
       "excerpt": "From ₹1,499 simple living room packages to ₹10,000+ luxury ring backdrops with neon lights, understand transparent pricing across Delhi NCR, Mumbai, Bangalore and Tier-2 cities.",
-      "content": "\n        <p>Transparent pricing is the core of Celebration Events. When you book directly through our platform, every package includes technician visit, all materials, setup labor, and clean-up guidance.</p>\n\n        <h3>Average Package Cost Tier Breakdown</h3>\n        <ul>\n          <li><strong>Standard Home Surprise (₹1,499 - ₹1,999):</strong> 60-80 balloons, metallic banner, wall frills, and door ribbon.</li>\n          <li><strong>Arch & Neon Backdrop (₹2,499 - ₹4,499):</strong> Organic circular balloon arch, warm fairy lights, custom age foil digits, and neon signs.</li>\n          <li><strong>Grand Theme & Sequins (₹6,999 - ₹12,999):</strong> Sequins shimmer backdrop, pedestal cake cylinder tables, marquee number lights, and character cutouts.</li>\n        </ul>\n      "
+      "content": "\n        <p>Transparent pricing is the core of Affectioin Events. When you book directly through our platform, every package includes technician visit, all materials, setup labor, and clean-up guidance.</p>\n\n        <h3>Average Package Cost Tier Breakdown</h3>\n        <ul>\n          <li><strong>Standard Home Surprise (₹1,499 - ₹1,999):</strong> 60-80 balloons, metallic banner, wall frills, and door ribbon.</li>\n          <li><strong>Arch & Neon Backdrop (₹2,499 - ₹4,499):</strong> Organic circular balloon arch, warm fairy lights, custom age foil digits, and neon signs.</li>\n          <li><strong>Grand Theme & Sequins (₹6,999 - ₹12,999):</strong> Sequins shimmer backdrop, pedestal cake cylinder tables, marquee number lights, and character cutouts.</li>\n        </ul>\n      "
     },
     {
       "id": "trending-kids-birthday-themes-2026",
@@ -11606,7 +11619,7 @@ const SITE_DATA = {
       "readTime": "4 min read",
       "image": "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=600&q=80",
       "excerpt": "Elevate company culture and celebrate company achievements with branded balloon arches, stage backdrops, entrance pillars, and desk-side balloon bunches.",
-      "content": "\n        <p>From tech startups hitting funding milestones to annual corporate townhalls, visual celebrations boost employee morale and create high-engagement LinkedIn photo moments.</p>\n        <p>Celebration Events offers GST invoicing, brand color matching (Pantone/Hex alignment), and quiet after-hours setup so business operations remain undisturbed.</p>\n      "
+      "content": "\n        <p>From tech startups hitting funding milestones to annual corporate townhalls, visual celebrations boost employee morale and create high-engagement LinkedIn photo moments.</p>\n        <p>Affectioin Events offers GST invoicing, brand color matching (Pantone/Hex alignment), and quiet after-hours setup so business operations remain undisturbed.</p>\n      "
     }
   ],
   "weddingConfigs": {
@@ -12281,7 +12294,7 @@ const SITE_DATA = {
     "bg": "linear-gradient(135deg, #059669 0%, #10b981 100%)",
     "updatedAt": "2026-10-09T03:53:29.837Z"
   },
-  "updatedAt": "2026-10-09T15:20:32.849Z"
+  "updatedAt": "2026-10-09T15:44:42.146Z"
 };
 
 if (typeof window !== "undefined") {

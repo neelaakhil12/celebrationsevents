@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title id="pageTitle">Article Guide | Celebration Events® Blog</title>
-  <meta name="description" content="Read full party decoration guide, tips, and checklists from Celebration Events® certified event planners." />
+  <title id="pageTitle">Article Guide | Affectioin Events® Blog</title>
+  <meta name="description" content="Read full party decoration guide, tips, and checklists from Affectioin Events® certified event planners." />
   <meta name="theme-color" content="#d14a61" />
 
   <!-- Fonts & Icons -->
@@ -31,12 +31,10 @@
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
         </button>
 
-        <a href="index.html" class="brand-logo-wrap">
+        <a href="index.html" class="brand-logo-wrap" aria-label="Affectioin Events">
           <div class="brand-logo">
-            <span class="logo-balloon">🎈</span>
-            <span>Celebration <span class="bold">Events</span><span class="reg">®</span></span>
+            <img src="assets/logo.png" alt="Affectioin Events" class="brand-logo-img" />
           </div>
-          <span class="brand-tagline">India ka party expert</span>
         </a>
 
         <!-- City Selector Trigger -->
@@ -272,7 +270,7 @@
             <div class="blog-author-avatar-lg" id="sidebarAuthorAvatar">PD</div>
             <div>
               <div class="blog-author-name" id="sidebarAuthorName">Author Name</div>
-              <div class="blog-author-role" id="sidebarAuthorRole">Decoration Stylist, Celebration Events</div>
+              <div class="blog-author-role" id="sidebarAuthorRole">Decoration Stylist, Affectioin Events</div>
             </div>
           </div>
         </div>
@@ -364,10 +362,10 @@
         <div class="footer-col">
           <div class="brand-logo" style="color: #fff; margin-bottom: 12px;">
             <span class="logo-balloon">🎈</span>
-            <span>Celebration <span style="color: var(--brand-400);">Events</span><span class="reg">®</span></span>
+            <span>Affectioin <span style="color: var(--brand-400);">Events</span><span class="reg">®</span></span>
           </div>
           <p>India’s most trusted online platform for party and balloon decorations. We deliver happiness and vibrant surprises across 100+ cities with guaranteed on-time setup.</p>
-          <p style="margin-top: 10px;"><strong>Hotline:</strong> +91 82820 25444<br/><strong>Email:</strong> support@celebrationevents.com<br/><strong>Hours:</strong> Mon - Sun, 09:00 AM - 10:00 PM</p>
+          <p style="margin-top: 10px;"><strong>Hotline:</strong> +91 82820 25444<br/><strong>Email:</strong> support@affectioinevents.com<br/><strong>Hours:</strong> Mon - Sun, 09:00 AM - 10:00 PM</p>
         </div>
 
         <div class="footer-col">
@@ -398,7 +396,7 @@
         <div class="footer-col">
           <h4>Instant WhatsApp Booking</h4>
           <p>Need urgent same-day setup or custom theme design? Chat with our event specialists right now.</p>
-          <a href="https://wa.me/918282025444?text=Hi%20Celebration%20Events,%20I%20want%20to%20book%20a%20decoration%20service." target="_blank" rel="noopener noreferrer" class="slide-btn" style="background: #25d366; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); display: inline-flex; margin-top: 10px;">
+          <a href="https://wa.me/918282025444?text=Hi%20Affectioin%20Events,%20I%20want%20to%20book%20a%20decoration%20service." target="_blank" rel="noopener noreferrer" class="slide-btn" style="background: #25d366; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); display: inline-flex; margin-top: 10px;">
             Chat on WhatsApp →
           </a>
         </div>
@@ -413,7 +411,7 @@
       </div>
 
       <div class="footer-bottom">
-        <p>&copy; 2026 Celebration Events Private Limited. All rights reserved. India's favorite party booking platform.</p>
+        <p>&copy; 2026 Affectioin Events Private Limited. All rights reserved. India's favorite party booking platform.</p>
         <div class="footer-bottom-links">
           <a href="#">Privacy Policy</a>
           <a href="#">Terms of Service</a>
@@ -467,7 +465,7 @@
       <div class="mobile-sidebar-header">
         <div class="brand-logo">
           <span class="logo-balloon">🎈</span>
-          <span>Celebration <span class="bold">Events</span></span>
+          <span>Affectioin <span class="bold">Events</span></span>
         </div>
         <button class="mobile-sidebar-close" onclick="closeMobileSidebar()">&times;</button>
       </div>
@@ -547,7 +545,7 @@
       }
 
       // Update Document Title
-      document.title = `${article.title} | Celebration Events® Blog`;
+      document.title = `${article.title} | Affectioin Events® Blog`;
 
       // Update Page Elements
       document.getElementById("breadcrumbCategory").textContent = article.categoryName;
@@ -565,7 +563,7 @@
       // Populate Sidebar Author
       const authorParts = article.author.split("•");
       const authorName = authorParts[0].trim();
-      const authorRole = authorParts[1] ? authorParts[1].trim() : "Decoration Stylist, Celebration Events";
+      const authorRole = authorParts[1] ? authorParts[1].trim() : "Decoration Stylist, Affectioin Events";
       const initials = authorName.split(" ").map(n => n[0]).join("").slice(0, 2);
 
       document.getElementById("sidebarAuthorAvatar").textContent = initials;

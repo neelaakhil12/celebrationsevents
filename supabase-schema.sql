@@ -1,5 +1,5 @@
 -- ==============================================================================
--- Celebration Events - Complete Supabase Database Schema
+-- Affectioin Events - Complete Supabase Database Schema
 -- Run this in your Supabase SQL Editor:
 -- https://supabase.com/dashboard/project/wqnobkskmvilfhduvxsu/sql/new
 -- ==============================================================================

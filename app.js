@@ -936,8 +936,8 @@ function ensureCityModalStructure() {
         <div class="city-service-notice-banner">
           <div class="notice-icon">🎈</div>
           <div class="notice-content">
-            <strong>Authorized Celebration Events Locations:</strong>
-            <p>Celebration Events operates exclusively in the authorized operational cities listed below. Please select your city to view available decorator slots & exact package pricing.</p>
+            <strong>Authorized Affectioin Events Locations:</strong>
+            <p>Affectioin Events operates exclusively in the authorized operational cities listed below. Please select your city to view available decorator slots & exact package pricing.</p>
           </div>
         </div>
 
@@ -1016,7 +1016,7 @@ function renderCitiesList(query = "") {
         <div class="city-no-match-state">
           <div class="no-match-icon">📍⚠️</div>
           <h4>We do not currently serve "${escapeCityHtml(query)}"</h4>
-          <p>Celebration Events services are currently restricted exclusively to our admin-authorized locations. Please pick an authorized operational city near you.</p>
+          <p>Affectioin Events services are currently restricted exclusively to our admin-authorized locations. Please pick an authorized operational city near you.</p>
           <button type="button" class="city-reset-btn" onclick="clearCitySearch()">Show All Operational Cities</button>
         </div>
       `;
@@ -1818,7 +1818,7 @@ function openProductModal(productId) {
   renderRelatedPackages(product);
 
   // Update WhatsApp links with pre-filled message
-  const waMsg = encodeURIComponent(`Hi Celebration Events, I would like to book/customize "${product.title}" (₹${product.price.toLocaleString("en-IN")}) in ${appState.selectedCity || 'Delhi NCR'}. Please confirm availability!`);
+  const waMsg = encodeURIComponent(`Hi Affectioin Events, I would like to book/customize "${product.title}" (₹${product.price.toLocaleString("en-IN")}) in ${appState.selectedCity || 'Delhi NCR'}. Please confirm availability!`);
   const topWa = document.getElementById("modalWhatsappTopBtn");
   if (topWa) topWa.href = `https://wa.me/919999999999?text=${waMsg}`;
   const directWa = document.getElementById("modalDirectWaLink");
@@ -2241,7 +2241,7 @@ function handleOrderSubmission(e) {
       </div>
 
       <p style="font-size: 12px; color: var(--gray-500); margin-bottom: 20px;">
-        Our certified Celebration Events decorator will arrive with high-speed electric pumps, wall-safe paper tape, and sanitized tools.
+        Our certified Affectioin Events decorator will arrive with high-speed electric pumps, wall-safe paper tape, and sanitized tools.
       </p>
 
       <div style="display: flex; gap: 10px; justify-content: center;">
@@ -2595,7 +2595,7 @@ function ensureUserAuthModal() {
       <div class="user-auth-header">
         <button type="button" class="user-auth-close" onclick="closeLoginPrompt()" aria-label="Close modal">&times;</button>
         <div style="font-size:32px; margin-bottom:4px;">🎈</div>
-        <h3 id="userAuthHeaderTitle">Welcome to Celebration Events</h3>
+        <h3 id="userAuthHeaderTitle">Welcome to Affectioin Events</h3>
         <p id="userAuthHeaderSubtitle">Sign in to customize & track your party celebrations</p>
       </div>
 
@@ -2822,7 +2822,7 @@ function switchUserAuthTab(tab) {
     formLogin.style.display = "block";
     formRegister.style.display = "none";
     viewForgot.style.display = "none";
-    title.textContent = "Welcome to Celebration Events";
+    title.textContent = "Welcome to Affectioin Events";
     subtitle.textContent = "Sign in to customize & track your party celebrations";
   } else if (tab === 'register') {
     authTabs.style.display = "flex";
