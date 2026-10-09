@@ -2494,10 +2494,7 @@
           <td colspan="8" style="text-align:center; padding: 40px 16px; color: var(--text-muted);">
             <div style="font-size: 32px; margin-bottom: 8px;">🛒</div>
             <div style="font-weight: 600; font-size: 15px; color: var(--text-main);">No ${escapeHtml(appState.ordersFilter !== 'all' ? appState.ordersFilter : '')} orders found</div>
-            <p style="font-size: 13px; margin: 4px 0 16px;">Orders placed on the website or recorded manually will appear here.</p>
-            <button type="button" class="btn-dash-primary" onclick="window.adminStudio.openNewOrderModal()" style="display:inline-flex;">
-              + Record Customer Booking
-            </button>
+            <p style="font-size: 13px; margin: 4px 0 0;">Orders placed on the website will appear here.</p>
           </td>
         </tr>
       `;
