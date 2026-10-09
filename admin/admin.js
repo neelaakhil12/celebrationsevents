@@ -1272,6 +1272,21 @@
           } catch(e){}
         }
 
+        // Operating Cities from Supabase Cloud
+        const siteCitiesConfig = catsRes.data.find(c => c.id === '__site_cities__');
+        if (siteCitiesConfig && siteCitiesConfig.desc) {
+          try {
+            const cloudCities = JSON.parse(siteCitiesConfig.desc);
+            if (Array.isArray(cloudCities) && cloudCities.length > 0) {
+              appState.cities = cloudCities;
+              if (typeof window.SITE_DATA !== 'undefined') window.SITE_DATA.cities = cloudCities;
+              localStorage.setItem(STORAGE_KEYS.CITIES, JSON.stringify(cloudCities));
+              if (typeof renderCitiesAdmin === 'function') renderCitiesAdmin();
+              updateMetrics();
+            }
+          } catch(e){}
+        }
+
         const validDbCats = catsRes.data.filter(c => !c.id.startsWith('__site_') && !appState.deletedItems.categories.includes(c.id));
 
         const siteCats = (typeof window.SITE_DATA !== 'undefined' && Array.isArray(window.SITE_DATA.categories)) ? window.SITE_DATA.categories : [];
@@ -1638,6 +1653,20 @@
             }).then(({ error }) => {
               if (!error) console.log('Announcement synced to Supabase Cloud');
               else console.warn('Supabase announcement sync warning:', error);
+            })
+          );
+        }
+
+        if (Array.isArray(appState.cities) && appState.cities.length > 0) {
+          syncPromises.push(
+            supabase.from('categories').upsert({
+              id: '__site_cities__',
+              name: 'Operating Cities and Locations',
+              image: '',
+              desc: JSON.stringify(appState.cities)
+            }).then(({ error }) => {
+              if (!error) console.log('Operating cities synced to Supabase Cloud');
+              else console.warn('Supabase cities sync warning:', error);
             })
           );
         }
@@ -6510,6 +6539,19 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
       })
     }).catch(() => {});
 
+    // Direct Supabase Cloud Sync
+    if (supabase) {
+      supabase.from('categories').upsert({
+        id: '__site_cities__',
+        name: 'Operating Cities and Locations',
+        image: '',
+        desc: JSON.stringify(appState.cities)
+      }).then(({ error }) => {
+        if (!error) console.log('Operating cities synced to Supabase Cloud');
+        else console.warn('Supabase cities sync warning:', error);
+      });
+    }
+
     renderCitiesAdmin();
     updateMetrics();
     if (message) showToast(message, 'success');
@@ -7091,7 +7133,7 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
       subtitle: (subInput?.value || '').trim(),
       image: image,
       linkText: (linkTextInput?.value || '').trim(),
-      linkUrl: (linkUrlInput?.value || '').trim() || '#',
+      linkUrl: linkUrlInput ? ((linkUrlInput.value || '').trim() || '#') : (origId ? (appState.banners.find(b => b.id === origId)?.linkUrl || '#') : '#'),
       order: parseInt(orderInput?.value || '1', 10) || 1,
       active: activeCheckbox ? activeCheckbox.checked : true,
       updatedAt: new Date().toISOString()

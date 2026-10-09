@@ -178,6 +178,20 @@ const SITE_DATA = {
       "active": true,
       "updatedAt": "2026-10-09T03:27:02.115Z",
       "id": "banner-home-1791516422115"
+    },
+    {
+      "location": "home",
+      "locationName": "🏠 Homepage Carousel",
+      "tag": "✨ India's #1 Decoration Service",
+      "title": "JHBNM,",
+      "subtitle": "asdfghjkl;kjhgfd",
+      "image": "https://res.cloudinary.com/gu0q1mxy/image/upload/v1791559184/celebration-banners/ixdtpznm7t54rgynpkmr.jpg",
+      "linkText": "Explore Packages →",
+      "linkUrl": "birthday.html",
+      "order": 5,
+      "active": true,
+      "updatedAt": "2026-10-09T15:20:32.196Z",
+      "id": "banner-home-1791559232196"
     }
   ],
   "cities": [
@@ -274,6 +288,12 @@ const SITE_DATA = {
     {
       "id": "hasthinapuram",
       "name": "hasthinapuram",
+      "state": "TELANAGANA",
+      "popular": false
+    },
+    {
+      "id": "anakapalli",
+      "name": "anakapalli",
       "state": "TELANAGANA",
       "popular": false
     }
@@ -12261,7 +12281,7 @@ const SITE_DATA = {
     "bg": "linear-gradient(135deg, #059669 0%, #10b981 100%)",
     "updatedAt": "2026-10-09T03:53:29.837Z"
   },
-  "updatedAt": "2026-10-09T15:06:11.949Z"
+  "updatedAt": "2026-10-09T15:20:32.849Z"
 };
 
 if (typeof window !== "undefined") {

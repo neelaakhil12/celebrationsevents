@@ -25,7 +25,7 @@ module.exports = async function handler(req, res) {
   try {
     const SUPABASE_URL = process.env.SUPABASE_URL || 'https://wqnobkskmvilfhduvxsu.supabase.co';
     const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indxbm9ia3NrbXZpbGZoZHV2eHN1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTEwMDU5MDgsImV4cCI6MjEwNjU4MTkwOH0.3REUJyAR2kqnFb0fOAibKzuRah1cd5LOoTbX2ZMWhJQ';
-    const sbRes = await fetch(`${SUPABASE_URL}/rest/v1/categories?id=in.(__site_reviews__,__site_announcement__)`, {
+    const sbRes = await fetch(`${SUPABASE_URL}/rest/v1/categories?id=in.(__site_reviews__,__site_announcement__,__site_cities__)`, {
       headers: {
         'apikey': SUPABASE_ANON_KEY,
         'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
@@ -42,6 +42,10 @@ module.exports = async function handler(req, res) {
         if (annRow && annRow.desc) {
           result.announcement = JSON.parse(annRow.desc);
           result.announcementBar = result.announcement;
+        }
+        const citiesRow = rows.find(r => r.id === '__site_cities__');
+        if (citiesRow && citiesRow.desc) {
+          result.cities = JSON.parse(citiesRow.desc);
         }
       }
     }

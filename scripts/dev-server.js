@@ -672,6 +672,31 @@ const server = http.createServer(async (req, res) => {
         }
       }
 
+      // Also persist operating cities directly to Supabase from localhost dev-server
+      if (payload && Array.isArray(payload.cities)) {
+        try {
+          const sUrl = process.env.SUPABASE_URL || 'https://wqnobkskmvilfhduvxsu.supabase.co';
+          const sKey = process.env.SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indxbm9ia3NrbXZpbGZoZHV2eHN1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTEwMDU5MDgsImV4cCI6MjEwNjU4MTkwOH0.3REUJyAR2kqnFb0fOAibKzuRah1cd5LOoTbX2ZMWhJQ';
+          await fetch(`${sUrl}/rest/v1/categories`, {
+            method: 'POST',
+            headers: {
+              'apikey': sKey,
+              'Authorization': `Bearer ${sKey}`,
+              'Content-Type': 'application/json',
+              'Prefer': 'resolution=merge-duplicates'
+            },
+            body: JSON.stringify({
+              id: '__site_cities__',
+              name: 'Operating Cities and Locations',
+              image: '',
+              desc: JSON.stringify(payload.cities)
+            })
+          });
+        } catch(sbErr) {
+          console.warn('[dev-server save-data] Supabase cities sync warning:', sbErr.message);
+        }
+      }
+
       sendJson(res, 200, { success: true, message: 'Data saved successfully to disk.' });
     } catch (err) {
       sendJson(res, 500, { success: false, error: err.message });

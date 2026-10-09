@@ -179,6 +179,20 @@
       "active": true,
       "updatedAt": "2026-10-09T03:27:02.115Z",
       "id": "banner-home-1791516422115"
+    },
+    {
+      "location": "home",
+      "locationName": "🏠 Homepage Carousel",
+      "tag": "✨ India's #1 Decoration Service",
+      "title": "JHBNM,",
+      "subtitle": "asdfghjkl;kjhgfd",
+      "image": "https://res.cloudinary.com/gu0q1mxy/image/upload/v1791559184/celebration-banners/ixdtpznm7t54rgynpkmr.jpg",
+      "linkText": "Explore Packages →",
+      "linkUrl": "birthday.html",
+      "order": 5,
+      "active": true,
+      "updatedAt": "2026-10-09T15:20:32.196Z",
+      "id": "banner-home-1791559232196"
     }
   ],
   "categories": [
@@ -10598,9 +10612,15 @@
       "name": "hasthinapuram",
       "state": "TELANAGANA",
       "popular": false
+    },
+    {
+      "id": "anakapalli",
+      "name": "anakapalli",
+      "state": "TELANAGANA",
+      "popular": false
     }
   ],
-  "updatedAt": "2026-10-09T15:06:11.949Z",
+  "updatedAt": "2026-10-09T15:20:32.849Z",
   "blogFeatures": [
     {
       "icon": "🔒",

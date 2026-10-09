@@ -498,6 +498,19 @@ document.addEventListener("DOMContentLoaded", () => {
           } catch(e){}
         }
 
+        // Direct Cloud Operating Cities Synchronization (Consistent between Localhost & Live Vercel)
+        const siteCitiesConfig = cloudCats.find(c => c.id === '__site_cities__');
+        if (siteCitiesConfig && siteCitiesConfig.desc) {
+          try {
+            const cloudCities = JSON.parse(siteCitiesConfig.desc);
+            if (Array.isArray(cloudCities) && cloudCities.length > 0) {
+              SITE_DATA.cities = cloudCities;
+              localStorage.setItem('celebration_custom_cities', JSON.stringify(cloudCities));
+              dataChanged = true;
+            }
+          } catch(e){}
+        }
+
         const filteredCloudCats = cloudCats.filter(c => !c.id.startsWith('__site_') && !activeDelReg.categories.has(c.id));
 
         const existingCatMap = new Map();

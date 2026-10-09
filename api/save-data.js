@@ -92,6 +92,31 @@ module.exports = async function handler(req, res) {
       }
     }
 
+    // Persist operating cities to Supabase Cloud directly from API
+    if (payload && Array.isArray(payload.cities)) {
+      try {
+        const SUPABASE_URL = process.env.SUPABASE_URL || 'https://wqnobkskmvilfhduvxsu.supabase.co';
+        const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indxbm9ia3NrbXZpbGZoZHV2eHN1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTEwMDU5MDgsImV4cCI6MjEwNjU4MTkwOH0.3REUJyAR2kqnFb0fOAibKzuRah1cd5LOoTbX2ZMWhJQ';
+        await fetch(`${SUPABASE_URL}/rest/v1/categories`, {
+          method: 'POST',
+          headers: {
+            'apikey': SUPABASE_ANON_KEY,
+            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+            'Content-Type': 'application/json',
+            'Prefer': 'resolution=merge-duplicates'
+          },
+          body: JSON.stringify({
+            id: '__site_cities__',
+            name: 'Operating Cities and Locations',
+            image: '',
+            desc: JSON.stringify(payload.cities)
+          })
+        });
+      } catch (sbErr) {
+        console.warn('[Vercel API save-data] Supabase cities sync warning:', sbErr.message);
+      }
+    }
+
     return sendJson(res, 200, {
       success: true,
       message: 'Data saved successfully.',
