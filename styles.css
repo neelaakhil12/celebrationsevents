@@ -46,7 +46,7 @@
   --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
   --max-width: 1520px;
-  --header-height: 72px;
+  --header-height: 88px;
 }
 
 *, *::before, *::after {
@@ -161,7 +161,7 @@ img {
 .header-left {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 22px;
   flex-shrink: 0;
 }
 
@@ -13748,27 +13748,41 @@ button:active,
 
 
 
-/* Brand Logo Image Engine */
+/* Brand Logo Image Engine - High Visibility Large Size */
+.brand-logo-wrap {
+  display: flex !important;
+  align-items: center !important;
+  text-decoration: none !important;
+  overflow: visible !important;
+  padding: 4px 6px !important;
+}
+
+.brand-logo {
+  display: flex !important;
+  align-items: center !important;
+  overflow: visible !important;
+}
+
 .brand-logo-img {
-  height: 52px;
-  max-height: 52px;
-  width: auto;
-  max-width: 160px;
-  object-fit: contain;
-  display: block;
-  filter: drop-shadow(0 2px 6px rgba(212, 175, 55, 0.22));
-  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  height: 76px !important;
+  max-height: 80px !important;
+  width: auto !important;
+  max-width: 190px !important;
+  object-fit: contain !important;
+  display: block !important;
+  filter: drop-shadow(0 2px 8px rgba(212, 175, 55, 0.32)) !important;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 .brand-logo:hover .brand-logo-img,
 .brand-logo-wrap:hover .brand-logo-img {
-  transform: scale(1.035);
+  transform: scale(1.06) !important;
 }
 
 @media (max-width: 768px) {
   .brand-logo-img {
-    height: 42px;
-    max-height: 42px;
-    max-width: 120px;
+    height: 54px !important;
+    max-height: 56px !important;
+    max-width: 135px !important;
   }
 }
