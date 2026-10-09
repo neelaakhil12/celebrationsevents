@@ -6,8 +6,27 @@
   <title>Gifts Marketplace | Celebration Events®</title>
   <meta name="description" content="Explore a wide range of unique celebration gifts, cakes, flowers, chocolates, hampers, and personalized presents for every occasion." />
   <meta name="theme-color" content="#d14a61" />
-  <link rel="stylesheet" href="styles.css?v=13.0" />
+  <link rel="stylesheet" href="styles.css?v=13.1" />
   <link rel="icon" href="https://cdn.balloondekor.com/images/61/7ebf2dbd-60dd-4643-8029-763dc6a3e5e3.webp" type="image/webp" />
+  <style>
+    #giftsHorizontalFilterPills, .filter-pills {
+      display: flex !important;
+      flex-wrap: nowrap !important;
+      overflow-x: auto !important;
+      -webkit-overflow-scrolling: touch !important;
+      scrollbar-width: none !important;
+      -ms-overflow-style: none !important;
+    }
+    #giftsHorizontalFilterPills::-webkit-scrollbar, .filter-pills::-webkit-scrollbar {
+      display: none !important;
+      width: 0 !important;
+      height: 0 !important;
+    }
+    #giftsHorizontalFilterPills .filter-pill, .filter-pills .filter-pill {
+      flex-shrink: 0 !important;
+      white-space: nowrap !important;
+    }
+  </style>
 </head>
 <body>
 
@@ -205,6 +224,10 @@
               <input type="checkbox" name="cat" value="raja" onchange="applyGiftFilters(true)" />
               <span>raja <span class="filter-count">(0)</span></span>
             </label>
+            <label class="filter-checkbox-item">
+              <input type="checkbox" name="cat" value="ramya" onchange="applyGiftFilters(true)" />
+              <span>ramya <span class="filter-count">(1)</span></span>
+            </label>
           </div>
         </div>
 
@@ -244,7 +267,7 @@
         </div>
 
         <!-- Horizontal Category Filter Pills (Directly on Top of Gifts) -->
-        <div class="filter-pills" id="giftsHorizontalFilterPills" style="display: flex; gap: 8px; overflow-x: auto; padding-bottom: 12px; margin-bottom: 16px; scrollbar-width: none;">
+        <div class="filter-pills" id="giftsHorizontalFilterPills" style="display: flex; flex-wrap: nowrap; gap: 8px; overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 12px; margin-bottom: 16px; scrollbar-width: none;">
           <button type="button" class="filter-pill active" onclick="selectGiftHorizontalCategory('all', this)">All Gifts (13)</button>
           <button type="button" class="filter-pill" onclick="selectGiftHorizontalCategory('boys', this)">👦 Gifts for Boys (5)</button>
           <button type="button" class="filter-pill" onclick="selectGiftHorizontalCategory('girls', this)">👧 Gifts for Girls (1)</button>
@@ -253,6 +276,7 @@
           <button type="button" class="filter-pill" onclick="selectGiftHorizontalCategory('cakes', this)">🎂 Cakes (2)</button>
           <button type="button" class="filter-pill" onclick="selectGiftHorizontalCategory('flowers', this)">💐 Flowers (1)</button>
           <button type="button" class="filter-pill" onclick="selectGiftHorizontalCategory('raja', this)">raja (0)</button>
+          <button type="button" class="filter-pill" onclick="selectGiftHorizontalCategory('ramya', this)">ramya (1)</button>
         </div>
 
         <!-- 4-Column Product Grid -->
@@ -752,7 +776,7 @@
   <div class="toast-container" id="toastContainer"></div>
 
   <!-- Scripts -->
-  <script src="data.js"></script>
+  <script src="data.js?v=20261009_fix2"></script>
   <script src="app.js?v=20261009"></script>
   <script>
     function escapeHtml(str) {
@@ -928,31 +952,40 @@
     }
 
     function getGiftSubcategories() {
-      let subcats = [];
+      const subMap = new Map();
       try {
         if (typeof SITE_DATA !== "undefined" && Array.isArray(SITE_DATA.categories)) {
           const giftCat = SITE_DATA.categories.find(c => c && c.id === 'gifts');
-          if (giftCat && Array.isArray(giftCat.subcategories) && giftCat.subcategories.length > 0) {
-            subcats = giftCat.subcategories;
+          if (giftCat && Array.isArray(giftCat.subcategories)) {
+            giftCat.subcategories.forEach(s => {
+              if (s) {
+                const sid = typeof s === 'string' ? s.toLowerCase().trim() : String(s.id || s.slug || '').toLowerCase().trim();
+                if (sid) subMap.set(sid, s);
+              }
+            });
           }
         }
-        if (subcats.length === 0) {
-          try {
-            const storedCats = localStorage.getItem("celebration_custom_categories");
-            if (storedCats) {
-              const parsed = JSON.parse(storedCats);
-              const giftCat = Array.isArray(parsed) ? parsed.find(c => c && c.id === 'gifts') : null;
-              if (giftCat && Array.isArray(giftCat.subcategories) && giftCat.subcategories.length > 0) {
-                subcats = giftCat.subcategories;
-              }
+        try {
+          const storedCats = localStorage.getItem("celebration_custom_categories");
+          if (storedCats) {
+            const parsed = JSON.parse(storedCats);
+            const giftCat = Array.isArray(parsed) ? parsed.find(c => c && c.id === 'gifts') : null;
+            if (giftCat && Array.isArray(giftCat.subcategories)) {
+              giftCat.subcategories.forEach(s => {
+                if (s) {
+                  const sid = typeof s === 'string' ? s.toLowerCase().trim() : String(s.id || s.slug || '').toLowerCase().trim();
+                  if (sid) subMap.set(sid, s);
+                }
+              });
             }
-          } catch(e){}
-        }
+          }
+        } catch(e){}
       } catch(err) {
         console.warn('Error reading gift subcategories:', err);
       }
 
-      if (!subcats || subcats.length === 0) {
+      let subcats = Array.from(subMap.values());
+      if (subcats.length === 0) {
         subcats = [
           { id: "boys", name: "Gifts for Boys", icon: "👦" },
           { id: "girls", name: "Gifts for Girls", icon: "👧" },

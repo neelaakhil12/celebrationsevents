@@ -71,8 +71,18 @@ function syncEarlyCustomCategories() {
         parsed.forEach(c => {
           if (!c || !c.id || delReg.categories.has(c.id)) return;
           const existing = cMap.get(c.id);
-          if (existing && (!c.subcategories || c.subcategories.length === 0) && existing.subcategories) {
-            c.subcategories = existing.subcategories;
+          if (existing) {
+            // Merge subcategories from both sources so no newly-added subcategory is lost
+            const existingSubs = Array.isArray(existing.subcategories) ? existing.subcategories : [];
+            const incomingSubs = Array.isArray(c.subcategories) ? c.subcategories : [];
+            if (existingSubs.length > 0 || incomingSubs.length > 0) {
+              const subMap = new Map();
+              existingSubs.forEach(s => { if (s && s.id) subMap.set(s.id, s); });
+              incomingSubs.forEach(s => { if (s && s.id) subMap.set(s.id, s); });
+              c.subcategories = Array.from(subMap.values());
+            } else if (existingSubs.length > 0) {
+              c.subcategories = existingSubs;
+            }
           }
           cMap.set(c.id, c);
         });
@@ -258,8 +268,17 @@ document.addEventListener("DOMContentLoaded", () => {
         parsed.forEach(c => {
           if (delReg.categories.has(c.id)) return;
           const existing = cMap.get(c.id);
-          if (existing && (!c.subcategories || c.subcategories.length === 0) && existing.subcategories) {
-            c.subcategories = existing.subcategories;
+          if (existing) {
+            const existingSubs = Array.isArray(existing.subcategories) ? existing.subcategories : [];
+            const incomingSubs = Array.isArray(c.subcategories) ? c.subcategories : [];
+            if (existingSubs.length > 0 || incomingSubs.length > 0) {
+              const subMap = new Map();
+              existingSubs.forEach(s => { if (s && s.id) subMap.set(s.id, s); });
+              incomingSubs.forEach(s => { if (s && s.id) subMap.set(s.id, s); });
+              c.subcategories = Array.from(subMap.values());
+            } else if (existingSubs.length > 0) {
+              c.subcategories = existingSubs;
+            }
           }
           cMap.set(c.id, c);
         });

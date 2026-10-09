@@ -566,6 +566,18 @@ const SITE_DATA = {
           "name": "raja",
           "icon": "",
           "title": "rama rama"
+        },
+        {
+          "id": "ramya",
+          "name": "ramya",
+          "icon": "",
+          "title": "awsdgfhjkyutrw"
+        },
+        {
+          "id": "harish-neela",
+          "name": "harish neela",
+          "icon": "",
+          "title": "SDFGBHN"
         }
       ]
     },
@@ -1504,235 +1516,6 @@ const SITE_DATA = {
   ],
   "products": [
     {
-      "id": "amma",
-      "title": "AMMA",
-      "category": "dusera",
-      "categoryName": "dusera",
-      "subcategory": "akhil-neela",
-      "price": 1999,
-      "originalPrice": 2999,
-      "discount": 33,
-      "rating": 4.5,
-      "reviewsCount": 100,
-      "badge": "",
-      "setupDuration": "3 - 4 Hours",
-      "slotsAlert": "5 SLOTS",
-      "image": "https://res.cloudinary.com/gu0q1mxy/image/upload/v1791553757/celebration-packages/ymsj4khx263vvqooljce.jpg",
-      "gallery": [
-        "https://res.cloudinary.com/gu0q1mxy/image/upload/v1791553757/celebration-packages/ymsj4khx263vvqooljce.jpg",
-        "https://res.cloudinary.com/gu0q1mxy/image/upload/v1791553749/celebration-gallery/zdo8qshcqs8wwdmkkskc.jpg"
-      ],
-      "description": "REIUOIRWERATHVJB",
-      "aboutDescription": "E23W4TE5YRUGLIHKGUYDSTREAW",
-      "about_description": "E23W4TE5YRUGLIHKGUYDSTREAW",
-      "inclusions": [
-        "HI",
-        "GELLO"
-      ],
-      "notIncluded": [
-        "AMMA",
-        "NANNA"
-      ],
-      "not_included": [
-        "AMMA",
-        "NANNA"
-      ],
-      "faqs": [
-        {
-          "q": "WHO ARE YOU",
-          "a": "AKHIL"
-        },
-        {
-          "q": "I AM HARISH",
-          "a": "AKHIL"
-        }
-      ],
-      "deliveryNote": "DAsfBCXHBSDGA",
-      "delivery_note": "DAsfBCXHBSDGA",
-      "decoratorNote": "SZFDGXHVJBNMCBXFVZD",
-      "decorator_note": "SZFDGXHVJBNMCBXFVZD",
-      "lifespanNote": "SDafHJDSFA",
-      "lifespan_note": "SDafHJDSFA",
-      "locationNote": "DSfzDSFAFGHM",
-      "location_note": "DSfzDSFAFGHM",
-      "addons": [
-        {
-          "id": "addon-1791553829075",
-          "name": "XZSCDFGBHNMJ,MH",
-          "price": 1999,
-          "badge": "POPULAR",
-          "image": "https://res.cloudinary.com/gu0q1mxy/image/upload/v1791553835/celebration-addons/zhqt8i602jiflsba1wrj.jpg"
-        }
-      ],
-      "colorPalettes": [
-        {
-          "name": "GREEN",
-          "gradient": "linear-gradient(135deg, #22c55e 50%, #bbf7d0 50%)"
-        },
-        {
-          "name": "Same as Image",
-          "gradient": "linear-gradient(135deg, #be123c 50%, #f59e0b 50%)"
-        },
-        {
-          "name": "Rose Gold & White",
-          "gradient": "linear-gradient(135deg, #ffffff 50%, #f59e0b 50%)"
-        },
-        {
-          "name": "Gold & Black",
-          "gradient": "linear-gradient(135deg, #f59e0b 50%, #0f172a 50%)"
-        },
-        {
-          "name": "Pastel Blue & White",
-          "gradient": "#3b82f6"
-        },
-        {
-          "name": "Gold & Black",
-          "gradient": "linear-gradient(135deg, #f59e0b 50%, #0f172a 50%)"
-        },
-        {
-          "name": "Pastel Blue & White",
-          "gradient": "#3b82f6"
-        },
-        {
-          "name": "Pink & Purple",
-          "gradient": "linear-gradient(135deg, #a855f7 50%, #e9d5ff 50%)"
-        },
-        {
-          "name": "Multicolors / Rainbow",
-          "gradient": "linear-gradient(135deg, #ef4444 25%, #eab308 25%, #eab308 50%, #22c55e 50%, #22c55e 75%, #3b82f6 75%)"
-        }
-      ],
-      "color_palettes": [
-        {
-          "name": "GREEN",
-          "gradient": "linear-gradient(135deg, #22c55e 50%, #bbf7d0 50%)"
-        },
-        {
-          "name": "Same as Image",
-          "gradient": "linear-gradient(135deg, #be123c 50%, #f59e0b 50%)"
-        },
-        {
-          "name": "Rose Gold & White",
-          "gradient": "linear-gradient(135deg, #ffffff 50%, #f59e0b 50%)"
-        },
-        {
-          "name": "Gold & Black",
-          "gradient": "linear-gradient(135deg, #f59e0b 50%, #0f172a 50%)"
-        },
-        {
-          "name": "Pastel Blue & White",
-          "gradient": "#3b82f6"
-        },
-        {
-          "name": "Gold & Black",
-          "gradient": "linear-gradient(135deg, #f59e0b 50%, #0f172a 50%)"
-        },
-        {
-          "name": "Pastel Blue & White",
-          "gradient": "#3b82f6"
-        },
-        {
-          "name": "Pink & Purple",
-          "gradient": "linear-gradient(135deg, #a855f7 50%, #e9d5ff 50%)"
-        },
-        {
-          "name": "Multicolors / Rainbow",
-          "gradient": "linear-gradient(135deg, #ef4444 25%, #eab308 25%, #eab308 50%, #22c55e 50%, #22c55e 75%, #3b82f6 75%)"
-        }
-      ],
-      "whyChoose": {
-        "title": "Why choose Celebration Events?",
-        "highlights": [
-          {
-            "icon": "🏆",
-            "title": "India's #1 decoration brand",
-            "desc": "10L+ celebrations made special"
-          },
-          {
-            "icon": "👔",
-            "title": "Dedicated event planner",
-            "desc": "End to end assistance for your event"
-          },
-          {
-            "icon": "⚡",
-            "title": "Same-day service",
-            "desc": "Professional decorators for every setup"
-          },
-          {
-            "icon": "💯",
-            "title": "100% smile assurance",
-            "desc": "Lowest price promised"
-          }
-        ],
-        "stats": [
-          {
-            "value": "10L+",
-            "label": "Customers"
-          },
-          {
-            "value": "50+",
-            "label": "Cities"
-          },
-          {
-            "value": "4.9 ★",
-            "label": "Rating"
-          },
-          {
-            "value": "5+",
-            "label": "Years"
-          }
-        ]
-      },
-      "why_choose": {
-        "title": "Why choose Celebration Events?",
-        "highlights": [
-          {
-            "icon": "🏆",
-            "title": "India's #1 decoration brand",
-            "desc": "10L+ celebrations made special"
-          },
-          {
-            "icon": "👔",
-            "title": "Dedicated event planner",
-            "desc": "End to end assistance for your event"
-          },
-          {
-            "icon": "⚡",
-            "title": "Same-day service",
-            "desc": "Professional decorators for every setup"
-          },
-          {
-            "icon": "💯",
-            "title": "100% smile assurance",
-            "desc": "Lowest price promised"
-          }
-        ],
-        "stats": [
-          {
-            "value": "10L+",
-            "label": "Customers"
-          },
-          {
-            "value": "50+",
-            "label": "Cities"
-          },
-          {
-            "value": "4.9 ★",
-            "label": "Rating"
-          },
-          {
-            "value": "5+",
-            "label": "Years"
-          }
-        ]
-      },
-      "tags": [
-        "House Decoration",
-        "Traditional Wedding",
-        "Marigold & Lights"
-      ]
-    },
-    {
       "id": "happ-birthday-harish",
       "title": "happ birthday harish",
       "category": "birthday",
@@ -1975,6 +1758,176 @@ const SITE_DATA = {
       "bought_text": null
     },
     {
+      "id": "zumba-dance",
+      "title": "ZUMBA DANCE",
+      "category": "wedding",
+      "categoryName": "Wedding",
+      "badge": "traditional",
+      "image": "https://res.cloudinary.com/gu0q1mxy/image/upload/v1791554015/celebration-wedding/rrzh6c2tfnliyby1fwj2.jpg",
+      "gallery": [
+        "https://res.cloudinary.com/gu0q1mxy/image/upload/v1791554015/celebration-wedding/rrzh6c2tfnliyby1fwj2.jpg"
+      ],
+      "description": "SADFTGHJKLJHG",
+      "options": [
+        {
+          "id": "opt_mv1108am",
+          "image": "https://res.cloudinary.com/gu0q1mxy/image/upload/v1791554055/celebration-wedding-options/xhy9haivnwlaltqouc3p.jpg",
+          "price": 0,
+          "title": "PAINTING",
+          "subItems": [
+            {
+              "name": "RED",
+              "image": "",
+              "price": 100
+            },
+            {
+              "name": "BLUE",
+              "image": "",
+              "price": 150
+            }
+          ],
+          "subPrompt": "CHOOSE PAINT COLOR"
+        }
+      ],
+      "inclusions": [
+        "PAINTING"
+      ],
+      "tags": [
+        "Wedding",
+        "Custom Decor"
+      ],
+      "category_name": "Wedding",
+      "price": 0,
+      "original_price": 0,
+      "discount": 0,
+      "rating": 4.9,
+      "reviews_count": 100,
+      "setup_duration": "Custom Schedule",
+      "created_at": "2026-10-09T13:54:46.201483+00:00",
+      "updated_at": "2026-10-09T13:54:46.201483+00:00",
+      "subcategory": "",
+      "slots_alert": "",
+      "about_description": "SADFTGHJKLJHG",
+      "not_included": [],
+      "faqs": [],
+      "addons": [],
+      "delivery_note": "",
+      "decorator_note": "",
+      "lifespan_note": "",
+      "location_note": "",
+      "color_palettes": [],
+      "why_choose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommended_age": null,
+      "wash_care": null,
+      "packaging": "",
+      "subtitle": "",
+      "bought_text": null,
+      "specs": {},
+      "highlights": [],
+      "originalPrice": 0,
+      "setupDuration": "Custom Schedule",
+      "reviewsCount": 100,
+      "notIncluded": [],
+      "aboutDescription": "SADFTGHJKLJHG",
+      "deliveryNote": "",
+      "decoratorNote": "",
+      "lifespanNote": "",
+      "locationNote": "",
+      "colorPalettes": [],
+      "slotsAlert": "",
+      "whyChoose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "recommendedAge": "",
+      "washCare": "",
+      "boughtText": ""
+    },
+    {
       "id": "happy-anniversary-backdrop-decoration",
       "title": "Grand Golden Anniversary Backdrop",
       "category": "anniversary",
@@ -2131,6 +2084,127 @@ const SITE_DATA = {
       "recommended_age": null,
       "wash_care": null,
       "bought_text": null
+    },
+    {
+      "id": "gift-rabbaru-gajulu",
+      "title": "RABBARU GAJULU",
+      "category": "gifts",
+      "category_name": "Gift Marketplace",
+      "categoryName": "Gift Marketplace",
+      "subcategory": "ramya",
+      "badge": "BEST SEELR",
+      "price": 1999,
+      "original_price": 2999,
+      "originalPrice": 2999,
+      "discount": 33,
+      "rating": 4.9,
+      "reviews_count": 320,
+      "reviewsCount": 320,
+      "boughtText": "250+ bought in last month",
+      "image": "https://res.cloudinary.com/gu0q1mxy/image/upload/v1791555561/celebration_gifts/umqynvmwypjvcwnu5sin.png",
+      "gallery": [
+        "https://res.cloudinary.com/gu0q1mxy/image/upload/v1791555561/celebration_gifts/umqynvmwypjvcwnu5sin.png"
+      ],
+      "material": "dWAESRDTHFYGJH",
+      "dimensions": "35MM",
+      "color": "RED",
+      "recommendedAge": "CHILL",
+      "washCare": "WASH",
+      "packaging": "ASDFGH",
+      "specs": {
+        "color": "RED",
+        "material": "dWAESRDTHFYGJH",
+        "washCare": "WASH",
+        "packaging": "ASDFGH",
+        "dimensions": "35MM",
+        "recommendedAge": "CHILL"
+      },
+      "subtitle": "XCDVFBGNHMJ,JHNGF",
+      "description": "SDFGTHYJKLKJHGFDS",
+      "aboutDescription": "SDFGTHYJKLKJHGFDS",
+      "about_description": "SDFGTHYJKLKJHGFDS",
+      "deliveryNote": "Same Day Delivery: Get it delivered in 2 to 4 hours at your location.",
+      "delivery_note": "Same Day Delivery: Get it delivered in 2 to 4 hours at your location.",
+      "delivery": {
+        "expressTitle": "XSCDVFBGNHMJ,K.LKJH",
+        "expressText": "SDFGHJKL.JHGFD",
+        "cutoff": "6:00 PM",
+        "speed": "2 to 4 DAYS",
+        "cities": "Delhi NCR, Mumbai, Bangalore, Hyderabad, Pune and 50+ major operating cities",
+        "returnTitle": "ZXCDFGHJKLJHGFD",
+        "returnText": "SADFGHJKL;KJHGFDSAFGHJKL;",
+        "returnDays": "7-Day Replacement",
+        "whatsapp": "+91 82820 25444"
+      },
+      "delivery_info": {
+        "expressTitle": "XSCDVFBGNHMJ,K.LKJH",
+        "expressText": "SDFGHJKL.JHGFD",
+        "cutoff": "6:00 PM",
+        "speed": "2 to 4 DAYS",
+        "cities": "Delhi NCR, Mumbai, Bangalore, Hyderabad, Pune and 50+ major operating cities",
+        "returnTitle": "ZXCDFGHJKLJHGFD",
+        "returnText": "SADFGHJKL;KJHGFDSAFGHJKL;",
+        "returnDays": "7-Day Replacement",
+        "whatsapp": "+91 82820 25444"
+      },
+      "reviewsList": [
+        {
+          "name": "AKHIL BHAI",
+          "verified": true,
+          "rating": 5,
+          "date": "Just now",
+          "text": "SADFRGTHYJUKLJHGFD"
+        }
+      ],
+      "reviews_list": [
+        {
+          "name": "AKHIL BHAI",
+          "verified": true,
+          "rating": 5,
+          "date": "Just now",
+          "text": "SADFRGTHYJUKLJHGFD"
+        }
+      ],
+      "reviewsSubtext": "Based on 320 verified customer reviews",
+      "highlights": [
+        "SADFRGTHYUJIKJHG"
+      ],
+      "inclusions": [
+        "SADFRGTHYUJIKJHG"
+      ],
+      "whyChoose": [
+        "SADFGHJKL;KJ"
+      ],
+      "tags": [
+        "Gift Marketplace",
+        "ramya",
+        "subcat:ramya"
+      ],
+      "setup_duration": "Same Day Delivery",
+      "created_at": "2026-10-09T14:21:12.892676+00:00",
+      "updated_at": "2026-10-09T14:21:12.892676+00:00",
+      "slots_alert": "",
+      "not_included": [],
+      "faqs": [],
+      "addons": [],
+      "decorator_note": "",
+      "lifespan_note": "",
+      "location_note": "",
+      "color_palettes": [],
+      "why_choose": [
+        "SADFGHJKL;KJ"
+      ],
+      "options": [],
+      "recommended_age": "CHILL",
+      "wash_care": "WASH",
+      "bought_text": "250+ bought in last month",
+      "setupDuration": "Same Day Delivery",
+      "notIncluded": [],
+      "decoratorNote": "",
+      "lifespanNote": "",
+      "locationNote": "",
+      "colorPalettes": [],
+      "slotsAlert": ""
     },
     {
       "id": "cabana-canopy-terrace-decor",
@@ -10119,6 +10193,257 @@ const SITE_DATA = {
       "bought_text": null
     },
     {
+      "id": "amma",
+      "title": "AMMA",
+      "category": "dusera",
+      "categoryName": "dusera",
+      "subcategory": "akhil-neela",
+      "price": 1999,
+      "originalPrice": 2999,
+      "discount": 33,
+      "rating": 4.5,
+      "reviewsCount": 100,
+      "badge": "",
+      "setupDuration": "3 - 4 Hours",
+      "slotsAlert": "5 SLOTS",
+      "image": "https://res.cloudinary.com/gu0q1mxy/image/upload/v1791553757/celebration-packages/ymsj4khx263vvqooljce.jpg",
+      "gallery": [
+        "https://res.cloudinary.com/gu0q1mxy/image/upload/v1791553757/celebration-packages/ymsj4khx263vvqooljce.jpg",
+        "https://res.cloudinary.com/gu0q1mxy/image/upload/v1791553749/celebration-gallery/zdo8qshcqs8wwdmkkskc.jpg"
+      ],
+      "description": "REIUOIRWERATHVJB",
+      "aboutDescription": "E23W4TE5YRUGLIHKGUYDSTREAW",
+      "about_description": "E23W4TE5YRUGLIHKGUYDSTREAW",
+      "inclusions": [
+        "HI",
+        "GELLO"
+      ],
+      "notIncluded": [
+        "AMMA",
+        "NANNA"
+      ],
+      "not_included": [
+        "AMMA",
+        "NANNA"
+      ],
+      "faqs": [
+        {
+          "a": "AKHIL",
+          "q": "WHO ARE YOU"
+        },
+        {
+          "a": "AKHIL",
+          "q": "I AM HARISH"
+        }
+      ],
+      "deliveryNote": "DAsfBCXHBSDGA",
+      "delivery_note": "DAsfBCXHBSDGA",
+      "decoratorNote": "SZFDGXHVJBNMCBXFVZD",
+      "decorator_note": "SZFDGXHVJBNMCBXFVZD",
+      "lifespanNote": "SDafHJDSFA",
+      "lifespan_note": "SDafHJDSFA",
+      "locationNote": "DSfzDSFAFGHM",
+      "location_note": "DSfzDSFAFGHM",
+      "addons": [
+        {
+          "id": "addon-1791553829075",
+          "name": "XZSCDFGBHNMJ,MH",
+          "badge": "POPULAR",
+          "image": "https://res.cloudinary.com/gu0q1mxy/image/upload/v1791553835/celebration-addons/zhqt8i602jiflsba1wrj.jpg",
+          "price": 1999
+        }
+      ],
+      "colorPalettes": [
+        {
+          "name": "GREEN",
+          "gradient": "linear-gradient(135deg, #22c55e 50%, #bbf7d0 50%)"
+        },
+        {
+          "name": "Same as Image",
+          "gradient": "linear-gradient(135deg, #be123c 50%, #f59e0b 50%)"
+        },
+        {
+          "name": "Rose Gold & White",
+          "gradient": "linear-gradient(135deg, #ffffff 50%, #f59e0b 50%)"
+        },
+        {
+          "name": "Gold & Black",
+          "gradient": "linear-gradient(135deg, #f59e0b 50%, #0f172a 50%)"
+        },
+        {
+          "name": "Pastel Blue & White",
+          "gradient": "#3b82f6"
+        },
+        {
+          "name": "Gold & Black",
+          "gradient": "linear-gradient(135deg, #f59e0b 50%, #0f172a 50%)"
+        },
+        {
+          "name": "Pastel Blue & White",
+          "gradient": "#3b82f6"
+        },
+        {
+          "name": "Pink & Purple",
+          "gradient": "linear-gradient(135deg, #a855f7 50%, #e9d5ff 50%)"
+        },
+        {
+          "name": "Multicolors / Rainbow",
+          "gradient": "linear-gradient(135deg, #ef4444 25%, #eab308 25%, #eab308 50%, #22c55e 50%, #22c55e 75%, #3b82f6 75%)"
+        }
+      ],
+      "color_palettes": [
+        {
+          "name": "GREEN",
+          "gradient": "linear-gradient(135deg, #22c55e 50%, #bbf7d0 50%)"
+        },
+        {
+          "name": "Same as Image",
+          "gradient": "linear-gradient(135deg, #be123c 50%, #f59e0b 50%)"
+        },
+        {
+          "name": "Rose Gold & White",
+          "gradient": "linear-gradient(135deg, #ffffff 50%, #f59e0b 50%)"
+        },
+        {
+          "name": "Gold & Black",
+          "gradient": "linear-gradient(135deg, #f59e0b 50%, #0f172a 50%)"
+        },
+        {
+          "name": "Pastel Blue & White",
+          "gradient": "#3b82f6"
+        },
+        {
+          "name": "Gold & Black",
+          "gradient": "linear-gradient(135deg, #f59e0b 50%, #0f172a 50%)"
+        },
+        {
+          "name": "Pastel Blue & White",
+          "gradient": "#3b82f6"
+        },
+        {
+          "name": "Pink & Purple",
+          "gradient": "linear-gradient(135deg, #a855f7 50%, #e9d5ff 50%)"
+        },
+        {
+          "name": "Multicolors / Rainbow",
+          "gradient": "linear-gradient(135deg, #ef4444 25%, #eab308 25%, #eab308 50%, #22c55e 50%, #22c55e 75%, #3b82f6 75%)"
+        }
+      ],
+      "whyChoose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "why_choose": {
+        "stats": [
+          {
+            "label": "Customers",
+            "value": "10L+"
+          },
+          {
+            "label": "Cities",
+            "value": "50+"
+          },
+          {
+            "label": "Rating",
+            "value": "4.9 ★"
+          },
+          {
+            "label": "Years",
+            "value": "5+"
+          }
+        ],
+        "title": "Why choose Celebration Events?",
+        "highlights": [
+          {
+            "desc": "10L+ celebrations made special",
+            "icon": "🏆",
+            "title": "India's #1 decoration brand"
+          },
+          {
+            "desc": "End to end assistance for your event",
+            "icon": "👔",
+            "title": "Dedicated event planner"
+          },
+          {
+            "desc": "Professional decorators for every setup",
+            "icon": "⚡",
+            "title": "Same-day service"
+          },
+          {
+            "desc": "Lowest price promised",
+            "icon": "💯",
+            "title": "100% smile assurance"
+          }
+        ]
+      },
+      "tags": [
+        "House Decoration",
+        "Traditional Wedding",
+        "Marigold & Lights",
+        "subcat:akhil-neela"
+      ],
+      "category_name": "dusera",
+      "original_price": 2999,
+      "reviews_count": 100,
+      "setup_duration": "3 - 4 Hours",
+      "created_at": "2026-10-09T13:51:11.480477+00:00",
+      "updated_at": "2026-10-09T13:51:11.480477+00:00",
+      "slots_alert": "5 SLOTS",
+      "options": [],
+      "material": "",
+      "dimensions": "",
+      "color": "",
+      "recommended_age": null,
+      "wash_care": null,
+      "packaging": "",
+      "subtitle": "",
+      "bought_text": null,
+      "specs": {},
+      "highlights": [],
+      "recommendedAge": "",
+      "washCare": "",
+      "boughtText": ""
+    },
+    {
       "id": "gift-07",
       "title": "Remote Control Car for Kids",
       "category": "gifts",
@@ -10878,7 +11203,7 @@ const SITE_DATA = {
           },
           {
             "desc": "End to end assistance for your event",
-            "icon": "��",
+            "icon": "👔",
             "title": "Dedicated event planner"
           },
           {
@@ -11072,46 +11397,6 @@ const SITE_DATA = {
       "recommended_age": null,
       "wash_care": null,
       "bought_text": null
-    },
-    {
-      "id": "zumba-dance",
-      "title": "ZUMBA DANCE",
-      "category": "wedding",
-      "categoryName": "Wedding",
-      "badge": "traditional",
-      "image": "https://res.cloudinary.com/gu0q1mxy/image/upload/v1791554015/celebration-wedding/rrzh6c2tfnliyby1fwj2.jpg",
-      "gallery": [
-        "https://res.cloudinary.com/gu0q1mxy/image/upload/v1791554015/celebration-wedding/rrzh6c2tfnliyby1fwj2.jpg"
-      ],
-      "description": "SADFTGHJKLJHG",
-      "options": [
-        {
-          "id": "opt_mv1108am",
-          "title": "PAINTING",
-          "price": 0,
-          "subPrompt": "CHOOSE PAINT COLOR",
-          "image": "https://res.cloudinary.com/gu0q1mxy/image/upload/v1791554055/celebration-wedding-options/xhy9haivnwlaltqouc3p.jpg",
-          "subItems": [
-            {
-              "name": "RED",
-              "price": 100,
-              "image": ""
-            },
-            {
-              "name": "BLUE",
-              "price": 150,
-              "image": ""
-            }
-          ]
-        }
-      ],
-      "inclusions": [
-        "PAINTING"
-      ],
-      "tags": [
-        "Wedding",
-        "Custom Decor"
-      ]
     }
   ],
   "reviews": [
@@ -11976,7 +12261,7 @@ const SITE_DATA = {
     "bg": "linear-gradient(135deg, #059669 0%, #10b981 100%)",
     "updatedAt": "2026-10-09T03:53:29.837Z"
   },
-  "updatedAt": "2026-10-09T13:54:45.339Z"
+  "updatedAt": "2026-10-09T15:06:11.949Z"
 };
 
 if (typeof window !== "undefined") {
