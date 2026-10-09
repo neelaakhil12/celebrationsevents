@@ -199,16 +199,26 @@
      INIT & AUTHENTICATION
      ========================================================================== */
   function init() {
-    initLocalData();
-    setupAuthListeners();
-    setupSidebarAndTabs();
-    setupReviewsListeners();
-    setupCitiesListeners();
-    setupCloudinaryUploaders();
-    setupSupabaseSyncHandlers();
-    setupFormListeners();
-    checkAuthStatus();
-    loadFromSupabase();
+    // Run each setup step in isolation so one failure can't stop later listeners
+    // (e.g. the package form submit handler) from being attached.
+    [
+      initLocalData,
+      setupAuthListeners,
+      setupSidebarAndTabs,
+      setupReviewsListeners,
+      setupCitiesListeners,
+      setupCloudinaryUploaders,
+      setupSupabaseSyncHandlers,
+      setupFormListeners,
+      checkAuthStatus,
+      loadFromSupabase
+    ].forEach(step => {
+      try {
+        step();
+      } catch (err) {
+        console.error('Admin init step failed:', step.name, err);
+      }
+    });
   }
 
   const DATA_VERSION_KEY = 'celebration_admin_data_ver';
@@ -4012,6 +4022,15 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
 
   async function handlePackageFormSubmit(e) {
     e.preventDefault();
+    try {
+      await savePackageFromForm();
+    } catch (err) {
+      console.error('Create Package failed:', err);
+      showToast('Could not save package: ' + (err && err.message ? err.message : err), 'error');
+    }
+  }
+
+  async function savePackageFromForm() {
     const title = document.getElementById('pkgTitle').value.trim();
     let slug = document.getElementById('pkgSlug').value.trim();
     const category = document.getElementById('pkgCategory').value;
