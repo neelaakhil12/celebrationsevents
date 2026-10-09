@@ -263,6 +263,9 @@
 
       <div class="quote-bar-right">
         <button class="quote-clear-btn" onclick="clearSelectedWeddingServices()">Clear All</button>
+        <button class="quote-doc-btn" onclick="openWeddingQuotationDocument()" style="background: linear-gradient(135deg, #be123c, #9f1239); color: #fff; font-weight: 800; font-size: 13.5px; border-radius: 99px; padding: 10px 20px; border: none; cursor: pointer; display: inline-flex; align-items: center; gap: 7px; box-shadow: 0 4px 14px rgba(190,18,60,0.3); transition: transform 0.2s, box-shadow 0.2s;">
+          <span>📄 View Quotation Document</span>
+        </button>
         <button class="quote-callback-btn" onclick="openWeddingCallbackModal()">Request Callback 📞</button>
         <button class="quote-wa-btn" onclick="sendWeddingWhatsAppQuote()">
           <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.699c.97.53 1.764.814 2.8.815h.005c3.181 0 5.767-2.586 5.768-5.766 0-3.18-2.586-5.768-5.777-5.768zm3.376 8.188c-.14.394-.814.733-1.129.779-.315.046-.723.065-2.083-.497-1.74-.718-2.853-2.483-2.94-2.598-.087-.115-.705-.939-.705-1.792 0-.853.447-1.272.607-1.446.16-.174.349-.217.465-.217.116 0 .232.001.334.006.107.006.251-.041.393.3.145.348.494 1.203.538 1.29.043.087.072.189.014.305-.058.115-.087.189-.174.29-.087.101-.184.226-.262.304-.087.087-.179.182-.077.357.102.174.453.748.972 1.211.669.596 1.233.78 1.408.868.174.087.276.073.378-.044.102-.116.436-.508.552-.682.116-.174.232-.145.393-.087.16.058 1.018.48 1.193.567.174.087.291.131.334.203.044.073.044.42-.096.814z"/></svg>
@@ -377,6 +380,476 @@
       </div>
     </div>
   </div>
+
+  <!-- ====================================================
+       7B. OFFICIAL WEDDING SERVICES QUOTATION DOCUMENT MODAL
+       ==================================================== -->
+  <div class="modal-overlay" id="weddingQuotationDocModal">
+    <div class="quotation-doc-modal-container">
+      <!-- Toolbar (Screen only) -->
+      <div class="qdoc-toolbar no-print">
+        <div class="qdoc-toolbar-left">
+          <span class="qdoc-toolbar-title">📄 Official Wedding Quotation Document</span>
+          <span class="qdoc-live-badge">VERIFIED ESTIMATE</span>
+        </div>
+        <div class="qdoc-toolbar-actions">
+          <button type="button" class="qdoc-action-btn print-btn" onclick="printWeddingQuotationDoc()" title="Print or save as PDF">
+            🖨️ Print / Save PDF
+          </button>
+          <button type="button" class="qdoc-action-btn wa-btn" onclick="sendWeddingWhatsAppQuote()" title="Send to WhatsApp">
+            💬 WhatsApp Quote
+          </button>
+          <button type="button" class="qdoc-action-btn close-btn" onclick="closeWeddingQuotationDocModal()" aria-label="Close">
+            ✕ Close
+          </button>
+        </div>
+      </div>
+
+      <!-- Printable Document Paper -->
+      <div class="quotation-paper" id="weddingQuotationPaper">
+        <!-- Document Header -->
+        <div class="qdoc-header">
+          <div class="qdoc-brand-block">
+            <div class="brand-logo" style="margin-bottom: 6px; display: inline-flex; align-items: center; gap: 6px;">
+              <span class="logo-balloon" style="font-size: 26px;">🎈</span>
+              <span style="font-family: 'Outfit', sans-serif; font-size: 26px; font-weight: 800; color: #1e293b; letter-spacing: -0.5px;">Celebration <span style="color: #be123c;">Events</span><span class="reg" style="font-size: 13px;">®</span></span>
+            </div>
+            <div class="qdoc-company-tagline">India’s Premier Wedding & Traditional Event Decorators</div>
+            <div class="qdoc-company-meta">
+              <span>📞 Hotline: +91 82820 25444</span> • 
+              <span>✉️ support@celebrationevents.com</span> • 
+              <span>🌐 www.celebrationevents.com</span>
+            </div>
+          </div>
+          <div class="qdoc-meta-block">
+            <div class="qdoc-title-badge">OFFICIAL ESTIMATE</div>
+            <table class="qdoc-meta-table">
+              <tr>
+                <td><strong>Quotation Ref:</strong></td>
+                <td><span id="qdocRefNo">#CE-WD-8241</span></td>
+              </tr>
+              <tr>
+                <td><strong>Issue Date:</strong></td>
+                <td><span id="qdocDate">09 Oct 2026</span></td>
+              </tr>
+              <tr>
+                <td><strong>Event City:</strong></td>
+                <td><span id="qdocCity">Delhi NCR</span></td>
+              </tr>
+              <tr>
+                <td><strong>Validity:</strong></td>
+                <td><span id="qdocValidDate">30 Days</span></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="qdoc-divider"></div>
+
+        <!-- Customer & Event Overview -->
+        <div class="qdoc-client-row">
+          <div class="qdoc-client-col">
+            <div class="qdoc-section-label">CLIENT / BOOKING DETAILS</div>
+            <div class="qdoc-client-name" id="qdocCustomerName">Valued Wedding Client</div>
+            <div class="qdoc-client-sub" id="qdocCustomerContact">Wedding Services Custom Selection via Website Portal</div>
+          </div>
+          <div class="qdoc-client-col qdoc-client-right">
+            <div class="qdoc-section-label">OCCASION & ARRANGEMENT TYPE</div>
+            <div style="font-weight: 800; color: #0f172a; font-size: 14.5px;">Wedding & Pre-Wedding Ceremonies</div>
+            <div style="font-size: 12.5px; color: #64748b; margin-top: 2px;">100% On-Time Setup Guarantee • Professional Decor Crew</div>
+          </div>
+        </div>
+
+        <!-- Itemized Services Table -->
+        <div class="qdoc-table-wrap">
+          <table class="qdoc-items-table">
+            <thead>
+              <tr>
+                <th style="width: 45px; text-align: center;">#</th>
+                <th style="width: 220px;">Wedding Service</th>
+                <th>Selected Choices & Specific Arrangements</th>
+                <th style="width: 140px; text-align: right;">Estimated Rate</th>
+              </tr>
+            </thead>
+            <tbody id="qdocTableBody">
+              <!-- Dynamically populated -->
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colspan="3" style="text-align: right; font-weight: 700; color: #475569; padding: 10px 14px;">Subtotal (Services & Choices):</td>
+                <td style="text-align: right; font-weight: 800; color: #1e293b; padding: 10px 14px;" id="qdocSubtotal">₹0</td>
+              </tr>
+              <tr>
+                <td colspan="3" style="text-align: right; font-size: 12.5px; color: #64748b; padding: 8px 14px;">Decorator Team & Setup Supervision:</td>
+                <td style="text-align: right; font-size: 12.5px; color: #059669; font-weight: 800; padding: 8px 14px;">Included (Free)</td>
+              </tr>
+              <tr class="qdoc-grand-total-row">
+                <td colspan="3" style="text-align: right; font-size: 15px; font-weight: 800; color: #0f172a; padding: 14px;">ESTIMATED TOTAL QUOTATION:</td>
+                <td style="text-align: right; font-size: 19px; font-weight: 900; color: #be123c; padding: 14px;" id="qdocGrandTotal">₹0</td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+
+        <!-- Notes, Terms & Conditions -->
+        <div class="qdoc-terms-box">
+          <div class="qdoc-terms-title">📌 Terms & Quotation Guidelines:</div>
+          <ul class="qdoc-terms-list">
+            <li><strong>Personalized Customization:</strong> All selected services and choices will be customized strictly according to your venue layout and preferences.</li>
+            <li><strong>Slot Confirmation:</strong> Wedding dates and decorator crew slots are locked upon initial booking advance payment.</li>
+            <li><strong>On-Time Guarantee:</strong> Celebration Events® provides a 100% on-time setup guarantee with dedicated supervisor support.</li>
+            <li><strong>Direct Assistance:</strong> For custom stage dimensions, additional lights, or special catering requests, contact our wedding concierge directly at <strong>+91 82820 25444</strong>.</li>
+          </ul>
+        </div>
+
+        <!-- Authorized Signature Block -->
+        <div class="qdoc-footer-signature">
+          <div class="qdoc-sig-box">
+            <div class="qdoc-stamp-circle">CELEBRATION<br/>EVENTS®<br/>VERIFIED</div>
+            <div class="qdoc-sig-title">Celebration Events® Wedding Division</div>
+            <div class="qdoc-sig-sub">Authorized Quotation Signatory</div>
+          </div>
+          <div class="qdoc-sig-box" style="text-align: right;">
+            <div style="font-size: 12px; color: #64748b; margin-bottom: 24px;">Customer Acceptance / Confirmation:</div>
+            <div style="border-top: 1.5px dashed #94a3b8; width: 190px; display: inline-block; margin-top: 20px;"></div>
+            <div style="font-size: 11.5px; color: #94a3b8; margin-top: 4px;">Signature / Date</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    /* Professional Quotation Document Modal Styles */
+    .quotation-doc-modal-container {
+      background: #f8fafc;
+      width: 96%;
+      max-width: 900px;
+      max-height: 94vh;
+      border-radius: 16px;
+      overflow-y: auto;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.35);
+      position: relative;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+    }
+    .qdoc-toolbar {
+      background: #0f172a;
+      color: #ffffff;
+      padding: 14px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid #334155;
+    }
+    .qdoc-toolbar-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .qdoc-toolbar-title {
+      font-weight: 800;
+      font-size: 15px;
+      color: #f8fafc;
+      letter-spacing: -0.2px;
+    }
+    .qdoc-live-badge {
+      background: #065f46;
+      color: #34d399;
+      font-size: 10.5px;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 99px;
+      letter-spacing: 0.5px;
+    }
+    .qdoc-toolbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .qdoc-action-btn {
+      padding: 7px 14px;
+      font-size: 12.5px;
+      font-weight: 700;
+      border-radius: 8px;
+      cursor: pointer;
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+    .qdoc-action-btn.print-btn {
+      background: #be123c;
+      color: #ffffff;
+    }
+    .qdoc-action-btn.print-btn:hover {
+      background: #9f1239;
+    }
+    .qdoc-action-btn.wa-btn {
+      background: #25d366;
+      color: #ffffff;
+    }
+    .qdoc-action-btn.wa-btn:hover {
+      background: #1ea952;
+    }
+    .qdoc-action-btn.close-btn {
+      background: #334155;
+      color: #cbd5e1;
+    }
+    .qdoc-action-btn.close-btn:hover {
+      background: #475569;
+      color: #ffffff;
+    }
+    .quotation-paper {
+      background: #ffffff;
+      margin: 20px;
+      padding: 36px 40px;
+      border-radius: 12px;
+      border: 1.5px solid #e2e8f0;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+    }
+    .qdoc-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 20px;
+    }
+    .qdoc-company-tagline {
+      font-size: 13px;
+      font-weight: 600;
+      color: #475569;
+      margin-bottom: 4px;
+    }
+    .qdoc-company-meta {
+      font-size: 12px;
+      color: #64748b;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .qdoc-title-badge {
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      color: #be123c;
+      background: #fff1f2;
+      border: 1px solid #fecdd3;
+      padding: 4px 12px;
+      border-radius: 6px;
+      text-align: right;
+      display: inline-block;
+      margin-bottom: 8px;
+    }
+    .qdoc-meta-table {
+      font-size: 12.5px;
+      border-collapse: collapse;
+      color: #334155;
+    }
+    .qdoc-meta-table td {
+      padding: 2px 6px;
+    }
+    .qdoc-divider {
+      height: 2px;
+      background: linear-gradient(to right, #be123c, #cbd5e1, #ffffff);
+      margin: 20px 0;
+    }
+    .qdoc-client-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 24px;
+      background: #f8fafc;
+      border: 1px solid #f1f5f9;
+      border-radius: 10px;
+      padding: 14px 18px;
+    }
+    .qdoc-section-label {
+      font-size: 10.5px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      color: #be123c;
+      margin-bottom: 4px;
+    }
+    .qdoc-client-name {
+      font-size: 15px;
+      font-weight: 800;
+      color: #0f172a;
+    }
+    .qdoc-client-sub {
+      font-size: 12px;
+      color: #64748b;
+      margin-top: 2px;
+    }
+    .qdoc-client-right {
+      text-align: right;
+    }
+    .qdoc-table-wrap {
+      margin-bottom: 24px;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1.5px solid #cbd5e1;
+    }
+    .qdoc-items-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+    }
+    .qdoc-items-table thead {
+      background: #0f172a;
+      color: #ffffff;
+    }
+    .qdoc-items-table th {
+      padding: 12px 14px;
+      font-size: 12.5px;
+      font-weight: 700;
+      text-align: left;
+      letter-spacing: 0.3px;
+    }
+    .qdoc-items-table tbody tr {
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .qdoc-items-table tbody tr:nth-child(even) {
+      background: #fafafa;
+    }
+    .qdoc-items-table tbody td {
+      padding: 14px 14px;
+      vertical-align: top;
+    }
+    .qdoc-items-table tfoot {
+      background: #f8fafc;
+      border-top: 2px solid #cbd5e1;
+    }
+    .qdoc-grand-total-row {
+      background: #fff1f2 !important;
+      border-top: 2px solid #f43f5e !important;
+    }
+    .qdoc-terms-box {
+      background: #f8fafc;
+      border-left: 4px solid #be123c;
+      border-radius: 0 8px 8px 0;
+      padding: 14px 18px;
+      margin-bottom: 28px;
+    }
+    .qdoc-terms-title {
+      font-size: 12.5px;
+      font-weight: 800;
+      color: #0f172a;
+      margin-bottom: 6px;
+    }
+    .qdoc-terms-list {
+      margin: 0;
+      padding-left: 18px;
+      font-size: 12px;
+      color: #475569;
+      line-height: 1.6;
+    }
+    .qdoc-footer-signature {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      padding-top: 16px;
+      border-top: 1px solid #e2e8f0;
+    }
+    .qdoc-stamp-circle {
+      display: inline-block;
+      border: 2px dashed #be123c;
+      color: #be123c;
+      font-size: 9px;
+      font-weight: 900;
+      padding: 6px 10px;
+      border-radius: 8px;
+      text-align: center;
+      line-height: 1.2;
+      margin-bottom: 8px;
+      letter-spacing: 0.5px;
+      background: #fff1f2;
+    }
+    .qdoc-sig-title {
+      font-size: 13px;
+      font-weight: 800;
+      color: #0f172a;
+    }
+    .qdoc-sig-sub {
+      font-size: 11px;
+      color: #64748b;
+    }
+
+    /* Print Formatting */
+    @media print {
+      body * {
+        visibility: hidden !important;
+      }
+      #weddingQuotationDocModal, #weddingQuotationDocModal * {
+        visibility: visible !important;
+      }
+      #weddingQuotationDocModal {
+        position: fixed !important;
+        left: 0 !important;
+        top: 0 !important;
+        width: 100vw !important;
+        height: auto !important;
+        background: #ffffff !important;
+        overflow: visible !important;
+        z-index: 99999 !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+      .quotation-doc-modal-container {
+        width: 100% !important;
+        max-width: 100% !important;
+        height: auto !important;
+        box-shadow: none !important;
+        background: #ffffff !important;
+        border-radius: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+      .quotation-paper {
+        margin: 0 !important;
+        padding: 20px 24px !important;
+        border: none !important;
+        box-shadow: none !important;
+      }
+      .no-print {
+        display: none !important;
+      }
+    }
+    @media (max-width: 768px) {
+      .quotation-paper {
+        padding: 20px 14px;
+        margin: 10px;
+      }
+      .qdoc-header {
+        flex-direction: column;
+      }
+      .qdoc-meta-block {
+        text-align: left;
+      }
+      .qdoc-meta-table {
+        margin-top: 6px;
+      }
+      .qdoc-client-row {
+        flex-direction: column;
+        gap: 12px;
+      }
+      .qdoc-client-right {
+        text-align: left;
+      }
+      .qdoc-toolbar {
+        flex-direction: column;
+        gap: 10px;
+        align-items: stretch;
+      }
+      .qdoc-toolbar-actions {
+        justify-content: flex-end;
+      }
+    }
+  </style>
 
   <!-- City Selection Modal -->
   <div class="modal-overlay" id="cityModalOverlay">
@@ -505,7 +978,7 @@
   <!-- Scripts -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script src="data.js?v=9.0"></script>
-  <script src="app.js?v=20261009_2"></script>
+  <script src="app.js?v=20261009_quotation_doc_v1"></script>
   <script>
     // Initialize Wedding Services Page Logic
     document.addEventListener("DOMContentLoaded", () => {

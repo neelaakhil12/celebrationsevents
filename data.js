@@ -9382,18 +9382,22 @@ const SITE_DATA = {
           "subItems": [
             {
               "name": "3 pin",
+              "price": 300,
               "image": ""
             },
             {
               "name": "5 pin",
+              "price": 7800,
               "image": ""
             },
             {
               "name": "8 pin",
+              "price": 15000,
               "image": ""
             }
           ],
-          "subPrompt": "choose dj type"
+          "subPrompt": "choose dj type",
+          "price": 0
         },
         {
           "id": "opt_muzfdif4",
@@ -9402,18 +9406,22 @@ const SITE_DATA = {
           "subItems": [
             {
               "name": "2 mmebers",
+              "price": 1600,
               "image": ""
             },
             {
               "name": "3 members",
+              "price": 1700,
               "image": ""
             },
             {
               "name": "4 memebers",
+              "price": 1781,
               "image": ""
             }
           ],
-          "subPrompt": "choose kolatam type"
+          "subPrompt": "choose kolatam type",
+          "price": 0
         }
       ],
       "inclusions": [
@@ -11692,7 +11700,7 @@ const SITE_DATA = {
     "bg": "linear-gradient(135deg, #059669 0%, #10b981 100%)",
     "updatedAt": "2026-10-09T03:53:29.837Z"
   },
-  "updatedAt": "2026-10-09T03:53:30.055Z"
+  "updatedAt": "2026-10-09T09:53:04.603Z"
 };
 
 if (typeof window !== "undefined") {
