@@ -8582,7 +8582,10 @@ button:active,
 /* Main Two-Column Layout */
 .marketplace-layout {
   display: grid;
-  grid-template-columns: 260px 1fr;
+  grid-template-columns: 260px minmax(0, 1fr);
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
   gap: 32px;
   align-items: start;
 }
@@ -8788,6 +8791,10 @@ button:active,
   display: flex;
   flex-direction: column;
   gap: 20px;
+  min-width: 0;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .marketplace-controls-bar {
@@ -8832,11 +8839,17 @@ button:active,
 /* 4-Column Product Grid */
 .gifts-product-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
   gap: 20px;
 }
 
 .gift-card {
+  min-width: 0;
+  width: 100%;
+  box-sizing: border-box;
   background: #ffffff;
   border: 1px solid #e2e8f0;
   border-radius: 12px;
