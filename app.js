@@ -4825,28 +4825,28 @@ function openWeddingQuotationDocument() {
 
       let choicesHtml = '';
       if (opts.length > 0) {
-        choicesHtml = `<div style="display:flex; flex-direction:column; gap:6px;">` +
+        choicesHtml = `<div style="display:flex; flex-direction:column; gap:5px;">` +
           opts.map(o => {
-            return `<div style="display:flex; align-items:center; gap:6px; font-size:13px; color:#334155;">
-              <span style="color:#be123c; font-size:10px;">◆</span>
+            return `<div style="display:flex; align-items:flex-start; gap:6px; font-size:12.5px; color:#374151; line-height:1.4;">
+              <span style="color:#7e22ce; font-weight:800; font-size:11px; margin-top:2px;">•</span>
               <span>${o}</span>
             </div>`;
           }).join('') +
           `</div>`;
       } else {
-        choicesHtml = `<span style="font-size:12.5px; color:#64748b; font-style:italic;">Standard service package</span>`;
+        choicesHtml = `<span style="font-size:12px; color:#6b7280; font-style:italic;">Standard service package</span>`;
       }
 
       rowsHtml += `
         <tr>
-          <td style="text-align: center; font-weight:700; color:#64748b;">${idx + 1}</td>
+          <td style="text-align: center; font-weight:700; color:#6b7280;">${idx + 1}</td>
           <td>
-            <div style="font-weight: 800; font-size: 14.5px; color: #0f172a; margin-bottom: 2px;">${s.title}</div>
-            <div style="font-size: 11.5px; color: #64748b; line-height: 1.4;">${s.desc || ''}</div>
+            <div style="font-weight: 800; font-size: 13.5px; color: #1e1b4b; margin-bottom: 2px;">${s.title}</div>
+            <div style="font-size: 11px; color: #6b7280; line-height: 1.3;">${s.desc || ''}</div>
           </td>
           <td>${choicesHtml}</td>
-          <td style="text-align: right; font-weight: 800; font-size: 14.5px; color: #0f172a;">
-            ${sPrice > 0 ? `₹${sPrice.toLocaleString('en-IN')}` : '<span style="font-size:12px; color:#059669; font-weight:700;">Included / Quote On Site</span>'}
+          <td style="text-align: right; font-weight: 800; font-size: 14px; color: #3b0764; white-space: nowrap;">
+            ${sPrice > 0 ? `₹${sPrice.toLocaleString('en-IN')}` : '<span style="font-size:11.5px; color:#059669; font-weight:700;">Included</span>'}
           </td>
         </tr>
       `;
