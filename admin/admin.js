@@ -4539,7 +4539,7 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
           </button>
         </div>
 
-        <div class="wse-opt-inputs-grid" style="display:grid; grid-template-columns:1fr 1fr 140px; gap:14px; margin-bottom:14px;">
+        <div class="wse-opt-inputs-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:14px;">
           <div>
             <label style="font-size:12px; font-weight:700; color:#334155; margin-bottom:6px; display:block;">Option Title *</label>
             <input type="text" class="wse-opt-input" value="${escapeHtml(opt.title || '')}" placeholder="e.g. Pendals In Front Of House" oninput="window.adminStudio.updateWseOptField(${optIdx}, 'title', this.value)" style="width:100%; box-sizing:border-box; padding:10px 14px; font-size:13.5px; color:#0f172a; background:#f8fafc; border:1.5px solid #cbd5e1; border-radius:8px; outline:none;" required />
@@ -4547,13 +4547,6 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
           <div>
             <label style="font-size:12px; font-weight:700; color:#334155; margin-bottom:6px; display:block;">Prompt / Subtitle (Customer View)</label>
             <input type="text" class="wse-opt-input" value="${escapeHtml(opt.subPrompt || opt.subtitle || '')}" placeholder="e.g. Choose pendal type" oninput="window.adminStudio.updateWseOptField(${optIdx}, 'subPrompt', this.value)" style="width:100%; box-sizing:border-box; padding:10px 14px; font-size:13.5px; color:#0f172a; background:#f8fafc; border:1.5px solid #cbd5e1; border-radius:8px; outline:none;" />
-          </div>
-          <div>
-            <label style="font-size:12px; font-weight:700; color:#334155; margin-bottom:6px; display:block;" title="Base amount if this option has no sub-choices">Base Amount (₹)</label>
-            <div style="display:flex; align-items:center; background:#f8fafc; border:1.5px solid #cbd5e1; border-radius:8px; padding:0 8px;">
-              <span style="font-size:13px; font-weight:800; color:#047857;">₹</span>
-              <input type="number" min="0" step="1" class="wse-opt-input" value="${Number(opt.price || opt.amount || 0) > 0 ? (opt.price || opt.amount) : ''}" placeholder="0" oninput="window.adminStudio.updateWseOptField(${optIdx}, 'price', Number(this.value) || 0)" style="width:100%; border:none; background:transparent; padding:10px 6px; font-size:13.5px; font-weight:700; color:#0f172a; outline:none;" title="Amount for this service option if it has no selectable sub-choices" />
-            </div>
           </div>
         </div>
 
