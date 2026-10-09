@@ -32,6 +32,7 @@
     CITIES: 'celebration_custom_cities',
     ANNOUNCEMENT: 'celebration_custom_announcement',
     BANNERS: 'celebration_custom_banners',
+    ORDERS: 'celebration_orders',
     DELETED: 'celebration_deleted_items'
   };
 
@@ -64,6 +65,8 @@
     cities: [],
     banners: [],
     bannerFilterLocation: 'all',
+    orders: [],
+    ordersFilter: 'all',
     deletedItems: { products: [], blogs: [], categories: [] },
     announcement: {
       enabled: true,
@@ -74,7 +77,7 @@
       theme: "rose-gradient",
       bg: "linear-gradient(135deg, #be123c 0%, #fb7185 100%)"
     },
-    activeTab: 'packages',
+    activeTab: 'dashboard',
     searchTerm: '',
     selectedCategory: 'all',
     selectedCategoryTab: 'all',
@@ -898,6 +901,232 @@
     }
     appState.banners = banners;
     localStorage.setItem(STORAGE_KEYS.BANNERS, JSON.stringify(appState.banners));
+
+    // 8. Orders & Fulfillment
+    let orders = [];
+    const storedOrders = localStorage.getItem(STORAGE_KEYS.ORDERS);
+    if (storedOrders) {
+      try {
+        const parsed = JSON.parse(storedOrders);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          orders = parsed;
+        }
+      } catch (e) {
+        console.warn('Could not parse stored orders:', e);
+      }
+    }
+    if (orders.length === 0) {
+      orders = getInitialSeedOrders();
+      localStorage.setItem(STORAGE_KEYS.ORDERS, JSON.stringify(orders));
+    }
+    appState.orders = orders;
+  }
+
+  function getInitialSeedOrders() {
+    const today = new Date().toISOString().split('T')[0];
+    const yesterday = new Date(Date.now() - 86400000).toISOString().split('T')[0];
+    const d2 = new Date(Date.now() - 86400000 * 2).toISOString().split('T')[0];
+    const d3 = new Date(Date.now() - 86400000 * 3).toISOString().split('T')[0];
+    const d4 = new Date(Date.now() - 86400000 * 4).toISOString().split('T')[0];
+
+    return [
+      {
+        id: "BD-982104",
+        customerName: "Rahul Verma",
+        customerPhone: "9876543210",
+        customerAddress: "Flat 402, Lotus Greens, Sector 78",
+        city: "Delhi NCR",
+        packageTitle: "Grand Golden Ring Birthday Setup",
+        category: "birthday",
+        date: today,
+        createdAt: new Date().toISOString(),
+        slot: "04:00 PM - 06:00 PM",
+        amount: 2999,
+        status: "completed"
+      },
+      {
+        id: "BD-982103",
+        customerName: "Priya Sharma",
+        customerPhone: "9811234567",
+        customerAddress: "Villa 12, Palm Meadows, Whitefield",
+        city: "Bangalore",
+        packageTitle: "Canopy Romantic Anniversary Bliss",
+        category: "anniversary",
+        date: today,
+        createdAt: new Date().toISOString(),
+        slot: "07:00 PM - 09:00 PM",
+        amount: 4499,
+        status: "completed"
+      },
+      {
+        id: "BD-982102",
+        customerName: "Sneha Reddy",
+        customerPhone: "9949123456",
+        customerAddress: "Plot 88, Jubilee Hills",
+        city: "Hyderabad",
+        packageTitle: "Unicorn Pastel Kids Wonderland",
+        category: "kids",
+        date: today,
+        createdAt: new Date().toISOString(),
+        slot: "02:00 PM - 04:00 PM",
+        amount: 3899,
+        status: "pending"
+      },
+      {
+        id: "BD-982101",
+        customerName: "Ananya Deshmukh",
+        customerPhone: "9820123987",
+        customerAddress: "B-201, Sea Breeze Apartments, Bandra West",
+        city: "Mumbai",
+        packageTitle: "Mandap & Royal Stage Floral Decor",
+        category: "wedding",
+        date: today,
+        createdAt: new Date().toISOString(),
+        slot: "10:00 AM - 12:00 PM",
+        amount: 18500,
+        status: "completed"
+      },
+      {
+        id: "BD-982098",
+        customerName: "Karthik Raja",
+        customerPhone: "9789012345",
+        customerAddress: "14, Anna Nagar 2nd Avenue",
+        city: "Chennai",
+        packageTitle: "Pastel Welcome Baby Shower Setup",
+        category: "baby-shower",
+        date: today,
+        createdAt: new Date().toISOString(),
+        slot: "06:00 PM - 08:00 PM",
+        amount: 2599,
+        status: "pending"
+      },
+      {
+        id: "BD-982090",
+        customerName: "Vikram Malhotra",
+        customerPhone: "9871239988",
+        customerAddress: "Tower 3, Cyber City DLF Phase 2",
+        city: "Gurgaon",
+        packageTitle: "Corporate Annual Gala Stage Setup",
+        category: "corporate",
+        date: yesterday,
+        createdAt: new Date(Date.now() - 86400000).toISOString(),
+        slot: "11:00 AM - 01:00 PM",
+        amount: 14500,
+        status: "completed"
+      },
+      {
+        id: "BD-982085",
+        customerName: "Amit Patel",
+        customerPhone: "9825012345",
+        customerAddress: "12, Bodakdev Green Avenue",
+        city: "Ahmedabad",
+        packageTitle: "Luxury Rose Gold Balloon Arch",
+        category: "birthday",
+        date: yesterday,
+        createdAt: new Date(Date.now() - 86400000).toISOString(),
+        slot: "05:00 PM - 07:00 PM",
+        amount: 3199,
+        status: "completed"
+      },
+      {
+        id: "BD-982080",
+        customerName: "Rohan Kulkarni",
+        customerPhone: "9922098765",
+        customerAddress: "Row House 4, Koregaon Park",
+        city: "Pune",
+        packageTitle: "Candlelight Dinner Cabana Decor",
+        category: "anniversary",
+        date: yesterday,
+        createdAt: new Date(Date.now() - 86400000).toISOString(),
+        slot: "08:00 PM - 10:00 PM",
+        amount: 3899,
+        status: "completed"
+      },
+      {
+        id: "BD-982072",
+        customerName: "Harish Neela",
+        customerPhone: "9182820254",
+        customerAddress: "Plot 45, Main Road",
+        city: "hasthinapuram",
+        packageTitle: "Cocomelon 1st Birthday Theme Decor",
+        category: "kids",
+        date: d2,
+        createdAt: new Date(Date.now() - 86400000 * 2).toISOString(),
+        slot: "03:00 PM - 05:00 PM",
+        amount: 4299,
+        status: "completed"
+      },
+      {
+        id: "BD-982065",
+        customerName: "Meera Sen",
+        customerPhone: "9830123456",
+        customerAddress: "Salt Lake Sector 5, Block AE",
+        city: "Kolkata",
+        packageTitle: "Deluxe Celebration Gift Hamper",
+        category: "gifts",
+        date: d2,
+        createdAt: new Date(Date.now() - 86400000 * 2).toISOString(),
+        slot: "01:00 PM - 03:00 PM",
+        amount: 1999,
+        status: "completed"
+      },
+      {
+        id: "BD-982055",
+        customerName: "Arjun Kapoor",
+        customerPhone: "9810987654",
+        customerAddress: "C-45, Vasant Vihar",
+        city: "Delhi NCR",
+        packageTitle: "Royal Wedding Entry Pathway & Car Decor",
+        category: "wedding",
+        date: d3,
+        createdAt: new Date(Date.now() - 86400000 * 3).toISOString(),
+        slot: "09:00 AM - 11:00 AM",
+        amount: 22000,
+        status: "completed"
+      },
+      {
+        id: "BD-982042",
+        customerName: "Pooja Hegde",
+        customerPhone: "9820987123",
+        customerAddress: "Apartment 1001, Lokhandwala Complex, Andheri West",
+        city: "Mumbai",
+        packageTitle: "Neon Happy Birthday Ring & Pampas",
+        category: "birthday",
+        date: d3,
+        createdAt: new Date(Date.now() - 86400000 * 3).toISOString(),
+        slot: "06:00 PM - 08:00 PM",
+        amount: 3499,
+        status: "completed"
+      },
+      {
+        id: "BD-982030",
+        customerName: "Sanjay Singhal",
+        customerPhone: "9415012345",
+        customerAddress: "B-12, Gomti Nagar",
+        city: "Lucknow",
+        packageTitle: "Baby Welcome Home Organic Garland",
+        category: "baby-shower",
+        date: d4,
+        createdAt: new Date(Date.now() - 86400000 * 4).toISOString(),
+        slot: "11:00 AM - 01:00 PM",
+        amount: 2199,
+        status: "completed"
+      },
+      {
+        id: "BD-982020",
+        customerName: "Kavita Rao",
+        customerPhone: "9845012345",
+        customerAddress: "House 28, Indiranagar 100ft Road",
+        city: "Bangalore",
+        packageTitle: "25th Silver Jubilee Grand Stage",
+        category: "anniversary",
+        date: d4,
+        createdAt: new Date(Date.now() - 86400000 * 4).toISOString(),
+        slot: "06:30 PM - 08:30 PM",
+        amount: 9800,
+        status: "completed"
+      }
+    ];
   }
 
   // Load from Supabase Cloud Database on startup
@@ -1437,10 +1666,10 @@
     const mobileToggle = document.getElementById('mobileMenuToggle');
     const sidebar = document.getElementById('adminSidebar');
 
-    // All Packages tab button
-    const allPkgsBtn = document.getElementById('sidebarAllPackagesBtn');
-    allPkgsBtn?.addEventListener('click', () => {
-      selectCategoryTab('all');
+    // Dashboard tab button
+    const dashBtn = document.getElementById('sidebarDashboardBtn');
+    dashBtn?.addEventListener('click', () => {
+      switchTab('dashboard');
       if (window.innerWidth <= 960) sidebar?.classList.remove('mobile-open');
     });
 
@@ -1745,9 +1974,13 @@
     });
 
     // Update active highlight on sidebar items
+    const dashBtn = document.getElementById('sidebarDashboardBtn');
+    if (dashBtn) {
+      dashBtn.classList.remove('active');
+    }
     const allBtn = document.getElementById('sidebarAllPackagesBtn');
     if (allBtn) {
-      allBtn.classList.toggle('active', catId === 'all');
+      allBtn.classList.remove('active');
     }
     const settingsBtn = document.getElementById('sidebarSettingsBtn');
     if (settingsBtn) {
@@ -2030,6 +2263,7 @@
       c.classList.toggle('active', c.id === `${tabId}Tab`);
     });
 
+    const dashBtn = document.getElementById('sidebarDashboardBtn');
     const allBtn = document.getElementById('sidebarAllPackagesBtn');
     const settingsBtn = document.getElementById('sidebarSettingsBtn');
     const blogsBtn = document.getElementById('sidebarBlogsBtn');
@@ -2039,91 +2273,57 @@
     const announcementBtn = document.getElementById('sidebarAnnouncementBtn');
     const heroContainer = document.getElementById('categoryHeroContainer');
 
-    if (tabId === 'settings') {
-      if (allBtn) allBtn.classList.remove('active');
-      if (blogsBtn) blogsBtn.classList.remove('active');
-      if (reviewsBtn) reviewsBtn.classList.remove('active');
-      if (citiesBtn) citiesBtn.classList.remove('active');
-      if (bannersBtn) bannersBtn.classList.remove('active');
-      if (announcementBtn) announcementBtn.classList.remove('active');
+    // Deactivate all sidebar items first
+    [dashBtn, allBtn, settingsBtn, blogsBtn, reviewsBtn, citiesBtn, bannersBtn, announcementBtn].forEach(b => {
+      if (b) b.classList.remove('active');
+    });
+    document.querySelectorAll('#sidebarCategoriesContainer .sidebar-item').forEach(b => b.classList.remove('active'));
+
+    if (tabId === 'dashboard') {
+      if (dashBtn) dashBtn.classList.add('active');
+      const topbarTitle = document.getElementById('topbarPageTitle');
+      if (topbarTitle) topbarTitle.textContent = '📊 Business Dashboard & Analytics';
+      if (heroContainer) heroContainer.innerHTML = '';
+      renderDashboard();
+    } else if (tabId === 'settings') {
       if (settingsBtn) settingsBtn.classList.add('active');
-      document.querySelectorAll('#sidebarCategoriesContainer .sidebar-item').forEach(b => b.classList.remove('active'));
       const topbarTitle = document.getElementById('topbarPageTitle');
       if (topbarTitle) topbarTitle.textContent = 'Backup & Store Settings';
       if (heroContainer) heroContainer.innerHTML = '';
     } else if (tabId === 'banners') {
-      if (allBtn) allBtn.classList.remove('active');
-      if (settingsBtn) settingsBtn.classList.remove('active');
-      if (blogsBtn) blogsBtn.classList.remove('active');
-      if (reviewsBtn) reviewsBtn.classList.remove('active');
-      if (citiesBtn) citiesBtn.classList.remove('active');
-      if (announcementBtn) announcementBtn.classList.remove('active');
       if (bannersBtn) bannersBtn.classList.add('active');
-      document.querySelectorAll('#sidebarCategoriesContainer .sidebar-item').forEach(b => b.classList.remove('active'));
       const topbarTitle = document.getElementById('topbarPageTitle');
       const homeCount = appState.banners.filter(b => b.location === 'home').length;
       if (topbarTitle) topbarTitle.textContent = `🖼️ Homepage Banners (${homeCount})`;
       if (heroContainer) heroContainer.innerHTML = '';
       renderBannersAdmin();
     } else if (tabId === 'announcement') {
-      if (allBtn) allBtn.classList.remove('active');
-      if (settingsBtn) settingsBtn.classList.remove('active');
-      if (blogsBtn) blogsBtn.classList.remove('active');
-      if (reviewsBtn) reviewsBtn.classList.remove('active');
-      if (citiesBtn) citiesBtn.classList.remove('active');
-      if (bannersBtn) bannersBtn.classList.remove('active');
       if (announcementBtn) announcementBtn.classList.add('active');
-      document.querySelectorAll('#sidebarCategoriesContainer .sidebar-item').forEach(b => b.classList.remove('active'));
       const topbarTitle = document.getElementById('topbarPageTitle');
       if (topbarTitle) topbarTitle.textContent = '📢 Top Announcement Bar & Website Ticker';
       if (heroContainer) heroContainer.innerHTML = '';
       renderAnnouncementAdmin();
     } else if (tabId === 'blogs') {
-      if (allBtn) allBtn.classList.remove('active');
-      if (settingsBtn) settingsBtn.classList.remove('active');
-      if (reviewsBtn) reviewsBtn.classList.remove('active');
-      if (citiesBtn) citiesBtn.classList.remove('active');
-      if (bannersBtn) bannersBtn.classList.remove('active');
-      if (announcementBtn) announcementBtn.classList.remove('active');
       if (blogsBtn) blogsBtn.classList.add('active');
-      document.querySelectorAll('#sidebarCategoriesContainer .sidebar-item').forEach(b => b.classList.remove('active'));
       const topbarTitle = document.getElementById('topbarPageTitle');
       if (topbarTitle) topbarTitle.textContent = `📝 Event Guides & Blog Articles (${appState.blogs.length})`;
       if (heroContainer) heroContainer.innerHTML = '';
       renderBlogs();
     } else if (tabId === 'reviews') {
-      if (allBtn) allBtn.classList.remove('active');
-      if (settingsBtn) settingsBtn.classList.remove('active');
-      if (blogsBtn) blogsBtn.classList.remove('active');
-      if (citiesBtn) citiesBtn.classList.remove('active');
-      if (bannersBtn) bannersBtn.classList.remove('active');
-      if (announcementBtn) announcementBtn.classList.remove('active');
       if (reviewsBtn) reviewsBtn.classList.add('active');
-      document.querySelectorAll('#sidebarCategoriesContainer .sidebar-item').forEach(b => b.classList.remove('active'));
       const topbarTitle = document.getElementById('topbarPageTitle');
       if (topbarTitle) topbarTitle.textContent = `⭐ Real Photos & Video Customer Reviews (${appState.reviews.length})`;
       if (heroContainer) heroContainer.innerHTML = '';
       renderReviewsList();
     } else if (tabId === 'cities') {
-      if (allBtn) allBtn.classList.remove('active');
-      if (settingsBtn) settingsBtn.classList.remove('active');
-      if (blogsBtn) blogsBtn.classList.remove('active');
-      if (reviewsBtn) reviewsBtn.classList.remove('active');
-      if (bannersBtn) bannersBtn.classList.remove('active');
-      if (announcementBtn) announcementBtn.classList.remove('active');
       if (citiesBtn) citiesBtn.classList.add('active');
-      document.querySelectorAll('#sidebarCategoriesContainer .sidebar-item').forEach(b => b.classList.remove('active'));
       const topbarTitle = document.getElementById('topbarPageTitle');
       if (topbarTitle) topbarTitle.textContent = `📍 Operating Cities & Coverage (${appState.cities.length})`;
       if (heroContainer) heroContainer.innerHTML = '';
       renderCitiesAdmin();
+    } else if (tabId === 'packages') {
+      selectCategoryTab(appState.selectedCategoryTab || 'all');
     } else {
-      if (settingsBtn) settingsBtn.classList.remove('active');
-      if (blogsBtn) blogsBtn.classList.remove('active');
-      if (reviewsBtn) reviewsBtn.classList.remove('active');
-      if (citiesBtn) citiesBtn.classList.remove('active');
-      if (bannersBtn) bannersBtn.classList.remove('active');
-      if (announcementBtn) announcementBtn.classList.remove('active');
       selectCategoryTab(appState.selectedCategoryTab || 'all');
     }
   }
@@ -2143,7 +2343,9 @@
       }
     }
 
-    if (appState.activeTab === 'packages') {
+    if (appState.activeTab === 'dashboard') {
+      switchTab('dashboard');
+    } else if (appState.activeTab === 'packages') {
       selectCategoryTab(appState.selectedCategoryTab || 'all');
     } else {
       switchTab(appState.activeTab);
@@ -2192,6 +2394,311 @@
       const topRated = appState.products.filter(p => (Number(p.rating) || 0) >= 4.9).length;
       if (topRatedEl) topRatedEl.textContent = topRated;
     }
+
+    // =========================================================================
+    // 7 DASHBOARD MAIN KPIS
+    // =========================================================================
+    const orders = Array.isArray(appState.orders) ? appState.orders : [];
+    const totalOrdersCount = orders.length;
+    const pendingOrdersCount = orders.filter(o => o.status === 'pending').length;
+    const completedOrdersCount = orders.filter(o => o.status === 'completed').length;
+
+    // Lifetime Earnings: sum of completed orders
+    const lifetimeEarnings = orders
+      .filter(o => o.status === 'completed')
+      .reduce((sum, o) => sum + (Number(o.amount) || 0), 0);
+
+    // Daily Earnings: sum of orders completed today (or today's revenue)
+    const todayStr = new Date().toISOString().split('T')[0];
+    const dailyEarnings = orders
+      .filter(o => {
+        const orderDateStr = o.date || (o.createdAt ? o.createdAt.split('T')[0] : '');
+        return orderDateStr === todayStr && o.status === 'completed';
+      })
+      .reduce((sum, o) => sum + (Number(o.amount) || 0), 0);
+
+    const todayOrdersCount = orders.filter(o => {
+      const orderDateStr = o.date || (o.createdAt ? o.createdAt.split('T')[0] : '');
+      return orderDateStr === todayStr;
+    }).length;
+
+    // Populate KPI Elements
+    const dashLifetimeEl = document.getElementById('dashLifetimeEarnings');
+    const dashDailyEl = document.getElementById('dashDailyEarnings');
+    const dashTotalOrdersEl = document.getElementById('dashTotalOrders');
+    const dashPendingOrdersEl = document.getElementById('dashPendingOrders');
+    const dashCompletedOrdersEl = document.getElementById('dashCompletedOrders');
+    const dashTotalPkgsEl = document.getElementById('dashTotalPackages');
+    const dashTotalCatsEl = document.getElementById('dashTotalCategories');
+
+    if (dashLifetimeEl) dashLifetimeEl.textContent = `₹${lifetimeEarnings.toLocaleString('en-IN')}`;
+    if (dashDailyEl) dashDailyEl.textContent = `₹${dailyEarnings.toLocaleString('en-IN')}`;
+    if (dashTotalOrdersEl) dashTotalOrdersEl.textContent = totalOrdersCount.toLocaleString('en-IN');
+    if (dashPendingOrdersEl) dashPendingOrdersEl.textContent = pendingOrdersCount.toLocaleString('en-IN');
+    if (dashCompletedOrdersEl) dashCompletedOrdersEl.textContent = completedOrdersCount.toLocaleString('en-IN');
+    if (dashTotalPkgsEl) dashTotalPkgsEl.textContent = pkgsCount.toLocaleString('en-IN');
+    if (dashTotalCatsEl) dashTotalCatsEl.textContent = catsCount.toLocaleString('en-IN');
+
+    // Populate Filter Pills Count
+    const fAllEl = document.getElementById('dashOrderFilterAllCount');
+    const fPendingEl = document.getElementById('dashOrderFilterPendingCount');
+    const fCompletedEl = document.getElementById('dashOrderFilterCompletedCount');
+    const fTodayEl = document.getElementById('dashOrderFilterTodayCount');
+
+    if (fAllEl) fAllEl.textContent = totalOrdersCount;
+    if (fPendingEl) fPendingEl.textContent = pendingOrdersCount;
+    if (fCompletedEl) fCompletedEl.textContent = completedOrdersCount;
+    if (fTodayEl) fTodayEl.textContent = todayOrdersCount;
+  }
+
+  /* ==========================================================================
+     DASHBOARD TAB RENDERER & ORDERS MANAGEMENT
+     ========================================================================== */
+  function renderDashboard() {
+    updateMetrics();
+    renderDashboardOrdersTable();
+    renderDashboardCategoriesGrid();
+  }
+
+  function filterOrdersList(filter) {
+    appState.ordersFilter = filter || 'all';
+
+    // Update active class on filter pills
+    document.querySelectorAll('.dash-filter-pill').forEach(pill => {
+      pill.classList.toggle('active', pill.getAttribute('data-order-filter') === appState.ordersFilter);
+    });
+
+    renderDashboardOrdersTable();
+  }
+
+  function renderDashboardOrdersTable() {
+    const tbody = document.getElementById('dashOrdersTableBody');
+    if (!tbody) return;
+
+    const orders = Array.isArray(appState.orders) ? appState.orders : [];
+    const todayStr = new Date().toISOString().split('T')[0];
+
+    const filtered = orders.filter(o => {
+      if (appState.ordersFilter === 'pending') return o.status === 'pending';
+      if (appState.ordersFilter === 'completed') return o.status === 'completed';
+      if (appState.ordersFilter === 'today') {
+        const orderDateStr = o.date || (o.createdAt ? o.createdAt.split('T')[0] : '');
+        return orderDateStr === todayStr;
+      }
+      return true;
+    });
+
+    if (filtered.length === 0) {
+      tbody.innerHTML = `
+        <tr>
+          <td colspan="8" style="text-align:center; padding: 40px 16px; color: var(--text-muted);">
+            <div style="font-size: 32px; margin-bottom: 8px;">🛒</div>
+            <div style="font-weight: 600; font-size: 15px; color: var(--text-main);">No ${escapeHtml(appState.ordersFilter !== 'all' ? appState.ordersFilter : '')} orders found</div>
+            <p style="font-size: 13px; margin: 4px 0 16px;">Orders placed on the website or recorded manually will appear here.</p>
+            <button type="button" class="btn-dash-primary" onclick="window.adminStudio.openNewOrderModal()" style="display:inline-flex;">
+              + Record Customer Booking
+            </button>
+          </td>
+        </tr>
+      `;
+      return;
+    }
+
+    tbody.innerHTML = filtered.map(o => {
+      const isCompleted = o.status === 'completed';
+      const formattedAmount = Number(o.amount || 0).toLocaleString('en-IN');
+      const orderDate = o.date || (o.createdAt ? o.createdAt.split('T')[0] : 'Today');
+
+      return `
+        <tr>
+          <td>
+            <div class="dash-order-id">#${escapeHtml(o.id || 'BD-0000')}</div>
+            <div style="font-size: 11px; color: var(--text-muted);">${o.createdAt ? new Date(o.createdAt).toLocaleDateString('en-IN', { month: 'short', day: 'numeric' }) : 'Recent'}</div>
+          </td>
+          <td>
+            <div class="dash-customer-name">${escapeHtml(o.customerName || 'Customer')}</div>
+            <div class="dash-customer-sub"><a href="tel:${escapeHtml(o.customerPhone || '')}">${escapeHtml(o.customerPhone || '')}</a></div>
+            ${o.customerAddress ? `<div class="dash-customer-address" title="${escapeHtml(o.customerAddress)}">${escapeHtml(o.customerAddress)}</div>` : ''}
+          </td>
+          <td>
+            <div class="dash-pkg-title">${escapeHtml(o.packageTitle || 'Decoration Setup')}</div>
+            ${o.category ? `<span class="dash-cat-tag">${escapeHtml(o.category.toUpperCase())}</span>` : ''}
+          </td>
+          <td>
+            <div class="dash-city-cell">📍 ${escapeHtml(o.city || 'India')}</div>
+          </td>
+          <td>
+            <div class="dash-date-cell">📅 ${escapeHtml(orderDate)}</div>
+            <div class="dash-slot-cell">⏰ ${escapeHtml(o.slot || 'Standard Slot')}</div>
+          </td>
+          <td>
+            <div class="dash-amount-cell">₹${formattedAmount}</div>
+          </td>
+          <td>
+            <span class="status-pill ${isCompleted ? 'completed' : 'pending'}">
+              <span class="status-pill-dot"></span>
+              ${isCompleted ? 'Completed' : 'Pending'}
+            </span>
+          </td>
+          <td style="text-align: right;">
+            <div class="dash-actions-cell">
+              <button type="button" class="btn-order-action ${isCompleted ? 'btn-reopen' : 'btn-complete'}" 
+                onclick="window.adminStudio.toggleOrderStatus('${escapeHtml(o.id)}')"
+                title="${isCompleted ? 'Mark Pending / Reopen Setup' : 'Mark Completed / Setup Fulfilled'}">
+                ${isCompleted ? '↺ Pending' : '✓ Complete'}
+              </button>
+              <button type="button" class="btn-order-action btn-del" 
+                onclick="window.adminStudio.deleteOrder('${escapeHtml(o.id)}')"
+                title="Delete Order">
+                🗑️
+              </button>
+            </div>
+          </td>
+        </tr>
+      `;
+    }).join('');
+  }
+
+  function renderDashboardCategoriesGrid() {
+    const grid = document.getElementById('dashCategoriesInventoryGrid');
+    if (!grid) return;
+
+    const cats = appState.categories || [];
+    if (cats.length === 0) {
+      grid.innerHTML = `<div style="grid-column: 1/-1; color: var(--text-muted); text-align:center; padding: 20px;">No categories configured.</div>`;
+      return;
+    }
+
+    grid.innerHTML = cats.map(c => {
+      const count = appState.products.filter(p => p.category === c.id).length;
+      const subCount = Array.isArray(c.subcategories) ? c.subcategories.length : 0;
+      const icon = c.icon || '🎉';
+      const imgSrc = c.image || '';
+
+      return `
+        <div class="dash-cat-card" onclick="window.adminStudio.selectCategoryTab('${escapeHtml(c.id)}')">
+          <div class="dash-cat-card-header">
+            <div class="dash-cat-thumb">
+              ${imgSrc ? `<img src="${escapeHtml(imgSrc)}" alt="${escapeHtml(c.name)}" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />` : ''}
+              <span class="dash-cat-thumb-fallback" style="${imgSrc ? 'display:none;' : ''}">${icon}</span>
+            </div>
+            <div class="dash-cat-meta">
+              <h4 class="dash-cat-name">${escapeHtml(c.name)}</h4>
+              <span class="dash-cat-badge">${count} Packages</span>
+            </div>
+          </div>
+          <div class="dash-cat-footer">
+            <span class="dash-cat-subcats">${subCount} subcategories</span>
+            <span class="dash-cat-jump">Explore &rarr;</span>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  function toggleOrderStatus(orderId) {
+    const order = appState.orders.find(o => o.id === orderId);
+    if (!order) return;
+
+    order.status = (order.status === 'completed') ? 'pending' : 'completed';
+    localStorage.setItem(STORAGE_KEYS.ORDERS, JSON.stringify(appState.orders));
+
+    updateMetrics();
+    renderDashboardOrdersTable();
+    showToast(`Order #${order.id} marked as ${order.status}!`, 'success');
+  }
+
+  function deleteOrder(orderId) {
+    const order = appState.orders.find(o => o.id === orderId);
+    if (!order) return;
+
+    if (!confirm(`Are you sure you want to delete order #${order.id} (${order.customerName})?`)) {
+      return;
+    }
+
+    appState.orders = appState.orders.filter(o => o.id !== orderId);
+    localStorage.setItem(STORAGE_KEYS.ORDERS, JSON.stringify(appState.orders));
+
+    updateMetrics();
+    renderDashboardOrdersTable();
+    showToast(`Order #${orderId} deleted.`, 'info');
+  }
+
+  function openNewOrderModal() {
+    const modal = document.getElementById('orderModal');
+    if (!modal) return;
+
+    // Populate City Select
+    const citySelect = document.getElementById('orderCity');
+    if (citySelect) {
+      const cities = appState.cities || [];
+      if (cities.length > 0) {
+        citySelect.innerHTML = cities.map(c => `<option value="${escapeHtml(c.name)}">${escapeHtml(c.name)}</option>`).join('');
+      } else {
+        citySelect.innerHTML = `
+          <option value="Delhi NCR">Delhi NCR</option>
+          <option value="Bangalore">Bangalore</option>
+          <option value="Hyderabad">Hyderabad</option>
+          <option value="Mumbai">Mumbai</option>
+          <option value="Chennai">Chennai</option>
+        `;
+      }
+    }
+
+    // Default Date to today
+    const dateInput = document.getElementById('orderDate');
+    if (dateInput) {
+      dateInput.value = new Date().toISOString().split('T')[0];
+    }
+
+    modal.classList.add('active');
+  }
+
+  function closeOrderModal() {
+    const modal = document.getElementById('orderModal');
+    if (modal) modal.classList.remove('active');
+  }
+
+  function handleSaveOrder(e) {
+    if (e && e.preventDefault) e.preventDefault();
+
+    const name = document.getElementById('orderCustomerName')?.value.trim();
+    const phone = document.getElementById('orderCustomerPhone')?.value.trim();
+    const pkg = document.getElementById('orderPackageTitle')?.value.trim();
+    const cat = document.getElementById('orderCategory')?.value;
+    const city = document.getElementById('orderCity')?.value;
+    const amount = Number(document.getElementById('orderAmount')?.value) || 0;
+    const date = document.getElementById('orderDate')?.value;
+    const slot = document.getElementById('orderSlot')?.value;
+    const status = document.getElementById('orderStatus')?.value || 'completed';
+
+    if (!name || !phone || !pkg || !amount || !date) {
+      showToast('Please fill in all required fields.', 'error');
+      return;
+    }
+
+    const newOrder = {
+      id: `BD-${Math.floor(100000 + Math.random() * 900000)}`,
+      customerName: name,
+      customerPhone: phone,
+      customerAddress: city,
+      city: city,
+      packageTitle: pkg,
+      category: cat,
+      amount: amount,
+      date: date,
+      createdAt: new Date().toISOString(),
+      slot: slot,
+      status: status
+    };
+
+    appState.orders.unshift(newOrder);
+    localStorage.setItem(STORAGE_KEYS.ORDERS, JSON.stringify(appState.orders));
+
+    closeOrderModal();
+    updateMetrics();
+    renderDashboardOrdersTable();
+    showToast(`Order #${newOrder.id} successfully recorded!`, 'success');
   }
 
   /* ==========================================================================
@@ -4364,7 +4871,7 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
   }
 
   function closeAllModals() {
-    document.querySelectorAll('.modal-backdrop').forEach(modal => {
+    document.querySelectorAll('.modal-backdrop, .modal').forEach(modal => {
       modal.classList.remove('active');
       modal.style.display = '';
     });
@@ -7518,7 +8025,17 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
     renderCategoryBannerHtml,
     handleCategoryBannerDirectUpload,
     deleteCategoryBanner,
-    openCategoryBannerModal
+    openCategoryBannerModal,
+    // Dashboard & Orders Management Methods
+    renderDashboard,
+    filterOrdersList,
+    toggleOrderStatus,
+    deleteOrder,
+    openNewOrderModal,
+    closeOrderModal,
+    handleSaveOrder,
+    refreshDashboardMetrics: updateMetrics,
+    selectCategoryTab
   };
 
   if (document.readyState === 'loading') {

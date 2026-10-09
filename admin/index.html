@@ -1568,12 +1568,12 @@
 
       <!-- Sidebar Navigation Menu -->
       <nav class="sidebar-menu">
-        <button type="button" class="sidebar-item active" id="sidebarAllPackagesBtn" data-tab="all">
+        <button type="button" class="sidebar-item active" id="sidebarDashboardBtn" data-tab="dashboard">
           <div class="sidebar-item-left">
-            <span class="sidebar-item-icon">🌟</span>
-            <span>All Packages</span>
+            <span class="sidebar-item-icon">📊</span>
+            <span>Dashboard</span>
           </div>
-          <span id="sidebarAllBadge" class="sidebar-item-badge">0</span>
+          <span id="sidebarDashboardBadge" class="sidebar-item-badge" style="background:#ecfdf5; color:#059669; border:1px solid #a7f3d0; font-size:10px; font-weight:800; padding:2px 7px;">LIVE</span>
         </button>
 
         <div class="sidebar-section-header">
@@ -1682,49 +1682,185 @@
       <!-- Main Body Canvas -->
       <div class="admin-page-content">
 
-        <!-- Metrics Overview Row -->
-        <section class="stats-grid">
-          <div class="stat-card">
-            <div class="stat-info">
-              <h3>Total Packages</h3>
-              <div id="metricTotalPackages" class="stat-number">--</div>
-              <div class="stat-subtext">Active on catalog</div>
+        <!-- ==================================================================
+             DASHBOARD TAB (EXECUTIVE OVERVIEW & ORDERS MANAGEMENT)
+             ================================================================== -->
+        <section id="dashboardTab" class="tab-content active">
+          <!-- Welcome & Live Status Header -->
+          <div class="dashboard-hero-banner">
+            <div class="dash-hero-left">
+              <div class="dash-badge-row">
+                <span class="dash-status-dot"></span>
+                <span class="dash-badge-text">LIVE BUSINESS STUDIO</span>
+                <span class="dash-date-pill" id="dashLiveDatePill">📅 Today</span>
+              </div>
+              <h2 class="dash-hero-title">Business Overview & Orders</h2>
+              <p class="dash-hero-subtitle">
+                Track revenue, orders fulfillment, event categories, and live package inventories across 16+ operational cities.
+              </p>
             </div>
-            <div class="stat-icon" style="color: #e11d48;">📦</div>
+            <div class="dash-hero-right">
+              <button type="button" class="btn-dash-primary" onclick="window.adminStudio.openNewOrderModal()">
+                <span>+ New Booking</span>
+              </button>
+              <button type="button" class="btn-dash-secondary" onclick="window.adminStudio.refreshDashboardMetrics()" title="Refresh live metrics">
+                <span>🔄 Refresh</span>
+              </button>
+            </div>
           </div>
 
-          <div class="stat-card" style="--brand-primary: #8b5cf6;">
-            <div class="stat-info">
-              <h3>Event Categories</h3>
-              <div id="metricTotalCategories" class="stat-number">--</div>
-              <div class="stat-subtext">Occasions & themes</div>
+          <!-- 7 MAIN KPI METRIC CARDS REQUIRED BY USER -->
+          <div class="dash-kpis-grid">
+            <!-- 1. Lifetime Earnings -->
+            <div class="dash-kpi-card kpi-card-lifetime">
+              <div class="kpi-icon-bubble">💰</div>
+              <div class="kpi-details">
+                <span class="kpi-label">Lifetime Earnings</span>
+                <div class="kpi-value" id="dashLifetimeEarnings">₹0</div>
+                <span class="kpi-subtext">All-time revenue (Completed)</span>
+              </div>
+              <div class="kpi-trend positive"><span>↑ 18.4%</span> all-time</div>
             </div>
-            <div class="stat-icon" style="color: #8b5cf6;">🏷️</div>
+
+            <!-- 2. Daily Earnings (Today) -->
+            <div class="dash-kpi-card kpi-card-daily">
+              <div class="kpi-icon-bubble">📈</div>
+              <div class="kpi-details">
+                <span class="kpi-label">Daily Earnings</span>
+                <div class="kpi-value" id="dashDailyEarnings">₹0</div>
+                <span class="kpi-subtext">Revenue earned today</span>
+              </div>
+              <div class="kpi-trend highlight"><span>⚡ Today</span></div>
+            </div>
+
+            <!-- 3. Total Orders -->
+            <div class="dash-kpi-card kpi-card-orders">
+              <div class="kpi-icon-bubble">🛍️</div>
+              <div class="kpi-details">
+                <span class="kpi-label">Total Orders</span>
+                <div class="kpi-value" id="dashTotalOrders">0</div>
+                <span class="kpi-subtext">All customer bookings</span>
+              </div>
+              <div class="kpi-trend"><span>Total Bookings</span></div>
+            </div>
+
+            <!-- 4. Pending Orders -->
+            <div class="dash-kpi-card kpi-card-pending">
+              <div class="kpi-icon-bubble">⏳</div>
+              <div class="kpi-details">
+                <span class="kpi-label">Pending Orders</span>
+                <div class="kpi-value" id="dashPendingOrders">0</div>
+                <span class="kpi-subtext">Awaiting technician setup</span>
+              </div>
+              <div class="kpi-trend warning"><span>Action req.</span></div>
+            </div>
+
+            <!-- 5. Completed Orders -->
+            <div class="dash-kpi-card kpi-card-completed">
+              <div class="kpi-icon-bubble">✅</div>
+              <div class="kpi-details">
+                <span class="kpi-label">Completed Orders</span>
+                <div class="kpi-value" id="dashCompletedOrders">0</div>
+                <span class="kpi-subtext">Delivered & verified setups</span>
+              </div>
+              <div class="kpi-trend success"><span>Fulfilled</span></div>
+            </div>
+
+            <!-- 6. Total Packages -->
+            <div class="dash-kpi-card kpi-card-packages">
+              <div class="kpi-icon-bubble">📦</div>
+              <div class="kpi-details">
+                <span class="kpi-label">Total Packages</span>
+                <div class="kpi-value" id="dashTotalPackages">0</div>
+                <span class="kpi-subtext">Catalog decoration setups</span>
+              </div>
+              <div class="kpi-trend info"><span>Live Inventory</span></div>
+            </div>
+
+            <!-- 7. Total Categories -->
+            <div class="dash-kpi-card kpi-card-categories">
+              <div class="kpi-icon-bubble">🏷️</div>
+              <div class="kpi-details">
+                <span class="kpi-label">Total Categories</span>
+                <div class="kpi-value" id="dashTotalCategories">0</div>
+                <span class="kpi-subtext">Active occasions & themes</span>
+              </div>
+              <div class="kpi-trend purple"><span>Navigation</span></div>
+            </div>
           </div>
 
-          <div class="stat-card" style="--brand-primary: #10b981;">
-            <div class="stat-info">
-              <h3>Average Price</h3>
-              <div id="metricAvgPrice" class="stat-number">--</div>
-              <div class="stat-subtext">Across all setups</div>
+          <!-- RECENT ORDERS & FULFILLMENT SECTION -->
+          <div class="dash-section-card">
+            <div class="dash-section-header">
+              <div class="dash-section-title-wrap">
+                <div class="dash-section-title-icon">🛒</div>
+                <div>
+                  <h3 class="dash-section-title">Customer Bookings & Delivery Schedule</h3>
+                  <p class="dash-section-desc">Manage customer bookings, track arrival time slots, and toggle order completion.</p>
+                </div>
+              </div>
+
+              <!-- Orders Filter Tabs -->
+              <div class="dash-orders-filters">
+                <button type="button" class="dash-filter-pill active" data-order-filter="all" onclick="window.adminStudio.filterOrdersList('all')">
+                  <span>All</span> <span class="pill-count" id="dashOrderFilterAllCount">0</span>
+                </button>
+                <button type="button" class="dash-filter-pill" data-order-filter="pending" onclick="window.adminStudio.filterOrdersList('pending')">
+                  <span>Pending</span> <span class="pill-count count-amber" id="dashOrderFilterPendingCount">0</span>
+                </button>
+                <button type="button" class="dash-filter-pill" data-order-filter="completed" onclick="window.adminStudio.filterOrdersList('completed')">
+                  <span>Completed</span> <span class="pill-count count-green" id="dashOrderFilterCompletedCount">0</span>
+                </button>
+                <button type="button" class="dash-filter-pill" data-order-filter="today" onclick="window.adminStudio.filterOrdersList('today')">
+                  <span>Today</span> <span class="pill-count count-blue" id="dashOrderFilterTodayCount">0</span>
+                </button>
+              </div>
             </div>
-            <div class="stat-icon" style="color: #10b981;">₹</div>
+
+            <!-- Orders Table Container -->
+            <div class="dash-table-container">
+              <table class="dash-orders-table">
+                <thead>
+                  <tr>
+                    <th>Order ID</th>
+                    <th>Customer</th>
+                    <th>Package / Service</th>
+                    <th>City / Location</th>
+                    <th>Date & Slot</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                    <th style="text-align: right;">Action</th>
+                  </tr>
+                </thead>
+                <tbody id="dashOrdersTableBody">
+                  <!-- Rendered dynamically by admin.js -->
+                </tbody>
+              </table>
+            </div>
           </div>
 
-          <div class="stat-card" style="--brand-primary: #f59e0b;">
-            <div class="stat-info">
-              <h3>Top Rated (4.9★+)</h3>
-              <div id="metricTopRated" class="stat-number">--</div>
-              <div class="stat-subtext">Customer favorites</div>
+          <!-- CATEGORY INVENTORY CARDS & NAVIGATION -->
+          <div class="dash-section-card" style="margin-top: 24px;">
+            <div class="dash-section-header">
+              <div class="dash-section-title-wrap">
+                <div class="dash-section-title-icon">🏷️</div>
+                <div>
+                  <h3 class="dash-section-title">Categories & Inventory Distribution</h3>
+                  <p class="dash-section-desc">Quick jump into individual category catalogs to add, edit, or manage decoration packages.</p>
+                </div>
+              </div>
             </div>
-            <div class="stat-icon" style="color: #f59e0b;">⭐</div>
+            <div class="dash-categories-grid" id="dashCategoriesInventoryGrid">
+              <!-- Rendered dynamically by admin.js -->
+            </div>
           </div>
         </section>
 
         <!-- ==================================================================
-             MAIN SECTION: PACKAGES / CATEGORY VIEW
+             PACKAGES / CATEGORY VIEW TAB
              ================================================================== -->
-        <section id="packagesTab" class="tab-content active">
+        <section id="packagesTab" class="tab-content">
+
           <!-- Dynamic Category Hero Header (rendered when a category tab is active) -->
           <div id="categoryHeroContainer"></div>
 
@@ -3821,8 +3957,103 @@
           </button>
         </div>
       </form>
+  <!-- ==================================================================
+       MANUAL ORDER / BOOKING CREATION MODAL
+       ================================================================== -->
+  <div id="orderModal" class="modal">
+    <div class="modal-content modal-md">
+      <div class="modal-header">
+        <div class="modal-header-left">
+          <span class="modal-icon">🛒</span>
+          <div>
+            <h3 class="modal-title" id="orderModalTitle">Record Customer Booking</h3>
+            <p class="modal-subtitle">Add a confirmed customer order to update revenue and technician delivery schedules.</p>
+          </div>
+        </div>
+        <button type="button" class="modal-close-btn" data-close-modal aria-label="Close dialog">&times;</button>
+      </div>
+
+      <form id="orderForm" onsubmit="window.adminStudio.handleSaveOrder(event)">
+        <div class="modal-body">
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="orderCustomerName">Customer Full Name *</label>
+              <input type="text" id="orderCustomerName" required placeholder="e.g. Rahul Verma" />
+            </div>
+
+            <div class="form-field">
+              <label for="orderCustomerPhone">Phone Number *</label>
+              <input type="tel" id="orderCustomerPhone" required placeholder="e.g. 9876543210" />
+            </div>
+
+            <div class="form-field">
+              <label for="orderPackageTitle">Decoration Package / Service *</label>
+              <input type="text" id="orderPackageTitle" required placeholder="e.g. Grand Organic Ring Birthday Setup" />
+            </div>
+
+            <div class="form-field">
+              <label for="orderCategory">Category *</label>
+              <select id="orderCategory" required>
+                <option value="birthday">🎂 Birthday</option>
+                <option value="anniversary">❤️ Romantic & Anniversary</option>
+                <option value="kids">🦄 Kids Themes</option>
+                <option value="baby-shower">🍼 Baby Shower & Welcome</option>
+                <option value="wedding">💍 Wedding</option>
+                <option value="corporate">💼 Corporate</option>
+                <option value="gifts">🎁 Gifts & Hampers</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label for="orderCity">Delivery City *</label>
+              <select id="orderCity" required>
+                <!-- Populated dynamically -->
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label for="orderAmount">Total Amount (₹) *</label>
+              <input type="number" id="orderAmount" required min="0" placeholder="e.g. 2999" />
+            </div>
+
+            <div class="form-field">
+              <label for="orderDate">Event Date *</label>
+              <input type="date" id="orderDate" required />
+            </div>
+
+            <div class="form-field">
+              <label for="orderSlot">Arrival Slot *</label>
+              <select id="orderSlot" required>
+                <option value="10:00 AM - 12:00 PM">10:00 AM - 12:00 PM (Morning)</option>
+                <option value="12:00 PM - 02:00 PM">12:00 PM - 02:00 PM (Afternoon)</option>
+                <option value="02:00 PM - 04:00 PM">02:00 PM - 04:00 PM (Late Afternoon)</option>
+                <option value="04:00 PM - 06:00 PM" selected>04:00 PM - 06:00 PM (Evening)</option>
+                <option value="06:00 PM - 08:00 PM">06:00 PM - 08:00 PM (Prime Evening)</option>
+                <option value="08:00 PM - 10:00 PM">08:00 PM - 10:00 PM (Night Surprise)</option>
+                <option value="11:30 PM - 12:30 AM">11:30 PM - 12:30 AM (Midnight Express)</option>
+              </select>
+            </div>
+
+            <div class="form-field" style="grid-column: 1 / -1;">
+              <label for="orderStatus">Fulfillment Status *</label>
+              <select id="orderStatus" required>
+                <option value="completed" selected>✅ Completed (Delivered & Verified)</option>
+                <option value="pending">⏳ Pending (Scheduled / Awaiting Setup)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn-secondary" data-close-modal>Cancel</button>
+          <button type="submit" class="btn-primary" style="padding:10px 24px;">
+            💾 Save Booking
+          </button>
+        </div>
+      </form>
     </div>
   </div>
+
   </div> <!-- Close #adminAppView -->
 
   <!-- Toast Container -->

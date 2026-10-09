@@ -2223,6 +2223,30 @@ function handleOrderSubmission(e) {
     </div>
   `;
 
+  // Record placed order in localStorage for Admin Dashboard
+  try {
+    const orderAmount = appState.cart.reduce((sum, it) => sum + (Number(it.product?.price) || 0), 0);
+    const orderRecord = {
+      id: orderId,
+      customerName: name,
+      customerPhone: phone,
+      customerAddress: address,
+      city: appState.selectedCity || "Delhi NCR",
+      date: dateStr,
+      slot: slotStr,
+      createdAt: new Date().toISOString(),
+      amount: orderAmount,
+      status: "pending",
+      packageTitle: firstItem.product?.title || "Celebration Decoration Package",
+      category: firstItem.product?.category || "birthday"
+    };
+    const storedOrders = JSON.parse(localStorage.getItem("celebration_orders") || "[]");
+    storedOrders.unshift(orderRecord);
+    localStorage.setItem("celebration_orders", JSON.stringify(storedOrders));
+  } catch(err) {
+    console.warn("Could not save order to celebration_orders:", err);
+  }
+
   // Empty cart
   appState.cart = [];
   saveCart();
