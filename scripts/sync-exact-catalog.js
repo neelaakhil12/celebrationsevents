@@ -1238,8 +1238,8 @@ const EXACT_PRODUCTS = [
     rating: 4.5,
     reviewsCount: 134,
     badge: "HEARTFELT",
-    image: "https://images.unsplash.com/photo-1607344645866-009c320b5ab8?auto=format&fit=crop&w=600&q=80",
-    gallery: ["https://images.unsplash.com/photo-1607344645866-009c320b5ab8?auto=format&fit=crop&w=600&q=80"],
+    image: "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=600&q=80",
+    gallery: ["https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=600&q=80"],
     setupDuration: "Same Day Delivery",
     description: "Intricately embossed laser-cut metallic gold greeting card with heartfelt warm wishes for newlyweds.",
     inclusions: [

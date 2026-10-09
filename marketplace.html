@@ -86,6 +86,7 @@
         <li class="nav-item"><a href="wedding.html" class="nav-trigger">Wedding</a></li>
         <li class="nav-item"><a href="corporate.html" class="nav-trigger">Corporate</a></li>
         <li class="nav-item"><a href="marketplace.html" class="nav-trigger active" style="color: var(--brand-600); font-weight: 800;">Gifts Marketplace <span class="tag-pill tag-popular">HOT</span></a></li>
+        <li class="nav-item nav-item-custom-cat"><a href="category.html?id=dusera" class="nav-trigger">dusera <span class="tag-pill tag-trending">TRENDING</span></a></li>
         <li class="nav-item"><a href="#" class="nav-trigger" onclick="openCityModal(); return false;">Cities <span class="tag-pill tag-count">50+</span></a></li>
       </ul>
     </div>
@@ -97,17 +98,45 @@
     <section class="hero-carousel" style="aspect-ratio: 16 / 4.8; min-height: 260px;" data-aos="fade-up">
       <div class="carousel-slides">
         <div class="carousel-slide">
-          <img src="assets/gifts-banner.jpg" alt="Curated Gifts & Celebration Hampers" style="object-position: right center;" />
+          <img src="https://res.cloudinary.com/gu0q1mxy/image/upload/v1791462763/celebration-banners/lft6b4gjp4oikkkwwuuq.jpg" alt="Personalized Celebration Gifts & Hampers" style="object-position: center center;" />
           <div class="slide-overlay"></div>
           <div class="slide-content">
-            <span class="slide-tag">🎁 The Ultimate Gifts Collection</span>
-            <h1 class="slide-title">Curated Gifts & Celebration Hampers</h1>
-            <p class="slide-desc">Explore handpicked gifts for birthdays, anniversaries, and all special occasions. Same-day 2–4 hour express delivery across 100+ cities.</p>
-            <a href="#giftsProductGrid" class="slide-btn">Explore Gift Hampers Below ↓</a>
+            <span class="slide-tag">🎁 Celebration Gifts</span>
+            <h1 class="slide-title">Personalized Celebration Gifts & Hampers</h1>
+            <p class="slide-desc">Custom photo frames, milestone boards, balloon bouquets & surprise delivery across 100+ cities.</p>
+            <a href="#giftsProductGrid" class="slide-btn">Shop Gifts ↓</a>
           </div>
         </div>
       </div>
     </section>
+    <script>
+      (function() {
+        try {
+          var stored = localStorage.getItem('celebration_custom_banners');
+          if (stored) {
+            var banners = JSON.parse(stored);
+            if (Array.isArray(banners)) {
+              var giftBanner = banners.find(function(b) { return (b.location === 'gifts' || b.id === 'banner-cat-gifts') && b.active !== false; });
+              if (giftBanner && giftBanner.image) {
+                var s = document.querySelector('.hero-carousel .carousel-slides');
+                if (s) {
+                  s.innerHTML = '<div class="carousel-slide">' +
+                    '<img src="' + giftBanner.image + '" alt="' + (giftBanner.title || 'Gifts') + '" style="object-position: center center;" />' +
+                    '<div class="slide-overlay"></div>' +
+                    '<div class="slide-content">' +
+                      (giftBanner.tag ? '<span class="slide-tag">' + giftBanner.tag + '</span>' : '') +
+                      '<h1 class="slide-title">' + (giftBanner.title || 'Personalized Celebration Gifts & Hampers') + '</h1>' +
+                      (giftBanner.subtitle ? '<p class="slide-desc">' + giftBanner.subtitle + '</p>' : '') +
+                      '<a href="#giftsProductGrid" class="slide-btn">' + (giftBanner.linkText || 'Shop Gifts ↓') + '</a>' +
+                    '</div>' +
+                  '</div>';
+                }
+              }
+            }
+          }
+        } catch(e){}
+      })();
+    </script>
 
     <!-- Horizontal Category Filter Pills (Exact Match to Screenshot) -->
     
@@ -437,7 +466,7 @@
           </div>
           <div class="gift-card" id="card-gift-09" onclick="window.location.href='gift-detail.html?id=gift-09'" style="cursor: pointer;">
             <div class="gift-img-box">
-              <img src="https://images.unsplash.com/photo-1607344645866-009c320b5ab8?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Elegant Wedding Greeting Card" loading="lazy" onerror="this.src='assets/soft-teddy-bear-hero.jpg'" />
+              <img src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Elegant Wedding Greeting Card" loading="lazy" onerror="this.src='assets/soft-teddy-bear-hero.jpg'" />
             </div>
             <div class="gift-info">
               <h3 class="gift-title" title="Elegant Wedding Greeting Card">Elegant Wedding Greeting Card</h3>
@@ -724,7 +753,7 @@
 
   <!-- Scripts -->
   <script src="data.js"></script>
-  <script src="app.js"></script>
+  <script src="app.js?v=20261009"></script>
   <script>
     function escapeHtml(str) {
       if (!str) return '';
@@ -831,7 +860,7 @@
         reviews: 134,
         subcategory: "women",
         category: "gifts",
-        image: "https://images.unsplash.com/photo-1607344645866-009c320b5ab8?auto=format&fit=crop&w=600&q=80"
+        image: "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=600&q=80"
       },
       {
         id: "gift-10",
@@ -1248,12 +1277,12 @@
     } else {
       initMarketplace();
     }
-    window.addEventListener("load", initMarketplace);
+
     window.addEventListener("celebration:data-updated", initMarketplace);
     window.renderMarketplaceGifts = initMarketplace;
-    window.renderGiftSubcategories = initMarketplace;
-    setTimeout(initMarketplace, 100);
-    setTimeout(initMarketplace, 500);
+    window.renderGiftSubcategories = renderGiftSubcategories;
+
+
   </script>
   <!-- Mobile Sidebar Drawer -->
   <div class="mobile-sidebar-overlay" id="mobileSidebarOverlay">
@@ -1273,6 +1302,7 @@
         <li><a href="baby-shower.html" class="mobile-nav-link">🍼 Baby Shower & Welcome <span>›</span></a></li>
         <li><a href="wedding.html" class="mobile-nav-link">💍 Wedding <span>›</span></a></li>
         <li><a href="corporate.html" class="mobile-nav-link">💼 Corporate Events <span>›</span></a></li>
+        <li class="mobile-nav-custom-cat"><a href="category.html?id=dusera" class="mobile-nav-link" onclick="closeMobileSidebar();">🎈 dusera <span class="tag-pill tag-trending" style="margin-left: 6px; font-size: 9.5px; padding: 2px 7px;">TRENDING</span> <span>›</span></a></li>
         <li><a href="marketplace.html" class="mobile-nav-link" style="color: var(--brand-600); font-weight: 700;">🎁 Gifts & Marketplace <span class="tag-pill tag-trending" style="margin-left: 6px; font-size: 9.5px; padding: 2px 7px;">HOT</span> <span>›</span></a></li>
         <li><a href="blog.html" class="mobile-nav-link">📰 Party Blog & Ideas <span class="tag-pill tag-new" style="margin-left: 6px; font-size: 9.5px; padding: 2px 7px;">NEW</span> <span>›</span></a></li>
         <li><a href="about.html" class="mobile-nav-link">ℹ️ About Us <span>›</span></a></li>

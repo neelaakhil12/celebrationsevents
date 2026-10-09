@@ -54,6 +54,178 @@ function filterSiteDataDeleted() {
 }
 filterSiteDataDeleted();
 
+// ----------------------------------------------------
+// Early Custom Categories & Banners Sync
+// ----------------------------------------------------
+function syncEarlyCustomCategories() {
+  try {
+    const customCats = localStorage.getItem("celebration_custom_categories");
+    if (customCats && typeof SITE_DATA !== "undefined" && Array.isArray(SITE_DATA.categories)) {
+      const parsed = JSON.parse(customCats);
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        const delReg = (typeof getGlobalDeletedRegistry === 'function') ? getGlobalDeletedRegistry() : { categories: new Set() };
+        const cMap = new Map();
+        SITE_DATA.categories.forEach(c => {
+          if (!delReg.categories.has(c.id)) cMap.set(c.id, c);
+        });
+        parsed.forEach(c => {
+          if (!c || !c.id || delReg.categories.has(c.id)) return;
+          const existing = cMap.get(c.id);
+          if (existing && (!c.subcategories || c.subcategories.length === 0) && existing.subcategories) {
+            c.subcategories = existing.subcategories;
+          }
+          cMap.set(c.id, c);
+        });
+        SITE_DATA.categories = Array.from(cMap.values());
+      }
+    }
+  } catch(e){}
+}
+syncEarlyCustomCategories();
+
+try {
+  const earlyBanners = localStorage.getItem("celebration_custom_banners");
+  if (earlyBanners && typeof SITE_DATA !== "undefined") {
+    const parsed = JSON.parse(earlyBanners);
+    if (Array.isArray(parsed) && parsed.length > 0) {
+      SITE_DATA.banners = parsed;
+    }
+  }
+} catch(e){}
+
+// Dynamic Custom Categories for Desktop Header Navigation
+function renderNavCustomCategories() {
+  const navMenu = document.querySelector(".nav-menu");
+  if (!navMenu || typeof SITE_DATA === "undefined" || !Array.isArray(SITE_DATA.categories)) return;
+
+  navMenu.querySelectorAll(".nav-item-custom-cat").forEach(el => el.remove());
+
+  const CORE_NAV_IDS = new Set(['birthday', 'anniversary', 'kids', 'baby-shower', 'wedding', 'corporate', 'gifts', 'blog', '__site_subcategories__', '__site_deleted_items__', '__site_package_details__']);
+  const delReg = (typeof getGlobalDeletedRegistry === 'function') ? getGlobalDeletedRegistry() : { categories: new Set() };
+  const customCats = SITE_DATA.categories.filter(c => c && c.id && !c.id.startsWith('__site_') && !CORE_NAV_IDS.has(c.id.toLowerCase()) && !delReg.categories.has(c.id));
+
+  let citiesLi = null;
+  const lis = navMenu.querySelectorAll("li");
+  for (let i = lis.length - 1; i >= 0; i--) {
+    if (lis[i].textContent && lis[i].textContent.includes("Cities")) {
+      citiesLi = lis[i];
+      break;
+    }
+  }
+  if (!citiesLi) citiesLi = navMenu.querySelector("li:last-child");
+
+  let curPageCat = '';
+  if (typeof window !== "undefined" && window.location) {
+    const p = new URLSearchParams(window.location.search);
+    curPageCat = (p.get('id') || p.get('cat') || p.get('slug') || '').toLowerCase().trim();
+  }
+
+  customCats.forEach(cat => {
+    const li = document.createElement("li");
+    li.className = "nav-item nav-item-custom-cat";
+    
+    let badgeClass = 'tag-trending';
+    const bLower = (cat.badge || '').toLowerCase().trim();
+    if (bLower.includes('pop') || bLower.includes('hot')) badgeClass = 'tag-popular';
+    else if (bLower.includes('new')) badgeClass = 'tag-new';
+    else if (bLower.includes('festive')) badgeClass = 'tag-festive';
+
+    const badgeHtml = (cat.badge && cat.badge.trim()) ? `<span class="tag-pill ${badgeClass}">${cat.badge.trim().toUpperCase()}</span>` : '';
+    const catUrl = `category.html?id=${encodeURIComponent(cat.id)}`;
+    const isActive = (typeof window !== "undefined" && window.location.pathname.endsWith('category.html') && curPageCat === cat.id.toLowerCase());
+
+    li.innerHTML = `
+      <a href="${catUrl}" class="nav-trigger ${isActive ? 'active' : ''}">
+        ${cat.name} ${badgeHtml}
+      </a>
+    `;
+    if (citiesLi) {
+      navMenu.insertBefore(li, citiesLi);
+    } else {
+      navMenu.appendChild(li);
+    }
+  });
+}
+window.renderNavCustomCategories = renderNavCustomCategories;
+
+// Dynamic Custom Categories for Mobile Drawer
+function renderMobileCustomCategories() {
+  const mobileList = document.querySelector(".mobile-nav-list");
+  if (!mobileList || typeof SITE_DATA === "undefined" || !Array.isArray(SITE_DATA.categories)) return;
+
+  mobileList.querySelectorAll(".mobile-nav-custom-cat").forEach(el => el.remove());
+
+  const CORE_NAV_IDS = new Set(['birthday', 'anniversary', 'kids', 'baby-shower', 'wedding', 'corporate', 'gifts', 'blog', '__site_subcategories__', '__site_deleted_items__', '__site_package_details__']);
+  const delReg = (typeof getGlobalDeletedRegistry === 'function') ? getGlobalDeletedRegistry() : { categories: new Set() };
+  const customCats = SITE_DATA.categories.filter(c => c && c.id && !c.id.startsWith('__site_') && !CORE_NAV_IDS.has(c.id.toLowerCase()) && !delReg.categories.has(c.id));
+
+  const refLink = mobileList.querySelector('a[href="marketplace.html"]')?.closest("li") ||
+                   mobileList.querySelector('a[href="blog.html"]')?.closest("li") ||
+                   mobileList.querySelector('a[onclick*="openCityModal"]')?.closest("li");
+
+  customCats.forEach(cat => {
+    const li = document.createElement("li");
+    li.className = "mobile-nav-custom-cat";
+    const iconPart = (cat.icon && cat.icon.trim()) ? `${cat.icon.trim()} ` : '🎈 ';
+
+    let badgeClass = 'tag-trending';
+    const bLower = (cat.badge || '').toLowerCase().trim();
+    if (bLower.includes('pop') || bLower.includes('hot')) badgeClass = 'tag-popular';
+    else if (bLower.includes('new')) badgeClass = 'tag-new';
+    else if (bLower.includes('festive')) badgeClass = 'tag-festive';
+
+    const badgeHtml = (cat.badge && cat.badge.trim()) ? `<span class="tag-pill ${badgeClass}" style="margin-left: 6px; font-size: 9.5px; padding: 2px 7px;">${cat.badge.trim().toUpperCase()}</span>` : '';
+    const catUrl = `category.html?id=${encodeURIComponent(cat.id)}`;
+    li.innerHTML = `
+      <a href="${catUrl}" class="mobile-nav-link" onclick="closeMobileSidebar();">
+        ${iconPart}${cat.name} ${badgeHtml} <span>›</span>
+      </a>
+    `;
+    if (refLink) {
+      mobileList.insertBefore(li, refLink);
+    } else {
+      mobileList.appendChild(li);
+    }
+  });
+}
+window.renderMobileCustomCategories = renderMobileCustomCategories;
+
+// Early execution if DOM is ready
+if (typeof document !== "undefined") {
+  if (document.readyState === "interactive" || document.readyState === "complete") {
+    try { renderNavCustomCategories(); } catch(e){}
+    try { renderMobileCustomCategories(); } catch(e){}
+  }
+}
+
+// Cross-tab and live admin storage sync listener
+if (typeof window !== "undefined") {
+  window.addEventListener('storage', (e) => {
+    if (!e.key || e.key.startsWith('celebration_')) {
+      syncEarlyCustomCategories();
+      filterSiteDataDeleted();
+      try { renderNavCustomCategories(); } catch(err){}
+      try { renderMobileCustomCategories(); } catch(err){}
+      try { if (typeof triggerCatalogRefresh === 'function') triggerCatalogRefresh(); } catch(err){}
+    }
+  });
+
+  window.addEventListener('celebration:data-updated', () => {
+    syncEarlyCustomCategories();
+    filterSiteDataDeleted();
+    try { renderNavCustomCategories(); } catch(err){}
+    try { renderMobileCustomCategories(); } catch(err){}
+    try { renderAnnouncementBar(); } catch(err){}
+    try { if (typeof triggerCatalogRefresh === 'function') triggerCatalogRefresh(); } catch(err){}
+  });
+
+  window.addEventListener('storage', (e) => {
+    if (e.key === 'celebration_custom_announcement') {
+      try { renderAnnouncementBar(); } catch(err){}
+    }
+  });
+}
+
 // DOM Initialization
 document.addEventListener("DOMContentLoaded", () => {
   filterSiteDataDeleted();
@@ -96,10 +268,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     const customRevs = localStorage.getItem("celebration_custom_reviews");
     if (customRevs && typeof SITE_DATA !== "undefined") {
-      const parsed = JSON.parse(customRevs);
-      if (Array.isArray(parsed) && parsed.length > 0) {
-        SITE_DATA.reviews = parsed;
-      }
+      try {
+        const parsed = JSON.parse(customRevs);
+        if (Array.isArray(parsed)) {
+          SITE_DATA.reviews = parsed;
+        }
+      } catch(e){}
     }
     const customCities = localStorage.getItem("celebration_custom_cities");
     if (customCities && typeof SITE_DATA !== "undefined") {
@@ -150,8 +324,7 @@ document.addEventListener("DOMContentLoaded", () => {
       try { if (typeof renderPageBanners === 'function') renderPageBanners(); } catch(e){}
       try { if (typeof initDynamicCategoryPage === 'function') initDynamicCategoryPage(); } catch(e){}
       try { if (typeof initMarketplace === 'function') initMarketplace(); } catch(e){}
-      try { if (typeof renderMarketplaceGifts === 'function') renderMarketplaceGifts(); } catch(e){}
-      try { if (typeof renderGiftSubcategories === 'function') renderGiftSubcategories(); } catch(e){}
+      try { if (typeof renderReviews === 'function') renderReviews(); } catch(e){}
       try { window.dispatchEvent(new CustomEvent('celebration:data-updated')); } catch(e){}
     }
 
@@ -276,6 +449,32 @@ document.addEventListener("DOMContentLoaded", () => {
               SITE_DATA.blogFeatures = cloudBF;
               localStorage.setItem('celebration_custom_blog_features', JSON.stringify(cloudBF));
               try { if (typeof renderBlogValueStrip === 'function') renderBlogValueStrip(); } catch(e){}
+            }
+          } catch(e){}
+        }
+
+        // Direct Cloud Reviews Synchronization (Consistent between Localhost & Live Vercel)
+        const siteReviewsConfig = cloudCats.find(c => c.id === '__site_reviews__');
+        if (siteReviewsConfig && siteReviewsConfig.desc) {
+          try {
+            const cloudReviews = JSON.parse(siteReviewsConfig.desc);
+            if (Array.isArray(cloudReviews)) {
+              SITE_DATA.reviews = cloudReviews;
+              localStorage.setItem('celebration_custom_reviews', JSON.stringify(cloudReviews));
+              try { renderReviews(); } catch(e){}
+            }
+          } catch(e){}
+        }
+
+        // Direct Cloud Announcement Bar Synchronization (Consistent between Localhost & Live Vercel)
+        const siteAnnConfig = cloudCats.find(c => c.id === '__site_announcement__');
+        if (siteAnnConfig && siteAnnConfig.desc) {
+          try {
+            const cloudAnn = JSON.parse(siteAnnConfig.desc);
+            if (cloudAnn && typeof cloudAnn === 'object') {
+              SITE_DATA.announcementBar = cloudAnn;
+              localStorage.setItem('celebration_custom_announcement', JSON.stringify(cloudAnn));
+              try { renderAnnouncementBar(cloudAnn); } catch(e){}
             }
           } catch(e){}
         }
@@ -681,14 +880,19 @@ function renderAnnouncementBar(customData) {
   if (!bars.length) return;
 
   const isEnabled = (data.enabled !== false);
+  if (!isEnabled) {
+    document.body.classList.add('no-announcement-bar');
+    bars.forEach(bar => {
+      bar.style.setProperty('display', 'none', 'important');
+    });
+    return;
+  }
+
+  document.body.classList.remove('no-announcement-bar');
   bars.forEach(bar => {
-    if (!isEnabled) {
-      bar.style.display = 'none';
-      return;
-    }
-    bar.style.display = '';
+    bar.style.setProperty('display', 'flex', 'important');
     if (data.bg) {
-      bar.style.background = data.bg;
+      bar.style.setProperty('background', data.bg, 'important');
     }
 
     let badgeHtml = '';
@@ -732,7 +936,7 @@ function renderPageBanners() {
     if (homeBanners.length > 0) {
       homeHeroSlides.innerHTML = homeBanners.map(b => `
         <div class="carousel-slide">
-          <img src="${b.image}" alt="${b.title || 'Celebration Decor'}" onerror="this.src='https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=1200&q=80'" />
+          <img src="${b.image}" alt="${b.title || 'Celebration Decor'}" />
           <div class="slide-overlay"></div>
           <div class="slide-content">
             ${b.tag ? `<span class="slide-tag">${b.tag}</span>` : ''}
@@ -771,9 +975,13 @@ function renderPageBanners() {
     if (catBanner) {
       const catCarouselSlides = document.querySelector('.hero-carousel .carousel-slides') || document.querySelector('.carousel-slides');
       if (catCarouselSlides) {
+        const curImg = catCarouselSlides.querySelector('img');
+        if (curImg && (curImg.src === catBanner.image || curImg.getAttribute('src') === catBanner.image)) {
+          return;
+        }
         catCarouselSlides.innerHTML = `
           <div class="carousel-slide">
-            <img src="${catBanner.image}" alt="${catBanner.title || 'Category Decoration'}" onerror="this.src='https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=1200&q=80'" />
+            <img src="${catBanner.image}" alt="${catBanner.title || 'Category Decoration'}" />
             <div class="slide-overlay"></div>
             <div class="slide-content">
               ${catBanner.tag ? `<span class="slide-tag">${catBanner.tag}</span>` : ''}
@@ -934,70 +1142,7 @@ function renderFilterPills() {
   });
 }
 
-// ----------------------------------------------------
-// Dynamic Custom Categories for Desktop Header Navigation
-// ----------------------------------------------------
-function renderNavCustomCategories() {
-  const navMenu = document.querySelector(".nav-menu");
-  if (!navMenu || typeof SITE_DATA === "undefined" || !Array.isArray(SITE_DATA.categories)) return;
 
-  navMenu.querySelectorAll(".nav-item-custom-cat").forEach(el => el.remove());
-
-  const CORE_NAV_IDS = new Set(['birthday', 'anniversary', 'kids', 'baby-shower', 'wedding', 'corporate', 'gifts', 'blog', '__site_subcategories__']);
-  const customCats = SITE_DATA.categories.filter(c => c && c.id && !CORE_NAV_IDS.has(c.id));
-
-  const citiesLi = navMenu.querySelector("li:last-child");
-
-  customCats.forEach(cat => {
-    const li = document.createElement("li");
-    li.className = "nav-item nav-item-custom-cat";
-    const badgeHtml = (cat.badge && cat.badge.trim()) ? `<span class="tag-pill tag-popular">${cat.badge.trim()}</span>` : '';
-    const catUrl = `category.html?id=${encodeURIComponent(cat.id)}`;
-    li.innerHTML = `
-      <a href="${catUrl}" class="nav-trigger">
-        ${cat.name} ${badgeHtml}
-      </a>
-    `;
-    if (citiesLi) {
-      navMenu.insertBefore(li, citiesLi);
-    } else {
-      navMenu.appendChild(li);
-    }
-  });
-}
-
-// ----------------------------------------------------
-// Dynamic Custom Categories for Mobile Drawer
-// ----------------------------------------------------
-function renderMobileCustomCategories() {
-  const mobileList = document.querySelector(".mobile-nav-list");
-  if (!mobileList || typeof SITE_DATA === "undefined" || !Array.isArray(SITE_DATA.categories)) return;
-
-  mobileList.querySelectorAll(".mobile-nav-custom-cat").forEach(el => el.remove());
-
-  const CORE_NAV_IDS = new Set(['birthday', 'anniversary', 'kids', 'baby-shower', 'wedding', 'corporate', 'gifts', 'blog', '__site_subcategories__']);
-  const customCats = SITE_DATA.categories.filter(c => c && c.id && !CORE_NAV_IDS.has(c.id));
-
-  const refLink = mobileList.querySelector('a[href="marketplace.html"]')?.closest("li");
-
-  customCats.forEach(cat => {
-    const li = document.createElement("li");
-    li.className = "mobile-nav-custom-cat";
-    const iconPart = (cat.icon && cat.icon.trim()) ? `${cat.icon.trim()} ` : '🎈 ';
-    const badgeHtml = (cat.badge && cat.badge.trim()) ? `<span class="tag-pill tag-trending" style="margin-left: 6px; font-size: 9.5px; padding: 2px 7px;">${cat.badge.trim()}</span>` : '';
-    const catUrl = `category.html?id=${encodeURIComponent(cat.id)}`;
-    li.innerHTML = `
-      <a href="${catUrl}" class="mobile-nav-link" onclick="closeMobileSidebar();">
-        ${iconPart}${cat.name} ${badgeHtml} <span>›</span>
-      </a>
-    `;
-    if (refLink) {
-      mobileList.insertBefore(li, refLink);
-    } else {
-      mobileList.appendChild(li);
-    }
-  });
-}
 
 // ----------------------------------------------------
 // Product Catalog Filtering & Rendering

@@ -114,15 +114,35 @@ ALTER TABLE public.products ADD COLUMN IF NOT EXISTS specs JSONB DEFAULT '{}'::j
 ALTER TABLE public.products ADD COLUMN IF NOT EXISTS highlights JSONB DEFAULT '[]'::jsonb;
 
 -- ------------------------------------------------------------------------------
--- 5. Enable Row Level Security (RLS)
+-- 5. Create Customer Reviews & Video Reels Table
+-- ------------------------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS public.reviews (
+    id TEXT PRIMARY KEY,
+    name TEXT NOT NULL,
+    city TEXT DEFAULT 'India',
+    rating NUMERIC DEFAULT 5.0,
+    date TEXT DEFAULT 'Recent',
+    type TEXT DEFAULT 'image',
+    media TEXT NOT NULL,
+    poster TEXT,
+    service TEXT NOT NULL,
+    text TEXT,
+    verified BOOLEAN DEFAULT true,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL,
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL
+);
+
+-- ------------------------------------------------------------------------------
+-- 6. Enable Row Level Security (RLS)
 -- ------------------------------------------------------------------------------
 ALTER TABLE public.admin_auth ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.users ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.categories ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.products ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.reviews ENABLE ROW LEVEL SECURITY;
 
 -- ------------------------------------------------------------------------------
--- 6. Create Public Policies (Full read/write permissions for web application)
+-- 7. Create Public Policies (Full read/write permissions for web application)
 -- ------------------------------------------------------------------------------
 -- Admin Auth Policies
 DROP POLICY IF EXISTS "Allow public read admin_auth" ON public.admin_auth;
@@ -176,11 +196,37 @@ CREATE POLICY "Allow public update products" ON public.products FOR UPDATE USING
 DROP POLICY IF EXISTS "Allow public delete products" ON public.products;
 CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING (true);
 
+-- Reviews Policies
+DROP POLICY IF EXISTS "Allow public read reviews" ON public.reviews;
+CREATE POLICY "Allow public read reviews" ON public.reviews FOR SELECT USING (true);
+
+DROP POLICY IF EXISTS "Allow public insert reviews" ON public.reviews;
+CREATE POLICY "Allow public insert reviews" ON public.reviews FOR INSERT WITH CHECK (true);
+
+DROP POLICY IF EXISTS "Allow public update reviews" ON public.reviews;
+CREATE POLICY "Allow public update reviews" ON public.reviews FOR UPDATE USING (true);
+
+DROP POLICY IF EXISTS "Allow public delete reviews" ON public.reviews;
+CREATE POLICY "Allow public delete reviews" ON public.reviews FOR DELETE USING (true);
+
 -- ------------------------------------------------------------------------------
--- 7. Indexes for High-Performance Queries
+-- 8. Indexes for High-Performance Queries
 -- ------------------------------------------------------------------------------
 CREATE INDEX IF NOT EXISTS idx_admin_auth_email ON public.admin_auth(email);
 CREATE INDEX IF NOT EXISTS idx_users_email ON public.users(email);
 CREATE INDEX IF NOT EXISTS idx_products_category ON public.products(category);
 CREATE INDEX IF NOT EXISTS idx_products_price ON public.products(price);
 CREATE INDEX IF NOT EXISTS idx_products_rating ON public.products(rating);
+CREATE INDEX IF NOT EXISTS idx_reviews_rating ON public.reviews(rating);
+CREATE INDEX IF NOT EXISTS idx_reviews_type ON public.reviews(type);
+
+-- ------------------------------------------------------------------------------
+-- 9. Site-Wide Dynamic Configurations (Stored in categories table)
+-- ------------------------------------------------------------------------------
+-- System configuration records stored seamlessly in public.categories:
+-- - '__site_announcement__' : Top header announcement ticker text, visibility toggle & color gradients
+-- - '__site_banners__'      : Promotional & homepage hero carousel slides
+-- - '__site_reviews__'      : Real photos & verified customer testimonials
+-- - '__site_subcategories__': Occasion subcategory filter pills mapping
+-- - '__site_deleted_items__': Global tombstones registry for deleted packages/blogs
+

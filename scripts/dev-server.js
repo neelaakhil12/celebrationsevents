@@ -620,8 +620,58 @@ const server = http.createServer(async (req, res) => {
         if (Array.isArray(merged.products)) merged.products = merged.products.filter(p => !delProds.has(p.id));
         if (Array.isArray(merged.blogs)) merged.blogs = merged.blogs.filter(b => !delBlogs.has(b.id));
         if (Array.isArray(merged.categories)) merged.categories = merged.categories.filter(c => !delCats.has(c.id));
-      }
       saveAdminData(merged);
+
+      // Also persist reviews directly to Supabase from localhost dev-server
+      if (payload && Array.isArray(payload.reviews)) {
+        try {
+          const sUrl = process.env.SUPABASE_URL || 'https://wqnobkskmvilfhduvxsu.supabase.co';
+          const sKey = process.env.SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indxbm9ia3NrbXZpbGZoZHV2eHN1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTEwMDU5MDgsImV4cCI6MjEwNjU4MTkwOH0.3REUJyAR2kqnFb0fOAibKzuRah1cd5LOoTbX2ZMWhJQ';
+          await fetch(`${sUrl}/rest/v1/categories`, {
+            method: 'POST',
+            headers: {
+              'apikey': sKey,
+              'Authorization': `Bearer ${sKey}`,
+              'Content-Type': 'application/json',
+              'Prefer': 'resolution=merge-duplicates'
+            },
+            body: JSON.stringify({
+              id: '__site_reviews__',
+              name: 'Customer Reviews and Photos',
+              image: '',
+              desc: JSON.stringify(payload.reviews)
+            })
+          });
+        } catch(sbErr) {
+          console.warn('[dev-server save-data] Supabase review sync warning:', sbErr.message);
+        }
+      }
+
+      // Also persist announcement directly to Supabase from localhost dev-server
+      if (payload && payload.announcement && typeof payload.announcement === 'object') {
+        try {
+          const sUrl = process.env.SUPABASE_URL || 'https://wqnobkskmvilfhduvxsu.supabase.co';
+          const sKey = process.env.SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indxbm9ia3NrbXZpbGZoZHV2eHN1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTEwMDU5MDgsImV4cCI6MjEwNjU4MTkwOH0.3REUJyAR2kqnFb0fOAibKzuRah1cd5LOoTbX2ZMWhJQ';
+          await fetch(`${sUrl}/rest/v1/categories`, {
+            method: 'POST',
+            headers: {
+              'apikey': sKey,
+              'Authorization': `Bearer ${sKey}`,
+              'Content-Type': 'application/json',
+              'Prefer': 'resolution=merge-duplicates'
+            },
+            body: JSON.stringify({
+              id: '__site_announcement__',
+              name: 'Site Top Announcement Bar & Ticker Configuration',
+              image: '',
+              desc: JSON.stringify(payload.announcement)
+            })
+          });
+        } catch(sbErr) {
+          console.warn('[dev-server save-data] Supabase announcement sync warning:', sbErr.message);
+        }
+      }
+
       sendJson(res, 200, { success: true, message: 'Data saved successfully to disk.' });
     } catch (err) {
       sendJson(res, 500, { success: false, error: err.message });
@@ -666,8 +716,12 @@ const server = http.createServer(async (req, res) => {
         fs.readFile(htmlPath, (htmlErr, htmlContent) => {
           if (!htmlErr) {
             res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
-            res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
-            res.end(htmlContent, 'utf-8');
+            const len = Buffer.isBuffer(htmlContent) ? htmlContent.length : Buffer.byteLength(htmlContent);
+            res.writeHead(200, {
+              'Content-Type': 'text/html; charset=utf-8',
+              'Content-Length': len
+            });
+            res.end(htmlContent);
             return;
           }
 
@@ -686,8 +740,12 @@ const server = http.createServer(async (req, res) => {
               res.writeHead(404, { 'Content-Type': 'text/plain' });
               res.end('404 Not Found');
             } else {
-              res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
-              res.end(fallbackContent, 'utf-8');
+              const len = Buffer.isBuffer(fallbackContent) ? fallbackContent.length : Buffer.byteLength(fallbackContent);
+              res.writeHead(200, {
+                'Content-Type': 'text/html; charset=utf-8',
+                'Content-Length': len
+              });
+              res.end(fallbackContent);
             }
           });
         });
@@ -697,8 +755,12 @@ const server = http.createServer(async (req, res) => {
       }
     } else {
       res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
-      res.writeHead(200, { 'Content-Type': contentType });
-      res.end(content, 'utf-8');
+      const len = Buffer.isBuffer(content) ? content.length : Buffer.byteLength(content);
+      res.writeHead(200, {
+        'Content-Type': contentType,
+        'Content-Length': len
+      });
+      res.end(content);
     }
   });
 });

@@ -804,26 +804,17 @@
     // 4. Customer Reviews & Video Reels
     let reviews = [];
     const storedReviews = localStorage.getItem(STORAGE_KEYS.REVIEWS);
-    if (storedReviews) {
+    if (storedReviews !== null) {
       try {
         const parsed = JSON.parse(storedReviews);
-        if (Array.isArray(parsed) && parsed.length > 0) {
+        if (Array.isArray(parsed)) {
           reviews = parsed;
         }
       } catch (e) {
         console.warn('Could not parse stored reviews:', e);
       }
-    }
-
-    const siteReviews = (typeof window.SITE_DATA !== 'undefined' && Array.isArray(window.SITE_DATA.reviews)) ? window.SITE_DATA.reviews : [];
-    if (reviews.length === 0) {
-      reviews = JSON.parse(JSON.stringify(siteReviews));
-    } else {
-      siteReviews.forEach(sr => {
-        if (!reviews.some(r => r.id === sr.id)) {
-          reviews.push(JSON.parse(JSON.stringify(sr)));
-        }
-      });
+    } else if (typeof window.SITE_DATA !== 'undefined' && Array.isArray(window.SITE_DATA.reviews)) {
+      reviews = JSON.parse(JSON.stringify(window.SITE_DATA.reviews));
     }
     appState.reviews = reviews;
     localStorage.setItem(STORAGE_KEYS.REVIEWS, JSON.stringify(appState.reviews));
@@ -882,7 +873,7 @@
     appState.announcement = announcement;
     localStorage.setItem(STORAGE_KEYS.ANNOUNCEMENT, JSON.stringify(appState.announcement));
 
-    // 7. Promotional Banners
+    // 7. Homepage Banners
     let banners = [];
     const storedBanners = localStorage.getItem(STORAGE_KEYS.BANNERS);
     if (storedBanners) {
@@ -1009,6 +1000,35 @@
               appState.blogFeatures = cloudBF;
               if (typeof window.SITE_DATA !== 'undefined') window.SITE_DATA.blogFeatures = cloudBF;
               localStorage.setItem(STORAGE_KEYS.BLOG_FEATURES, JSON.stringify(cloudBF));
+            }
+          } catch(e){}
+        }
+
+        // Real Photos & Video Reviews from Supabase Cloud
+        const siteReviewsConfig = catsRes.data.find(c => c.id === '__site_reviews__');
+        if (siteReviewsConfig && siteReviewsConfig.desc) {
+          try {
+            const cloudReviews = JSON.parse(siteReviewsConfig.desc);
+            if (Array.isArray(cloudReviews)) {
+              appState.reviews = cloudReviews;
+              if (typeof window.SITE_DATA !== 'undefined') window.SITE_DATA.reviews = cloudReviews;
+              localStorage.setItem(STORAGE_KEYS.REVIEWS, JSON.stringify(cloudReviews));
+              renderReviewsList();
+              updateMetrics();
+            }
+          } catch(e){}
+        }
+
+        // Top Announcement Bar from Supabase Cloud
+        const siteAnnConfig = catsRes.data.find(c => c.id === '__site_announcement__');
+        if (siteAnnConfig && siteAnnConfig.desc) {
+          try {
+            const cloudAnn = JSON.parse(siteAnnConfig.desc);
+            if (cloudAnn && typeof cloudAnn === 'object') {
+              appState.announcement = { ...appState.announcement, ...cloudAnn };
+              if (typeof window.SITE_DATA !== 'undefined') window.SITE_DATA.announcementBar = appState.announcement;
+              localStorage.setItem(STORAGE_KEYS.ANNOUNCEMENT, JSON.stringify(appState.announcement));
+              if (typeof renderAnnouncementAdmin === 'function') renderAnnouncementAdmin();
             }
           } catch(e){}
         }
@@ -1355,6 +1375,34 @@
           );
         }
 
+        if (Array.isArray(appState.reviews)) {
+          syncPromises.push(
+            supabase.from('categories').upsert({
+              id: '__site_reviews__',
+              name: 'Customer Reviews and Photos',
+              image: '',
+              desc: JSON.stringify(appState.reviews)
+            }).then(({ error }) => {
+              if (!error) console.log('Reviews synced to Supabase Cloud');
+              else console.warn('Supabase reviews sync warning:', error);
+            })
+          );
+        }
+
+        if (appState.announcement) {
+          syncPromises.push(
+            supabase.from('categories').upsert({
+              id: '__site_announcement__',
+              name: 'Site Top Announcement Bar & Ticker Configuration',
+              image: '',
+              desc: JSON.stringify(appState.announcement)
+            }).then(({ error }) => {
+              if (!error) console.log('Announcement synced to Supabase Cloud');
+              else console.warn('Supabase announcement sync warning:', error);
+            })
+          );
+        }
+
         const catRows = appState.categories
           .filter(c => !c.id.startsWith('__site_'))
           .map(c => ({
@@ -1424,7 +1472,7 @@
       if (window.innerWidth <= 960) sidebar?.classList.remove('mobile-open');
     });
 
-    // Promotional Banners tab button
+    // Homepage Banners tab button
     const bannersBtn = document.getElementById('sidebarBannersBtn');
     bannersBtn?.addEventListener('click', () => {
       switchTab('banners');
@@ -2013,7 +2061,8 @@
       if (bannersBtn) bannersBtn.classList.add('active');
       document.querySelectorAll('#sidebarCategoriesContainer .sidebar-item').forEach(b => b.classList.remove('active'));
       const topbarTitle = document.getElementById('topbarPageTitle');
-      if (topbarTitle) topbarTitle.textContent = `🖼️ Promotional Banners & Hero Carousels (${appState.banners.length})`;
+      const homeCount = appState.banners.filter(b => b.location === 'home').length;
+      if (topbarTitle) topbarTitle.textContent = `🖼️ Homepage Banners (${homeCount})`;
       if (heroContainer) heroContainer.innerHTML = '';
       renderBannersAdmin();
     } else if (tabId === 'announcement') {
@@ -2124,7 +2173,8 @@
     if (sidebarBlogsBadge) sidebarBlogsBadge.textContent = appState.blogs.length;
     if (sidebarReviewsBadge) sidebarReviewsBadge.textContent = appState.reviews.length;
     if (sidebarCitiesBadge) sidebarCitiesBadge.textContent = appState.cities.length;
-    if (sidebarBannersBadge) sidebarBannersBadge.textContent = appState.banners.length;
+    const homeBannersCount = appState.banners.filter(b => b.location === 'home').length;
+    if (sidebarBannersBadge) sidebarBannersBadge.textContent = homeBannersCount;
     if (reviewsTabCountText) reviewsTabCountText.textContent = `• ${appState.reviews.length} Reviews Live`;
 
     if (sidebarAnnouncementBadge) {
@@ -2566,6 +2616,26 @@
             name: 'Site Banners Configuration',
             image: '',
             desc: JSON.stringify(appState.banners)
+          });
+        }
+
+        // 5. Sync Customer Reviews & Photos
+        if (Array.isArray(appState.reviews)) {
+          await supabase.from('categories').upsert({
+            id: '__site_reviews__',
+            name: 'Customer Reviews and Photos',
+            image: '',
+            desc: JSON.stringify(appState.reviews)
+          });
+        }
+
+        // 6. Sync Top Announcement Bar
+        if (appState.announcement) {
+          await supabase.from('categories').upsert({
+            id: '__site_announcement__',
+            name: 'Site Top Announcement Bar & Ticker Configuration',
+            image: '',
+            desc: JSON.stringify(appState.announcement)
           });
         }
 
@@ -5581,6 +5651,39 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
       window.SITE_DATA.reviews = appState.reviews;
     }
 
+    // Direct Cloud Synchronization with Supabase Database (Immediate Vercel & Localhost consistency)
+    if (supabase) {
+      try {
+        const { error } = await supabase.from('categories').upsert({
+          id: '__site_reviews__',
+          name: 'Customer Reviews and Photos',
+          image: '',
+          desc: JSON.stringify(appState.reviews)
+        });
+        if (error) console.warn('Supabase reviews sync error:', error);
+        else console.log('✅ Reviews synced to Supabase Cloud successfully');
+      } catch (err) {
+        console.warn('Supabase reviews sync exception:', err);
+      }
+    } else {
+      fetch(`${CONFIG.supabaseUrl}/rest/v1/categories`, {
+        method: 'POST',
+        headers: {
+          'apikey': CONFIG.supabaseAnonKey,
+          'Authorization': `Bearer ${CONFIG.supabaseAnonKey}`,
+          'Content-Type': 'application/json',
+          'Prefer': 'resolution=merge-duplicates'
+        },
+        body: JSON.stringify({
+          id: '__site_reviews__',
+          name: 'Customer Reviews and Photos',
+          image: '',
+          desc: JSON.stringify(appState.reviews)
+        })
+      }).catch(err => console.warn('REST fallback reviews sync error:', err));
+    }
+
+    // Also backup to server disk endpoint if available
     fetch('/api/save-data', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -5862,6 +5965,15 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
   /* ==========================================================================
      TOP ANNOUNCEMENT BAR & TICKER MANAGEMENT
      ========================================================================== */
+  const ANNOUNCEMENT_THEMES = {
+    'rose-gradient': 'linear-gradient(135deg, #be123c 0%, #fb7185 100%)',
+    'emerald-gradient': 'linear-gradient(135deg, #059669 0%, #10b981 100%)',
+    'sunset-gradient': 'linear-gradient(135deg, #c2410c 0%, #f59e0b 100%)',
+    'purple-gradient': 'linear-gradient(135deg, #6b21a8 0%, #a855f7 100%)',
+    'midnight-gradient': 'linear-gradient(135deg, #0f172a 0%, #334155 100%)',
+    'ocean-gradient': 'linear-gradient(135deg, #0284c7 0%, #38bdf8 100%)'
+  };
+
   const ANNOUNCEMENT_PRESETS = {
     express: {
       text: '⚡ Same Day 2-Hour Express Delivery in 100+ Cities',
@@ -5907,19 +6019,23 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
     const themeInput = document.getElementById('announcementTheme');
     const customBgInput = document.getElementById('announcementCustomBg');
 
+    const currentTheme = ann.theme || 'rose-gradient';
+    const currentBg = ann.bg || ANNOUNCEMENT_THEMES[currentTheme] || 'linear-gradient(135deg, #be123c 0%, #fb7185 100%)';
+
     if (enabledInput) enabledInput.checked = (ann.enabled !== false);
     if (textInput) textInput.value = ann.text || '';
     if (badgeInput) badgeInput.value = ann.badge || '';
     if (linkTextInput) linkTextInput.value = ann.linkText || '';
     if (linkUrlInput) linkUrlInput.value = ann.linkUrl || '';
-    if (themeInput) themeInput.value = ann.theme || 'rose-gradient';
-    if (customBgInput) customBgInput.value = ann.bg || 'linear-gradient(135deg, #be123c 0%, #fb7185 100%)';
+    if (themeInput) themeInput.value = currentTheme;
+    if (customBgInput) customBgInput.value = currentBg;
 
     // Highlight selected theme button
     document.querySelectorAll('.ann-theme-btn').forEach(btn => {
-      const isSelected = btn.getAttribute('data-theme') === (ann.theme || 'rose-gradient');
-      btn.style.borderColor = isSelected ? '#be123c' : 'transparent';
-      btn.style.boxShadow = isSelected ? '0 0 0 2px rgba(190, 18, 60, 0.25)' : 'none';
+      const isSelected = btn.getAttribute('data-theme') === currentTheme;
+      btn.style.borderColor = isSelected ? '#0f172a' : 'transparent';
+      btn.style.boxShadow = isSelected ? '0 0 0 2px rgba(15, 23, 42, 0.35)' : 'none';
+      btn.style.transform = isSelected ? 'scale(1.03)' : 'none';
     });
 
     updateAnnouncementPreview();
@@ -5931,6 +6047,7 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
     const badgeInput = document.getElementById('announcementBadge');
     const linkTextInput = document.getElementById('announcementLinkText');
     const linkUrlInput = document.getElementById('announcementLinkUrl');
+    const themeInput = document.getElementById('announcementTheme');
     const customBgInput = document.getElementById('announcementCustomBg');
 
     const isEnabled = enabledInput ? enabledInput.checked : true;
@@ -5938,7 +6055,8 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
     const badge = (badgeInput ? badgeInput.value : '').trim();
     const linkText = (linkTextInput ? linkTextInput.value : '').trim();
     const linkUrl = (linkUrlInput ? linkUrlInput.value : '').trim() || '#';
-    const bg = (customBgInput ? customBgInput.value : '') || 'linear-gradient(135deg, #be123c 0%, #fb7185 100%)';
+    const currentTheme = (themeInput ? themeInput.value : 'rose-gradient') || 'rose-gradient';
+    const bg = (customBgInput && customBgInput.value) ? customBgInput.value : (ANNOUNCEMENT_THEMES[currentTheme] || 'linear-gradient(135deg, #be123c 0%, #fb7185 100%)');
 
     // Desktop Preview elements
     const desktopPrev = document.getElementById('announcementDesktopPreview');
@@ -6020,8 +6138,8 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
 
   function selectAnnouncementTheme(btn) {
     if (!btn) return;
-    const theme = btn.getAttribute('data-theme');
-    const bg = btn.getAttribute('data-bg');
+    const theme = btn.getAttribute('data-theme') || 'rose-gradient';
+    const bg = btn.getAttribute('data-bg') || ANNOUNCEMENT_THEMES[theme] || 'linear-gradient(135deg, #be123c 0%, #fb7185 100%)';
 
     const themeInput = document.getElementById('announcementTheme');
     const customBgInput = document.getElementById('announcementCustomBg');
@@ -6029,9 +6147,10 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
     if (customBgInput) customBgInput.value = bg;
 
     document.querySelectorAll('.ann-theme-btn').forEach(b => {
-      const match = (b === btn);
-      b.style.borderColor = match ? '#be123c' : 'transparent';
-      b.style.boxShadow = match ? '0 0 0 2px rgba(190, 18, 60, 0.25)' : 'none';
+      const match = (b === btn || b.getAttribute('data-theme') === theme);
+      b.style.borderColor = match ? '#0f172a' : 'transparent';
+      b.style.boxShadow = match ? '0 0 0 2px rgba(15, 23, 42, 0.35)' : 'none';
+      b.style.transform = match ? 'scale(1.03)' : 'none';
     });
 
     updateAnnouncementPreview();
@@ -6046,17 +6165,21 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
     const themeInput = document.getElementById('announcementTheme');
     const customBgInput = document.getElementById('announcementCustomBg');
 
+    const theme = template.theme || 'rose-gradient';
+    const bg = template.bg || ANNOUNCEMENT_THEMES[theme] || 'linear-gradient(135deg, #be123c 0%, #fb7185 100%)';
+
     if (textInput) textInput.value = template.text;
     if (badgeInput) badgeInput.value = template.badge;
     if (linkTextInput) linkTextInput.value = template.linkText;
     if (linkUrlInput) linkUrlInput.value = template.linkUrl;
-    if (themeInput) themeInput.value = template.theme;
-    if (customBgInput) customBgInput.value = template.bg;
+    if (themeInput) themeInput.value = theme;
+    if (customBgInput) customBgInput.value = bg;
 
     document.querySelectorAll('.ann-theme-btn').forEach(b => {
-      const match = b.getAttribute('data-theme') === template.theme;
-      b.style.borderColor = match ? '#be123c' : 'transparent';
-      b.style.boxShadow = match ? '0 0 0 2px rgba(190, 18, 60, 0.25)' : 'none';
+      const match = b.getAttribute('data-theme') === theme;
+      b.style.borderColor = match ? '#0f172a' : 'transparent';
+      b.style.boxShadow = match ? '0 0 0 2px rgba(15, 23, 42, 0.35)' : 'none';
+      b.style.transform = match ? 'scale(1.03)' : 'none';
     });
 
     updateAnnouncementPreview();
@@ -6089,14 +6212,17 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
       return;
     }
 
+    const theme = (themeInput ? themeInput.value : 'rose-gradient') || 'rose-gradient';
+    const bg = (customBgInput && customBgInput.value) ? customBgInput.value : (ANNOUNCEMENT_THEMES[theme] || 'linear-gradient(135deg, #be123c 0%, #fb7185 100%)');
+
     appState.announcement = {
       enabled: enabledInput ? enabledInput.checked : true,
       text: text,
       badge: (badgeInput ? badgeInput.value : '').trim(),
       linkText: (linkTextInput ? linkTextInput.value : '').trim(),
       linkUrl: (linkUrlInput ? linkUrlInput.value : '').trim() || '#',
-      theme: (themeInput ? themeInput.value : 'rose-gradient') || 'rose-gradient',
-      bg: (customBgInput ? customBgInput.value : '') || 'linear-gradient(135deg, #be123c 0%, #fb7185 100%)',
+      theme: theme,
+      bg: bg,
       updatedAt: new Date().toISOString()
     };
 
@@ -6109,10 +6235,27 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
     const originalText = saveBtn ? saveBtn.innerHTML : '';
     if (saveBtn) {
       saveBtn.disabled = true;
-      saveBtn.innerHTML = '<span>Saving & Syncing...</span>';
+      saveBtn.innerHTML = '<span>Saving & Syncing to Cloud...</span>';
     }
 
     try {
+      // 1. Sync directly to Supabase Cloud for cross-device & live Vercel updates
+      if (supabase) {
+        try {
+          const { error: sbErr } = await supabase.from('categories').upsert({
+            id: '__site_announcement__',
+            name: 'Site Top Announcement Bar & Ticker Configuration',
+            image: '',
+            desc: JSON.stringify(appState.announcement)
+          });
+          if (sbErr) console.warn('Supabase announcement sync error:', sbErr);
+          else console.log('Announcement successfully synced to Supabase Cloud');
+        } catch(sbEx) {
+          console.warn('Supabase call exception:', sbEx);
+        }
+      }
+
+      // 2. Sync to local backend / disk
       await fetch('/api/save-data', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -6127,7 +6270,7 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
         })
       });
     } catch(e) {
-      console.warn('Dev server sync error:', e);
+      console.warn('Sync error:', e);
     } finally {
       if (saveBtn) {
         saveBtn.disabled = false;
@@ -6135,9 +6278,10 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
       }
     }
 
+    try { window.dispatchEvent(new CustomEvent('celebration:data-updated')); } catch(e){}
     updateMetrics();
     updateAnnouncementPreview();
-    showToast('📢 Top Announcement Bar saved & published live across website!', 'success');
+    showToast('📢 Top Announcement Bar saved & synced to Supabase Cloud Live!', 'success');
   }
 
   /* ==========================================================================
@@ -6159,16 +6303,9 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
     if (!grid) return;
 
     const searchTerm = (document.getElementById('bannerSearchInput')?.value || '').trim().toLowerCase();
-    const filterLoc = appState.bannerFilterLocation || 'all';
 
-    let list = Array.isArray(appState.banners) ? appState.banners : [];
-
-    // Filter by location
-    if (filterLoc === 'home') {
-      list = list.filter(b => b.location === 'home');
-    } else if (filterLoc === 'category') {
-      list = list.filter(b => b.location !== 'home');
-    }
+    // Strictly filter for Homepage carousel slides only
+    let list = (Array.isArray(appState.banners) ? appState.banners : []).filter(b => b.location === 'home');
 
     // Filter by search query
     if (searchTerm) {
@@ -6176,57 +6313,47 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
         const titleMatch = (b.title || '').toLowerCase().includes(searchTerm);
         const subMatch = (b.subtitle || '').toLowerCase().includes(searchTerm);
         const tagMatch = (b.tag || '').toLowerCase().includes(searchTerm);
-        const locMatch = (BANNER_LOCATION_LABELS[b.location] || b.location || '').toLowerCase().includes(searchTerm);
-        return titleMatch || subMatch || tagMatch || locMatch;
+        return titleMatch || subMatch || tagMatch;
       });
     }
 
-    // Sort: homepage banners first by order, then category banners
-    list.sort((a, b) => {
-      if (a.location === 'home' && b.location !== 'home') return -1;
-      if (a.location !== 'home' && b.location === 'home') return 1;
-      return (a.order || 99) - (b.order || 99);
-    });
+    // Sort homepage banners by order
+    list.sort((a, b) => (a.order || 99) - (b.order || 99));
 
     // Update counts
-    const totalCount = appState.banners.length;
     const homeCount = appState.banners.filter(b => b.location === 'home').length;
-    const catCount = appState.banners.filter(b => b.location !== 'home').length;
-
-    const countAllEl = document.getElementById('countBannerAll');
     const countHomeEl = document.getElementById('countBannerHome');
-    const countCatEl = document.getElementById('countBannerCategory');
     const totalTextEl = document.getElementById('bannersTotalCountText');
+    const sidebarBannersBadge = document.getElementById('sidebarBannersBadge');
 
-    if (countAllEl) countAllEl.textContent = totalCount;
     if (countHomeEl) countHomeEl.textContent = homeCount;
-    if (countCatEl) countCatEl.textContent = catCount;
-    if (totalTextEl) totalTextEl.textContent = `• ${totalCount} Banners Active`;
+    if (sidebarBannersBadge) sidebarBannersBadge.textContent = homeCount;
+    if (totalTextEl) totalTextEl.textContent = `• ${homeCount} Slides Active`;
 
     if (list.length === 0) {
       grid.innerHTML = `
         <div style="grid-column:1 / -1; text-align:center; padding:50px 20px; background:#f8fafc; border:1.5px dashed #cbd5e1; border-radius:16px;">
           <div style="font-size:36px; margin-bottom:10px;">🖼️</div>
-          <h3 style="margin:0 0 6px 0; color:#334155;">No Banners Found</h3>
-          <p style="color:#64748b; font-size:13px; margin:0 0 16px 0;">No banners matched your current filter or search criteria.</p>
-          <button type="button" class="btn-primary" onclick="window.adminStudio.openBannerModal('add')" style="padding:8px 18px; font-size:13px;">
-            + Add Promotional Banner
+          <h3 style="margin:0 0 6px 0; color:#334155;">No Homepage Banners Found</h3>
+          <p style="color:#64748b; font-size:13px; margin:0 0 16px 0;">No homepage hero slides matched your search criteria.</p>
+          <button type="button" class="btn-primary" onclick="window.adminStudio.openBannerModal('add')" style="padding:8px 18px; font-size:13px; background:linear-gradient(135deg, #0284c7, #38bdf8);">
+            + Add Homepage Banner
           </button>
         </div>
       `;
       return;
     }
 
-    grid.innerHTML = list.map(b => {
-      const locLabel = BANNER_LOCATION_LABELS[b.location] || `🏷️ ${b.location}`;
+    grid.innerHTML = list.map((b, idx) => {
       const isActive = (b.active !== false);
+      const slideNum = b.order || (idx + 1);
 
       return `
         <div class="banner-admin-card" data-banner-id="${b.id}">
           <div class="banner-card-media">
-            <img src="${escapeHtml(b.image || '')}" alt="${escapeHtml(b.title || 'Banner')}" onerror="this.src='https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=1200&q=80'" />
+            <img src="${escapeHtml(b.image || '')}" alt="${escapeHtml(b.title || 'Homepage Banner')}" onerror="this.src='https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=1200&q=80'" />
             <div class="banner-card-overlay"></div>
-            <span class="banner-badge-loc">${locLabel}</span>
+            <span class="banner-badge-loc">🏠 Slide #${slideNum}</span>
             <span class="banner-badge-status ${isActive ? 'banner-status-active' : 'banner-status-hidden'}">
               ${isActive ? '✓ ACTIVE' : '✕ HIDDEN'}
             </span>
@@ -6234,13 +6361,13 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
 
           <div class="banner-card-body">
             ${b.tag ? `<span class="banner-card-tag">${escapeHtml(b.tag)}</span>` : ''}
-            <h3 class="banner-card-title">${escapeHtml(b.title || 'Untitled Banner')}</h3>
+            <h3 class="banner-card-title">${escapeHtml(b.title || 'Untitled Slide')}</h3>
             <p class="banner-card-sub">${escapeHtml(b.subtitle || 'No description provided.')}</p>
 
             <div class="banner-card-meta">
               <span><strong>CTA:</strong> ${escapeHtml(b.linkText || 'None')}</span>
               <span><strong>Target:</strong> ${escapeHtml(b.linkUrl || '#')}</span>
-              <span><strong>Order:</strong> #${b.order || 1}</span>
+              <span><strong>Order:</strong> #${slideNum}</span>
             </div>
 
             <div class="banner-card-actions">
@@ -6251,7 +6378,7 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
                 ✏️ Edit
               </button>
               <button type="button" class="btn-banner-action btn-banner-del" onclick="window.adminStudio.deleteBanner('${b.id}')" title="Delete banner">
-                🗑️
+                🗑️ Delete
               </button>
             </div>
           </div>
@@ -6261,48 +6388,29 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
   }
 
   function filterBannersByLocation(loc, btn) {
-    appState.bannerFilterLocation = loc;
-    document.querySelectorAll('.banner-loc-filter-btn').forEach(b => {
-      const isCurrent = (b === btn);
-      b.style.background = isCurrent ? '#0284c7' : '#ffffff';
-      b.style.color = isCurrent ? '#ffffff' : '#334155';
-      b.style.borderColor = isCurrent ? '#0284c7' : '#cbd5e1';
-      b.style.fontWeight = isCurrent ? '700' : '600';
-    });
+    // Retained for backward-compatibility
     renderBannersAdmin();
   }
 
-  function populateBannerLocationSelect(selectedVal = null) {
+  function populateBannerLocationSelect(selectedVal = 'home') {
     const locSelect = document.getElementById('bannerLocationSelect');
     if (!locSelect) return;
 
-    const currentVal = selectedVal || locSelect.value || 'home';
-    let html = `
-      <optgroup label="Homepage">
-        <option value="home">🏠 Homepage Carousel Slide</option>
-      </optgroup>
-      <optgroup label="Category Pages">
-    `;
-
-    if (Array.isArray(appState.categories)) {
-      appState.categories.forEach(cat => {
-        if (!cat.id.startsWith('__site_')) {
-          const icon = cat.icon || '🎈';
-          html += `<option value="${escapeHtml(cat.id)}">${icon} ${escapeHtml(cat.name)} Category Page</option>`;
-        }
-      });
+    let html = `<option value="home">🏠 Homepage Carousel (Hero Slider)</option>`;
+    if (selectedVal && selectedVal !== 'home') {
+      const catObj = appState.categories.find(c => c.id === selectedVal);
+      const catName = catObj?.name || selectedVal;
+      html += `<option value="${escapeHtml(selectedVal)}">🏷️ ${escapeHtml(catName)} Category Banner</option>`;
     }
-
-    html += `</optgroup>`;
     locSelect.innerHTML = html;
-    locSelect.value = currentVal;
+    locSelect.value = selectedVal || 'home';
   }
 
   function openBannerModal(mode = 'add', bannerId = null, preselectedLoc = null) {
     const modal = document.getElementById('bannerModal');
     if (!modal) return;
 
-    populateBannerLocationSelect(preselectedLoc);
+    populateBannerLocationSelect(preselectedLoc || 'home');
 
     const modeInput = document.getElementById('bannerModalMode');
     const origIdInput = document.getElementById('bannerOriginalId');
@@ -6319,26 +6427,27 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
     const linkUrlInput = document.getElementById('bannerLinkUrlInput');
     const activeCheckbox = document.getElementById('bannerActiveCheckbox');
 
+    const homeBanners = appState.banners.filter(b => b.location === 'home');
+
     if (mode === 'add') {
-      const targetLoc = preselectedLoc || ((appState.bannerFilterLocation === 'home') ? 'home' : (appState.bannerFilterLocation === 'category' ? 'birthday' : 'home'));
-      const catObj = appState.categories.find(c => c.id === targetLoc);
-      const catName = catObj?.name || targetLoc;
+      const targetLoc = preselectedLoc || 'home';
+      const isHome = (targetLoc === 'home');
 
       if (modeInput) modeInput.value = 'add';
       if (origIdInput) origIdInput.value = '';
-      if (titleModal) titleModal.textContent = preselectedLoc ? `Add Banner for ${catName}` : 'Add New Promotional Banner';
+      if (titleModal) titleModal.textContent = isHome ? 'Add New Homepage Banner' : `Add Banner for ${targetLoc}`;
 
       if (locSelect) locSelect.value = targetLoc;
-      if (orderInput) orderInput.value = (appState.banners.length + 1);
-      if (tagInput) tagInput.value = preselectedLoc ? `✨ The Ultimate ${catName} Collection` : '';
-      if (titleInput) titleInput.value = preselectedLoc ? `Professional ${catName} Balloon Decorations` : '';
-      if (subInput) subInput.value = preselectedLoc ? `Make their milestone unforgettable! Premium celebration setups in 100+ cities.` : '';
+      if (orderInput) orderInput.value = (homeBanners.length + 1);
+      if (tagInput) tagInput.value = isHome ? "✨ India's #1 Decoration Service" : '';
+      if (titleInput) titleInput.value = '';
+      if (subInput) subInput.value = '';
       if (imgUrlInput) imgUrlInput.value = '';
       if (previewImg) previewImg.src = BLANK_PIXEL;
       const previewWrap = document.getElementById('bannerModalPreviewWrap');
       if (previewWrap) previewWrap.style.display = 'none';
-      if (linkTextInput) linkTextInput.value = preselectedLoc ? 'Explore Setups Below ↓' : '';
-      if (linkUrlInput) linkUrlInput.value = preselectedLoc ? `#${preselectedLoc}Catalog` : '';
+      if (linkTextInput) linkTextInput.value = isHome ? 'Explore Packages →' : '';
+      if (linkUrlInput) linkUrlInput.value = isHome ? 'birthday.html' : '';
       if (activeCheckbox) activeCheckbox.checked = true;
     } else {
       // Editing
@@ -6350,7 +6459,7 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
 
       if (modeInput) modeInput.value = 'edit';
       if (origIdInput) origIdInput.value = banner.id;
-      if (titleModal) titleModal.textContent = `Edit Banner: ${banner.title || ''}`;
+      if (titleModal) titleModal.textContent = `Edit Homepage Banner: ${banner.title || ''}`;
 
       if (locSelect) locSelect.value = banner.location || 'home';
       if (orderInput) orderInput.value = banner.order || 1;
@@ -6386,7 +6495,7 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
   }
 
   function handleBannerLocationChange(loc) {
-    // Keep inputs untouched for the admin to configure
+    // Handled
   }
 
   async function saveBanner(event) {
@@ -6423,7 +6532,7 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
 
     const bannerObj = {
       location: location,
-      locationName: BANNER_LOCATION_LABELS[location] || location,
+      locationName: BANNER_LOCATION_LABELS[location] || (location === 'home' ? 'Homepage Carousel' : location),
       tag: (tagInput?.value || '').trim(),
       title: title,
       subtitle: (subInput?.value || '').trim(),
@@ -6438,7 +6547,7 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
     if (mode === 'add') {
       bannerObj.id = `banner-${location}-${Date.now()}`;
       appState.banners.push(bannerObj);
-      await commitBanners(`Promotional Banner "${title}" added successfully!`);
+      await commitBanners(`Homepage Banner "${title}" added successfully!`);
     } else {
       const idx = appState.banners.findIndex(b => b.id === origId);
       if (idx === -1) {
@@ -6447,7 +6556,7 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
       }
       bannerObj.id = origId;
       appState.banners[idx] = bannerObj;
-      await commitBanners(`Promotional Banner "${title}" updated successfully!`);
+      await commitBanners(`Homepage Banner "${title}" updated successfully!`);
     }
 
     closeBannerModalAdmin();
@@ -6457,12 +6566,12 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
     const banner = appState.banners.find(b => b.id === bannerId);
     if (!banner) return;
 
-    if (!confirm(`Are you sure you want to delete banner "${banner.title}"?\n\nThis will remove it from the live website slider.`)) {
+    if (!confirm(`Are you sure you want to delete homepage banner "${banner.title}"?\n\nThis will remove it from the live website slider.`)) {
       return;
     }
 
     appState.banners = appState.banners.filter(b => b.id !== bannerId);
-    await commitBanners(`Banner "${banner.title}" deleted.`);
+    await commitBanners(`Homepage banner "${banner.title}" deleted.`);
   }
 
   async function toggleBannerActive(bannerId) {
@@ -6470,10 +6579,10 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
     if (!banner) return;
 
     banner.active = (banner.active === false) ? true : false;
-    await commitBanners(`Banner "${banner.title}" is now ${banner.active ? 'Visible on website' : 'Hidden from website'}.`);
+    await commitBanners(`Homepage banner "${banner.title}" is now ${banner.active ? 'Visible on website' : 'Hidden from website'}.`);
   }
 
-  async function commitBanners(message = 'Promotional banners updated!') {
+  async function commitBanners(message = 'Homepage banners updated!') {
     localStorage.setItem(STORAGE_KEYS.BANNERS, JSON.stringify(appState.banners));
     if (typeof window.SITE_DATA !== 'undefined') {
       window.SITE_DATA.banners = appState.banners;
@@ -6712,6 +6821,162 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
     renderGiftWhyInputs();
   }
 
+  // Delivery & Returns and Customer Reviews Management for Gifts
+  let currentGiftReviewsList = [];
+
+  function fillStandardDeliveryTemplate(type) {
+    if (type === 'express') {
+      const expTitle = document.getElementById('giftDelivExpressTitle');
+      if (expTitle) expTitle.value = '⚡ Express Same-Day Delivery';
+      const expText = document.getElementById('giftDelivExpressText');
+      if (expText) expText.value = 'Orders placed before 6:00 PM are hand-delivered directly within 2 to 4 hours in Delhi NCR, Mumbai, Bangalore, Hyderabad, Pune and 50+ major operating cities. You can select your preferred time slot at checkout.';
+      const cutoff = document.getElementById('giftDelivCutoff');
+      if (cutoff) cutoff.value = '6:00 PM';
+      const speed = document.getElementById('giftDelivSpeed');
+      if (speed) speed.value = '2 to 4 hours';
+      const cities = document.getElementById('giftDelivCities');
+      if (cities) cities.value = 'Delhi NCR, Mumbai, Bangalore, Hyderabad, Pune and 50+ major operating cities';
+    } else if (type === 'return') {
+      const retTitle = document.getElementById('giftDelivReturnTitle');
+      if (retTitle) retTitle.value = '🛡️ Safe Packaging & 7-Day Replacement';
+      const retText = document.getElementById('giftDelivReturnText');
+      if (retText) retText.value = 'Every gift item is checked for quality and securely bubble-wrapped inside a premium presentation box. If you receive any damaged or defective item, our WhatsApp desk (+91 82820 25444) provides an instant free replacement or refund.';
+      const retDays = document.getElementById('giftDelivReturnDays');
+      if (retDays) retDays.value = '7-Day Replacement';
+      const wa = document.getElementById('giftDelivWhatsApp');
+      if (wa) wa.value = '+91 82820 25444';
+    }
+  }
+
+  function syncGiftReviewStats() {
+    const revScore = document.getElementById('giftReviewsScore')?.value;
+    const revCount = document.getElementById('giftReviewsVerifiedCount')?.value;
+    const baseRating = document.getElementById('giftRating');
+    const baseCount = document.getElementById('giftReviewsCount');
+    const subtextEl = document.getElementById('giftReviewsSubtext');
+    if (revScore && baseRating) baseRating.value = revScore;
+    if (revCount && baseCount) baseCount.value = revCount;
+    if (revCount && subtextEl) {
+      subtextEl.value = `Based on ${revCount} verified customer reviews`;
+    }
+  }
+
+  function populateSampleGiftReviews() {
+    currentGiftReviewsList = [
+      {
+        name: "Pooja Sharma",
+        verified: true,
+        rating: 5,
+        date: "2 days ago",
+        text: "Super soft and beautifully packaged! Delivered within 3 hours on my friend's birthday. She absolutely loved it!"
+      },
+      {
+        name: "Rahul Verma",
+        verified: true,
+        rating: 5,
+        date: "1 week ago",
+        text: "Exactly as shown in pictures. The plush quality is top notch. Highly recommended for gifting!"
+      }
+    ];
+    renderGiftReviewsList();
+  }
+
+  function syncGiftReviewsFromDom() {
+    const rows = document.querySelectorAll('#giftReviewsContainer .gift-review-card-row');
+    if (rows.length === 0) return;
+    const list = [];
+    rows.forEach(row => {
+      const name = row.querySelector('.gr-name')?.value.trim() || 'Verified Buyer';
+      const verified = row.querySelector('.gr-verified')?.checked ?? true;
+      const rating = parseFloat(row.querySelector('.gr-rating')?.value) || 5;
+      const date = row.querySelector('.gr-date')?.value.trim() || 'Recently';
+      const text = row.querySelector('.gr-text')?.value.trim() || '';
+      list.push({ name, verified, rating, date, text });
+    });
+    currentGiftReviewsList = list;
+  }
+
+  function renderGiftReviewsList() {
+    const container = document.getElementById('giftReviewsContainer');
+    if (!container) return;
+    if (!Array.isArray(currentGiftReviewsList) || currentGiftReviewsList.length === 0) {
+      container.innerHTML = `
+        <div style="text-align:center; padding:18px; border:1.5px dashed #cbd5e1; border-radius:10px; color:#64748b; font-size:13px;">
+          No customer reviews yet. Click <strong>+ Add Customer Review</strong> or <strong>Load Sample Reviews</strong>.
+        </div>
+      `;
+      return;
+    }
+    container.innerHTML = currentGiftReviewsList.map((r, idx) => `
+      <div class="gift-review-card-row" style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:14px; position:relative;">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:8px;">
+          <div style="display:flex; align-items:center; gap:8px;">
+            <span style="font-size:12px; font-weight:700; color:#475569;">#${idx+1} Review</span>
+            <label style="display:inline-flex; align-items:center; gap:4px; font-size:12px; color:#059669; font-weight:600; cursor:pointer;">
+              <input type="checkbox" class="gr-verified" ${r.verified !== false ? 'checked' : ''} onchange="window.adminStudio.updateGiftReviewVerified(${idx}, this.checked)" />
+              <span>✓ Verified Buyer</span>
+            </label>
+          </div>
+          <button type="button" class="btn-remove-inclusion" onclick="window.adminStudio.removeGiftReview(${idx})" title="Delete Review" style="color:#e11d48; cursor:pointer;">✕</button>
+        </div>
+        <div style="display:grid; grid-template-columns:1fr 140px 140px; gap:10px; margin-bottom:8px;">
+          <div class="form-field" style="margin:0;">
+            <label style="font-size:11px; margin-bottom:2px;">Customer Name</label>
+            <input type="text" class="form-control gr-name" value="${escapeHtml(r.name || '')}" placeholder="e.g. Pooja Sharma" oninput="window.adminStudio.updateGiftReviewField(${idx}, 'name', this.value)" style="font-size:12.5px; padding:6px 10px;" />
+          </div>
+          <div class="form-field" style="margin:0;">
+            <label style="font-size:11px; margin-bottom:2px;">Rating</label>
+            <select class="form-control gr-rating" onchange="window.adminStudio.updateGiftReviewField(${idx}, 'rating', parseFloat(this.value))" style="font-size:12.5px; padding:6px 10px;">
+              <option value="5" ${Number(r.rating) === 5 ? 'selected' : ''}>★★★★★ (5.0)</option>
+              <option value="4" ${Number(r.rating) === 4 ? 'selected' : ''}>★★★★☆ (4.0)</option>
+              <option value="3" ${Number(r.rating) === 3 ? 'selected' : ''}>★★★☆☆ (3.0)</option>
+              <option value="2" ${Number(r.rating) === 2 ? 'selected' : ''}>★★☆☆☆ (2.0)</option>
+              <option value="1" ${Number(r.rating) === 1 ? 'selected' : ''}>★☆☆☆☆ (1.0)</option>
+            </select>
+          </div>
+          <div class="form-field" style="margin:0;">
+            <label style="font-size:11px; margin-bottom:2px;">Date / Time Ago</label>
+            <input type="text" class="form-control gr-date" value="${escapeHtml(r.date || 'Recently')}" placeholder="e.g. 2 days ago" oninput="window.adminStudio.updateGiftReviewField(${idx}, 'date', this.value)" style="font-size:12.5px; padding:6px 10px;" />
+          </div>
+        </div>
+        <div class="form-field" style="margin:0;">
+          <label style="font-size:11px; margin-bottom:2px;">Review Comment</label>
+          <textarea class="form-control gr-text" rows="2" placeholder="Write the customer's review feedback..." oninput="window.adminStudio.updateGiftReviewField(${idx}, 'text', this.value)" style="font-size:12.5px; padding:6px 10px;">${escapeHtml(r.text || '')}</textarea>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function addGiftReviewField() {
+    syncGiftReviewsFromDom();
+    currentGiftReviewsList.push({
+      name: "",
+      verified: true,
+      rating: 5,
+      date: "Just now",
+      text: ""
+    });
+    renderGiftReviewsList();
+  }
+
+  function updateGiftReviewField(idx, key, val) {
+    if (currentGiftReviewsList[idx]) {
+      currentGiftReviewsList[idx][key] = val;
+    }
+  }
+
+  function updateGiftReviewVerified(idx, checked) {
+    if (currentGiftReviewsList[idx]) {
+      currentGiftReviewsList[idx].verified = checked;
+    }
+  }
+
+  function removeGiftReview(idx) {
+    syncGiftReviewsFromDom();
+    currentGiftReviewsList.splice(idx, 1);
+    renderGiftReviewsList();
+  }
+
   function openGiftModal(mode, giftId = null) {
     try {
       appState.editingGiftId = (mode === 'edit') ? giftId : null;
@@ -6814,6 +7079,55 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
           "Express same day delivery in 2 to 4 hours"
         ];
         renderGiftWhyInputs();
+
+        // Delivery & Returns Policy
+        const d = g.delivery || g.delivery_info || {};
+        const expTitle = document.getElementById('giftDelivExpressTitle');
+        if (expTitle) expTitle.value = d.expressTitle || '⚡ Express Same-Day Delivery';
+        const expText = document.getElementById('giftDelivExpressText');
+        if (expText) expText.value = d.expressText || 'Orders placed before 6:00 PM are hand-delivered directly within 2 to 4 hours in Delhi NCR, Mumbai, Bangalore, Hyderabad, Pune and 50+ major operating cities. You can select your preferred time slot at checkout.';
+        const cutoffEl = document.getElementById('giftDelivCutoff');
+        if (cutoffEl) cutoffEl.value = d.cutoff || '6:00 PM';
+        const speedEl = document.getElementById('giftDelivSpeed');
+        if (speedEl) speedEl.value = d.speed || '2 to 4 hours';
+        const citiesEl = document.getElementById('giftDelivCities');
+        if (citiesEl) citiesEl.value = d.cities || 'Delhi NCR, Mumbai, Bangalore, Hyderabad, Pune and 50+ major operating cities';
+        const retTitle = document.getElementById('giftDelivReturnTitle');
+        if (retTitle) retTitle.value = d.returnTitle || '🛡️ Safe Packaging & 7-Day Replacement';
+        const retText = document.getElementById('giftDelivReturnText');
+        if (retText) retText.value = d.returnText || 'Every gift item is checked for quality and securely bubble-wrapped inside a premium presentation box. If you receive any damaged or defective item, our WhatsApp desk (+91 82820 25444) provides an instant free replacement or refund.';
+        const retDays = document.getElementById('giftDelivReturnDays');
+        if (retDays) retDays.value = d.returnDays || '7-Day Replacement';
+        const waEl = document.getElementById('giftDelivWhatsApp');
+        if (waEl) waEl.value = d.whatsapp || '+91 82820 25444';
+
+        // Customer Reviews
+        const revScoreEl = document.getElementById('giftReviewsScore');
+        if (revScoreEl) revScoreEl.value = g.rating || '4.8';
+        const revVerCountEl = document.getElementById('giftReviewsVerifiedCount');
+        if (revVerCountEl) revVerCountEl.value = g.reviewsCount || g.reviews_count || '320';
+        const revSubEl = document.getElementById('giftReviewsSubtext');
+        if (revSubEl) revSubEl.value = g.reviewsSubtext || `Based on ${g.reviewsCount || g.reviews_count || 320} verified customer reviews`;
+
+        currentGiftReviewsList = Array.isArray(g.reviewsList) && g.reviewsList.length > 0
+          ? JSON.parse(JSON.stringify(g.reviewsList))
+          : [
+              {
+                name: "Pooja Sharma",
+                verified: true,
+                rating: 5,
+                date: "2 days ago",
+                text: "Super soft and beautifully packaged! Delivered within 3 hours on my friend's birthday. She absolutely loved it!"
+              },
+              {
+                name: "Rahul Verma",
+                verified: true,
+                rating: 5,
+                date: "1 week ago",
+                text: "Exactly as shown in pictures. The plush quality is top notch. Highly recommended for gifting!"
+              }
+            ];
+        renderGiftReviewsList();
       } else {
         if (titleEl) titleEl.textContent = '+ Add New Gift / Hamper';
         form.reset();
@@ -6849,6 +7163,19 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
           "Express same day delivery in 2 to 4 hours"
         ];
         renderGiftWhyInputs();
+
+        // Standard Delivery & Returns Defaults
+        fillStandardDeliveryTemplate('express');
+        fillStandardDeliveryTemplate('return');
+
+        // Customer Reviews Defaults
+        const revScoreEl = document.getElementById('giftReviewsScore');
+        if (revScoreEl) revScoreEl.value = '4.8';
+        const revVerCountEl = document.getElementById('giftReviewsVerifiedCount');
+        if (revVerCountEl) revVerCountEl.value = '320';
+        const revSubEl = document.getElementById('giftReviewsSubtext');
+        if (revSubEl) revSubEl.value = 'Based on 320 verified customer reviews';
+        populateSampleGiftReviews();
 
         // Auto slug generator from title
         const titleInput = document.getElementById('giftTitle');
@@ -6921,6 +7248,24 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
     const subtitle = document.getElementById('giftSubtitle')?.value.trim() || title;
     const description = document.getElementById('giftDescription')?.value.trim() || subtitle;
 
+    syncGiftReviewsFromDom();
+
+    const delivery = {
+      expressTitle: document.getElementById('giftDelivExpressTitle')?.value.trim() || '⚡ Express Same-Day Delivery',
+      expressText: document.getElementById('giftDelivExpressText')?.value.trim() || 'Orders placed before 6:00 PM are hand-delivered directly within 2 to 4 hours in Delhi NCR, Mumbai, Bangalore, Hyderabad, Pune and 50+ major operating cities. You can select your preferred time slot at checkout.',
+      cutoff: document.getElementById('giftDelivCutoff')?.value.trim() || '6:00 PM',
+      speed: document.getElementById('giftDelivSpeed')?.value.trim() || '2 to 4 hours',
+      cities: document.getElementById('giftDelivCities')?.value.trim() || 'Delhi NCR, Mumbai, Bangalore, Hyderabad, Pune and 50+ major operating cities',
+      returnTitle: document.getElementById('giftDelivReturnTitle')?.value.trim() || '🛡️ Safe Packaging & 7-Day Replacement',
+      returnText: document.getElementById('giftDelivReturnText')?.value.trim() || 'Every gift item is checked for quality and securely bubble-wrapped inside a premium presentation box. If you receive any damaged or defective item, our WhatsApp desk (+91 82820 25444) provides an instant free replacement or refund.',
+      returnDays: document.getElementById('giftDelivReturnDays')?.value.trim() || '7-Day Replacement',
+      whatsapp: document.getElementById('giftDelivWhatsApp')?.value.trim() || '+91 82820 25444'
+    };
+
+    const reviewsScore = parseFloat(document.getElementById('giftReviewsScore')?.value) || rating;
+    const reviewsVerifiedCount = parseInt(document.getElementById('giftReviewsVerifiedCount')?.value, 10) || reviewsCount;
+    const reviewsSubtext = document.getElementById('giftReviewsSubtext')?.value.trim() || `Based on ${reviewsVerifiedCount} verified customer reviews`;
+
     const discount = origPrice > price ? Math.round(((origPrice - price) / origPrice) * 100) : 0;
     const gallery = [image, ...currentGiftGallery.filter(x => x && x !== image)];
 
@@ -6936,9 +7281,9 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
       original_price: origPrice,
       originalPrice: origPrice,
       discount: discount,
-      rating: rating,
-      reviews_count: reviewsCount,
-      reviewsCount: reviewsCount,
+      rating: reviewsScore,
+      reviews_count: reviewsVerifiedCount,
+      reviewsCount: reviewsVerifiedCount,
       boughtText: boughtText,
       image: image,
       gallery: gallery,
@@ -6962,6 +7307,11 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
       about_description: description,
       deliveryNote: deliveryNote,
       delivery_note: deliveryNote,
+      delivery: delivery,
+      delivery_info: delivery,
+      reviewsList: currentGiftReviewsList,
+      reviews_list: currentGiftReviewsList,
+      reviewsSubtext: reviewsSubtext,
       highlights: currentGiftHighlights.filter(h => h && h.trim()),
       inclusions: currentGiftHighlights.filter(h => h && h.trim()),
       whyChoose: currentGiftWhy.filter(w => w && w.trim()),
@@ -7048,6 +7398,13 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
     addGiftWhyField,
     updateGiftWhy,
     removeGiftWhy,
+    fillStandardDeliveryTemplate,
+    syncGiftReviewStats,
+    populateSampleGiftReviews,
+    addGiftReviewField,
+    updateGiftReviewField,
+    updateGiftReviewVerified,
+    removeGiftReview,
     saveGift,
     selectCategoryTab,
     clearPackageSearch,
@@ -7116,7 +7473,7 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
     fillAnnouncementTemplate,
     resetAnnouncementDefaults,
     saveAnnouncementFromTab,
-    // Promotional Banners CRUD methods
+    // Homepage Banners CRUD methods
     renderBannersAdmin,
     filterBannersByLocation,
     openBannerModal,

@@ -86,6 +86,7 @@
         <li class="nav-item"><a href="wedding.html" class="nav-trigger">Wedding</a></li>
         <li class="nav-item"><a href="corporate.html" class="nav-trigger">Corporate</a></li>
         <li class="nav-item"><a href="marketplace.html" class="nav-trigger">Gifts Marketplace <span class="tag-pill tag-popular">HOT</span></a></li>
+        <li class="nav-item nav-item-custom-cat"><a href="category.html?id=dusera" class="nav-trigger">dusera <span class="tag-pill tag-trending">TRENDING</span></a></li>
         <li class="nav-item"><a href="#" class="nav-trigger" onclick="openCityModal(); return false;">Cities <span class="tag-pill tag-count">50+</span></a></li>
       </ul>
     </div>
@@ -187,9 +188,13 @@
           <p class="section-subtitle">Watch real celebration reels and customer setups across India • Hover over any card to pause</p>
         </div>
       </div>
-      <div class="infinite-reviews-wrapper">
-        <div class="infinite-reviews-track track-row-1" id="reviewsTrackRow1"></div>
-        <div class="infinite-reviews-track track-row-2" id="reviewsTrackRow2"></div>
+      <div class="reviews-marquee-wrapper" id="reviewsMarqueeWrapper">
+        <div class="reviews-marquee-row">
+          <div class="reviews-marquee-track track-row-1" id="reviewsTrackRow1"></div>
+        </div>
+        <div class="reviews-marquee-row">
+          <div class="reviews-marquee-track track-row-2" id="reviewsTrackRow2"></div>
+        </div>
       </div>
     </section>
 
@@ -367,6 +372,7 @@
         <li><a href="baby-shower.html" class="mobile-nav-link">🍼 Baby Shower & Welcome <span>›</span></a></li>
         <li><a href="wedding.html" class="mobile-nav-link">💍 Wedding <span>›</span></a></li>
         <li><a href="corporate.html" class="mobile-nav-link">💼 Corporate Events <span>›</span></a></li>
+        <li class="mobile-nav-custom-cat"><a href="category.html?id=dusera" class="mobile-nav-link" onclick="closeMobileSidebar();">🎈 dusera <span class="tag-pill tag-trending" style="margin-left: 6px; font-size: 9.5px; padding: 2px 7px;">TRENDING</span> <span>›</span></a></li>
         <li><a href="marketplace.html" class="mobile-nav-link">🎁 Gifts Market <span>›</span></a></li>
         <li><a href="blog.html" class="mobile-nav-link">📰 Party Blog & Ideas <span>›</span></a></li>
         <li><a href="about.html" class="mobile-nav-link">ℹ️ About Us <span>›</span></a></li>
@@ -382,7 +388,7 @@
   <!-- Application Logic Scripts -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script src="data.js"></script>
-  <script src="app.js?v=3.0"></script>
+  <script src="app.js?v=20261009"></script>
 
   <!-- Category Page Dynamic Initialization Script -->
   <script>

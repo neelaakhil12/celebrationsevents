@@ -1307,7 +1307,7 @@
     }
 
     /* ==========================================================================
-       PROMOTIONAL BANNERS & HERO CAROUSEL ADMIN STYLES
+       HOMEPAGE BANNERS & HERO CAROUSEL ADMIN STYLES
        ========================================================================== */
     .banners-admin-grid {
       display: grid !important;
@@ -1617,9 +1617,9 @@
         <button type="button" class="sidebar-item" id="sidebarBannersBtn" data-tab="banners">
           <div class="sidebar-item-left">
             <span class="sidebar-item-icon">🖼️</span>
-            <span>Promotional Banners</span>
+            <span>Homepage Banners</span>
           </div>
-          <span id="sidebarBannersBadge" class="sidebar-item-badge" style="background:#e0f2fe; color:#0284c7; border:1px solid #bae6fd;">10</span>
+          <span id="sidebarBannersBadge" class="sidebar-item-badge" style="background:#e0f2fe; color:#0284c7; border:1px solid #bae6fd;">3</span>
         </button>
 
         <button type="button" class="sidebar-item" id="sidebarAnnouncementBtn" data-tab="announcement">
@@ -1676,24 +1676,7 @@
           </div>
         </div>
 
-        <div class="topbar-right">
-          <button type="button" id="topbarAddBannerBtn" class="btn-secondary" style="color:#0284c7; border-color:#bae6fd;" title="Add Promotional Banner">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-            <span>Add Banner</span>
-          </button>
-          <button type="button" id="topbarEditAnnouncementBtn" class="btn-secondary" style="color:#be123c; border-color:#fecdd3;" title="Edit Top Announcement Bar & Ticker">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
-            <span>Edit Ticker</span>
-          </button>
-          <button type="button" id="topbarAddPackageBtn" class="btn-add-primary">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-            <span>Add Package</span>
-          </button>
-          <button type="button" id="topbarAddCatBtn" class="btn-secondary" style="color:var(--brand-primary); border-color:#fecdd3;">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-            <span>Add Category</span>
-          </button>
-        </div>
+        <div class="topbar-right"></div>
       </header>
 
       <!-- Main Body Canvas -->
@@ -2160,8 +2143,8 @@
                 <label style="font-size:13px; font-weight:700; color:#0f172a; margin-bottom:8px; display:block;">
                   Banner Gradient & Color Theme
                 </label>
-                <div style="display:flex; flex-wrap:wrap; gap:10px; margin-bottom:12px;">
-                  <button type="button" class="ann-theme-btn" data-theme="rose-gradient" data-bg="linear-gradient(135deg, #be123c 0%, #fb7185 100%)" onclick="window.adminStudio.selectAnnouncementTheme(this)" style="background:linear-gradient(135deg, #be123c, #fb7185); color:#fff; border:2px solid #be123c; border-radius:9px; padding:8px 14px; font-size:12px; font-weight:700; cursor:pointer;">
+                <div style="display:flex; flex-wrap:wrap; gap:10px; margin-bottom:12px;" id="announcementThemeButtonGroup">
+                  <button type="button" class="ann-theme-btn" data-theme="rose-gradient" data-bg="linear-gradient(135deg, #be123c 0%, #fb7185 100%)" onclick="window.adminStudio.selectAnnouncementTheme(this)" style="background:linear-gradient(135deg, #be123c, #fb7185); color:#fff; border:2px solid #0f172a; border-radius:9px; padding:8px 14px; font-size:12px; font-weight:700; cursor:pointer; box-shadow:0 0 0 2px rgba(15,23,42,0.25);">
                     🌺 Brand Rose
                   </button>
                   <button type="button" class="ann-theme-btn" data-theme="emerald-gradient" data-bg="linear-gradient(135deg, #059669 0%, #10b981 100%)" onclick="window.adminStudio.selectAnnouncementTheme(this)" style="background:linear-gradient(135deg, #059669, #10b981); color:#fff; border:2px solid transparent; border-radius:9px; padding:8px 14px; font-size:12px; font-weight:700; cursor:pointer;">
@@ -2184,26 +2167,6 @@
                 <input type="hidden" id="announcementCustomBg" value="linear-gradient(135deg, #be123c 0%, #fb7185 100%)" />
               </div>
 
-              <!-- Quick 1-Click Templates -->
-              <div style="grid-column:1 / -1; background:#f8fafc; border:1px solid #e2e8f0; border-radius:12px; padding:16px 18px;">
-                <label style="font-size:12.5px; font-weight:700; color:#334155; margin-bottom:8px; display:block;">
-                  ⚡ 1-Click Quick Templates:
-                </label>
-                <div style="display:flex; flex-wrap:wrap; gap:8px;">
-                  <button type="button" class="btn-template-chip" onclick="window.adminStudio.fillAnnouncementTemplate('express')">
-                    ⚡ Express Delivery (Default)
-                  </button>
-                  <button type="button" class="btn-template-chip" onclick="window.adminStudio.fillAnnouncementTemplate('discount')">
-                    🎉 Flat ₹500 OFF Discount
-                  </button>
-                  <button type="button" class="btn-template-chip" onclick="window.adminStudio.fillAnnouncementTemplate('midnight')">
-                    🌙 Midnight Setup Slots Available
-                  </button>
-                  <button type="button" class="btn-template-chip" onclick="window.adminStudio.fillAnnouncementTemplate('festive')">
-                    ✨ Festive & Wedding Season Booking
-                  </button>
-                </div>
-              </div>
 
             </div>
 
@@ -2220,23 +2183,23 @@
         </section>
 
         <!-- ==================================================================
-             PROMOTIONAL BANNERS & HERO CAROUSEL MANAGEMENT TAB
+             HOMEPAGE BANNERS MANAGEMENT TAB
              ================================================================== -->
         <section id="bannersTab" class="tab-content">
           <div class="category-hero" style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 40%, #ffffff 100%) !important; border: 1.5px solid #bae6fd !important;">
             <div class="category-hero-info">
               <div class="category-hero-top">
-                <h2 class="category-hero-title" style="color:#0369a1 !important;">🖼️ Promotional Banners & Hero Carousels</h2>
-                <span class="category-hero-badge" style="background:#e0f2fe !important; color:#0284c7 !important; border-color:#bae6fd !important;">WEBSITE BANNERS</span>
-                <span class="category-hero-count" id="bannersTotalCountText" style="color:#0284c7 !important;">• 10 Banners Active</span>
+                <h2 class="category-hero-title" style="color:#0369a1 !important;">🖼️ Homepage Banners</h2>
+                <span class="category-hero-badge" style="background:#e0f2fe !important; color:#0284c7 !important; border-color:#bae6fd !important;">HERO SLIDER</span>
+                <span class="category-hero-count" id="bannersTotalCountText" style="color:#0284c7 !important;">• 3 Slides Active</span>
               </div>
               <p class="category-hero-desc">
-                Full studio management for the homepage hero carousel and top banners on all category pages (Birthday, Anniversary, Kids Themes, Baby Shower, Wedding, Corporate, Gifts). Add new promotional slides, change image banners with Cloudinary upload, update promotional headlines, target buttons and links, or toggle visibility.
+                Full management for the Celebration Events homepage hero carousel slides. Upload new high-resolution banner images via Cloudinary, edit headlines, descriptions, highlight tags, button links, adjust sequence order, or delete existing slides.
               </p>
               <div class="category-hero-actions">
                 <button type="button" class="btn-hero-add-pkg" onclick="window.adminStudio.openBannerModal('add')" style="background:linear-gradient(135deg, #0284c7, #38bdf8) !important;">
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-                  <span>+ Add New Banner</span>
+                  <span>+ Add Homepage Banner</span>
                 </button>
                 <a href="../index.html" target="_blank" class="btn-hero-action" style="text-decoration:none;">
                   🌐 View Live Homepage
@@ -2245,24 +2208,16 @@
             </div>
           </div>
 
-          <!-- Banners Filters & Search Bar -->
+          <!-- Banners Search & Quick Bar -->
           <div style="background:#ffffff; border:1.5px solid #e2e8f0; border-radius:14px; padding:16px 20px; margin-bottom:24px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:14px;">
-            <!-- Location Filter Tabs -->
-            <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;" id="bannerLocationFilterGroup">
-              <button type="button" class="btn-template-chip banner-loc-filter-btn" style="background:#0284c7; color:#fff; border-color:#0284c7; font-weight:700;" data-loc="all" onclick="window.adminStudio.filterBannersByLocation('all', this)">
-                All Banners (<span id="countBannerAll">10</span>)
-              </button>
-              <button type="button" class="btn-template-chip banner-loc-filter-btn" data-loc="home" onclick="window.adminStudio.filterBannersByLocation('home', this)">
-                🏠 Homepage Carousel (<span id="countBannerHome">3</span>)
-              </button>
-              <button type="button" class="btn-template-chip banner-loc-filter-btn" data-loc="category" onclick="window.adminStudio.filterBannersByLocation('category', this)">
-                🏷️ Category Banners (<span id="countBannerCategory">7</span>)
-              </button>
+            <div style="display:flex; align-items:center; gap:8px;">
+              <span style="font-size:13px; font-weight:700; color:#334155;">Active Homepage Slides:</span>
+              <span class="badge" id="countBannerHome" style="background:#0284c7; color:#fff; font-size:12px; font-weight:700; padding:4px 10px; border-radius:20px;">3</span>
             </div>
 
             <!-- Search Banner -->
             <div style="display:flex; align-items:center; gap:10px; min-width:260px;">
-              <input type="text" id="bannerSearchInput" class="form-control" placeholder="Search banner title, tag, or page..." oninput="window.adminStudio.renderBannersAdmin()" style="font-size:13px; padding:8px 14px;" />
+              <input type="text" id="bannerSearchInput" class="form-control" placeholder="Search homepage banners..." oninput="window.adminStudio.renderBannersAdmin()" style="font-size:13px; padding:8px 14px;" />
             </div>
           </div>
 
@@ -3430,8 +3385,8 @@
         <div class="modal-header-title">
           <span style="font-size:22px;">🖼️</span>
           <div>
-            <h2 id="bannerModalTitle" style="margin:0;font-size:18px;">Add New Promotional Banner</h2>
-            <div style="font-size:12px;color:var(--text-muted);margin-top:2px;">Homepage carousel slides & Category page hero banners</div>
+            <h2 id="bannerModalTitle" style="margin:0;font-size:18px;">Add New Homepage Banner</h2>
+            <div style="font-size:12px;color:var(--text-muted);margin-top:2px;">Homepage hero carousel slides and call-to-action buttons</div>
           </div>
         </div>
         <button type="button" class="btn-modal-close" data-close-modal aria-label="Close modal">&times;</button>
@@ -3446,20 +3401,9 @@
           <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
             <!-- Target Page / Location -->
             <div class="form-field">
-              <label for="bannerLocationSelect">Target Page / Placement *</label>
-              <select id="bannerLocationSelect" class="form-control" required onchange="window.adminStudio.handleBannerLocationChange(this.value)">
-                <optgroup label="Homepage">
-                  <option value="home">🏠 Homepage Carousel Slide</option>
-                </optgroup>
-                <optgroup label="Category Pages">
-                  <option value="birthday">🎂 Birthday Category Page</option>
-                  <option value="anniversary">❤️ Anniversary Category Page</option>
-                  <option value="kids">🦄 Kids Themes Category Page</option>
-                  <option value="baby-shower">👶 Baby Shower Category Page</option>
-                  <option value="wedding">💍 Wedding Category Page</option>
-                  <option value="corporate">🏢 Corporate Category Page</option>
-                  <option value="gifts">🎁 Gifts Category Page</option>
-                </optgroup>
+              <label for="bannerLocationSelect">Target Placement</label>
+              <select id="bannerLocationSelect" class="form-control" required style="background:#f8fafc; font-weight:600;">
+                <option value="home">🏠 Homepage Carousel (Hero Slider)</option>
               </select>
             </div>
 
@@ -3568,6 +3512,8 @@
         <button type="button" class="pkg-studio-tab-btn" onclick="window.adminStudio.switchGiftTab('media', this)">📸 Photos & Gallery</button>
         <button type="button" class="pkg-studio-tab-btn" onclick="window.adminStudio.switchGiftTab('specs', this)">📋 Product Details & Specs</button>
         <button type="button" class="pkg-studio-tab-btn" onclick="window.adminStudio.switchGiftTab('about', this)">📝 Description & Highlights</button>
+        <button type="button" class="pkg-studio-tab-btn" onclick="window.adminStudio.switchGiftTab('delivery', this)">🚚 Delivery & Returns</button>
+        <button type="button" class="pkg-studio-tab-btn" onclick="window.adminStudio.switchGiftTab('reviews', this)">⭐ Customer Reviews</button>
       </div>
 
       <form id="giftForm" onsubmit="window.adminStudio.saveGift(event)">
@@ -3745,6 +3691,127 @@
             </div>
           </div>
 
+          <!-- TAB 5: DELIVERY & RETURNS (EXACT MATCH TO USER SCREENSHOT 1) -->
+          <div class="pkg-studio-pane" id="giftPane-delivery">
+            <div style="background:#eff6ff; border:1px solid #bfdbfe; border-radius:10px; padding:12px 16px; margin-bottom:18px; font-size:13px; color:#1e40af;">
+              🚚 <strong>Delivery & Returns Tab:</strong> These policies appear directly inside the <em>Delivery & Returns</em> tab on the product detail page.
+            </div>
+
+            <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:12px; padding:18px; margin-bottom:18px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                <h4 style="margin:0; font-size:14px; color:#0f172a; display:flex; align-items:center; gap:6px;">
+                  <span>⚡</span> Express Delivery Policy
+                </h4>
+                <button type="button" class="btn-secondary btn-sm" onclick="window.adminStudio.fillStandardDeliveryTemplate('express')" style="font-size:11.5px; padding:3px 8px;">
+                  Use Default Text
+                </button>
+              </div>
+
+              <div class="form-field">
+                <label for="giftDelivExpressTitle">Express Delivery Section Heading</label>
+                <input type="text" id="giftDelivExpressTitle" placeholder="⚡ Express Same-Day Delivery" value="⚡ Express Same-Day Delivery" />
+              </div>
+
+              <div class="form-field" style="margin-top:10px;">
+                <label for="giftDelivExpressText">Express Delivery Description / Timing Details</label>
+                <textarea id="giftDelivExpressText" rows="3" placeholder="Orders placed before 6:00 PM are hand-delivered directly within 2 to 4 hours in Delhi NCR, Mumbai, Bangalore, Hyderabad, Pune and 50+ major operating cities. You can select your preferred time slot at checkout.">Orders placed before 6:00 PM are hand-delivered directly within 2 to 4 hours in Delhi NCR, Mumbai, Bangalore, Hyderabad, Pune and 50+ major operating cities. You can select your preferred time slot at checkout.</textarea>
+              </div>
+
+              <div class="form-row-3" style="margin-top:10px;">
+                <div class="form-field">
+                  <label for="giftDelivCutoff">Same-Day Order Cutoff</label>
+                  <input type="text" id="giftDelivCutoff" placeholder="e.g. 6:00 PM" value="6:00 PM" />
+                </div>
+                <div class="form-field">
+                  <label for="giftDelivSpeed">Delivery Time Window</label>
+                  <input type="text" id="giftDelivSpeed" placeholder="e.g. 2 to 4 hours" value="2 to 4 hours" />
+                </div>
+                <div class="form-field">
+                  <label for="giftDelivCities">Operating Cities Note</label>
+                  <input type="text" id="giftDelivCities" placeholder="e.g. 50+ major cities across India" value="Delhi NCR, Mumbai, Bangalore, Hyderabad, Pune and 50+ major operating cities" />
+                </div>
+              </div>
+            </div>
+
+            <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:12px; padding:18px; margin-bottom:18px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                <h4 style="margin:0; font-size:14px; color:#0f172a; display:flex; align-items:center; gap:6px;">
+                  <span>🛡️</span> Packaging & Replacement / Return Policy
+                </h4>
+                <button type="button" class="btn-secondary btn-sm" onclick="window.adminStudio.fillStandardDeliveryTemplate('return')" style="font-size:11.5px; padding:3px 8px;">
+                  Use Default Text
+                </button>
+              </div>
+
+              <div class="form-field">
+                <label for="giftDelivReturnTitle">Packaging & Replacement Heading</label>
+                <input type="text" id="giftDelivReturnTitle" placeholder="🛡️ Safe Packaging & 7-Day Replacement" value="🛡️ Safe Packaging & 7-Day Replacement" />
+              </div>
+
+              <div class="form-field" style="margin-top:10px;">
+                <label for="giftDelivReturnText">Replacement & Quality Assurance Details</label>
+                <textarea id="giftDelivReturnText" rows="3" placeholder="Every gift item is checked for quality and securely bubble-wrapped inside a premium presentation box. If you receive any damaged or defective item, our WhatsApp desk (+91 82820 25444) provides an instant free replacement or refund.">Every gift item is checked for quality and securely bubble-wrapped inside a premium presentation box. If you receive any damaged or defective item, our WhatsApp desk (+91 82820 25444) provides an instant free replacement or refund.</textarea>
+              </div>
+
+              <div class="form-row-2" style="margin-top:10px;">
+                <div class="form-field">
+                  <label for="giftDelivReturnDays">Replacement Window</label>
+                  <input type="text" id="giftDelivReturnDays" placeholder="e.g. 7-Day Replacement" value="7-Day Replacement" />
+                </div>
+                <div class="form-field">
+                  <label for="giftDelivWhatsApp">WhatsApp Support Desk Number</label>
+                  <input type="text" id="giftDelivWhatsApp" placeholder="e.g. +91 82820 25444" value="+91 82820 25444" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 6: CUSTOMER REVIEWS (EXACT MATCH TO USER SCREENSHOT 2) -->
+          <div class="pkg-studio-pane" id="giftPane-reviews">
+            <div style="background:#fff1f2; border:1px solid #fecdd3; border-radius:10px; padding:12px 16px; margin-bottom:18px; font-size:13px; color:#9f1239;">
+              ⭐ <strong>Customer Reviews Tab:</strong> Manage the rating score, reviews counter, and individual customer feedback cards displayed on the gift page.
+            </div>
+
+            <!-- Top Rating Summary Settings -->
+            <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:12px; padding:18px; margin-bottom:18px;">
+              <h4 style="margin:0 0 12px; font-size:14px; color:#0f172a;">📊 Overall Rating Summary Box</h4>
+              <div class="form-row-3">
+                <div class="form-field">
+                  <label for="giftReviewsScore">Overall Rating Score (e.g. 4.8)</label>
+                  <input type="number" id="giftReviewsScore" step="0.1" min="1" max="5" placeholder="4.8" value="4.8" oninput="window.adminStudio.syncGiftReviewStats()" />
+                </div>
+                <div class="form-field">
+                  <label for="giftReviewsVerifiedCount">Total Reviews Count</label>
+                  <input type="number" id="giftReviewsVerifiedCount" min="0" placeholder="320" value="320" oninput="window.adminStudio.syncGiftReviewStats()" />
+                </div>
+                <div class="form-field">
+                  <label for="giftReviewsSubtext">Reviews Summary Subtext</label>
+                  <input type="text" id="giftReviewsSubtext" placeholder="Based on 320 verified customer reviews" value="Based on 320 verified customer reviews" />
+                </div>
+              </div>
+            </div>
+
+            <!-- Individual Customer Reviews List -->
+            <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:12px; padding:18px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+                <div>
+                  <h4 style="margin:0; font-size:14px; color:#0f172a;">💬 Customer Review Cards</h4>
+                  <div style="font-size:12px; color:var(--text-muted); margin-top:2px;">Individual reviews displayed in the Reviews tab on the product page</div>
+                </div>
+                <div style="display:flex; gap:8px;">
+                  <button type="button" class="btn-secondary btn-sm" onclick="window.adminStudio.populateSampleGiftReviews()" style="font-size:12px; padding:5px 10px;">
+                    ✨ Load Sample Reviews
+                  </button>
+                  <button type="button" class="btn-primary btn-sm" onclick="window.adminStudio.addGiftReviewField()" style="font-size:12px; padding:5px 12px; background:linear-gradient(135deg, #e11d48, #be123c);">
+                    + Add Customer Review
+                  </button>
+                </div>
+              </div>
+
+              <!-- Reviews Container -->
+              <div id="giftReviewsContainer" style="display:flex; flex-direction:column; gap:12px;"></div>
+            </div>
+          </div>
         </div>
 
         <div class="modal-footer">

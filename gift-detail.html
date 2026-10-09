@@ -100,6 +100,7 @@
         <li class="nav-item"><a href="wedding.html" class="nav-trigger">Wedding <span class="tag-pill tag-new">POPULAR</span></a></li>
         <li class="nav-item"><a href="corporate.html" class="nav-trigger">Corporate</a></li>
         <li class="nav-item active"><a href="marketplace.html" class="nav-trigger active" style="color: var(--brand-600); font-weight: 800;">Gifts Marketplace <span class="tag-pill tag-popular">HOT</span></a></li>
+        <li class="nav-item nav-item-custom-cat"><a href="category.html?id=dusera" class="nav-trigger">dusera <span class="tag-pill tag-trending">TRENDING</span></a></li>
         <li class="nav-item"><a href="#" class="nav-trigger" onclick="openCityModal(); return false;">Cities <span class="tag-pill tag-count">50+</span></a></li>
       </ul>
     </div>
@@ -564,7 +565,7 @@
 
   <!-- Scripts -->
   <script src="data.js"></script>
-  <script src="app.js"></script>
+  <script src="app.js?v=20261009"></script>
   <script>
     // ====================================================
     // GIFTS CATALOG DATA (Exact 12 items)
@@ -830,9 +831,9 @@
         rating: 4.5,
         reviews: 134,
         bought: "400+ bought in last month",
-        heroImage: "https://images.unsplash.com/photo-1607344645866-009c320b5ab8?auto=format&fit=crop&w=600&q=80",
+        heroImage: "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=600&q=80",
         thumbnails: [
-          "https://images.unsplash.com/photo-1607344645866-009c320b5ab8?auto=format&fit=crop&w=600&q=80"
+          "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=600&q=80"
         ],
         description: "Convey your heartfelt blessings to the newlyweds with this bespoke laser-cut card featuring traditional floral filigree and embossed metallic foil accents.",
         highlights: [
@@ -990,7 +991,10 @@
             washCare: matched.washCare || matched.specs?.washCare || 'Hand wash with mild detergent or damp wipe',
             packaging: matched.packaging || matched.specs?.packaging || 'Gift Wrapped in Polka Box with Satin Bow'
           },
-          deliveryNote: matched.deliveryNote || matched.delivery_note || 'Same Day Delivery: Get it delivered in 2 to 4 hours at your location.'
+          deliveryNote: matched.deliveryNote || matched.delivery_note || 'Same Day Delivery: Get it delivered in 2 to 4 hours at your location.',
+          delivery: matched.delivery || matched.delivery_info,
+          reviewsList: matched.reviewsList || matched.reviews_list,
+          reviewsSubtext: matched.reviewsSubtext
         };
       } else if (GIFTS_CATALOG[giftId]) {
         activeProduct = GIFTS_CATALOG[giftId];
@@ -999,6 +1003,13 @@
       populateProductDetails(activeProduct);
       renderDynamicRelatedGifts(allProds, activeProduct.id);
     });
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str).replace(/[&<>"']/g, m => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+      }[m]));
+    }
 
     function populateProductDetails(prod) {
       document.getElementById("gdpPageTitle").textContent = `${prod.title} | Gift Marketplace | Celebration Events`;
@@ -1078,6 +1089,91 @@
           <tr style="border-bottom: 1px solid #f1f5f9;"><td style="padding: 10px 0; color: #64748b;">Recommended Age</td><td style="padding: 10px 0; font-weight: 600; color: #1e293b;">${s.recommendedAge || 'Safe for all age groups'}</td></tr>
           <tr style="border-bottom: 1px solid #f1f5f9;"><td style="padding: 10px 0; color: #64748b;">Wash Care</td><td style="padding: 10px 0; font-weight: 600; color: #1e293b;">${s.washCare || 'Handle with care'}</td></tr>
           <tr><td style="padding: 10px 0; color: #64748b;">Packaging</td><td style="padding: 10px 0; font-weight: 600; color: #1e293b;">${s.packaging || 'Gift Wrapped in Polka Box with Satin Bow'}</td></tr>
+        `;
+      }
+
+      // Dynamic Delivery & Returns Panel (Exact Match to User Screenshot 1)
+      const delivPanel = document.getElementById("tab-panel-deliv");
+      if (delivPanel) {
+        const d = prod.delivery || prod.delivery_info || {};
+        const expTitle = d.expressTitle || '⚡ Express Same-Day Delivery';
+        const expText = d.expressText || 'Orders placed before 6:00 PM are hand-delivered directly within 2 to 4 hours in Delhi NCR, Mumbai, Bangalore, Hyderabad, Pune and 50+ major operating cities. You can select your preferred time slot at checkout.';
+        const retTitle = d.returnTitle || '🛡️ Safe Packaging & 7-Day Replacement';
+        const retText = d.returnText || 'Every gift item is checked for quality and securely bubble-wrapped inside a premium presentation box. If you receive any damaged or defective item, our WhatsApp desk (+91 82820 25444) provides an instant free replacement or refund.';
+
+        delivPanel.innerHTML = `
+          <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 22px 26px; max-width: 800px; font-size: 13.5px; color: #334155; line-height: 1.7;">
+            <h4 style="font-size: 15px; color: #111827; margin: 0 0 10px;">${escapeHtml(expTitle)}</h4>
+            <p style="margin: 0 0 16px;">${escapeHtml(expText)}</p>
+            <h4 style="font-size: 15px; color: #111827; margin: 0 0 10px;">${escapeHtml(retTitle)}</h4>
+            <p style="margin: 0;">${escapeHtml(retText)}</p>
+          </div>
+        `;
+      }
+
+      // Dynamic Reviews Panel (Exact Match to User Screenshot 2)
+      const totalReviewsCount = prod.reviews || prod.reviewsCount || 320;
+      const tabBtnReviews = document.getElementById("tab-btn-reviews");
+      if (tabBtnReviews) {
+        tabBtnReviews.textContent = `Reviews (${totalReviewsCount})`;
+      }
+
+      const reviewsPanel = document.getElementById("tab-panel-reviews");
+      if (reviewsPanel) {
+        const ratingVal = Number(prod.rating || 4.8).toFixed(1);
+        const starCount = Math.round(Number(ratingVal));
+        const starsStr = '★'.repeat(Math.max(1, Math.min(5, starCount)));
+        const subtextVal = prod.reviewsSubtext || `Based on ${totalReviewsCount} verified customer reviews`;
+
+        const reviewsList = Array.isArray(prod.reviewsList) && prod.reviewsList.length > 0
+          ? prod.reviewsList
+          : [
+              {
+                name: "Pooja Sharma",
+                verified: true,
+                rating: 5,
+                date: "2 days ago",
+                text: "Super soft and beautifully packaged! Delivered within 3 hours on my friend's birthday. She absolutely loved it!"
+              },
+              {
+                name: "Rahul Verma",
+                verified: true,
+                rating: 5,
+                date: "1 week ago",
+                text: "Exactly as shown in pictures. The plush quality is top notch. Highly recommended for gifting!"
+              }
+            ];
+
+        const reviewsCardsHtml = reviewsList.map(r => {
+          const rStars = Math.max(1, Math.min(5, Math.round(Number(r.rating || 5))));
+          const rStarsStr = '★'.repeat(rStars);
+          const isVerified = r.verified !== false;
+          return `
+            <div style="border-bottom: 1px solid #f1f5f9; padding-bottom: 12px;">
+              <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                <strong style="font-size: 13.5px; color: #1e293b;">
+                  ${escapeHtml(r.name || 'Verified Buyer')}
+                  ${isVerified ? '<span style="color: #10b981; font-size: 12px; margin-left: 4px;">✓ Verified Buyer</span>' : ''}
+                </strong>
+                <span style="font-size: 12px; color: #94a3b8;">${escapeHtml(r.date || 'Recently')}</span>
+              </div>
+              <div style="color: #eab308; font-size: 12px; margin-bottom: 4px;">${rStarsStr}</div>
+              <p style="font-size: 13px; color: #475569; margin: 0;">${escapeHtml(r.text || '')}</p>
+            </div>
+          `;
+        }).join('');
+
+        reviewsPanel.innerHTML = `
+          <div style="display: grid; grid-template-columns: 280px 1fr; gap: 32px; align-items: start;">
+            <div style="background: #fdf2f4; border: 1px solid #fecdd3; border-radius: 10px; padding: 20px; text-align: center;">
+              <div style="font-size: 42px; font-weight: 900; color: #e11d48; line-height: 1;">${ratingVal}</div>
+              <div style="color: #eab308; font-size: 18px; margin: 6px 0;">${starsStr}</div>
+              <div style="font-size: 13px; color: #64748b;">${escapeHtml(subtextVal)}</div>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 14px;">
+              ${reviewsCardsHtml}
+            </div>
+          </div>
         `;
       }
     }
