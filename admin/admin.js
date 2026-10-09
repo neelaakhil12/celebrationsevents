@@ -4473,12 +4473,17 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
         opts = exactPreset ? JSON.parse(JSON.stringify(exactPreset)) : [];
       }
       opts.forEach(opt => {
+        opt.price = Number(opt.price || opt.amount || 0);
         if (Array.isArray(opt.subItems)) {
           opt.subItems = opt.subItems.map(item => {
             if (typeof item === 'object' && item !== null) {
-              return { name: item.name || '', image: item.image || '' };
+              return { 
+                name: item.name || '', 
+                price: Number(item.price || item.amount || 0), 
+                image: item.image || '' 
+              };
             }
-            return { name: String(item || ''), image: '' };
+            return { name: String(item || ''), price: 0, image: '' };
           });
         }
       });
@@ -4534,7 +4539,7 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
           </button>
         </div>
 
-        <div class="wse-opt-inputs-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:14px;">
+        <div class="wse-opt-inputs-grid" style="display:grid; grid-template-columns:1fr 1fr 140px; gap:14px; margin-bottom:14px;">
           <div>
             <label style="font-size:12px; font-weight:700; color:#334155; margin-bottom:6px; display:block;">Option Title *</label>
             <input type="text" class="wse-opt-input" value="${escapeHtml(opt.title || '')}" placeholder="e.g. Pendals In Front Of House" oninput="window.adminStudio.updateWseOptField(${optIdx}, 'title', this.value)" style="width:100%; box-sizing:border-box; padding:10px 14px; font-size:13.5px; color:#0f172a; background:#f8fafc; border:1.5px solid #cbd5e1; border-radius:8px; outline:none;" required />
@@ -4542,6 +4547,13 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
           <div>
             <label style="font-size:12px; font-weight:700; color:#334155; margin-bottom:6px; display:block;">Prompt / Subtitle (Customer View)</label>
             <input type="text" class="wse-opt-input" value="${escapeHtml(opt.subPrompt || opt.subtitle || '')}" placeholder="e.g. Choose pendal type" oninput="window.adminStudio.updateWseOptField(${optIdx}, 'subPrompt', this.value)" style="width:100%; box-sizing:border-box; padding:10px 14px; font-size:13.5px; color:#0f172a; background:#f8fafc; border:1.5px solid #cbd5e1; border-radius:8px; outline:none;" />
+          </div>
+          <div>
+            <label style="font-size:12px; font-weight:700; color:#334155; margin-bottom:6px; display:block;" title="Base amount if this option has no sub-choices">Base Amount (₹)</label>
+            <div style="display:flex; align-items:center; background:#f8fafc; border:1.5px solid #cbd5e1; border-radius:8px; padding:0 8px;">
+              <span style="font-size:13px; font-weight:800; color:#047857;">₹</span>
+              <input type="number" min="0" step="1" class="wse-opt-input" value="${Number(opt.price || opt.amount || 0) > 0 ? (opt.price || opt.amount) : ''}" placeholder="0" oninput="window.adminStudio.updateWseOptField(${optIdx}, 'price', Number(this.value) || 0)" style="width:100%; border:none; background:transparent; padding:10px 6px; font-size:13.5px; font-weight:700; color:#0f172a; outline:none;" title="Amount for this service option if it has no selectable sub-choices" />
+            </div>
           </div>
         </div>
 
@@ -4577,16 +4589,21 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
               <span style="font-size:12.5px; font-weight:700; color:#1e293b;">Selectable Choices / Menu Items</span>
               <span style="background:#e2e8f0; color:#334155; font-size:11px; font-weight:800; padding:2px 10px; border-radius:99px; white-space:nowrap;">${(opt.subItems || []).length} Choices</span>
             </div>
-            <span style="font-size:11.5px; color:#64748b;">(e.g. 2 pin, 4 pin, 8 pin, Live Counter, etc.)</span>
+            <span style="font-size:11.5px; color:#64748b;">(Set amount for quotation - hidden on browse page)</span>
           </div>
 
           <div class="wse-subitems-wrap" style="display:flex; flex-direction:column; gap:8px; margin:8px 0;">
             ${(opt.subItems && opt.subItems.length > 0) ? opt.subItems.map((subItem, subIdx) => {
               const subName = (typeof subItem === 'object' && subItem !== null) ? (subItem.name || '') : String(subItem || '');
+              const subPrice = (typeof subItem === 'object' && subItem !== null) ? Number(subItem.price || subItem.amount || 0) : 0;
               return `
               <div class="wse-subitem-row" style="display:flex; align-items:center; gap:10px; background:#ffffff; border:1.5px solid #cbd5e1; border-radius:10px; padding:8px 12px; box-shadow:0 1px 3px rgba(0,0,0,0.02);">
                 <span style="font-size:11.5px; font-weight:800; color:#64748b; background:#f1f5f9; padding:5px 9px; border-radius:6px; white-space:nowrap; flex-shrink:0;">#${subIdx + 1}</span>
                 <input type="text" value="${escapeHtml(subName)}" placeholder="Choice name (e.g. 2 pin, 4 pin, 8 pin)" oninput="window.adminStudio.updateWseSubItemName(${optIdx}, ${subIdx}, this.value)" style="flex:1; padding:8px 12px; font-size:13.5px; font-weight:600; color:#0f172a; border:1.5px solid #cbd5e1; border-radius:8px; background:#f8fafc; outline:none;" />
+                <div style="display:flex; align-items:center; gap:4px; background:#f0fdf4; border:1.5px solid #bbf7d0; border-radius:8px; padding:0 8px; flex-shrink:0;" title="Enter amount in ₹ for quotation (not shown on browsing page)">
+                  <span style="font-size:12.5px; font-weight:800; color:#15803d;">₹</span>
+                  <input type="number" min="0" step="1" value="${subPrice > 0 ? subPrice : ''}" placeholder="Amount" oninput="window.adminStudio.updateWseSubItemPrice(${optIdx}, ${subIdx}, this.value)" style="width:110px; border:none; background:transparent; padding:7px 4px; font-size:13px; font-weight:700; color:#0f172a; outline:none;" />
+                </div>
                 <button type="button" onclick="window.adminStudio.removeWseSubItem(${optIdx}, ${subIdx})" title="Delete this choice" style="background:#fff1f2; border:1px solid #fecdd3; color:#ef4444; font-size:14px; font-weight:800; cursor:pointer; padding:7px 12px; border-radius:8px; flex-shrink:0;">✕</button>
               </div>
               `;
@@ -4594,7 +4611,11 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
           </div>
 
           <div class="wse-add-subitem-row" style="display:flex; gap:10px; margin-top:10px; align-items:center;">
-            <input type="text" id="wseNewSub_${optIdx}" class="wse-new-subitem-input" placeholder="Type new choice (e.g. 2 pin, 4 pin, 8 pin) and click Add..." onkeydown="if(event.key==='Enter'){event.preventDefault();window.adminStudio.addWseSubItem(${optIdx});}" style="flex:1; padding:9px 14px; font-size:13px; border:1.5px dashed #cbd5e1; border-radius:8px; background:#ffffff; box-sizing:border-box; outline:none;" />
+            <input type="text" id="wseNewSub_${optIdx}" class="wse-new-subitem-input" placeholder="Type new choice (e.g. Tenkaya pandhiri, Normal pendals)" onkeydown="if(event.key==='Enter'){event.preventDefault();window.adminStudio.addWseSubItem(${optIdx});}" style="flex:1; padding:9px 14px; font-size:13px; border:1.5px dashed #cbd5e1; border-radius:8px; background:#ffffff; box-sizing:border-box; outline:none;" />
+            <div style="display:flex; align-items:center; gap:4px; background:#ffffff; border:1.5px dashed #cbd5e1; border-radius:8px; padding:0 8px; flex-shrink:0;">
+              <span style="font-size:12.5px; font-weight:800; color:#15803d;">₹</span>
+              <input type="number" min="0" step="1" id="wseNewSubPrice_${optIdx}" placeholder="Amount" style="width:100px; border:none; background:transparent; padding:9px 4px; font-size:13px; font-weight:700; outline:none;" onkeydown="if(event.key==='Enter'){event.preventDefault();window.adminStudio.addWseSubItem(${optIdx});}" />
+            </div>
             <button type="button" class="wse-add-subitem-btn" onclick="window.adminStudio.addWseSubItem(${optIdx})" style="padding:9px 18px; font-size:12.5px; font-weight:700; border-radius:8px; background:#15803d; color:#ffffff; border:none; cursor:pointer; white-space:nowrap; display:inline-flex; align-items:center; gap:6px;">
               ➕ Add Choice
             </button>
@@ -4615,6 +4636,18 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
     }
   }
 
+  function updateWseSubItemPrice(optIdx, subIdx, val) {
+    const opt = appState.weddingEditorOptions?.[optIdx];
+    if (opt && Array.isArray(opt.subItems) && opt.subItems[subIdx] !== undefined) {
+      const num = val === '' ? 0 : (Number(val) || 0);
+      if (typeof opt.subItems[subIdx] === 'object' && opt.subItems[subIdx] !== null) {
+        opt.subItems[subIdx].price = num;
+      } else {
+        opt.subItems[subIdx] = { name: String(opt.subItems[subIdx]), price: num, image: '' };
+      }
+    }
+  }
+
   function addWseOption() {
     if (!Array.isArray(appState.weddingEditorOptions)) {
       appState.weddingEditorOptions = [];
@@ -4622,6 +4655,7 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
     appState.weddingEditorOptions.push({
       id: `opt_${Date.now().toString(36)}`,
       title: '',
+      price: 0,
       subPrompt: '',
       image: '',
       subItems: []
@@ -4643,9 +4677,11 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
 
   function addWseSubItem(optIdx) {
     const input = document.getElementById(`wseNewSub_${optIdx}`);
+    const priceInput = document.getElementById(`wseNewSubPrice_${optIdx}`);
     if (!input) return;
     const val = input.value.trim();
     if (!val) return;
+    const priceVal = priceInput ? (Number(priceInput.value) || 0) : 0;
 
     const opt = appState.weddingEditorOptions?.[optIdx];
     if (!opt) return;
@@ -4653,8 +4689,9 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
     if (!Array.isArray(opt.subItems)) {
       opt.subItems = [];
     }
-    opt.subItems.push({ name: val, image: '' });
+    opt.subItems.push({ name: val, price: priceVal, image: '' });
     input.value = '';
+    if (priceInput) priceInput.value = '';
     renderWeddingEditorOptions();
   }
 
@@ -7437,6 +7474,7 @@ CREATE POLICY "Allow public delete products" ON public.products FOR DELETE USING
     removeWseSubItem,
     handleWseOptImageUpload,
     updateWseSubItemName,
+    updateWseSubItemPrice,
     openBlogModal,
     insertBlogTemplate,
     cleanAllBlogHtmlTags,

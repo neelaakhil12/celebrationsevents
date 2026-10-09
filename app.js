@@ -3193,13 +3193,35 @@ function updateWeddingQuoteBar() {
   const count = selectedWeddingServices.length;
   countBadge.textContent = count;
 
+  let grandTotal = 0;
+  if (window.selectedWeddingServicePrices) {
+    selectedWeddingServices.forEach(sId => {
+      grandTotal += Number(window.selectedWeddingServicePrices[sId] || 0);
+    });
+  }
+
   if (count > 0) {
     bar.classList.add("active");
-    if (titleEl) titleEl.textContent = `${count} Wedding Service${count > 1 ? 's' : ''} Selected`;
+    if (titleEl) {
+      if (grandTotal > 0) {
+        titleEl.innerHTML = `${count} Wedding Service${count > 1 ? 's' : ''} Selected <span class="quote-price-tag" style="display:inline-flex; align-items:center; gap:4px; background:#ecfdf5; border:1px solid #a7f3d0; color:#065f46; font-size:13.5px; font-weight:800; padding:3px 10px; border-radius:99px; margin-left:8px;">💰 Total: ₹${grandTotal.toLocaleString('en-IN')}</span>`;
+      } else {
+        titleEl.textContent = `${count} Wedding Service${count > 1 ? 's' : ''} Selected`;
+      }
+    }
     
     const selectedObjs = (SITE_DATA.weddingServices || []).filter(s => selectedWeddingServices.includes(s.id));
-    const names = selectedObjs.map(s => s.title);
-    if (listEl) listEl.textContent = names.join(" • ");
+    const lines = [];
+    selectedObjs.forEach(s => {
+      const opts = window.selectedWeddingCustomOptions?.[s.id];
+      const sPrice = Number(window.selectedWeddingServicePrices?.[s.id] || 0);
+      if (opts && opts.length > 0) {
+        lines.push(`${s.title}${sPrice > 0 ? ` (₹${sPrice.toLocaleString('en-IN')})` : ''}: ${opts.join(', ')}`);
+      } else {
+        lines.push(`${s.title}${sPrice > 0 ? ` (₹${sPrice.toLocaleString('en-IN')})` : ''}`);
+      }
+    });
+    if (listEl) listEl.textContent = lines.join(" • ");
   } else {
     bar.classList.remove("active");
     if (titleEl) titleEl.textContent = "0 Services Selected";
@@ -3209,6 +3231,8 @@ function updateWeddingQuoteBar() {
 
 function clearSelectedWeddingServices() {
   selectedWeddingServices = [];
+  window.selectedWeddingCustomOptions = {};
+  window.selectedWeddingServicePrices = {};
   const cards = document.querySelectorAll(".wedding-service-card");
   cards.forEach(c => c.classList.remove("selected"));
   updateWeddingQuoteBar();
@@ -3224,17 +3248,28 @@ function sendWeddingWhatsAppQuote() {
   const selectedObjs = (SITE_DATA.weddingServices || []).filter(s => selectedWeddingServices.includes(s.id));
   const city = appState.selectedCity || "Delhi NCR";
 
+  let grandTotal = 0;
+  if (window.selectedWeddingServicePrices) {
+    selectedWeddingServices.forEach(sId => {
+      grandTotal += Number(window.selectedWeddingServicePrices[sId] || 0);
+    });
+  }
+
   let msg = `💍 *WEDDING PACKAGE QUOTATION ENQUIRY*\n`;
   msg += `📍 *Delivery / Venue City:* ${city}\n`;
   msg += `✨ *Selected Wedding Services (${selectedObjs.length}):*\n`;
   selectedObjs.forEach((s, idx) => {
-    msg += `${idx + 1}. ${s.title}`;
+    const sPrice = Number(window.selectedWeddingServicePrices?.[s.id] || 0);
+    msg += `${idx + 1}. *${s.title}*${sPrice > 0 ? ` [₹${sPrice.toLocaleString('en-IN')}]` : ''}`;
     const opts = window.selectedWeddingCustomOptions?.[s.id];
     if (opts && opts.length > 0) {
       msg += `\n   • ${opts.join("\n   • ")}`;
     }
     msg += `\n`;
   });
+  if (grandTotal > 0) {
+    msg += `\n💰 *ESTIMATED TOTAL QUOTATION:* ₹${grandTotal.toLocaleString('en-IN')}\n`;
+  }
   msg += `\nPlease share customized package quotation, available dates, and decorator team details!`;
 
   const waUrl = `https://wa.me/918282025444?text=${encodeURIComponent(msg)}`;
@@ -3584,6 +3619,7 @@ function renderWcmIndividual(listEl, cfg) {
     const hasImage = Boolean(opt.image && opt.image.trim());
     const subList = opt.radios || opt.subItems;
     const optId = opt.id || (`opt_${idx}_` + (opt.title || 'item').toLowerCase().replace(/[^a-z0-9]/g, ''));
+    const optPrice = Number(opt.price || opt.amount || 0);
     const safeTitle = (opt.title || 'Option').replace(/"/g, '&quot;');
     const safeSubtitle = (opt.subtitle || '').replace(/"/g, '&quot;');
     const safeImage = (opt.image || '').replace(/"/g, '&quot;');
@@ -3592,6 +3628,7 @@ function renderWcmIndividual(listEl, cfg) {
     <div class="wcm-option-card ${opt.checked ? 'active' : ''}" 
          id="wcm_card_${optId}" 
          data-id="${optId}" 
+         data-price="${optPrice}"
          data-image="${safeImage}" 
          onclick="inspectWcmOption('${optId}')"
          title="${hasImage ? 'Tap to view option photo' : 'Tap to inspect'}">
@@ -3623,6 +3660,7 @@ function renderWcmIndividual(listEl, cfg) {
           <div class="wcm-radios-wrap" style="display:flex; flex-wrap:wrap; gap:8px; align-items:center;">
             ${subList.map((item, i) => {
               const choiceName = (typeof item === 'object' && item !== null) ? (item.name || '') : String(item || '');
+              const choicePrice = (typeof item === 'object' && item !== null) ? Number(item.price || item.amount || 0) : 0;
               const choiceImg = (typeof item === 'object' && item !== null) ? (item.image || '') : '';
               const choiceId = `${optId}_choice_${i}`;
               const safeChoiceName = (choiceName || 'Choice').replace(/"/g, '&quot;');
@@ -3633,6 +3671,7 @@ function renderWcmIndividual(listEl, cfg) {
               <div class="wcm-choice-chip-card" 
                    id="wcm_choice_${choiceId}"
                    data-image="${safeChoiceImg}"
+                   data-price="${choicePrice}"
                    onclick="event.stopPropagation(); inspectWcmChoice('${choiceId}', '${safeChoiceImg}')"
                    title="${hasChoiceImg ? 'Tap to preview photo on left' : 'Tap to focus choice'}">
                 <label class="wcm-choice-check-label" onclick="event.stopPropagation();">
@@ -3640,6 +3679,7 @@ function renderWcmIndividual(listEl, cfg) {
                          class="wcm-check-input wcm-choice-checkbox" 
                          id="chk_${choiceId}" 
                          value="${safeChoiceName}" 
+                         data-price="${choicePrice}"
                          onchange="handleWcmChoiceSelect('${optId}', this)" />
                   <span class="wcm-choice-text">${choiceName}</span>
                 </label>
@@ -4571,37 +4611,67 @@ function confirmWeddingCustomModal() {
       selectedWeddingServices.push(activeWeddingModalServiceId);
     }
 
-    // Save detailed sub-options selection for quotation preview and WhatsApp message
+    // Save detailed sub-options selection with amounts for quotation preview and WhatsApp message
     const modal = document.getElementById("weddingServiceDetailModal");
     if (modal) {
       const chosenDetails = [];
+      let servicePriceSum = 0;
+
       modal.querySelectorAll(".wcm-option-card").forEach(card => {
         const isCardActive = card.classList.contains("active");
-        const checkedChoices = Array.from(card.querySelectorAll(".wcm-choice-checkbox:checked")).map(c => c.value);
+        const checkedChoices = Array.from(card.querySelectorAll(".wcm-choice-checkbox:checked"));
         if (isCardActive || checkedChoices.length > 0) {
           const title = card.querySelector(".wcm-option-title")?.textContent?.trim() || "";
+          const cardBasePrice = Number(card.dataset.price || 0);
+
           if (checkedChoices.length > 0) {
-            chosenDetails.push(`${title} [${checkedChoices.join(", ")}]`);
+            const choiceStrs = [];
+            checkedChoices.forEach(chk => {
+              const chkPrice = Number(chk.dataset.price || 0);
+              servicePriceSum += chkPrice;
+              if (chkPrice > 0) {
+                choiceStrs.push(`${chk.value} (₹${chkPrice.toLocaleString('en-IN')})`);
+              } else {
+                choiceStrs.push(chk.value);
+              }
+            });
+            chosenDetails.push(`${title}: ${choiceStrs.join(", ")}`);
           } else if (title) {
-            chosenDetails.push(title);
+            servicePriceSum += cardBasePrice;
+            if (cardBasePrice > 0) {
+              chosenDetails.push(`${title} (₹${cardBasePrice.toLocaleString('en-IN')})`);
+            } else {
+              chosenDetails.push(title);
+            }
           }
         }
       });
 
       modal.querySelectorAll(".wcm-icon-card.active").forEach(card => {
         const title = card.querySelector(".wcm-card-text-title")?.textContent?.trim() || "";
-        if (title) chosenDetails.push(title);
+        const price = Number(card.dataset.price || 0);
+        servicePriceSum += price;
+        if (title) {
+          chosenDetails.push(price > 0 ? `${title} (₹${price.toLocaleString('en-IN')})` : title);
+        }
       });
 
       modal.querySelectorAll(".wcm-check-input:checked").forEach(input => {
         if (!input.closest(".wcm-option-card")) {
           const label = input.closest("label")?.textContent?.trim() || "";
-          if (label) chosenDetails.push(label);
+          const price = Number(input.dataset.price || 0);
+          servicePriceSum += price;
+          if (label) {
+            chosenDetails.push(price > 0 ? `${label} (₹${price.toLocaleString('en-IN')})` : label);
+          }
         }
       });
 
       window.selectedWeddingCustomOptions = window.selectedWeddingCustomOptions || {};
       window.selectedWeddingCustomOptions[activeWeddingModalServiceId] = chosenDetails;
+
+      window.selectedWeddingServicePrices = window.selectedWeddingServicePrices || {};
+      window.selectedWeddingServicePrices[activeWeddingModalServiceId] = servicePriceSum;
     }
 
     const card = document.getElementById(`card-${activeWeddingModalServiceId}`);
@@ -4619,8 +4689,36 @@ function openWeddingCallbackModal() {
   const preview = document.getElementById("cbSelectedServicesPreview");
   if (preview) {
     const selectedObjs = (SITE_DATA.weddingServices || []).filter(s => selectedWeddingServices.includes(s.id));
+    let grandTotal = 0;
+    if (window.selectedWeddingServicePrices) {
+      selectedWeddingServices.forEach(sId => {
+        grandTotal += Number(window.selectedWeddingServicePrices[sId] || 0);
+      });
+    }
+
     if (selectedObjs.length > 0) {
-      preview.textContent = selectedObjs.map(s => s.title).join(", ");
+      let html = `<div style="display:flex; flex-direction:column; gap:8px;">`;
+      selectedObjs.forEach(s => {
+        const opts = window.selectedWeddingCustomOptions?.[s.id];
+        const sPrice = Number(window.selectedWeddingServicePrices?.[s.id] || 0);
+        html += `<div style="border-bottom:1px solid #fee2e2; padding-bottom:6px;">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <strong style="color:#0f172a; font-size:13px;">${s.title}</strong>
+            ${sPrice > 0 ? `<span style="color:#047857; font-weight:800; font-size:13px;">₹${sPrice.toLocaleString('en-IN')}</span>` : ''}
+          </div>`;
+        if (opts && opts.length > 0) {
+          html += `<div style="font-size:11.5px; color:#475569; padding-left:6px; margin-top:3px; line-height:1.4;">• ${opts.join('<br/>• ')}</div>`;
+        }
+        html += `</div>`;
+      });
+      if (grandTotal > 0) {
+        html += `<div style="display:flex; justify-content:space-between; align-items:center; font-size:14px; font-weight:900; color:#047857; padding-top:4px;">
+          <span>Estimated Total Quotation:</span>
+          <span>₹${grandTotal.toLocaleString('en-IN')}</span>
+        </div>`;
+      }
+      html += `</div>`;
+      preview.innerHTML = html;
     } else {
       preview.textContent = "No specific services selected. Our team will guide you through all options.";
     }
