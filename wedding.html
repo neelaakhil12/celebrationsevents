@@ -415,12 +415,9 @@
               <span style="font-family: 'Outfit', sans-serif; font-size: 24px; font-weight: 800; color: #1e1b4b; letter-spacing: -0.5px;">Celebration <span style="color: #6b21a8;">Events</span><span class="reg" style="font-size: 12px; color: #6b21a8;">®</span></span>
             </div>
             <div class="qdoc-company-tagline">India’s Premier Wedding & Traditional Event Decorators</div>
-            <div class="qdoc-company-meta">
-              <span>📞 +91 82820 25444</span>
-              <span class="qdoc-meta-sep">•</span>
-              <span>✉️ support@celebrationevents.com</span>
-              <span class="qdoc-meta-sep">•</span>
-              <span>🌐 celebrationevents.com</span>
+            <div class="qdoc-company-contact-rows">
+              <div>📞 <strong>+91 82820 25444</strong> &nbsp;•&nbsp; ✉️ <strong>support@celebrationevents.com</strong></div>
+              <div>🌐 <strong>www.celebrationevents.com</strong></div>
             </div>
           </div>
           <div class="qdoc-meta-block">
@@ -510,23 +507,26 @@
   <style>
     /* Professional Quotation Document Modal Styles - Royal Brinjal Theme */
     .quotation-doc-modal-container {
-      background: #fdf4ff;
-      width: 90%;
-      max-width: 750px;
+      background: #ffffff;
+      width: 95%;
+      max-width: 820px;
       min-height: 86vh;
       max-height: 94vh;
       border-radius: 16px;
+      overflow-x: hidden;
       overflow-y: auto;
       box-shadow: 0 25px 60px rgba(59, 7, 100, 0.35);
       position: relative;
       margin: auto;
       display: flex;
       flex-direction: column;
+      box-sizing: border-box;
+      border: 1.5px solid #d8b4fe;
     }
     .qdoc-toolbar {
       background: #25032b;
       color: #ffffff;
-      padding: 12px 22px;
+      padding: 12px 24px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -534,6 +534,8 @@
       top: 0;
       z-index: 20;
       border-bottom: 1.5px solid #4a044e;
+      box-sizing: border-box;
+      width: 100%;
     }
     .qdoc-toolbar-left {
       display: flex;
@@ -598,11 +600,11 @@
     }
     .quotation-paper {
       background: #ffffff;
-      margin: 18px 20px 24px 20px;
-      padding: 34px 36px 36px 36px;
-      border-radius: 12px;
-      border: 1.5px solid #e9d5ff;
-      box-shadow: 0 4px 20px rgba(59, 7, 100, 0.05);
+      margin: 0;
+      padding: 34px 38px 40px 38px;
+      border-radius: 0 0 16px 16px;
+      box-sizing: border-box;
+      width: 100%;
       min-height: 700px;
       display: flex;
       flex-direction: column;
@@ -611,33 +613,32 @@
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      gap: 16px;
+      gap: 20px;
+      width: 100%;
+      box-sizing: border-box;
     }
     .qdoc-brand-block {
-      flex: 1;
+      flex: 1 1 auto;
+      min-width: 0;
     }
     .qdoc-company-tagline {
-      font-size: 12px;
+      font-size: 12.5px;
       font-weight: 600;
       color: #581c87;
       margin-bottom: 5px;
     }
-    .qdoc-company-meta {
+    .qdoc-company-contact-rows {
       font-size: 11.5px;
-      color: #6b7280;
+      color: #4b5563;
       display: flex;
-      align-items: center;
-      gap: 7px;
-      white-space: nowrap;
-      margin-top: 2px;
-    }
-    .qdoc-meta-sep {
-      color: #d8b4fe;
-      font-size: 11px;
+      flex-direction: column;
+      gap: 2px;
+      margin-top: 3px;
     }
     .qdoc-meta-block {
+      flex: 0 0 auto;
       text-align: right;
-      flex-shrink: 0;
+      min-width: 215px;
     }
     .qdoc-title-badge {
       font-size: 11px;
@@ -653,22 +654,24 @@
       margin-bottom: 6px;
     }
     .qdoc-meta-table {
-      font-size: 11.5px;
+      font-size: 12px;
       border-collapse: collapse;
       color: #374151;
       white-space: nowrap;
+      margin-left: auto;
+      width: 100%;
     }
     .qdoc-meta-label {
       font-weight: 700;
       color: #4b5563;
-      padding: 1.5px 8px 1.5px 0;
+      padding: 2px 10px 2px 0;
       text-align: left;
       white-space: nowrap;
     }
     .qdoc-meta-val {
       font-weight: 800;
       color: #3b0764;
-      padding: 1.5px 0;
+      padding: 2px 0;
       text-align: right;
       white-space: nowrap;
     }
@@ -676,6 +679,7 @@
       height: 2px;
       background: linear-gradient(to right, #6b21a8, #d8b4fe, #ffffff);
       margin: 18px 0;
+      width: 100%;
     }
     .qdoc-client-row {
       display: flex;
@@ -687,6 +691,8 @@
       border-radius: 10px;
       padding: 12px 18px;
       gap: 16px;
+      width: 100%;
+      box-sizing: border-box;
     }
     .qdoc-section-label {
       font-size: 10px;
@@ -715,6 +721,8 @@
       border-radius: 10px;
       overflow: hidden;
       border: 1.5px solid #d8b4fe;
+      width: 100%;
+      box-sizing: border-box;
     }
     .qdoc-items-table {
       width: 100%;
@@ -757,6 +765,8 @@
       border-radius: 0 8px 8px 0;
       padding: 14px 18px;
       margin-top: auto;
+      width: 100%;
+      box-sizing: border-box;
     }
     .qdoc-terms-title {
       font-size: 12px;
@@ -772,8 +782,22 @@
       line-height: 1.6;
     }
 
-    /* Print Formatting */
+    /* Print & PDF Export Formatting - Strict A4 Constraints */
     @media print {
+      @page {
+        size: A4 portrait;
+        margin: 10mm 12mm;
+      }
+      *, *::before, *::after {
+        box-sizing: border-box !important;
+      }
+      html, body {
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        background: #ffffff !important;
+        font-size: 11.5pt !important;
+      }
       body * {
         visibility: hidden !important;
       }
@@ -781,16 +805,16 @@
         visibility: visible !important;
       }
       #weddingQuotationDocModal {
-        position: fixed !important;
-        left: 0 !important;
-        top: 0 !important;
-        width: 100vw !important;
+        position: static !important;
+        display: block !important;
+        width: 100% !important;
         height: auto !important;
         background: #ffffff !important;
         overflow: visible !important;
         z-index: 99999 !important;
         padding: 0 !important;
         margin: 0 !important;
+        box-shadow: none !important;
       }
       .quotation-doc-modal-container {
         width: 100% !important;
@@ -801,12 +825,17 @@
         border-radius: 0 !important;
         margin: 0 !important;
         padding: 0 !important;
+        border: none !important;
+        overflow: visible !important;
       }
       .quotation-paper {
         margin: 0 !important;
-        padding: 20px 24px !important;
+        padding: 0 !important;
         border: none !important;
         box-shadow: none !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow: visible !important;
       }
       .no-print {
         display: none !important;
@@ -815,25 +844,16 @@
     @media (max-width: 768px) {
       .quotation-paper {
         padding: 20px 14px;
-        margin: 10px;
       }
       .qdoc-header {
         flex-direction: column;
       }
       .qdoc-meta-block {
         text-align: left;
+        min-width: 100%;
       }
       .qdoc-meta-table {
         margin-top: 6px;
-      }
-      .qdoc-company-meta {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 3px;
-        white-space: normal;
-      }
-      .qdoc-meta-sep {
-        display: none;
       }
       .qdoc-client-row {
         flex-direction: column;
@@ -981,7 +1001,7 @@
   <!-- Scripts -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script src="data.js?v=9.0"></script>
-  <script src="app.js?v=20261009_quotation_brinjal_v2"></script>
+  <script src="app.js?v=20261009_quotation_brinjal_v3"></script>
   <script>
     // Initialize Wedding Services Page Logic
     document.addEventListener("DOMContentLoaded", () => {
